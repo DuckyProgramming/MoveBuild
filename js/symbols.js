@@ -8957,6 +8957,17 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.vertex(-4,2)
             layer.endShape()
         break
+        case 888:
+            layer.noFill()
+            layer.stroke(255,255,200,fade)
+            layer.strokeWeight(1)
+            regStar(layer,0,0,4,5,5,2,2,0)
+            layer.noStroke()
+            layer.fill(180,0,0,fade)
+            layer.quad(0,5,-0.8,0,0,-5,0.8,0)
+            layer.quad(-1,5,-2,0.4,-4,-4,-3,0.6)
+            layer.quad(1,5,2,0.4,4,-4,3,0.6)
+        break
 
     }
     //mark s
@@ -9432,6 +9443,29 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.quad(-5,1,-4.5,-1,-1.5,-1,-1,1)
                     layer.quad(8,1,7.5,-1,4.5,-1,4,1)
                 break
+                case 18:
+                    layer.noFill()
+                    layer.stroke(200,0,0,fade*typeFades[a])
+                    layer.strokeWeight(1.5)
+                    layer.arc(0,4.5,6,6,-180,0)
+                    layer.arc(0,-1.5,6,6,-30,210)
+                    layer.arc(0,0,16,12,-45,225)
+                    layer.line(-7,1.5,-5.5,1.5)
+                    layer.line(7,1.5,5.5,1.5)
+                break
+                case 19:
+                    layer.noFill()
+                    layer.stroke(80,240,0,fade*typeFades[a])
+                    layer.strokeWeight(1.5)
+                    layer.line(-1.5,-6,-1.5,6)
+                    layer.line(1.5,-6,1.5,6)
+                    layer.line(-6,-1.5,6,-1.5)
+                    layer.line(-6,1.5,6,1.5)
+                    layer.point(-4.5,-4.5)
+                    layer.point(4.5,-4.5)
+                    layer.point(-4.5,4.5)
+                    layer.point(4.5,4.5)
+                break
             }
         }
     }
@@ -9456,7 +9490,23 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
 15-Dust
 16-Iron
 17-Gold
+18-Bleed
+19-Life
 
+CURRENT:
+Basic - Shield
+Dark - Light
+Electric - Dust
+Crystal - Iron
+Glass - Energy
+Dual - Dual
+Poison - Bleed
+Gold - Life
+
+Flame - Ice
+Nerf - Buff
+
+OLD:
 Basic - Shield
 Dark - Light
 Electric - Dust

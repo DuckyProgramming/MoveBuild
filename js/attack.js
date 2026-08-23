@@ -292,7 +292,7 @@ class attack{
             case 8788: case 8789: case 8791: case 8792: case 8794: case 8797: case 8798: case 8799: case 8800: case 8801: case 8802: case 8805: case 8813: case 8819: case 8820: case 8821: case 8823: case 8837: case 8839: case 8840:
             case 8841: case 8842: case 8847: case 8849: case 8850: case 8855: case 8856: case 8857: case 8865: case 8866: case 8868: case 8870: case 8874: case 8877: case 8878: case 8882: case 8883: case 8884: case 8885: case 8898:
             case 8899: case 8905: case 8906: case 8913: case 8919: case 8922: case 8933: case 8938: case 8942: case 8944: case 8945: case 8947: case 8948: case 8952: case 8960: case 8966: case 8971: case 8973: case 8975: case 8976:
-            case 8977: case 8980: case 8986: case 8988: case 8989: case 8993: case 8994: case 8995: case 8996:
+            case 8977: case 8980: case 8986: case 8988: case 8989: case 8993: case 8994: case 8995: case 8996: case 9001: case 9010: case 9012: case 9013:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -372,7 +372,7 @@ class attack{
             case 8518: case 8572: case 8573: case 8589: case 8668: case 8702: case 8704: case 8705: case 8706: case 8707:
             case 8709: case 8722: case 8723: case 8746: case 8767: case 8807: case 8808: case 8814: case 8825: case 8826:
             case 8827: case 8828: case 8867: case 8872: case 8873: case 8916: case 8937: case 8959: case 8978: case 8984:
-            case 8992: case 9000:
+            case 8992: case 9000: case 9005: case 9006: case 9007: case 9009:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -7438,7 +7438,7 @@ class attack{
                     break
                     case 8755:
                         this.userCombatant.addBlock(this.effect[1])
-                        this.userManager.drawAbstract(this.effect[1],23,2,['Cable',[1]])
+                        this.userManager.drawAbstract(this.effect[2],23,2,['Cable',[1]])
                     break
                     case 8756:
                         if(this.energy>=3){
@@ -7582,6 +7582,23 @@ class attack{
                     case 8995:
                         if(this.targetCombatant.life<=0){
                             this.userCombatant.block=0
+                        }
+                    break
+                    case 9001:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(5)
+                        }
+                    break
+                    case 9010:
+                        this.userCombatant.addBlock(this.effect[1])
+                        this.userManager.drawAbstract(this.effect[2],0,2,[11])
+                    break
+                    case 9012:
+                        if(this.userManager.hand.numberAbstract(3,[20])>=1){
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         }
                     break
 
@@ -11109,6 +11126,14 @@ class attack{
                     case 8991:
                         this.userCombatant.statusEffect('Temporary Draw',this.userCombatant.elemental?this.effect[1]+this.effect[2]:this.effect[1])
                     break
+                    case 9002:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(1)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(15)
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -13515,7 +13540,7 @@ class attack{
                     break
                     case -89:
                     case 41: case 807: case 820: case 821: case 822: case 2827: case 3253: case 4013: case 5272: case 5331:
-                    case 5473: case 5559: case 5810: case 5887: case 6214: case 7293: case 7390:
+                    case 5473: case 5559: case 5810: case 5887: case 6214: case 7293: case 7390: case 9003:
                         this.battle.addEnergy(this.effect[0],this.player)
                     break
                     /*
@@ -15741,7 +15766,7 @@ class attack{
                         this.battle.addSpecificEnergy(3,this.player,6)
                         this.battle.addSpecificEnergy(6,this.player,0)
                     break
-                    case 4721:
+                    case 4721: case 9004:
                         this.battle.overlayManager.overlays[114][this.player].active=true
                         this.battle.overlayManager.overlays[114][this.player].activate([this.effect[0]])
                     break
@@ -18476,6 +18501,9 @@ class attack{
                                 }
                             }
                         }
+                    break
+                    case 9011:
+                        this.userCombatant.statusEffect('Power Claw Up',this.effect[0])
                     break
 
                 }
@@ -35025,6 +35053,13 @@ class attack{
                             for(let b=0,lb=this.effect[0];b<lb;b++){
                                 this.userManager.addRandomAbstract(2,0,0,1,0,[0,1],[a+1,3,11,0])
                             }
+                        }
+                    break
+                    case 9009:
+                        let index9009=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                        if(index9009>=0){
+                            this.battle.combatantManager.combatants[index9009].takeDamage(this.effect[0],this.user)
+                            this.battle.combatantManager.combatants[index9009].statusEffect('Burn',this.effect[1])
                         }
                     break
 

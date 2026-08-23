@@ -7187,7 +7187,8 @@ When you end you turn without Awakening, exit Elemental Form. Degrades by 1 per 
         },{name:'Elemental Form',mtg:0,desc:
 `When you gain Awakening, enter Elemental Form.`,
         },{name:'History',mtg:0,desc:
-`Whenever you draw or rewind a card, deal damage to a random enemy.
+//`Whenever you draw or rewind a card, deal damage to a random enemy.
+`Whenever you draw or rewind a card, deal damage to the enemy with the highest health.
 Stacks degrade by half, rounded up, each turn.`,
         },{name:'Rewind',mtg:0,desc:
 `Send a card back to your draw pile. By default, shuffles it in.`,
@@ -7639,7 +7640,7 @@ variants={
 constants={
     gameName:`26`,
     autoExec:-1,
-    playerNumber:26,orbNumber:18,
+    playerNumber:26,orbNumber:20,
     targetRadius:30,startEnergy:3,collisionDamage:4,
     sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],

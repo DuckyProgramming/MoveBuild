@@ -296,7 +296,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 98: string+=`Attacks This Turn\nDeal ${effect[0]} More Damage`; break
         case 99: string+=`Gain ${effect[0]} Energy\nNext Turn`; break
         case 101: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Played First,\nDeals Double\nDamage`; break
-        case 102: string+=`Rearm or Create\na Rearmament Point`; break
+        case 102: string+=`Rearm or Create\na Scythe Tile`; break
         case 103: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Less\nCard${effect[1]?`s`:``} Next Turn`; break
         case 104: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will\nUse a Special Move,\nReduce Effect by ${effect[1]}`; break
         case 105: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nLose ${effect[1]} ${variants.mtg?`Random Mana`:`Energy`}`; break
@@ -9227,6 +9227,19 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8998: string+=`Gain ${effect[0]} Energy\nIncreases by ${effect[1]}\nPermanently`; break
         case 8999: string+=`Gain ${effect[0]} (E)\nIncreases by ${effect[1]}\nPermanently`; break
         case 9000: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n${effect[1]} or More Currency:\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
+        case 9001: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Basic Orb${pl(effect[1])}\nHold ${effect[2]} Electric Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Hold an Orb`; break
+        case 9002: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Shield Orb${pl(effect[1])}\nHold ${effect[2]} Dust Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Hold an Orb`; break
+        case 9003: string+=`Gain ${effect[0]} Energy\nForge:\nMake a Card Quickdraw\nPermanently`; break
+        case 9004: string+=`Gain ${effect[0]} Mana\nof Any Color\nForge:\nMake a Card Quickdraw\nPermanently`; break
+        case 9005: string+=`Move to Any\nEmpty Scythe Tile`; break
+        case 9006: string+=`Move to Any\nEmpty Scythe Tile\nor Create One`; break
+        case 9007: string+=`Move to Any\nEmpty Scythe Tile\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 9008: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\n2 Times\n10%: Repeat`; break
+        case 9009: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nand Apply ${effect[1]} Burn\nto a Target on\na Special Tile`; break
+        case 9010: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nDraw ${effect[2]} Skill${pl(effect[2])}\n${effect[2]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
+        case 9011: string+=`Claw Up ${effect[0]}\nWhen a Power is Played`; break
+        case 9012: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nClaw in Hand:\nApply ${effect[1]} Vulnerable`; break
+        case 9013: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],1)} Block\nAdd ${this.calculateEffect(effect[2],17)} Barrier\nAdd ${this.calculateEffect(effect[3],17)} Bounce`; break
 
         //mark p
 

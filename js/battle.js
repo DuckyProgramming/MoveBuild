@@ -1431,6 +1431,9 @@ class battle{
                 if(this.cardManagers[player].hand.lastPlayed[0].class==11&&userCombatant.getStatus('Skill to Attack Draw Skill')>0){
                     this.cardManagers[player].drawAbstract(userCombatant.getStatus('Skill to Attack Draw Skill'),0,0,[11])
                 }
+                if(card.name.includes('Cable')&&userCombatant.getStatus('Cable Claw Up')>0){
+                    userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Cable Claw Up'))
+                }
             break
             case 2:
                 if(userCombatant.getStatus('Defense Draw')>0){
@@ -1468,6 +1471,9 @@ class battle{
                 }
                 if(userCombatant.getStatus('Power Strength')>0){
                     userCombatant.statusEffect('Strength',userCombatant.getStatus('Power Strength'))
+                }
+                if(userCombatant.getStatus('Power Claw Up')>0){
+                    userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Power Claw Up'))
                 }
                 this.cardManagers[player].discard.allEffectArgs(44,[8722])
                 this.cardManagers[player].reserve.allEffectArgs(44,[8722])
@@ -1665,9 +1671,6 @@ class battle{
         }
         if(card.spec.includes(70)&&userCombatant.getStatus('Shiv Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Shiv Block'))
-        }
-        if(cardClass==1&&card.name.includes('Cable')&&userCombatant.getStatus('Cable Claw Up')>0){
-            userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Cable Claw Up'))
         }
         if((card.name.includes('Silver')||card.spec.includes(52))){
             if(userCombatant.getStatus('Silver Block')>0){

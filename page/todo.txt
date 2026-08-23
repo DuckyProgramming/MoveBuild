@@ -1,12 +1,6 @@
-STOPGAP UPDATE
-
-history now targets the highest health enemy
-delete the explosive orb
-split spin to win
-quests, wishes?, etc should stack efficiently in your hand to save space
-new relic - folding chair - you may get an event at rest sites
-
 CARDSET 108 [TERMINATION II]
+
+1 analogue to normal distribution
 
 rising wave - 2 cost, next turn gain 1 energy 1 strength 1 dexterity draw 1 card
 rewire - exhaust a card, if it is a [], draw 3 cards

@@ -1915,7 +1915,7 @@ class card{
     callHoldOrbEffect(type){
         if(type>=0){
             switch(this.attack){
-                case 7895: case 7896:
+                case 7895: case 7896: case 9001: case 9002:
                     this.costDown(0,[1])
                 break
             }
@@ -2628,7 +2628,7 @@ class card{
     }
     callForgeEffect(){
         switch(this.attack){
-            case 7006:
+            case 7006: case 9003: case 9004:
                 this.battle.overlayManager.overlays[165][this.player].active=true
                 this.battle.overlayManager.overlays[165][this.player].activate()
             break
