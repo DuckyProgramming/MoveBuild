@@ -421,6 +421,20 @@ class group{
         this.cards[this.cards.length-1].downSize=true
         return true
     }
+    addDropCopy(card){
+        game.id++
+        this.cards.push(copyCard(card))
+        last(this.cards).position.x=40
+        last(this.cards).position.y=-100-this.cards.length*200
+        if(this.id==0){
+            this.cards[this.cards.length-1].nonCalc=true
+            this.added()
+        }else{
+            this.subAdded()
+        }
+        this.cards[this.cards.length-1].downSize=true
+        return true
+    }
     addAbstract(type,level,color,edition,variant,args){
         let result=this.add(type,level,color,edition)
         let ticker=0
@@ -3163,6 +3177,9 @@ class group{
                     this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
                     if(userCombatant.getStatus('Mass Pull Damage Random')>0){
                         this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                    }
+                    if(options.massDrop){
+                        this.battle.cardManagers[this.player].drop.addDropCopy(this.cards[index])
                     }
                 }
             }

@@ -1,6 +1,7 @@
 CARDSET 108 [TERMINATION II]
 
 1 analogue to normal distribution
+claws, claws, claws
 
 rising wave - 2 cost, next turn gain 1 energy 1 strength 1 dexterity draw 1 card
 rewire - exhaust a card, if it is a [], draw 3 cards

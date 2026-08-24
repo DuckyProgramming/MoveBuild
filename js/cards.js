@@ -29614,15 +29614,15 @@ types.card=[
     },{
         name:'Malware',rarity:2,list:12,
         levels:[
-            {effect:[1],attack:9011,cost:2,target:[0],spec:[],class:4},
-            {effect:[1],attack:9011,cost:1,target:[0],spec:[],class:4},
-            {effect:[1],attack:9011,cost:0,target:[0],spec:[],class:4},
+            {effect:[2],attack:9011,cost:1,target:[0],spec:[],class:4},
+            {effect:[3],attack:9011,cost:1,target:[0],spec:[],class:4},
+            {effect:[4],attack:9011,cost:1,target:[0],spec:[],class:4},
         ],mtg:{
             rarity:2,list:12,color:[1,4],
             levels:[
-                {effect:[1],attack:9011,cost:[9,-1,-1],target:[0],spec:[],class:4},
-                {effect:[1],attack:9011,cost:[9,-1],target:[0],spec:[],class:4},
-                {effect:[1],attack:9011,cost:[9],target:[0],spec:[],class:4},
+                {effect:[3],attack:9011,cost:[9,-1],target:[0],spec:[],class:4},
+                {effect:[4],attack:9011,cost:[9,-1],target:[0],spec:[],class:4},
+                {effect:[5],attack:9011,cost:[9,-1],target:[0],spec:[],class:4},
             ],
         },
     },{
