@@ -1594,8 +1594,22 @@ function copyArrayAttack(base){
 function copyFalsed(base){
 	return {trigger:base.trigger,name:base.name,attack:base.attack,effect:base.effect,spec:base.spec,rarity:base.rarity,list:base.list,class:base.class,reality:base.reality,colorDetail:base.colorDetail,target:base.target,cost:base.cost}
 }
+function boxMuller(){
+	let u=0,v=0
+	while(u==0){
+		u=random(0,1)
+	}
+	while(v==0){
+		v=random(0,1)
+	}
+	let r=sqrt(-2*log(u))
+	return [
+		r*cos(360*v),
+		r*sin(360*v)
+	]
+}
 function normalDistribution(){
-	let u=random(0,1),v=random(0,1),s=0.449871,t=-0.386595,a=0.19600,b=0.25472,r1=0.27597,r2=0.27846
+	/*let u=random(0,1),v=random(0,1),s=0.449871,t=-0.386595,a=0.19600,b=0.25472,r1=0.27597,r2=0.27846
 	v=1.7156*(v-0.5)
 	let x=u-s,y=abs(v)-t
 	let Q=x**2+y*(a*y-b*x)
@@ -1605,7 +1619,15 @@ function normalDistribution(){
 		return normalDistribution()
 	}else{
 		return v/u
+	}*/
+	return boxMuller()[0]
+}
+function chiSquaredDistribution(df){
+	let sum=0
+	for(let a=0,la=df;a<la;a++){
+		sum+=boxMuller()[0]**2
 	}
+	return sum
 }
 function matrixDet3(matrix){
 	return matrix[0][0]*(matrix[1][1]*matrix[2][2]-matrix[2][1]*matrix[1][2])-

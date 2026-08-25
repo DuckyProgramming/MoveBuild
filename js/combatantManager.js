@@ -772,38 +772,39 @@ class combatantManager{
         let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
         if(index>=0){
             let tile=this.battle.tileManager.tiles[index]
+            let buildCombatant=this.combatants[this.getPlayerCombatantIndex(builder)]
             this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
             this.battle.activate(1,this.combatants.length-1)
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up'))
-                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Construct Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]=0
+            if(buildCombatant.getStatus('Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',buildCombatant.getStatus('Construct Speed Up'))
+                buildCombatant.status.main[findList('Construct Speed Up',buildCombatant.status.name)]=0
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Low Health Construct')>0){
+            if(buildCombatant.getStatus('Low Health Construct')>0){
                 this.combatants[this.combatants.length-1].life=round(this.combatants[this.combatants.length-1].life*5)/10
-                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
+                buildCombatant.status.main[findList('Low Health Construct',buildCombatant.status.name)]--
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn')>0){
-                for(let a=0,la=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn');a<la;a++){
+            if(buildCombatant.getStatus('Construct Turn')>0){
+                for(let a=0,la=buildCombatant.getStatus('Construct Turn');a<la;a++){
                     this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
                 }
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block')>0){
-                this.combatants[this.getPlayerCombatantIndex(builder)].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
-                this.combatants[this.combatants.length-1].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
+            if(buildCombatant.getStatus('Construct Dual Block')>0){
+                buildCombatant.addBlock(buildCombatant.getStatus('Construct Dual Block'))
+                this.combatants[this.combatants.length-1].addBlock(buildCombatant.getStatus('Construct Dual Block'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up'))
+            if(buildCombatant.getStatus('All Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',buildCombatant.getStatus('All Construct Speed Up'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Strength',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength'))
+            if(buildCombatant.getStatus('Construct Strength')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Strength',buildCombatant.getStatus('Construct Strength'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Dexterity',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity'))
+            if(buildCombatant.getStatus('Construct Dexterity')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Dexterity',buildCombatant.getStatus('Construct Dexterity'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')>0){
-                this.combatants[this.getPlayerCombatantIndex(builder)].metal+=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')
+            if(buildCombatant.getStatus('Construct Metal')>0){
+                buildCombatant.metal+=buildCombatant.getStatus('Construct Metal')
             }
         }
     }
@@ -817,37 +818,38 @@ class combatantManager{
         }
         if(list.length>0){
             let tile=this.battle.tileManager.tiles[list[floor(random(0,list.length))]]
+            let buildCombatant=this.combatants[this.getPlayerCombatantIndex(builder)]
             this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Speed Up'))
-                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Construct Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]=0
+            if(buildCombatant.getStatus('Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',buildCombatant.getStatus('Construct Speed Up'))
+                buildCombatant.status.main[findList('Construct Speed Up',buildCombatant.status.name)]=0
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Low Health Construct')>0){
+            if(buildCombatant.getStatus('Low Health Construct')>0){
                 this.combatants[this.combatants.length-1].life=round(this.combatants[this.combatants.length-1].life*5)/10
-                this.combatants[this.getPlayerCombatantIndex(builder)].status.main[findList('Low Health Construct',this.combatants[this.getPlayerCombatantIndex(builder)].status.name)]--
+                buildCombatant.status.main[findList('Low Health Construct',buildCombatant.status.name)]--
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn')>0){
-                for(let a=0,la=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Turn');a<la;a++){
+            if(buildCombatant.getStatus('Construct Turn')>0){
+                for(let a=0,la=buildCombatant.getStatus('Construct Turn');a<la;a++){
                     this.battle.turnManager.loadEnemyAttackRepeatBack(this.combatants.length-1)
                 }
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block')>0){
-                this.combatants[this.getPlayerCombatantIndex(builder)].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
-                this.combatants[this.combatants.length-1].addBlock(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dual Block'))
+            if(buildCombatant.getStatus('Construct Dual Block')>0){
+                buildCombatant.addBlock(buildCombatant.getStatus('Construct Dual Block'))
+                this.combatants[this.combatants.length-1].addBlock(buildCombatant.getStatus('Construct Dual Block'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Speed Up',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('All Construct Speed Up'))
+            if(buildCombatant.getStatus('All Construct Speed Up')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Speed Up',buildCombatant.getStatus('All Construct Speed Up'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Strength',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Strength'))
+            if(buildCombatant.getStatus('Construct Strength')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Strength',buildCombatant.getStatus('Construct Strength'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity')>0){
-                this.combatants[this.combatants.length-1].statusEffect('Dexterity',this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Dexterity'))
+            if(buildCombatant.getStatus('Construct Dexterity')>0){
+                this.combatants[this.combatants.length-1].statusEffect('Dexterity',buildCombatant.getStatus('Construct Dexterity'))
             }
-            if(this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')>0){
-                this.combatants[this.getPlayerCombatantIndex(builder)].metal+=this.combatants[this.getPlayerCombatantIndex(builder)].getStatus('Construct Metal')
+            if(buildCombatant.getStatus('Construct Metal')>0){
+                buildCombatant.metal+=buildCombatant.getStatus('Construct Metal')
             }
         }
     }

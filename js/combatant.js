@@ -5502,56 +5502,66 @@ class combatant{
                         this.battle.cardManagers[this.id].draw(this.status.main[801])
                     }
                 }
-                if(name=='Poison'&&effectiveValue>0){
-                    if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
-                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
-                        if(userCombatant.getStatus('Poison Damage')>0){
-                            this.takeDamage(userCombatant.getStatus('Poison Damage'),-1)
-                        }
-                    }
-                }
-                if(name=='Bleed'&&effectiveValue>0){
-                    if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
-                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
-                        if(userCombatant.getStatus('Bleed Damage')>0){
-                            this.takeDamage(userCombatant.getStatus('Bleed Damage'),-1)
-                        }
-                        if(userCombatant.getStatus('Bleed Attack Intent')>0){
-                            this.setIntentClassMultiple([1,5])
-                        }
-                    }
-                }
-                if(name=='Freeze'&&effectiveValue>0){
-                    if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
-                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
-                        if(userCombatant.getStatus('Freeze Vulnerable')>0){
-                            this.statusEffect('Vulnerable',userCombatant.getStatus('Freeze Vulnerable'))
-                        }
-                    }
-                }
-                if(name=='Lock On'&&effectiveValue>0){
-                    if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
-                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
-                        if(userCombatant.getStatus('Lock On Bleed')>0&&this.block<=0){
-                            this.statusEffect('Bleed',userCombatant.getStatus('Lock On Bleed'))
-                        }
-                        if(userCombatant.getStatus('Lock On Poison')>0){
-                            this.statusEffect('Poison',userCombatant.getStatus('Lock On Poison'))
-                        }
-                    }
-                }
-                if(name=='Communized'&&effectiveValue>0){
-                    if(!this.communizers.includes(this.battle.turn.main)){
-                        this.communizers.push(this.battle.turn.main)
-                    }
-                    if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
-                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
-                        if(userCombatant.getStatus('Communized Weak')>0){
-                            this.statusEffect('Weak',userCombatant.getStatus('Communized Weak'))
-                        }
-                        if(userCombatant.getStatus('Communized Vulnerable')>0){
-                            this.statusEffect('Vulnerable',userCombatant.getStatus('Communized Vulnerable'))
-                        }
+                if(effectiveValue>0){
+                    switch(this.status.name[status]){
+                        case 'Poison':
+                            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                                if(userCombatant.getStatus('Poison Damage')>0){
+                                    this.takeDamage(userCombatant.getStatus('Poison Damage'),-1)
+                                }
+                            }
+                        break
+                        case 'Bleed':
+                            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                                if(userCombatant.getStatus('Bleed Damage')>0){
+                                    this.takeDamage(userCombatant.getStatus('Bleed Damage'),-1)
+                                }
+                                if(userCombatant.getStatus('Bleed Attack Intent')>0){
+                                    this.setIntentClassMultiple([1,5])
+                                }
+                            }
+                        break
+                        case 'Freeze':
+                            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                                if(userCombatant.getStatus('Freeze Vulnerable')>0){
+                                    this.statusEffect('Vulnerable',userCombatant.getStatus('Freeze Vulnerable'))
+                                }
+                            }
+                        break
+                        case 'Lock On':
+                            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                                if(userCombatant.getStatus('Lock On Bleed')>0&&this.block<=0){
+                                    this.statusEffect('Bleed',userCombatant.getStatus('Lock On Bleed'))
+                                }
+                                if(userCombatant.getStatus('Lock On Poison')>0){
+                                    this.statusEffect('Poison',userCombatant.getStatus('Lock On Poison'))
+                                }
+                            }
+                        break
+                        case 'Communized':
+                            if(!this.communizers.includes(this.battle.turn.main)){
+                                this.communizers.push(this.battle.turn.main)
+                            }
+                            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+                                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+                                if(userCombatant.getStatus('Communized Weak')>0){
+                                    this.statusEffect('Weak',userCombatant.getStatus('Communized Weak'))
+                                }
+                                if(userCombatant.getStatus('Communized Vulnerable')>0){
+                                    this.statusEffect('Vulnerable',userCombatant.getStatus('Communized Vulnerable'))
+                                }
+                            }
+                        break
+                        case 'Claw Up':
+                            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.id==this.battle.turn.main){
+                                this.battle.cardManagers[this.battle.turn.main].discard.allEffectArgs(44,[9024])
+                                this.battle.cardManagers[this.battle.turn.main].reserve.allEffectArgs(44,[9024])
+                            }
+                        break
                     }
                 }
                 this.statusGeneralUpdate(status)

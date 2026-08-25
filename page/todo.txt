@@ -1,9 +1,8 @@
-CARDSET 108 [TERMINATION II]
+CARDSET 109 [TERMINATION III]
 
-1 analogue to normal distribution
-claws, claws, claws
+solid swap
+wheel ghost
 
-rising wave - 2 cost, next turn gain 1 energy 1 strength 1 dexterity draw 1 card
 rewire - exhaust a card, if it is a [], draw 3 cards
 brambles - 2 cost, gain 3 regen, your attacks apply poison equal to your regen
 stop laughing - push target, draw a card, remove a random debuff from self
@@ -58,7 +57,7 @@ invert polarity - swap your strength and dexterity, retain
 gambler's presence - 1 cost, apply 1 weak and 1 vulnerable, when added, gain 500 currency
 pocket pen - deal 4 damage, add 4 block, if you have coffee: draw a card
 
-CARDSET 109 [TERMINATION III]
+CARDSET 110 [TERMINATION IV]
 
 haunts - 1 cost, redraw your hand, draw 1 card and gain 1 energy next turn
 mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
@@ -120,7 +119,7 @@ wing flail - remove all block from target, 2 damage 3 times, retain
 crossing boundaries - recall for 1 cost BUT set caffeine to your limit
 rebalancer - unupgrade a random upgraded card, upgrade a card permanently
 
-CARDSET 110 [TERMINATION IV]
+CARDSET 111 [TERMINATION V]
 
 condemnation - deal damage, then trigger [choreograph] for 1 card
 foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status]

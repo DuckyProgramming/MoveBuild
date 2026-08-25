@@ -7638,7 +7638,7 @@ variants={
     ],
 }
 constants={
-    gameName:`26`,
+    gameName:`The Big 26`,
     autoExec:-1,
     playerNumber:26,orbNumber:20,
     targetRadius:30,startEnergy:3,collisionDamage:4,

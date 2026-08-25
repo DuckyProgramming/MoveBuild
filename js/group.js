@@ -411,7 +411,8 @@ class group{
     }
     addDrop(type,level,color){
         game.id++
-        this.cards.push(new card(this.layer,this.battle,this.player,40,-100-this.cards.length*200,type,level,color,game.id))
+        this.cards.push(new card(this.layer,this.battle,this.player,40,min(-100,...this.cards.map(card=>card.position.y-200)),type,level,color,game.id))
+        //this.cards.push(new card(this.layer,this.battle,this.player,40,-100-this.cards.length*200),type,level,color,game.id))
         if(this.id==0){
             this.cards[this.cards.length-1].nonCalc=true
             this.added()
@@ -425,7 +426,7 @@ class group{
         game.id++
         this.cards.push(copyCard(card))
         last(this.cards).position.x=40
-        last(this.cards).position.y=-100-this.cards.length*200
+        last(this.cards).position.y=min(-100,...this.cards.map(card=>card.position.y-200))
         if(this.id==0){
             this.cards[this.cards.length-1].nonCalc=true
             this.added()
