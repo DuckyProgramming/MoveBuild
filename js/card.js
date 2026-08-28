@@ -836,7 +836,7 @@ class card{
         if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             this.cancelDesc=false
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),this.spec.includes(82)])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),this.spec.includes(82),this.spec.includes(86)])
         }else{
             this.cancelDesc=false
             return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false,false,false,false,false,false,false,false,false,false])
@@ -846,7 +846,7 @@ class card{
         if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
             this.cancelDesc=false
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),this.spec.includes(82)])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),this.spec.includes(82),this.spec.includes(86)])
         }else{
             this.cancelDesc=false
             return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false,false,false,false,false,false,false,false,false,false])
@@ -3404,6 +3404,11 @@ class card{
                         this.setCost(2,[0])
                     }
                 break
+                case 9090:
+                    if(card.spec.includes(86)){
+                        this.costDown(0,[1])
+                    }
+                break
                 
             }
         }
@@ -3533,6 +3538,11 @@ class card{
             case 8946:
                 for(let a=0,la=this.effect[0];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Dual\nDiscus',types.card),this.level,0)
+                }
+            break
+            case 9087:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Wheel\nGhost',types.card),this.level,0)
                 }
             break
         }

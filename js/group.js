@@ -2720,6 +2720,11 @@ class group{
                         this.cards[a].retain2=true
                     }
                 break
+                case 75:
+                    if(this.cards[a].spec.includes(args[1])){
+                        this.cards[a].costDown(0,[args[0]])
+                    }
+                break
             }
         }
         if(effect==9){
@@ -6092,6 +6097,9 @@ class group{
                 if(a.spec.includes(82)&&userCombatant.getStatus('Worker Boost')>0){
                     this.battle.attackManager.effect[0]+=userCombatant.getStatus('Worker Boost')
                     this.battle.attackManager.effect[1]+=userCombatant.getStatus('Worker Boost')
+                }
+                if(a.spec.includes(86)&&userCombatant.getStatus('Wheel Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Wheel Boost')
                 }
             break
             case 35:

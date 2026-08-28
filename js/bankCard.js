@@ -9279,6 +9279,47 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9047: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nLose ${effect[1]} Temporary\nStrength Next Turn\nMay Target Any Tile\nWithin Range ${target[1]}-${target[2]}`; break
         case 9048: string+=`Move to a Random\nEmpty Tile\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
         case 9050: string+=`Swap With an\nAdjacent Target\nDeal ${this.calculateEffect(effect[0],0)} Damage\nClaw Up ${effect[1]}`; break
+        case 9051: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nCounter ${effect[0]} All`; break
+        case 9052: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nAdd ${this.calculateEffect(effect[0],1)} Block\nIf You Have No Block`; break
+        case 9053: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
+        case 9054: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nPut the Top Card\nof Draw and Discard\nPiles into Hand`; break
+        case 9055: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nGain ${effect[2]} Temporary\nDexterity`; break
+        case 9056: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nGain ${effect[2]} Temporary\nStrength`; break
+        case 9057: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nApply ${effect[2]} Random Debuff`; break
+        case 9058: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nto Hand Every Turn\nIf You Have None`; break
+        case 9059: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
+        case 9060: string+=`Wheels Deal\n${effect[0]} More Damage`; break
+        case 9061: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand\nThey Cost 1 Less`; break
+        case 9062: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Energy\nIf You Have a\nWheel in Hand`; break
+        case 9063: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (B) (G) If You Have\na Wheel in Hand`; break
+        case 9064: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (E) If You Have\na Wheel in Hand`; break
+        case 9065: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (E) (E) If You Have\na Wheel in Hand`; break
+        case 9066: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand\nGain ${effect[1]} Energy\nNext Turn`; break
+        case 9067: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand\nGain (N) Next Turn`; break
+        case 9068: string+=`Shuffle ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\ninto Draw Pile\n${effect[0]!=1?`They Have`:`It Has`} Replenish`; break
+        case 9069: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[1],1)} Block\nAdd ${effect[2]} Wheel Ghost${pl(effect[2])}\nto Hand`; break
+        case 9070: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand\nAll Wheels in Hand\nCost ${effect[1]} Less`; break
+        case 9071: string+=`When You\nPlay a Wheel,\nGain ${effect[0]} Temporary\nStrength and ${effect[1]}\nTemporary Dexterity`; break
+        case 9072: string+=`Exhaust All Status Cards\nand Curses in Hand\nAdd ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand Each`; break
+        case 9073: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nShuffle ${effect[1]} Wheel Ghost${pl(effect[1])}\nof Equivalent Level\ninto Draw Pile\n${effect[0]!=1?`They Have`:`It Has`} Replenish`; break
+        case 9074: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPut the Top${effect[1]!=1?` ${effect[1]}`:``}\nCard${pl(effect[1])} in Discard Pile\nin Your Hand\nAdd ${effect[2]} Wheel Ghost${pl(effect[2])} of\nEquivalent Level to Hand`; break
+        case 9075: string+=`When You\nPlay a Wheel,\nPut the Top${effect[0]!=1?` ${effect[0]}`:``}\nCard${pl(effect[0])} in Discard Pile\nin Your Hand`; break
+        case 9076: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nDiscover a Wheel`; break
+        case 9077: string+=`When You\nPlay a Wheel,\nGain ${effect[0]} Pure`; break
+        case 9078: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand\n${effect[0]!=1?`They Gain`:`It Gains`} Damage\nEqual to Number of\nExhausted Cards`; break
+        case 9079: string+=`Apply ${effect[0]} Weak\nin All Directions\nAll Wheels in Hand\nDeal ${effect[1]} More Damage`; break
+        case 9080: string+=`Add ${effect[0]} Wheel Ghost${pl(effect[0])}\nto Hand That Costs 0\nWhen a ${variants.mtg?`Total `:``}Cost 3+\nCard is Played`; break
+        case 9081: string+=`Add ${effect[0]} Upgraded\nWheel Ghost${pl(effect[0])} to Hand\nThat Costs 0\nWhen a ${variants.mtg?`Total `:``}Cost 3+\nCard is Played`; break
+        case 9082: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nStatus Card in Hand:\nExhaust it\nAdd ${effect[1]} Wheel Ghost${pl(effect[1])}\nof Equivalent Level\nto Hand\nIt Costs 0 Temporarily`; break
+        case 9083: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${effect[1]} Wheel Ghost${pl(effect[1])}\nof Equivalent Level\nto Hand`; break
+        case 9084: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Wheel Ghost${pl(effect[1])}\nof Equivalent Level\nto Hand`; break
+        case 9085: string+=`Push 1 Tile\nAdd ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand`; break
+        case 9086: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nAdd ${effect[1]} Wheel Ghost${pl(effect[1])}\nof Equivalent Level\nto Hand`; break
+        case 9087: string+=`When Etherealed,\nAdd ${effect[0]} Wheel Ghost${pl(effect[0])}\nof Equivalent Level\nto Hand`; break
+        case 9088: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Wheel Ghost${pl(effect[1])}\nof Equivalent Level\nto Hand\nIt Duplicates Once`; break
+        case 9089: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nAdd ${effect[2]} Wheel Ghost${pl(effect[2])}\nof Equivalent Level\nto Hand`; break
+        case 9090: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nCosts 1 Less\nWhen Wheel Played`; break
+        case 9091: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nAdd ${effect[2]} Wheel Ghost${pl(effect[2])}\nto Hand`; break
 
         //mark p
 

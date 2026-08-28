@@ -293,7 +293,7 @@ class attack{
             case 8841: case 8842: case 8847: case 8849: case 8850: case 8855: case 8856: case 8857: case 8865: case 8866: case 8868: case 8870: case 8874: case 8877: case 8878: case 8882: case 8883: case 8884: case 8885: case 8898:
             case 8899: case 8905: case 8906: case 8913: case 8919: case 8922: case 8933: case 8938: case 8942: case 8944: case 8945: case 8947: case 8948: case 8952: case 8960: case 8966: case 8971: case 8973: case 8975: case 8976:
             case 8977: case 8980: case 8986: case 8988: case 8989: case 8993: case 8994: case 8995: case 8996: case 9001: case 9010: case 9012: case 9013: case 9014: case 9021: case 9024: case 9025: case 9026: case 9027: case 9028:
-            case 9029: case 9036: case 9040: case 9049: case 9050:
+            case 9029: case 9036: case 9040: case 9049: case 9050: case 9053: case 9054: case 9055: case 9056: case 9057: case 9074: case 9076: case 9083: case 9085: case 9086: case 9088: case 9089:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -374,7 +374,8 @@ class attack{
             case 8709: case 8722: case 8723: case 8746: case 8767: case 8807: case 8808: case 8814: case 8825: case 8826:
             case 8827: case 8828: case 8867: case 8872: case 8873: case 8916: case 8937: case 8959: case 8978: case 8984:
             case 8992: case 9000: case 9005: case 9006: case 9007: case 9009: case 9016: case 9037: case 9038: case 9039:
-            case 9041: case 9042: case 9043: case 9044: case 9045: case 9046: case 9047:
+            case 9041: case 9042: case 9043: case 9044: case 9045: case 9046: case 9047: case 9062: case 9063: case 9064:
+            case 9065: case 9073:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -386,7 +387,7 @@ class attack{
             break
             case 9: case 650: case 651: case 727: case 1591: case 1592: case 1593: case 1594: case 1645: case 1646:
             case 2095: case 2164: case 2165: case 2380: case 2626: case 3432: case 4071: case 5905: case 6408: case 6726:
-            case 7656: case 8455: case 8886:
+            case 7656: case 8455: case 8886: case 9051: case 9052:
                 if(this.targetClass==1){
                     this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -7886,7 +7887,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]+this.effect[1]*this.battle.itemManager.total[this.player])
                     break
                     case 2891: case 2893: case 2896: case 2906: case 2910: case 2960: case 2963: case 2964: case 2970: case 3017:
-                    case 3049: case 3341: case 3347: case 4513: case 5915: case 6514: case 8896:
+                    case 3049: case 3341: case 3347: case 4513: case 5915: case 6514: case 8896: case 9090:
                         this.userCombatant.addBarrier(this.effect[0])
                     break
                     case 2908:
@@ -11165,6 +11166,18 @@ class attack{
                     case 9018:
                         this.userCombatant.statusEffect('Counter',this.effect[1]*this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1).length)
                     break
+                    case 9082:
+                        if(this.userManager.hand.deAbstract(4,1,[[5]])==1){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.addAbstract(findName('Wheel\nGhost',types.card),this.level,0,0,[0])
+                            }
+                        }
+                    break
+                    case 9084:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -13548,6 +13561,30 @@ class attack{
                     case 9000:
                         if(this.battle.currency.money[this.player]>=this.effect[1]){
                             this.userCombatant.addBlock(this.effect[2],this.player)
+                        }
+                    break
+                    case 9062: case 9063: case 9064: case 9065:
+                        if(this.userManager.hand.numberAbstract(3,[86])>=1){
+                            switch(this.type){
+                                case 9062:
+                                    this.battle.addEnergy(this.effect[1],this.player)
+                                break
+                                case 9063:
+                                    this.battle.addSpecificEnergy(1,this.player,2)
+                                    this.battle.addSpecificEnergy(1,this.player,4)
+                                break
+                                case 9064:
+                                    this.battle.addSpecificEnergy(2,this.player,6)
+                                break
+                                case 9065:
+                                    this.battle.addSpecificEnergy(3,this.player,6)
+                                break
+                            }
+                        }
+                    break
+                    case 9073:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropDrawShuffleAbstract(this.player,findName('Wheel\nGhost',types.card),0,0,[4],[[62]])
                         }
                     break
 
@@ -18550,6 +18587,9 @@ class attack{
                     case 9023:
                         this.userCombatant.statusEffect('Dexterity',this.effect[0])
                         this.userCombatant.statusEffect('Claw Up',this.effect[1])
+                    break
+                    case 9060:
+                        this.userCombatant.statusEffect('Wheel Boost',this.effect[0])
                     break
 
                 }
@@ -23631,6 +23671,11 @@ class attack{
                         this.userCombatant.statusEffect('(E) Next Turn',2)
                         this.userCombatant.statusEffect('Temporary Draw',this.effect[2])
                     break
+                    case 9072:
+                        for(let a=0,la=this.effect[0]*this.userManager.hand.allEffectArgs(58,[[5,6]]);a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                    break
 
                 }
                 //mark 5
@@ -25106,6 +25151,39 @@ class attack{
                     case 8928:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.addAbstract(findName('Timestamp',types.card),0,0,0,[6],[0,this.battle.turn.total])
+                        }
+                    break
+                    case 9059:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                        this.userManager.hand.exhaust(this.effect[1])
+                    break
+                    case 9066:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                    break
+                    case 9067:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                    break
+                    case 9071:
+                        this.userCombatant.statusEffect('Wheel Temporary Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Wheel Temporary Dexterity',this.effect[1])
+                    break
+                    case 9075:
+                        this.userCombatant.statusEffect('Wheel Flip Top',this.effect[0])
+                    break
+                    case 9077:
+                        this.userCombatant.statusEffect('Wheel Pure',this.effect[0])
+                    break
+                    case 9078:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.addAbstract(findName('Wheel\nGhost',types.card),this.level,0,0,[7],[0,this.userManager.exhaust.cards.length])
                         }
                     break
 
@@ -28713,6 +28791,13 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5?1:2]]])
                     break
+                    case 9089:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -31522,6 +31607,20 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Splash',types.card),0,0)
                         }
+                    break
+                    case 9058:
+                        this.userCombatant.statusEffect('Wheel Ghost Per Turn',this.effect[0])
+                    break
+                    case 9061:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.addAbstract(findName('Wheel\nGhost',types.card),this.level,0,0,[2],[])
+                        }
+                    break
+                    case 9070:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                        this.userManager.hand.allEffectArgs(75,[this.effect[1],86])
                     break
 
                 }
@@ -35153,6 +35252,18 @@ class attack{
                             this.battle.combatantManager.combatants[index9009].statusEffect('Burn',this.effect[1])
                         }
                     break
+                    case 9080:
+                        this.userCombatant.statusEffect('3+ Cost Free Wheel',this.effect[0])
+                    break
+                    case 9081:
+                        this.userCombatant.statusEffect('3+ Cost Free Upgraded Wheel',this.effect[0])
+                    break
+                    case 9086:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                    break
 
                 }
                 //mark 12
@@ -35643,6 +35754,18 @@ class attack{
                     break
                     case 8701:
                         this.userCombatant.caffeine+=this.effect[1]
+                    break
+                    case 9069:
+                        this.userCombatant.addBlock(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
+                    break
+                    case 9091:
+                        this.userCombatant.addBounce(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
                     break
 
                 }
@@ -36156,6 +36279,11 @@ class attack{
                     case 9029:
                         this.userManager.drawAbstract(this.effect[0],0,0,[11])
                         this.userCombatant.statusEffect('Claw Up',this.effect[1])
+                    break
+                    case 9085:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Wheel\nGhost',types.card),this.level,0)
+                        }
                     break
                     default:
                         if(this.type==7510){

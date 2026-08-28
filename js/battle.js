@@ -1217,6 +1217,13 @@ class battle{
                 }
             }
         }
+        if(card.spec.includes(86)&&userCombatant.getStatus('Wheel Flip Top')>0){
+            for(let a=0,la=userCombatant.getStatus('Wheel Flip Top');a<la;a++){
+                if(this.cardManagers[player].discard.cards.length>a){
+                    this.cardManagers[player].discard.send(this.cardManagers[player].hand.cards,this.cardManagers[player].discard.cards.length-1-a,this.cardManagers[player].discard.cards.length-a,1)
+                }
+            }
+        }
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
             this.cardManagers[player].fatigue()
         }
@@ -1523,32 +1530,59 @@ class battle{
                 break
             }
         }
-        if(effectiveCost==0&&userCombatant.getStatus('0 Cost Vigor')>0){
-            userCombatant.statusEffect('Vigor',userCombatant.getStatus('0 Cost Vigor'))
-        }
-        if(effectiveCost==0&&userCombatant.getStatus('0 Cost Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('0 Cost Block'))
-        }
-        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Energy')>0){
-            this.addEnergy(userCombatant.getStatus('2+ Cost Energy'),player)
-        }
-        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost (E)')>0){
-            this.addSpecificEnergy(userCombatant.getStatus('2+ Cost (E)'),player,6)
-        }
-        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('2+ Cost Draw'))
-        }
-        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Strength')>0){
-            userCombatant.statusEffect('Strength',userCombatant.getStatus('2+ Cost Strength'))
-        }
-        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Free Discus')>0){
-            for(let a=0,la=userCombatant.getStatus('3+ Cost Free Discus');a<la;a++){
-                this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),0,0,0,[0])
+        if(effectiveCost>=2){
+            if(userCombatant.getStatus('2+ Cost Energy')>0){
+                this.addEnergy(userCombatant.getStatus('2+ Cost Energy'),player)
             }
-        }
-        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Free Upgraded Discus')>0){
-            for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Discus');a<la;a++){
-                this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),1,0,0,[0])
+            if(userCombatant.getStatus('2+ Cost (E)')>0){
+                this.addSpecificEnergy(userCombatant.getStatus('2+ Cost (E)'),player,6)
+            }
+            if(userCombatant.getStatus('2+ Cost Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('2+ Cost Draw'))
+            }
+            if(userCombatant.getStatus('2+ Cost Strength')>0){
+                userCombatant.statusEffect('Strength',userCombatant.getStatus('2+ Cost Strength'))
+            }
+            if(userCombatant.getStatus('2+ Cost Vigor')>0){
+                userCombatant.statusEffect('Vigor',userCombatant.getStatus('2+ Cost Vigor'))
+            }
+            if(userCombatant.getStatus('2+ Cost Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('2+ Cost Block'))
+            }
+            if(effectiveCost>=3){
+                if(userCombatant.getStatus('3+ Cost Free Discus')>0){
+                    for(let a=0,la=userCombatant.getStatus('3+ Cost Free Discus');a<la;a++){
+                        this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),0,0,0,[0])
+                    }
+                }
+                if(userCombatant.getStatus('3+ Cost Free Upgraded Discus')>0){
+                    for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Discus');a<la;a++){
+                        this.cardManagers[player].hand.addAbstract(findName('Dual\nDiscus',types.card),1,0,0,[0])
+                    }
+                }
+                if(userCombatant.getStatus('3+ Cost Free Wheel')>0){
+                    for(let a=0,la=userCombatant.getStatus('3+ Cost Free Wheel');a<la;a++){
+                        this.cardManagers[player].hand.addAbstract(findName('Wheel\nGhost',types.card),0,0,0,[0])
+                    }
+                }
+                if(userCombatant.getStatus('3+ Cost Free Upgraded Wheel')>0){
+                    for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Wheel');a<la;a++){
+                        this.cardManagers[player].hand.addAbstract(findName('Wheel\nGhost',types.card),1,0,0,[0])
+                    }
+                }
+                if(userCombatant.getStatus('3+ Cost Vigor')>0){
+                    userCombatant.statusEffect('Vigor',userCombatant.getStatus('3+ Cost Vigor'))
+                }
+                if(userCombatant.getStatus('3+ Cost Block')>0){
+                    userCombatant.addBlock(userCombatant.getStatus('3+ Cost Block'))
+                }
+            }
+        }else if(effectiveCost==0){
+            if(userCombatant.getStatus('0 Cost Vigor')>0){
+                userCombatant.statusEffect('Vigor',userCombatant.getStatus('0 Cost Vigor'))
+            }
+            if(userCombatant.getStatus('0 Cost Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('0 Cost Block'))
             }
         }
         if(card.colorless()&&userCombatant.getStatus('Colorless Damage All')>0){
@@ -1573,18 +1607,6 @@ class battle{
         }
         if(card.spec.includes(25)&&userCombatant.getStatus('Gun Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Gun Draw'))
-        }
-        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Vigor')>0){
-            userCombatant.statusEffect('Vigor',userCombatant.getStatus('2+ Cost Vigor'))
-        }
-        if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('2+ Cost Block'))
-        }
-        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Vigor')>0){
-            userCombatant.statusEffect('Vigor',userCombatant.getStatus('3+ Cost Vigor'))
-        }
-        if(effectiveCost>=3&&userCombatant.getStatus('3+ Cost Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('3+ Cost Block'))
         }
         if(effectiveCost==-1&&userCombatant.getStatus('X Cost Boost')>0){
             userCombatant.status.main[findList('X Cost Boost',userCombatant.status.name)]=0
@@ -1641,6 +1663,15 @@ class battle{
         }
         if(card.spec.includes(54)&&userCombatant.getStatus('Discus Pure')>0){
             userCombatant.statusEffect('Pure',userCombatant.getStatus('Discus Pure'))
+        }
+        if(card.spec.includes(86)&&userCombatant.getStatus('Wheel Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Wheel Temporary Strength'))
+        }
+        if(card.spec.includes(86)&&userCombatant.getStatus('Wheel Temporary Dexterity')>0){
+            userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Wheel Temporary Dexterity'))
+        }
+        if(card.spec.includes(86)&&userCombatant.getStatus('Wheel Pure')>0){
+            userCombatant.statusEffect('Pure',userCombatant.getStatus('Wheel Pure'))
         }
         if(xCost&&userCombatant.getStatus('X Cost Vigor')>0){
             userCombatant.statusEffect('Vigor',userCombatant.getStatus('X Cost Vigor'))

@@ -1,11 +1,10 @@
 CARDSET 109 [TERMINATION III]
 
-solid swap
-wheel ghost
-
-rewire - exhaust a card, if it is a [], draw 3 cards
-brambles - 2 cost, gain 3 regen, your attacks apply poison equal to your regen
+split solonia
+evoking hazard - evoke first orb OR evoke first 2 orbs, 1 cost retain
+cheese house - cheese punch but block + health
 stop laughing - push target, draw a card, remove a random debuff from self
+
 life hourglass - 3 cost rare, heal 4 health, gain 1 intangible, retain
 diadem - gain 1 buffer, apply 2 weak to all enemies
 burn documents - 0 cost, exhaust a card, apply burn in all directions equal to its cost
@@ -16,6 +15,7 @@ overwrite - 1 cost, exhaust the top 3 cards of your draw pile, then exhume 1
 multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
 locomotion - 2 cost, move 2 tiles, add 2 block, draw 2 cards
 split tactical retreat - it now forces you to move back like dine&dash but gives you more block
+
 split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
 [cookie clicker but it uses dexterity and CALCULATES DAMAGE using dexterity]
 flashbang - grenade but it applies frail
@@ -26,6 +26,7 @@ syncope - 0 cost gain 1 temporary dexterity, return a random card from your disc
 side hustle - exhaust a card, gain 1 currency, currency increases by 1 permanently
 fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
 blazing bullet - shoot a guy and burn him
+
 deft detonation - when you deal splash damage, gain 2 temporary dexterity
 conk - deal 12 damage, apply 1 stun if target has 4 or more weak, otherwise apply 2 weak, exhaust
 accelerator gloves - each turn, a random attack costs 1 less
@@ -36,6 +37,7 @@ hook and drag - deal 10 damage, target loses 2 hp when you draw a card this turn
 split highlander into highland sword and shield
 highland spirit - if your deck is highlander get adrenaline
 split pauli exclusion - no longer deletes the second copy
+
 would you rather - gain 1 currency and 1 block, or gain 2 currency
 pregame - opportunist, but its free and you lose 2 health
 crisp lightning - 1 cost, deal 5 damage to anybody, draw a card, costs 1 less when a card is exhausted
@@ -46,6 +48,7 @@ unsuitable - gain 1 strength, gain 1 dexterity, lose 1 energy next turn
 snaky hands - dazzling speed but it gives vigor as well
 frail fail - apply 2 frail, unupgrade a card (junkyard)
 tournament wheel - 1 cost, unexhaust a random card, every 3 times, you get to pick
+
 exhume doom - deal 10 damage in all directions, exhume
 daring - gain 1 strength per adjacent enemy
 meek - gain 1 dexterity per adjacent enemy
@@ -57,8 +60,6 @@ invert polarity - swap your strength and dexterity, retain
 gambler's presence - 1 cost, apply 1 weak and 1 vulnerable, when added, gain 500 currency
 pocket pen - deal 4 damage, add 4 block, if you have coffee: draw a card
 
-CARDSET 110 [TERMINATION IV]
-
 haunts - 1 cost, redraw your hand, draw 1 card and gain 1 energy next turn
 mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
 residual image - gain 4 temp strength and 4 temp dex next turn (give and get)
@@ -69,6 +70,8 @@ disarmament talks - you lose 1 strength, everybody else loses 2, exhaust
 best foot forward - innate, 0 cost, scry 6 draw 1, gain 1 energy
 commencement - exhaust a card, if it's a curse or status put a card from discard into your hand
 wire key - every 3 turns, gain 1 conditioning
+
+CARDSET 110 [TERMINATION IV]
 
 port priority - deal 8 damage, deal 4 damage to the first enemy in acting order
 scapegoat - gain 1 intangible, gain vigor equal to damage taken this turn
@@ -119,19 +122,18 @@ wing flail - remove all block from target, 2 damage 3 times, retain
 crossing boundaries - recall for 1 cost BUT set caffeine to your limit
 rebalancer - unupgrade a random upgraded card, upgrade a card permanently
 
-CARDSET 111 [TERMINATION V]
-
 condemnation - deal damage, then trigger [choreograph] for 1 card
 foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status]
 predict - guess the type of the top card in deck, if correct draw it and it costs 0
-evoking hazard - evoke first orb OR evoke first 2 orbs, 1 cost retain
 debug - add 9 block, exhaust a random curse in your draw pile
 tiny blade - 0 cost 1 damage and 1 lock on in all directions
 creative writing - when you are debuffed, draw a card
 metal detector - 11 block, when taken get a free move
 keynesian - gain 100 currency, gain no rewards at the end of this combat
-
 aleph - lose your first relic, gain a relic, vanishing 1
+
+CARDSET 111 [TERMINATION V]
+
 C - draw and upgrade some cards, then slightly compact your hand (based on assembly)
 cantilever - add 8x block, gain 2x energy next turn
 law of large numbers - when you highroll, guarantee a lowroll next, when you lowroll, guarantee a highroll next
@@ -141,8 +143,8 @@ split dazzling dash, new dazzling dash - draw 3 cards, 7 or more cards in hand: 
 split touch of garlic - old version becomes touch grass, new version lets you pick between gaining a bit of vigor or vigil
 maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand
 classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
-
 the road taken - the next quest played returns to your hand
+
 hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy
 industrial buildup - assign 2: gain 1 base energy this combat
 adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
@@ -152,6 +154,9 @@ dive down - target takes 12 damage and gains 2 weak in 2 turns
 weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
 flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
 a decade here - take another turn, all enemies gain 10 block
+rewire - exhaust a card, if it is a [], draw 3 cards
+
+brambles - 2 cost, gain 3 regen, your attacks apply poison equal to your regen
 
 CARDSET 111 [TERMINATION V]
 

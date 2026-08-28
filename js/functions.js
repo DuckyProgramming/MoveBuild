@@ -562,6 +562,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[10]&&user.status.main[797]>0){
 				bonus+=user.status.main[797]
 			}
+			if(variant&&args[11]&&user.status.main[890]>0){
+				bonus+=user.status.main[890]
+			}
 			if(user.status.main[12]!=0&&type!=22){
 				bonus+=user.status.main[12]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}

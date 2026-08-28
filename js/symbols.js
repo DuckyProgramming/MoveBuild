@@ -8968,6 +8968,167 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(-1,5,-2,0.4,-4,-4,-3,0.6)
             layer.quad(1,5,2,0.4,4,-4,3,0.6)
         break
+        case 889:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.triangle(5.5,-1,5.5,1,7,0)
+        break
+        case 890:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+        break
+        case 891:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 892:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 893:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.fill(255,255,150,fade)
+            layer.quad(-6,-6,1,-1,6,6,-1,1)
+            layer.quad(-1,-1,2,-2,1,1,-2,2)
+            layer.fill(175,100,0,fade)
+            for(let a=0,la=8;a<la;a++){
+                layer.ellipse(4*lsin(a*45),4*lcos(a*45),2.5)
+            }
+        break
+        case 894:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.fill(240,240,150,fade)
+            layer.rect(0,0,9,1)
+            layer.triangle(0,-1,-3,-1,-1.5,-3)
+            layer.triangle(0,-1,3,-1,1.5,-3)
+            layer.triangle(0,1,-3,1,-1.5,3)
+            layer.triangle(0,1,3,1,1.5,3)
+        break
+        case 895:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.fill(200,255,255,fade)
+            layer.quad(0,-2,-1,0,0,2,1,0)
+            layer.quad(-2.5,-2,-3.5,0,-2.5,2,-1.5,0)
+            layer.quad(2.5,-2,3.5,0,2.5,2,1.5,0)
+        break
+        case 896:
+            layer.fill(255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(89,84,89,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(89,84,89,fade)
+            layer.ellipse(-2,0,1.2)
+            layer.fill(0,150,0,fade)
+            layer.rect(0,0,2,8)
+            layer.rect(0,0,8,2)
+            layer.fill(200,255,255,fade)
+            layer.quad(0,-2,-1,0,0,2,1,0)
+            layer.quad(-2.5,-2,-3.5,0,-2.5,2,-1.5,0)
+            layer.quad(2.5,-2,3.5,0,2.5,2,1.5,0)
+        break
 
     }
     //mark s

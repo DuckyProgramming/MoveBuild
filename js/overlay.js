@@ -1344,6 +1344,13 @@ class overlay{
                                     list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[args[1][1]])
                                 }
                             break
+                            case 18:
+                                list=[
+                                    findName('Wheel of Wind\nand Thunder',types.card),
+                                    findName('Wheel of Mountain\nand Rain',types.card),
+                                    findName('Wheel of Moon\nand Sky',types.card),
+                                ]
+                            break
                             default:
                                 list=[]
                             break
