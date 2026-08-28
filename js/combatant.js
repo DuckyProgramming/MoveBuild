@@ -7975,9 +7975,9 @@ class combatant{
             if(this.vision>=12){
                 this.vision-=12
                 this.statusEffect('Awakening',1)
-                if(!this.elemental){
+                /*if(!this.elemental){
                     this.statusEffect('Strength',1)
-                }
+                }*/
                 this.elemental=true
                 if(this.status.main[436]>0){
                     this.addBlock(this.status.main[436])

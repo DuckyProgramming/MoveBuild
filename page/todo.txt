@@ -1,9 +1,7 @@
-CARDSET 109 [TERMINATION III]
+CARDSET 110 [TERMINATION IV]
 
-split solonia
-evoking hazard - evoke first orb OR evoke first 2 orbs, 1 cost retain
-cheese house - cheese punch but block + health
-stop laughing - push target, draw a card, remove a random debuff from self
+look at graphs
+play randy and see how the fuel build plays
 
 life hourglass - 3 cost rare, heal 4 health, gain 1 intangible, retain
 diadem - gain 1 buffer, apply 2 weak to all enemies
@@ -38,6 +36,19 @@ split highlander into highland sword and shield
 highland spirit - if your deck is highlander get adrenaline
 split pauli exclusion - no longer deletes the second copy
 
+hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy
+industrial buildup - assign 2: gain 1 base energy this combat
+adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
+rollin' - gain 12 vigil, gain 1 energy next turn
+[disband meri duplicate cards that are unnecessary]
+dive down - target takes 12 damage and gains 2 weak in 2 turns
+weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
+flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
+a decade here - take another turn, all enemies gain 10 block
+rewire - exhaust a card, if it is a [], draw 3 cards
+
+CARDSET 111 [TERMINATION V]
+
 would you rather - gain 1 currency and 1 block, or gain 2 currency
 pregame - opportunist, but its free and you lose 2 health
 crisp lightning - 1 cost, deal 5 damage to anybody, draw a card, costs 1 less when a card is exhausted
@@ -71,8 +82,6 @@ best foot forward - innate, 0 cost, scry 6 draw 1, gain 1 energy
 commencement - exhaust a card, if it's a curse or status put a card from discard into your hand
 wire key - every 3 turns, gain 1 conditioning
 
-CARDSET 110 [TERMINATION IV]
-
 port priority - deal 8 damage, deal 4 damage to the first enemy in acting order
 scapegoat - gain 1 intangible, gain vigor equal to damage taken this turn
 mechanical rot - when target gains block, they lose 8 health
@@ -99,6 +108,8 @@ real gains - damage, spend 50 currency: permanently increases
 public spotlight - blackmail but vulnerable
 infrastructure investment - a random card costs 1 less, draw 1 card, gain 1 currency
 quality finds - discover a common card it costs 0, 1000 currency: uncommon
+
+CARDSET 112 [TERMINATION VI]
 
 accident insurance - reflect next hit taken, lose money
 antitrust laws (dev) - remove all buffs of target, gain 10 currency for each one
@@ -132,8 +143,6 @@ metal detector - 11 block, when taken get a free move
 keynesian - gain 100 currency, gain no rewards at the end of this combat
 aleph - lose your first relic, gain a relic, vanishing 1
 
-CARDSET 111 [TERMINATION V]
-
 C - draw and upgrade some cards, then slightly compact your hand (based on assembly)
 cantilever - add 8x block, gain 2x energy next turn
 law of large numbers - when you highroll, guarantee a lowroll next, when you lowroll, guarantee a highroll next
@@ -145,20 +154,20 @@ maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, bu
 classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
 the road taken - the next quest played returns to your hand
 
-hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy
-industrial buildup - assign 2: gain 1 base energy this combat
-adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
-rollin' - gain 12 vigil, gain 1 energy next turn
-[disband meri duplicate cards that are unnecessary]
-dive down - target takes 12 damage and gains 2 weak in 2 turns
-weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
-flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
-a decade here - take another turn, all enemies gain 10 block
-rewire - exhaust a card, if it is a [], draw 3 cards
-
 brambles - 2 cost, gain 3 regen, your attacks apply poison equal to your regen
+bolas - free zipper that replenishes
+metabolize - lose 1 caffeine, if you do gain 1 energy
+triple axel - add 4 block 3 times
+hypothermia - remove all block from target, target retains freeze for 1 turn
+munch - [bite], then exhaust a card
+time of troubles - gain 1 wisdom, gain 1 history per dead enemy
+stop laughing - push target, draw a card, remove a random debuff from self
+abrogate - draw 2 for 0 cost, increases by 1, cost increases by 1
+split twirling ribbon - new twirling ribbon adds 4 block twice and gives vigil, maybe have a counterpart for damage as well
 
-CARDSET 111 [TERMINATION V]
+CARDSET 113 [TERMINATION VII]
+
+frost lily - apply 1 frail, apply 3 freeze to every adjacent enemy
 
 GIMMICK BANK
 
@@ -167,5 +176,11 @@ instead, after you get 3 an effect is triggered
 better effects if 2 or 3 are the same one
 also an effect for 3 unique ones
 [apparently this is the ufos from touhou ufo, not sure if this is coincidence]
+
+decree - make a plan for your turn
+add classes to your decree (e.g. attack, defend)
+if you follow your decree on your turn, gain 1 energy and draw a card for each one
+otherwise, discard it and it loops around your deck
+classless cards DONT cause your decree to fail
 
 

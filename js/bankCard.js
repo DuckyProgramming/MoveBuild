@@ -9320,6 +9320,49 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9089: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nAdd ${effect[2]} Wheel Ghost${pl(effect[2])}\nof Equivalent Level\nto Hand`; break
         case 9090: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nCosts 1 Less\nWhen Wheel Played`; break
         case 9091: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nAdd ${effect[2]} Wheel Ghost${pl(effect[2])}\nto Hand`; break
+        case 9092: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Vision`; break
+        case 9093: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nAdds Double Block`; break
+        case 9094: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nElemental Form:\nGain ${effect[1]} Energy`; break
+        case 9095: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Temporary\nStrength\nRewind a Card\nFrom Discard Pile`; break
+        case 9096: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRewound:\nTrigger Effect and\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 9097: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nElemental Form:\nRewind a Card\nFrom Discard Pile\nDouble Upgrade it\nTemporarily`; break
+        case 9098: string+=`Gain ${effect[0]} Vision\nDraw ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain ${effect[2]} Strength`; break
+        case 9099: string+=`Gain ${effect[0]} Vision\nDraw ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain ${effect[2]} Dexterity`; break
+        case 9100: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Knowledge\nGain ${effect[1]} Knowledge if\nYou Have 2 or More`; break
+        case 9101: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain ${effect[2]} Vision`; break
+        case 9102: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nElemental Form:\nApply ${effect[1]} Stun\nGain ${effect[2]} Vision`; break
+        case 9103: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\nElemental Form:\nDeals Triple Damage`; break
+        case 9104: string+=`Rewind Your Hand\nDraw That Many Cards\nGain ${effect[0]} Vision Each`; break
+        case 9105: string+=`Apply ${effect[0]} Weak\nIf Target Will Attack,\nApply ${effect[1]} Vulnerable`; break
+        case 9106: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nIf Target Will Attack,\nApply ${effect[1]} Weak\nApply ${effect[2]} Vulnerable`; break
+        case 9107: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = History\nElemental Form:\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 9108: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nElemental Form:\nDraw ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Dexterity`; break
+        case 9109: string+=`Remove All\nBlock of Target\nDeal ${this.calculateEffect(effect[0],13)}X Damage\nWhere X = Knowledge`; break
+        case 9110: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} History\nIf You Have Block`; break
+        case 9111: string+=`Move to Any\nEmpty Tile\nElemental Form:\nGain ${effect[0]} Vision\nGain ${effect[1]} Energy`; break
+        case 9112: string+=`Move to Any\nEmpty Tile\nElemental Form:\nGain ${effect[0]} Vision\nGain (E) (E)`; break
+        case 9113: string+=`Target Takes ${effect[0]}\nDamage Per Card\nPlayed This Turn\nDraw ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Knowledge`; break
+        case 9114: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nElemental Form:\nGain ${effect[1]} Regeneration`; break
+        case 9115: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nElemental Form:\nGain ${effect[1]} Armor`; break
+        case 9116: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nElemental Form:\nNext Skill is Free`; break
+        case 9117: string+=`Discover a Skill\nElemental Form:\nIt Costs 0`; break
+        case 9118: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDrawn 2+ Times: (${this.drawn}):\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
+        case 9119: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Target Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn\n25%: Apply ${effect[2]} Poison\n25%: Apply ${effect[3]} Bleed\n25%: Apply ${effect[4]} Freeze`; break
+        case 9120: string+=`Gain ${effect[0]} Temporary\nStrength\nWhen Drawn,\nIncreases by ${effect[1]}`; break
+        case 9121: string+=`Lose ${effect[0]} Health\nDiscover a Fairy of Light`; break
+        case 9122: string+=`When Drawn,\nGain ${effect[0]} Knowledge\nRewound:\nTrigger Effect`; break
+        case 9123: string+=`Discard All Attacks\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 9124: string+=`Push 1 Tile\nElemental Form:\nIn All Directions\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 9125: string+=`Rewind ${effect[0]} Card${pl(effect[0])}\nSlightly Compact Cards\nThis Combat`; break
+        case 9126: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nIf You Have\nFull Item Slots,\nRedraw Your Hand First`; break
+        case 9127: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nGain ${effect[1]} Vision`; break
+        case 9128: string+=`Gain ${effect[0]} Vision\nDraw ${effect[1]} More\nCard${pl(effect[1])} Next Turn\nRetain Block For ${effect[2]} Turn${pl(effect[2])}`; break
+        case 9129: string+=`Gain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Temporary\nDexterity\nDraw ${effect[2]} Card${pl(effect[2])}\nRewind ${effect[3]} Card${pl(effect[3])}`; break
+        case 9130: string+=`Gain ${effect[0]} Dexterity\nGain ${effect[1]} Weak`; break
+        case 9131: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nTriples After 2\nBosses Are Defeated\n(${this.limit}/2)`; break
+        case 9132: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nTriples After 2\nBosses Are Defeated\n(${this.limit}/2)`; break
+        case 9133: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nLose ${effect[1]} Health`; break
+        case 9134: string+=`Add the Three\nElemental Wheels to Hand\nAll Wheels in Hand\nCost ${effect[0]} Less`; break
 
         //mark p
 

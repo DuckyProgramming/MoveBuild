@@ -2250,7 +2250,7 @@ Rare:${manager.listing.card[constants.playerNumber+3][2].length}/8					${manager
 	let listed=[64,64,40,32,24]
 	let unlisted=[
 		48,//subcard
-		2000,//disband
+		2200,//disband
 		constants.playerNumber*8,//junkyard
 		32,//event
 		160,//developer

@@ -3674,7 +3674,7 @@ class group{
                 this.drawEffects.push([7,21,card.effect[0]])
                 this.sendAmounts[sendId]+=card.effect[1]
             break
-            case 3149: case 4928: case 5073:
+            case 3149: case 4928: case 5073: case 9120:
                 card.effect[0]+=card.effect[1]
             break
             case 3358:
@@ -3873,6 +3873,9 @@ class group{
                 for(let a=0,la=min(100,card.effect[0]);a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Pristine',types.card),0,0)
                 }
+            break
+            case 9122:
+                userCombatant.statusEffect('Knowledge',card.effect[0])
             break
 
         }

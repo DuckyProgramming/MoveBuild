@@ -1351,6 +1351,13 @@ class overlay{
                                     findName('Wheel of Moon\nand Sky',types.card),
                                 ]
                             break
+                            case 19:
+                                list=[
+                                    findName('Sunny, Glowing\nSunlight',types.card),
+                                    findName('Luna, Silent\nMoonlight',types.card),
+                                    findName('Star, Showering\nStarlight',types.card),
+                                ]
+                            break
                             default:
                                 list=[]
                             break
@@ -1553,6 +1560,14 @@ class overlay{
                                 this.cards[this.cards.length-1].upSize=true
                                 list.splice(index,1)
                             }
+                        }
+                    break
+                    case 60:
+                        for(let a=0,la=this.options;a<la;a++){
+                            let type=findName(['Sunny, Glowing\nSunlight','Luna, Silent\nMoonlight','Star, Showering\nStarlight'
+                            ][a%3],types.card)
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
+                            this.cards[a].upSize=true
                         }
                     break
                 }

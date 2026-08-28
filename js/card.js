@@ -1497,6 +1497,13 @@ class card{
             case 7800:
                 this.setCost(0,[0])
             break
+            case 9096:
+                userCombatant.addBlock(this.effect[0])
+                this.battle.cardManagers[this.player].draw(this.effect[1])
+            break
+            case 9122:
+                userCombatant.statusEffect('Knowledge',this.effect[0])
+            break
         }
         if(userCombatant.getStatus('Rewind Cost Down')>0&&this.getCost(0)>0){
             this.costDown(0,[userCombatant.getStatus('Rewind Cost Down')])
@@ -2122,7 +2129,7 @@ class card{
                     this.costDown(2,[1])
                 }
             break
-            case 7938:
+            case 7938: case 9131: case 9132:
                 if(encounterClass==2){
                     this.limit++
                     if(this.limit==2){
