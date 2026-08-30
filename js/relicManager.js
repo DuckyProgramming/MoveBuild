@@ -196,7 +196,7 @@ class relicManager{
     }
     addRelic(type,player){
         if(this.active[538][player+1]){
-            this.getPlayer(a).heal(5*this.active[538][player+1])
+            this.getPlayer(player).heal(5*this.active[538][player+1])
         }
         for(let a=0,la=this.listing.relic.length;a<la;a++){
             for(let b=0,lb=this.listing.relic[a].length;b<lb;b++){

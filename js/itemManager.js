@@ -103,6 +103,9 @@ class itemManager{
         let index=floor(random(0,this.listing.item[rarity].length))
         this.addItem(this.listing.item[rarity][index],player)
     }
+    hasItem(type,player){
+        return this.items[player].some(item=>item.type==type)
+    }
     loseRandom(player){
         let possible=[]
         for(let a=0,la=this.items[player].length;a<la;a++){

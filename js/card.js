@@ -1076,10 +1076,14 @@ class card{
             case 6510:
                 userCombatant.addBarrier(this.effect[1])
             break
-            case 7773:
+            case 7773: case 9182:
                 return this.effect[1]
             case 8348: case 8349:
                 userCombatant.addBarrier(this.effect[1])
+            break
+            case 9147:
+                userCombatant.addBlock(this.effect[0])
+                userCombatant.statusEffect('Retain Block',this.effect[1])
             break
         }
         return 0
@@ -1672,6 +1676,23 @@ class card{
                     this.battle.itemManager.addItem(findInternal(variants.mtg?'9 Random Damage, 1 Mana, Draw 1':'9 Random Damage, 1 Energy, Draw 1',types.item),this.player)
                 }
             break
+            case 9141:
+                userCombatant.addBlock(this.effect[0])
+                userCombatant.statusEffect('Block Next Turn',this.effect[0])
+                userCombatant.statusEffect('Counter Once',this.effect[0])
+                userCombatant.statusEffect('Counter Once Next Turn',this.effect[0])
+            break
+            case 9210:
+                userCombatant.addBarrier(this.effect[0])
+            break
+            case 9264:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                }
+            break
+            case 9265:
+                userCombatant.statusEffect('Dexterity',this.effect[1])
+            break
 
         }
     }
@@ -1739,7 +1760,7 @@ class card{
             case 3596: case 3597: case 3598: case 3599: case 3600: case 3601: case 3602: case 3603: case 3604: case 3605:
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
-            case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882:
+            case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -1913,9 +1934,43 @@ class card{
                 userCombatant.statusEffect('Buffer',this.effect[1])
                 this.exhaust=true
             break
-            case 8764:
+            case 8764: case 9186:
                 userCombatant.statusEffect('Buffer',this.effect[2])
                 this.exhaust=true
+            break
+            case 9148:
+                userCombatant.addBlock(this.effect[1])
+                for(let a=0,la=this.effect[2];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Dark\nMatter',types.card),0,0)
+                }
+            break
+            case 9149:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Dark\nMatter',types.card),0,0)
+                }
+            break
+            case 9151:
+                userCombatant.statusEffect('Counter All',this.effect[1])
+                this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[2]],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            break
+            case 9159:
+                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+                this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,
+                    userCombatant.position.x+userCombatant.graphics.arms[0].bottom.x/2+userCombatant.graphics.arms[1].bottom.x/2,
+                    userCombatant.position.y+userCombatant.graphics.arms[0].bottom.y/2+userCombatant.graphics.arms[1].bottom.y/2,
+                    212,[6]))
+            break
+            case 9187:
+                userCombatant.statusEffect('Buffer',this.effect[3])
+                this.exhaust=true
+            break
+            case 9188:
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+                userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
+            break
+            case 9197:
+                userCombatant.statusEffect('Armor',this.effect[0])
+                userCombatant.statusEffect('Radiation',this.effect[1])
             break
         }
     }
@@ -2129,7 +2184,7 @@ class card{
                     this.costDown(2,[1])
                 }
             break
-            case 7938: case 9131: case 9132:
+            case 7938: case 9131: case 9132: case 9251:
                 if(encounterClass==2){
                     this.limit++
                     if(this.limit==2){
@@ -2662,7 +2717,6 @@ class card{
         }
     }
     played(){
-        this.fuel=0
         if(variants.transcend){
             this.cost=max(this.cost-1,0)
             this.base.cost=max(this.base.cost-1,0)
@@ -2732,7 +2786,7 @@ class card{
             case 1640: case 4881:
                 this.effect[0]=1+floor(random(0,3))*2
             break
-            case 1654: case 1909: case 5103: case 5104: case 5792: case 6130: case 6169: case 6998: case 8697:
+            case 1654: case 1909: case 5103: case 5104: case 5792: case 6130: case 6169: case 6998: case 8697: case 9254:
                 this.costUp(2,[1])
             break
             case 1739:
@@ -2865,6 +2919,25 @@ class card{
                     this.additionalSpec.push(2)
                 }
             break
+            case 9160:
+                if(!this.spec.includes(69)){
+                    this.spec.push(69)
+                    this.additionalSpec.push(69)
+                }
+            break
+            case 9174:
+                if(this.fuel>=this.effect[1]){
+                    this.exhaust=true
+                }
+            break
+        }
+        if(this.spec.includes(88)){
+            this.spec.splice(this.spec.indexOf(88),1)
+            if(this.additionalSpec.includes(88)){
+                this.additionalSpec.splice(this.additionalSpec.indexOf(88),1)
+            }
+        }else{
+            this.fuel=0
         }
         if(this.battle.modded(94)&&this.battle.cardManagers[this.player].hand.turnPlayed[0]>=5){
             this.battle.cardManagers[this.player].allEffect(2,2)
@@ -3411,7 +3484,7 @@ class card{
                         this.setCost(2,[0])
                     }
                 break
-                case 9090:
+                case 9090: case 9135:
                     if(card.spec.includes(86)){
                         this.costDown(0,[1])
                     }
@@ -3552,6 +3625,9 @@ class card{
                     this.battle.cardManagers[this.player].hand.add(findName('Wheel\nGhost',types.card),this.level,0)
                 }
             break
+            case 9191:
+                userCombatant.statusEffect('Block Next Turn',this.effect[2])
+            break
         }
     }
     anotherEtherealed(id){
@@ -3602,7 +3678,7 @@ class card{
                     this.costDown(0,[1])
                 }
             break
-            case 5516:
+            case 5516: case 9160:
                 this.effect[0]=max(0,this.effect[0]-this.effect[1])
             break
             case 5563:
@@ -3634,6 +3710,14 @@ class card{
                 if(userCombatant.totalUniqueStatus(1)>0){
                     this.effect[0]+=this.effect[1]
                 }
+            break
+            case 9156:
+                userCombatant.loseHealth(this.effect[2])
+            break
+            case 9163:
+                this.battle.combatantManager.randomEnemyEffect(10,[this.effect[0],userCombatant.id,this.effect[1]])
+                this.battle.cardManagers[this.player].tempDraw.exhaustRandom+=this.effect[2]
+                this.effect[1]+=this.effect[3]
             break
         }
         if(this.spec.includes(55)){
@@ -6157,7 +6241,7 @@ class card{
                         case 4: case 21: case 26: case 27: case 33: case 36: case 43: case 44: this.layer.stroke(255,200,200,this.fade*anim[a]); break
                         case 5: this.layer.stroke(0,150,255,this.fade*anim[a]); break
                         case 6: case 42: this.layer.stroke(200,225,255,this.fade*anim[a]); break
-                        case 7: case 34: case 37: this.layer.stroke(255,255,150,this.fade*anim[a]); break
+                        case 7: case 34: case 37: case 45: this.layer.stroke(255,255,150,this.fade*anim[a]); break
                         case 8: this.layer.stroke(200,225,50,this.fade*anim[a]); break
                         case 9: case 32: case 39: case 40: case 53: this.layer.stroke(255,125,0,this.fade*anim[a]); break
                         case 10: this.layer.stroke(255,0,50,this.fade*anim[a]); break
@@ -6179,8 +6263,9 @@ class card{
                     switch(a){
                         case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31:
                         case 32: case 33: case 34: case 35: case 37: case 39: case 40: case 42: case 43: case 44:
+                        case 45:
                             switch(a){
-                                case 21: case 23: case 24:
+                                case 21: case 23: case 24: case 45:
                                     this.layer.stroke(220,this.fade*anim[a])
                                 break
                                 case 25: case 26:

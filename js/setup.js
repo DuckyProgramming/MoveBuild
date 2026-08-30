@@ -12,7 +12,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[15]
+        current.menu.combatant=[0]
         current.menu.deck=[-1]
 
             variants.mtg=false
@@ -40,7 +40,7 @@ function setup(){
         //game.animRate=4
 
             /*stage.scene='histogram'
-            graphics.test=1*/
+            graphics.test=0*/
 
             /*current.packManagers[0].packs[0].take()
             current.packManagers[0].packs[1].take()

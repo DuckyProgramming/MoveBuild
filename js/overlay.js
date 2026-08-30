@@ -25,6 +25,7 @@ class overlay{
             break
             case 3:
                 this.cards=[]
+                this.sets=[]
                 this.takable=1
                 this.options=variants.unary||variants.domain?1:3
                 this.additionalOptions=0
@@ -287,799 +288,618 @@ class overlay{
                 }
             break
             case 3:
-                this.cards=[]
-                let sublist=[]
-                this.taken=0
-                this.setupArgs=args
-                let upKey=0
-                if(
-                    args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==26||args[2]==27||args[2]==34||args[2]==33||
-                    args[2]==37||args[2]==46||args[2]==49||args[2]==59
-                ){
-                    this.options=args[3]
+                if(args.length>0){
+                    this.sets.push(args)
                 }else{
-                    this.options=variants.unary?1:3
+                    args=this.sets[0]
                 }
-                if(this.battle.relicManager.active[46][this.player+1]>0&&this.args[0]==0){
-                    this.options+=this.battle.relicManager.active[46][this.player+1]
-                }
-                if(this.battle.relicManager.active[131][this.player+1]>0&&this.args[0]==0){
-                    this.options-=this.battle.relicManager.active[131][this.player+1]
-                }
-                if(this.battle.relicManager.active[238][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
-                    this.options+=2*this.battle.relicManager.active[238][this.player+1]
-                }
-                if(this.battle.relicManager.active[420][this.player+1]>0&&this.args[0]==0){
-                    this.options+=this.battle.relicManager.active[420][this.player+1]
-                }
-                if(this.battle.relicManager.active[333][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
-                    upKey+=0.5*this.battle.relicManager.active[333][this.player+1]
-                }
-                if(this.battle.relicManager.active[504][this.player+1]>0&&this.args[0]==0&&(args[2]==0||args[2]==7)){
-                    this.options-=this.battle.relicManager.active[504][this.player+1]
-                }
-                if(this.additionalOptions!=0){
-                    this.options=constrain(this.options+this.additionalOptions,1,6)
-                    this.additionalOptions=0
-                }
-                if(variants.cursed){
-                    args[0]=min(args[0]+1,2)
-                }
-                if(this.options<=0){
-                    this.active=false
-                }
-                switch(args[2]){
-                    case 0: case 7:
-                        list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        let effectiveRarity=variants.commoners&&floor(random(0,3))!=0?0:args[1]
-                        let effectiveOptions=this.options+this.battle.relicManager.active[172][this.player+1]+this.battle.relicManager.active[458][this.player+1]+this.battle.relicManager.active[503][this.player+1]
-                        let list2=[]
-                        if(this.args[0]==0){
-                            list2=copyArray(this.battle.cardManagers[this.player].listing.dev)
-                        }
-                        let list3=[[],[],[],[]]
-                        if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)){
-                            list3=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+5])
-                        }
-                        if(variants.mtg){
-                            for(let a=0,la=list[effectiveRarity].length;a<la;a++){
-                                if(types.card[list[effectiveRarity][a]].mtg.list==-1&&types.card[list[effectiveRarity][a]].mtg.color[0]!=0&&floor(random(0,10))!=0){
-                                    list[effectiveRarity].splice(a,1)
-                                    a--
-                                    la--
+                if(this.sets.length==1){
+                    this.cards=[]
+                    let sublist=[]
+                    this.taken=0
+                    this.setupArgs=args
+                    let upKey=0
+                    if(
+                        args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==26||args[2]==27||args[2]==34||args[2]==33||
+                        args[2]==37||args[2]==46||args[2]==49||args[2]==59
+                    ){
+                        this.options=args[3]
+                    }else{
+                        this.options=variants.unary?1:3
+                    }
+                    if(this.battle.relicManager.active[46][this.player+1]>0&&this.args[0]==0){
+                        this.options+=this.battle.relicManager.active[46][this.player+1]
+                    }
+                    if(this.battle.relicManager.active[131][this.player+1]>0&&this.args[0]==0){
+                        this.options-=this.battle.relicManager.active[131][this.player+1]
+                    }
+                    if(this.battle.relicManager.active[238][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
+                        this.options+=2*this.battle.relicManager.active[238][this.player+1]
+                    }
+                    if(this.battle.relicManager.active[420][this.player+1]>0&&this.args[0]==0){
+                        this.options+=this.battle.relicManager.active[420][this.player+1]
+                    }
+                    if(this.battle.relicManager.active[333][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
+                        upKey+=0.5*this.battle.relicManager.active[333][this.player+1]
+                    }
+                    if(this.battle.relicManager.active[504][this.player+1]>0&&this.args[0]==0&&(args[2]==0||args[2]==7)){
+                        this.options-=this.battle.relicManager.active[504][this.player+1]
+                    }
+                    if(this.additionalOptions!=0){
+                        this.options=constrain(this.options+this.additionalOptions,1,6)
+                        this.additionalOptions=0
+                    }
+                    if(variants.cursed){
+                        args[0]=min(args[0]+1,2)
+                    }
+                    if(this.options<=0){
+                        this.active=false
+                    }
+                    switch(args[2]){
+                        case 0: case 7:
+                            list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            let effectiveRarity=variants.commoners&&floor(random(0,3))!=0?0:args[1]
+                            let effectiveOptions=this.options+this.battle.relicManager.active[172][this.player+1]+this.battle.relicManager.active[458][this.player+1]+this.battle.relicManager.active[503][this.player+1]
+                            let list2=[]
+                            if(this.args[0]==0){
+                                list2=copyArray(this.battle.cardManagers[this.player].listing.dev)
+                            }
+                            let list3=[[],[],[],[]]
+                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)){
+                                list3=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+5])
+                            }
+                            if(variants.mtg){
+                                for(let a=0,la=list[effectiveRarity].length;a<la;a++){
+                                    if(types.card[list[effectiveRarity][a]].mtg.list==-1&&types.card[list[effectiveRarity][a]].mtg.color[0]!=0&&floor(random(0,10))!=0){
+                                        list[effectiveRarity].splice(a,1)
+                                        a--
+                                        la--
+                                    }
                                 }
                             }
-                        }
-                        let positionKey=this.layer.width/2+60-effectiveOptions*60
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[effectiveRarity].length>0){
-                                let index=0
-                                if(this.args[0]==0&&floor(random(0,3000))==0){
-                                    index=floor(random(0,list2.length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
-                                        list2[index],0,constants.playerNumber+5,-1))
-                                    list2.splice(index,1)
-                                    positionKey+=120
-                                }else if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)&&floor(random(0,30))<this.battle.relicManager.active[315][this.player+1]){
-                                    index=floor(random(0,list3[3].length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
-                                        list3[3][index],0,constants.playerNumber+5,-1))
-                                    list3[3].splice(index,1)
-                                    positionKey+=120
-                                }else{
-                                    index=floor(random(0,list[effectiveRarity].length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
-                                        list[effectiveRarity][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[effectiveRarity][index]),-1))
-                                    let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                    list[effectiveRarity].splice(index,1)
-                                    positionKey+=120
-                                    if(variants.colorshift){
-                                        (variants.ultraprism?this.battle.cardManagers[this.player].listing.all[effectiveRarity]:variants.prism?this.battle.cardManagers[this.player].listing.allPlayerCard[effectiveRarity]:variants.mtg?this.battle.cardManagers[this.player].listing.mtg[0][effectiveRarity]:variants.junk?this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1]:this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][effectiveRarity]).splice(index,1)
-                                        if(!variants.ultraprism&&!variants.prism&&!variants.mtg&&!variants.junk){
-                                            let possible=[]
-                                            for(let a=0,la=constants.playerNumber;a<la;a++){
-                                                if(!this.battle.player.includes(a+1)){
-                                                    possible.push(a+1)
+                            let positionKey=this.layer.width/2+60-effectiveOptions*60
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[effectiveRarity].length>0){
+                                    let index=0
+                                    if(this.args[0]==0&&floor(random(0,3000))==0){
+                                        index=floor(random(0,list2.length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
+                                            list2[index],0,constants.playerNumber+5,-1))
+                                        list2.splice(index,1)
+                                        positionKey+=120
+                                    }else if(this.args[0]==0&&this.battle.relicManager.hasRelic(315,this.player)&&floor(random(0,30))<this.battle.relicManager.active[315][this.player+1]){
+                                        index=floor(random(0,list3[3].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
+                                            list3[3][index],0,constants.playerNumber+5,-1))
+                                        list3[3].splice(index,1)
+                                        positionKey+=120
+                                    }else{
+                                        index=floor(random(0,list[effectiveRarity].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
+                                            list[effectiveRarity][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[effectiveRarity][index]),-1))
+                                        let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                        this.cards[this.cards.length-1].edition=this.rollEdition(roll)
+                                        list[effectiveRarity].splice(index,1)
+                                        positionKey+=120
+                                        if(variants.colorshift){
+                                            (variants.ultraprism?this.battle.cardManagers[this.player].listing.all[effectiveRarity]:variants.prism?this.battle.cardManagers[this.player].listing.allPlayerCard[effectiveRarity]:variants.mtg?this.battle.cardManagers[this.player].listing.mtg[0][effectiveRarity]:variants.junk?this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1]:this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][effectiveRarity]).splice(index,1)
+                                            if(!variants.ultraprism&&!variants.prism&&!variants.mtg&&!variants.junk){
+                                                let possible=[]
+                                                for(let a=0,la=constants.playerNumber;a<la;a++){
+                                                    if(!this.battle.player.includes(a+1)){
+                                                        possible.push(a+1)
+                                                    }
                                                 }
-                                            }
-                                            let type=possible[floor(random(0,possible.length))]
-                                            if(this.battle.cardManagers[this.player].listing.card[type][effectiveRarity].length>0){
-                                                let index=floor(random(0,this.battle.cardManagers[this.player].listing.card[type][effectiveRarity].length))
-                                                this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][effectiveRarity].push(this.battle.cardManagers[this.player].listing.card[type][effectiveRarity][index])
-                                                this.battle.cardManagers[this.player].listing.card[type][effectiveRarity].splice(index,1)
+                                                let type=possible[floor(random(0,possible.length))]
+                                                if(this.battle.cardManagers[this.player].listing.card[type][effectiveRarity].length>0){
+                                                    let index=floor(random(0,this.battle.cardManagers[this.player].listing.card[type][effectiveRarity].length))
+                                                    this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][effectiveRarity].push(this.battle.cardManagers[this.player].listing.card[type][effectiveRarity][index])
+                                                    this.battle.cardManagers[this.player].listing.card[type][effectiveRarity].splice(index,1)
+                                                }
                                             }
                                         }
                                     }
+                                    this.cards[this.cards.length-1].upSize=true
                                 }
-                                this.cards[this.cards.length-1].upSize=true
                             }
-                        }
-                        if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
-                            for(let a=0,la=this.battle.relicManager.active[172][this.player+1];a<la;a++){
-                                list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
+                                for(let a=0,la=this.battle.relicManager.active[172][this.player+1];a<la;a++){
+                                    list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                                    if(list[args[1]].length>0){
+                                        let index=floor(random(0,list[args[1]].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
+                                            list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                        let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                        this.cards[this.cards.length-1].edition=this.rollEdition(roll)
+                                        this.cards[this.cards.length-1].upSize=true
+                                        list.splice(index,1)
+                                        positionKey+=120
+                                    }
+                                }
+                            }
+                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(458,this.player)){
+                                for(let a=0,la=this.battle.relicManager.active[458][this.player+1];a<la;a++){
+                                    list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][this.battle.relicManager.detail[458][this.player][a]]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.relicManager.detail[458][this.player][a]])
+                                    if(list[args[1]].length>0){
+                                        let index=floor(random(0,list[args[1]].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
+                                            list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                        let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                        this.cards[this.cards.length-1].edition=this.rollEdition(roll)
+                                        this.cards[this.cards.length-1].upSize=true
+                                        list.splice(index,1)
+                                        positionKey+=120
+                                    }
+                                }
+                            }
+                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(503,this.player)){
+                                for(let a=0,la=this.battle.relicManager.active[503][this.player+1];a<la;a++){
+                                    list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
+                                    if(list[args[1]].length>0){
+                                        let index=floor(random(0,list[args[1]].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
+                                            list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                        let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                        this.cards[this.cards.length-1].edition=this.rollEdition(roll)
+                                        this.cards[this.cards.length-1].upSize=true
+                                        list.splice(index,1)
+                                        positionKey+=120
+                                    }
+                                }
+                            }
+                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(521,this.player)&&this.battle.relicManager.detail[521][this.player]==1){
+                                this.battle.relicManager.detail[521][this.player]=0
+                                for(let a=0,la=this.battle.relicManager.active[521][this.player+1];a<la;a++){
+                                    if(this.cards.length>0){
+                                        let roll=floor(random(0,12))
+                                        randin(this.cards).edition=this.rollEdition(roll)
+                                    }
+                                }
+                            }
+                            this.options=effectiveOptions
+                        break
+                        case 1:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
+                            for(let a=0,la=this.options;a<la;a++){
                                 if(list[args[1]].length>0){
                                     let index=floor(random(0,list[args[1]].length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
-                                        list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                    let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                    this.cards[this.cards.length-1].upSize=true
-                                    list.splice(index,1)
-                                    positionKey+=120
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],0,-1))
+                                    this.cards[a].upSize=true
+                                    list[args[1]].splice(index,1)
                                 }
                             }
-                        }
-                        if(this.args[0]==0&&this.battle.relicManager.hasRelic(458,this.player)){
-                            for(let a=0,la=this.battle.relicManager.active[458][this.player+1];a<la;a++){
-                                list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][this.battle.relicManager.detail[458][this.player][a]]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.relicManager.detail[458][this.player][a]])
-                                if(list[args[1]].length>0){
-                                    let index=floor(random(0,list[args[1]].length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
-                                        list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                    let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                    this.cards[this.cards.length-1].upSize=true
-                                    list.splice(index,1)
-                                    positionKey+=120
-                                }
-                            }
-                        }
-                        if(this.args[0]==0&&this.battle.relicManager.hasRelic(503,this.player)){
-                            for(let a=0,la=this.battle.relicManager.active[503][this.player+1];a<la;a++){
-                                list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
-                                if(list[args[1]].length>0){
-                                    let index=floor(random(0,list[args[1]].length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,positionKey,this.layer.height/2+20,
-                                        list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,10))<this.battle.relicManager.active[219][this.player+1]?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                    let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                    this.cards[this.cards.length-1].upSize=true
-                                    list.splice(index,1)
-                                    positionKey+=120
-                                }
-                            }
-                        }
-                        if(this.args[0]==0&&this.battle.relicManager.hasRelic(521,this.player)&&this.battle.relicManager.detail[521][this.player]==1){
-                            this.battle.relicManager.detail[521][this.player]=0
-                            for(let a=0,la=this.battle.relicManager.active[521][this.player+1];a<la;a++){
-                                if(this.cards.length>0){
-                                    let roll=floor(random(0,12))
-                                    randin(this.cards).edition=this.rollEdition(roll)
-                                }
-                            }
-                        }
-                        this.options=effectiveOptions
-                    break
-                    case 1:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],0,-1))
-                                this.cards[a].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 2: case 12:
-                        list=variants.mtg?(args[2]==12?
-                            copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):
-                            copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2])
-                        ):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                if(args[3]==1){
-                                    this.cards[a].setCost(0,[0])
-                                }
-                                this.cards[a].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 3: case 4: case 10:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        sublist=[]
-                        for(let a=0,la=list[3].length;a<la;a++){
-                            if(
-                                variants.mtg&&types.card[list[3][a]].mtg.levels[args[0]].class==args[1]||
-                                !variants.mtg&&types.card[list[3][a]].levels[args[0]].class==args[1]
-                            ){
-                                sublist.push(list[3][a])
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(sublist.length>0){
-                                let index=floor(random(0,sublist.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
-                                if(args[2]==4){
-                                    this.cards[a].setCost(0,[0])
-                                }
-                                this.cards[a].upSize=true
-                                sublist.splice(index,1)
-                            }
-                        }
-                    break
-                    case 5:
-                        list=[]
-                        for(let a=0,la=11;a<la;a++){
-                            list.push(findName(`${a+1} of\nNothings`,types.card))
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list.length>0){
-                                let index=floor(random(0,list.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],0,-1))
-                                this.cards[a].upSize=true
-                                list.splice(index,1)
-                            }
-                        }
-                    break
-                    case 6:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+4])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],constants.playerNumber+4,-1))
-                                this.cards[a].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 8:
-                        for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName('Better\nCard',types.card),0,0,-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 9:
-                        for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['White\nDwarf','Black\nDwarf'][a%2],types.card),0,0,-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 11:
-                        for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Mixture A','Mixture B','Mixture C'][a%3],types.card),0,0,-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 13:
-                        list=[]
-                        for(let a=0,la=11;a<la;a++){
-                            list.push(a)
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list.length>0){
-                                let index=floor(random(0,list.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName('Timestamp',types.card),args[0],0,-1))
-                                this.cards[a].upSize=true
-                                this.cards[a].effect[0]=list[index]
-                                list.splice(index,1)
-                            }
-                        }
-                    break
-                    case 14:
-                        list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        if(variants.mtg){
-                            for(let a=0,la=list[args[1]].length;a<la;a++){
-                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
-                                    list[args[1]].splice(a,1)
-                                    a--
-                                    la--
-                                }
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),this.battle.standardColorize(list[args[1]][index]),-1))
-                                let roll=floor(random(0,90*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 15:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),0,-1))
-                                let roll=floor(random(0,90*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 16:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+5])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,1+upKey)),constants.playerNumber+5,-1))
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 17:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        if(args[4]!=-1){
-                            for(let a=0,la=list[args[1]].length;a<la;a++){
-                                if(types.card[list[args[1]][a]].levels[args[0]].class!=args[4]){
-                                    list[args[1]].splice(a,1)
-                                    a--
-                                    la--
-                                }
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                let roll=floor(random(0,12))
-                                this.cards[this.cards.length-1].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 18: case 24: case 36:
-                        list=variants.mtg?(args[2]==18?
+                        break
+                        case 2: case 12:
+                            list=variants.mtg?(args[2]==12?
                                 copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):
                                 copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2])
-                            ):
-                            args[2]==36?
-                            copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):
-                            copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(
-                                variants.mtg&&(
-                                    arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length!=args[3]||
-                                    specialCost(types.card[list[args[1]][a]].mtg.levels[args[0]])
-                                )||
-                                !variants.mtg&&(
-                                    types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]||
-                                    specialCost(types.card[list[args[1]][a]].levels[args[0]])
-                                )
-                            ){
-                                list[args[1]].splice(a,1)
-                                a--
-                                la--
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                if(args[2]==24||args[2]==36){
-                                    this.cards[a].setCost(0,[0])
-                                }
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 19: case 48:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(!types.card[list[args[1]][a]].levels[args[0]].spec.includes(args[3])){
-                                list[args[1]].splice(a,1)
-                                a--
-                                la--
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                if(args[2]==48){
-                                    this.cards[a].setCost(2,[0])
-                                }
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 20:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[3]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3]])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,20))==0?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 21:
-                        for(let a=0,la=this.options;a<la;a++){
-                            let type=findName(['Discus of Fire\nand Water','Discus of Mountain\nand Rain','Discus of Wind\nand Thunder'][a%3],types.card)
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 22:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        sublist=[[],[]]
-                        for(let a=0,la=list[3].length;a<la;a++){
-                            if(types.card[list[3][a]].levels[args[0]].class==1||types.card[list[3][a]].levels[args[0]].class==2){
-                                sublist[types.card[list[3][a]].levels[args[0]].class-1].push(list[3][a])
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(sublist[a%2].length>0){
-                                let index=floor(random(0,sublist[a%2].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[a%2][index],args[0],types.card[sublist[a%2][index]].list,-1))
-                                this.cards[a].upSize=true
-                                sublist[a%2].splice(index,1)
-                            }
-                        }
-                    break
-                    case 23: case 30:
-                        list=[]
-                        for(let a=0,la=args[3].length;a<la;a++){
-                            list.push(variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[3][a]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3][a]]))
-                        }
-                        let preColors=[]
-                        for(let a=0,la=args[3].length;a<la;a++){
-                            preColors.push(a)
-                        }
-                        for(let a=0,la=this.options-args[3].length;a<la;a++){
-                            preColors.push(floor(random(0,args[3].length)))
-                        }
-                        let colors=[]
-                        for(let a=0,la=preColors.length;a<la;a++){
-                            let index=floor(random(0,preColors.length))
-                            colors.push(preColors[index])
-                            preColors.splice(index,1)
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            let listIndex=colors[a]
-                            if(list[listIndex][args[1]].length>0){
-                                let index=floor(random(0,list[listIndex][args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[listIndex][args[1]][index],args[0],this.battle.standardColorize(list[listIndex][args[1]][index]),-1))
-                                if(args[2]==23){
-                                    this.cards[a].setCost(0,[0])
-                                }
-                                this.cards[a].upSize=true
-                                list[listIndex][args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 25:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),this.battle.standardColorize(list[args[1]][index]),-1))
-                                let roll=floor(random(0,90*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
-                                this.cards[this.cards.length-1].edition=this.rollEdition(roll)
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 26:
-                        for(let a=0,la=this.options;a<la;a++){
-                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                            for(let b=0,lb=list[args[1]].length;b<lb;b++){
-                                if(
-                                    variants.mtg&&(
-                                        types.card[list[args[1]][b]].mtg.levels[args[0]].cost.length!=a+1||
-                                        specialCost(types.card[list[args[1]][b]].mtg.levels[args[0]])
-                                    )||
-                                    !variants.mtg&&(
-                                        types.card[list[args[1]][b]].levels[args[0]].cost!=a+1||
-                                        specialCost(types.card[list[args[1]][b]].levels[args[0]])
-                                    )
-                                ){
-                                    list[args[1]].splice(b,1)
-                                    b--
-                                    lb--
-                                }
-                            }
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 27:
-                        this.setupArgs[4]=[]
-                        list=[]
-                        for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
-                            if(this.battle.cardManagers[this.player].discard.cards[a].name!='Fatigue'){
-                                list.push(a)
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list.length>0){
-                                let index=floor(random(0,list.length))
-                                this.cards.push(copyCard(this.battle.cardManagers[this.player].discard.cards[list[index]]))
-                                this.cards[this.cards.length-1].upSize=true
-                                this.cards[this.cards.length-1].position.x=this.layer.width/2+60-la*60+a*120
-                                this.cards[this.cards.length-1].position.y=this.layer.height/2+20
-                                this.setupArgs[4].push(list[index])
-                                list.splice(index,1)
-                            }
-                        }
-                    break
-                    case 28: case 50: case 51:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        if(variants.mtg){
-                            for(let a=0,la=list[args[1]].length;a<la;a++){
-                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
-                                    list[args[1]].splice(a,1)
-                                    a--
-                                    la--
-                                }
-                            }
-                        }
-                        sublist=[]
-                        for(let a=0,la=list[3].length;a<la;a++){
-                            if(types.card[list[3][a]].levels[args[0]].class==args[1]){
-                                sublist.push(list[3][a])
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(sublist.length>0){
-                                let index=floor(random(0,sublist.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
-                                if(args[2]==51){
-                                    this.cards[a].setCost(0,[0])
-                                }
-                                this.cards[a].upSize=true
-                                sublist.splice(index,1)
-                            }
-                        }
-                    break
-                    case 29:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        if(variants.mtg){
-                            for(let a=0,la=list[args[1]].length;a<la;a++){
-                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
-                                    list[args[1]].splice(a,1)
-                                    a--
-                                    la--
-                                }
-                            }
-                        }
-                        sublist=[]
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(types.card[list[args[1]][a]].levels[args[0]].class==args[3]){
-                                sublist.push(list[args[1]][a])
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(sublist.length>0){
-                                let index=floor(random(0,sublist.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
-                                this.cards[a].setCost(0,[0])
-                                this.cards[a].upSize=true
-                                sublist.splice(index,1)
-                            }
-                        }
-                    break
-                    case 31:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        if(variants.mtg){
-                            for(let a=0,la=list[args[1]].length;a<la;a++){
-                                if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
-                                    list[args[1]].splice(a,1)
-                                    a--
-                                    la--
-                                }
-                            }
-                        }
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(
-                                (variants.mtg?(specialCost(types.card[list[args[1]][a]].mtg.levels[args[0]])?
-                                types.card[list[args[1]][a]].mtg.levels[args[0]].cost[0]:arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length
-                                ):types.card[list[args[1]][a]].levels[args[0]].cost)!=args[3]&&args[3]!=-99||
-                                types.card[list[args[1]][a]].levels[args[0]].class!=args[4]||
-                                specialCost(variants.mtg?types.card[list[args[1]][a]].mtg.levels[args[0]]:types.card[list[args[1]][a]].levels[args[0]])
-                            ){
-                                list[args[1]].splice(a,1)
-                                a--
-                                la--
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 32:
-                        for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Hakurei\nTalisman','Hakurei\nOrb','Hakurei\nAmulet'][a%3],types.card),0,0,-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 33:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        sublist=[[],[],[],[]]
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            switch(types.card[list[args[1]][a]].levels[args[0]].class){
-                                case 1:
-                                    sublist[0].push(list[args[1]][a])
-                                break
-                                case 2:
-                                    sublist[1].push(list[args[1]][a])
-                                break
-                                case 3:
-                                    sublist[2].push(list[args[1]][a])
-                                break
-                                case 11:
-                                    sublist[3].push(list[args[1]][a])
-                                break
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(sublist[a%4].length>0){
-                                let index=floor(random(0,sublist[a%4].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[a%4][index],args[0],this.battle.standardColorize(sublist[a%4][index]),-1))
-                                this.cards[a].upSize=true
-                                this.cards[a].setCost(0,[0])
-                                sublist[a%4].splice(index,1)
-                            }
-                        }
-                    break
-                    case 34:
-                        this.setupArgs[4]=[]
-                        list=[]
-                        for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
-                            if(this.battle.cardManagers[this.player].reserve.cards[a].name!='Fatigue'){
-                                list.push(a)
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list.length>0){
-                                let index=floor(random(0,list.length))
-                                this.cards.push(copyCard(this.battle.cardManagers[this.player].reserve.cards[list[index]]))
-                                this.cards[this.cards.length-1].upSize=true
-                                this.cards[this.cards.length-1].position.x=this.layer.width/2+60-la*60+a*120
-                                this.cards[this.cards.length-1].position.y=this.layer.height/2+20
-                                this.setupArgs[4].push(list[index])
-                                list.splice(index,1)
-                            }
-                        }
-                    break
-                    case 35:
-                        for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Spring-Colored\nPath','Lakeside\nPath','Ghostly\nPath'][a%3],types.card),0,0,-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 37: case 39: case 40: case 41: case 42:
-                        let second=''
-                        switch(args[2]){
-                            case 37:
-                                second='Splash'
-                            break
-                            case 39:
-                                second='Radiance'
-                            break
-                            case 40:
-                                second='Occult'
-                            break
-                            case 41:
-                                second='Vibrant'
-                            break
-                            case 42:
-                                second='Torch'
-                            break
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            let type=findName(['Pristine',second][a%2],types.card)
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,0,this.battle.standardColorize(type),-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 38:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                this.cards[a].setCost(0,[0])
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 43:
-                        list=copyArray(this.battle.cardManagers[this.player].listing[args[1]])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list.length>0){
-                                let index=floor(random(0,list.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
-                                this.cards[a].upSize=true
-                                list.splice(index,1)
-                            }
-                        }
-                    break
-                    case 44:
-                        list=copyArray(this.battle.cardManagers[this.player].listing.junk[args[1]])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list.length>0){
-                                let index=floor(random(0,list.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
-                                this.cards[a].setCost(0,[0])
-                                this.cards[this.cards.length-1].upSize=true
-                                list.splice(index,1)
-                            }
-                        }
-                    break
-                    case 45:
-                        for(let a=0,la=this.options;a<la;a++){
-                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                            for(let b=0,lb=list[args[1]].length;b<lb;b++){
-                                if(
-                                    variants.mtg&&(
-                                        types.card[list[args[1]][b]].mtg.levels[args[0]].class!=args[3]||
-                                        types.card[list[args[1]][b]].mtg.levels[args[0]].target[0]!=0&&a%3==0||
-                                        (types.card[list[args[1]][b]].mtg.levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].mtg.levels[args[0]].target[2]!=1)&&a%3==1||
-                                        (types.card[list[args[1]][b]].mtg.levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].mtg.levels[args[0]].target[2]<=1)&&a%3==2
-                                    )||
-                                    !variants.mtg&&(
-                                        types.card[list[args[1]][b]].levels[args[0]].class!=args[3]||
-                                        types.card[list[args[1]][b]].levels[args[0]].target[0]!=0&&a%3==0||
-                                        (types.card[list[args[1]][b]].levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].levels[args[0]].target[2]!=1)&&a%3==1||
-                                        (types.card[list[args[1]][b]].levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].levels[args[0]].target[2]<=1)&&a%3==2
-                                    )
-                                ){
-                                    list[args[1]].splice(b,1)
-                                    b--
-                                    lb--
-                                }
-                            }
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                this.cards[this.cards.length-1].upSize=true
-                                this.cards[this.cards.length-1].setCost(0,[0])
-                                list[args[1]].splice(index,1)
-                            }
-                        }
-                    break
-                    case 46: case 59:
-                        list=args[2]==59?
-                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[4]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[4]]):
-                            variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        if(this.options>=12){
-                            let interval=ceil(this.options/3)
+                            ):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                             for(let a=0,la=this.options;a<la;a++){
                                 if(list[args[1]].length>0){
                                     let index=floor(random(0,list[args[1]].length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+50-interval*50+a%interval*100,this.layer.height/2-110+floor(a/interval)*130,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    if(args[3]==1){
+                                        this.cards[a].setCost(0,[0])
+                                    }
+                                    this.cards[a].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 3: case 4: case 10:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            sublist=[]
+                            for(let a=0,la=list[3].length;a<la;a++){
+                                if(
+                                    variants.mtg&&types.card[list[3][a]].mtg.levels[args[0]].class==args[1]||
+                                    !variants.mtg&&types.card[list[3][a]].levels[args[0]].class==args[1]
+                                ){
+                                    sublist.push(list[3][a])
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(sublist.length>0){
+                                    let index=floor(random(0,sublist.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
+                                    if(args[2]==4){
+                                        this.cards[a].setCost(0,[0])
+                                    }
+                                    this.cards[a].upSize=true
+                                    sublist.splice(index,1)
+                                }
+                            }
+                        break
+                        case 5:
+                            list=[]
+                            for(let a=0,la=11;a<la;a++){
+                                list.push(findName(`${a+1} of\nNothings`,types.card))
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],0,-1))
+                                    this.cards[a].upSize=true
+                                    list.splice(index,1)
+                                }
+                            }
+                        break
+                        case 6:
+                            list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+4])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],constants.playerNumber+4,-1))
+                                    this.cards[a].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 8:
+                            for(let a=0,la=this.options;a<la;a++){
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName('Better\nCard',types.card),0,0,-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                        case 9:
+                            for(let a=0,la=this.options;a<la;a++){
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['White\nDwarf','Black\nDwarf'][a%2],types.card),0,0,-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                        case 11:
+                            for(let a=0,la=this.options;a<la;a++){
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Mixture A','Mixture B','Mixture C'][a%3],types.card),0,0,-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                        case 13:
+                            list=[]
+                            for(let a=0,la=11;a<la;a++){
+                                list.push(a)
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName('Timestamp',types.card),args[0],0,-1))
+                                    this.cards[a].upSize=true
+                                    this.cards[a].effect[0]=list[index]
+                                    list.splice(index,1)
+                                }
+                            }
+                        break
+                        case 14:
+                            list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            if(variants.mtg){
+                                for(let a=0,la=list[args[1]].length;a<la;a++){
+                                    if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                        list[args[1]].splice(a,1)
+                                        a--
+                                        la--
+                                    }
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),this.battle.standardColorize(list[args[1]][index]),-1))
+                                    let roll=floor(random(0,90*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                     this.cards[this.cards.length-1].upSize=true
                                     list[args[1]].splice(index,1)
                                 }
                             }
-                        }else if(this.options>=8){
-                            let interval=ceil(this.options/2)
+                        break
+                        case 15:
+                            list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
                             for(let a=0,la=this.options;a<la;a++){
                                 if(list[args[1]].length>0){
                                     let index=floor(random(0,list[args[1]].length))
-                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-interval*60+a%interval*120,this.layer.height/2-55+floor(a/interval)*150,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),0,-1))
+                                    let roll=floor(random(0,90*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
                                     this.cards[this.cards.length-1].upSize=true
                                     list[args[1]].splice(index,1)
                                 }
                             }
-                        }else{
+                        break
+                        case 16:
+                            list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[constants.playerNumber+5])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,1+upKey)),constants.playerNumber+5,-1))
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 17:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            if(args[4]!=-1){
+                                for(let a=0,la=list[args[1]].length;a<la;a++){
+                                    if(types.card[list[args[1]][a]].levels[args[0]].class!=args[4]){
+                                        list[args[1]].splice(a,1)
+                                        a--
+                                        la--
+                                    }
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    let roll=floor(random(0,12))
+                                    this.cards[this.cards.length-1].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 18: case 24: case 36:
+                            list=variants.mtg?(args[2]==18?
+                                    copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):
+                                    copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2])
+                                ):
+                                args[2]==36?
+                                copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):
+                                copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(
+                                    variants.mtg&&(
+                                        arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length!=args[3]||
+                                        specialCost(types.card[list[args[1]][a]].mtg.levels[args[0]])
+                                    )||
+                                    !variants.mtg&&(
+                                        types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]||
+                                        specialCost(types.card[list[args[1]][a]].levels[args[0]])
+                                    )
+                                ){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    if(args[2]==24||args[2]==36){
+                                        this.cards[a].setCost(0,[0])
+                                    }
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 19: case 48:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(!types.card[list[args[1]][a]].levels[args[0]].spec.includes(args[3])){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    if(args[2]==48){
+                                        this.cards[a].setCost(2,[0])
+                                    }
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 20:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[3]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3]])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,20))==0?2:args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    let roll=floor(random(0,360*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 21:
+                            for(let a=0,la=this.options;a<la;a++){
+                                let type=findName(['Discus of Fire\nand Water','Discus of Mountain\nand Rain','Discus of Wind\nand Thunder'][a%3],types.card)
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                        case 22:
+                            list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            sublist=[[],[]]
+                            for(let a=0,la=list[3].length;a<la;a++){
+                                if(types.card[list[3][a]].levels[args[0]].class==1||types.card[list[3][a]].levels[args[0]].class==2){
+                                    sublist[types.card[list[3][a]].levels[args[0]].class-1].push(list[3][a])
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(sublist[a%2].length>0){
+                                    let index=floor(random(0,sublist[a%2].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[a%2][index],args[0],types.card[sublist[a%2][index]].list,-1))
+                                    this.cards[a].upSize=true
+                                    sublist[a%2].splice(index,1)
+                                }
+                            }
+                        break
+                        case 23: case 30:
+                            list=[]
+                            for(let a=0,la=args[3].length;a<la;a++){
+                                list.push(variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[3][a]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3][a]]))
+                            }
+                            let preColors=[]
+                            for(let a=0,la=args[3].length;a<la;a++){
+                                preColors.push(a)
+                            }
+                            for(let a=0,la=this.options-args[3].length;a<la;a++){
+                                preColors.push(floor(random(0,args[3].length)))
+                            }
+                            let colors=[]
+                            for(let a=0,la=preColors.length;a<la;a++){
+                                let index=floor(random(0,preColors.length))
+                                colors.push(preColors[index])
+                                preColors.splice(index,1)
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                let listIndex=colors[a]
+                                if(list[listIndex][args[1]].length>0){
+                                    let index=floor(random(0,list[listIndex][args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[listIndex][args[1]][index],args[0],this.battle.standardColorize(list[listIndex][args[1]][index]),-1))
+                                    if(args[2]==23){
+                                        this.cards[a].setCost(0,[0])
+                                    }
+                                    this.cards[a].upSize=true
+                                    list[listIndex][args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 25:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0]+upKey,2.5+upKey)),this.battle.standardColorize(list[args[1]][index]),-1))
+                                    let roll=floor(random(0,90*(this.battle.relicManager.hasRelic(180,this.player)?0.25:1)*(this.battle.relicManager.hasRelic(427,this.player)?0.5:1)))
+                                    this.cards[this.cards.length-1].edition=this.rollEdition(roll)
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 26:
+                            for(let a=0,la=this.options;a<la;a++){
+                                list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                                for(let b=0,lb=list[args[1]].length;b<lb;b++){
+                                    if(
+                                        variants.mtg&&(
+                                            types.card[list[args[1]][b]].mtg.levels[args[0]].cost.length!=a+1||
+                                            specialCost(types.card[list[args[1]][b]].mtg.levels[args[0]])
+                                        )||
+                                        !variants.mtg&&(
+                                            types.card[list[args[1]][b]].levels[args[0]].cost!=a+1||
+                                            specialCost(types.card[list[args[1]][b]].levels[args[0]])
+                                        )
+                                    ){
+                                        list[args[1]].splice(b,1)
+                                        b--
+                                        lb--
+                                    }
+                                }
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 27:
+                            this.setupArgs[4]=[]
+                            list=[]
+                            for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
+                                if(this.battle.cardManagers[this.player].discard.cards[a].name!='Fatigue'){
+                                    list.push(a)
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(copyCard(this.battle.cardManagers[this.player].discard.cards[list[index]]))
+                                    this.cards[this.cards.length-1].upSize=true
+                                    this.cards[this.cards.length-1].position.x=this.layer.width/2+60-la*60+a*120
+                                    this.cards[this.cards.length-1].position.y=this.layer.height/2+20
+                                    this.setupArgs[4].push(list[index])
+                                    list.splice(index,1)
+                                }
+                            }
+                        break
+                        case 28: case 50: case 51:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            if(variants.mtg){
+                                for(let a=0,la=list[args[1]].length;a<la;a++){
+                                    if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                        list[args[1]].splice(a,1)
+                                        a--
+                                        la--
+                                    }
+                                }
+                            }
+                            sublist=[]
+                            for(let a=0,la=list[3].length;a<la;a++){
+                                if(types.card[list[3][a]].levels[args[0]].class==args[1]){
+                                    sublist.push(list[3][a])
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(sublist.length>0){
+                                    let index=floor(random(0,sublist.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
+                                    if(args[2]==51){
+                                        this.cards[a].setCost(0,[0])
+                                    }
+                                    this.cards[a].upSize=true
+                                    sublist.splice(index,1)
+                                }
+                            }
+                        break
+                        case 29:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            if(variants.mtg){
+                                for(let a=0,la=list[args[1]].length;a<la;a++){
+                                    if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                        list[args[1]].splice(a,1)
+                                        a--
+                                        la--
+                                    }
+                                }
+                            }
+                            sublist=[]
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].levels[args[0]].class==args[3]){
+                                    sublist.push(list[args[1]][a])
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(sublist.length>0){
+                                    let index=floor(random(0,sublist.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
+                                    this.cards[a].setCost(0,[0])
+                                    this.cards[a].upSize=true
+                                    sublist.splice(index,1)
+                                }
+                            }
+                        break
+                        case 31:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            if(variants.mtg){
+                                for(let a=0,la=list[args[1]].length;a<la;a++){
+                                    if(types.card[list[args[1]][a]].mtg.list==-1&&types.card[list[args[1]][a]].mtg.color[0]!=0&&floor(random(0,4))!=0){
+                                        list[args[1]].splice(a,1)
+                                        a--
+                                        la--
+                                    }
+                                }
+                            }
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(
+                                    (variants.mtg?(specialCost(types.card[list[args[1]][a]].mtg.levels[args[0]])?
+                                    types.card[list[args[1]][a]].mtg.levels[args[0]].cost[0]:arrayPurge(types.card[list[args[1]][a]].mtg.levels[args[0]].cost,[-3]).length
+                                    ):types.card[list[args[1]][a]].levels[args[0]].cost)!=args[3]&&args[3]!=-99||
+                                    types.card[list[args[1]][a]].levels[args[0]].class!=args[4]||
+                                    specialCost(variants.mtg?types.card[list[args[1]][a]].mtg.levels[args[0]]:types.card[list[args[1]][a]].levels[args[0]])
+                                ){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
                             for(let a=0,la=this.options;a<la;a++){
                                 if(list[args[1]].length>0){
                                     let index=floor(random(0,list[args[1]].length))
@@ -1088,352 +908,331 @@ class overlay{
                                     list[args[1]].splice(index,1)
                                 }
                             }
-                        }
-                    break
-                    case 47:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[3]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3]])
-                        sublist=[]
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(types.card[list[args[1]][a]].levels[args[0]].class==args[4]){
-                                sublist.push(list[args[1]][a])
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(sublist.length>0){
-                                let index=floor(random(0,sublist.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
+                        break
+                        case 32:
+                            for(let a=0,la=this.options;a<la;a++){
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Hakurei\nTalisman','Hakurei\nOrb','Hakurei\nAmulet'][a%3],types.card),0,0,-1))
                                 this.cards[a].upSize=true
-                                sublist.splice(index,1)
                             }
-                        }
-                    break
-                    case 49:
-                        for(let a=0,la=this.options;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Guilt','Innocence','Unproven'][a%3],types.card),0,constants.playerNumber+2,-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 52:
-                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        sublist=[]
-                        for(let a=0,la=args[3].length;a<la;a++){
-                            sublist.push([])
-                        }
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(types.card[list[args[1]][a]].mtg.color.length==1&&args[3].includes(types.card[list[args[1]][a]].mtg.color[0])){
-                                sublist[args[3].indexOf(types.card[list[args[1]][a]].mtg.color[0])].push(list[args[1]][a])
+                        break
+                        case 33:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            sublist=[[],[],[],[]]
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                switch(types.card[list[args[1]][a]].levels[args[0]].class){
+                                    case 1:
+                                        sublist[0].push(list[args[1]][a])
+                                    break
+                                    case 2:
+                                        sublist[1].push(list[args[1]][a])
+                                    break
+                                    case 3:
+                                        sublist[2].push(list[args[1]][a])
+                                    break
+                                    case 11:
+                                        sublist[3].push(list[args[1]][a])
+                                    break
+                                }
                             }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(sublist[a%args[3].length].length>0){
-                                let index=floor(random(0,sublist[a%args[3].length].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[a%args[3].length][index],args[0],this.battle.standardColorize(sublist[a%args[3].length][index]),-1))
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(sublist[a%4].length>0){
+                                    let index=floor(random(0,sublist[a%4].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[a%4][index],args[0],this.battle.standardColorize(sublist[a%4][index]),-1))
+                                    this.cards[a].upSize=true
+                                    this.cards[a].setCost(0,[0])
+                                    sublist[a%4].splice(index,1)
+                                }
+                            }
+                        break
+                        case 34:
+                            this.setupArgs[4]=[]
+                            list=[]
+                            for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
+                                if(this.battle.cardManagers[this.player].reserve.cards[a].name!='Fatigue'){
+                                    list.push(a)
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(copyCard(this.battle.cardManagers[this.player].reserve.cards[list[index]]))
+                                    this.cards[this.cards.length-1].upSize=true
+                                    this.cards[this.cards.length-1].position.x=this.layer.width/2+60-la*60+a*120
+                                    this.cards[this.cards.length-1].position.y=this.layer.height/2+20
+                                    this.setupArgs[4].push(list[index])
+                                    list.splice(index,1)
+                                }
+                            }
+                        break
+                        case 35:
+                            for(let a=0,la=this.options;a<la;a++){
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Spring-Colored\nPath','Lakeside\nPath','Ghostly\nPath'][a%3],types.card),0,0,-1))
                                 this.cards[a].upSize=true
-                                this.cards[a].setCost(0,[0])
-                                sublist[a%args[3].length].splice(index,1)
                             }
-                        }
-                    break
-                    case 53:
-                        for(let a=0,la=this.options;a<la;a++){
-                            let type=findName(['Discus of Light\nand Dark','Discus of Moon\nand Sky','Discus of Truth\nand Lie'][a%3],types.card)
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 54:
-                        list=variants.mtg?(args[2]==18?
-                            copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):
-                            copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2])
-                        ):
-                        args[2]==36?
-                        copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):
-                        copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
-                        for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(!types.card[list[args[1]][a]].name.includes('Strike')){
-                                list[args[1]].splice(a,1)
-                                a--
-                                la--
+                        break
+                        case 37: case 39: case 40: case 41: case 42:
+                            let second=''
+                            switch(args[2]){
+                                case 37:
+                                    second='Splash'
+                                break
+                                case 39:
+                                    second='Radiance'
+                                break
+                                case 40:
+                                    second='Occult'
+                                break
+                                case 41:
+                                    second='Vibrant'
+                                break
+                                case 42:
+                                    second='Torch'
+                                break
                             }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]].length>0){
-                                let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
-                                this.cards[a].setCost(0,[0])
-                                this.cards[this.cards.length-1].upSize=true
-                                list[args[1]].splice(index,1)
+                            for(let a=0,la=this.options;a<la;a++){
+                                let type=findName(['Pristine',second][a%2],types.card)
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,0,this.battle.standardColorize(type),-1))
+                                this.cards[a].upSize=true
                             }
-                        }
-                    break
-                    case 55:
-                        let possible55=[]
-                        for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
-                            possible55.push(a)
-                        }
-                        for(let a=0,la=args[0];a<la;a++){
-                            if(possible55.length>0){
-                                let index=floor(random(0,possible55.length))
-                                this.cards.push(copyCard(this.battle.cardManagers[this.player].deck.cards[possible55[index]]))
-                                this.cards[a].position.x=this.layer.width/2+60-la*60+a*120
-                                this.cards[a].position.y=this.layer.height/2+20
-                                this.cards[a].size=1
-                                this.cards[a].fade=1
-                                possible55.splice(index,1)
-                            }
-                        }
-                    break
-                    case 56:
-                        for(let a=0,la=this.options;a<la;a++){
-                            let type=findName(['Discus of Wind\nand Thunder','Discus of\nSand and Sea','Discus of Salt\nand Steel'][a%3],types.card)
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                    case 57:
-                        this.options=args[1][0]==13||args[1][0]==14||args[1][0]==15?6:args[1][0]==16?4:3
-                        switch(args[1][0]){
-                            case 0:
-                                list=(variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[args[1][1]]
-                            break
-                            case 1:
-                                list=(variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0]))[args[1][1]]
-                            break
-                            case 2: case 13:
-                                list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[args[1][1]]
-                            break
-                            case 3:
-                                list=[
-                                    findName('Mixture A',types.card),
-                                    findName('Mixture B',types.card),
-                                    findName('Mixture C',types.card)
-                                ]
-                            break
-                            case 4:
-                                list=copyArrayStack(this.battle.cardManagers[this.player].listing.junk)[args[1][1]]
-                            break
-                            case 5:
-                                list=elementArray(findName('Timestamp',types.card),3)
-                            break
-                            case 6:
-                                list=[]
-                                for(let a=0,la=args[1][1].length;a<la;a++){
-                                    list.push((variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[3])
+                        break
+                        case 38:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards[a].setCost(0,[0])
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
                                 }
-                                for(let b=0,lb=list.length;b<lb;b++){
-                                    for(let c=0,lc=list[b].length;c<lc;c++){
-                                        if((
-                                            !variants.mtg&&types.card[list[b][c]].levels[args[0]].cost!=args[1][1][b]||
-                                            variants.mtg&&types.card[list[b][c]].levels[args[0]].cost.length!=args[1][1][b]
-                                        )){
-                                            list[b].splice(c,1)
-                                            c--
-                                            lc--
-                                        }
+                            }
+                        break
+                        case 43:
+                            list=copyArray(this.battle.cardManagers[this.player].listing[args[1]])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                    this.cards[a].upSize=true
+                                    list.splice(index,1)
+                                }
+                            }
+                        break
+                        case 44:
+                            list=copyArray(this.battle.cardManagers[this.player].listing.junk[args[1]])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                    this.cards[a].setCost(0,[0])
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list.splice(index,1)
+                                }
+                            }
+                        break
+                        case 45:
+                            for(let a=0,la=this.options;a<la;a++){
+                                list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                                for(let b=0,lb=list[args[1]].length;b<lb;b++){
+                                    if(
+                                        variants.mtg&&(
+                                            types.card[list[args[1]][b]].mtg.levels[args[0]].class!=args[3]||
+                                            types.card[list[args[1]][b]].mtg.levels[args[0]].target[0]!=0&&a%3==0||
+                                            (types.card[list[args[1]][b]].mtg.levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].mtg.levels[args[0]].target[2]!=1)&&a%3==1||
+                                            (types.card[list[args[1]][b]].mtg.levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].mtg.levels[args[0]].target[2]<=1)&&a%3==2
+                                        )||
+                                        !variants.mtg&&(
+                                            types.card[list[args[1]][b]].levels[args[0]].class!=args[3]||
+                                            types.card[list[args[1]][b]].levels[args[0]].target[0]!=0&&a%3==0||
+                                            (types.card[list[args[1]][b]].levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].levels[args[0]].target[2]!=1)&&a%3==1||
+                                            (types.card[list[args[1]][b]].levels[args[0]].target[0]!=2||types.card[list[args[1]][b]].levels[args[0]].target[2]<=1)&&a%3==2
+                                        )
+                                    ){
+                                        list[args[1]].splice(b,1)
+                                        b--
+                                        lb--
                                     }
                                 }
-                            break
-                            case 7: case 14:
-                                list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1]])[args[1][2]]
-                            break
-                            case 8:
-                                list=[
-                                    findName('Discus of Wind\nand Thunder',types.card),
-                                    findName('Discus of\nSand and Sea',types.card),
-                                    findName('Discus of Salt\nand Steel',types.card),
-                                    findName('Discus of Light\nand Dark',types.card),
-                                    findName('Discus of Moon\nand Sky',types.card),
-                                    findName('Discus of Truth\nand Lie',types.card)
-                                ]
-                            break
-                            case 9:
-                                list=[]
-                                for(let a=0,la=args[1][1].length;a<la;a++){
-                                    list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[3])
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards[this.cards.length-1].upSize=true
+                                    this.cards[this.cards.length-1].setCost(0,[0])
+                                    list[args[1]].splice(index,1)
                                 }
-                                for(let b=0,lb=list.length;b<lb;b++){
-                                    for(let c=0,lc=list[b].length;c<lc;c++){
-                                        if((
-                                            types.card[list[b][c]].mtg.color.length!=1||
-                                            types.card[list[b][c]].mtg.color[0]!=args[1][1][b]
-                                        )){
-                                            list[b].splice(c,1)
-                                            c--
-                                            lc--
-                                        }
-                                    }
-                                }
-                            break
-                            case 10:
-                                list=[
-                                    ...(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1][0]])[args[1][2]]),
-                                    ...(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1][1]])[args[1][2]])
-                                ]
-                            break
-                            case 11:
-                                list=[
-                                    findName('1 of\nNothings',types.card),
-                                    findName('2 of\nNothings',types.card),
-                                    findName('3 of\nNothings',types.card),
-                                    findName('4 of\nNothings',types.card),
-                                    findName('5 of\nNothings',types.card),
-                                    findName('6 of\nNothings',types.card),
-                                    findName('7 of\nNothings',types.card),
-                                    findName('8 of\nNothings',types.card),
-                                    findName('9 of\nNothings',types.card),
-                                    findName('10 of\nNothings',types.card),
-                                    findName('11 of\nNothings',types.card)
-                                ]
-                            break
-                            case 12:
-                                list=[]
-                                for(let a=0,la=args[1][1].length;a<la;a++){
-                                    list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[3])
-                                }
-                                for(let b=0,lb=list.length;b<lb;b++){
-                                    for(let c=0,lc=list[b].length;c<lc;c++){
-                                        if((
-                                            !variants.mtg&&(
-                                                types.card[list[b][c]].levels[args[0]].target[0]!=0&&types.card[list[b][c]].levels[args[0]].target[0]!=2||
-                                                types.card[list[b][c]].levels[args[0]].target[0]==2&&(
-                                                    types.card[list[b][c]].levels[args[0]].target[2]<args[1][1][b][0]||types.card[list[b][c]].levels[args[0]].target[2]>args[1][1][b][1]
-                                                )||
-                                                types.card[list[b][c]].levels[args[0]].target[0]==0&&(
-                                                    args[1][1][b][0]!=0||args[1][1][b][1]!=0
-                                                )
-                                            )||
-                                            variants.mtg&&(
-                                                types.card[list[b][c]].mtg.levels[args[0]].target[0]!=0&&types.card[list[b][c]].mtg.levels[args[0]].target[0]!=2||
-                                                types.card[list[b][c]].mtg.levels[args[0]].target[0]==2&&(
-                                                    types.card[list[b][c]].mtg.levels[args[0]].target[2]<args[1][1][b][0]||types.card[list[b][c]].mtg.levels[args[0]].target[2]>args[1][1][b][1]
-                                                )||
-                                                types.card[list[b][c]].mtg.levels[args[0]].target[0]==0&&(
-                                                    args[1][1][b][0]!=0||args[1][1][b][1]!=0
-                                                )
-                                            )
-                                        )){
-                                            list[b].splice(c,1)
-                                            c--
-                                            lc--
-                                        }
-                                    }
-                                }
-                            break
-                            case 15:
-                                list=[]
-                                args[1][1].forEach(arg=>list.push(findName(arg,types.card)))
-                            break
-                            case 16:
-                                list=[]
-                                for(let a=0,la=args[1][1].length;a<la;a++){
-                                    list.push((variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[3])
-                                }
-                                for(let b=0,lb=list.length;b<lb;b++){
-                                    for(let c=0,lc=list[b].length;c<lc;c++){
-                                        if(types.card[list[b][c]].levels[args[0]].class!=args[1][1][b]){
-                                            list[b].splice(c,1)
-                                            c--
-                                            lc--
-                                        }
-                                    }
-                                }
-                            break
-                            case 17:
-                                list=[]
+                            }
+                        break
+                        case 46: case 59:
+                            list=args[2]==59?
+                                list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[4]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[4]]):
+                                variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            if(this.options>=12){
+                                let interval=ceil(this.options/3)
                                 for(let a=0,la=this.options;a<la;a++){
-                                    list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[args[1][1]])
-                                }
-                            break
-                            case 18:
-                                list=[
-                                    findName('Wheel of Wind\nand Thunder',types.card),
-                                    findName('Wheel of Mountain\nand Rain',types.card),
-                                    findName('Wheel of Moon\nand Sky',types.card),
-                                ]
-                            break
-                            case 19:
-                                list=[
-                                    findName('Sunny, Glowing\nSunlight',types.card),
-                                    findName('Luna, Silent\nMoonlight',types.card),
-                                    findName('Star, Showering\nStarlight',types.card),
-                                ]
-                            break
-                            default:
-                                list=[]
-                            break
-                        }
-                        let tempCard
-                        for(let a=0,la=args[4].length;a<la;a++){
-                            switch(args[4][a][0]){
-                                case 0:
-                                    for(let b=0,lb=list.length;b<lb;b++){
-                                        if((
-                                            !variants.mtg&&types.card[list[b]].levels[args[0]].cost!=args[4][a][1]||
-                                            variants.mtg&&types.card[list[b]].mtg.levels[args[0]].cost.length!=args[4][a][1]
-                                        )){
-                                            list.splice(b,1)
-                                            b--
-                                            lb--
-                                        }
+                                    if(list[args[1]].length>0){
+                                        let index=floor(random(0,list[args[1]].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+50-interval*50+a%interval*100,this.layer.height/2-110+floor(a/interval)*130,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                        this.cards[this.cards.length-1].upSize=true
+                                        list[args[1]].splice(index,1)
                                     }
+                                }
+                            }else if(this.options>=8){
+                                let interval=ceil(this.options/2)
+                                for(let a=0,la=this.options;a<la;a++){
+                                    if(list[args[1]].length>0){
+                                        let index=floor(random(0,list[args[1]].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-interval*60+a%interval*120,this.layer.height/2-55+floor(a/interval)*150,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                        this.cards[this.cards.length-1].upSize=true
+                                        list[args[1]].splice(index,1)
+                                    }
+                                }
+                            }else{
+                                for(let a=0,la=this.options;a<la;a++){
+                                    if(list[args[1]].length>0){
+                                        let index=floor(random(0,list[args[1]].length))
+                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                        this.cards[this.cards.length-1].upSize=true
+                                        list[args[1]].splice(index,1)
+                                    }
+                                }
+                            }
+                        break
+                        case 47:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][args[3]]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3]])
+                            sublist=[]
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].levels[args[0]].class==args[4]){
+                                    sublist.push(list[args[1]][a])
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(sublist.length>0){
+                                    let index=floor(random(0,sublist.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],this.battle.standardColorize(sublist[index]),-1))
+                                    this.cards[a].upSize=true
+                                    sublist.splice(index,1)
+                                }
+                            }
+                        break
+                        case 49:
+                            for(let a=0,la=this.options;a<la;a++){
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Guilt','Innocence','Unproven'][a%3],types.card),0,constants.playerNumber+2,-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                        case 52:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            sublist=[]
+                            for(let a=0,la=args[3].length;a<la;a++){
+                                sublist.push([])
+                            }
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(types.card[list[args[1]][a]].mtg.color.length==1&&args[3].includes(types.card[list[args[1]][a]].mtg.color[0])){
+                                    sublist[args[3].indexOf(types.card[list[args[1]][a]].mtg.color[0])].push(list[args[1]][a])
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(sublist[a%args[3].length].length>0){
+                                    let index=floor(random(0,sublist[a%args[3].length].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[a%args[3].length][index],args[0],this.battle.standardColorize(sublist[a%args[3].length][index]),-1))
+                                    this.cards[a].upSize=true
+                                    this.cards[a].setCost(0,[0])
+                                    sublist[a%args[3].length].splice(index,1)
+                                }
+                            }
+                        break
+                        case 53:
+                            for(let a=0,la=this.options;a<la;a++){
+                                let type=findName(['Discus of Light\nand Dark','Discus of Moon\nand Sky','Discus of Truth\nand Lie'][a%3],types.card)
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                        case 54:
+                            list=variants.mtg?(args[2]==18?
+                                copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][constants.playerNumber+7]):
+                                copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[2])
+                            ):
+                            args[2]==36?
+                            copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]):
+                            copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            for(let a=0,la=list[args[1]].length;a<la;a++){
+                                if(!types.card[list[args[1]][a]].name.includes('Strike')){
+                                    list[args[1]].splice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards[a].setCost(0,[0])
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
+                        case 55:
+                            let possible55=[]
+                            for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
+                                possible55.push(a)
+                            }
+                            for(let a=0,la=args[0];a<la;a++){
+                                if(possible55.length>0){
+                                    let index=floor(random(0,possible55.length))
+                                    this.cards.push(copyCard(this.battle.cardManagers[this.player].deck.cards[possible55[index]]))
+                                    this.cards[a].position.x=this.layer.width/2+60-la*60+a*120
+                                    this.cards[a].position.y=this.layer.height/2+20
+                                    this.cards[a].size=1
+                                    this.cards[a].fade=1
+                                    possible55.splice(index,1)
+                                }
+                            }
+                        break
+                        case 56:
+                            for(let a=0,la=this.options;a<la;a++){
+                                let type=findName(['Discus of Wind\nand Thunder','Discus of\nSand and Sea','Discus of Salt\nand Steel'][a%3],types.card)
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                        case 57:
+                            //mark discovery
+                            this.options=args[1][0]==13||args[1][0]==14||args[1][0]==15?6:args[1][0]==16?4:3
+                            switch(args[1][0]){
+                                case 0:
+                                    list=(variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[args[1][1]]
                                 break
                                 case 1:
-                                    for(let b=0,lb=list.length;b<lb;b++){
-                                        if((
-                                            !variants.mtg&&types.card[list[b]].levels[args[0]].class!=args[4][a][1]||
-                                            variants.mtg&&types.card[list[b]].mtg.levels[args[0]].class!=args[4][a][1]
-                                        )){
-                                            list.splice(b,1)
-                                            b--
-                                            lb--
-                                        }
-                                    }
+                                    list=(variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0]))[args[1][1]]
                                 break
-                                case 2:
-                                    for(let b=0,lb=list.length;b<lb;b++){
-                                        if((
-                                            !variants.mtg&&!args[4][a][1].includes(types.card[list[b]].levels[args[0]].class)||
-                                            variants.mtg&&!args[4][a][1].includes(types.card[list[b]].mtg.levels[args[0]].class)
-                                        )){
-                                            list.splice(b,1)
-                                            b--
-                                            lb--
-                                        }
-                                    }
+                                case 2: case 13:
+                                    list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[args[1][1]]
                                 break
                                 case 3:
-                                    for(let b=0,lb=list.length;b<lb;b++){
-                                        if((
-                                            !variants.mtg&&!types.card[list[b]].levels[args[0]].spec.includes(args[4][a][1])||
-                                            variants.mtg&&!types.card[list[b]].mtg.levels[args[0]].spec.includes(args[4][a][1])
-                                        )){
-                                            list.splice(b,1)
-                                            b--
-                                            lb--
-                                        }
-                                    }
+                                    list=[
+                                        findName('Mixture A',types.card),
+                                        findName('Mixture B',types.card),
+                                        findName('Mixture C',types.card)
+                                    ]
                                 break
                                 case 4:
-                                    for(let b=0,lb=list.length;b<lb;b++){
-                                        let works=false
-                                        for(let c=0,lc=args[4][a][1].length;c<lc;c++){
-                                            if(types.card[list[b]].name.includes(args[4][a][1][c])){
-                                                works=true
-                                            }
-                                        }
-                                        if(!works){
-                                            list.splice(b,1)
-                                            b--
-                                            lb--
-                                        }
-                                    }
+                                    list=copyArrayStack(this.battle.cardManagers[this.player].listing.junk)[args[1][1]]
                                 break
                                 case 5:
+                                    list=elementArray(findName('Timestamp',types.card),3)
+                                break
+                                case 6:
+                                    list=[]
+                                    for(let a=0,la=args[1][1].length;a<la;a++){
+                                        list.push((variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[3])
+                                    }
                                     for(let b=0,lb=list.length;b<lb;b++){
                                         for(let c=0,lc=list[b].length;c<lc;c++){
                                             if((
-                                                !variants.mtg&&types.card[list[b][c]].levels[args[0]].class!=args[4][a][1]||
-                                                variants.mtg&&types.card[list[b][c]].mtg.levels[args[0]].class!=args[4][a][1]
+                                                !variants.mtg&&types.card[list[b][c]].levels[args[0]].cost!=args[1][1][b]||
+                                                variants.mtg&&types.card[list[b][c]].levels[args[0]].cost.length!=args[1][1][b]
                                             )){
                                                 list[b].splice(c,1)
                                                 c--
@@ -1442,35 +1241,30 @@ class overlay{
                                         }
                                     }
                                 break
-                                case 6:
-                                    for(let b=0,lb=list.length;b<lb;b++){
-                                        if((
-                                            !variants.mtg&&types.card[list[b]].levels[args[0]].cost!=-1||
-                                            variants.mtg&&!types.card[list[b]].mtg.levels[args[0]].cost.includes(-3)
-                                        )){
-                                            list.splice(b,1)
-                                            b--
-                                            lb--
-                                        }
-                                    }
-                                break
-                                case 7:
-                                    tempCard=new card(this.layer,this.battle,this.player,1200,500,0,0,0,game.id)
-                                    for(let b=0,lb=list.length;b<lb;b++){
-                                        let tempDesc=tempCard.description(types.card[list[b]].levels[args[0]].attack,types.card[list[b]].levels[args[0]].effect,types.card[list[b]].levels[args[0]].spec,types.card[list[b]].levels[args[0]].target)
-                                        if(args[4][a][1].some(unit=>!tempDesc.includes(unit))){
-                                            list.splice(b,1)
-                                            b--
-                                            lb--
-                                        }
-                                    }
+                                case 7: case 14:
+                                    list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1]])[args[1][2]]
                                 break
                                 case 8:
-                                    tempCard=new card(this.layer,this.battle,this.player,1200,500,0,0,0,game.id)
+                                    list=[
+                                        findName('Discus of Wind\nand Thunder',types.card),
+                                        findName('Discus of\nSand and Sea',types.card),
+                                        findName('Discus of Salt\nand Steel',types.card),
+                                        findName('Discus of Light\nand Dark',types.card),
+                                        findName('Discus of Moon\nand Sky',types.card),
+                                        findName('Discus of Truth\nand Lie',types.card)
+                                    ]
+                                break
+                                case 9:
+                                    list=[]
+                                    for(let a=0,la=args[1][1].length;a<la;a++){
+                                        list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[3])
+                                    }
                                     for(let b=0,lb=list.length;b<lb;b++){
                                         for(let c=0,lc=list[b].length;c<lc;c++){
-                                            let tempDesc=tempCard.description(types.card[list[b][c]].levels[args[0]].attack,types.card[list[b][c]].levels[args[0]].effect,types.card[list[b][c]].levels[args[0]].spec,types.card[list[b][c]].levels[args[0]].target)
-                                            if(args[4][a][1][b].every(set=>set.some(unit=>!tempDesc.includes(unit)))){
+                                            if((
+                                                types.card[list[b][c]].mtg.color.length!=1||
+                                                types.card[list[b][c]].mtg.color[0]!=args[1][1][b]
+                                            )){
                                                 list[b].splice(c,1)
                                                 c--
                                                 lc--
@@ -1478,109 +1272,354 @@ class overlay{
                                         }
                                     }
                                 break
-                            }
-                        }
-                        for(let a=0,la=this.options;a<la;a++){
-                            switch(args[1][0]){
-                                case 6: case 9: case 12: case 16: case 17:
-                                    if(list[a%list.length].length>0){
-                                        let index=floor(random(0,list[a%list.length].length))
-                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[a%list.length][index],args[0],this.battle.standardColorize(list[a%list.length][index]),-1))
-                                        last(this.cards).upSize=true
-                                        if(args[1][0]!=14&&args[1][0]!=15){
-                                            if(!last(this.cards).spec.includes(1)){
-                                                last(this.cards).spec.push(1)
-                                                last(this.cards).additionalSpec.push(1)
-                                            }
-                                            if(!last(this.cards).spec.includes(2)&&!last(this.cards).spec.includes(4)){
-                                                last(this.cards).spec.push(4)
-                                                last(this.cards).additionalSpec.push(4)
-                                            }
-                                        }
-                                        if(args[3].includes(0)){
-                                            last(this.cards).setCost(0,[0])
-                                        }
-                                        if(args[3].includes(1)){
-                                            last(this.cards).costVariant(0)
-                                        }
-                                        if(args[3].includes(4)){
-                                            last(this.cards).setCost(0,[2])
-                                        }
-                                        if(args[3].includes(5)&&!last(this.cards).spec.includes(2)){
-                                            last(this.cards).spec.push(2)
-                                            last(this.cards).additionalSpec.push(2)
-                                        }
-                                        list[a%list.length].splice(index,1)
+                                case 10:
+                                    list=[
+                                        ...(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1][0]])[args[1][2]]),
+                                        ...(copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1][1]])[args[1][2]])
+                                    ]
+                                break
+                                case 11:
+                                    list=[
+                                        findName('1 of\nNothings',types.card),
+                                        findName('2 of\nNothings',types.card),
+                                        findName('3 of\nNothings',types.card),
+                                        findName('4 of\nNothings',types.card),
+                                        findName('5 of\nNothings',types.card),
+                                        findName('6 of\nNothings',types.card),
+                                        findName('7 of\nNothings',types.card),
+                                        findName('8 of\nNothings',types.card),
+                                        findName('9 of\nNothings',types.card),
+                                        findName('10 of\nNothings',types.card),
+                                        findName('11 of\nNothings',types.card)
+                                    ]
+                                break
+                                case 12:
+                                    list=[]
+                                    for(let a=0,la=args[1][1].length;a<la;a++){
+                                        list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[3])
                                     }
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        for(let c=0,lc=list[b].length;c<lc;c++){
+                                            if((
+                                                !variants.mtg&&(
+                                                    types.card[list[b][c]].levels[args[0]].target[0]!=0&&types.card[list[b][c]].levels[args[0]].target[0]!=2||
+                                                    types.card[list[b][c]].levels[args[0]].target[0]==2&&(
+                                                        types.card[list[b][c]].levels[args[0]].target[2]<args[1][1][b][0]||types.card[list[b][c]].levels[args[0]].target[2]>args[1][1][b][1]
+                                                    )||
+                                                    types.card[list[b][c]].levels[args[0]].target[0]==0&&(
+                                                        args[1][1][b][0]!=0||args[1][1][b][1]!=0
+                                                    )
+                                                )||
+                                                variants.mtg&&(
+                                                    types.card[list[b][c]].mtg.levels[args[0]].target[0]!=0&&types.card[list[b][c]].mtg.levels[args[0]].target[0]!=2||
+                                                    types.card[list[b][c]].mtg.levels[args[0]].target[0]==2&&(
+                                                        types.card[list[b][c]].mtg.levels[args[0]].target[2]<args[1][1][b][0]||types.card[list[b][c]].mtg.levels[args[0]].target[2]>args[1][1][b][1]
+                                                    )||
+                                                    types.card[list[b][c]].mtg.levels[args[0]].target[0]==0&&(
+                                                        args[1][1][b][0]!=0||args[1][1][b][1]!=0
+                                                    )
+                                                )
+                                            )){
+                                                list[b].splice(c,1)
+                                                c--
+                                                lc--
+                                            }
+                                        }
+                                    }
+                                break
+                                case 15:
+                                    list=[]
+                                    args[1][1].forEach(arg=>list.push(findName(arg,types.card)))
+                                break
+                                case 16:
+                                    list=[]
+                                    for(let a=0,la=args[1][1].length;a<la;a++){
+                                        list.push((variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[3])
+                                    }
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        for(let c=0,lc=list[b].length;c<lc;c++){
+                                            if(types.card[list[b][c]].levels[args[0]].class!=args[1][1][b]){
+                                                list[b].splice(c,1)
+                                                c--
+                                                lc--
+                                            }
+                                        }
+                                    }
+                                break
+                                case 17:
+                                    list=[]
+                                    for(let a=0,la=this.options;a<la;a++){
+                                        list.push(copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)[args[1][1]])
+                                    }
+                                break
+                                case 18:
+                                    list=[
+                                        findName('Wheel of Wind\nand Thunder',types.card),
+                                        findName('Wheel of Mountain\nand Rain',types.card),
+                                        findName('Wheel of Moon\nand Sky',types.card),
+                                    ]
+                                break
+                                case 19:
+                                    list=[
+                                        findName('Sunny, Glowing\nSunlight',types.card),
+                                        findName('Luna, Silent\nMoonlight',types.card),
+                                        findName('Star, Showering\nStarlight',types.card),
+                                    ]
+                                break
+                                case 20:
+                                    list=[
+                                        findName('Discus of Wind\nand Thunder',types.card),
+                                        findName('Discus of Mountain\nand Rain',types.card),
+                                        findName('Discus of Moon\nand Sky',types.card),
+                                    ]
                                 break
                                 default:
-                                    if(list.length>0){
-                                        let index=floor(random(0,list.length))
-                                        this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
-                                        last(this.cards).upSize=true
-                                        if(args[1][0]!=14&&args[1][0]!=15){
-                                            if(!last(this.cards).spec.includes(1)){
-                                                last(this.cards).spec.push(1)
-                                                last(this.cards).additionalSpec.push(1)
-                                            }
-                                            if(!last(this.cards).spec.includes(2)&&!last(this.cards).spec.includes(4)){
-                                                last(this.cards).spec.push(4)
-                                                last(this.cards).additionalSpec.push(4)
-                                            }
-                                        }
-                                        if(args[3].includes(0)){
-                                            last(this.cards).setCost(0,[0])
-                                        }
-                                        if(args[3].includes(1)){
-                                            last(this.cards).costVariant(0)
-                                        }
-                                        if(args[3].includes(4)){
-                                            last(this.cards).setCost(0,[2])
-                                        }
-                                        if(args[3].includes(5)&&!last(this.cards).spec.includes(2)){
-                                            last(this.cards).spec.push(2)
-                                            last(this.cards).additionalSpec.push(2)
-                                        }
-                                        if(args[3].includes(6)&&!last(this.cards).spec.includes(57)){
-                                            last(this.cards).spec.push(57)
-                                            last(this.cards).additionalSpec.push(57)
-                                        }
-                                        list.splice(index,1)
-                                    }
+                                    list=[]
                                 break
                             }
-                        }
-                    break
-                    case 58:
-                        list=copyArray(this.battle.cardManagers[this.player].listing.junk[args[1]])
-                        for(let a=0,la=this.options;a<la;a++){
-                            if(list.length>0){
-                                let index=floor(random(0,list.length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
-                                this.cards[this.cards.length-1].upSize=true
-                                list.splice(index,1)
+                            let tempCard
+                            for(let a=0,la=args[4].length;a<la;a++){
+                                switch(args[4][a][0]){
+                                    case 0:
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            if((
+                                                !variants.mtg&&types.card[list[b]].levels[args[0]].cost!=args[4][a][1]||
+                                                variants.mtg&&types.card[list[b]].mtg.levels[args[0]].cost.length!=args[4][a][1]
+                                            )){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                    case 1:
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            if((
+                                                !variants.mtg&&types.card[list[b]].levels[args[0]].class!=args[4][a][1]||
+                                                variants.mtg&&types.card[list[b]].mtg.levels[args[0]].class!=args[4][a][1]
+                                            )){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                    case 2:
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            if((
+                                                !variants.mtg&&!args[4][a][1].includes(types.card[list[b]].levels[args[0]].class)||
+                                                variants.mtg&&!args[4][a][1].includes(types.card[list[b]].mtg.levels[args[0]].class)
+                                            )){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                    case 3:
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            if((
+                                                !variants.mtg&&!types.card[list[b]].levels[args[0]].spec.includes(args[4][a][1])||
+                                                variants.mtg&&!types.card[list[b]].mtg.levels[args[0]].spec.includes(args[4][a][1])
+                                            )){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                    case 4:
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            let works=false
+                                            for(let c=0,lc=args[4][a][1].length;c<lc;c++){
+                                                if(types.card[list[b]].name.includes(args[4][a][1][c])){
+                                                    works=true
+                                                }
+                                            }
+                                            if(!works){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                    case 5:
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            for(let c=0,lc=list[b].length;c<lc;c++){
+                                                if((
+                                                    !variants.mtg&&types.card[list[b][c]].levels[args[0]].class!=args[4][a][1]||
+                                                    variants.mtg&&types.card[list[b][c]].mtg.levels[args[0]].class!=args[4][a][1]
+                                                )){
+                                                    list[b].splice(c,1)
+                                                    c--
+                                                    lc--
+                                                }
+                                            }
+                                        }
+                                    break
+                                    case 6:
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            if((
+                                                !variants.mtg&&types.card[list[b]].levels[args[0]].cost!=-1||
+                                                variants.mtg&&!types.card[list[b]].mtg.levels[args[0]].cost.includes(-3)
+                                            )){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                    case 7:
+                                        tempCard=new card(this.layer,this.battle,this.player,1200,500,0,0,0,game.id)
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            let tempDesc=tempCard.description(types.card[list[b]].levels[args[0]].attack,types.card[list[b]].levels[args[0]].effect,types.card[list[b]].levels[args[0]].spec,types.card[list[b]].levels[args[0]].target)
+                                            if(args[4][a][1].some(unit=>!tempDesc.includes(unit))){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                    case 8:
+                                        tempCard=new card(this.layer,this.battle,this.player,1200,500,0,0,0,game.id)
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            for(let c=0,lc=list[b].length;c<lc;c++){
+                                                let tempDesc=tempCard.description(types.card[list[b][c]].levels[args[0]].attack,types.card[list[b][c]].levels[args[0]].effect,types.card[list[b][c]].levels[args[0]].spec,types.card[list[b][c]].levels[args[0]].target)
+                                                if(args[4][a][1][b].every(set=>set.some(unit=>!tempDesc.includes(unit)))){
+                                                    list[b].splice(c,1)
+                                                    c--
+                                                    lc--
+                                                }
+                                            }
+                                        }
+                                    break
+                                    case 9:
+                                        tempCard=new card(this.layer,this.battle,this.player,1200,500,0,0,0,game.id)
+                                        for(let b=0,lb=list.length;b<lb;b++){
+                                            let tempDesc=tempCard.description(types.card[list[b]].levels[args[0]].attack,types.card[list[b]].levels[args[0]].effect,types.card[list[b]].levels[args[0]].spec,types.card[list[b]].levels[args[0]].target)
+                                            if(!(
+                                                tempDesc.includes(`X = Fuel`)||
+                                                tempDesc.includes(`Fuel 1`)||
+                                                tempDesc.includes(`Fuel 3`)||
+                                                tempDesc.includes(`Fuel 4`)||
+                                                tempDesc.includes(`Fuel 5`)||
+                                                tempDesc.includes(`Fuel 5`)||
+                                                tempDesc.includes(`Fuel 6`)||
+                                                tempDesc.includes(`Fuel 7`)||
+                                                tempDesc.includes(`Fuel 8`)||
+                                                tempDesc.includes(`Fuel 9`)||
+                                                tempDesc.includes(`Fuel 10`)
+                                            )){
+                                                list.splice(b,1)
+                                                b--
+                                                lb--
+                                            }
+                                        }
+                                    break
+                                }
                             }
-                        }
-                    break
-                    case 60:
-                        for(let a=0,la=this.options;a<la;a++){
-                            let type=findName(['Sunny, Glowing\nSunlight','Luna, Silent\nMoonlight','Star, Showering\nStarlight'
-                            ][a%3],types.card)
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
-                            this.cards[a].upSize=true
-                        }
-                    break
-                }
-                if(this.args[0]==0||this.args[0]==2){
-                    this.cards.forEach(card=>card.nonCalc=true)
-                }
-                if(this.args[0]==3&&this.lastTake!=-1){
-                    let index=floor(random(0,this.cards.length))
-                    this.lastTake.deSize=false
-                    this.lastTake.upSize=true
-                    this.lastTake.position.x=this.cards[index].position.x
-                    this.lastTake.position.y=this.cards[index].position.y
-                    this.cards[index]=this.lastTake
+                            for(let a=0,la=this.options;a<la;a++){
+                                switch(args[1][0]){
+                                    case 6: case 9: case 12: case 16: case 17:
+                                        if(list[a%list.length].length>0){
+                                            let index=floor(random(0,list[a%list.length].length))
+                                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[a%list.length][index],args[0],this.battle.standardColorize(list[a%list.length][index]),-1))
+                                            last(this.cards).upSize=true
+                                            if(args[1][0]!=14&&args[1][0]!=15){
+                                                if(!last(this.cards).spec.includes(1)){
+                                                    last(this.cards).spec.push(1)
+                                                    last(this.cards).additionalSpec.push(1)
+                                                }
+                                                if(!last(this.cards).spec.includes(2)&&!last(this.cards).spec.includes(4)){
+                                                    last(this.cards).spec.push(4)
+                                                    last(this.cards).additionalSpec.push(4)
+                                                }
+                                            }
+                                            if(args[3].includes(0)){
+                                                last(this.cards).setCost(0,[0])
+                                            }
+                                            if(args[3].includes(1)){
+                                                last(this.cards).costVariant(0)
+                                            }
+                                            if(args[3].includes(4)){
+                                                last(this.cards).setCost(0,[2])
+                                            }
+                                            if(args[3].includes(5)&&!last(this.cards).spec.includes(2)){
+                                                last(this.cards).spec.push(2)
+                                                last(this.cards).additionalSpec.push(2)
+                                            }
+                                            list[a%list.length].splice(index,1)
+                                        }
+                                    break
+                                    default:
+                                        if(list.length>0){
+                                            let index=floor(random(0,list.length))
+                                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                            last(this.cards).upSize=true
+                                            if(args[1][0]!=14&&args[1][0]!=15){
+                                                if(!last(this.cards).spec.includes(1)){
+                                                    last(this.cards).spec.push(1)
+                                                    last(this.cards).additionalSpec.push(1)
+                                                }
+                                                if(!last(this.cards).spec.includes(2)&&!last(this.cards).spec.includes(4)){
+                                                    last(this.cards).spec.push(4)
+                                                    last(this.cards).additionalSpec.push(4)
+                                                }
+                                            }
+                                            if(args[3].includes(0)){
+                                                last(this.cards).setCost(0,[0])
+                                            }
+                                            if(args[3].includes(1)){
+                                                last(this.cards).costVariant(0)
+                                            }
+                                            if(args[3].includes(4)){
+                                                last(this.cards).setCost(0,[2])
+                                            }
+                                            if(args[3].includes(5)&&!last(this.cards).spec.includes(2)){
+                                                last(this.cards).spec.push(2)
+                                                last(this.cards).additionalSpec.push(2)
+                                            }
+                                            if(args[3].includes(6)&&!last(this.cards).spec.includes(57)){
+                                                last(this.cards).spec.push(57)
+                                                last(this.cards).additionalSpec.push(57)
+                                            }
+                                            list.splice(index,1)
+                                        }
+                                    break
+                                }
+                            }
+                        break
+                        case 58:
+                            list=copyArray(this.battle.cardManagers[this.player].listing.junk[args[1]])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list.splice(index,1)
+                                }
+                            }
+                        break
+                        case 60:
+                            for(let a=0,la=this.options;a<la;a++){
+                                let type=findName(['Sunny, Glowing\nSunlight','Luna, Silent\nMoonlight','Star, Showering\nStarlight'
+                                ][a%3],types.card)
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
+                                this.cards[a].upSize=true
+                            }
+                        break
+                    }
+                    if(this.args[0]==0||this.args[0]==2){
+                        this.cards.forEach(card=>card.nonCalc=true)
+                    }
+                    if(this.args[0]==3&&this.lastTake!=-1){
+                        let index=floor(random(0,this.cards.length))
+                        this.lastTake.deSize=false
+                        this.lastTake.upSize=true
+                        this.lastTake.position.x=this.cards[index].position.x
+                        this.lastTake.position.y=this.cards[index].position.y
+                        this.cards[index]=this.lastTake
+                    }
                 }
             break
             case 7:
@@ -5606,17 +5645,31 @@ class overlay{
                             this.cards[a].upSize=false
                             this.taken++
                             if(this.taken>=this.takable&&!(this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170},width:120,height:40})&&a!=la-1)&&this.setupArgs[2]!=59){
-                                this.active=false
-                                for(let b=0,lb=this.cards.length;b<lb;b++){
-                                    this.cards[b].deSize=true
-                                    this.cards[b].upSize=false
+                                this.sets.splice(0,1)
+                                if(this.sets.length>0){
+                                    this.activate([])
+                                }else{
+                                    this.active=false
+                                    for(let b=0,lb=this.cards.length;b<lb;b++){
+                                        this.cards[b].deSize=true
+                                        this.cards[b].upSize=false
+                                    }
                                 }
                             }
                         }
                     }
                     let offset=this.options>=12?130:this.options>=8?75:0
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125+offset},width:120,height:40})&&!this.battle.modded(83)){
-                        this.active=false
+                        this.sets.splice(0,1)
+                        if(this.sets.length>0){
+                            this.activate([])
+                        }else{
+                            this.active=false
+                            for(let b=0,lb=this.cards.length;b<lb;b++){
+                                this.cards[b].deSize=true
+                                this.cards[b].upSize=false
+                            }
+                        }
                         this.cards.forEach(card=>card.deSize)
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player,this.cards])
@@ -7232,16 +7285,30 @@ class overlay{
                             this.cards[a].upSize=false
                             this.taken++
                             if(this.taken>=this.takable&&!(this.battle.relicManager.hasRelic(173,this.player)&&(key=='t'||key=='T')&&a!=la-1)&&this.setupArgs[2]!=59){
-                                this.active=false
-                                for(let b=0,lb=this.cards.length;b<lb;b++){
-                                    this.cards[b].deSize=true
-                                    this.cards[b].upSize=false
+                                this.sets.splice(0,1)
+                                if(this.sets.length>0){
+                                    this.activate([])
+                                }else{
+                                    this.active=false
+                                    for(let b=0,lb=this.cards.length;b<lb;b++){
+                                        this.cards[b].deSize=true
+                                        this.cards[b].upSize=false
+                                    }
                                 }
                             }
                         }
                     }
                     if(code==ENTER&&!this.battle.modded(83)){
-                        this.active=false
+                        this.sets.splice(0,1)
+                        if(this.sets.length>0){
+                            this.activate([])
+                        }else{
+                            this.active=false
+                            for(let b=0,lb=this.cards.length;b<lb;b++){
+                                this.cards[b].deSize=true
+                                this.cards[b].upSize=false
+                            }
+                        }
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player,this.cards])
                         }

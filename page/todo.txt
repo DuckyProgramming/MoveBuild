@@ -1,15 +1,58 @@
-CARDSET 110 [TERMINATION IV]
+play sakura armament
+shoot armament mechanic
 
-look at graphs
-play randy and see how the fuel build plays
+play/purge certes
+move clash-like cards to shiru
+too much random trash
+read the memory gimmick
+maybe give her the existing exhaust gimmick
+benefit from duplicate cards
 
+play setsuna
+clunky cards
+
+play discardless shiru
+
+play prehex x2 runs
+
+play ducopo
+
+lob will:
+play airi
+play fernando
+
+delete trashcan.js
+
+new sanae
+split faithful meditation
+
+reform merge to main and remote branch
+retain pulley without the attack attached
+split sextant
+split signature style
+split vacuum wave
+split fission
+split lucky streak
+split distorted discus - it should deal damage 2 times
+
+quick eye - 6 damage, scry 1, both doubled if played first
+matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
+fresh off the burner - if you have exhausted a strike and defend, deal 15 damage and add 15 block
+beckon - deal 4 damage, gain temporary strength equal to target's health lost (i believe this card should be deployed directly to the disband because its op as hell)
+elemental gear - when you evoke an orb, tick all orbs of that type
+feral - put a claw from discard pile in your hand
+pass by - dazzling speed, but it draws another 0 cost card
+bitflip - add 12 block, cost becomes 1-cost
+refractor - 4 damage 3 times, fill all slots with glass orbs
+spinners - get a glass orb every turn
+
+recruitment - draw a card per enemy
 life hourglass - 3 cost rare, heal 4 health, gain 1 intangible, retain
+electric leech - remove 1 shock from all enemies, gain 1 energy each
 diadem - gain 1 buffer, apply 2 weak to all enemies
-burn documents - 0 cost, exhaust a card, apply burn in all directions equal to its cost
 concealed carry - deal 6 damage to a random enemy, if exhausted, trigger effect and gain 2 strength
 uplink - gain 1 strength per quest completed
-ferrous blade - deal 4 damage, cost increases by 1, when exhausted put a 0-cost copy of this card in your hand
-overwrite - 1 cost, exhaust the top 3 cards of your draw pile, then exhume 1
+tumult - apply shock, gain block equal to target's shock
 multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
 locomotion - 2 cost, move 2 tiles, add 2 block, draw 2 cards
 split tactical retreat - it now forces you to move back like dine&dash but gives you more block
@@ -45,9 +88,12 @@ dive down - target takes 12 damage and gains 2 weak in 2 turns
 weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
 flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
 a decade here - take another turn, all enemies gain 10 block
-rewire - exhaust a card, if it is a [], draw 3 cards
+rewire - exhaust a card, if it is an attack, draw 3 cards
 
 CARDSET 111 [TERMINATION V]
+
+[barrier dies]
+6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
 
 would you rather - gain 1 currency and 1 block, or gain 2 currency
 pregame - opportunist, but its free and you lose 2 health
@@ -165,9 +211,18 @@ stop laughing - push target, draw a card, remove a random debuff from self
 abrogate - draw 2 for 0 cost, increases by 1, cost increases by 1
 split twirling ribbon - new twirling ribbon adds 4 block twice and gives vigil, maybe have a counterpart for damage as well
 
-CARDSET 113 [TERMINATION VII]
-
 frost lily - apply 1 frail, apply 3 freeze to every adjacent enemy
+funnel emitter - all cards in hand gain fuel equal to the highest in hand
+inspect armor - add a shiv to hand, it gains damage equal to target's block
+burn documents - 0 cost, exhaust a card, apply burn in all directions equal to its cost
+playful bolt - target loses 3 health, prime 1, retain
+ferrous blade - deal 4 damage, cost increases by 1, when exhausted put a 0-cost copy of this card in your hand
+the last resort - 2 cost, add 24 block, discover a defense, it duplicates once
+overwrite - 1 cost, exhaust the top 3 cards of your draw pile, then exhume 1
+profitable operations - 2 cost, deal 18 damage, if fatal heal 2 hp and gain 10 currency, exhaust
+uproar - damage 2 times, draw an attack it costs 0
+
+CARDSET 113 [TERMINATION VII]
 
 GIMMICK BANK
 
@@ -177,6 +232,7 @@ better effects if 2 or 3 are the same one
 also an effect for 3 unique ones
 [apparently this is the ufos from touhou ufo, not sure if this is coincidence]
 
+[character - the censor]
 decree - make a plan for your turn
 add classes to your decree (e.g. attack, defend)
 if you follow your decree on your turn, gain 1 energy and draw a card for each one

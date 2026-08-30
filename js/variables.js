@@ -256,7 +256,7 @@ types={
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         {name:'Daughter of Heaven',life:240,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[10,2,2]},{type:19,effect:[6]},{type:349,effect:[1,1]},{type:296,effect:[12]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
-        {name:'Renegade Agent',life:250,behavior:18,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:192,effect:[12]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
+        {name:'Renegade Agent',life:250,behavior:18,spec:[0,2],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:192,effect:[12]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
@@ -1014,7 +1014,7 @@ types={
         {name:'Negative Pack',internal:'1 Random Negative',id:185,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make 1\nRandom Card Negative'},
         {name:'Erratic Pack',internal:'1 Random Erratic',id:186,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make 1\nRandom Card Erratic'},
         {name:'Credit Card',internal:'Go Into Debt',id:187,rarity:0,list:0,mtg:0,world:[0,2],description:'Go Into Up to 200\nCurrency of Debt'},
-        {name:'Tauball',internal:'Fragile Strength',id:188,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
+        {name:'Electronball',internal:'Fragile Strength',id:188,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
         {name:'Hallucinogen Pills',internal:'Purchase Item',id:189,rarity:1,list:0,mtg:0,world:[0,2],description:'After Purchasing From the Shop,\nGain an Item'},
         
         {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nGain 1 Vigor\nPer Unplayed Card'},

@@ -60,10 +60,14 @@ class cardManager{
         )))
     }
     subAllList(a){
-        if(types.card[a].rarity<0){
-            this.listing.all[floor(random(0,3))].push(a)
+        if(types.card[a].rarity<4){
+            if(types.card[a].rarity<0){
+                this.listing.all[floor(random(0,3))].push(a)
+            }else{
+                this.listing.all[types.card[a].rarity].push(a)
+            }
         }else{
-            this.listing.all[types.card[a].rarity].push(a)
+            throw new Error(`${types.card[a].name} is broken`)
         }
         if(types.card[a].rarity!=3){
             this.listing.all[3].push(a)

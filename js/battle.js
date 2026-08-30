@@ -1700,6 +1700,9 @@ class battle{
         if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Draw')>0){
             this.cardManagers[player].draw(userCombatant.getStatus('Dark Matter Draw'))
         }
+        if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Dark Matter Block'))
+        }
         if(card.spec.includes(70)&&userCombatant.getStatus('Shiv Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Shiv Block'))
         }
@@ -3167,8 +3170,8 @@ class battle{
                     case 0:
                         this.layer.noStroke()
                         //let set=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
-                        let set=[[],[],[],[],[],[],[],[],[]]
-                        let total=[0,0,0,0,0,0,0,0,0]
+                        let set=[[],[],[],[],[],[],[],[],[],[]]
+                        let total=[0,0,0,0,0,0,0,0,0,0]
                         types.card.forEach(card=>{
                             //card.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
                             //card.mtg.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
@@ -3185,8 +3188,8 @@ class battle{
                                 }
                             //}
                         })
-                        let barWidth=70
-                        for(let a=0,la=9;a<la;a++){
+                        for(let a=0,la=10;a<la;a++){
+                            let barWidth=60
                             let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
                             set[a].sort((a,b)=>a.list-b.list)
                             //set[a]=set[a].filter(group=>group.list[1]!=constants.playerNumber+12)
@@ -3212,11 +3215,11 @@ class battle{
                                     set[a][b].list[1]==constants.playerNumber+13?[160,160,160]:
                                     playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1)
                                 ))
-                                this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5,barWidth,(this.layer.height-margin*2)*prop)
+                                this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5,barWidth*total[a]/1000,(this.layer.height-margin*2)*prop)
                                 if(set[a][b].list[1]==constants.playerNumber+9){
                                     this.layer.fill(255,255,50)
-                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la-25,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
-                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la+25,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
+                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la-barWidth*0.4*total[a]/1000,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
+                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la+barWidth*0.4*total[a]/1000,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
                                 }
                                 this.layer.fill(set[a][b].list[1]==constants.playerNumber+9?240:0)
                                 this.layer.textSize(min(10,prop*500))
@@ -3230,6 +3233,7 @@ class battle{
                             this.layer.fill(0)
                             this.layer.textSize(20)
                             this.layer.text(`${a*1000}s`,margin+(this.layer.width-margin*2)*(a+0.5)/la,this.layer.height-margin+25)
+                            this.layer.text(total[a],margin+(this.layer.width-margin*2)*(a+0.5)/la,margin-25)
                             /*this.layer.textSize(15)
                             this.layer.text(`${floor(set[1][a]/6)}/${floor(set[0][a]/6+set[1][a]/6)}`,margin+(this.layer.width-margin*2)*(a+0.5)/la,80)*/
                         }

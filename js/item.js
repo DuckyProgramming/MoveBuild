@@ -958,9 +958,10 @@ class item{
                     this.layer.text('0',variants.mtg?9:8,0)
                 break
                 case 'Nothing':
-                    this.layer.fill(0)
+                    displaySymbol(this.layer,0,0,16,0,1,this.fade)
+                    /*this.layer.fill(0)
                     this.layer.textSize(20)
-                    this.layer.text('?',0,0)
+                    this.layer.text('?',0,0)*/
                 break
                 case 'Sanae Card':
                     displaySymbol(this.layer,0,0,101,0,2,this.fade)

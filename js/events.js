@@ -5560,7 +5560,7 @@ It's not much, but it'll do.`,
             },
         ],
     },{
-        name:'Chocolater Factory',id:172,list:-1,
+        name:'Chocolate Factory',id:172,list:-1,
         pages:[
             {
                 desc:

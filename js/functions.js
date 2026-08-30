@@ -2250,7 +2250,7 @@ Rare:${manager.listing.card[constants.playerNumber+3][2].length}/8					${manager
 	let listed=[64,64,40,32,24]
 	let unlisted=[
 		48,//subcard
-		2200,//disband
+		2300,//disband
 		constants.playerNumber*8,//junkyard
 		32,//event
 		160,//developer
@@ -2406,34 +2406,36 @@ function outMtgError(){
 		if(types.card[a].list>=0&&types.card[a].mtg.list>=0&&types.card[a].list!=types.card[a].mtg.list){
 			console.log(types.card[a].name,`A`)
 		}
-		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-			if(types.card[a].mtg.levels[b].cost==undefined){
-				console.log(types.card[a].name,`B`)
-			}
-			if(
-				!types.card[a].mtg.levels[b].spec.includes(11)&&
-				!types.card[a].mtg.levels[b].spec.includes(21)&&
-				!types.card[a].mtg.levels[b].spec.includes(59)&&
-				!types.card[a].mtg.levels[b].spec.includes(67)&&(
-					types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
-					types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
-					types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
-					types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
-					types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
-					types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
-					types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
-					types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
-					types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
-					types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
-					types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
-					types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
-					types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
-					types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
-					types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
-					types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
-					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
-			)){
-				console.log(types.card[a].name,`C`)
+		if(types.card[a].name!='Bozo'&&types.card[a].name!=`Ascender's\nBozo`){
+			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+				if(types.card[a].mtg.levels[b].cost==undefined){
+					console.log(types.card[a].name,`B`)
+				}
+				if(
+					!types.card[a].mtg.levels[b].spec.includes(11)&&
+					!types.card[a].mtg.levels[b].spec.includes(21)&&
+					!types.card[a].mtg.levels[b].spec.includes(59)&&
+					!types.card[a].mtg.levels[b].spec.includes(67)&&(
+						types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
+						types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
+						types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
+						types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
+						types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
+						types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
+						types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
+						types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
+						types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
+						types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
+						types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
+						types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
+						types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
+						types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
+						types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
+						types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
+						types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
+				)){
+					console.log(types.card[a].name,`C`)
+				}
 			}
 		}
 	}

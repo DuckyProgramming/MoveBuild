@@ -154,8 +154,8 @@ class combatant{
                 'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed in 2 Turns','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
                 'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
                 'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
-                'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw in 2 Turns','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
-                'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
+                'Barrier Damage Random','Scry Per Turn','Wheel Ghost Per Turn','Temporary Draw Next Turn','Temporary Draw in 2 Turns','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
+                'Wheel Boost','3+ Cost Free Wheel','3+ Cost Free Upgraded Wheel','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
                 'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
                 'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
                 'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Bounce','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
@@ -180,7 +180,7 @@ class combatant{
                 'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Vigor','3+ Cost Block','Item Use (N)','(E) Cyscle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
                 '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
                 'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
-                'Discus Temporary Strength','Discus Temporary Dexterity','Electric Orb Per Turn','Electric Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
+                'Wheel Temporary Strength','Wheel Temporary Dexterity','Electric Orb Per Turn','Electric Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
                 'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
                 'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
                 variants.mtg?'Mana Gain Temporary Strength':'Energy Gain Temporary Strength','X Cost Vigor','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable',variants.mtg?'Mana Gain Splash Freeze':'Energy Gain Splash Freeze',
@@ -194,14 +194,14 @@ class combatant{
                 'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
                 'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
                 'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
-                'Reversal Per Turn','Sharp Word Per Turn','Discus Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
+                'Reversal Per Turn','Sharp Word Per Turn','Wheel Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
                 'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
                 'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
                 '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
                 'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Vigor','Assign Return','Assign Temporary Strength','Pity',
                 'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
                 'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
-                'Intangible Strength','Debuff Draw','"Debuff"','Discus Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
+                'Intangible Strength','Debuff Draw','"Debuff"','Wheel Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
                 'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
                 'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
                 'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
@@ -209,8 +209,9 @@ class combatant{
                 'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
                 'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
                 'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
-                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block','Burn Trigger All Per Turn','Power Claw Up','Wheel Ghost Per Turn',
-                'Wheel Boost','Wheel Temporary Strength','Wheel Temporary Dexterity','Wheel Pure','Wheel Flip Top','3+ Cost Free Wheel','3+ Cost Free Upgraded Wheel',
+                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block','Burn Trigger All Per Turn','Power Claw Up','Dual Discus Per Turn',
+                'Discus Boost','Discus Temporary Strength','Discus Temporary Dexterity','Discus Pure','Discus Flip Top','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Splash Attach Vulnerable','Free Skill Discover Per Turn','Common Colorless Discover Per Turn',
+                'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -302,7 +303,8 @@ class combatant{
                 0,2,2,2,0,2,0,0,2,2,//87
                 2,0,0,0,0,0,0,0,0,1,//88
                 0,0,1,1,0,2,0,0,0,0,//89
-                0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//90
+                0,0,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -394,7 +396,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,0,0,//87
                 0,2,2,2,2,2,2,2,2,0,//88
                 2,2,2,2,2,0,0,2,2,2,//89
-                2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//90
+                2,2,2,
             ]}
         /*
         0-none
@@ -406,8 +409,8 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.turnStatus=[0,0,0,0]
-        //dodges,taken,life lost
+        this.turnStatus=[0,0,0,0,0]
+        //dodges,taken,life lost,heal,highrolls
         this.tempStatus=[1,0,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed,single attack regeneration
         this.interiorStatus=[0,0]
@@ -505,7 +508,7 @@ class combatant{
         this.ringing=0
         this.caffeine=0
 
-        this.turnStatus=[0,0,0,0]
+        this.turnStatus=[0,0,0,0,0]
     }
     resetInfo(){
         this.constants()
@@ -3160,6 +3163,7 @@ class combatant{
         }
     }
     highRoll(){
+        this.turnStatus[4]++
         if(this.status.main[255]>0){
             this.statusEffect('Strength',this.status.main[255])
         }
@@ -4420,6 +4424,9 @@ class combatant{
             if(this.status.main[625]>0){
                 this.battle.combatantManager.areaAbstract(0,[this.status.main[625],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
             }
+            if(this.status.main[903]>0){
+                this.battle.combatantManager.areaAbstract(0,[this.status.main[903],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+            }
             if(this.battle.modded(140)&&this.team==0){
                 block*=2
             }
@@ -4726,7 +4733,8 @@ class combatant{
         if(this.status.main[674]>0&&type>=0){
             this.addBlock(this.status.main[674])
         }
-        let playerMulti=target==this.id?0.5:1
+        //let playerMulti=target==this.id?0.5:1
+        let playerMulti=1
         switch(type){
             case 0:
                 this.battle.combatantManager.combatants[target].orbTake(round((12+this.status.main[670])*multi*playerMulti),-1)
@@ -4787,7 +4795,9 @@ class combatant{
                 this.battle.combatantManager.combatants[target].statusEffect('Poison',5)
             break
             case 12:
-                this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
+                if(target!=this.id){
+                    this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
+                }
             break
             case 13:
                 if((this.battle.combatantManager.combatants[target].team>0?1:0)!=(this.team>0?1:0)){
@@ -4837,7 +4847,8 @@ class combatant{
         if(this.status.main[674]>0&&type>=0){
             this.addBlock(this.status.main[674])
         }
-        let playerMulti=target==this.id?0.1:1
+        //let playerMulti=target==this.id?0.1:1
+        let playerMulti=1
         switch(type){
             case 0:
                 this.battle.combatantManager.combatants[target].orbTake(round((6+this.status.main[670])*multi*playerMulti),-1)
@@ -4884,7 +4895,9 @@ class combatant{
                 this.battle.combatantManager.combatants[target].statusEffect('Poison',2)
             break
             case 12:
-                this.battle.combatantManager.combatants[target].orbTake(round(2*multi*playerMulti),-1)
+                if(target!=this.id){
+                    this.battle.combatantManager.combatants[target].orbTake(round(2*multi*playerMulti),-1)
+                }
             break
             case 13:
                 if((this.battle.combatantManager.combatants[target].team>0?1:0)!=(this.team>0?1:0)){
@@ -5565,6 +5578,13 @@ class combatant{
                                 this.battle.cardManagers[this.battle.turn.main].reserve.allEffectArgs(44,[9024])
                             }
                         break
+                        case 'Shock':
+                            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.id==this.battle.turn.main){
+                                if(this.getStatus('Self Shock Claw Up')>0){
+                                    this.statusEffect('Claw Up',this.getStatus('Self Shock Claw Up'))
+                                }
+                            }
+                        break
                     }
                 }
                 this.statusGeneralUpdate(status)
@@ -5902,7 +5922,9 @@ class combatant{
         this.turnStatus=[0,0,0,0]
     }
     tick(sub){
-        this.charge++
+        if(this.name==`Airi`){
+            this.charge++
+        }
         if(this.elemental){
             if(this.status.main[305]<=0){
                 if(this.status.main[6]>0){
@@ -6056,7 +6078,7 @@ class combatant{
                     case 328: case 828:
                         if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'2 Mana':'1 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.id)}} break
                     case 331: if(this.id<this.battle.players){this.battle.overlayManager.overlays[58][this.id].active=true;this.battle.overlayManager.overlays[58][this.id].activate([this.status.main[this.status.ticker[a]],0])} break
-                    case 332: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
+                    case 332: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Wheel\nGhost']])<=0){this.battle.cardManagers[this.id].hand.add(findName('Wheel\nGhost',types.card),0,0)}} break
                     case 333: this.miniStatus('Temporary Draw',this.status.main[this.status.ticker[a]]); break
                     case 334: this.miniStatus('Temporary Draw Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 344: this.miniStatus('Base Energy Next Turn',this.status.main[this.status.ticker[a]]); break
@@ -6232,7 +6254,9 @@ class combatant{
                     case 871: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.quickdrawRandom+=this.status.main[this.status.ticker[a]]}; break
                     case 885: this.miniStatus('Vigor',this.status.main[this.status.ticker[a]]); break
                     case 887: this.battle.combatantManager.allEffect(66,['Burn',this.status.main[this.status.ticker[a]]]); break
-                    case 889: if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Wheel\nGhost']])<=0){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Wheel\nGhost',types.card),0,0)}} break
+                    case 889: if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
+                    case 898: this.battle.overlayManager.overlays[10][this.id].active=true; this.battle.overlayManager.overlays[10][this.id].activate([0,[0,3],57,[0],[[1,11]]]); break
+                    case 899: this.battle.overlayManager.overlays[10][this.id].active=true; this.battle.overlayManager.overlays[10][this.id].activate([0,[1,0],57,[],[]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
