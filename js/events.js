@@ -3540,7 +3540,7 @@ You continue on without him.`,
             },
         ],
     },{
-        name:'Fake Adventure',id:106,list:0,
+        name:'Fake Adventure',id:106,list:-1,
         pages:[
             {
                 desc:

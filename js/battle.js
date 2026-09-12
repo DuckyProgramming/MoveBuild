@@ -6,7 +6,17 @@ class battle{
     }
     save(){
         let composite={
-            game:{player:game.player,deck:game.deck,ascend:game.ascend,id:game.id,timer:game.timer,animRate:game.animRate,turnTime:game.turnTime,dev:game.dev},
+            game:{
+                player:game.player,
+                deck:game.deck,
+                ascend:game.ascend,
+                diff:game.diff,
+                id:game.id,
+                timer:game.timer,
+                animRate:game.animRate,
+                turnTime:game.turnTime,
+                dev:game.dev
+            },
             variants:{},
             currency:this.currency,
             energy:this.energy,

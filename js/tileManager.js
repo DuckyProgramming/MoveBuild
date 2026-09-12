@@ -303,7 +303,7 @@ class tileManager{
     retargetTiles(){
         for(let a=0,la=this.tiles.length;a<la;a++){
             if(
-                (this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==60||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65||this.battle.attackManager.targetInfo[0]==66)&&
+                (this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==60||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65||this.battle.attackManager.targetInfo[0]==66||this.battle.attackManager.targetInfo[0]==73)&&
                 this.tiles[a].occupied==0&&
                 (legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==61||this.battle.attackManager.targetInfo[0]==65)&&
                 !(this.battle.attackManager.targetInfo[0]==61&&this.battle.combatantManager.getArea(this.battle.combatantManager.combatants[this.battle.attackManager.user].team,this.tiles[a].tilePosition,1).length>0)&&
@@ -396,13 +396,20 @@ class tileManager{
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==60)&&this.tiles[a].occupied==0&&legalTargetCombatant(3,1,2,this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
-            }else if((this.battle.attackManager.targetInfo[0]==68)&&this.tiles[a].occupied==0&&legalTargetCombatant(3,2,2,this.tiles[a],this.battle.attackManager,this.tiles)){
+            }else if((this.battle.attackManager.targetInfo[0]==68||this.battle.attackManager.targetInfo[0]==73)&&this.tiles[a].occupied==0&&legalTargetCombatant(3,2,2,this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==69||this.battle.attackManager.targetInfo[0]==70)&&
             (this.battle.tileManager.tiles[a].type.includes(3)||this.battle.attackManager.targetInfo[0]==70)&&(this.tiles[a].occupied==0||this.battle.attackManager.targetInfo[0]==70&&!this.battle.tileManager.tiles[a].type.includes(3))){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==71)&&
             this.battle.tileManager.tiles[a].type.length>0){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==72)&&this.tiles[a].occupied==0&&
+            (
+                this.getTileIndex(this.tiles[a].tilePosition.x+(this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x)/max(abs(this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x),abs(this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)),this.tiles[a].tilePosition.y+(this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)/max(abs(this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x),abs(this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)))<0||
+                this.tiles[this.getTileIndex(this.tiles[a].tilePosition.x+(this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x)/max(abs(this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x),abs(this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)),this.tiles[a].tilePosition.y+(this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)/max(abs(this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x),abs(this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)))].occupied!=0
+            )&&
+            (legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }
         }

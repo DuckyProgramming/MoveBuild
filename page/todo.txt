@@ -1,43 +1,58 @@
+https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
+
+new sanae
+6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
+
+play new sanae
+also go purge her
+split faithful meditation
+
+purge chip
+
 play sakura armament
 shoot armament mechanic
 
 play/purge certes
-move clash-like cards to shiru
-too much random trash
-read the memory gimmick
-maybe give her the existing exhaust gimmick
+look at other subcard characters to find some shivs
+give her the existing exhaust gimmick
 benefit from duplicate cards
 
 play setsuna
 clunky cards
+purge?
+
+purge fernando
 
 play discardless shiru
+purge?
 
 play prehex x2 runs
+purge?
 
-play ducopo
+play chip
+purge?
 
 lob will:
 play airi
 play fernando
 
-delete trashcan.js
+triples of freeze, burn, and shock (maybe, otherwise just use to replenish dd610)
 
-new sanae
-split faithful meditation
+down 1 event
 
-reform merge to main and remote branch
-retain pulley without the attack attached
-split sextant
-split signature style
-split vacuum wave
-split fission
-split lucky streak
-split distorted discus - it should deal damage 2 times
+CARDSET 111 [TERMINATION V]
+
+CARDSET 112 [TERMINATION VI]
+
+CARDSET 113 [TERMINATION VII]
+
+CARDSET 114 [TERMINATION VII]
+
+CARDSET 115 [TERMINATION VIII]
 
 quick eye - 6 damage, scry 1, both doubled if played first
-matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
-fresh off the burner - if you have exhausted a strike and defend, deal 15 damage and add 15 block
+death by chocolate - if you have 5 or more chocolate chip, deals triple damage
+fresh off the burner - if you have exhausted a strike and defend, deal 15 damage and add 15 block (ehh might run out of gas too quickly espically with the whole thin to win)
 beckon - deal 4 damage, gain temporary strength equal to target's health lost (i believe this card should be deployed directly to the disband because its op as hell)
 elemental gear - when you evoke an orb, tick all orbs of that type
 feral - put a claw from discard pile in your hand
@@ -51,7 +66,7 @@ life hourglass - 3 cost rare, heal 4 health, gain 1 intangible, retain
 electric leech - remove 1 shock from all enemies, gain 1 energy each
 diadem - gain 1 buffer, apply 2 weak to all enemies
 concealed carry - deal 6 damage to a random enemy, if exhausted, trigger effect and gain 2 strength
-uplink - gain 1 strength per quest completed
+uplink - gain 1 strength per quest completed, exhaust
 tumult - apply shock, gain block equal to target's shock
 multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
 locomotion - 2 cost, move 2 tiles, add 2 block, draw 2 cards
@@ -61,26 +76,15 @@ split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
 [cookie clicker but it uses dexterity and CALCULATES DAMAGE using dexterity]
 flashbang - grenade but it applies frail
 vibration wave - streamline but it ignores block
-pump action - 1 cost, draw 1 card, all guns in hand cost 1 less temporarily
+pump action - 1 cost, draw 1 card, all guns in hand cost 1 less temporarily, exhaust (rare card)
 swiftly - 0 cost gain 1 temporary strength, return a random card from your discard pile to hand
 syncope - 0 cost gain 1 temporary dexterity, return a random card from your discard pile to hand
-side hustle - exhaust a card, gain 1 currency, currency increases by 1 permanently
+side hustle - exhaust a card, gain 1 currency, currency increases by 1 permanently(always taken)
 fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
-blazing bullet - shoot a guy and burn him
+blazing bullet - shoot a guy and burn him(name change:dragonbreath shot sidenote go look at that stuff its cool)
 
-deft detonation - when you deal splash damage, gain 2 temporary dexterity
-conk - deal 12 damage, apply 1 stun if target has 4 or more weak, otherwise apply 2 weak, exhaust
-accelerator gloves - each turn, a random attack costs 1 less
-withdrawal symptoms - gain 2 strength, if you have no coffee, you cannot gain block for 2 turns
-juicer - gain 1 strength when you coffee overdose
-power pointer - whenever target intends to attack, gain 1 energy
-hook and drag - deal 10 damage, target loses 2 hp when you draw a card this turn
-split highlander into highland sword and shield
-highland spirit - if your deck is highlander get adrenaline
-split pauli exclusion - no longer deletes the second copy
-
-hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy
-industrial buildup - assign 2: gain 1 base energy this combat
+hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
+industrial buildup - assign 2: gain 1 base energy this combat, exhaust
 adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
 rollin' - gain 12 vigil, gain 1 energy next turn
 [disband meri duplicate cards that are unnecessary]
@@ -90,16 +94,12 @@ flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card 
 a decade here - take another turn, all enemies gain 10 block
 rewire - exhaust a card, if it is an attack, draw 3 cards
 
-CARDSET 111 [TERMINATION V]
-
-[barrier dies]
-6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
-
-would you rather - gain 1 currency and 1 block, or gain 2 currency
+would you rather - gain 1 currency and 1 block, or gain 2 currency(assumed 0 cost and exhaust (yes))
 pregame - opportunist, but its free and you lose 2 health
-crisp lightning - 1 cost, deal 5 damage to anybody, draw a card, costs 1 less when a card is exhausted
-skyward - gain 1 intangible, gain 1 mortar
-crimson eye - gain 1 strength, below 50% health: 1 dexterity
+crisp lightning - 1 cost, deal 5 damage to anybody, draw a card, costs 1 less when a card is exhausted(may i suggest lightning bolt)
+    bolt
+skyward - gain 1 intangible, gain 1 mortal
+ruby eye - gain 1 strength, below 50% health: 1 dexterity
 lapis eye - gain 1 dexterity, below 50% health: 1 strength
 unsuitable - gain 1 strength, gain 1 dexterity, lose 1 energy next turn
 snaky hands - dazzling speed but it gives vigor as well
@@ -112,8 +112,8 @@ meek - gain 1 dexterity per adjacent enemy
 gifted halo - draw a card, remove a random debuff from self, gain 1 frail
 donate down - pick an attack, it counts as a strike (replace basic blessing)
 ditzy (junkyard) - add 15 block, 10% lose an item
-error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust
-invert polarity - swap your strength and dexterity, retain
+error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust(tad rare to get it off but powerful effect)
+invert polarity - swap your strength and dexterity, retain (actually call this sword & shield)
 gambler's presence - 1 cost, apply 1 weak and 1 vulnerable, when added, gain 500 currency
 pocket pen - deal 4 damage, add 4 block, if you have coffee: draw a card
 
@@ -123,17 +123,17 @@ residual image - gain 4 temp strength and 4 temp dex next turn (give and get)
 absolute field - add 13 block, if target intends to attack retain block this turn
 reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
 maid in heaven - gain 1 energy for each unique class of card in hand
-disarmament talks - you lose 1 strength, everybody else loses 2, exhaust
+disarmament talks - you lose 1 strength, everybody else loses 2, exhaust(dukelis i assume)
 best foot forward - innate, 0 cost, scry 6 draw 1, gain 1 energy
 commencement - exhaust a card, if it's a curse or status put a card from discard into your hand
 wire key - every 3 turns, gain 1 conditioning
 
 port priority - deal 8 damage, deal 4 damage to the first enemy in acting order
-scapegoat - gain 1 intangible, gain vigor equal to damage taken this turn
-mechanical rot - when target gains block, they lose 8 health
+scapegoat - gain 1 intangible, gain vigor equal to damage taken this turn(quite strong)
+mechanical rot - apply mortal and armor
 extremist - deal 8 damage, gain 2 strength if you have the most or least health of anybody
 handyduck - upgrade 2 cards OR exhaust 2 cards, retain
-bash and cash - gain 10 currency, ALL ENEMIES OTHER THAN TARGET give 10 currency if killed this turn
+bash and cash - gain 10 currency, ALL ENEMIES OTHER THAN TARGET give 10 currency if killed this turn(look how they massacred my boy)
 reductive - if target has more health than you, apply vulnerable equal to how many times greater their health is than yours
 benben, biwa tsukumogami:
     +1 - draw a movement
@@ -149,63 +149,61 @@ corrupt cash - judgement but if it works gain money
 burn documents - remove all block from target, if target has burn draw 2 cards
 prescription - gain 2 max hp, lose 25 currency
 venture capital - apply 1 buffer to target, gain currency (based off quick deal)
-macro control - add block, 1000 currency: gain armor, 2000 currency: gain 1 intangible, exhaust
+macro control - add block, 1000 currency: gain armor, 2000 currency: gain 1 intangible, exhaust(general note where private equity card)
 real gains - damage, spend 50 currency: permanently increases
 public spotlight - blackmail but vulnerable
 infrastructure investment - a random card costs 1 less, draw 1 card, gain 1 currency
-quality finds - discover a common card it costs 0, 1000 currency: uncommon
-
-CARDSET 112 [TERMINATION VI]
+quality finds - discover a common card it costs 0, 1000 currency: uncommon, 5000 currency: rare
 
 accident insurance - reflect next hit taken, lose money
-antitrust laws (dev) - remove all buffs of target, gain 10 currency for each one
+antitrust laws (dev) - remove all buffs of target, gain 10 currency for each one(maybe delete copies)
 inflationary gap - your currency is treated as 50% more this combat
 special order - draw 2 cards, gain 1 energy per status card drawn
 crime of the century - if played during an elite combat, gain a relic and leave combat
-industrial dumping - all cards cost 1 less, gain currency
+industrial dumping - all cards cost 1 less, gain currency (3 cost)
 hedge fund - when you gain currency this combat, gain equal block, innate
 time and money - gain both effects and time is money, but it's really expensive
-googolplex - when you play a power, discover a power
-classic gamble - double or nothing any amount of money, chances cannot be edited (still counts as highroll or lowroll)
+googolplex - when you play a power, discover a power(copying STS eh with the defect powers build)
+classic gamble - double or nothing any amount of money, chances cannot be edited (still counts as highroll or lowroll) (rename to something else like daily double or moist tomato?)
 
 remold - double upgrade a card permanently, remove a card permanently, lose 20 max hp
-seventh wonder - gain 999 wisdom
+seventh wonder - gain 999 wisdom(explain to me the balance)
 take inventory - draw 2 cards, retain your hand this turn
 split ddos - new ddos applies shock in all directions
-pulchritude - health 1 health, every 3rd time played: deal 7 damage to a random enemy, add 7 block
+pulchritude - heal 1 health, every 3rd time played: deal 7 damage to a random enemy, add 7 block(ehh cards that only work 1/3 or 1/2 of the time are dubious in this game consistency is key)
 brass tacks - target takes 4 damage per turn, redraw your hand
 key ring - add 5 block 2 times, every 3 times played gain 2 energy
-wing flail - remove all block from target, 2 damage 3 times, retain
-crossing boundaries - recall for 1 cost BUT set caffeine to your limit
+wing flail - remove all block from target, 2 damage 3 times, retain(quite good espially late game)
+crossing boundaries - recall for 1 cost BUT set caffeine to your limit(once again maybe a rename to pushing boundaries)
 rebalancer - unupgrade a random upgraded card, upgrade a card permanently
 
-condemnation - deal damage, then trigger [choreograph] for 1 card
-foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status]
+condemnation - deal damage, then trigger [choreograph] for 1 card(idk what [choreograph] is so cant comment)
+foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status](see above about unknown mechanics)
 predict - guess the type of the top card in deck, if correct draw it and it costs 0
 debug - add 9 block, exhaust a random curse in your draw pile
 tiny blade - 0 cost 1 damage and 1 lock on in all directions
 creative writing - when you are debuffed, draw a card
-metal detector - 11 block, when taken get a free move
+metal detector - 11 block, when taken get a free move(i assume not picked on rewards?)
 keynesian - gain 100 currency, gain no rewards at the end of this combat
 aleph - lose your first relic, gain a relic, vanishing 1
 
-C - draw and upgrade some cards, then slightly compact your hand (based on assembly)
+C - draw and upgrade some cards, then slightly compact your hand (based on assembly)(C sounds good but what about C+?)
 cantilever - add 8x block, gain 2x energy next turn
-law of large numbers - when you highroll, guarantee a lowroll next, when you lowroll, guarantee a highroll next
+law of large numbers - when you highroll, guarantee a lowroll next, when you lowroll, guarantee a highroll next(ehhhh works well for consitency but Chip's funner without consitency)
 metallic fortress - gain armor per dark matter, pulled: draw a card, has mass
 breakdown - if target has block, apply 1 vulnerable, deal 9 damage twice
 split dazzling dash, new dazzling dash - draw 3 cards, 7 or more cards in hand: gain 1 strength instead
 split touch of garlic - old version becomes touch grass, new version lets you pick between gaining a bit of vigor or vigil
-maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand
+maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand(char dependent)
 classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
 the road taken - the next quest played returns to your hand
 
 brambles - 2 cost, gain 3 regen, your attacks apply poison equal to your regen
-bolas - free zipper that replenishes
-metabolize - lose 1 caffeine, if you do gain 1 energy
+bolas - free zipper that replenishes(mtg reference?)
+metabolize - lose 1 caffeine, if you do gain 1 energy(good)
 triple axel - add 4 block 3 times
-hypothermia - remove all block from target, target retains freeze for 1 turn
-munch - [bite], then exhaust a card
+hypothermia - remove all block from target, target retains freeze for 1 turn(good)
+munch - [bite], then exhaust a card(see previous notes about unknown mechanics)
 time of troubles - gain 1 wisdom, gain 1 history per dead enemy
 stop laughing - push target, draw a card, remove a random debuff from self
 abrogate - draw 2 for 0 cost, increases by 1, cost increases by 1
@@ -213,16 +211,25 @@ split twirling ribbon - new twirling ribbon adds 4 block twice and gives vigil, 
 
 frost lily - apply 1 frail, apply 3 freeze to every adjacent enemy
 funnel emitter - all cards in hand gain fuel equal to the highest in hand
-inspect armor - add a shiv to hand, it gains damage equal to target's block
+inspect armor - add a shiv to hand, it gains damage equal to target's block(cooler name like sense vulnerability/weakness?)
 burn documents - 0 cost, exhaust a card, apply burn in all directions equal to its cost
-playful bolt - target loses 3 health, prime 1, retain
-ferrous blade - deal 4 damage, cost increases by 1, when exhausted put a 0-cost copy of this card in your hand
+playful bolt - target loses 3 health, prime 1, retain(so this is a bolt so it could be primed to prime again (yes))
+ferrous blade - deal 4 damage, cost increases by 1, when exhausted put a 0-cost copy of this card in your hand(yo discount immortal spark)
 the last resort - 2 cost, add 24 block, discover a defense, it duplicates once
-overwrite - 1 cost, exhaust the top 3 cards of your draw pile, then exhume 1
-profitable operations - 2 cost, deal 18 damage, if fatal heal 2 hp and gain 10 currency, exhaust
+overwrite - 1 cost, exhaust the top 3 cards of your draw pile, then exhume 1(idk exhume)
+profitable operations - 2 cost, deal 18 damage, if fatal heal 2 hp and gain 10 currency, exhaust(entertainer but more complicated)
 uproar - damage 2 times, draw an attack it costs 0
 
-CARDSET 113 [TERMINATION VII]
+quick scour - if target intends to attack, draw 2 cards, otherwise scry 3
+[curse] tax man - when an enemy takes damage lose 1 currency
+snitch - if an enemy has been killed, apply 3 vulnerable to any enemy and draw a card
+tragic slip - apply 1 weak, 0 cost, applies 999 instead if an enemy died this turn
+hook and drag - deal 10 damage, target loses 2 hp when you draw a card this turn
+hit the road - gain 1 tmeporary strength when a card is discarded from your hand
+onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn
+vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
+alarm chili - when you play a skill this turn, deal 10 damage in all directions
+matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
 
 GIMMICK BANK
 

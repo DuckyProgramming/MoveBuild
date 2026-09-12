@@ -3278,17 +3278,17 @@ class card{
                     }
                 break
                 case 5305:
-                    if(this.battle.cardManagers[this.player].hand.turnPlayed[1]==this.effect[0]-1){
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[1]==this.effect[0]){
                         this.costDown(0,[1])
                     }
                 break
                 case 5306:
-                    if(this.battle.cardManagers[this.player].hand.turnPlayed[2]==this.effect[0]-1){
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[2]==this.effect[0]){
                         this.costDown(0,[1])
                     }
                 break
                 case 5307:
-                    if(this.battle.cardManagers[this.player].hand.turnPlayed[11]==this.effect[0]-1){
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[11]==this.effect[0]){
                         this.costDown(0,[1])
                     }
                 break
@@ -3303,7 +3303,7 @@ class card{
                     }
                 break
                 case 5314:
-                    if(this.battle.cardManagers[this.player].hand.turnPlayed[0]==this.effect[0]-1){
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[0]==this.effect[0]){
                         this.costDown(0,[1])
                     }
                 break

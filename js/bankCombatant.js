@@ -7897,7 +7897,7 @@ combatant.prototype.display=function(){
                     this.layer.translate(lsin(this.anim.direction+this.spin.hair.pin)*17,-81)
                     this.layer.rotate(lsin(this.anim.direction+this.spin.hair.pin)*-5)
                     //this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin),1)
-                    this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin)**0.8,1)
+                    this.layer.scale(abs(lcos(this.anim.direction+this.spin.hair.pin))**0.8,1)
                     this.layer.rotate(24)
                     this.layer.fill(...this.color.pin,this.fade.main)
                     this.layer.noStroke()

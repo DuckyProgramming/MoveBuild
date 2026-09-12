@@ -14689,22 +14689,26 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         break
         case 4:
             layer.fill(40,fade)
-            layer.rect(-4,0,12,4)
+            //layer.rect(-4,0,12,4)
+            layer.rect(-3.5,0,13,4)
             layer.triangle(2,-6,2,6,10,0)
         break
         case 5:
             layer.fill(40,fade)
-            layer.rect(4,0,12,4)
+            //layer.rect(4,0,12,4)
+            layer.rect(3.5,0,13,4)
             layer.triangle(-2,-6,-2,6,-10,0)
         break
         case 6:
             layer.fill(40,fade)
-            layer.rect(0,-4,4,12)
+            //layer.rect(0,-4,4,12)
+            layer.rect(0,-3.5,4,13)
             layer.triangle(-6,2,6,2,0,10)
         break
         case 7:
             layer.fill(40,fade)
-            layer.rect(0,4,4,12)
+            //layer.rect(0,4,4,12)
+            layer.rect(0,3.5,4,13)
             layer.triangle(-6,-2,6,-2,0,-10)
         break
         case 8:
