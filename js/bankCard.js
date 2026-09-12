@@ -10129,6 +10129,39 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9624: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAbove 75% Health:\nAdds Double Block`; break
         //8792
 
+        case 9625: string+=`Discover a Defense\nGain ${effect[0]} Temporary\nDexterity`; break
+        case 9626: string+=`Discover a Defense\nIt Costs 0\nGain ${effect[0]} Temporary\nDexterity`; break
+        //7139-7140
+        case 9627: string+=`Discover an Attack\nDiscover a Defense\nDiscover a Movement\nThey All Cost 0`; break
+        //7140
+        case 9628: string+=`Make a Random Attack\nin Hand Cost 0:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Attack${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
+        //7599
+        case 9629: string+=`Discover a\nCharacter Defense\nOptions Include\nPrevious Choice`; break
+        //8731
+        case 9630: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Energy:\nDiscover a 2 Cost Card\nIt Costs 0`; break
+        case 9631: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (G) Spent:\nDiscover a 2 Cost Card\nIt Costs 0`; break
+        //8145-8416
+        case 9632: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nYou Cannot be Pushed\nThis Turn`; break
+        //2163
+        case 9633: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nUpward: Remove ${effect[1]} Fatigue${pl(effect[1])}`; break
+        //4141
+
+        case 9634: string+=`4 or More Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock`; break
+        //1316
+        case 9635: string+=`4 or More Mana:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock`; break
+        //4783
+        case 9636: string+=`Trigger Target's Burn`; break
+        case 9637: string+=`Trigger Target's Burn\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        //5108-5109
+        case 9638: string+=`Gain ${effect[0]} Energy\nEvery 10 Cards Drawn`; break
+        case 9639: string+=`Gain ${effect[0]} Random Mana\nEvery 10 Cards Drawn`; break
+        //4715-4716
+        case 9640: string+=`Discover ${effect[0]} 0 Cost Card${pl(effect[0])}`; break
+        //7603
+
+
+
+
 
 
 
@@ -10161,6 +10194,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 114: string+=`Gain an Item`; break
         case 227: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Card${pl(effect[0])}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated`; break
         case 273: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+        case 279: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
         case 490: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}`; break
         case 366: string+=``; break
         case 491: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}`; break
