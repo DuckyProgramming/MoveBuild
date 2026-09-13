@@ -11,6 +11,9 @@ mtg x marks the spot check if it works
 
 old bleed
 
+more cards that mitigate overdosing
+decaf
+
 SHINMY IS 3382, 3383
 split maintenance into 2 cards
 lira still has too many neutrals (just purge, no new additions)
@@ -65,9 +68,9 @@ CARDSET 112 [TERMINATION VI]
 
 CARDSET 113 [TERMINATION VII]
 
-CARDSET 114 [TERMINATION VII]
+CARDSET 114 [?]
 
-CARDSET 115 [TERMINATION VIII]
+CARDSET 115 [?]
 
 quick eye - 6 damage, scry 1, both doubled if played first
 death by chocolate - if you have 5 or more chocolate chip, deals triple damage

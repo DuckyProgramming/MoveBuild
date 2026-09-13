@@ -9593,36 +9593,15 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9352: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nPut ${effect[2]} Random Card${pl(effect[2])}\non Top of Draw Pile`; break
         case 9353: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nPut ${effect[2]} Random Card${pl(effect[2])}\non Top of Draw Pile`; break
         case 9354: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPulled:\nGain ${effect[1]} Radiation`; break
-
-        //mark p
-        
-        //9355-9239
-        //9356-9240
-        //9357-9284
-        //9358-9232
-        //9359-6399
-        //9360-8948
-        //new symbology
-        //sagume orbs are purple
-
         case 9361: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block Per\nAdjacent Empty Tile\nLocation`; break
-        //4060
         case 9362: string+=`When You Deal\nSplash Damage,\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
-        //5676
-        //i really like this card, but with chocolate chip it callstacks
         case 9363: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Weak,\nApply ${effect[2]} Stun\nOtherwise,\nApply ${effect[3]} Weak`; break
         case 9364: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Vulnerable,\nApply ${effect[2]} Stun\nOtherwise,\nApply ${effect[3]} Vulnerable`; break
-        //x
         case 9365: string+=`Make a Duplicate\nCard Negative Permanently`; break
         case 9366: string+=`Make a Duplicate\nCard Polychrome Permanently`; break
-        //3474
-
         case 9367: string+=`Whenever an Enemy\nIntends to Attack,\nGain ${effect[0]} Energy`; break
         case 9368: string+=`Whenever an Enemy\nIntends to Attack,\nGain (R)`; break
         case 9369: string+=`Whenever an Enemy\nIntends to Attack,\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
-        //this may cause a problem with how the target knows which player to give the energy
-        //the solution is to create two separate status effects that are otherwise identical, one for each player
-        //actually, no, as this now applies to the player, lol
         case 9370: string+=`When You Overdose\non Caffeine,\nGain ${effect[0]} Energy`; break
         case 9371: string+=`When You Overdose\non Caffeine,\nGain (N) (N)`; break
         case 9372: string+=`When You Overdose\non Caffeine,\nGain (K) (K)`; break
@@ -9630,10 +9609,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9374: string+=`When You Overdose\non Caffeine,\nGain ${effect[0]} Strength`; break
         case 9375: string+=`Gain ${effect[0]} Strength\nIf You Have No Caffeine,\nLose ${effect[1]} Health`; break
         case 9376: string+=`Gain ${effect[0]} Strength\nLose ${effect[1]} Health`; break
-        //4041
-
         case 9377: string+=`Gain ${effect[0]} Dexterity\nLose ${effect[1]} Health`; break
-        //9376
+
         case 9378: string+=`Defenses and Skills\nCost ${effect[0]} Less\nUntil You Lose Health`; break
         //3571
         case 9379: string+=`Every Turn, a Random\nAttack Costs ${effect[0]} Less`; break
@@ -9708,6 +9685,10 @@ card.prototype.description=function(attack,effect,spec,target){
         //6124
         case 9419: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf No Enemies Will Attack,\nEnter Calm`; break
         //731
+
+        //DUCOPO TIME
+        //mark p
+        //BORDER CS 111
 
         case 9420: string+=`All 2+ Cost\nCards in Hand\nCost ${effect[0]} Less Temporarily`; break
         //186
@@ -9955,6 +9936,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9562: string+=`Every 2nd Time Played,\nDraw ${effect[0]} Card${pl(effect[0])}`; break
         //8
 
+        //END DUCOPO TIME
+        //mark p
+        //BORDER CS 112
+
         //3875:9563
         case 9564: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExhaust ${effect[1]} Card${pl(effect[1])}\nScry ${effect[2]}`; break
         //2893
@@ -10129,6 +10114,8 @@ card.prototype.description=function(attack,effect,spec,target){
         //3764
         case 9656: string+=`Add the Most\nRecently Added Card\nof Equivalent Level\nto Hand`; break
         //1293
+
+        //BORDER CS 113
 
         //mark q
         

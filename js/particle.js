@@ -183,7 +183,7 @@ class particle{
             break
             case 61: case 62: case 63: case 64: case 96: case 100: case 171: case 172: case 179: case 180:
             case 181: case 182: case 198: case 248: case 253: case 258: case 274: case 275: case 276: case 277:
-            case 278:
+            case 278: case 279: case 280: case 281:
                 this.direction=args[0]
                 this.speed=args[1]
                 this.baseSpeed=args[1]
@@ -4238,7 +4238,10 @@ class particle{
                         )
                     }
                 break
-                case 258:
+                case 258: case 281:
+                    if(this.type==281){
+                        this.layer.scale(0.8)
+                    }
                     this.layer.rotate(this.time*-5)
                     this.layer.fill(255,this.fade)
                     this.layer.arc(0,0,30,30,-180,0)
@@ -4490,29 +4493,29 @@ class particle{
                     this.layer.strokeCap(ROUND)
                 break
                 case 274: case 275: case 276: case 277: case 278:
-                    let colors
+                    let colors274
                     switch(this.type){
                         case 274:
-                            colors=[[89,84,89],[85,34,63]]
+                            colors274=[[89,84,89],[85,34,63]]
                         break
                         case 275:
-                            colors=[[239,217,182],[85,34,63]]
+                            colors274=[[239,217,182],[85,34,63]]
                         break
                         case 276:
-                            colors=[[154,205,162],[85,34,63]]
+                            colors274=[[154,205,162],[85,34,63]]
                         break
                         case 277:
-                            colors=[[154,205,162],[239,217,182]]
+                            colors274=[[154,205,162],[239,217,182]]
                         break
                         case 278:
-                            colors=[HSVtoRGB(this.time*6%360,1,255),HSVtoRGB((this.time*6+60)%360,1,255)]
+                            colors274=[HSVtoRGB(this.time*6%360,1,255),HSVtoRGB((this.time*6+60)%360,1,255)]
                         break
                     }
                     this.layer.rotate(this.time*-5)
                     this.layer.fill(255,this.fade)
                     this.layer.arc(0,0,20,20,-180,0)
                     this.gradient=new p5.LinearGradient(0,20)
-                    this.gradient.colors(0.0,color(...colors[0]),1.0,color(...colors[1]))
+                    this.gradient.colors(0.0,color(...colors274[0]),1.0,color(...colors274[1]))
                     this.layer.fillGradient(this.gradient)
                     this.layer.translate(-5,-5)
                     this.layer.arc(5,5,20,20,0,180)
@@ -4526,12 +4529,56 @@ class particle{
                     this.layer.fill(255,this.fade)
                     this.layer.arc(-5,0,10,10,0,180)
                     this.layer.ellipse(5,0,3)
-                    this.layer.fill(...colors[0],this.fade)
+                    this.layer.fill(...colors274[0],this.fade)
                     this.layer.ellipse(-5,0,3)
                     this.layer.rotate(this.time*10)
                     this.layer.fill(255,this.fade)
                     for(let a=0,la=5;a<la;a++){
                         this.layer.ellipse(0,-15,6)
+                        this.layer.rotate(72)
+                    }
+                break
+                case 279: case 280:
+                    let colors279
+                    switch(this.type){
+                        case 279: case 280:
+                            colors279=[[
+                                [229,164,248],[255,244,255]
+                            ],[
+                                [115,9,135],[60,3,58]
+                            ]]
+                        break
+                    }
+                    this.gradient=[new p5.LinearGradient(0,20),new p5.LinearGradient(0,20)]
+                    this.gradient[0].colors(0.0,color(...colors279[0][0]),1.0,color(...colors279[0][1]))
+                    this.gradient[1].colors(0.0,color(...colors279[1][0]),1.0,color(...colors279[1][1]))
+                    this.layer.rotate(this.time*-5)
+                    this.layer.translate(-10,-10)
+                    this.layer.fillGradient(this.gradient[0])
+                    this.layer.arc(10,10,20,20,-180,0)
+                    this.layer.fillGradient(this.gradient[1])
+                    this.layer.arc(10,10,20,20,0,180)
+                    this.layer.ellipse(5,10,10)
+                    this.layer.fillGradient(this.gradient[0])
+                    this.layer.ellipse(15,10,10)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(this.position.x,this.position.y)
+                    this.layer.scale(this.size*this.scale)
+                    this.layer.rotate(this.time*-5)
+                    this.layer.noStroke()
+                    this.layer.fill(...colors279[1][0],this.fade)
+                    this.layer.ellipse(5,0,3)
+                    this.layer.fill(...colors279[0][0],this.fade)
+                    this.layer.ellipse(-5,0,3)
+                    this.layer.rotate(this.time*10)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.ellipse(0,-15,6)
+                        this.layer.rotate(72)
+                    }
+                    this.layer.fill(...colors279[0][1],this.fade)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.ellipse(0,-15,4)
                         this.layer.rotate(72)
                     }
                 break
@@ -4679,6 +4726,7 @@ class particle{
             break
             case 61: case 62: case 63: case 64: case 96: case 100: case 171: case 172: case 179: case 180:
             case 181: case 182: case 198: case 248: case 258: case 274: case 275: case 276: case 277: case 278:
+            case 279: case 281:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
                 this.speed-=this.baseSpeed/30
@@ -5741,6 +5789,22 @@ class particle{
                 this.scale+=0.06-this.fade*0.06
                 if(this.fade<=0){
                     this.remove=true
+                }
+            break
+            case 280:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                this.direction+=3
+                if(!this.trigger){
+                    this.fade+=0.2
+                    if(this.fade>=6){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.2
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
                 }
             break
 

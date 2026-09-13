@@ -9039,7 +9039,26 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(1,5,2,0.4,4,-4,3,0.6)
         break
         case 889:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9052,11 +9071,30 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.triangle(5.5,-1,5.5,1,7,0)
         break
         case 890:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9069,12 +9107,31 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-3,3,3,3)
         break
         case 891:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9087,13 +9144,32 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
             layer.rect(-3,0,3,3)
         break
         case 892:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9106,13 +9182,32 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.fill(150,175,200,fade)
             layer.triangle(2,-6,4,3,0,3)
             layer.rect(-3,0,3,3)
         break
         case 893:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9125,7 +9220,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.fill(255,255,150,fade)
             layer.quad(-6,-6,1,-1,6,6,-1,1)
             layer.quad(-1,-1,2,-2,1,1,-2,2)
@@ -9135,7 +9230,26 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
         break
         case 894:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9148,7 +9262,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.fill(240,240,150,fade)
             layer.rect(0,0,9,1)
             layer.triangle(0,-1,-3,-1,-1.5,-3)
@@ -9157,7 +9271,26 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,1,3,1,1.5,3)
         break
         case 895:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9170,14 +9303,33 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.fill(200,255,255,fade)
             layer.quad(0,-2,-1,0,0,2,1,0)
             layer.quad(-2.5,-2,-3.5,0,-2.5,2,-1.5,0)
             layer.quad(2.5,-2,3.5,0,2.5,2,1.5,0)
         break
         case 896:
-            layer.fill(255,fade)
+            layer.fill(242,204,252,fade)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,2.4)
+                layer.rotate(72)
+            }
+            layer.fill(255,244,255,fade)
+            layer.arc(0,0,8,8,-180,0)
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(0,-6,1.6)
+                layer.rotate(72)
+            }
+            layer.fill(115,9,135,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.ellipse(2,0,4)
+            layer.fill(255,244,255,fade)
+            layer.ellipse(-2,0,4)
+            layer.ellipse(2,0,1.2)
+            layer.fill(115,9,135,fade)
+            layer.ellipse(-2,0,1.2)
+            /*layer.fill(255,fade)
             layer.arc(0,0,8,8,-180,0)
             for(let a=0,la=5;a<la;a++){
                 layer.ellipse(0,-6,2.4)
@@ -9190,7 +9342,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,0,4)
             layer.ellipse(2,0,1.2)
             layer.fill(89,84,89,fade)
-            layer.ellipse(-2,0,1.2)
+            layer.ellipse(-2,0,1.2)*/
             layer.fill(0,150,0,fade)
             layer.rect(0,0,2,8)
             layer.rect(0,0,8,2)
@@ -9343,6 +9495,85 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,1,10)
             layer.arc(-1.5,0,4,10,90,270)
             layer.arc(1.5,0,4,10,-90,90)
+        break
+        case 910:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-4,-2.4,4,-2.4,0,-4.8)
+			layer.arc(0,-2.4,8,12.8,0,180)
+            layer.triangle(-4.5,-0.5,-4.5,0.5,-6,0)
+            layer.triangle(4.5,-0.5,4.5,0.5,6,0)
+            layer.rect(0,5,3,1)
+        break
+        case 911:
+            layer.fill(180,fade)
+            layer.rect(2,0,3,11)
+            layer.rect(-2,-2,3,7)
+            layer.rect(0,4,7,3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+        break
+        case 912:
+            layer.fill(180,fade)
+            layer.rect(2,0,3,11)
+            layer.rect(-2,-2,3,7)
+            layer.rect(0,4,7,3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            displayMtgManaSymbol(layer,0,0,5,0,0.4,fade,-1,[])
+        break
+        case 913:
+            layer.fill(180,fade)
+            layer.rect(2,0,3,11)
+            layer.rect(-2,-2,3,7)
+            layer.rect(0,4,7,3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+        break
+        case 914:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+        break
+        case 915:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            displayMtgManaSymbol(layer,0,0,0,0,0.4,fade,-1,[])
+        break
+        case 916:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            displayMtgManaSymbol(layer,0,0,3,0,0.4,fade,-1,[])
+        break
+        case 917:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            displayMtgManaSymbol(layer,0,0,6,0,0.4,fade,-1,[])
+        break
+        case 918:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-6,-3,3,3,3)
         break
     }
     //mark s

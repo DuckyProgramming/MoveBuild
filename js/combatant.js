@@ -212,6 +212,7 @@ class combatant{
                 'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block','Burn Trigger All Per Turn','Power Claw Up','Dual Discus Per Turn',
                 'Discus Boost','Discus Temporary Strength','Discus Temporary Dexterity','Discus Pure','Discus Flip Top','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Splash Attach Vulnerable','Free Skill Discover Per Turn','Common Colorless Discover Per Turn',
                 'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash','Temporary Dexterity Cycle 3 1','Temporary Dexterity Cycle 3 2','Temporary Dexterity Cycle 3 3','0 Cost Temporary Strength','Charge Consume Temporary Strength','Silver Temporary Strength',
+                'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -305,6 +306,7 @@ class combatant{
                 0,0,1,1,0,2,0,0,0,0,//89
                 0,0,0,0,0,0,0,0,0,0,//90
                 0,0,1,0,2,2,2,0,0,0,//91
+                0,0,0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -398,6 +400,7 @@ class combatant{
                 2,2,2,2,2,0,0,2,2,2,//89
                 2,2,2,2,2,2,2,2,2,2,//90
                 2,2,2,2,0,0,0,2,2,2,//91
+                2,2,2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -2338,11 +2341,25 @@ class combatant{
         }
     }
     convertIntent(){
-        if((
+        if(
             types.attack[this.attack[this.intent].type].class==1||
             types.attack[this.attack[this.intent].type].class==5
-        )&&this.status.main[5]>0){
-            this.takeDamage(this.status.main[5])
+        ){
+            if(this.status.main[5]>0){
+                this.takeDamage(this.status.main[5])
+            }
+            for(let a=0,la=this.battle.players;a<la;a++){
+                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)]
+                if(userCombatant.status.main[911]>0){
+                    this.battle.addEnergy(userCombatant.status.main[911],a)
+                }
+                if(userCombatant.status.main[912]>0){
+                    this.battle.addSpecificEnergy(userCombatant.status.main[912],a,5)
+                }
+                if(userCombatant.status.main[913]>0){
+                    userCombatant.addBlock(userCombatant.status.main[913])
+                }
+            }
         }
     }
     setIntent(type){
@@ -8036,6 +8053,21 @@ class combatant{
             if(this.caffeine>=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]){
                 this.caffeine-=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]
                 this.loseHealth(6)
+                if(this.status.main[914]>0){
+                    this.battle.addEnergy(this.status.main[914],this.id)
+                }
+                if(this.status.main[915]>0){
+                    this.battle.addSpecificEnergy(this.status.main[915],this.id,0)
+                }
+                if(this.status.main[916]>0){
+                    this.battle.addSpecificEnergy(this.status.main[916],this.id,3)
+                }
+                if(this.status.main[917]>0){
+                    this.battle.addSpecificEnergy(this.status.main[917],this.id,6)
+                }
+                if(this.status.main[918]>0){
+                    this.statusEffect('Strength',this.status.main[918])
+                }
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
