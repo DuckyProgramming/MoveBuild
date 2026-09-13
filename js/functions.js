@@ -2414,33 +2414,37 @@ function outMtgError(){
 		}
 		if(types.card[a].name!='Bozo'&&types.card[a].name!=`Ascender's\nBozo`){
 			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-				if(types.card[a].mtg.levels[b].cost==undefined){
-					console.log(types.card[a].name,`C`)
-				}
 				if(
-					!types.card[a].mtg.levels[b].spec.includes(11)&&
-					!types.card[a].mtg.levels[b].spec.includes(21)&&
-					!types.card[a].mtg.levels[b].spec.includes(59)&&
-					!types.card[a].mtg.levels[b].spec.includes(67)&&(
-						types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
-						types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
-						types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
-						types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
-						types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
-						types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
-						types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
-						types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
-						types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
-						types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
-						types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
-						types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
-						types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
-						types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
-						types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
-						types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
-						types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
-				)){
-					console.log(types.card[a].name,`D`)
+					types.card[a].mtg.levels[b].cost==undefined||
+					types.card[a].mtg.levels[b].cost.length==undefined
+				){
+					console.log(types.card[a].name,`C`)
+				}else{
+					if(
+						!types.card[a].mtg.levels[b].spec.includes(11)&&
+						!types.card[a].mtg.levels[b].spec.includes(21)&&
+						!types.card[a].mtg.levels[b].spec.includes(59)&&
+						!types.card[a].mtg.levels[b].spec.includes(67)&&(
+							types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
+							types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
+							types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
+							types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
+							types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
+							types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
+							types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
+							types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
+							types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
+							types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
+							types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
+							types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
+							types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
+							types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
+							types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
+							types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
+							types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
+					)){
+						console.log(types.card[a].name,`D`)
+					}
 				}
 			}
 		}
@@ -3348,9 +3352,49 @@ function factor(num){
     set.push(current)
     return set.join(`, `)
 }
+function checkPast(){
+	if(types.past==undefined){
+		print('No Past')
+	}else{
+		let incl=[]
+		types.card.forEach(card=>{
+			if(card.levels[0].attack.length!=2){
+				incl.push(card.levels[0].attack)
+				if(card.levels[0].mtg!=undefined&&card.levels[0].attack!=card.mtg.levels[0].attack){
+					incl.push(card.mtg.levels[0].attack)
+				}
+			}
+		})
+		incl.sort((a,b)=>a-b)
+		types.past.forEach(card=>{
+			if(card.levels[0].attack.length!=2){
+				let left=0
+				let right=incl.length
+				let found=false
+				while(right>left){
+					let curr=incl[floor((left+right)/2)]
+					if(curr==card.levels[0].attack){
+						found=true
+						break
+					}else if(curr>card.levels[0].attack){
+						right=floor((left+right)/2)
+					}else{
+						left=floor((left+right)/2)+1
+					}
+				}
+				if(incl[floor((left+right)/2)]==card.levels[0].attack){
+					found=true
+				}
+				if(!found){
+					print(`${card.levels[0].attack}: ${card.name}`)
+				}
+			}
+		})
+	}
+}
 /*chambers=[`B`,``,``,``,``,``]
 function russianRoulette(){
-    res=randin(chambers)
+    res=randin(chambers)up
     if(res==`B`){
         chambers=[`B`,``,``,``,``,``]
 		return `Dead`

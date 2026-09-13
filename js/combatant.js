@@ -3116,7 +3116,7 @@ class combatant{
         }
     }
     collided(userCombatant){
-        userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],userCombatant.comboCap)
+        userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],max(userCombatant.comboCap,userCombatant.combo))
         this.takeDamage(constants.collisionDamage+userCombatant.status.main[880],-1)
     }
     safeDamage(value){
@@ -3786,7 +3786,7 @@ class combatant{
                 }
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
-                    userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],userCombatant.comboCap)
+                    userCombatant.combo=min(userCombatant.combo+1+userCombatant.status.main[68],max(userCombatant.comboCap,userCombatant.combo))
                 }
                 if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
                     this.battle.drop(this.id,findName('Concussion',types.card),0,constants.playerNumber+1)
@@ -4405,7 +4405,7 @@ class combatant{
             }
             block=round(block*10)/10
             if(this.status.main[70]>0){
-                this.combo=min(this.combo+this.status.main[70],this.comboCap)
+                this.combo=min(this.combo+this.status.main[70],max(this.comboCap,this.combo))
             }
             if(this.status.main[140]>0){
                 for(let a=0,la=this.status.main[140];a<la;a++){

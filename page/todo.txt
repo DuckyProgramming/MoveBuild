@@ -1,10 +1,23 @@
 https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
 
+REMEMBER TO HAVE VERY HIGH STANDARDS AND DELETE (NOT DISBAND) THE ONES THAT DON'T MEET THEM
+THIS IS FOR HISTORICAL PURPOSES, NOT TO CLOG UP GAMEPLAY WITH USELESS CARDS THAT ARE REWORDED VERSIONS OF ONES THAT ALREADY EXIST
+mtg splitter
+
+check that on mtg mode energy is never mentioned
+and no mention of strike/defend
+update outmtgerror to catch when [1,3] has cost [3]
+
+SHINMY IS 3382, 3383
+split maintenance into 2 cards
+lira still has too many neutrals (just purge, no new additions)
+split focus light
+
 new sanae
 6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
-
-split maintenance into 2 cards
-lira still has too many neutrals
+rename old faith
+split "6A" from firmament
+-> mantra
 
 play new sanae
 also go purge her
