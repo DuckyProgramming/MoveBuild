@@ -1594,6 +1594,9 @@ class battle{
             if(userCombatant.getStatus('0 Cost Block')>0){
                 userCombatant.addBlock(userCombatant.getStatus('0 Cost Block'))
             }
+            if(userCombatant.getStatus('0 Cost Temporary Strength')>0){
+                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('0 Cost Temporary Strength'))
+            }
         }
         if(card.colorless()&&userCombatant.getStatus('Colorless Damage All')>0){
             this.combatantManager.allEffect(43,[userCombatant.getStatus('Colorless Damage All'),userCombatant.id])
@@ -1725,6 +1728,9 @@ class battle{
             }
             if(userCombatant.getStatus('Silver Vigor')>0){
                 userCombatant.statusEffect('Vigor',userCombatant.getStatus('Silver Vigor'))
+            }
+            if(userCombatant.getStatus('Silver Temporary Strength')>0){
+                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Silver Temporary Strength'))
             }
         }
         if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Block')>0){

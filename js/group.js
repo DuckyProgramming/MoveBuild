@@ -1042,7 +1042,7 @@ class group{
     totalCost(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].usable&&this.cards[a].getCosctt(0)>0){
+            if(this.cards[a].usable&&this.cards[a].getCostt(0)>0){
                 total+=this.cards[a].getCost(0)
             }
         }
@@ -2735,6 +2735,7 @@ class group{
                         this.cards[a].costDown(0,[args[0]])
                     }
                 break
+                //mark allargs
             }
         }
         if(effect==9){
@@ -3204,7 +3205,15 @@ class group{
                         this.cards[index].spec.push(args[0])
                         this.cards[index].additionalSpec.push(args[0])
                     break
-
+                    case 80:
+                        this.cards.splice(0,0,this.cards[index])
+                        this.cards.splice(index,1)
+                    break
+                    case 81:
+                        this.cards[index].deSize=true
+                        this.cards[index].discardEffect.push(1)
+                    break
+                    //mark random
                 }
                 if(massed&&this.id!=0&&
                     effect!=12&&effect!=16&&effect!=49&&effect!=56&&effect!=60&&

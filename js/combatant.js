@@ -211,7 +211,7 @@ class combatant{
                 'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
                 'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block','Burn Trigger All Per Turn','Power Claw Up','Dual Discus Per Turn',
                 'Discus Boost','Discus Temporary Strength','Discus Temporary Dexterity','Discus Pure','Discus Flip Top','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Splash Attach Vulnerable','Free Skill Discover Per Turn','Common Colorless Discover Per Turn',
-                'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash',
+                'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash','Temporary Dexterity Cycle 3 1','Temporary Dexterity Cycle 3 2','Temporary Dexterity Cycle 3 3','0 Cost Temporary Strength','Charge Consume Temporary Strength','Silver Temporary Strength',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -304,7 +304,7 @@ class combatant{
                 2,0,0,0,0,0,0,0,0,1,//88
                 0,0,1,1,0,2,0,0,0,0,//89
                 0,0,0,0,0,0,0,0,0,0,//90
-                0,0,1,
+                0,0,1,0,2,2,2,0,0,0,//91
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -397,7 +397,7 @@ class combatant{
                 0,2,2,2,2,2,2,2,2,0,//88
                 2,2,2,2,2,0,0,2,2,2,//89
                 2,2,2,2,2,2,2,2,2,2,//90
-                2,2,2,
+                2,2,2,2,0,0,0,2,2,2,//91
             ]}
         /*
         0-none
@@ -5237,6 +5237,9 @@ class combatant{
         if(this.status.main[776]>0){
             this.statusEffect('Vigor',this.status.main[776])
         }
+        if(this.status.main[908]>0){
+            this.statusEffect('Temporary Strength',this.status.main[908])
+        }
     }
     activateDraw(){
         this.activateHistory()
@@ -6257,6 +6260,9 @@ class combatant{
                     case 889: if(this.battle.cardManagers[this.id].hand.numberAbstract(0,[['Dual\nDiscus']])<=0){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
                     case 898: this.battle.overlayManager.overlays[10][this.id].active=true; this.battle.overlayManager.overlays[10][this.id].activate([0,[0,3],57,[0],[[1,11]]]); break
                     case 899: this.battle.overlayManager.overlays[10][this.id].active=true; this.battle.overlayManager.overlays[10][this.id].activate([0,[1,0],57,[],[]]); break
+                    case 904: this.statusEffect('Temporary Dexterity',this.status.main[this.status.ticker[a]]);this.status.next[findList('Temporary Dexterity Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 905: this.miniStatus('Temporary Dexterity Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 906: this.miniStatus('Temporary Dexterity Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6

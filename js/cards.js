@@ -66626,13 +66626,13 @@ types.card=[
             ],
         },
     },{
-        name:'Summoner\nSeminar',rarity:-10,list:16,
+        name:'Summoner\nSeminar',rarity:-1,list:-8,
         levels:[
             {effect:[1,1],attack:9302,cost:2,target:[0],spec:[],class:11},
             {effect:[1,1],attack:9302,cost:1,target:[0],spec:[],class:11},
             {effect:[1,2],attack:9302,cost:1,target:[0],spec:[],class:11},
         ],mtg:{
-            rarity:-10,list:16,color:[1,4],
+            rarity:-1,list:-8,color:[1,4],
             levels:[
                 {effect:[1,1],attack:9302,cost:[1,4,-1],target:[0],spec:[],class:11},
                 {effect:[1,1],attack:9302,cost:[9,-1],target:[0],spec:[],class:11},
@@ -66640,13 +66640,13 @@ types.card=[
             ],
         },
     },{
-        name:'Forgetting\nFaith',rarity:-10,list:16,
+        name:'Forgetting\nFaith',rarity:-1,list:-8,
         levels:[
             {effect:[1,2],attack:9303,cost:1,target:[0],spec:[],class:11},
             {effect:[2,2],attack:9303,cost:1,target:[0],spec:[],class:11},
             {effect:[2,4],attack:9303,cost:1,target:[0],spec:[],class:11},
         ],mtg:{
-            rarity:-10,list:16,color:[1],
+            rarity:-1,list:-8,color:[1],
             levels:[
                 {effect:[1,3],attack:9303,cost:[1,-1],target:[0],spec:[],class:11},
                 {effect:[2,3],attack:9303,cost:[1,-1],target:[0],spec:[],class:11},
@@ -66944,15 +66944,15 @@ types.card=[
     },{
         name:'Irish\nCoffee',rarity:1,list:26,
         levels:[
-            {effect:[9,1],attack:9333,cost:0,target:[0],spec:[84],class:11},
-            {effect:[13,1],attack:9333,cost:0,target:[0],spec:[84],class:11},
-            {effect:[16,1],attack:9333,cost:0,target:[0],spec:[84],class:11},
+            {effect:[9,1],attack:9333,cost:0,target:[0],spec:[84],class:1},
+            {effect:[13,1],attack:9333,cost:0,target:[0],spec:[84],class:1},
+            {effect:[16,1],attack:9333,cost:0,target:[0],spec:[84],class:1},
         ],mtg:{
             rarity:1,list:26,color:[3,5],
             levels:[
-                {effect:[15,1],attack:9333,cost:[15],target:[0],spec:[84],class:11},
-                {effect:[22,1],attack:9333,cost:[15],target:[0],spec:[84],class:11},
-                {effect:[27,1],attack:9333,cost:[15],target:[0],spec:[84],class:11},
+                {effect:[15,1],attack:9333,cost:[15],target:[0],spec:[84],class:1},
+                {effect:[22,1],attack:9333,cost:[15],target:[0],spec:[84],class:1},
+                {effect:[27,1],attack:9333,cost:[15],target:[0],spec:[84],class:1},
             ],
         },
     },{

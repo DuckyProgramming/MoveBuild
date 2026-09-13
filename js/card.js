@@ -1972,6 +1972,9 @@ class card{
                 userCombatant.statusEffect('Armor',this.effect[0])
                 userCombatant.statusEffect('Radiation',this.effect[1])
             break
+            case 9354:
+                userCombatant.statusEffect('Radiation',this.effect[1])
+            break
         }
     }
     callHoldOrbEffect(type){
@@ -2156,7 +2159,7 @@ class card{
                     this.limit[1]+=floor(random(1,11))
                 }
             break
-            case 2546: case 8468:
+            case 2546: case 8468: case 9282:
                 if(encounterClass==2){
                     this.effect[0]+=this.effect[1]
                 }
@@ -2190,6 +2193,12 @@ class card{
                     if(this.limit==2){
                         this.effect[0]*=3
                     }
+                }
+            break
+            case 9283:
+                if(encounterClass==2){
+                    this.effect[0]+=this.effect[2]
+                    this.effect[1]+=this.effect[2]
                 }
             break
         }
@@ -2597,7 +2606,7 @@ class card{
             case 266:
                 this.costUp(2,[1])
             break
-            case 282: case 1834: case 5105:
+            case 282: case 1834: case 5105: case 9289:
                 this.costDown(2,[1])
             break
             case 1072:
@@ -2826,7 +2835,7 @@ class card{
             break
             case 3827: case 3828: case 3829: case 3830: case 3831: case 3832: case 3833: case 3834: case 3835: case 3836:
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
-            case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442:
+            case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442: case 9329:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -3099,7 +3108,7 @@ class card{
                     }
                     this.effect[1]=this.effect[1]+this.effect[2]
                 break
-                case 2197:
+                case 2197: case 9292:
                     if(card.spec.includes(70)){
                         this.costDown(0,[1])
                     }
@@ -3991,6 +4000,9 @@ class card{
             case 8442:
                 this.battle.overlayManager.overlays[10][this.player].active=true
                 this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[]])
+            break
+            case 9329:
+                userCombatant.statusEffect('Temporary Strength',this.effect[0]*this.battle.cardManagers[this.player].hand.lastTurnPlayed[0])
             break
         }
     }
