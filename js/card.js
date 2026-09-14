@@ -983,7 +983,7 @@ class card{
             case 3212:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
             break
-            case 3213:
+            case 3213: case 9571: case 9572:
                 userCombatant.addBlock(this.effect[1])
             break
             case 3218: case 9457:
@@ -1078,7 +1078,7 @@ class card{
             userCombatant.addBlock(userCombatant.getStatus('Scry Discard Block'))
         }
         switch(this.attack){
-            case 2913: case 2998:
+            case 2913: case 2998: case 9566:
                 this.effect[0]+=this.effect[1]
             break
             case 2953: case 2954: case 2955: case 8388:
@@ -1112,6 +1112,13 @@ class card{
             case 9147:
                 userCombatant.addBlock(this.effect[0])
                 userCombatant.statusEffect('Retain Block',this.effect[1])
+            break
+            case 9571: case 9572:
+                userCombatant.addBlock(this.effect[1])
+            break
+            case 9574:
+                userCombatant.addBlock(this.effect[1])
+                userCombatant.statusEffect('Block Next Turn',this.effect[1])
             break
         }
         return 0
@@ -1375,6 +1382,9 @@ class card{
             break
             case 8868:
                 this.battle.cardManagers[this.player].drawAbstract(this.effect[1],0,0,[1])
+            break
+            case 9571: case 9572:
+                userCombatant.addBlock(this.effect[1])
             break
         }
     }
@@ -3725,6 +3735,9 @@ class card{
             break
             case 9191:
                 userCombatant.statusEffect('Block Next Turn',this.effect[2])
+            break
+            case 9565:
+                userCombatant.statusEffect('Temporary Dexterity Next Turn',this.effect[1])
             break
         }
     }

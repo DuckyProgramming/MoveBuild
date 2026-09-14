@@ -214,6 +214,8 @@ class combatant{
                 'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash','Temporary Dexterity Cycle 3 1','Temporary Dexterity Cycle 3 2','Temporary Dexterity Cycle 3 3','0 Cost Temporary Strength','Charge Consume Temporary Strength','Silver Temporary Strength',
                 'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength','Fragile Skill Cost Down',
                 'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn','Temporary Dexterity Convert','Split Card Block','X Cost Strength','Tile Exhaust','Status Exhaust',
+                'Scry Block','Overdose (W)','Overdose (B)','Overdose (G)','Overdose (R)','Attack Intent (N)','Attack Intent (W)','Attack Intent (B)','Attack Intent (K)','Attack Intent (G)',
+                'Attack Intent (E)',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -309,6 +311,8 @@ class combatant{
                 0,0,1,0,2,2,2,0,0,0,//91
                 0,0,0,0,0,0,0,0,0,0,//92
                 0,0,0,0,0,0,0,0,0,0,//93
+                0,0,0,0,0,0,0,0,0,0,//94
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -404,6 +408,8 @@ class combatant{
                 2,2,2,2,0,0,0,2,2,2,//91
                 2,2,2,2,2,2,2,2,2,2,//92
                 2,2,2,2,2,2,2,2,2,2,//93
+                2,2,2,2,2,2,2,2,2,2,//94
+                2,
             ]}
         /*
         0-none
@@ -2361,6 +2367,24 @@ class combatant{
                 }
                 if(userCombatant.status.main[913]>0){
                     userCombatant.addBlock(userCombatant.status.main[913])
+                }
+                if(userCombatant.status.main[935]>0){
+                    this.battle.addSpecificEnergy(userCombatant.status.main[935],a,0)
+                }
+                if(userCombatant.status.main[936]>0){
+                    this.battle.addSpecificEnergy(userCombatant.status.main[936],a,1)
+                }
+                if(userCombatant.status.main[937]>0){
+                    this.battle.addSpecificEnergy(userCombatant.status.main[937],a,2)
+                }
+                if(userCombatant.status.main[938]>0){
+                    this.battle.addSpecificEnergy(userCombatant.status.main[938],a,3)
+                }
+                if(userCombatant.status.main[939]>0){
+                    this.battle.addSpecificEnergy(userCombatant.status.main[939],a,4)
+                }
+                if(userCombatant.status.main[940]>0){
+                    this.battle.addSpecificEnergy(userCombatant.status.main[940],a,6)
                 }
             }
         }
@@ -5224,6 +5248,7 @@ class combatant{
     }
     onScry(){
         this.addBarrier(this.status.main[345])
+        this.addBlock(this.status.main[930])
         this.battle.combatantManager.allEffect(19,[this.status.main[679]])
         return this.status.main[335]
     }
@@ -8102,6 +8127,18 @@ class combatant{
                 }
                 if(this.status.main[918]>0){
                     this.statusEffect('Strength',this.status.main[918])
+                }
+                if(this.status.main[931]>0){
+                    this.battle.addSpecificEnergy(this.status.main[931],this.id,1)
+                }
+                if(this.status.main[932]>0){
+                    this.battle.addSpecificEnergy(this.status.main[932],this.id,2)
+                }
+                if(this.status.main[933]>0){
+                    this.battle.addSpecificEnergy(this.status.main[933],this.id,4)
+                }
+                if(this.status.main[934]>0){
+                    this.battle.addSpecificEnergy(this.status.main[934],this.id,5)
                 }
             }
             if(this.life<=0){

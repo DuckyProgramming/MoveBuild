@@ -1,8 +1,6 @@
-PRINT THE RESUME IN THE MORNING
-LEARNING COMMONS 3RD FLOOR
-
 test silver sear mtg
 9403 is unoccupied
+split grounded push to occupy space 9632
 
 https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
 

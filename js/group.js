@@ -3578,7 +3578,7 @@ class group{
 
             //mark n
             
-            case 288: case 374: case 2217: case 2776: case 4078: case 5361: case 6214: case 7343:
+            case 288: case 374: case 2217: case 2776: case 4078: case 5361: case 6214: case 7343: case 9589:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -4227,6 +4227,14 @@ class group{
                     break
                     case 26:
                         list[list.length-1].edition=args[1]
+                    break
+                    case 8:
+                        if(list[list.length-1].level==0){
+                            list[list.length-1]=upgradeCard(list[list.length-1])
+                            this.generalUpgrade(list[list.length-1])
+                        }else{
+                            args[1].addBlock(args[2])
+                        }
                     break
                 }
             }
