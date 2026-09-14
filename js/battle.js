@@ -1496,6 +1496,11 @@ class battle{
                 this.cardManagers[player].discard.allEffectArgs(44,[8722])
                 this.cardManagers[player].reserve.allEffectArgs(44,[8722])
             break
+            case 5:
+                if(userCombatant.getStatus('Status Exhaust')>0){
+                    this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Status Exhaust'))
+                }
+            break
             case 11:
                 if(userCombatant.getStatus('Skill Temporary Strength')>0){
                     userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Skill Temporary Strength'))
@@ -1730,6 +1735,9 @@ class battle{
             case 'Tile':
                 if(userCombatant.getStatus('Tile Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Tile Draw'))
+                }
+                if(userCombatant.getStatus('Tile Exhaust')>0){
+                    this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Tile Exhaust'))
                 }
                 if(userCombatant.getStatus('Tile Temporary Strength')>0){
                     userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Tile Temporary Strength'))

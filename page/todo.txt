@@ -68,10 +68,6 @@ triples of freeze, burn, and shock (maybe, otherwise just use to replenish dd610
 
 down 1 event
 
-CARDSET 111 [TERMINATION V]
-
-CARDSET 112 [TERMINATION VI]
-
 CARDSET 113 [TERMINATION VII]
 
 CARDSET 114 [?]

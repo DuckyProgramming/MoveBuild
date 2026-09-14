@@ -213,7 +213,7 @@ class combatant{
                 'Discus Boost','Discus Temporary Strength','Discus Temporary Dexterity','Discus Pure','Discus Flip Top','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Splash Attach Vulnerable','Free Skill Discover Per Turn','Common Colorless Discover Per Turn',
                 'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash','Temporary Dexterity Cycle 3 1','Temporary Dexterity Cycle 3 2','Temporary Dexterity Cycle 3 3','0 Cost Temporary Strength','Charge Consume Temporary Strength','Silver Temporary Strength',
                 'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength','Fragile Skill Cost Down',
-                'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn','Temporary Dexterity Convert','Split Card Block','X Cost Strength',
+                'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn','Temporary Dexterity Convert','Split Card Block','X Cost Strength','Tile Exhaust','Status Exhaust',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -308,7 +308,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//90
                 0,0,1,0,2,2,2,0,0,0,//91
                 0,0,0,0,0,0,0,0,0,0,//92
-                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//93
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -403,7 +403,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//90
                 2,2,2,2,0,0,0,2,2,2,//91
                 2,2,2,2,2,2,2,2,2,2,//92
-                2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//93
             ]}
         /*
         0-none

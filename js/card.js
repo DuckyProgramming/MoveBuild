@@ -1789,6 +1789,7 @@ class card{
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
+            case 9523: case 9524: case 9525:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -2679,7 +2680,7 @@ class card{
                 this.deSize=true
                 this.exhaust=true
             break
-            case 5323:
+            case 5323: case 9530:
                 this.costDown(0,[1])
             break
         }
@@ -3364,7 +3365,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5315: case 9472:
+                case 5315: case 9472: case 9533:
                     if(cardClass==1){
                         this.costDown(0,[1])
                     }
@@ -3394,7 +3395,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5331: case 5332: case 9475: case 9476:
+                case 5331: case 5332: case 9477: case 9478:
                     if(card.getCost(4)){
                         this.costDown(0,[1])
                     }
@@ -3573,6 +3574,16 @@ class card{
                 break
                 case 9487:
                     if(card.level==0){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 9529:
+                    if(card.spec.includes(0)){
+                        this.setCost(0,[0])
+                    }
+                break
+                case 9547:
+                    if(card.getCost(4)&&this.battle.attackManager.energy>=5){
                         this.costDown(0,[1])
                     }
                 break

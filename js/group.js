@@ -2745,6 +2745,11 @@ class group{
                         this.cards[a].costDown(0,[args[0]])
                     }
                 break
+                case 77:
+                    if(this.cards[a].getCost(0)==args[0]){
+                        this.cards[a].setCost(0,[1])
+                    }
+                break
                 //mark allargs
             }
         }
@@ -2773,6 +2778,7 @@ class group{
                         &&!(effect==11&&this.cards[b].spec.includes(10))
                         &&!((effect==13||effect==50||effect==56||effect==74)&&this.cards[b].attack==5612)
                         &&!((effect==15||effect==20)&&(this.cards[b].effect.length==0||this.cards[b].class==3&&this.cards[b].effect==1))
+                        &&!(effect==16&&args[1]!=undefined&&this.cards[b].name!=args[1])
                         &&!(effect==17&&(this.cards[b].attack==-66||this.cards[b].attack==1115||this.cards[b].deSize))
                         &&!(effect==18&&this.cards[b].class==3)
                         &&!(effect==19&&this.cards[b].spec.includes(1))
@@ -2807,7 +2813,7 @@ class group{
                         &&!(effect==62&&(this.cards[b].getCost(1)<=0||this.cards[b].class!=args[0]&&args[0]!=0))
                         &&!(effect==63&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||!this.cards[b].spec.includes(args[1])))
                         &&!(effect==64&&(this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].retain2))
-                        &&!(effect==65&&this.cards[b].edition!=args[0])
+                        &&!((effect==65||effect==83)&&this.cards[b].edition!=args[0])
                         &&!(effect==70&&!this.cards[b].spec.includes(15))
                         &&!(effect==72&&this.cards[b].getCost(0)!=args[0])
                         &&!(effect==73&&(this.cards[b].attack==5612||b<args[0]))
@@ -2835,7 +2841,7 @@ class group{
                     case 1: case 35: case 63: case 82:
                         this.cards[index].costDown(0,[args[0]])
                     break
-                    case 2: case 36: case 38: case 77:
+                    case 2: case 36: case 38: case 77: case 83:
                         this.cards[index]=upgradeCard(this.cards[index])
                         this.generalUpgrade(this.cards[index])
                     break
@@ -4218,6 +4224,9 @@ class group{
                         }else{
                             args[1].deAbstract(1,args[2],[])
                         }
+                    break
+                    case 26:
+                        list[list.length-1].edition=args[1]
                     break
                 }
             }
