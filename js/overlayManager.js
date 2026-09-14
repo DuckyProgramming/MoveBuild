@@ -198,6 +198,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[123,0])],//duplicate class card, no return
                     [new overlay(this.layer,this.battle,0,2,[124,0,1])],//bring in draw card-skill, no return
                     [new overlay(this.layer,this.battle,0,2,[125,0])],//edition safe smush, no return
+                    [new overlay(this.layer,this.battle,0,2,[126])],//make common, no return, 190
+                    [new overlay(this.layer,this.battle,0,2,[127])],//bring in draw card as foil, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

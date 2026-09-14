@@ -986,7 +986,7 @@ class card{
             case 3213:
                 userCombatant.addBlock(this.effect[1])
             break
-            case 3218:
+            case 3218: case 9457:
                 userCombatant.statusEffect('Energy Next Turn',this.effect[1])
             break
             case 3463:
@@ -1034,6 +1034,34 @@ class card{
             break
             case 8262:
                 userCombatant.statusEffectNext('Vulnerable',this.effect[2])
+            break
+            case 9458:
+                userCombatant.statusEffect('(E) Next Turn',1)
+            break
+            case 9471:
+                if(this.battle.getEnergy(this.player)>0){
+                    this.costDown(0,[1])
+                }
+            break
+            case 9488:
+                if(this.battle.cardManagers[this.player].hand.cards.numberAbstract(15,[13])==0){
+                    this.costDown(0,[1])
+                }
+            break
+            case 9492:
+                if(this.battle.cardManagers[this.player].hand.turnPlayed[1]==0){
+                    this.costDown(0,[1])
+                }
+            break
+            case 9493:
+                if(this.battle.cardManagers[this.player].hand.turnPlayed[2]==0){
+                    this.costDown(0,[1])
+                }
+            break
+            case 9494:
+                if(this.battle.cardManagers[this.player].hand.turnPlayed[11]==0){
+                    this.costDown(0,[1])
+                }
             break
         }
     }
@@ -1698,7 +1726,7 @@ class card{
     }
     callAnotherExhaustEffect(card){
         switch(this.attack){
-            case 5533:
+            case 5533: case 9470:
                 this.costDown(0,[1])
             break
             case 6401: case 6531:
@@ -2276,6 +2304,20 @@ class card{
                 this.battle.cardManagers[this.player].deck.addAbstract(findName('Worker',types.card),0,0,0,[4],[[62]])
             break
             
+        }
+    }
+    callAnotherRemovedEffect(card){
+        switch(this.attack){
+            case 9500:
+                if(card.getBasic(1)){
+                    this.effect[0]+=this.effect[1]
+                }
+            break
+            case 9501:
+                if(card.getBasic(2)){
+                    this.effect[0]+=this.effect[1]
+                }
+            break
         }
     }
     callAddEffect(){
@@ -2939,6 +2981,12 @@ class card{
                     this.exhaust=true
                 }
             break
+            case 9502: case 9503:
+                if(this.effect[0]<=0){
+                    this.exhaust=true
+                }
+                this.effect[0]=max(this.effect[0]-this.effect[1],0)
+            break
         }
         if(this.spec.includes(88)){
             this.spec.splice(this.spec.indexOf(88),1)
@@ -3281,7 +3329,7 @@ class card{
                         this.setCost(0,[0])
                     }
                 break
-                case 5290: case 5291: case 5575:
+                case 5290: case 5291: case 5575: case 9450: case 9451: case 9452: case 9453:
                     if(card.getCost(4)){
                         this.setCost(0,[0])
                     }
@@ -3296,12 +3344,12 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5307:
+                case 5307: case 9465:
                     if(this.battle.cardManagers[this.player].hand.turnPlayed[11]==this.effect[0]){
                         this.costDown(0,[1])
                     }
                 break
-                case 5308: case 5309: case 5310:
+                case 5308: case 5309: case 5310: case 9466: case 9467: case 9468: case 9469:
                     if(card.edition!=0){
                         this.costDown(0,[1])
                     }
@@ -3316,12 +3364,12 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5315:
+                case 5315: case 9472:
                     if(cardClass==1){
                         this.costDown(0,[1])
                     }
                 break
-                case 5316:
+                case 5316:case 9473:
                     if(cardClass==2){
                         this.costDown(0,[1])
                     }
@@ -3331,22 +3379,22 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5318:
+                case 5318: case 9474:
                     if(cardClass==11){
                         this.costDown(0,[1])
                     }
                 break
-                case 5319:
+                case 5319: case 9481: case 9482:
                     if(card.getCost(0)==0){
                         this.costDown(0,[1])
                     }
                 break
-                case 5320:
+                case 5320: case 9479: case 9480:
                     if(card.getCost(0)==2){
                         this.costDown(0,[1])
                     }
                 break
-                case 5331: case 5332:
+                case 5331: case 5332: case 9475: case 9476:
                     if(card.getCost(4)){
                         this.costDown(0,[1])
                     }
@@ -3356,7 +3404,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5376:
+                case 5376: case 9495:
                     if(card.edition==2){
                         this.costDown(0,[1])
                     }
@@ -3495,6 +3543,36 @@ class card{
                 break
                 case 9090: case 9135:
                     if(card.spec.includes(86)){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 9421: case 9423: case 9425:
+                    if(card.getCost(0)>=2){
+                        this.setCost(0,[0])
+                    }
+                break
+                case 9422: case 9424: case 9426:
+                    if(card.getCost(0)>=3){
+                        this.setCost(0,[0])
+                    }
+                break
+                case 9475: case 9476:
+                    if(card.getCost(0)>=3){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 9483: case 9484:
+                    if(card.getCost(0)==1){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 9486:
+                    if(card.level>0){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 9487:
+                    if(card.level==0){
                         this.costDown(0,[1])
                     }
                 break

@@ -1944,7 +1944,12 @@ class group{
                         this.cards[a].edition=floor(random(1,7))
                     }
                 break
-
+                case 124:
+                    if(this.cards[a].getCost(0)==1){
+                        this.cards[a].deSize=true
+                    }
+                break
+                //mark all
             }
         }
         switch(effect){
@@ -2732,6 +2737,11 @@ class group{
                 break
                 case 75:
                     if(this.cards[a].spec.includes(args[1])){
+                        this.cards[a].costDown(0,[args[0]])
+                    }
+                break
+                case 76:
+                    if(this.cards[a].getCost(0)>=2){
                         this.cards[a].costDown(0,[args[0]])
                     }
                 break
@@ -4019,7 +4029,8 @@ class group{
             variant==21&&(variants.mtg&&!arrayCompareLoose(this.cards[index].color,this.battle.player[this.player])||!variants.mtg&&this.cards[index].color!=this.battle.player[this.player])||
             variant==22&&args[0].includes(this.cards[index].class)||
             variant==23&&this.cards[index].name.includes(args[0])&&args[1].includes(this.cards[index].class)||
-            variant==24&&(this.cards[index].name.includes(args[0])||this.cards[index].spec.includes(args[1]))
+            variant==24&&(this.cards[index].name.includes(args[0])||this.cards[index].spec.includes(args[1]))||
+            variant==25&&this.cards[index].getCost(4)
         )
     }
     checkAbstract(amount,variant,args){
@@ -4684,6 +4695,7 @@ class group{
                 this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7241])
             }
             this.cards[index].callRemoveEffect()
+            this.allEffect(55,[`callAnotherRemovedEffect`,[this.cards[index]]])
             this.send(this.battle.cardManagers[this.player].remove.cards,index,index+1,0)
         }
         return possible

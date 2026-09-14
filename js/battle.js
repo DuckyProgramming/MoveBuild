@@ -1424,7 +1424,8 @@ class battle{
             this.cardManagers[player].draw(1)
         }
         let effectiveCost=variants.mtg?(card.specialCost?card.cost[0]:card.cost.length):card.cost
-        let xCost=variants.mtg?card.cost.includes(-3):card.cost==-1
+        //let xCost=variants.mtg?card.cost.includes(-3):card.cost==-1
+        let xCost=card.getCost(4)
         switch(cardClass){
             case 1:
                 if(userCombatant.getStatus('Must Attack or Take Damage')>0){
@@ -1522,24 +1523,6 @@ class battle{
         if(userCombatant.getStatus('Card Play Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
         }
-        if(effectiveCost==2&&userCombatant.getStatus('2 Cost Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('2 Cost Block'))
-        }
-        if((card.name=='Strike'||card.name=='Strike-'||card.name=='Strefend')&&userCombatant.getStatus('Strike Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('Strike Block'))
-        }
-        if((card.name=='Strike'||card.name=='Strike-'||card.name=='Strefend')&&userCombatant.getStatus('Strike Lock On')>0){
-            switch(this.attackManager.attacks[this.attackManager.attacks.length-1].type){
-                case 1:
-                    this.attackManager.attacks[this.attackManager.attacks.length-1].type=5117
-                    this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
-                break
-                case 5045:
-                    this.attackManager.attacks[this.attackManager.attacks.length-1].type=5165
-                    this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
-                break
-            }
-        }
         if(effectiveCost>=2){
             if(userCombatant.getStatus('2+ Cost Energy')>0){
                 this.addEnergy(userCombatant.getStatus('2+ Cost Energy'),player)
@@ -1586,6 +1569,10 @@ class battle{
                 if(userCombatant.getStatus('3+ Cost Block')>0){
                     userCombatant.addBlock(userCombatant.getStatus('3+ Cost Block'))
                 }
+            }else if(effectiveCost==2){
+                if(userCombatant.getStatus('2 Cost Block')>0){
+                    userCombatant.addBlock(userCombatant.getStatus('2 Cost Block'))
+                }
             }
         }else if(effectiveCost==0){
             if(userCombatant.getStatus('0 Cost Vigor')>0){
@@ -1604,25 +1591,16 @@ class battle{
         if(card.rarity==0&&userCombatant.getStatus('Common Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength'))
         }
-        if(card.name=='Fatigue'&&userCombatant.getStatus('Fatigue Splash')>0){
-            this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Fatigue Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
-            this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
-        }
-        if(card.name=='Fatigue'&&userCombatant.getStatus('Fatigue Splash Bleed')>0){
-            this.combatantManager.areaAbstract(2,['Bleed',userCombatant.getStatus('Fatigue Splash Bleed')],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
-            this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
-        }
-        if(card.spec.includes(25)&&userCombatant.getStatus('Gun Temporary Strength')>0){
-            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Gun Temporary Strength'))
-        }
-        if(card.spec.includes(25)&&userCombatant.getStatus('Gun Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('Gun Block'))
-        }
-        if(card.spec.includes(25)&&userCombatant.getStatus('Gun Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('Gun Draw'))
-        }
-        if(effectiveCost==-1&&userCombatant.getStatus('X Cost Boost')>0){
-            userCombatant.status.main[findList('X Cost Boost',userCombatant.status.name)]=0
+        if(card.spec.includes(25)){
+            if(userCombatant.getStatus('Gun Temporary Strength')>0){
+                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Gun Temporary Strength'))
+            }
+            if(userCombatant.getStatus('Gun Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('Gun Block'))
+            }
+            if(userCombatant.getStatus('Gun Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('Gun Draw'))
+            }
         }
         if(userCombatant.getStatus('Play Limit')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit')){
             this.cardManagers[player].allEffect(2,2)
@@ -1633,32 +1611,57 @@ class battle{
         if(card.spec.includes(35)&&userCombatant.getStatus('Countdown Chain')>0){
             this.cardManagers[player].hand.randomEffect(26,[userCombatant.getStatus('Countdown Chain')])
         }
-        if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Energy')>0){
-            this.addEnergy(userCombatant.getStatus('5 Card Energy'),player)
+        if(this.cardManagers[player].hand.totalPlayed[0]%5==0){
+            if(userCombatant.getStatus('5 Card Energy')>0){
+                this.addEnergy(userCombatant.getStatus('5 Card Energy'),player)
+            }
+            if(userCombatant.getStatus('5 Card Random Mana')>0){
+                this.addSpecificEnergy(userCombatant.getStatus('5 Card Random Mana'),player,floor(random(0,7)))
+            }
         }
-        if(this.cardManagers[player].hand.totalPlayed[0]%5==0&&userCombatant.getStatus('5 Card Random Mana')>0){
-            this.addSpecificEnergy(userCombatant.getStatus('5 Card Random Mana'),player,floor(random(0,7)))
+        if(this.cardManagers[player].hand.totalPlayed[0]%13==0){
+            if(userCombatant.getStatus('13 Card Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('13 Card Block'))
+            }
+            if(userCombatant.getStatus('13 Card Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('13 Card Draw'))
+            }
         }
-        if(this.cardManagers[player].hand.totalPlayed[0]%13==0&&userCombatant.getStatus('13 Card Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('13 Card Block'))
+        if(card.getBasic(-1)){
+            if(userCombatant.getStatus('Basic Temporary Strength')>0){
+                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Basic Temporary Strength'))
+            }
+            if(userCombatant.getStatus('Basic Temporary Dexterity')>0){
+                userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Basic Temporary Dexterity'))
+            }
+            if(userCombatant.getStatus('Basic Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('Basic Draw'))
+            }
+            if(userCombatant.getStatus('Basic Energy')>0){
+                this.addEnergy(userCombatant.getStatus('Basic Energy'),player)
+            }
+            if(userCombatant.getStatus('Basic (E)')>0){
+                this.addSpecificEnergy(userCombatant.getStatus('Basic (E)'),player,6)
+            }
         }
-        if(this.cardManagers[player].hand.totalPlayed[0]%13==0&&userCombatant.getStatus('13 Card Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('13 Card Draw'))
-        }
-        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Temporary Strength')>0){
-            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Basic Temporary Strength'))
-        }
-        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Temporary Dexterity')>0){
-            userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Basic Temporary Dexterity'))
-        }
-        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('Basic Draw'))
-        }
-        if(card.getBasic(-1)&&userCombatant.getStatus('Basic Energy')>0){
-            this.addEnergy(userCombatant.getStatus('Basic Energy'),player)
-        }
-        if(card.getBasic(-1)&&userCombatant.getStatus('Basic (E)')>0){
-            this.addSpecificEnergy(userCombatant.getStatus('Basic (E)'),player,6)
+        if(card.getBasic(1)){
+            //if((card.name=='Strike'||card.name=='Strike-'||card.name=='Strefend')&&userCombatant.getStatus('Strike Block')>0){
+            if(userCombatant.getStatus('Strike Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('Strike Block'))
+            }
+            //if((card.name=='Strike'||card.name=='Strike-'||card.name=='Strefend')&&userCombatant.getStatus('Strike Lock On')>0){
+            if(userCombatant.getStatus('Strike Lock On')>0){
+                switch(this.attackManager.attacks[this.attackManager.attacks.length-1].type){
+                    case 1:
+                        this.attackManager.attacks[this.attackManager.attacks.length-1].type=5117
+                        this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
+                    break
+                    case 5045:
+                        this.attackManager.attacks[this.attackManager.attacks.length-1].type=5165
+                        this.attackManager.attacks[this.attackManager.attacks.length-1].effect.push(userCombatant.getStatus('Strike Lock On'))
+                    break
+                }
+            }
         }
         if(userCombatant.getStatus('Card Delay Exhaust')>0){
             this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Card Delay Exhaust'))
@@ -1668,53 +1671,86 @@ class battle{
             this.cardManagers[player].draw(userCombatant.getStatus('Card Delay Draw'))
             userCombatant.status.main[findList('Card Delay Draw',userCombatant.status.name)]=0
         }
-        if(card.spec.includes(54)&&userCombatant.getStatus('Discus Temporary Strength')>0){
-            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Discus Temporary Strength'))
+        if(card.spec.includes(54)){
+            if(userCombatant.getStatus('Discus Temporary Strength')>0){
+                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Discus Temporary Strength'))
+            }
+            if(userCombatant.getStatus('Discus Temporary Dexterity')>0){
+                userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Discus Temporary Dexterity'))
+            }
+            if(userCombatant.getStatus('Discus Pure')>0){
+                userCombatant.statusEffect('Pure',userCombatant.getStatus('Discus Pure'))
+            }
         }
-        if(card.spec.includes(54)&&userCombatant.getStatus('Discus Temporary Dexterity')>0){
-            userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Discus Temporary Dexterity'))
+        if(card.spec.includes(86)){
+            if(userCombatant.getStatus('Wheel Temporary Strength')>0){
+                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Wheel Temporary Strength'))
+            }
+            if(userCombatant.getStatus('Wheel Temporary Dexterity')>0){
+                userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Wheel Temporary Dexterity'))
+            }
+            if(userCombatant.getStatus('Wheel Pure')>0){
+                userCombatant.statusEffect('Pure',userCombatant.getStatus('Wheel Pure'))
+            }
         }
-        if(card.spec.includes(54)&&userCombatant.getStatus('Discus Pure')>0){
-            userCombatant.statusEffect('Pure',userCombatant.getStatus('Discus Pure'))
+        if(xCost){
+            if(userCombatant.getStatus('X Cost Boost')>0){
+                userCombatant.status.main[findList('X Cost Boost',userCombatant.status.name)]=0
+            }
+            if(userCombatant.getStatus('X Cost Vigor')>0){
+                userCombatant.statusEffect('Vigor',userCombatant.getStatus('X Cost Vigor'))
+            }
+            if(userCombatant.getStatus('X Cost Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('X Cost Block'))
+            }
+            if(userCombatant.getStatus('X Cost Energy')>0){
+                this.addEnergy(userCombatant.getStatus('X Cost Energy'),player)
+            }
+            if(userCombatant.getStatus('X Cost (E)')>0){
+                this.addSpecificEnergy(userCombatant.getStatus('X Cost (E)'),player,6)
+            }
+            if(userCombatant.getStatus('X Cost Chocolate Chip')>0){
+                userCombatant.statusEffect('Chocolate Chip',userCombatant.getStatus('X Cost Chocolate Chip'))
+            }
+            if(userCombatant.getStatus('X Cost Strength')>0){
+                userCombatant.statusEffect('Strength',userCombatant.getStatus('X Cost Strength'))
+            }
         }
-        if(card.spec.includes(86)&&userCombatant.getStatus('Wheel Temporary Strength')>0){
-            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Wheel Temporary Strength'))
-        }
-        if(card.spec.includes(86)&&userCombatant.getStatus('Wheel Temporary Dexterity')>0){
-            userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Wheel Temporary Dexterity'))
-        }
-        if(card.spec.includes(86)&&userCombatant.getStatus('Wheel Pure')>0){
-            userCombatant.statusEffect('Pure',userCombatant.getStatus('Wheel Pure'))
-        }
-        if(xCost&&userCombatant.getStatus('X Cost Vigor')>0){
-            userCombatant.statusEffect('Vigor',userCombatant.getStatus('X Cost Vigor'))
-        }
-        if(xCost&&userCombatant.getStatus('X Cost Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('X Cost Block'))
-        }
-        if(xCost&&userCombatant.getStatus('X Cost Energy')>0){
-            this.addEnergy(userCombatant.getStatus('X Cost Energy'),player)
-        }
-        if(xCost&&userCombatant.getStatus('X Cost (E)')>0){
-            this.addSpecificEnergy(userCombatant.getStatus('X Cost (E)'),player,6)
-        }
-        if(xCost&&userCombatant.getStatus('X Cost Chocolate Chip')>0){
-            userCombatant.statusEffect('Chocolate Chip',userCombatant.getStatus('X Cost Chocolate Chip'))
-        }
-        if(card.name=='Tile'&&userCombatant.getStatus('Tile Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('Tile Draw'))
-        }
-        if(card.name=='Tile'&&userCombatant.getStatus('Tile Temporary Strength')>0){
-            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Tile Temporary Strength'))
-        }
-        if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Fuel All')>0){
-            this.cardManagers[player].allEffectArgs(2,50,[userCombatant.getStatus('Dark Matter Fuel All')])
-        }
-        if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('Dark Matter Draw'))
-        }
-        if(card.name=='Dark\nMatter'&&userCombatant.getStatus('Dark Matter Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('Dark Matter Block'))
+        switch(card.name){
+            case 'Fatigue':
+                if(userCombatant.getStatus('Fatigue Splash')>0){
+                    this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Fatigue Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                    this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
+                }
+                if(userCombatant.getStatus('Fatigue Splash Bleed')>0){
+                    this.combatantManager.areaAbstract(2,['Bleed',userCombatant.getStatus('Fatigue Splash Bleed')],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                    this.particleManager.particlesBack.push(new particle(this.layer,userCombatant.position.x,userCombatant.position.y,93,[8]))
+                }
+            break
+            case 'Tile':
+                if(userCombatant.getStatus('Tile Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Tile Draw'))
+                }
+                if(userCombatant.getStatus('Tile Temporary Strength')>0){
+                    userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Tile Temporary Strength'))
+                }
+            break
+            case 'Dark\nMatter':
+                if(userCombatant.getStatus('Dark Matter Fuel All')>0){
+                    this.cardManagers[player].allEffectArgs(2,50,[userCombatant.getStatus('Dark Matter Fuel All')])
+                }
+                if(userCombatant.getStatus('Dark Matter Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Dark Matter Draw'))
+                }
+                if(userCombatant.getStatus('Dark Matter Block')>0){
+                    userCombatant.addBlock(userCombatant.getStatus('Dark Matter Block'))
+                }
+            break
+            case 'Pristine':
+                if(userCombatant.getStatus('Pristine Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Pristine Draw'))
+                }
+            break
         }
         if(card.spec.includes(70)&&userCombatant.getStatus('Shiv Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Shiv Block'))
@@ -1733,23 +1769,27 @@ class battle{
                 userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Silver Temporary Strength'))
             }
         }
-        if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Block')>0){
-            userCombatant.addBlock(userCombatant.getStatus('Mineral Block'))
-        }
-        if(card.spec.includes(52)&&userCombatant.getStatus('Mineral Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('Mineral Draw'))
+        if(card.spec.includes(52)){
+            if(userCombatant.getStatus('Mineral Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('Mineral Block'))
+            }
+            if(userCombatant.getStatus('Mineral Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('Mineral Draw'))
+            }
         }
         if(userCombatant.getStatus('Temporary Card Play Temporary Strength')>0){
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Temporary Card Play Temporary Strength'))
         }
-        if(card.name=='Pristine'&&userCombatant.getStatus('Pristine Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('Pristine Draw'))
+        if(card.spec.includes(84)){
+            if(userCombatant.getStatus('Coffee Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('Coffee Draw'))
+            }
+            if(userCombatant.getStatus('Coffee Splash')>0){
+                this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Coffee Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            }
         }
-        if(card.spec.includes(84)&&userCombatant.getStatus('Coffee Draw')>0){
-            this.cardManagers[player].draw(userCombatant.getStatus('Coffee Draw'))
-        }
-        if(card.spec.includes(84)&&userCombatant.getStatus('Coffee Splash')>0){
-            this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Coffee Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+        if(card.spec.includes(12)&&userCombatant.getStatus('Split Card Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Split Card Block'))
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card,this.cardManagers[player].hand.turnPlayed])

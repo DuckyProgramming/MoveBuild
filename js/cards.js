@@ -1062,11 +1062,11 @@ types.card=[
             {effect:[2],attack:8537,cost:1,target:[0],spec:[],class:11},
             {effect:[2],attack:8537,cost:1,target:[0],spec:[22],class:11},
         ],mtg:{
-            rarity:0,list:-1,color:[5],
+            rarity:0,list:-1,color:[0],
             levels:[
-                {effect:[2],attack:8537,cost:[5,-1,-1],target:[0],spec:[],class:11},
-                {effect:[2],attack:8537,cost:[5,-1],target:[0],spec:[],class:11},
-                {effect:[3],attack:8537,cost:[5,-1],target:[0],spec:[22],class:11},
+                {effect:[2],attack:8537,cost:[-1,-1,-1],target:[0],spec:[],class:11},
+                {effect:[2],attack:8537,cost:[-1,-1],target:[0],spec:[],class:11},
+                {effect:[3],attack:8537,cost:[-1,-1],target:[0],spec:[22],class:11},
             ],
         },
     },{
@@ -1076,7 +1076,7 @@ types.card=[
             {effect:[2,1],attack:8538,cost:0,target:[0],spec:[],class:11},
             {effect:[3,1],attack:8538,cost:0,target:[0],spec:[],class:11},
         ],mtg:{
-            rarity:0,list:0,color:[3],
+            rarity:0,list:0,color:[0],
             levels:[
                 {effect:[1,1],attack:8538,cost:[],target:[0],spec:[],class:11},
                 {effect:[2,1],attack:8538,cost:[],target:[0],spec:[],class:11},
@@ -1090,7 +1090,7 @@ types.card=[
             {effect:[4],attack:7646,cost:3,target:[0],spec:[],class:11},
             {effect:[5],attack:7646,cost:3,target:[0],spec:[],class:11},
         ],mtg:{
-            rarity:0,list:-1,color:[2],
+            rarity:0,list:-1,color:[0],
             levels:[
                 {effect:[3],attack:7646,cost:[-1,-1,-1,-1],target:[0],spec:[],class:11},
                 {effect:[4],attack:7646,cost:[-1,-1,-1,-1],target:[0],spec:[],class:11},
@@ -1118,11 +1118,11 @@ types.card=[
             {effect:[],attack:8731,cost:0,target:[0],spec:[],class:11},
             {effect:[],attack:8731,cost:0,target:[0],spec:[],class:11},
         ],mtg:{
-            rarity:0,list:0,color:[2],
+            rarity:0,list:0,color:[0],
             levels:[
-                {effect:[],attack:8731,cost:[2,-1],target:[0],spec:[],class:11},
-                {effect:[],attack:8731,cost:[2,-1],target:[0],spec:[],class:11},
-                {effect:[],attack:8731,cost:[2,-1],target:[0],spec:[],class:11},
+                {effect:[],attack:8731,cost:[0,-1],target:[0],spec:[],class:11},
+                {effect:[],attack:8731,cost:[0,-1],target:[0],spec:[],class:11},
+                {effect:[],attack:8731,cost:[0,-1],target:[0],spec:[],class:11},
             ],
         },
     },{
@@ -1137,6 +1137,20 @@ types.card=[
                 {effect:[],attack:7133,cost:[-1,-1],target:[0],spec:[],class:11},
                 {effect:[],attack:7133,cost:[-1,-1],target:[0],spec:[],class:11},
                 {effect:[],attack:7133,cost:[-1,-1],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Exhume',rarity:0,list:0,
+        levels:[
+            {effect:[],attack:93,cost:2,target:[0],spec:[1],class:11},
+            {effect:[],attack:93,cost:1,target:[0],spec:[1],class:11},
+            {effect:[],attack:93,cost:1,target:[0],spec:[1,2],class:11},
+        ],mtg:{
+            rarity:0,list:0,color:[-1],
+            levels:[
+                {effect:[],attack:93,cost:[-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[],attack:93,cost:[-1,-1],target:[0],spec:[1],class:11},
+                {effect:[],attack:93,cost:[-1,-1],target:[0],spec:[1,2],class:11},
             ],
         },
     },
@@ -68248,15 +68262,15 @@ types.card=[
     },{
         name:'Never\nDone',rarity:1,list:19,
         levels:[
-            {effect:[1],attack:9450,cost:0,target:[0],spec:[2],class:11},
-            {effect:[2],attack:9450,cost:0,target:[0],spec:[2],class:11},
-            {effect:[2],attack:9450,cost:0,target:[0],spec:[2,22],class:11},
+            {effect:[1],attack:9450,cost:1,target:[0],spec:[2],class:11},
+            {effect:[2],attack:9450,cost:1,target:[0],spec:[2],class:11},
+            {effect:[2],attack:9450,cost:1,target:[0],spec:[2,22],class:11},
         ],mtg:{
-            rarity:1,list:19,color:[4],
+            rarity:1,list:19,color:[1,4],
             levels:[
-                {effect:[],attack:9451,cost:[],target:[0],spec:[2],class:11},
-                {effect:[],attack:9452,cost:[],target:[0],spec:[2],class:11},
-                {effect:[],attack:9453,cost:[],target:[0],spec:[2],class:11},
+                {effect:[],attack:9451,cost:[1,4],target:[0],spec:[2],class:11},
+                {effect:[],attack:9452,cost:[1,4],target:[0],spec:[2],class:11},
+                {effect:[],attack:9453,cost:[1,4],target:[0],spec:[2],class:11},
             ],
         },
     },{
@@ -68320,29 +68334,29 @@ types.card=[
     },{
         name:'Charge\nSlap',rarity:0,list:19,
         levels:[
-            {effect:[6,1],attack:9459,cost:-1,target:[2,1,1],spec:[0],class:1},
+            {effect:[5,1],attack:9459,cost:-1,target:[2,1,1],spec:[0],class:1},
+            {effect:[7,1],attack:9459,cost:-1,target:[2,1,1],spec:[0],class:1},
             {effect:[9,1],attack:9459,cost:-1,target:[2,1,1],spec:[0],class:1},
-            {effect:[11,1],attack:9459,cost:-1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
             rarity:0,list:19,color:[2,4],
             levels:[
-                {effect:[5,1],attack:9460,cost:[12,-3],target:[2,1,1],spec:[0],class:1},
-                {effect:[7,1],attack:9460,cost:[12,-3],target:[2,1,1],spec:[0],class:1},
-                {effect:[9,1],attack:9460,cost:[12,-3],target:[2,1,1],spec:[0],class:1},
+                {effect:[4,1],attack:9460,cost:[12,-3],target:[2,1,1],spec:[0],class:1},
+                {effect:[6,1],attack:9460,cost:[12,-3],target:[2,1,1],spec:[0],class:1},
+                {effect:[8,1],attack:9460,cost:[12,-3],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },{
         name:'Charge\nGuard',rarity:0,list:19,
         levels:[
-            {effect:[9,1],attack:9461,cost:-1,target:[0],spec:[],class:2},
+            {effect:[7,1],attack:9461,cost:-1,target:[0],spec:[],class:2},
+            {effect:[11,1],attack:9461,cost:-1,target:[0],spec:[],class:2},
             {effect:[13,1],attack:9461,cost:-1,target:[0],spec:[],class:2},
-            {effect:[16,1],attack:9461,cost:-1,target:[0],spec:[],class:2},
         ],mtg:{
             rarity:0,list:19,color:[2,4],
             levels:[
-                {effect:[7,1],attack:9462,cost:[12,-3],target:[0],spec:[],class:2},
-                {effect:[10,1],attack:9462,cost:[12,-3],target:[0],spec:[],class:2},
-                {effect:[13,1],attack:9462,cost:[12,-3],target:[0],spec:[],class:2},
+                {effect:[6,1],attack:9462,cost:[12,-3],target:[0],spec:[],class:2},
+                {effect:[9,1],attack:9462,cost:[12,-3],target:[0],spec:[],class:2},
+                {effect:[11,1],attack:9462,cost:[12,-3],target:[0],spec:[],class:2},
             ],
         },
     },{
@@ -68532,13 +68546,13 @@ types.card=[
             ],
         },
     },{
-        name:'Octomino',rarity:1,list:19,
+        name:'Octomino',rarity:-1,list:-8,
         levels:[
             {effect:[],attack:9483,cost:5,target:[0],spec:[2,67],class:13},
             {effect:[1],attack:9484,cost:4,target:[0],spec:[2,67],class:13},
             {effect:[2],attack:9484,cost:3,target:[0],spec:[2,67],class:13},
         ],mtg:{
-            rarity:1,list:19,color:[2],
+            rarity:-1,list:-8,color:[2],
             levels:[
                 {effect:[],attack:9483,cost:[5],target:[0],spec:[2,67],class:13},
                 {effect:[2],attack:9484,cost:[4],target:[0],spec:[2,67],class:13},
@@ -72259,7 +72273,9 @@ types.card=[
                 {effect:[],attack:9655,cost:[],target:[0],spec:[2],class:11},
             ],
         },
-    },{
+    },
+    
+    /*{
         name:'README',rarity:-5,list:-1,
         levels:[
             {effect:[1],attack:9656,cost:0,target:[0],spec:[],class:11},
@@ -72273,7 +72289,7 @@ types.card=[
                 {effect:[3],attack:9656,cost:[],target:[0],spec:[],class:11},
             ],
         },
-    },
+    },*/
 
     //mark q
 
