@@ -661,7 +661,7 @@ attack.prototype.update=function(){
             if(
                 this.timer==1&&(
                     this.type==2306&&this.userManager.hand.numberAbstract(2,[2])<=0||
-                    (this.type==9311||this.type==9313||this.type==9314||this.type==9315)&&this.userManager.hand.numberAbstract(25,[])<=0||
+                    (this.type==9311||this.type==9313||this.type==9314||this.type==9315)&&this.userManager.hand.numberAbstract(28,[])<=0||
                     (this.type==9312||this.type==9316||this.type==9317||this.type==9318)&&this.userManager.hand.numberAbstract(2,[0])<=0||
                     (this.type==4489||this.type==4490||this.type==4491||this.type==9319||this.type==9320||this.type==9321)&&this.userManager.hand.numberAbstract(2,[3])<=0||
                     (this.type==9340||this.type==9341||this.type==9342||this.type==9343)&&this.userManager.deck.countDupes(1)>0
@@ -2594,7 +2594,7 @@ attack.prototype.update=function(){
                             this.userCombatant.statusEffect('Vulnerable',this.effect[2])
                         break
                         case 9391:
-                            this.userCombatant.statusEffect('Claw',this.effect[2])
+                            this.userCombatant.statusEffect('Claw Up',this.effect[2])
                         break
                     }
                 }
@@ -4807,7 +4807,8 @@ attack.prototype.update=function(){
         case 8821: case 8838: case 8843: case 8854: case 8891: case 8931: case 8932: case 8939: case 8940: case 8945:
         case 8987: case 8990: case 9009: case 9080: case 9081: case 9086: case 9094: case 9127: case 9133: case 9177:
         case 9202: case 9302: case 9331: case 9367: case 9368: case 9369: case 9370: case 9371: case 9372: case 9373:
-        case 9383: case 9384: case 9396: case 9499: case 9536: case 9537: case 9538: case 9589: case 9611: case 9640:
+        case 9374: case 9383: case 9384: case 9396: case 9499: case 9536: case 9537: case 9538: case 9589: case 9611:
+        case 9640:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -14376,9 +14377,9 @@ attack.prototype.update=function(){
                 this.procedure=[]
                 for(let a=0,la=this.effect[1];a<la;a++){
                     if(this.userManager.discard.cards.length>a){
-                        if(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].name=='Fatigue'&&this.userManager.discard.cards.length>0){
+                        if(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].name=='Fatigue'&&this.userManager.discard.cards.length>=1+this.effect[1]){
                             this.procedure.push(this.userManager.discard.cards[this.userManager.discard.cards.length-2-a].id)
-                        }else{
+                        }else if(this.userManager.discard.cards.length>=this.effect[1]){
                             this.procedure.push(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].id)
                         }
                     }
@@ -14603,9 +14604,9 @@ attack.prototype.update=function(){
                 this.procedure=[]
                 for(let a=0,la=this.effect[1];a<la;a++){
                     if(this.userManager.discard.cards.length>a){
-                        if(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].name=='Fatigue'&&this.userManager.discard.cards.length>0){
+                        if(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].name=='Fatigue'&&this.userManager.discard.cards.length>=1+this.effect[1]){
                             this.procedure.push(this.userManager.discard.cards[this.userManager.discard.cards.length-2-a].id)
-                        }else{
+                        }else if(this.userManager.discard.cards.length>=this.effect[1]){
                             this.procedure.push(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].id)
                         }
                     }
@@ -14706,9 +14707,9 @@ attack.prototype.update=function(){
                 this.procedure=[]
                 for(let a=0,la=this.effect[1];a<la;a++){
                     if(this.userManager.discard.cards.length>a){
-                        if(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].name=='Fatigue'&&this.userManager.discard.cards.length>0){
+                        if(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].name=='Fatigue'&&this.userManager.discard.cards.length>=1+this.effect[1]){
                             this.procedure.push(this.userManager.discard.cards[this.userManager.discard.cards.length-2-a].id)
-                        }else{
+                        }else if(this.userManager.discard.cards.length>=this.effect[1]){
                             this.procedure.push(this.userManager.discard.cards[this.userManager.discard.cards.length-1-a].id)
                         }
                     }

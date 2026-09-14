@@ -9537,9 +9537,9 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9294: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDuplicate ${effect[1]} Random Card${pl(effect[1])}\nCop${effect[1]!=1?`ies`:`y`} Gain${effect[1]!=1?``:`s`} Exhaust\nand Ethereal`; break
         case 9295: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDuplicate ${effect[1]} Random Card${pl(effect[1])}\nCop${effect[1]!=1?`ies`:`y`} Gain${effect[1]!=1?``:`s`} Exhaust\nand Ethereal`; break
         case 9296: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDuplicate ${effect[1]} Random Card${pl(effect[1])}\nCop${effect[1]!=1?`ies`:`y`} Gain${effect[1]!=1?``:`s`} Exhaust\nand Ethereal`; break
-        case 9297: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage if\nTarget is Facing Away`; break
+        case 9297: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nif Target is Facing\nDirectly Away`; break
         case 9298: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nIf Played First,\nDraws Double Cards`; break
-        case 9299: string+=`Adjacent Cards Cost Health\nInstead of Energy`; break
+        case 9299: string+=`Adjacent Cards Cost\nHealth Instead of Energy`; break
         case 9300: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust Your Hand`; break
         case 9301: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAll Enemies\nCounter ${effect[1]} All`; break
         case 9302: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand\nLose ${effect[1]} Dexterity\nin 2 Turns`; break
@@ -9595,12 +9595,12 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9352: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nPut ${effect[2]} Random Card${pl(effect[2])}\non Top of Draw Pile`; break
         case 9353: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nPut ${effect[2]} Random Card${pl(effect[2])}\non Top of Draw Pile`; break
         case 9354: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nPulled:\nGain ${effect[1]} Radiation`; break
-        case 9361: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block Per\nAdjacent Empty Tile\nLocation`; break
+        case 9361: string+=`Add ${this.calculateEffect(effect[1],1)} Block Per\nAdjacent Empty Tile\nLocation\nMove ${effect[0]} Tile${pl(effect[0])}`; break
         case 9362: string+=`When You Deal\nSplash Damage,\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
         case 9363: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Weak,\nApply ${effect[2]} Stun\nOtherwise,\nApply ${effect[3]} Weak`; break
         case 9364: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Vulnerable,\nApply ${effect[2]} Stun\nOtherwise,\nApply ${effect[3]} Vulnerable`; break
-        case 9365: string+=`Make a Duplicate\nCard Negative Permanently`; break
-        case 9366: string+=`Make a Duplicate\nCard Polychrome Permanently`; break
+        case 9365: string+=`Make a Duplicate\nCard Negative\nPermanently`; break
+        case 9366: string+=`Make a Duplicate\nCard Polychrome\nPermanently`; break
         case 9367: string+=`Whenever an Enemy\nIntends to Attack,\nGain ${effect[0]} Energy`; break
         case 9368: string+=`Whenever an Enemy\nIntends to Attack,\nGain (R)`; break
         case 9369: string+=`Whenever an Enemy\nIntends to Attack,\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
@@ -9640,8 +9640,8 @@ card.prototype.description=function(attack,effect,spec,target){
         //9403 is free
         case 9404: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
         case 9405: string+=`Gain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
-        case 9406: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])} to Discard Pile`; break
-        case 9407: string+=`Gain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])} to Discard Pile`; break
+        case 9406: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])}\nto Discard Pile`; break
+        case 9407: string+=`Gain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])}\nto Discard Pile`; break
         case 9408: string+=`Apply ${effect[0]} Vulnerable\nA Random Card\nCosts ${effect[1]} Less`; break
         case 9409: string+=`Apply ${effect[0]} Vulnerable\nGain (N)`; break
         case 9410: string+=`Apply ${effect[0]} Shock\nA Random Card\nCosts ${effect[1]} Less`; break

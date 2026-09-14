@@ -1080,7 +1080,8 @@ class group{
                 type==24&&this.cards[a].energyAfford||
                 type==25&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
                 type==26&&args[0].includes(this.cards[a].class)&&args[1]!=this.cards[a].id||
-                type==27&&this.cards[a].name.includes(args[0])&&this.cards[a].class==args[1]
+                type==27&&this.cards[a].name.includes(args[0])&&this.cards[a].class==args[1]||
+                type==28&&this.cards[a].getCost(4)
             ){
                 total++
             }
@@ -3223,15 +3224,27 @@ class group{
                         this.cards[index].spec.push(args[0])
                         this.cards[index].additionalSpec.push(args[0])
                     break
-                    case 80:
-                        this.cards.splice(0,0,this.cards[index])
-                        this.cards.splice(index,1)
-                    break
                     case 81:
                         this.cards[index].deSize=true
                         this.cards[index].discardEffect.push(1)
                     break
-                    //82 is taken
+                    case 84:
+                        if(massed&&this.id!=0){
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                            if(options.massDrop){
+                                this.battle.cardManagers[this.player].drop.addDropCopy(this.cards[index])
+                            }
+                        }
+                        this.cards.splice(0,0,this.cards[index])
+                        this.cards.splice(index,1)
+                        return
                     //mark random
                 }
                 if(massed&&this.id!=0&&
@@ -3579,7 +3592,7 @@ class group{
                 }
             break
             case -155:
-                if(userCombatant.energyParity(this.battle.getEnergy(this.player))==0){
+                if(userCombatant.energyParity(this.battle.getEnergy(this.player))==1){
                     this.battle.loseEnergy(card.effect[0],this.player)
                 }
             break
@@ -7053,7 +7066,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20||this.battle.attackManager.targetInfo[0]==68){
+        if(this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(1,1,2,this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<constants.targetRadius){
                     this.selfCall(2,a)

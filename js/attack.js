@@ -297,12 +297,12 @@ class attack{
             case 9100: case 9102: case 9105: case 9106: case 9107: case 9108: case 9109: case 9113: case 9115: case 9116: case 9118: case 9119: case 9127: case 9133: case 9143: case 9146: case 9148: case 9151: case 9153: case 9154:
             case 9172: case 9173: case 9174: case 9175: case 9181: case 9182: case 9183: case 9184: case 9196: case 9198: case 9199: case 9208: case 9209: case 9211: case 9212: case 9215: case 9222: case 9228: case 9229: case 9230:
             case 9232: case 9233: case 9234: case 9235: case 9236: case 9237: case 9239: case 9240: case 9241: case 9242: case 9243: case 9244: case 9245: case 9246: case 9249: case 9265: case 9266: case 9268: case 9272: case 9273:
-            case 9275: case 9281: case 9289: case 9294: case 9297: case 9298: case 9307: case 9308: case 9309: case 9322: case 9326: case 9327: case 9334: case 9337: case 9355: case 9356: case 9357: case 9358: case 9360: case 9363:
-            case 9364: case 9383: case 9384: case 9385: case 9391: case 9395: case 9408: case 9409: case 9410: case 9411: case 9148: case 9421: case 9422: case 9441: case 9442: case 9443: case 9444: case 9447: case 9457: case 9458:
-            case 9459: case 9460: case 9463: case 9464: case 9489: case 9490: case 9497: case 9499: case 9500: case 9504: case 9508: case 9512: case 9513: case 9514: case 9515: case 9516: case 9522: case 9526: case 9528: case 9539:
-            case 9540: case 9541: case 9542: case 9545: case 9546: case 9548: case 9549: case 9555: case 9556: case 9558: case 9570: case 9571: case 9573: case 9575: case 9586: case 9587: case 9589: case 9590: case 9591: case 9602:
-            case 9607: case 9611: case 9613: case 9614: case 9619: case 9621: case 9622: case 9623: case 9628: case 9630: case 9631: case 9632: case 9634: case 9635: case 9636: case 9637: case 9641: case 9644: case 9646: case 9647:
-            case 9648: case 9649: case 9651: case 9654:
+            case 9275: case 9281: case 9284: case 9289: case 9293: case 9294: case 9297: case 9298: case 9307: case 9308: case 9309: case 9322: case 9326: case 9327: case 9334: case 9337: case 9345: case 9355: case 9356: case 9357:
+            case 9358: case 9360: case 9363: case 9364: case 9383: case 9384: case 9385: case 9391: case 9393: case 9399: case 9408: case 9409: case 9410: case 9411: case 9148: case 9421: case 9422: case 9418: case 9441: case 9442:
+            case 9443: case 9444: case 9447: case 9457: case 9458: case 9459: case 9460: case 9463: case 9464: case 9489: case 9490: case 9497: case 9499: case 9500: case 9504: case 9508: case 9512: case 9513: case 9514: case 9515:
+            case 9516: case 9522: case 9526: case 9528: case 9539: case 9540: case 9541: case 9542: case 9545: case 9546: case 9548: case 9549: case 9555: case 9556: case 9558: case 9570: case 9571: case 9573: case 9575: case 9586:
+            case 9587: case 9589: case 9590: case 9591: case 9602: case 9607: case 9611: case 9613: case 9614: case 9619: case 9621: case 9622: case 9623: case 9628: case 9630: case 9631: case 9632: case 9634: case 9635: case 9636:
+            case 9637: case 9641: case 9644: case 9646: case 9647: case 9648: case 9649: case 9651: case 9654:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -485,7 +485,7 @@ class attack{
             case 145: case 146: case 147: case 148: case 158: case 159: case 160: case 162: case 353: case 4252:
             case 4253: case 4254: case 5133: case 5134: case 5138: case 5139: case 5140: case 5142: case 6470: case 8155:
             case 8157: case 8177: case 8179: case 8180: case 8181: case 8182: case 8183: case 8184: case 8185: case 8186: 
-            case 8187: case 8188: case 8189: case 8561: case 9394: case 9395: case 9397:
+            case 8187: case 8188: case 8189: case 8561: case 9394: case 9395: case 9396: case 9397:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.battle.players-1-this.userCombatant.id]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1212,17 +1212,6 @@ class attack{
                         this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
                     }
                 }
-            break
-            case 9393:
-                //mark 1
-                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                this.userCombatant=this.battle.combatants[this.battle.players-1-this.userCombatant.id]
-
-                this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
-                this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
-
-                this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
-                this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
 
         }
@@ -11691,7 +11680,7 @@ class attack{
                         this.userManager.hand.discardValid(this.effect[1])
                     break
                     case 9346:
-                        this.userManager.reserve.randomEffect(80,[])
+                        this.userManager.reserve.randomEffect(84,[])
                     break
                     case 9352:
                         this.userManager.hand.randomEffect(81,[])
@@ -14299,7 +14288,7 @@ class attack{
                         }
                     break
                     case 9347:
-                        this.userManager.reserve.randomEffect(80,[])
+                        this.userManager.reserve.randomEffect(84,[])
                     break
                     case 9353:
                         this.userManager.hand.randomEffect(81,[])
@@ -19590,10 +19579,6 @@ class attack{
                     case 9378:
                         this.userCombatant.statusEffect('Fragile Skill Cost Down',this.effect[0])
                         this.userCombatant.statusEffect('Fragile Defense Cost Down',this.effect[0])
-                    break
-                    case 9398:
-                        this.userManager.draw(this.effect[0])
-                        this.userCombatant.statusEffect('X Cost Boost',this.effect[1])
                     break
                     case 9414:
                         this.userManager.drawAbstract(this.effect[0],0,3,[13])
@@ -24968,11 +24953,15 @@ class attack{
                     break
                     case 9365:
                         this.battle.overlayManager.overlays[189][this.player].active=true
-                        this.battle.overlayManager.overlays[189][this.player].activate([4])
+                        this.battle.overlayManager.overlays[189][this.player].activate([5])
                     break
                     case 9366:
                         this.battle.overlayManager.overlays[189][this.player].active=true
-                        this.battle.overlayManager.overlays[189][this.player].activate([5])
+                        this.battle.overlayManager.overlays[189][this.player].activate([4])
+                    break
+                    case 9398:
+                        this.userManager.draw(this.effect[0])
+                        this.userCombatant.statusEffect('X Cost Boost',this.effect[1])
                     break
                     case 9412:
                         this.userManager.hand.exhaust(this.effect[0])
@@ -26587,7 +26576,7 @@ class attack{
                         this.userManager.draw(this.effect[2])
                     break
                     case 9330:
-                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userCombatant.heal(this.effect[0])
                         this.userCombatant.statusEffect('Vigor',-this.effect[1])
                     break
                     case 9362:
@@ -37040,8 +37029,8 @@ class attack{
                         this.userCombatant.statusEffect('Overdose Strength',this.effect[0])
                     break
                     case 9383:
-                        let target9383=this.battle.combatantManager.randomEffect(25,[])
-                        this.userCombatant.evoke(0,target9383,[this.effect[0]])
+                        let target9383=this.battle.combatantManager.randomEnemyEffect(25,[])
+                        this.userCombatant.evoke(0,target9383.id,[this.effect[0]])
                     break
                     case 9384:
                         this.userCombatant.evoke(16,this.targetCombatant.id,[this.effect[0],1])

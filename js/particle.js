@@ -5794,10 +5794,10 @@ class particle{
             case 280:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
-                this.direction+=3
+                this.direction+=9
                 if(!this.trigger){
                     this.fade+=0.2
-                    if(this.fade>=6){
+                    if(this.fade>=4){
                         this.trigger=true
                     }
                 }else{
