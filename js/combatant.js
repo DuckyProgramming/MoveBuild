@@ -215,7 +215,7 @@ class combatant{
                 'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength','Fragile Skill Cost Down',
                 'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn','Temporary Dexterity Convert','Split Card Block','X Cost Strength','Tile Exhaust','Status Exhaust',
                 'Scry Block','Overdose (W)','Overdose (B)','Overdose (G)','Overdose (R)','Attack Intent (N)','Attack Intent (W)','Attack Intent (B)','Attack Intent (K)','Attack Intent (G)',
-                'Attack Intent (E)',
+                'Attack Intent (E)','10 Draw Energy','10 Draw Random Mana',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -312,7 +312,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//92
                 0,0,0,0,0,0,0,0,0,0,//93
                 0,0,0,0,0,0,0,0,0,0,//94
-                0,
+                0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -409,7 +409,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//92
                 2,2,2,2,2,2,2,2,2,2,//93
                 2,2,2,2,2,2,2,2,2,2,//94
-                2,
+                2,2,2,
             ]}
         /*
         0-none

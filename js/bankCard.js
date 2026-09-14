@@ -9637,6 +9637,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9400: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext X Cost Card\nPlayed Gets +${effect[1]} to X`; break
         case 9401: string+=`Gain ${effect[0]} Currency\nCycle: Attack`; break
         case 9402: string+=`Gain ${effect[0]} Currency\nCycle: Defense`; break
+        //9403 is free
         case 9404: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
         case 9405: string+=`Gain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
         case 9406: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])} to Discard Pile`; break
@@ -9866,56 +9867,29 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9631: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (G) Spent:\nDiscover a 2 Cost Card\nIt Costs 0`; break
         case 9632: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nYou Cannot be Pushed\nThis Turn`; break
         case 9633: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nUpward: Remove ${effect[1]} Fatigue${pl(effect[1])}`; break
-
         case 9634: string+=`4 or More Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock`; break
-        //1316
         case 9635: string+=`4 or More Mana:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock`; break
-        //4783
         case 9636: string+=`Trigger Target's Burn`; break
         case 9637: string+=`Trigger Target's Burn\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-        //5108-5109
         case 9638: string+=`Gain ${effect[0]} Energy\nEvery 10 Cards Drawn`; break
         case 9639: string+=`Gain ${effect[0]} Random Mana\nEvery 10 Cards Drawn`; break
-        //4715-4716
         case 9640: string+=`Discover ${effect[0]} 0 Cost Card${pl(effect[0])}`; break
-        //7603
-
         case 9641: string+=`Target Takes ${effect[0]} More Damage\nApply ${effect[1]} Strength`; break
-        //188
         case 9642: string+=`Gain ${effect[0]} Dodge\nTake ${effect[1]} More Damage`; break
-        //440
         case 9643: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn,\nGain ${effect[1]} Bleed`; break
-        //1307
         case 9644: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nCosts 1 Less`; break
-        //3851
         case 9645: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nCosts 1 Less\nFirst Time Played: (${this.debut?`Yes`:`No`})\nHeal ${this.calculateEffect(effect[1],4)} Health`; break
-        //3132
-
         case 9646: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWhen Exhausted,\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${pl(effect[3])}`; break
-        //2770
         case 9647: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWhen Exhausted,\nGain (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-        //4525
         case 9648: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDamage Increases by ${effect[1]}\nCosts 1 More\nDiscards to Draw`; break
-        //1739
-        case 9649: string+=`Push 1 Tile\nIf Target Unmoved,\nPush Again`; break
-        //974
+        //9649 is free
         case 9650: string+=`Deal ${effect[0]} More Damage\nOverdrive ${effect[1]}:\nGain ${effect[2]} Energy`; break
-        //1841
         case 9651: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDamage Decreases by ${effect[1]}\nCosts 1 More\nDiscards to Draw`; break
-        //2053
         case 9652: string+=`Gain (E) at the\nStart of Your Turn\nAdd to Discard:\nQuiet Moonlight\nRefracted Sunlight\nGlamorous Starlight`; break
-        //3628,5250
         case 9653: string+=`Gain (E) (W) (B)\n(K) (G) (R) (N)`; break
-        //4702
-
         case 9654: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked, Target\nTakes ${effect[1]} More Damage`; break
-        //3579
         case 9655: string+=`All Mana Becomes (E)`; break
-        //3764
-        case 9656: string+=`Add the Most\nRecently Added Card\nof Equivalent Level\nto Hand`; break
-        //1293
-
-        //BORDER CS 113
+        case 9656: string+=`Add the Most\nRecently Added Card\nto the Game\nof Equivalent Level\nto Hand`; break
 
         //mark p
         //mark q

@@ -66217,13 +66217,6 @@ types.card=[
             {effect:[15,2],attack:1228,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Spam\nPush',rarity:-1,list:-8,
-        levels:[
-            {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1],class:1},
-            {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1,2],class:1},
-            {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1,2,22],class:1},
-        ],
-    },{
         name:'Disorder',rarity:-1,list:-8,
         levels:[
             {effect:[1,2],attack:1026,cost:1,target:[0],spec:[1],class:4},

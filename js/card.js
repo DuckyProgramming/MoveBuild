@@ -1731,6 +1731,14 @@ class card{
             case 9265:
                 userCombatant.statusEffect('Dexterity',this.effect[1])
             break
+            case 9646:
+                this.battle.addSpecificEnergy(this.effect[2],this.player,6)
+                this.userManager.draw(this.effect[3])
+            break
+            case 9647:
+                this.battle.addSpecificEnergy(1,this.player,6)
+                this.userManager.draw(this.effect[2])
+            break
 
         }
     }
@@ -2791,7 +2799,7 @@ class card{
             case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273: case 8272: case 9415:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
-            case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078:
+            case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078: case 9644:
                 this.costDown(2,[1])
             break
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
@@ -2880,7 +2888,7 @@ class card{
                     this.discardEffect.push(13)
                 }
             break
-            case 3132: case 3851: case 3852:
+            case 3132: case 3851: case 3852: case 9645:
                 this.costDown(2,[this.effect[2]])
             break
             case 3365:
@@ -2997,6 +3005,14 @@ class card{
                     this.exhaust=true
                 }
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
+            break
+            case 9648:
+                this.effect[0]+=this.effect[1]
+                this.costUp(2,[1])
+            break
+            case 9651:
+                this.effect[0]=max(this.effect[0]-this.effect[1],0)
+                this.costUp(2,[1])
             break
         }
         if(this.spec.includes(88)){

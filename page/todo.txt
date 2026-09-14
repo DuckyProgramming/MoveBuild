@@ -1,5 +1,6 @@
 test silver sear mtg
 9403 is unoccupied
+9649 is free
 split grounded push to occupy space 9632
 
 https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview

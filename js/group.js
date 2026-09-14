@@ -11,6 +11,7 @@ class group{
         this.lastDuplicate=[]
         this.tempCard=new card(this.layer,this.battle,this.player,0,0,0,0,0,0,variants.mtg?[]:0,[])
         this.lastPlayed=elementArray(this.tempCard,14)
+        this.totalDrawn=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -3259,6 +3260,10 @@ class group{
     drawEffect(card,sendId){
         card.drawn++
         card.drawMark=true
+        if(!card.spec.includes(12)){
+            this.totalDrawn[0]++
+            this.totalDrawn[card.class]++
+        }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         userCombatant.activateDraw()
         this.battle.relicManager.activate(19,[card,this.player])
@@ -3273,6 +3278,14 @@ class group{
         if(card.getBasic(1)){
             if(userCombatant.getStatus('Speed Strike')>0){
                 this.battle.combatantManager.randomEnemyEffect(3,[max(0,card.effect[0]+userCombatant.getStatus('Strike Boost')),userCombatant.id])
+            }
+        }
+        if(this.totalDrawn[0]%10==0){
+            if(userCombatant.getStatus('10 Draw Energy')>0){
+                this.battle.addEnergy(userCombatant.getStatus('5 Card Energy'),player)
+            }
+            if(userCombatant.getStatus('10 Draw Random Mana')>0){
+                this.battle.addSpecificEnergy(userCombatant.getStatus('5 Card Random Mana'),player,floor(random(0,7)))
             }
         }
         switch(card.class){
@@ -3571,9 +3584,9 @@ class group{
                 }
             break
             case -156:
-                let e156=this.battle.getEnergy(this.player)
-                this.battle.loseEnergy(999)
-                this.battle.addSpecificEnergy(e156,this.player,6)
+                let e156=this.battle.getSpecificEnergy(this.player,3)
+                this.battle.loseSpecificEnergy(999,this.player,3)
+                this.battle.addSpecificEnergy(e156,this.player,0)
             break
 
             //mark n
@@ -3632,7 +3645,9 @@ class group{
                 this.battle.combatantManager.randomEnemyEffect(3,[card.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
             break
             case 1307:
-                userCombatant.statusEffect('Bleed',card.effect[0])
+                if(userCombatant.block<=0){
+                    userCombatant.statusEffect('Bleed',card.effect[0])
+                }
             break
             case 1332:
                 userCombatant.heal(card.effect[0])
@@ -3953,6 +3968,9 @@ class group{
             break
             case 9249:
                 this.battle.loseEnergy(card.effect[3],this.player)
+            break
+            case 9643:
+                userCombatant.statusEffect('Bleed',card.effect[0])
             break
 
         }
