@@ -2806,6 +2806,7 @@ class group{
                         &&!(effect==78&&!this.cards[b].spec.includes(60))
                         &&!(effect==79&&this.cards[b].spec.includes(args[0]))
                         &&!(effect==80&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||this.cards[b].class!=1||this.cards[b].id==args[1]))
+                        &&!(effect==82&&(this.cards[b].getCost(1)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(55)||this.cards[b].spec.includes(59)||this.cards[b].spec.includes(60)||this.cards[b].class!=args[1]))
                     ){
                         list.push(b)
                     }
@@ -2821,7 +2822,7 @@ class group{
                     case 0: case 17: case 57: case 58:
                         this.cards[index].deSize=true
                     break
-                    case 1: case 35: case 63:
+                    case 1: case 35: case 63: case 82:
                         this.cards[index].costDown(0,[args[0]])
                     break
                     case 2: case 36: case 38: case 77:
@@ -3213,6 +3214,7 @@ class group{
                         this.cards[index].deSize=true
                         this.cards[index].discardEffect.push(1)
                     break
+                    //82 is taken
                     //mark random
                 }
                 if(massed&&this.id!=0&&
@@ -3546,6 +3548,16 @@ class group{
                 for(let a=0,la=card.effect[0];a<la;a++){
                     this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,1,0,[],[constants.playerNumber+2,3])
                 }
+            break
+            case -155:
+                if(userCombatant.energyParity(this.battle.getEnergy(this.player))==0){
+                    this.battle.loseEnergy(card.effect[0],this.player)
+                }
+            break
+            case -156:
+                let e156=this.battle.getEnergy(this.player)
+                this.battle.loseEnergy(999)
+                this.battle.addSpecificEnergy(e156,this.player,6)
             break
 
             //mark n

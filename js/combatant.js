@@ -212,7 +212,8 @@ class combatant{
                 'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block','Burn Trigger All Per Turn','Power Claw Up','Dual Discus Per Turn',
                 'Discus Boost','Discus Temporary Strength','Discus Temporary Dexterity','Discus Pure','Discus Flip Top','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Splash Attach Vulnerable','Free Skill Discover Per Turn','Common Colorless Discover Per Turn',
                 'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash','Temporary Dexterity Cycle 3 1','Temporary Dexterity Cycle 3 2','Temporary Dexterity Cycle 3 3','0 Cost Temporary Strength','Charge Consume Temporary Strength','Silver Temporary Strength',
-                'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength',
+                'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength','Fragile Skill Cost Down',
+                'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -306,7 +307,8 @@ class combatant{
                 0,0,1,1,0,2,0,0,0,0,//89
                 0,0,0,0,0,0,0,0,0,0,//90
                 0,0,1,0,2,2,2,0,0,0,//91
-                0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,//92
+                0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -400,7 +402,8 @@ class combatant{
                 2,2,2,2,2,0,0,2,2,2,//89
                 2,2,2,2,2,2,2,2,2,2,//90
                 2,2,2,2,0,0,0,2,2,2,//91
-                2,2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,//92
+                2,2,2,2,2,
             ]}
         /*
         0-none
@@ -3639,6 +3642,12 @@ class combatant{
             if(this.status.main[209]>0){
                 this.status.main[209]=0
             }
+            if(this.status.main[919]>0){
+                this.status.main[919]=0
+            }
+            if(this.status.main[920]>0){
+                this.status.main[920]=0
+            }
             if(this.status.main[267]>0){
                 this.status.main[267]=0
             }
@@ -5132,6 +5141,21 @@ class combatant{
                     }
                 }
             break
+            case 16:
+                let type16=this.orbs[0]
+                for(let a=0,la=args[0];a<la;a++){
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
+                }
+                for(let a=0,la=this.orbs.length-1;a<la;a++){
+                    this.orbs[a]=this.orbs[a+1]
+                    this.orbDetail[a]=this.orbDetail[a+1]
+                }
+                this.orbs[this.orbs.length-1]=-1
+                this.orbDetail[this.orbs.length-1]=-1
+                for(let a=0,la=args[1];a<la;a++){
+                    this.holdOrb(antiOrb(type16))
+                }
+            break
         }
         this.checkAnyOrb()
     }
@@ -5603,6 +5627,8 @@ class combatant{
                                 if(this.getStatus('Self Shock Claw Up')>0){
                                     this.statusEffect('Claw Up',this.getStatus('Self Shock Claw Up'))
                                 }
+                                this.battle.cardManagers[this.battle.turn.main].discard.allEffectArgs(44,[9413])
+                                this.battle.cardManagers[this.battle.turn.main].reserve.allEffectArgs(44,[9413])
                             }
                         break
                     }

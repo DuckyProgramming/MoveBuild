@@ -543,6 +543,8 @@ class combatantManager{
                 case 24:
                     this.combatants[index].takeDamage(args[0],args[1])
                     return index
+                case 25:
+                    return this.combatants[index]
             }
         }
     }

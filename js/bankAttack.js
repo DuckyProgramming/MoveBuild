@@ -116,7 +116,7 @@ attack.prototype.update=function(){
         case 8715: case 8754: case 8755: case 8756: case 8772: case 8773: case 8774: case 8775: case 8776: case 8777: case 8779: case 8788: case 8789: case 8792: case 8800: case 8837: case 8839: case 8840: case 8841: case 8842:
         case 8855: case 8870: case 8874: case 8883: case 8905: case 8913: case 8919: case 8922: case 8975: case 8977: case 8995: case 9001: case 9010: case 9012: case 9014: case 9024: case 9025: case 9026: case 9027: case 9028:
         case 9097: case 9100: case 9107: case 9109: case 9116: case 9143: case 9174: case 9182: case 9183: case 9198: case 9211: case 9212: case 9215: case 9230: case 9246: case 9249: case 9265: case 9266: case 9273: case 9275:
-        case 9281: case 9289: case 9294: case 9297: case 9298: case 9309: case 9326: case 9327: case 9334: case 9337: case 9363: case 9364:
+        case 9281: case 9289: case 9294: case 9297: case 9298: case 9309: case 9326: case 9327: case 9334: case 9337: case 9363: case 9364: case 9393: case 9399: case 9418:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -322,7 +322,7 @@ attack.prototype.update=function(){
         case 9144: case 9147: case 9169: case 9180: case 9185: case 9191: case 9194: case 9197: case 9200: case 9201:
         case 9213: case 9217: case 9218: case 9219: case 9220: case 9221: case 9224: case 9225: case 9226: case 9227:
         case 9247: case 9248: case 9250: case 9264: case 9267: case 9270: case 9271: case 9276: case 9277: case 9295:
-        case 9310: case 9328: case 9339: case 9346: case 9352:
+        case 9310: case 9328: case 9339: case 9346: case 9352: case 9390: case 9395: case 9400: case 9419:
             //mark 2
             if(
                 this.timer==1&&(
@@ -428,7 +428,7 @@ attack.prototype.update=function(){
         case 8937: case 8959: case 8978: case 8984: case 8992: case 9000: case 9062: case 9063: case 9064: case 9065:
         case 9073: case 9110: case 9145: case 9168: case 9171: case 9204: case 9205: case 9216: case 9259: case 9260:
         case 9261: case 9262: case 9290: case 9296: case 9301: case 9335: case 9336: case 9338: case 9347: case 9353:
-        case 9354: case 9361:
+        case 9354: case 9361: case 9386: case 9387: case 9388: case 9389:
             //mark 3
             if(
                 this.timer==1&&(
@@ -696,7 +696,7 @@ attack.prototype.update=function(){
         case 8908: case 8912: case 8921: case 8923: case 8924: case 8925: case 8926: case 8927: case 8967: case 8968: case 8969: case 8970: case 8972: case 8983: case 8985: case 8998: case 8999: case 9003: case 9004: case 9011:
         case 9019: case 9020: case 9022: case 9023: case 9060: case 9120: case 9130: case 9142: case 9156: case 9164: case 9166: case 9167: case 9176: case 9178: case 9179: case 9206: case 9207: case 9255: case 9256: case 9257:
         case 9258: case 9269: case 9282: case 9283: case 9286: case 9287: case 9303: case 9304: case 9306: case 9311: case 9312: case 9313: case 9314: case 9315: case 9317: case 9317: case 9318: case 9319: case 9320: case 9321:
-        case 9322: case 9323: case 9324: case 9332: case 9304: case 9341: case 9342: case 9343: case 9348: case 9349: case 9350: case 9351: case 9375: case 9376: case 9377:
+        case 9322: case 9323: case 9324: case 9332: case 9304: case 9341: case 9342: case 9343: case 9348: case 9349: case 9350: case 9351: case 9375: case 9376: case 9377: case 9378: case 9414: case 9414: case 9417:
             //mark 4
             if(
                 this.timer==1&&(
@@ -804,7 +804,7 @@ attack.prototype.update=function(){
         case 8640: case 8641: case 8647: case 8649: case 8650: case 8658: case 8659: case 8671: case 8689: case 8708: case 8725: case 8727: case 8752: case 8753: case 8781: case 8782: case 8783: case 8803: case 8804: case 8833:
         case 8844: case 8848: case 8853: case 8859: case 8861: case 8871: case 8876: case 8881: case 8892: case 8893: case 8894: case 8895: case 8907: case 8930: case 8953: case 8954: case 8955: case 8979: case 9030: case 9031:
         case 9032: case 9033: case 9072: case 9098: case 9099: case 9101: case 9104: case 9105: case 9106: case 9117: case 9123: case 9125: case 9126: case 9128: case 9129: case 9157: case 9158: case 9162: case 9188: case 9189:
-        case 9190: case 9195: case 9231: case 9251: case 9253: case 9254: case 9263: case 9274: case 9288: case 9291: case 9299: case 9300: case 9325: case 9344: case 9365: case 9366:
+        case 9190: case 9195: case 9231: case 9251: case 9253: case 9254: case 9263: case 9274: case 9288: case 9291: case 9299: case 9300: case 9325: case 9344: case 9365: case 9366: case 9398: case 9412: case 9415: case 9416:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1316,7 +1316,7 @@ attack.prototype.update=function(){
         case 7694: case 7732: case 7733: case 7739: case 7753: case 7757: case 7874: case 7978: case 8028: case 8047:
         case 8053: case 8134: case 8372: case 8490: case 8535: case 8547: case 8566: case 8613: case 8625: case 8675:
         case 8701: case 8824: case 8858: case 8862: case 9069: case 9091: case 9150: case 9192: case 9203: case 9252:
-        case 9292: case 9359:
+        case 9292: case 9359: case 9413:
             //mark 7
             if(
                 this.timer==1&&(
@@ -1865,7 +1865,7 @@ attack.prototype.update=function(){
         case 6023: case 6024: case 6025: case 6102: case 6197: case 6199: case 6219: case 6234: case 6317: case 6418:
         case 6503: case 6652: case 6712: case 6713: case 6718: case 6719: case 6727: case 6728: case 6729: case 6735:
         case 6739: case 6741: case 6830: case 6895: case 7593: case 8319: case 8364: case 8381: case 8458: case 8517:
-        case 8849: case 8850: case 8856: case 8882:
+        case 8849: case 8850: case 8856: case 8882: case 9385:
             //mark 13
             if(
                 (this.type==1649||this.type==1740)&&this.userCombatant.energyParity(this.energy)!=this.limit%2||
@@ -1999,7 +1999,7 @@ attack.prototype.update=function(){
         case 8767: case 8778: case 8794: case 8801: case 8802: case 8819: case 8847: case 8857: case 8865: case 8866:
         case 8877: case 8878: case 8898: case 8933: case 8952: case 8971: case 8980: case 8986: case 8989: case 8994:
         case 9040: case 9089: case 9113: case 9115: case 9151: case 9181: case 9196: case 9199: case 9208: case 9268:
-        case 9293: case 9345:
+        case 9293: case 9345: case 9394: case 9397: case 9408: case 9409: case 9410: case 9411:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2587,7 +2587,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 77: case 1503: case 1538: case 8306:
+        case 77: case 1503: case 1538: case 8306: case 9391:
             if(this.timer==1){
                 this.userCombatant.startAnimation(24)
             }
@@ -2608,7 +2608,10 @@ attack.prototype.update=function(){
                             }
                         break
                         case 8306:
-                            this.userCombatant.statusEffect('Vulnerable',this.effect[1])
+                            this.userCombatant.statusEffect('Vulnerable',this.effect[2])
+                        break
+                        case 9391:
+                            this.userCombatant.statusEffect('Claw',this.effect[2])
                         break
                     }
                 }
@@ -2845,7 +2848,7 @@ attack.prototype.update=function(){
         case 8643: case 8644: case 8652: case 8653: case 8673: case 8694: case 8699: case 8739: case 8770: case 8771:
         case 8805: case 8834: case 8851: case 8852: case 8880: case 8899: case 8920: case 8935: case 8936: case 9058:
         case 9061: case 9070: case 9121: case 9155: case 9209: case 9223: case 9272: case 9278: case 9279: case 9280:
-        case 9333:
+        case 9333: case 9379: case 9380: case 9381: case 9382: case 9392: case 9401: case 9402:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -4803,6 +4806,7 @@ attack.prototype.update=function(){
         case 8821: case 8838: case 8843: case 8854: case 8891: case 8931: case 8932: case 8939: case 8940: case 8945:
         case 8987: case 8990: case 9009: case 9080: case 9081: case 9086: case 9094: case 9127: case 9133: case 9177:
         case 9202: case 9302: case 9331: case 9367: case 9368: case 9369: case 9370: case 9371: case 9372: case 9373:
+        case 9383: case 9384: case 9396:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -12195,7 +12199,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 5724: case 5725:
+        case 5724: case 5725: case 9404: case 9405: case 9406: case 9407:
             if(this.timer==1){
                 this.userCombatant.startAnimation(5)
             }
@@ -12203,13 +12207,56 @@ attack.prototype.update=function(){
             if(this.timer==10){
                 current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,232,[30]))
                 switch(this.type){
+                    case 5724:   
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
+                    break
                     case 5725:
                         this.battle.addSpecificEnergy(1,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
+                    break
+                    case 9404:
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 9405:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 9406:
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Shadow',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 9407:
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Shadow',types.card),0,constants.playerNumber+1)
+                        }
                     break
                 }
-                this.userManager.draw(this.effect[0])
-                this.userManager.hand.add(findName('Pristine',types.card),0,0)
-                this.battle.drop(this.player,findName('Quiet\nMoonlight',types.card),0,constants.playerNumber+1)
             }else if(this.timer>=20){
                 this.remove=true
             }

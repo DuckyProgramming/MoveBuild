@@ -184,6 +184,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case -152: string+=`At the End of Your Turn,\nAdd ${effect[0]} Glamorous\nStarlight${pl(effect[0])} to Discard Pile`; break
         case -153: string+=`Unupgrade Your Hand`; break
         case -154: string+=`Unupgrade Your Hand\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
+        case -155: string+=`When Drawn,\nOdd Energy:\nLose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}`; break
+        case -156: string+=`When Drawn,\nAll (K) Become (N)`; break
 
         //mark n
 
@@ -9610,81 +9612,47 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9375: string+=`Gain ${effect[0]} Strength\nIf You Have No Caffeine,\nLose ${effect[1]} Health`; break
         case 9376: string+=`Gain ${effect[0]} Strength\nLose ${effect[1]} Health`; break
         case 9377: string+=`Gain ${effect[0]} Dexterity\nLose ${effect[1]} Health`; break
-
         case 9378: string+=`Defenses and Skills\nCost ${effect[0]} Less\nUntil You Lose Health`; break
-        //3571
         case 9379: string+=`Every Turn, a Random\nAttack Costs ${effect[0]} Less`; break
         case 9380: string+=`Every Turn, a Random\nDefense Costs ${effect[0]} Less`; break
         case 9381: string+=`Every Turn, a Random\nMovement Costs ${effect[0]} Less`; break
         case 9382: string+=`Every Turn, a Random\nSkill Costs ${effect[0]} Less`; break
-        //2518
-
         case 9383: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\non a Random Enemy`; break
-        //956
         case 9384: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nHold its Opposing Orb`; break
-        //550
         case 9385: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nApply ${effect[1]} Shock\nPer Movement Drawn`; break
-        //8517
         case 9386: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nClaw in Hand:\nGain ${effect[1]} Energy`; break
         case 9387: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nClaw in Hand:\nGain (G)`; break
         case 9388: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nClaw in Hand:\nGain (G) (G)`; break
         case 9389: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nClaw in Hand:\nGain (E) (E)`; break
-        //5784-5787
         case 9390: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}\nClaw Up ${effect[2]}`; break
-        //502
         case 9391: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nClaw Up ${effect[2]}`; break
-        //77
-
         case 9392: string+=`Split Currency Evenly\nBetween Self and Ally`; break
-        //5135
         case 9393: string+=`Ally Deals ${this.calculateEffect(effect[0],0,1)} Damage`; break
-        //1
-        case 9394: string+=`Ally Heals ${this.calculateEffectAlly(effect[0],4)} Health} Health`; break
-        //145
+        case 9394: string+=`Ally Heals ${this.calculateEffectAlly(effect[0],4)} Health`; break
         case 9395: string+=`Ally Adds ${this.calculateEffectAlly(effect[0],1)} Block`; break
-        //146
         case 9396: string+=`Ally Deals ${this.calculateEffectAlly(effect[0],0)} Damage\nin All Directions`; break
-        //353
         case 9397: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAlly Loses ${effect[1]} Health`; break
-        //148
-
         case 9398: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nNext X Cost Card\nPlayed Gets +${effect[1]} to X`; break
-        //3514
         case 9399: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext X Cost Card\nPlayed Gets +${effect[1]} to X`; break
         case 9400: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext X Cost Card\nPlayed Gets +${effect[1]} to X`; break
-        //4707-4708
         case 9401: string+=`Gain ${effect[0]} Currency\nCycle: Attack`; break
         case 9402: string+=`Gain ${effect[0]} Currency\nCycle: Defense`; break
-        //6517
-        case -155: string+=`When Drawn,\n:\nLose ${effect[0]} ${variants.mtg?`Random Mana`:`Energy`}`; break
-        case -156: string+=`When Drawn,\nAll (K) Become (N)`; break
-        //-114
-
         case 9404: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
         case 9405: string+=`Gain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
         case 9406: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])} to Discard Pile`; break
         case 9407: string+=`Gain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])} to Discard Pile`; break
-        //5724
         case 9408: string+=`Apply ${effect[0]} Vulnerable\nA Random Card\nCosts ${effect[1]} Less`; break
         case 9409: string+=`Apply ${effect[0]} Vulnerable\nGain (N)`; break
         case 9410: string+=`Apply ${effect[0]} Shock\nA Random Card\nCosts ${effect[1]} Less`; break
         case 9411: string+=`Apply ${effect[0]} Shock\nGain (N)`; break
-        //3279,4500
         case 9412: string+=`Exhaust ${effect[0]} Card${pl(effect[0])}\nNext ${effect[1]!=1?`${effect[1]} `:``}Card${pl(effect[1])}\nPlayed ${effect[1]!=1?`are`:`is`} Duplicated`; break
-        //2153
         case 9413: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nReturns to Hand\nWhen You Gain Shock`; break
-        //5689
-
         case 9414: string+=`Draw ${effect[0]} Quest${pl(effect[0])}\nProgress it by ${effect[1]}`; break
         case 9415: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nDecreases by ${effect[1]}`; break
         case 9416: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nReturn on Extra Turn`; break
-        //2501,5050
         case 9417: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
-        //6
         case 9418: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Half Damage\nIf Target Will Defend`; break
-        //6124
         case 9419: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf No Enemies Will Attack,\nEnter Calm`; break
-        //731
 
         //DUCOPO TIME
         //mark p
@@ -9937,7 +9905,6 @@ card.prototype.description=function(attack,effect,spec,target){
         //8
 
         //END DUCOPO TIME
-        //mark p
         //BORDER CS 112
 
         //3875:9563
@@ -10110,7 +10077,7 @@ card.prototype.description=function(attack,effect,spec,target){
 
         case 9654: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked, Target\nTakes ${effect[1]} More Damage`; break
         //3579
-        case 9655: string+=`Convert All Mana\nto Rainbow`; break
+        case 9655: string+=`All Mana Becomes (E)`; break
         //3764
         case 9656: string+=`Add the Most\nRecently Added Card\nof Equivalent Level\nto Hand`; break
         //1293

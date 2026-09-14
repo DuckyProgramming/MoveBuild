@@ -2735,7 +2735,7 @@ class card{
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
-            case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273: case 8272:
+            case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273: case 8272: case 9415:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
             case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078:
@@ -6362,8 +6362,13 @@ class card{
             if(userCombatant.getStatus('Temporary All Cost Down')>0){
                 costChange-=userCombatant.getStatus('Temporary All Cost Down')
             }
-            if(userCombatant.getStatus('Skill Cost Down')>0&&(type==2?args[0]:this.class)==11){
-                costChange-=userCombatant.getStatus('Skill Cost Down')
+            if((type==2?args[0]:this.class)==11){
+                if(userCombatant.getStatus('Skill Cost Down')>0){
+                    costChange-=userCombatant.getStatus('Skill Cost Down')
+                }
+                if(userCombatant.getStatus('Fragile Skill Cost Down')>0){
+                    costChange-=userCombatant.getStatus('Fragile Skill Cost Down')
+                }
             }
             if(userCombatant.getStatus('Combo Cost Down')>0&&this.spec.includes(11)){
                 costChange-=userCombatant.getStatus('Combo Cost Down')
@@ -6371,8 +6376,13 @@ class card{
             if(userCombatant.getStatus('All Cost Down')>0){
                 costChange-=userCombatant.getStatus('All Cost Down')
             }
-            if(userCombatant.getStatus('Defense Cost Down')>0&&(type==2?args[0]:this.class)==2){
-                costChange-=userCombatant.getStatus('Defense Cost Down')
+            if((type==2?args[0]:this.class)==2){
+                if(userCombatant.getStatus('Defense Cost Down')>0){
+                    costChange-=userCombatant.getStatus('Defense Cost Down')
+                }
+                if(userCombatant.getStatus('Fragile Defense Cost Down')>0){
+                    costChange-=userCombatant.getStatus('Fragile Defense Cost Down')
+                }
             }
             if(userCombatant.getStatus('All Cost Up')>0){
                 costChange+=userCombatant.getStatus('All Cost Up')

@@ -900,6 +900,18 @@ class cardManager{
         if(userCombatant.getStatus('Random Card Cost Less Per Turn')>0){
             this.randomEffect(2,1,[userCombatant.getStatus('Random Card Cost Less Per Turn')])
         }
+        if(userCombatant.getStatus('Random Attack Cost Less Per Turn')>0){
+            this.randomEffect(2,82,[userCombatant.getStatus('Random Attack Cost Less Per Turn'),1])
+        }
+        if(userCombatant.getStatus('Random Defense Cost Less Per Turn')>0){
+            this.randomEffect(2,82,[userCombatant.getStatus('Random Defense Cost Less Per Turn'),2])
+        }
+        if(userCombatant.getStatus('Random Movement Cost Less Per Turn')>0){
+            this.randomEffect(2,82,[userCombatant.getStatus('Random Movement Cost Less Per Turn'),3])
+        }
+        if(userCombatant.getStatus('Random Skill Cost Less Per Turn')>0){
+            this.randomEffect(2,82,[userCombatant.getStatus('Random Skill Cost Less Per Turn'),11])
+        }
         if(userCombatant.getStatus('Random Card Cost Less Next Turn')>0){
             this.randomEffect(2,1,[userCombatant.getStatus('Random Card Cost Less Next Turn')])
             userCombatant.status.main[findList('Random Card Cost Less Next Turn',userCombatant.status.name)]=0
