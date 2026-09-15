@@ -277,8 +277,8 @@ attack.prototype.update=function(){
         case 9002: case 9017: case 9018: case 9082: case 9084: case 9093: case 9095: case 9096: case 9114: case 9131: case 9144: case 9147: case 9169: case 9180: case 9185: case 9191: case 9194: case 9197: case 9200: case 9201:
         case 9213: case 9217: case 9218: case 9219: case 9220: case 9221: case 9224: case 9225: case 9226: case 9227: case 9247: case 9248: case 9250: case 9264: case 9267: case 9270: case 9271: case 9276: case 9277: case 9295:
         case 9310: case 9328: case 9339: case 9346: case 9352: case 9390: case 9395: case 9400: case 9419: case 9423: case 9424: case 9440: case 9448: case 9449: case 9455: case 9461: case 9462: case 9495: case 9498: case 9501:
-        case 9505: case 9534: case 9550: case 9551: case 9552: case 9553: case 9557: case 9563: case 9564: case 9565: case 9566: case 9567: case 9568: case 9569: case 9572: case 9576: case 9577: case 9578: case 9579: case 9588:
-        case 9592: case 9608: case 9609: case 9610: case 9624:
+        case 9505: case 9523: case 9534: case 9550: case 9551: case 9552: case 9553: case 9557: case 9563: case 9564: case 9565: case 9566: case 9567: case 9568: case 9569: case 9572: case 9576: case 9577: case 9578: case 9579:
+        case 9588: case 9592: case 9608: case 9609: case 9610: case 9624:
             //mark 2
             if(
                 this.timer==1&&(
@@ -953,7 +953,7 @@ attack.prototype.update=function(){
         case 8576: case 8577: case 8578: case 8622: case 8660: case 8700: case 8710: case 8711: case 8714: case 8721:
         case 8738: case 8742: case 8763: case 8764: case 8768: case 8813: case 8822: case 8836: case 8845: case 8846:
         case 8928: case 9059: case 9066: case 9067: case 9071: case 9075: case 9077: case 9078: case 9132: case 9165:
-        case 9170: case 9186: case 9187: case 9330: case 9362: case 9604: case 9605: case 9655:
+        case 9170: case 9186: case 9187: case 9330: case 9362: case 9603: case 9604: case 9605: case 9655:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -6496,7 +6496,7 @@ attack.prototype.update=function(){
                         let maximal=0
                         types.card.forEach((card,a)=>{
                             if(card.levels[0].attack>maximal){
-                                maximal=card.levels[0].index
+                                maximal=card.levels[0].attack
                                 index=a
                             }
                         })
@@ -14777,7 +14777,7 @@ attack.prototype.update=function(){
                     this.userCombatant.startAnimation(1)
                 }
                 this.userCombatant.runAnimation(1/15,1)
-                if(this.timer>=8&&this.timer<=28&&this.timer%4==2){
+                if(this.timer>=8&&this.timer<=28&&this.timer%4==0){
                     this.selfCall(1)
                 }else if(this.timer>=30){
                     this.remove=true

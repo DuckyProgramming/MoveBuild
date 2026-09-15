@@ -290,12 +290,13 @@ class overlay{
                 }
             break
             case 3:
+                let orig=args.length==0
                 if(args.length>0){
                     this.sets.push(args)
                 }else{
                     args=this.sets[0]
                 }
-                if(this.sets.length==1){
+                if(this.sets.length==1||orig){
                     this.cards=[]
                     let sublist=[]
                     this.taken=0
@@ -5387,6 +5388,8 @@ class overlay{
                                         case 127:
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                             this.battle.cardManagers[this.player].hand.cards[this.battle.cardManagers[this.player].hand.cards.length-1].edition=2
+                                            a--
+                                            la--
                                         break
                                     }
                                     this.active=!complete
@@ -5672,7 +5675,7 @@ class overlay{
                             this.cards[a].upSize=false
                             this.taken++
                             if(this.taken>=this.takable&&!(this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170},width:120,height:40})&&a!=la-1)&&this.setupArgs[2]!=59){
-                                this.sets.splice(0,1)
+                                this.sets.splice(this.sets.length-1,1)
                                 if(this.sets.length>0){
                                     this.activate([])
                                 }else{
@@ -5687,7 +5690,7 @@ class overlay{
                     }
                     let offset=this.options>=12?130:this.options>=8?75:0
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125+offset},width:120,height:40})&&!this.battle.modded(83)){
-                        this.sets.splice(0,1)
+                        this.sets.splice(this.sets.length-1,1)
                         if(this.sets.length>0){
                             this.activate([])
                         }else{
@@ -7046,6 +7049,8 @@ class overlay{
                                         case 127:
                                             this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                             this.battle.cardManagers[this.player].hand.cards[this.battle.cardManagers[this.player].hand.cards.length-1].edition=2
+                                            a--
+                                            la--
                                         break
                                     }
                                     this.active=!complete

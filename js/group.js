@@ -283,6 +283,7 @@ class group{
     }
     clear(){
         this.lastPlayed=elementArray(this.tempCard,14)
+        this.totalDrawn=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.totalPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayedEdition=[0,0,0,0,0,0,0,0,0,0,0,0]
@@ -415,10 +416,13 @@ class group{
         let result=this.add(type,level,color,edition)
         return result?this.cards[this.cards.length-1]:{type:-1}
     }
-    addDrop(type,level,color){
+    addDrop(type,level,color,edition=0){
         game.id++
         this.cards.push(new card(this.layer,this.battle,this.player,40,min(-100,...this.cards.map(card=>card.position.y-200)),type,level,color,game.id))
         //this.cards.push(new card(this.layer,this.battle,this.player,40,-100-this.cards.length*200),type,level,color,game.id))
+        if(edition!=0){
+            this.cards[this.cards.length-1].edition=edition
+        }
         if(this.id==0){
             this.cards[this.cards.length-1].nonCalc=true
             this.added()
@@ -2780,7 +2784,7 @@ class group{
                         &&!(effect==11&&this.cards[b].spec.includes(10))
                         &&!((effect==13||effect==50||effect==56||effect==74)&&this.cards[b].attack==5612)
                         &&!((effect==15||effect==20)&&(this.cards[b].effect.length==0||this.cards[b].class==3&&this.cards[b].effect==1))
-                        &&!(effect==16&&args[1]!=undefined&&this.cards[b].name!=args[1])
+                        &&!(effect==16&&args[1]!=undefined&&this.cards[b].name==args[1])
                         &&!(effect==17&&(this.cards[b].attack==-66||this.cards[b].attack==1115||this.cards[b].deSize))
                         &&!(effect==18&&this.cards[b].class==3)
                         &&!(effect==19&&this.cards[b].spec.includes(1))
@@ -3273,11 +3277,19 @@ class group{
     drawEffect(card,sendId){
         card.drawn++
         card.drawMark=true
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(!card.spec.includes(12)){
             this.totalDrawn[0]++
             this.totalDrawn[card.class]++
+            if(this.totalDrawn[0]%10==0){
+                if(userCombatant.getStatus('10 Draw Energy')>0){
+                    this.battle.addEnergy(userCombatant.getStatus('10 Draw Energy'),this.player)
+                }
+                if(userCombatant.getStatus('10 Draw Random Mana')>0){
+                    this.battle.addSpecificEnergy(userCombatant.getStatus('10 Draw Random Mana'),this.player,floor(random(0,7)))
+                }
+            }
         }
-        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         userCombatant.activateDraw()
         this.battle.relicManager.activate(19,[card,this.player])
         if(card.getBasicMultiple([1,2])){
@@ -3291,14 +3303,6 @@ class group{
         if(card.getBasic(1)){
             if(userCombatant.getStatus('Speed Strike')>0){
                 this.battle.combatantManager.randomEnemyEffect(3,[max(0,card.effect[0]+userCombatant.getStatus('Strike Boost')),userCombatant.id])
-            }
-        }
-        if(this.totalDrawn[0]%10==0){
-            if(userCombatant.getStatus('10 Draw Energy')>0){
-                this.battle.addEnergy(userCombatant.getStatus('5 Card Energy'),player)
-            }
-            if(userCombatant.getStatus('10 Draw Random Mana')>0){
-                this.battle.addSpecificEnergy(userCombatant.getStatus('5 Card Random Mana'),player,floor(random(0,7)))
             }
         }
         switch(card.class){
@@ -3983,7 +3987,7 @@ class group{
                 this.battle.loseEnergy(card.effect[3],this.player)
             break
             case 9643:
-                userCombatant.statusEffect('Bleed',card.effect[0])
+                userCombatant.statusEffect('Bleed',card.effect[1])
             break
 
         }
@@ -4259,7 +4263,7 @@ class group{
                     case 26:
                         list[list.length-1].edition=args[1]
                     break
-                    case 8:
+                    case 27:
                         if(list[list.length-1].level==0){
                             list[list.length-1]=upgradeCard(list[list.length-1])
                             this.generalUpgrade(list[list.length-1])
@@ -4330,7 +4334,8 @@ class group{
             ){
                 list[list.length-1]=this.sendSpec(list[list.length-1],spec,sendId)
                 if(this.sendResultCancel){
-                    la=0
+                    //la=0
+                    break
                 }
             }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
                 list[list.length-1].cost=variants.mtg?copyArray(list[list.length-1].base.cost):list[list.length-1].base.cost
@@ -4743,7 +4748,7 @@ class group{
                 this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7241])
             }
             this.cards[index].callRemoveEffect()
-            this.allEffect(55,[`callAnotherRemovedEffect`,[this.cards[index]]])
+            this.allEffectArgs(55,[`callAnotherRemovedEffect`,[this.cards[index]]])
             this.send(this.battle.cardManagers[this.player].remove.cards,index,index+1,0)
         }
         return possible
@@ -6898,7 +6903,7 @@ class group{
                         }else if(
                             (
                                 this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
-                                this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
+                                this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||this.cards[a].attack==9648||this.cards[a].attack==9651||
                                 (
                                     this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890||
                                     this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680||this.cards[a].attack==6852||this.cards[a].attack==8724&&this.battle.attackManager.lastPlayed[0].class==11

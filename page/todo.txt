@@ -1,9 +1,33 @@
+can't see error cards in collection
+
+cards that need new mtg versions or minor edits at least:
+azoth
+death game
+raspberry pastry
+moonbeam
+mint ray
+silverswivel
+steamstaff
+focus time
+scorch shot
+millerovo
+marry gold
+
 9403 is unoccupied
 9649 is free
 split grounded push to occupy space 9632
 signature style is stupid
 split wallflower
 electron hole sucks balls
+back pocket is still useless
+double ends of the earth
+split engine repair
+globus ass
+cleansing ritual backward
+force push without the stops
+tin snips rewrite
+
+generalizing attack/defense (build on particular strike and defend and generalizing step)
 
 juicer and dripfeed might be the worst card of all time
 
@@ -30,6 +54,7 @@ split focus light
 
 new sanae
 6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
+if still space, just add random cards with scry taped on
 rename old faith
 split "6A" from firmament
 -> mantra

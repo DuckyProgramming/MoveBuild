@@ -468,6 +468,9 @@ function sign(value){
 	return value<0?-1:1
 }
 function pointInsideBox(point,box){
+	if(point==undefined||box==undefined){
+		throw new Error('failed pointInsideBox')
+	}
 	return point.position.x>box.position.x-box.width/2&&point.position.x<box.position.x+box.width/2&&point.position.y>box.position.y-box.height/2&&point.position.y<box.position.y+box.height/2
 }
 function arrayPurge(array,purge){
@@ -2133,6 +2136,14 @@ function quickDraw(){
 		quickAddFull('Defend',1,0,0)
 		quickAddFull('Step',1,0,0)
 		quickAddFull('Think',1,0,0)
+	}
+}
+function quickDiscard(){
+	for(let a=0,la=4;a<la;a++){
+		quickAddFull('Strike',3,0,0)
+		quickAddFull('Defend',3,0,0)
+		quickAddFull('Step',3,0,0)
+		quickAddFull('Think',3,0,0)
 	}
 }
 function quickPop(){

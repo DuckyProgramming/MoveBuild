@@ -875,7 +875,7 @@ class battle{
                     this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.push(5)
                 }
             }
-            this.cardManagers[player].drop.addDrop(type,level,color)
+            this.cardManagers[player].drop.addDrop(type,level,color,edition)
         }
     }
     dropDrawShuffleAbstract(player,type,level,color,variant,args){

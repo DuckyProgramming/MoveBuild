@@ -4783,8 +4783,8 @@ class particle{
             case 108: case 140: case 142: case 202: case 215: case 226: case 227: case 257: case 262:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
-                this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,this.type==226||this.type==227?2:10)
-                this.scale=smoothAnim(this.scale,this.time<this.timer*2-5,0,1,this.type==226||this.type==227?2:10)
+                this.fade=smoothAnim(this.fade,this.time<this.timer*2-5,0,1,this.type==226||this.type==227||this.type==257?2:10)
+                this.scale=smoothAnim(this.scale,this.time<this.timer*2-5,0,1,this.type==226||this.type==227||this.type==257?2:10)
                 if(this.time==this.timer*2-5){
                     switch(this.type){
                         case 202:

@@ -9651,7 +9651,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
             layer.triangle(2,-6,4,3,0,3)
             layer.rect(-3,0,3,3)
-            layer.fill(200,0,0,fade)
+            layer.fill(100,125,150,fade)
             layer.triangle(0,-6,2,3,-2,3)
         break
         case 926:
