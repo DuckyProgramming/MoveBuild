@@ -1,4 +1,3 @@
-split grounded push to occupy space 9632
 signature style is stupid
 split wallflower
 electron hole sucks balls
@@ -8,39 +7,32 @@ split engine repair
 globus ass
 cleansing ritual backward
 force push without the stops
-tin snips rewrite
+split spiked kick (it sucks)
+split maintenance into 2 cards
+split focus light
+split "6A" from firmament
 
 generalizing attack/defense (build on particular strike and defend and generalizing step)
+more kick cards
 
 juicer and dripfeed might be the worst card of all time
 
 https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
 
-REMEMBER TO HAVE VERY HIGH STANDARDS AND DELETE (NOT DISBAND) THE ONES THAT DON'T MEET THEM
-THIS IS FOR HISTORICAL PURPOSES, NOT TO CLOG UP GAMEPLAY WITH USELESS CARDS THAT ARE REWORDED VERSIONS OF ONES THAT ALREADY EXIST
 mtg splitter
 
-check that on mtg mode energy is never mentioned
-and no mention of strike/defend
 update outmtgerror to catch when [1,3] has cost [3]
-mtg x marks the spot check if it works
-
-lega3
-old bleed
 
 more cards that mitigate overdosing
 decaf
 
 SHINMY IS 3382, 3383
-split maintenance into 2 cards
 lira still has too many neutrals (just purge, no new additions)
-split focus light
 
 new sanae
 6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
 if still space, just add random cards with scry taped on
 rename old faith
-split "6A" from firmament
 -> mantra
 
 play new sanae
@@ -266,6 +258,8 @@ onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn
 vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
 alarm chili - when you play a skill this turn, deal 10 damage in all directions
 matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
+
+check that on mtg mode energy is never mentioned
 
 [slio9]
 

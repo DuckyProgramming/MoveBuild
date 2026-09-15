@@ -23628,7 +23628,7 @@ class attack{
                     break
                     case 7180:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[10,[11,16],3],57,[],[]])
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[10,[11,15],3],57,[],[]])
                     break
                     case 7183:
                         this.battle.overlayManager.overlays[10][this.player].active=true
@@ -24620,7 +24620,7 @@ class attack{
                     break
                     case 8725:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[10,[11,16],3],57,[0],[]])
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[10,[11,15],3],57,[0],[]])
                     break
                     case 8727:
                         this.userCombatant.statusEffect('Tile Temporary Strength',this.effect[0])
@@ -33362,7 +33362,7 @@ class attack{
                     case 1781:
                         this.userCombatant.statusEffect('Vigor',this.userCombatant.lastDeal)
                     break
-                    case 1914:
+                    case 1914: case 9667:
                         this.userCombatant.statusEffect('Vigor',ceil(this.userCombatant.lastTake/max(1,this.effect[0])))
                     break
                     case 2044:

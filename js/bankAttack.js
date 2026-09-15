@@ -3181,7 +3181,7 @@ attack.prototype.update=function(){
         break
         case 138: case 139: case 175: case 400: case 453: case 516: case 1436: case 1709: case 1781: case 1914:
         case 2044: case 2384: case 2654: case 3014: case 3573: case 3587: case 5900: case 6722: case 6731: case 7572:
-        case 9034: case 9103:
+        case 9034: case 9103: case 9667:
             if(variants.nobasicanim){
                 this.selfCall(11)
                 this.remove=true

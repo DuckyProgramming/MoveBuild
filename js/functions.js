@@ -2435,7 +2435,9 @@ function outMtgError(){
 						!types.card[a].mtg.levels[b].spec.includes(11)&&
 						!types.card[a].mtg.levels[b].spec.includes(21)&&
 						!types.card[a].mtg.levels[b].spec.includes(59)&&
-						!types.card[a].mtg.levels[b].spec.includes(67)&&(
+						!types.card[a].mtg.levels[b].spec.includes(67)
+					){
+						if(
 							types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
 							types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
 							types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
@@ -2453,8 +2455,19 @@ function outMtgError(){
 							types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
 							types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
 							types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
-					)){
-						console.log(types.card[a].name,`D`)
+						){
+							console.log(types.card[a].name,`D`)
+						}
+						if(types.card[a].mtg.levels[b].cost.length>0&&types.card[a].mtg.levels[b].cost.some(cost=>cost!=-1&&cost!=-3)&&(
+							types.card[a].mtg.color.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(6)||
+							types.card[a].mtg.color.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(8)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(10)||
+							types.card[a].mtg.color.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(11)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(13)||
+							types.card[a].mtg.color.includes(3)&&!types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.levels[b].cost.includes(8)&&!types.card[a].mtg.levels[b].cost.includes(11)&&!types.card[a].mtg.levels[b].cost.includes(14)&&!types.card[a].mtg.levels[b].cost.includes(15)||
+							types.card[a].mtg.color.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(14)&&!types.card[a].mtg.levels[b].cost.includes(16)||
+							types.card[a].mtg.color.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(10)&&!types.card[a].mtg.levels[b].cost.includes(13)&&!types.card[a].mtg.levels[b].cost.includes(15)&&!types.card[a].mtg.levels[b].cost.includes(16)
+						)){
+							console.log(types.card[a].name,`E`)
+						}
 					}
 				}
 			}
