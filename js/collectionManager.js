@@ -65,7 +65,7 @@ class collectionManager{
                 -4,
                 constants.playerNumber+9
             ]
-        }else if(cardData.rarity==-1&&cardData.list==-8){
+        }else if(cardData.rarity==-1&&cardData.list==-8||cardData.rarity==-1&&cardData.list==-10){
             return [
                 -5,
                 constants.playerNumber+10
@@ -97,33 +97,33 @@ class collectionManager{
         }
         for(let a=0,la=types.card.length;a<la;a++){
             let cardData=types.card[a]
-            if(cardData.list!=-10){
-                let res=this.overListing(cardData)
-                let sublist=res[0]
-                let resultlist=res[1]
-                
-                this.totals.list[resultlist][0]++
-                if(this.knownKey[a]){
-                    this.totals.list[resultlist][1]++
-                }
-                if(
-                    (this.query.name==''||cardData.name.toLowerCase().replace('\n',' ').includes(this.query.name.toLowerCase().replace('\n',' ')))&&
-                    (this.query.list.includes(sublist))&&
-                    (cardData.rarity>=0&&cardData.rarity<=2&&this.query.rarity[cardData.rarity]||(cardData.rarity<0||cardData.rarity>=3)&&this.query.rarity[3])&&
-                    (
-                        cardData.levels[this.level].class==1&&this.query.class[0]||
-                        cardData.levels[this.level].class==2&&this.query.class[1]||
-                        cardData.levels[this.level].class==3&&this.query.class[2]||
-                        cardData.levels[this.level].class==11&&this.query.class[3]||
-                        cardData.levels[this.level].class==4&&this.query.class[4]||
-                        cardData.levels[this.level].class==5&&this.query.class[5]||
-                        cardData.levels[this.level].class==6&&this.query.class[6]||
-                        ![1,2,3,4,5,6,11].includes(cardData.levels[this.level].class)&&this.query.class[7]
-                    )
-                ){
-                    names[resultlist][this.query.name.toLowerCase().replace('\n',' ')!=''&&cardData.name.toLowerCase().replace('\n',' ').substr(0,this.query.name.length)!=this.query.name.toLowerCase().replace('\n',' ')?1:0].push(cardData.name)
-                }
+            //if(cardData.list!=-10){
+            let res=this.overListing(cardData)
+            let sublist=res[0]
+            let resultlist=res[1]
+            
+            this.totals.list[resultlist][0]++
+            if(this.knownKey[a]){
+                this.totals.list[resultlist][1]++
             }
+            if(
+                (this.query.name==''||cardData.name.toLowerCase().replace('\n',' ').includes(this.query.name.toLowerCase().replace('\n',' ')))&&
+                (this.query.list.includes(sublist))&&
+                (cardData.rarity>=0&&cardData.rarity<=2&&this.query.rarity[cardData.rarity]||(cardData.rarity<0||cardData.rarity>=3)&&this.query.rarity[3])&&
+                (
+                    cardData.levels[this.level].class==1&&this.query.class[0]||
+                    cardData.levels[this.level].class==2&&this.query.class[1]||
+                    cardData.levels[this.level].class==3&&this.query.class[2]||
+                    cardData.levels[this.level].class==11&&this.query.class[3]||
+                    cardData.levels[this.level].class==4&&this.query.class[4]||
+                    cardData.levels[this.level].class==5&&this.query.class[5]||
+                    cardData.levels[this.level].class==6&&this.query.class[6]||
+                    ![1,2,3,4,5,6,11].includes(cardData.levels[this.level].class)&&this.query.class[7]
+                )
+            ){
+                names[resultlist][this.query.name.toLowerCase().replace('\n',' ')!=''&&cardData.name.toLowerCase().replace('\n',' ').substr(0,this.query.name.length)!=this.query.name.toLowerCase().replace('\n',' ')?1:0].push(cardData.name)
+            }
+            //}
         }
         names.forEach(sub1=>sub1.forEach(sub2=>sub2=sub2.sort()))
         this.cards=[]

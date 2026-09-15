@@ -298,11 +298,11 @@ class attack{
             case 9172: case 9173: case 9174: case 9175: case 9181: case 9182: case 9183: case 9184: case 9196: case 9198: case 9199: case 9208: case 9209: case 9211: case 9212: case 9215: case 9222: case 9228: case 9229: case 9230:
             case 9232: case 9233: case 9234: case 9235: case 9236: case 9237: case 9239: case 9240: case 9241: case 9242: case 9243: case 9244: case 9245: case 9246: case 9249: case 9265: case 9266: case 9268: case 9272: case 9273:
             case 9275: case 9281: case 9284: case 9289: case 9293: case 9294: case 9297: case 9298: case 9307: case 9308: case 9309: case 9322: case 9326: case 9327: case 9334: case 9337: case 9345: case 9355: case 9356: case 9357:
-            case 9358: case 9360: case 9363: case 9364: case 9383: case 9384: case 9385: case 9391: case 9393: case 9399: case 9408: case 9409: case 9410: case 9411: case 9148: case 9421: case 9422: case 9418: case 9441: case 9442:
-            case 9443: case 9444: case 9447: case 9457: case 9458: case 9459: case 9460: case 9463: case 9464: case 9489: case 9490: case 9497: case 9499: case 9500: case 9504: case 9508: case 9512: case 9513: case 9514: case 9515:
-            case 9516: case 9522: case 9526: case 9528: case 9539: case 9540: case 9541: case 9542: case 9545: case 9546: case 9548: case 9549: case 9555: case 9556: case 9558: case 9559: case 9570: case 9571: case 9573: case 9575:
-            case 9585: case 9586: case 9587: case 9589: case 9590: case 9591: case 9602: case 9607: case 9611: case 9613: case 9614: case 9619: case 9621: case 9622: case 9623: case 9628: case 9630: case 9631: case 9632: case 9634:
-            case 9635: case 9636: case 9637: case 9641: case 9643: case 9644: case 9646: case 9647: case 9648: case 9649: case 9651: case 9654:
+            case 9358: case 9360: case 9363: case 9364: case 9383: case 9384: case 9385: case 9391: case 9393: case 9399: case 9403: case 9408: case 9409: case 9410: case 9411: case 9148: case 9421: case 9422: case 9418: case 9441:
+            case 9442: case 9443: case 9444: case 9447: case 9457: case 9458: case 9459: case 9460: case 9463: case 9464: case 9489: case 9490: case 9497: case 9499: case 9500: case 9504: case 9508: case 9512: case 9513: case 9514:
+            case 9515: case 9516: case 9522: case 9526: case 9528: case 9539: case 9540: case 9541: case 9542: case 9545: case 9546: case 9548: case 9549: case 9555: case 9556: case 9558: case 9559: case 9570: case 9571: case 9573:
+            case 9575: case 9585: case 9586: case 9587: case 9589: case 9590: case 9591: case 9602: case 9607: case 9611: case 9613: case 9614: case 9619: case 9621: case 9622: case 9623: case 9628: case 9630: case 9631: case 9632:
+            case 9634: case 9635: case 9636: case 9637: case 9641: case 9643: case 9644: case 9646: case 9647: case 9648: case 9649: case 9651: case 9654: case 9657: case 9659: case 9660: case 9661: case 9662: case 9663: case 9665:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2827,6 +2827,9 @@ class attack{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.userManager.drawAbstract(this.effect[1],0,2,[1])
                         }
+                    break
+                    case 9657:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.mtgEnergy.length,this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -7798,6 +7801,11 @@ class attack{
                     case 9399:
                         this.userCombatant.statusEffect('X Cost Boost',this.effect[1])
                     break
+                    case 9403:
+                        if(this.mtgEnergy.length%3==0){
+                            this.userManager.drawAbstract(this.effect[1],0,0,[11])
+                        }
+                    break
                     case 9441:
                         if(this.energy>this.battle.getEnergyBase(this.player)){
                             this.battle.overlayManager.overlays[19][this.player].active=true
@@ -7942,6 +7950,9 @@ class attack{
                             this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[[0,2]]])
                         }
                     break
+                    case 9661:
+                        this.battle.addSpecificEnergy(this.selfCall(26),this.player,0)
+                    break
 
                 }
                 //mark 1s
@@ -7949,7 +7960,7 @@ class attack{
             case 1:
                 switch(this.type){
                     case 13: case 235: case 968: case 2289: case 2778: case 3278: case 3512: case 3998: case 4507: case 4624:
-                    case 5167: case 5168: case 5301: case 6566: case 9440: case 9461: case 9462: case 9523:
+                    case 5167: case 5168: case 5301: case 6566: case 9440: case 9461: case 9462: case 9523: case 9664:
                         this.userCombatant.addBlock(this.effect[0]*this.energy)
                     break
                     case 141:
@@ -11793,6 +11804,9 @@ class attack{
                     case 9610:
                         this.battle.addSpecificEnergy(1,this.player,6)
                         this.userCombatant.statusEffect('Conditioning',this.effect[1])
+                    break
+                    case 9664:
+                        this.userCombatant.statusEffect('(E) Next Turn',max(0,this.energy-1))
                     break
 
                 }
@@ -19671,6 +19685,13 @@ class attack{
                         this.battle.overlayManager.overlays[186][this.player].active=true
                         this.battle.overlayManager.overlays[186][this.player].activate([this.level,[2,3],57,[],[[1,2]]])
                     break
+                    case 9649:
+                        this.userCombatant.statusEffect('Damage Up',this.effect[0])
+                        if(this.userCombatant.spendCharge(this.effect[1])){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,5)
+                        }
+                    break
                     case 9653:
                         this.battle.addSpecificEnergy(1,this.player,6)
                         this.battle.addSpecificEnergy(1,this.player,1)
@@ -24920,14 +24941,16 @@ class attack{
                         this.battle.overlayManager.overlays[7][this.player].activate()
                         this.userCombatant.statusEffect('Temporary Draw',-this.effect[0])
                     break
-                    case 9299:
+                    case 9299: case 9658:
                         if(this.relPos[0]>0&&!this.userManager.hand.cards[this.relPos[0]-1].spec.includes(58)){
                             this.userManager.hand.cards[this.relPos[0]-1].spec.push(58)
                             this.userManager.hand.cards[this.relPos[0]-1].additionalSpec.push(58)
+                            this.userManager.hand.cards[this.relPos[0]-1].updateSpecialCost()
                         }
                         if(this.relPos[0]<this.relPos[1]&&!this.userManager.hand.cards[this.relPos[0]].spec.includes(58)){
                             this.userManager.hand.cards[this.relPos[0]].spec.push(58)
                             this.userManager.hand.cards[this.relPos[0]].additionalSpec.push(58)
+                            this.userManager.hand.cards[this.relPos[0]].updateSpecialCost()
                         }
                     break
                     case 9300:
@@ -25048,6 +25071,9 @@ class attack{
                         if(this.userCombatant.stance==4){
                             this.userCombatant.enterStance(0)
                         }
+                    break
+                    case 9666:
+                        this.userManager.drawAbstract(this.effect[0]*this.selfCall(26),24,0,['Silver',52])
                     break
 
                 }
@@ -26767,7 +26793,7 @@ class attack{
                     case 1474:
                         this.targetCombatant.statusEffect('Half Damage Turn',this.effect[0])
                     break
-                    case 1822: case 4816:
+                    case 1822: case 4816: case 9663:
                         this.targetCombatant.statusEffect('Burn',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.randomEffect(0)
@@ -27781,7 +27807,7 @@ class attack{
                             this.targetCombatant.statusEffect('Freeze',this.effect[1])
                         }
                     break
-                    case 1362: case 4294:
+                    case 1362: case 4294: case 9659:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetDistance==3){
                             this.userCombatant.charge+=this.effect[1]
@@ -30356,6 +30382,16 @@ class attack{
                         this.targetCombatant.takeDamage(this.targetCombatant.getStatus('Burn'),-1)
                         this.userManager.draw(this.effect[0])
                     break
+                    case 9660:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.userCombatant.energyParity(this.mtgEnergy.length)==0){
+                            this.userCombatant.statusEffect('Temporary Draw',this.effect[1])
+                        }
+                    break
+                    case 9662:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect(['Freeze','Burn'][this.userCombatant.energyParity(this.mtgEnergy.length)],this.effect[1])
+                    break
 
                 }
                 //mark 8
@@ -30757,6 +30793,11 @@ class attack{
                             this.userManager.draw(this.effect[1])
                         }
                         this.targetCombatant.statusEffect('Freeze',this.effect[0])
+                    break
+                    case 9665:
+                        if(this.userCombatant.energyParity(this.mtgEnergy.length)==0){
+                            this.targetCombatant.statusEffect('Shock',this.effect[0])
+                        }
                     break
 
                 }

@@ -8951,7 +8951,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8711: string+=`Upgrade All\nAttacks in Hand\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Caffeine`; break
         case 8712: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Miracle${pl(effect[1])} to Hand\nPristine in Hand:\nGain ${effect[2]} Energy`; break
         case 8713: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Miracle${pl(effect[1])} to Hand\nPristine in Hand:\nGain (N) (N)`; break
-        case 8714: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nDiscover a Character Skill\nOptions Have Draw,\nEnergy, and Buffs`; break
+        case 8714: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nDiscover a Character Skill\nOptions Have Draw,\n${variants.mtg?`Mana`:`Energy`}, and Buffs`; break
         case 8715: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nExhausted Pristines`; break
         case 8716: string+=`Add ${effect[0]} Pristine${pl(effect[0])} to Hand\nWhen a Non-Pristine\nSkill is Played\nWith This Card\nin Your Hand`; break
         case 8719: string+=`Push 1 Tile\nPut the Top${effect[0]!=1?` ${effect[0]}`:``}\nCard${pl(effect[0])} in Discard Pile\nin Your Hand`; break
@@ -9637,7 +9637,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9400: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext X Cost Card\nPlayed Gets +${effect[1]} to X`; break
         case 9401: string+=`Gain ${effect[0]} Currency\nCycle: Attack`; break
         case 9402: string+=`Gain ${effect[0]} Currency\nCycle: Defense`; break
-        //9403 is free
+        case 9403: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMana Total Divisible by 3:\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
         case 9404: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
         case 9405: string+=`Gain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Quiet\nMoonlight${pl(effect[2])} to Discard Pile`; break
         case 9406: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand\nAdd ${effect[2]} Shadow${pl(effect[2])}\nto Discard Pile`; break
@@ -9882,7 +9882,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9646: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWhen Exhausted,\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${pl(effect[3])}`; break
         case 9647: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWhen Exhausted,\nGain (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
         case 9648: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDamage Increases by ${effect[1]}\nCosts 1 More\nDiscards to Draw`; break
-        //9649 is free
+        case 9649: string+=`Deal ${effect[0]} More Damage\nOverdrive ${effect[1]}:\nGain (E) (R)`; break
         case 9650: string+=`Deal ${effect[0]} More Damage\nOverdrive ${effect[1]}:\nGain ${effect[2]} Energy`; break
         case 9651: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDamage Decreases by ${effect[1]}\nCosts 1 More\nDiscards to Draw`; break
         case 9652: string+=`Gain (E) at the\nStart of Your Turn\nAdd to Discard:\nQuiet Moonlight\nRefracted Sunlight\nGlamorous Starlight`; break
@@ -9890,6 +9890,16 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9654: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked, Target\nTakes ${effect[1]} More Damage`; break
         case 9655: string+=`All Mana Becomes (E)`; break
         case 9656: string+=`Add the Most\nRecently Added Card\nto the Game\nof Equivalent Level\nto Hand`; break
+        case 9657: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Total Mana`; break
+        case 9658: string+=`Adjacent Cards Cost\nHealth Instead of Mana`; break
+        case 9659: string+=`Even Mana Total:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nAt Range 3,\nGain ${effect[1]} Charge`; break
+        case 9660: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEven Mana Total:\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext Turn`; break
+        case 9661: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (K) Spent:\nGain (N)\nDiscards to Hand`; break
+        case 9662: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Mana Total:\nApply ${effect[1]} Burn\nEven Mana Total:\nApply ${effect[1]} Freeze`; break
+        case 9663: string+=`3 or More Mana:\nApply ${effect[0]} Burn\nDiscard ${effect[1]} Random Card${pl(effect[1])}`; break
+        case 9664: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nGain X-1 (E) Next Turn`; break
+        case 9665: string+=`Even Mana Total:\nApply ${effect[0]} Shock`; break
+        case 9666: string+=`For Each (K) Spent:\nDraw ${effect[0]} Silver Card${pl(effect[0])}`; break
 
         //mark p
         //mark q

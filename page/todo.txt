@@ -1,20 +1,3 @@
-can't see error cards in collection
-
-cards that need new mtg versions or minor edits at least:
-azoth
-death game
-raspberry pastry
-moonbeam
-mint ray
-silverswivel
-steamstaff
-focus time
-scorch shot
-millerovo
-marry gold
-
-9403 is unoccupied
-9649 is free
 split grounded push to occupy space 9632
 signature style is stupid
 split wallflower
@@ -42,6 +25,7 @@ and no mention of strike/defend
 update outmtgerror to catch when [1,3] has cost [3]
 mtg x marks the spot check if it works
 
+lega3
 old bleed
 
 more cards that mitigate overdosing
