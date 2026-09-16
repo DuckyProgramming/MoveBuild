@@ -2223,7 +2223,7 @@ function outListing(){
 	let listed=[80,80,40,32,24]
 	let unlisted=[
 		48,//subcard
-		2700,//disband
+		3200,//disband
 		constants.playerNumber*8,//junkyard
 		32,//event
 		160,//developer
@@ -2256,7 +2256,7 @@ ${box}
 (${types.card.filter(card=>card.list==-10).length-unlisted[8]}) Error: ${types.card.filter(card=>card.list==-10).length}`)
 }
 function outListingOld(){
-	let arbitrary=8000
+	let arbitrary=8500
 	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new cardManager(current.layer,current,0):current.cardManagers[0]
 	let actual=manager.listing.allListableCard[3].length
 	let box=`		Colorless:
