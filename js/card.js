@@ -1066,6 +1066,9 @@ class card{
             case 9457:
                 userCombatant.statusEffect('Energy Next Turn',this.effect[2])
             break
+            case 9688:
+                userCombatant.statusEffect('(E) Next Turn',2)
+            break
         }
     }
     callScryEffect(){
@@ -1383,11 +1386,14 @@ class card{
                 userCombatant.statusEffect('Temporary Strength',this.effect[0])
                 this.exhaust=true
             break
-            case 8868:
+            case 8868: case 9675:
                 this.battle.cardManagers[this.player].drawAbstract(this.effect[1],0,0,[1])
             break
             case 9571: case 9572:
                 userCombatant.addBlock(this.effect[1])
+            break
+            case 9676:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],0,0,[1])
             break
         }
     }
@@ -2809,7 +2815,7 @@ class card{
             case 2501: case 3198: case 3647: case 3915: case 4013: case 4178: case 4457: case 4658: case 4727: case 4771:
             case 5208: case 5559: case 5560: case 5750: case 6114: case 6334: case 6657: case 6658: case 6901: case 7027:
             case 7028: case 7216: case 7224: case 7378: case 7754: case 7755: case 7811: case 7812: case 7893: case 8801:
-            case 8802: case 8834:
+            case 8802: case 8834: case 9669:
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431: case 8056:
@@ -3606,13 +3612,18 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 9529:
+                case 9529: case 9689:
                     if(card.spec.includes(0)){
                         this.costDown(0,[1])
                     }
                 break
                 case 9547:
                     if(card.getCost(4)&&this.battle.attackManager.energy>=5){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 9690:
+                    if(card.getCost(4)&&this.battle.attackManager.energy>=3){
                         this.costDown(0,[1])
                     }
                 break

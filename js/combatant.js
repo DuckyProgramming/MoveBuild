@@ -5661,8 +5661,8 @@ class combatant{
                                 if(this.getStatus('Self Shock Claw Up')>0){
                                     this.statusEffect('Claw Up',this.getStatus('Self Shock Claw Up'))
                                 }
-                                this.battle.cardManagers[this.battle.turn.main].discard.allEffectArgs(44,[9413])
-                                this.battle.cardManagers[this.battle.turn.main].reserve.allEffectArgs(44,[9413])
+                                this.battle.cardManagers[this.battle.turn.main].discard.allEffectArgs(44,[9413,9669])
+                                this.battle.cardManagers[this.battle.turn.main].reserve.allEffectArgs(44,[9413,9669])
                             }
                         break
                     }

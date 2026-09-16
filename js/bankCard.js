@@ -9905,6 +9905,29 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9665: string+=`Even Mana Total:\nApply ${effect[0]} Shock`; break
         case 9666: string+=`For Each (K) Spent:\nDraw ${effect[0]} Silver Card${pl(effect[0])}`; break
         case 9667: string+=`Gain Vigor Equal to\nLast Hit Taken\nDivided by ${effect[0]}`; break
+        case 9668: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block Per\nAdjacent Empty Tile\nLocation`; break
+        case 9669: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nIncreases by ${effect[1]}\nReturns to Hand\nWhen You Gain Shock`; break
+        case 9670: string+=`Gain ${effect[0]} Energy\nIf You Have No Items,\nGain ${effect[1]} Prismatic\nBomb Item${pl(effect[1])}`; break
+        case 9671: string+=`Gain (E) (E)\nIf You Have No Items,\nGain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}`; break
+        case 9672: string+=`Gain (E) (E) (E)\nIf You Have No Items,\nGain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}`; break
+        case 9673: string+=`Gain (E) (E) (E) (E)\nIf You Have No Items,\nGain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}`; break
+        case 9674: string+=`Apply ${effect[0]} Bleed\nPush 1 Tile`; break
+        case 9675: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nWhen Discarded From\nYour Hand,\nDraw ${effect[1]} Attack${pl(effect[1])}`; break
+        case 9676: string+=`Push 1 Tile\nWhen Discarded From\nYour Hand,\nDraw ${effect[0]} Attack${pl(effect[0])}`; break
+        case 9677: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nIf You Have Caffeine,\nDraw ${effect[1]} Skill${pl(effect[1])}`; break
+        case 9678: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain Metallicize Equal to\nHalf of Target's\nHealth Lost`; break
+        case 9679: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nGain ${effect[1]} Energy\nNext Turn`; break
+        case 9680: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nGain (N) Next Turn`; break
+        case 9681: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nGain ${effect[1]} Energy\nNext Turn`; break
+        case 9682: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nGain (N) Next Turn`; break
+        case 9683: string+=`${variants.mtg?`Basic Attacks\n`:`Strikes `}Gain ${effect[0]} Effect`; break
+        case 9684: string+=`${variants.mtg?`Basic Defenses\n`:`Defends `}Gain ${effect[0]} Effect`; break
+        case 9685: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage if\nMore Than ${effect[1]}\nEnem${effect[1]!=1?`ies are`:`y is`} Alive`; break
+        case 9686: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block if\nMore Than ${effect[1]}\nEnem${effect[1]!=1?`ies are`:`y is`} Alive`; break
+        case 9687: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nScry ${effect[1]}\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
+        case 9688: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nWhen Discarded,\nGain (E) (E) Next Turn`; break
+        case 9689: string+=`-1: Play a Card\nWith Fatigue\nActive: Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile`; break
+        case 9690: string+=`-1: Play an X Cost Card\nWith a 3+ Value of X\nActive: Complete All\nQuests in Hand`; break
 
         //mark p
         //mark q

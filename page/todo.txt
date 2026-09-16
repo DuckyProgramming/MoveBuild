@@ -1,27 +1,10 @@
-signature style is stupid
-split wallflower
-electron hole sucks balls
-back pocket is still useless
-double ends of the earth
-split engine repair
-globus ass
-cleansing ritual backward
-force push without the stops
-split spiked kick (it sucks)
-split maintenance into 2 cards
-split focus light
-split "6A" from firmament
-
-generalizing attack/defense (build on particular strike and defend and generalizing step)
-more kick cards
+cs 2110 quiz [no worries]
 
 juicer and dripfeed might be the worst card of all time
 
 https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
 
 mtg splitter
-
-update outmtgerror to catch when [1,3] has cost [3]
 
 more cards that mitigate overdosing
 decaf
@@ -72,11 +55,7 @@ triples of freeze, burn, and shock (maybe, otherwise just use to replenish dd610
 
 down 1 event
 
-CARDSET 113 [TERMINATION VII]
-
-CARDSET 114 [?]
-
-CARDSET 115 [?]
+CARDSET 115 [LEGACY]
 
 quick eye - 6 damage, scry 1, both doubled if played first
 death by chocolate - if you have 5 or more chocolate chip, deals triple damage
