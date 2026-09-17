@@ -303,7 +303,8 @@ class attack{
             case 9515: case 9516: case 9522: case 9526: case 9528: case 9539: case 9540: case 9541: case 9542: case 9545: case 9546: case 9548: case 9549: case 9555: case 9556: case 9558: case 9559: case 9570: case 9571: case 9573:
             case 9575: case 9585: case 9586: case 9587: case 9589: case 9590: case 9591: case 9602: case 9607: case 9611: case 9613: case 9614: case 9619: case 9621: case 9622: case 9623: case 9628: case 9630: case 9631: case 9632:
             case 9634: case 9635: case 9636: case 9637: case 9641: case 9643: case 9644: case 9646: case 9647: case 9648: case 9649: case 9651: case 9654: case 9657: case 9659: case 9660: case 9661: case 9662: case 9663: case 9665:
-            case 9674: case 9675: case 9676: case 9677: case 9678: case 9679: case 9680: case 9685: case 9688: case 9689:
+            case 9674: case 9675: case 9676: case 9677: case 9678: case 9679: case 9680: case 9685: case 9688: case 9689: case 9695: case 9697: case 9698: case 9699: case 9700: case 9703: case 9705: case 9706: case 9710: case 9716:
+            case 9717: case 9718: case 9725:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -390,6 +391,7 @@ class attack{
             case 9336: case 9338: case 9347: case 9353: case 9354: case 9361: case 9386: case 9387: case 9388: case 9389:
             case 9425: case 9426: case 9427: case 9428: case 9429: case 9470: case 9506: case 9533: case 9544: case 9554:
             case 9594: case 9595: case 9596: case 9597: case 9598: case 9599: case 9600: case 9601: case 9633: case 9668:
+            case 9713: case 9714: case 9715: case 9722: case 9723: case 9724:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -7967,6 +7969,34 @@ class attack{
                     case 9680:
                         this.userCombatant.statusEffect('(N) Next Turn',1)
                     break
+                    case 9695:
+                        this.userCombatant.addBlock(this.effect[1])
+                        this.userManager.drawAbstract(this.effect[2],-1,12,[8])
+                    break
+                    case 9706:
+                        this.userManager.hand.allEffectArgs(78,[3])
+                    break
+                    case 9710:
+                        this.userCombatant.statusEffect('Strength',this.effect[1]*this.selfCall(27))
+                    break
+                    case 9716:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 9717:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 9718:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -11834,6 +11864,24 @@ class attack{
                         this.battle.overlayManager.overlays[58][this.player].activate([this.effect[1],0])
                         this.userManager.hand.exhaust(this.effect[2])
                     break
+                    case 9719:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 9720:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 9721:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -14421,6 +14469,45 @@ class attack{
                     break
                     case 9668:
                         this.userCombatant.addBlock(this.effect[1]*constrain(6-this.battle.tileManager.getAreaAll(this.targetTile.tilePosition,1,1).length,0,6))
+                    break
+                    case 9713:
+                        if(this.battle.turn.total>=4){
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                        }
+                    break
+                    case 9714:
+                        if(this.battle.turn.total>=4){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                        }
+                    break
+                    case 9715:
+                        if(this.battle.turn.total>=4){
+                            this.battle.addSpecificEnergy(3,this.player,6)
+                        }
+                    break
+                    case 9722:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 9723:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 9724:
+                        if(this.battle.turn.total==1){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.userManager.draw(this.effect[1])
+                        }
                     break
 
                 }
@@ -19767,6 +19854,12 @@ class attack{
                     break
                     case 9684:
                         this.userCombatant.statusEffect('Defend Boost',this.effect[0])
+                    break
+                    case 9693:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Mortal',this.effect[1])
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[0],[[1,1]]])
                     break
 
                 }
@@ -25142,6 +25235,37 @@ class attack{
                     case 9666:
                         this.userManager.drawAbstract(this.effect[0]*this.selfCall(26),24,0,['Silver',52])
                     break
+                    case 9691:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[[4,['Storm','storm']]]])
+                    break
+                    case 9692:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[2,3],57,[0],[[4,['Ball','ball']]]])
+                    break
+                    case 9701:
+                        this.userCombatant.statusEffect('Balance Energy',this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 9702:
+                        this.userCombatant.statusEffect('Balance (E)',2)
+                    break
+                    case 9704:
+                        let total9704=this.userManager.hand.numberAbstract(4,[[7]])
+                        if(total9704>0){
+                            this.battle.addSpecificEnergy(total9704,this.player,6)
+                        }
+                        this.userManager.allEffectArgs(2,37,[7])
+                    break
+                    case 9707:
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                        this.userManager.swap(1,3)
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 9728:
+                        this.battle.overlayManager.overlays[71][this.player].active=true
+                        this.battle.overlayManager.overlays[71][this.player].activate()
+                    break
 
                 }
                 //mark 5
@@ -26716,6 +26840,14 @@ class attack{
                         let e156=this.battle.getEnergy(this.player)
                         this.battle.loseEnergy(999,this.player)
                         this.battle.addSpecificEnergy(e156,this.player,6)
+                    break
+                    case 9708:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userCombatant.loseMaxHP(this.effect[0])
+                    break
+                    case 9709:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userCombatant.loseMaxHP(this.effect[0])
                     break
 
                 }
@@ -30459,6 +30591,41 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect(['Freeze','Burn'][this.userCombatant.energyParity(this.mtgEnergy.length)],this.effect[1])
                     break
+                    case 9697:
+                        this.targetCombatant.statusEffect('Dodge',this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                    break
+                    case 9698:
+                        this.targetCombatant.statusEffect('Dodge',this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                    break
+                    case 9699:
+                        this.targetCombatant.statusEffect('Buffer',this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 9700:
+                        this.targetCombatant.statusEffect('Buffer',this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 9703:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Strength',-this.effect[1])
+                        this.userManager.draw(this.effect[2])
+                        this.battle.addSpecificEnergy(5,this.player,6)
+                    break
+                    case 9725:
+                        if(this.mtgEnergy.length==5){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user,2)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -31260,7 +31427,7 @@ class attack{
                                 this.userCombatant.statusEffect('Dexterity',2)
                                 this.userCombatant.addBlock(5)
                                 this.userCombatant.statusEffect('Buffer',1)
-                                this.battle.addPlayer(1,this.player)
+                                this.battle.addEnergy(1,this.player)
                                 this.userManager.draw(2)
                             }else if(!this.userCombatant.luckCheckFail()){
                                 switch(roll){
@@ -31270,7 +31437,7 @@ class attack{
                                     case 3: this.userCombatant.statusEffect('Dexterity',2); break
                                     case 4: this.userCombatant.addBlock(5); break
                                     case 5: this.userCombatant.statusEffect('Buffer',1); break
-                                    case 6: this.battle.addPlayer(1,this.player); break
+                                    case 6: this.battle.addEnergy(1,this.player); break
                                     case 7: this.userManager.draw(2); break
                                 }
                             }
@@ -33419,6 +33586,44 @@ class attack{
                     break
                     case 9639:
                         this.userCombatant.statusEffect('10 Draw Random Mana',this.effect[0])
+                    break
+                    case 9694:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[3,15]]])
+                    break
+                    case 9711:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            let roll=floor(random(0,8))
+                            if(this.userCombatant.luckCheck()){
+                                this.battle.addCurrency(10,this.player)
+                                this.battle.itemManager.addRandomItem(this.player)
+                                this.userCombatant.statusEffect('Strength',2)
+                                this.userCombatant.statusEffect('Dexterity',2)
+                                this.userCombatant.addBlock(5)
+                                this.userCombatant.statusEffect('Buffer',1)
+                                this.battle.addSpecificEnergy(1,this.player,6)
+                                this.userManager.draw(2)
+                            }else if(!this.userCombatant.luckCheckFail()){
+                                switch(roll){
+                                    case 0: this.battle.addCurrency(10,this.player); break
+                                    case 1: this.battle.itemManager.addRandomItem(this.player); break
+                                    case 2: this.userCombatant.statusEffect('Strength',2); break
+                                    case 3: this.userCombatant.statusEffect('Dexterity',2); break
+                                    case 4: this.userCombatant.addBlock(5); break
+                                    case 5: this.userCombatant.statusEffect('Buffer',1); break
+                                    case 6: this.battle.addSpecificEnergy(1,this.player,6); break
+                                    case 7: this.userManager.draw(2); break
+                                }
+                            }
+                        }
+                    break
+                    case 9726:
+                        this.battle.addEnergy(this.effect[0]*(this.battle.encounter.class==1||this.battle.encounter.class==2?3:1),this.player)
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 9727:
+                        this.battle.addSpecificEnergy(2*(this.battle.encounter.class==1||this.battle.encounter.class==2?3:1),this.player,5)
+                        this.userManager.draw(this.effect[0])
                     break
 
                 }
@@ -37184,6 +37389,12 @@ class attack{
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                         if(this.debut){
                             this.userCombatant.heal(this.effect[1])
+                        }
+                    break
+                    case 9696:
+                        for(let a=0,la=constants.playerNumber;a<la;a++){
+                            this.battle.overlayManager.overlays[10][this.player].active=true
+                            this.battle.overlayManager.overlays[10][this.player].activate([this.level,[7,a+1,3],57,[0],[[0,0],[1,11]]])
                         }
                     break
 

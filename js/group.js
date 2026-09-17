@@ -2756,6 +2756,11 @@ class group{
                         this.cards[a].setCost(0,[1])
                     }
                 break
+                case 78:
+                    if(this.cards[a].attack==9706&&this.cards[a].usable){
+                        this.battle.addSpecificEnergy(args[0],this.player,6)
+                    }
+                break
                 //mark allargs
             }
         }
@@ -3735,7 +3740,7 @@ class group{
             case 2822: case 7344:
                 userCombatant.vision+=card.effect[0]
             break
-            case 2873: case 4450: case 4451:
+            case 2873: case 4450: case 4451: case 9712:
                 this.battle.combatantManager.randomNumberEffect(
                     1+userCombatant.getStatus('Prismatic Bomb Targets'),
                     0,
@@ -3751,13 +3756,15 @@ class group{
                         this.battle.itemManager.addItem(findInternal(['Heal 3',variants.mtg?'2 Mana':'1 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),this.player)
                     }
                 }
-                if(card.attack==4451){
+                if(card.attack==4451||card.attack==9712){
                     this.battle.addSpecificEnergy(1,this.player,6)
                 }else{
                     this.battle.addSpecificEnergy(card.effect[1],this.player,6)
                 }
                 if(card.attack==2873){
                     this.sendAmounts[sendId]+=card.effect[2]
+                }else if(card.attack==9712){
+                    this.sendAmounts[sendId]+=card.effect[1]
                 }
                 this.drawEffects.push([3,106])
             break

@@ -1796,7 +1796,7 @@ class card{
                 this.battle.cardManagers[this.player].deck.add(findName('Fury\nSpell',types.card),0,0)
             break
             case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433: case 1565: case 1903:
-            case 2469: case 2479: case 2480: case 2551: case 2821: case 2822:
+            case 2469: case 2479: case 2480: case 2551: case 2821: case 2822: case 9705:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
