@@ -10330,7 +10330,8 @@ combatant.prototype.display=function(){
                     this.layer.quad(-12,-69,12,-69,8,-75,-8,-75)
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck': case 'Void Duck':  case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck': case 'Void Duck':  case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff':
+            case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'Ducksquad':
                 if(this.name=='Void Duck'&&this.trigger.display.outline){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.outline)[0],this.flashColor(this.color.outline)[1],this.flashColor(this.color.outline)[2],this.fade*this.fades.outline)
@@ -10537,6 +10538,15 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(3)
                     this.layer.line(-14,-48,14,-48)
                     this.layer.quad(-9,-48,9,-48,6,-54,-6,-54)
+                }
+                if(this.name=='Ducksquad'&this.trigger.display.helmet){
+                    this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
+                    this.layer.noStroke()
+                    this.layer.push()
+                    this.layer.translate(0,-39)
+                    this.layer.rotate(lsin(this.anim.direction)*30,)
+                    this.layer.quad(-10,-9,10,-9,7,-16,-7,-16)
+                    this.layer.pop()
                 }
             break
             case 'Big Duck': case 'Agent Duck': case 'General Duckion':

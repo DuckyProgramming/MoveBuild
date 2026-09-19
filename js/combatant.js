@@ -215,7 +215,10 @@ class combatant{
                 'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength','Fragile Skill Cost Down',
                 'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn','Temporary Dexterity Convert','Split Card Block','X Cost Strength','Tile Exhaust','Status Exhaust',
                 'Scry Block','Overdose (W)','Overdose (B)','Overdose (G)','Overdose (R)','Attack Intent (N)','Attack Intent (W)','Attack Intent (B)','Attack Intent (K)','Attack Intent (G)',
-                'Attack Intent (E)','10 Draw Energy','10 Draw Random Mana',
+                'Attack Intent (E)','10 Draw Energy','10 Draw Random Mana','3 Lowroll Strength','3 Highroll Strength','3 Lowroll Dexterity','3 Highroll Dexterity','3 Lowroll Draw','3 Highroll Draw','3 Lowroll Energy',
+                '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
+                '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
+                'Coffee Temporary Dexterity','Currency Block','Currency Mult',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -312,6 +315,9 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//92
                 0,0,0,0,0,0,0,0,0,0,//93
                 0,0,0,0,0,0,0,0,0,0,//94
+                0,0,0,0,0,0,0,0,0,0,//95
+                0,0,0,0,0,0,0,0,0,0,//96
+                0,0,0,0,0,0,0,1,1,0,//97
                 0,0,0,
             ],
             class:[
@@ -409,6 +415,9 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//92
                 2,2,2,2,2,2,2,2,2,2,//93
                 2,2,2,2,2,2,2,2,2,2,//94
+                2,2,2,2,2,2,2,2,2,2,//95
+                2,2,2,2,2,2,2,2,2,2,//96
+                2,2,2,2,2,2,2,2,2,2,//97
                 2,2,2,
             ]}
         /*
@@ -421,8 +430,8 @@ class combatant{
         6-half decrement
         */
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
-        this.turnStatus=[0,0,0,0,0]
-        //dodges,taken,life lost,heal,highrolls
+        this.turnStatus=[0,0,0,0,0,0]
+        //dodges,taken,life lost,heal,highrolls,lowrolls
         this.tempStatus=[1,0,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed,single attack regeneration
         this.interiorStatus=[0,0]
@@ -520,7 +529,7 @@ class combatant{
         this.ringing=0
         this.caffeine=0
 
-        this.turnStatus=[0,0,0,0,0]
+        this.turnStatus=[0,0,0,0,0,0]
     }
     resetInfo(){
         this.constants()
@@ -1869,7 +1878,8 @@ class combatant{
                     ]
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
+            case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker': case 'Ducksquad':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -1899,7 +1909,9 @@ class combatant{
                     this.graphics.legs[g].middle.y=this.parts.legs[g].middle.y
                 }
             break
-            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slime Boss': case 'Slimoid': case 'Big Slimoid': case 'Modicum': case 'Rock Golem': case 'Shield Particle': case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick': case 'Puffball': case 'Graphite Block': case 'Rainbow Slime': case 'Big Rainbow Slime':
+            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slime Boss': case 'Slimoid': case 'Big Slimoid': case 'Modicum': case 'Rock Golem': case 'Shield Particle':
+            case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick': case 'Puffball': case 'Graphite Block': case 'Rainbow Slime':
+            case 'Big Rainbow Slime':
                 for(let g=0;g<2;g++){
                     this.parts.arms[g].middle.x=this.parts.arms[g].top.x+lsin(this.anim.arms[g].top)*this.anim.arms[g].length.top
                     this.parts.arms[g].middle.y=this.parts.arms[g].top.y+lcos(this.anim.arms[g].top)*this.anim.arms[g].length.top
@@ -1910,12 +1922,18 @@ class combatant{
                     this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
                 }
             break
-            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Armored Turret': case 'Shotgun': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Scaling Turret':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Armored Turret': case 'Shotgun': case 'Swarm Turret': case 'Megaturret':
+            case 'Motor Turret': case 'Scaling Turret':
                 this.graphics={arms:[{bottom:{x:lsin(this.anim.direction)*40,y:-25}},{bottom:{x:lsin(this.anim.direction)*40,y:-25}}]}
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance':
-            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Half Spikeball':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall': case 'Compactor': case 'Discounter':
+            
+            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp':
+            case 'Glimmerrer': case 'Antihwurmp': case 'Half Spikeball':
+            
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
+            case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall':
+            case 'Compactor': case 'Discounter':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -3187,6 +3205,7 @@ class combatant{
         }
     }
     lowRoll(){
+        this.turnStatus[5]++
         if(this.status.main[162]>0){
             this.statusEffect('Strength',this.status.main[162])
         }
@@ -3205,6 +3224,44 @@ class combatant{
         if(this.id<this.battle.players){
             this.battle.cardManagers[this.id].hand.allEffectArgs(55,['callLowRollEffect',[[]]])
         }
+        if(this.turnStatus[5]%3==0){
+            if(this.status.main[943]>0){
+                this.statusEffect('Strength',this.status.main[943])
+            }
+            if(this.status.main[945]>0){
+                this.statusEffect('Dexterity',this.status.main[945])
+            }
+            if(this.status.main[947]>0&&this.id<this.battle.players){
+                this.battle.cardManagers[this.id].draw(this.status.main[947])
+            }
+            if(this.status.main[949]>0){
+                this.battle.addEnergy(this.status.main[949],this.id)
+            }
+            if(this.status.main[951]>0){
+                this.battle.addSpecificEnergy(this.status.main[951],this.id,0)
+            }
+            if(this.status.main[953]>0){
+                this.battle.addSpecificEnergy(this.status.main[953],this.id,1)
+            }
+            if(this.status.main[955]>0){
+                this.battle.addSpecificEnergy(this.status.main[955],this.id,2)
+            }
+            if(this.status.main[957]>0){
+                this.battle.addSpecificEnergy(this.status.main[957],this.id,3)
+            }
+            if(this.status.main[959]>0){
+                this.battle.addSpecificEnergy(this.status.main[959],this.id,4)
+            }
+            if(this.status.main[961]>0){
+                this.battle.addSpecificEnergy(this.status.main[961],this.id,5)
+            }
+            if(this.status.main[963]>0){
+                this.battle.addSpecificEnergy(this.status.main[963],this.id,6)
+            }
+            if(this.status.main[965]>0){
+                this.addBlock(this.status.main[965])
+            }
+        }
     }
     highRoll(){
         this.turnStatus[4]++
@@ -3222,6 +3279,50 @@ class combatant{
         }
         if(this.status.main[538]>0){
             this.battle.addSpecificEnergy(this.status.main[538],this.id,6)
+        }
+        if(this.id<this.battle.players){
+            this.battle.cardManagers[this.id].hand.allEffectArgs(55,['callHighRollEffect',[[]]])
+        }
+        if(this.status.main[968]>0){
+            this.lowRoll()
+        }
+        if(this.turnStatus[4]%3==0){
+            if(this.status.main[944]>0){
+                this.statusEffect('Strength',this.status.main[944])
+            }
+            if(this.status.main[946]>0){
+                this.statusEffect('Dexterity',this.status.main[946])
+            }
+            if(this.status.main[948]>0&&this.id<this.battle.players){
+                this.battle.cardManagers[this.id].draw(this.status.main[948])
+            }
+            if(this.status.main[950]>0){
+                this.battle.addEnergy(this.status.main[950],this.id)
+            }
+            if(this.status.main[952]>0){
+                this.battle.addSpecificEnergy(this.status.main[952],this.id,0)
+            }
+            if(this.status.main[954]>0){
+                this.battle.addSpecificEnergy(this.status.main[954],this.id,1)
+            }
+            if(this.status.main[956]>0){
+                this.battle.addSpecificEnergy(this.status.main[956],this.id,2)
+            }
+            if(this.status.main[958]>0){
+                this.battle.addSpecificEnergy(this.status.main[958],this.id,3)
+            }
+            if(this.status.main[960]>0){
+                this.battle.addSpecificEnergy(this.status.main[960],this.id,4)
+            }
+            if(this.status.main[962]>0){
+                this.battle.addSpecificEnergy(this.status.main[962],this.id,5)
+            }
+            if(this.status.main[964]>0){
+                this.battle.addSpecificEnergy(this.status.main[964],this.id,6)
+            }
+            if(this.status.main[966]>0){
+                this.addBlock(this.status.main[966])
+            }
         }
     }
     takeDamage(value,user,spec=0){
@@ -5195,7 +5296,9 @@ class combatant{
         return false
     }
     check10(){
-        return this.status.main[260]>0?floor(random(0,4))==0:floor(random(0,10))==0
+        return this.status.main[967]>0?floor(random(0,2))==0:
+            this.status.main[260]>0?floor(random(0,4))==0:
+            floor(random(0,10))==0
     }
     luckCheck(){
         if(this.status.main[263]>0&&floor(random(0,2))==0||this.status.main[299]){
@@ -5367,14 +5470,15 @@ class combatant{
             for(let a=0,la=number;a<la;a++){
                 roll=(luckCheck?effectiveValue:luckCheckFail?1:1+floor(random(0,effectiveValue)))+this.status.main[252]
                 total+=roll
-                average+=(1+value)/2+this.status.main[252]
+                average+=(1+effectiveValue)/2+this.status.main[252]
                 this.battle.particleManager.createNumber(41,this.position.x,this.position.y,roll)
             }
-            if(total<average*0.8){
+            //if(total<average*0.8){
+            if(total<average){
                 this.lowRoll()
-            }else if(total>average*1.2){
+            //}else if(total>average*1.2){
+            }else if(total>average){
                 this.highRoll()
-
             }
             if(this.status.main[495]>0){
                 this.addBlock(this.status.main[495])
@@ -5503,6 +5607,9 @@ class combatant{
         }
         if(this.status.main[319]>0){
             this.status.main[319]=0
+        }
+        if(this.status.main[879]>0){
+            this.status.main[879]=0
         }
     }
     miniStatus(name,value){
@@ -5999,7 +6106,7 @@ class combatant{
         }
     }
     endTurn(){
-        this.turnStatus=[0,0,0,0]
+        this.turnStatus=[0,0,0,0,0,0]
     }
     tick(sub){
         if(this.name==`Airi`){
@@ -6618,9 +6725,13 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
+            case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker': case 'Ducksquad':
+            
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slimoid': case 'Big Slimoid': case 'Rainbow Slime': case 'Big Rainbow Slime':
-            case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':  case 'Golden Duck': case 'Puffball': case 'Graphite Block':
+            
+            case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':
+            case 'Golden Duck': case 'Puffball': case 'Graphite Block':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -6631,12 +6742,18 @@ class combatant{
                     break
                 }
             break
-            case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimmerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance': case 'Half Spikeball':
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
+            case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp':
+            case 'Glimmerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance': case 'Half Spikeball':
+            
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor':
+            case 'Discounter':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall':
+            
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start':
+            case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone':
+            case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall':
                 switch(type){
                     case 19:
                         this.animSet.loop=0
@@ -7189,7 +7306,8 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Fat Duck': case 'Void Duck':
+            case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck': case 'The Looker': case 'Ducksquad':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate

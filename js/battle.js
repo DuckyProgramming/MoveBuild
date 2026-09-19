@@ -86,7 +86,7 @@ class battle{
         reader.battle=this
         reader.readAsText(file)
         reader.onload=function(){
-            this.battle.load(reader.result);
+            this.load(reader.result);
         }
     }
     loadCol(){
@@ -94,7 +94,7 @@ class battle{
         input.type='file'
         input.battle=this
         input.click()
-        input.addEventListener('change',function(){this.battle.loadStp(this)},false)
+        input.addEventListener('change',function(){this.loadStp(this)},false)
     }
     createBasic(){
         this.initialized=false
@@ -182,7 +182,7 @@ class battle{
         
         this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,endReady:false,active:false}
         this.counter={enemy:0,killed:0,tooltip:0}
-        this.result={defeat:false,victory:false,noAnim:false}
+        this.result={defeat:false,victory:false,noAnim:false,skipReward:[]}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
         this.first=true
         this.colorDetail=[]
@@ -484,7 +484,7 @@ class battle{
         }
         this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,active:false}
         this.counter={enemy:0,killed:0}
-        this.result={defeat:false,victory:false,noAnim:false}
+        this.result={defeat:false,victory:false,noAnim:false,skipReward:[]}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
         this.first=first
 
@@ -495,6 +495,8 @@ class battle{
         
         this.resetAnim()
         for(let a=0,la=this.players;a<la;a++){
+            this.result.skipReward.push(false)
+
             let playerCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
             if(playerCombatant.life<=0){
                 this.positionCombatant(playerCombatant,{x:-1,y:-1})
@@ -1795,6 +1797,12 @@ class battle{
             if(userCombatant.getStatus('Coffee Splash')>0){
                 this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Coffee Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
             }
+            if(userCombatant.getStatus('Coffee Temporary Strength')>0){
+                userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Coffee Temporary Strength'))
+            }
+            if(userCombatant.getStatus('Coffee Temporary Dexterity')>0){
+                userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Coffee Temporary Dexterity'))
+            }
         }
         if(card.spec.includes(12)&&userCombatant.getStatus('Split Card Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Split Card Block'))
@@ -2504,7 +2512,7 @@ class battle{
         this.menu.mtg.manaNew[player]=copyArray(this.menu.mtg.manaBase[player][0])
     }
     addCurrency(amount,player){
-        if(player>=0&&player<this.players&&this.initializedConstants){
+        if(amount>0&&player>=0&&player<this.players&&this.initializedConstants){
             let multi=(this.relicManager.hasRelic(135,player)?max(0,1-0.5*this.relicManager.active[135][player+1]):1)*(this.relicManager.hasRelic(165,player)?1+0.25*this.relicManager.active[165][player+1]:1)*(this.relicManager.hasRelic(415,player)?1+0.25*this.relicManager.active[415][player+1]:1)
             let bonus=this.relicManager.active[119][player+1]*20
             this.stats.earned[player]+=round((amount+bonus)*multi)
@@ -2515,14 +2523,22 @@ class battle{
                 this.currency.money[player]+=round((amount+bonus)*multi)
             }
             this.cardManagers[player].trueAllGroupEffectArgs(65,[7243,round((amount+bonus)*multi)])
+            if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].getStatus('Currency Block')>0){
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].addBlock(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].getStatus('Currency Block')*amount)
+            }
         }
     }
     loseCurrency(amount,player){
-        /*if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0&&!this.relicManager.hasRelic(187,player)){
-            this.cardManagers[player].deck.add(findName('Debt',types.card),0,constants.playerNumber+2)
-        }*/
-        this.currency.money[player]-=round(amount)
-        this.cardManagers[player].trueAllGroupEffectArgs(65,[7240,round(amount)])
+        if(amount>0&&player>=0&&player<this.players&&this.initializedConstants){
+            /*if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0&&!this.relicManager.hasRelic(187,player)){
+                this.cardManagers[player].deck.add(findName('Debt',types.card),0,constants.playerNumber+2)
+            }*/
+            this.currency.money[player]-=round(amount)
+            this.cardManagers[player].trueAllGroupEffectArgs(65,[7240,round(amount)])
+        }
+    }
+    getCurrency(player){
+        return this.currency.money[player]*(1+this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].getStatus('Currency Mult'))
     }
     modded(type){
         return !this.initialized?false:variants.mod?this.modManager.mods[type]:false
@@ -3566,7 +3582,9 @@ class battle{
                         }
                         let reward=[]
                         for(let b=0,lb=variants.business||this.nodeManager.endless!=0?0:(variants.vanish||variants.inventor||variants.commoners)?2:1;b<lb;b++){
-                            if(floor(random(0,2))==0||!this.modded(50)){
+                            if(this.result.skipReward[a]){
+                                this.result.skipReward[a]=false
+                            }else if(floor(random(0,2))==0||!this.modded(50)){
                                 switch(this.encounter.class){
                                     case 0: case 3: case 4:
                                         reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12&&game.diff>=9?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
@@ -3611,7 +3629,7 @@ class battle{
                                     if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
                                         reward.push({type:3,value:[]})
                                     }
-                                    if(floor(random(0,6))==0){
+                                    if(floor(random(0,6+this.nodeManager.world*3))==0){
                                         reward.push({type:5,value:[1]})
                                     }
                                 }

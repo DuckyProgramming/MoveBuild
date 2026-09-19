@@ -213,6 +213,7 @@ types={
         {name:'Big Bounce',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:10,effect:[12]},{type:447,effect:[10]},{type:39,effect:[1,'Bouncer']}],description:`Bounces you hard`},
         {name:'Pinstripe',life:123,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:444,effect:[3]},{type:445,effect:[13]},{type:446,effect:[9]}],description:`Purchased a machine gun`},
         {name:'Lost Management Officer',life:44,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[2]},{type:81,effect:[8,3,'Dazed']}],description:`Wishes his subordinates were here`},
+        {name:'Ducksquad',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:`Duck with purpose`},
         
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
         {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0,22],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
@@ -7279,6 +7280,12 @@ This attack is not affected by most statuses but is affected by Vigor.
 Does not decrement.`,
         },{name:'Caffeine',mtg:0,desc:
 `When you gain 3 Caffeine, lose 3 Caffeine and lose 3 health.`,
+        },{name:'Evolve',mtg:0,desc:
+`An Evolve card discards to your draw pile when not played.
+Afterward, the Evolve counter increemnts by 1.`,
+        },{name:'Forge',mtg:0,desc:
+`When this card is upgraded, it is instead removed from the deck.
+Afterward, trigger its forge effect.`,
         },
         //mark dict
     ],diff:[

@@ -368,6 +368,9 @@ class card{
         }else{
             this.colorDetail=types.color.card[this.color]
         }
+        if(this.colorDetail==undefined){
+            print(this.name)
+        }
     }
     getCost(type){
         let totalVariable=0
@@ -939,7 +942,7 @@ class card{
                 userCombatant.multiplyStatusClass(2,[1,3])
             break
             case -109:
-                userCombatant.takeDamage(this.effect[0]*floor(this.battle.currency.money[this.player]/max(1,this.effect[1])),-1)
+                userCombatant.takeDamage(this.effect[0]*floor(this.battle.getCurrency(this.player)/max(1,this.effect[1])),-1)
             break
             case -115:
                 if(userCombatant.block==0){
@@ -973,6 +976,9 @@ class card{
                 for(let a=0,la=this.effect[0];a<la;a++){
                     this.battle.drop(this.player,findName('Glamorous\nStarlight',types.card),0,constants.playerNumber+1)
                 }
+            break
+            case -159:
+                this.battle.loseCurrency(floor(userCombatant.block),this.player)
             break
             case 187:
                 userCombatant.takeDamage(this.effect[1],-1)
@@ -1495,6 +1501,13 @@ class card{
             break
         }
     }
+    callHighRollEffect(){
+        switch(this.attack){
+            case 9827:
+                this.setCost(0,[0])
+            break
+        }
+    }
     callRewindEffect(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
@@ -1602,7 +1615,7 @@ class card{
             case 2791:
                 userCombatant.statusEffect('Strength',this.effect[1])
             break
-            case 2949:
+            case 2949: case 9817:
                 this.battle.addCurrency(this.effect[1],this.player)
             break
             case 3300: case 3301: case 4933:
@@ -1816,7 +1829,7 @@ class card{
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
-            case 9523: case 9524: case 9525:
+            case 9523: case 9524: case 9525: case 9785:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -2198,7 +2211,7 @@ class card{
                     this.spec.splice(this.spec.indexOf(5),1)
                 }
             break
-            case -125:
+            case -125: case -157:
                 if(encounterClass==2&&this.battle.cardManagers[this.player].deck.cards.indexOf(this)>=0){
                     this.battle.cardManagers[this.player].deck.copySelf(this.battle.cardManagers[this.player].deck.cards.indexOf(this))
                     return true
@@ -2282,10 +2295,10 @@ class card{
                 this.battle.loseCurrency(this.effect[1],this.player)
             break
             case -110:
-                if(this.battle.currency.money[this.player]>this.effect[0]){
-                    this.battle.loseCurrency(this.battle.currency.money[this.player]-this.effect[0],this.player)
-                }else if(this.battle.currency.money[this.player]<this.effect[0]){
-                    this.battle.addCurrency(this.effect[0]-this.battle.currency.money[this.player],this.player)
+                if(this.battle.getCurrency(this.player)>this.effect[0]){
+                    this.battle.loseCurrency(this.battle.getCurrency(this.player)-this.effect[0],this.player)
+                }else if(this.battle.getCurrency(this.player)<this.effect[0]){
+                    this.battle.addCurrency(this.effect[0]-this.battle.getCurrency(this.player),this.player)
                 }
             break
             case 1458: case 3173:
@@ -2404,7 +2417,7 @@ class card{
             case 6995: case 8534:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].loseMaxHP(this.effect[2])
             break
-            case 6996: case 7492:
+            case 6996: case 7492: case 9858:
                 this.battle.addCurrency(this.effect[2],this.player)
             break
             case 7388:
@@ -2427,6 +2440,9 @@ class card{
                 this.battle.overlayManager.overlays[131][this.player].active=true
                 this.battle.overlayManager.overlays[131][this.player].activate()
                 this.battle.overlayManager.overlays[131][this.player].args[1]=this.effect[1]
+            break
+            case 9921:
+                this.battle.nodeManager.freeMove[1]++
             break
         }
     }
@@ -2730,6 +2746,9 @@ class card{
             case -139:
                 userCombatant.loseHealth(this.effect[0])
             break
+            case -158:
+                this.battle.loseCurrency(this.effect[0],this.player)
+            break
             case 1275:
                 this.battle.addCurrency(this.effect[0],this.player)
             break
@@ -2805,10 +2824,11 @@ class card{
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
-            case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273: case 8272: case 9415:
+            case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273: case 8272: case 9415: case 9908:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
             case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078: case 9644: case 9645:
+            case 9894:
                 this.costDown(2,[1])
             break
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
@@ -3691,7 +3711,7 @@ class card{
         this.battle.cardManagers[this.player].hand.allEffectArgs(55,['anotherEtherealed',[this.id]])
         switch(this.attack){
             case -38:
-                this.battle.currency.money[this.player]-=this.effect[0]
+                this.battle.loseCurrency(this.player,this.effect[0])
             break
             case -50:
                 userCombatant.statusEffect('Temporary Draw',this.effect[0])
@@ -3768,6 +3788,9 @@ class card{
             break
             case 9565:
                 userCombatant.statusEffect('Temporary Dexterity Next Turn',this.effect[1])
+            break
+            case 9909:
+                userCombatant.statusEffect('Weak Next Turn',this.effect[1])
             break
         }
     }
@@ -3859,6 +3882,9 @@ class card{
                 this.battle.combatantManager.randomEnemyEffect(10,[this.effect[0],userCombatant.id,this.effect[1]])
                 this.battle.cardManagers[this.player].tempDraw.exhaustRandom+=this.effect[2]
                 this.effect[1]+=this.effect[3]
+            break
+            case 9859:
+                this.effect[0]+=this.effect[2]
             break
         }
         if(this.spec.includes(55)){

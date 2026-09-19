@@ -1115,7 +1115,8 @@ class combatantManager{
                         }
                     break
                     case 59:
-                        if(this.combatants[a].status.main[3]>0){
+                        this.combatants[a].clearDefenseBuff()
+                        /*if(this.combatants[a].status.main[3]>0){
                             this.combatants[a].status.main[3]=0
                         }
                         if(this.combatants[a].status.main[21]>0){
@@ -1139,6 +1140,9 @@ class combatantManager{
                         if(this.combatants[a].status.main[319]>0){
                             this.combatants[a].status.main[319]=0
                         }
+                        if(this.combatants[a].status.main[879]>0){
+                            this.combatants[a].status.main[879]=0
+                        }*/
                     break
                     case 60:
                         if(this.combatants[a].getStatus(args[0])>0){

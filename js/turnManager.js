@@ -58,6 +58,20 @@ class turnManager{
         }
         this.turns.push(new turn(0,this.battle,findName('Self-Kill',types.attack),[damageMax],enemy))
     }
+    loadEnemySudoku2(enemy){
+        this.loads++
+        let damageMax=1
+        this.auxiliary=true
+        for(let a=0,la=this.battle.combatantManager.combatants[enemy].attack.length;a<la;a++){
+            if(this.battle.combatantManager.combatants[enemy].attack[a].effect.length>0&&(
+                types.attack[this.battle.combatantManager.combatants[enemy].attack[a].type]==1||
+                types.attack[this.battle.combatantManager.combatants[enemy].attack[a].type]==5
+            )){
+                damageMax=max(damageMax,this.battle.combatantManager.combatants[enemy].attack[a].effect[0])
+            }
+        }
+        this.turns.push(new turn(0,this.battle,findName('Self-Kill',types.attack),[damageMax],enemy))
+    }
     loadEnemyMove(enemy){
         this.loads++
         this.auxiliary=true

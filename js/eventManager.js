@@ -2098,7 +2098,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                     break
                     case 176:
                         if(this.page==0&&a==0){
-                            this.battle.cardManagers[this.player].deck.add(findName('Call\nDucksquad',types.card),0,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Call\nDuckteam',types.card),0,0)
                         }
                     break
                     case 177:
@@ -2443,6 +2443,11 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         if(this.page==0&&a==0){
                             this.battle.overlayManager.overlays[184][this.player].active=true
                             this.battle.overlayManager.overlays[184][this.player].activate([])
+                        }
+                    break
+                    case 195:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Call\nDucksquad',types.card),0,0)
                         }
                     break
 

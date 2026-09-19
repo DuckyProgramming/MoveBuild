@@ -1764,7 +1764,8 @@ combatant.prototype.setupGraphics=function(direction){
                 break
             }
         break
-        case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck': case 'Zombie Duck': case 'Pistol Duck':
+        case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Void Duck': case 'Golden Duck': case 'Bowler Duck': case 'Ducky Donka': case 'Ducky McDuff': case 'Sick Duck':
+        case 'Zombie Duck': case 'Pistol Duck': case 'Ducksquad':
             this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
             this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
             this.spin={legs:[{top:90},{top:-90}],arms:[{top:90},{top:-90}],eye:[-18,18]}
@@ -1841,6 +1842,12 @@ combatant.prototype.setupGraphics=function(direction){
                     this.color.hat=[210,155,60]
                     this.fades.hat=1
                     this.trigger.display.hat=true
+                break
+                case 'Ducksquad':
+                    this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
+                    this.color.helmet=[180,140,80]
+                    this.fades.helmet=1
+                    this.trigger.display.helmet=true
                 break
             }
         break

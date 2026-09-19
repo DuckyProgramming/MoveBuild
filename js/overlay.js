@@ -3432,7 +3432,8 @@ class overlay{
                 }
                 let y=this.layer.height/2-165
                 let split=[14,10]
-                this.layer.text(`Difficulty ${game.ascend}`,this.layer.width/2+225*this.posKey,y+=split[0])
+                //this.layer.text(`Difficulty ${game.ascend}`,this.layer.width/2+225*this.posKey,y+=split[0])
+                this.layer.text(`Difficulty ${game.diff}`,this.layer.width/2+225*this.posKey,y+=split[0])
                 this.layer.text(`Variants: ${variantStack.length>0?variantStack:`None`}`,this.layer.width/2+225*this.posKey,y+=split[0])
                 this.layer.text(`${this.battle.stats.node[0]} Nodes Traveled`,this.layer.width/2+225*this.posKey,y+=split[0])
                 this.layer.textSize(8)

@@ -5673,7 +5673,7 @@ He holds what seems to be two dowsing rods, moving them around.
             },
         ],
     },{
-        name:'Ducksquad',id:176,list:0,
+        name:'Duckteam',id:176,list:-1,
         pages:[
             {
                 desc:
@@ -5681,8 +5681,8 @@ He holds what seems to be two dowsing rods, moving them around.
 When they see you, they invite you over.
 They say they're forming a local resistance force.
 One offers to induct you into the group.`,
-                option:['Join the Ducksquad','Run'],
-                optionDesc:['Add Call Ducksquad to Deck',''],
+                option:['Join the Duckteam','Run'],
+                optionDesc:['Add Call Duckteam to Deck',''],
                 link:[1,2],
             },{
                 desc:`You learn the way they communicate.`,
@@ -6519,6 +6519,30 @@ But the cards may not be the ones you want...`,
                 link:[-1],
             },{
                 desc:`You fear what the game could entail.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Ducksquad',id:195,list:0,
+        pages:[
+            {
+                desc:
+`Several ducks are hiding in the forest talking.
+When they see you, one of them makes a motion inviting you over.
+They say they're forming a local resistance force.
+One offers to induct you into the group.`,
+                option:['Join the Ducksquad','Run'],
+                optionDesc:['Add Call Ducksquad to Deck',''],
+                link:[1,2],
+            },{
+                desc:`You learn the way they communicate.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You find his proposition pointless.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],

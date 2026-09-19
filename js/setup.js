@@ -15,7 +15,7 @@ function setup(){
         current.menu.combatant=[0]
         current.menu.deck=[-1]
 
-            variants.mtg=true
+            //variants.mtg=true
 
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
@@ -40,7 +40,7 @@ function setup(){
         //game.animRate=4
 
             /*stage.scene='histogram'
-            graphics.test=0*/
+            graphics.test=0
 
             /*current.packManagers[0].packs[0].take()
             current.packManagers[0].packs[1].take()

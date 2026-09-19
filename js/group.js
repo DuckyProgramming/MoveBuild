@@ -2843,6 +2843,7 @@ class group{
                     break
                 }
             }
+            let userCombatant
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
                 switch(effect){
@@ -2886,7 +2887,7 @@ class group{
                     break
                     case 12: case 49:
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -2898,7 +2899,7 @@ class group{
                         this.send(args[0],index,index+1,1)
                     break
                     case 13:
-                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                        userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         this.cards[index].deSize=true
                         if(userCombatant.getStatus('Random Exhaust Discard')<=0){
                             this.cards[index].exhaust=true
@@ -2931,7 +2932,7 @@ class group{
                     break
                     case 16:
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -3116,8 +3117,8 @@ class group{
                         this.generalUpgrade(this.cards[index])
                     break
                     case 56: case 73:
+                        userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -3135,7 +3136,7 @@ class group{
                     break
                     case 60:
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -3158,7 +3159,7 @@ class group{
                     break
                     case 66:
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -3174,7 +3175,7 @@ class group{
                         return this.cards[index].spec.includes(args[0])
                     case 67:
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -3191,7 +3192,7 @@ class group{
                         return this.cards[index].spec.includes(args[1])
                     case 68:
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -3239,7 +3240,7 @@ class group{
                     break
                     case 84:
                         if(massed&&this.id!=0){
-                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                                 this.cards[index].callPullEffect()
                             }
@@ -3260,7 +3261,7 @@ class group{
                     effect!=12&&effect!=16&&effect!=49&&effect!=56&&effect!=60&&
                     effect!=66&&effect!=67&&effect!=68
                 ){
-                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
                         this.cards[index].callPullEffect()
                     }

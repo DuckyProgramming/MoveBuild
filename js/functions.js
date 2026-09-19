@@ -2219,6 +2219,7 @@ function outListing(){
 	let actual=manager.listing.allListableCard[3].length
 	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
 	for(let a=0,la=constants.playerNumber;a<la;a++){
+		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length}, ${manager.listing.card[a+1][1].length}, ${manager.listing.card[a+1][2].length}\n`
 	}
 	let listed=[80,80,40,32,24]
 	let unlisted=[
