@@ -218,7 +218,7 @@ class combatant{
                 'Attack Intent (E)','10 Draw Energy','10 Draw Random Mana','3 Lowroll Strength','3 Highroll Strength','3 Lowroll Dexterity','3 Highroll Dexterity','3 Lowroll Draw','3 Highroll Draw','3 Lowroll Energy',
                 '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
                 '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
-                'Coffee Temporary Dexterity','Currency Block','Currency Mult',
+                'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -318,7 +318,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//95
                 0,0,0,0,0,0,0,0,0,0,//96
                 0,0,0,0,0,0,0,1,1,0,//97
-                0,0,0,
+                0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -418,7 +418,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//95
                 2,2,2,2,2,2,2,2,2,2,//96
                 2,2,2,2,2,2,2,2,2,2,//97
-                2,2,2,
+                2,2,2,2,2,
             ]}
         /*
         0-none
@@ -3381,9 +3381,9 @@ class combatant{
                     damage=0
                     userCombatant.status.main[250]--
                 }
-                if(userCombatant.caffeine>0){
+                /*if(userCombatant.caffeine>0){
                     totalStr+=userCombatant.caffeine
-                }
+                }*/
                 if(totalStr>0){
                     damage*=1+totalStr*0.1
                 }else if(totalStr<0){
@@ -4883,6 +4883,11 @@ class combatant{
         }
         if(this.status.main[674]>0&&type>=0){
             this.addBlock(this.status.main[674])
+        }
+        if(this.status.main[973]>0&&type>=0){
+            for(let a=0,la=this.status.main[973];a<la;a++){
+                this.tickOrbs(type)
+            }
         }
         //let playerMulti=target==this.id?0.5:1
         let playerMulti=1
@@ -6447,6 +6452,7 @@ class combatant{
                     case 904: this.statusEffect('Temporary Dexterity',this.status.main[this.status.ticker[a]]);this.status.next[findList('Temporary Dexterity Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
                     case 905: this.miniStatus('Temporary Dexterity Cycle 3 1',this.status.main[this.status.ticker[a]]); break
                     case 906: this.miniStatus('Temporary Dexterity Cycle 3 2',this.status.main[this.status.ticker[a]]); break
+                    case 974: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(12)} break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6

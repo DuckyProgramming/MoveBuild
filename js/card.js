@@ -1761,6 +1761,9 @@ class card{
                 this.battle.addSpecificEnergy(1,this.player,6)
                 this.battle.cardManagers[this.player].draw(this.effect[2])
             break
+            case 9926:
+                userCombatant.addBlock(this.effect[0])
+            break
 
         }
     }
@@ -2912,7 +2915,7 @@ class card{
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
             case 4628: case 4629: case 4630: case 4631: case 4632: case 5164: case 5543: case 5544: case 6243: case 6262:
             case 6263: case 6264: case 7189: case 7190: case 7345: case 7740: case 8313: case 8314: case 8315: case 8354:
-            case 8355: case 8987:
+            case 8355: case 8987: case 9949:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -2989,7 +2992,7 @@ class card{
             case 6925:
                 this.effect[0]=0
             break
-            case 7033: case 7255: case 8423:
+            case 7033: case 7255: case 8423: case 8738: case 9932:
                 if(this.debut){
                     this.costDown(2,[1])
                 }
@@ -3042,6 +3045,18 @@ class card{
             case 9651:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
                 this.costUp(2,[1])
+            break
+            case 9957: case 9958: case 9959:
+                this.setCost(2,[1-this.getCost(0)])
+            break
+            case 9960: case 9961: case 9962:
+                if(this.cost.includes(this.color[0])){
+                    this.cost=this.cost.map(a=>-1)
+                    this.base.cost=this.base.cost.map(a=>-1)
+                }else{
+                    this.cost=this.cost.map(a=>this.color[0])
+                    this.base.cost=this.base.cost.map(a=>this.color[0])
+                }
             break
         }
         if(this.spec.includes(88)){
@@ -3886,6 +3901,16 @@ class card{
             case 9859:
                 this.effect[0]+=this.effect[2]
             break
+            case 9964:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    userCombatant.holdOrb(0)
+                }
+            break
+            case 9965:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    userCombatant.holdOrb(1)
+                }
+            break
         }
         if(this.spec.includes(55)){
             switch(this.attack){
@@ -4036,7 +4061,7 @@ class card{
                         this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
                     }
                 break
-                case 8313: case 8987:
+                case 8313: case 8987: case 9949:
                     this.battle.cardManagers[this.player].hand.exhaust(this.effect[0])
                 break
                 case 8314:

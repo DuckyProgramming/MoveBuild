@@ -185,6 +185,7 @@ class eventManager{
                 !(this.listing.event[a]==191&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==192&&userCombatant.life<9||userCombatant.base.life<17)&&
                 !(this.listing.event[a]==193&&this.battle.currency.money[this.player]<250)&&
+                !(this.listing.event[a]==196&&this.battle.nodeManager.world==0)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -374,6 +375,10 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                 for(let a=0,la=5;a<la;a++){
                     this.pages[0].option[a]=types.card[solution].levels[0].effect[0]+a-correct
                 }
+            break
+            case 196:
+                this.selection=floor(random(0,this.battle.cardManagers[this.player].deck.cards.length))
+                this.pages[0].optionDesc[0]=`Remove ${this.battle.cardManagers[this.player].deck.cards[this.selection].name.replaceAll(`\n`,` `)}`
             break
         }
     }
@@ -2448,6 +2453,17 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                     case 195:
                         if(this.page==0&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Call\nDucksquad',types.card),0,0)
+                        }
+                    break
+                    case 196:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.remove(this.selection)
+                        }else if(this.page==0&&a==1){
+                            this.harm(userCombatant,6)
+                            this.selection=floor(random(0,this.battle.cardManagers[this.player].deck.cards.length))
+                            this.pages[0].optionDesc[0]=`Remove ${this.battle.cardManagers[this.player].deck.cards[this.selection].name.replaceAll(`\n`,` `)}`
+                        }else if(this.page==0&&a==2){
+                            this.harm(userCombatant,3)
                         }
                     break
 

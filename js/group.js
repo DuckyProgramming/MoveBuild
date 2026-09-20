@@ -1085,7 +1085,8 @@ class group{
                 type==25&&(this.cards[a].name.includes(args[0])||this.cards[a].spec.includes(args[1]))||
                 type==26&&args[0].includes(this.cards[a].class)&&args[1]!=this.cards[a].id||
                 type==27&&this.cards[a].name.includes(args[0])&&this.cards[a].class==args[1]||
-                type==28&&this.cards[a].getCost(4)
+                type==28&&this.cards[a].getCost(4)||
+                type==29&this.cards[a].getBasic(args[0])
             ){
                 total++
             }
@@ -3614,7 +3615,7 @@ class group{
 
             //mark n
             
-            case 288: case 374: case 2217: case 2776: case 4078: case 5361: case 6214: case 7343: case 9589:
+            case 288: case 374: case 2217: case 2776: case 4078: case 5361: case 6214: case 7343: case 9589: case 9934:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -5349,6 +5350,21 @@ class group{
                             this.sorted[a].anim.afford=1
                             this.sorted[a].display(this.id==0)
                             position++
+                        }
+                    break
+                    case 17:
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            if(this.cards[a].spec.includes(args[2])){
+                                this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                this.cards[a].fade=1
+                                this.cards[a].relIndex=position
+                                this.cards[a].position.x=this.layer.width/2-200+position%5*100
+                                this.cards[a].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                this.cards[a].anim.afford=1
+                                this.cards[a].display(this.id==0)
+                                position++
+                                this.finalPosition=position
+                            }
                         }
                     break
                     default:

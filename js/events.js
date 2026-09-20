@@ -6548,6 +6548,36 @@ One offers to induct you into the group.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Yapper',id:196,list:0,
+        pages:[
+            {
+                desc:
+`You come across a guy soapboxing in a public square.
+It doesn't seem like he's very popular, as only a few people are listening.
+Still, ass you pass by, you find his speech particularly irritating.`,
+                option:['Tell Him to Shut Up','Deal With It','Run'],
+                optionDesc:['','Lose 6 Health, Reroll Remove','Lose 3 Health'],
+                link:[1,2,3],
+            },{
+                desc:
+`Mustering the full power of your vocal chords, you speak your mind.
+He's a little mortified and backs up instead of trying an exchange.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:`You try to pass by while ignoring him, but it isn't easy.`,
+                option:['Go Back'],
+                optionDesc:[''],
+                link:[0],
+            },{
+                desc:`You decide to take a different path just to avoid him.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },
     
     /*{

@@ -1,27 +1,27 @@
-split plane ticket
-coffee becomes a keyword instead
-
-tooltips for dictionary
-dominance of discovery
-
-https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
+CS 118 [NEW SANAE]
 
 new sanae
 6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
-if still space, just add random cards with scry taped on
 rename old faith
 -> mantra
+split faithful meditation
+[mountain of faith]
 
 play new sanae
 also go purge her
-split faithful meditation
+
+CS 119 [AIRI PURGE]
+
+purge airi
+
+CS 120 [?]
+
+tooltips for dictionary
+
+https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
 
 play sakura armament
 shoot armament mechanic
-
-play/purge certes
-look at other subcard characters to find some shivs
-give her the existing exhaust gimmick
 
 play setsuna
 clunky cards
@@ -33,24 +33,8 @@ purge?
 play prehex x2 runs
 purge?
 
-purge airi
-
-triples of freeze, burn, and shock (maybe, otherwise just use to replenish dd610)
-
-down 1 event
-
-fresh off the burner - if you have exhausted a strike and defend, deal 15 damage and add 15 block (ehh might run out of gas too quickly espically with the whole thin to win)
-elemental gear - when you evoke an orb, tick all orbs of that type
-feral - put a claw from discard pile in your hand
-pass by - dazzling speed, but it draws another 0 cost card
-bitflip - add 12 block, cost becomes 1-cost
-refractor - 4 damage 3 times, fill all slots with glass orbs
-spinners - get a glass orb every turn
-
-recruitment - draw a card per enemy
-life hourglass - 3 cost rare, heal 4 health, gain 1 intangible, retain
-electric leech - remove 1 shock from all enemies, gain 1 energy each
-diadem - gain 1 buffer, apply 2 weak to all enemies
+[more cards using the system put in place by feral, for coffee, guns, etc]
+diadem - gain 1 buffer, apply 2 weak to all enemies [tiara already exists, base off that]
 concealed carry - deal 6 damage to a random enemy, if exhausted, trigger effect and gain 2 strength
 uplink - gain 1 strength per quest completed, exhaust
 tumult - apply shock, gain block equal to target's shock
@@ -59,13 +43,11 @@ locomotion - 2 cost, move 2 tiles, add 2 block, draw 2 cards
 split tactical retreat - it now forces you to move back like dine&dash but gives you more block
 
 split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
-flashbang - grenade but it applies frail
 pump action - 1 cost, draw 1 card, all guns in hand cost 1 less temporarily, exhaust (rare card)
 fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
 blazing bullet - shoot a guy and burn him(name change:dragonbreath shot sidenote go look at that stuff its cool)
 
 hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
-industrial buildup - assign 2: gain 1 base energy this combat, exhaust
 adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
 rollin' - gain 12 vigil, gain 1 energy next turn
 [disband meri duplicate cards that are unnecessary]

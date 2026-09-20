@@ -7286,6 +7286,8 @@ Afterward, the Evolve counter increemnts by 1.`,
         },{name:'Forge',mtg:0,desc:
 `When this card is upgraded, it is instead removed from the deck.
 Afterward, trigger its forge effect.`,
+        },{name:'Coffee',mtg:0,desc:
+`When played, gain 1 caffeine.`,
         },
         //mark dict
     ],diff:[

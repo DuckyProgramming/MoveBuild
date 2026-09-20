@@ -1791,6 +1791,7 @@ class battle{
             userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Temporary Card Play Temporary Strength'))
         }
         if(card.spec.includes(84)){
+            userCombatant.caffeine++
             if(userCombatant.getStatus('Coffee Draw')>0){
                 this.cardManagers[player].draw(userCombatant.getStatus('Coffee Draw'))
             }

@@ -607,9 +607,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[195]!=0){
 				totalStr+=user.status.main[195]
 			}
-			if(user.caffeine!=0){
+			/*if(user.caffeine!=0){
 				totalStr+=user.caffeine
-			}
+			}*/
 			if(totalStr>0){
 				damage*=1+totalStr*0.1
 				bonus*=1+totalStr*0.1
@@ -2223,7 +2223,7 @@ function outListing(){
 	}
 	let listed=[80,80,40,32,24]
 	let unlisted=[
-		48,//subcard
+		40,//subcard
 		3200,//disband
 		constants.playerNumber*8,//junkyard
 		32,//event
@@ -2231,7 +2231,7 @@ function outListing(){
 		20,//basic
 		32,//pack
 		160,//misc
-		64,//error
+		72,//error
 	]
 	let arbitrary=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)+unlisted.reduce((acc,num)=>acc+num,0)
 	let goal=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)
