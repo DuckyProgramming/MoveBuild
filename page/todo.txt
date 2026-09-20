@@ -1,8 +1,7 @@
-print clf str
-
-CS 119 [NEW SANAE]
+CS 119 [MISC / 8350]
 
 new animation for divination
+split riptide (new animation as well)
 split get ripped so it says get 1 more rather than get double
 split belt whip
 split sundial
@@ -11,19 +10,54 @@ split ruin
 split light cycle
 split chernobyl
 split seize
+split dispatch troops
+card like visionary tuning for the sisters
+[new khruschev]
+split defector
+split golf ball
+split touch of garlic
 
-new sanae
+CS 120 [NEW SANAE / 8400]
+
+prayer stance - damage, temporary dexterity, faiths
+time magic - when you take an extra turn, discover a card, it costs 0
+sleight forsight - draw a power, gain faith
+strength testing - gain 1 strength, if you have dexterity, gives 1 more strength
+cyan mist - damage 2 times, gain 1 control, gain 1 faith
+spellcard study - block, rare card in hand: gain faith
+holy relics - gain 1 faith per item you have
+invocation preparation - gain faith, get dazed
+tie dye - faith, gain 1 energy, gain 1 energy next turn
+pillar of phosphor - damage 2 times equal to 3 * dexterity, gain faith
+major motivator - faith functions like temporary strength and dexterity
+[menessa] woman of action - caffeine functions like temporary strength and dexterity
+prespoke incantation - gain 1 faith per attack or defense in hand
+kanako's blessing - when you invoke kanako, gain 1 dexterity
+suwako's blessing - when you invoke suwako, gain 1 strength
+rebuff dance - aerial but you also gain 1 control
+
 split faithful meditation
+split gather faith
+split prison of faith
+split faithful guide
 [mountain of faith]
 
-play new sanae
-also go purge her
+also go purge her if we go over
+fresh tutorial
 
-CS 120 [AIRI PURGE]
+fill in remaining slots with randos from the reserve below
+
+CS 121 [AIRI PURGE / 8500]
 
 purge airi
+make sure her tutorial is not ruined
 
-CS 121 [?]
+fill in remaining slots with randos from the reserve below
+
+CS 122 [?]
+
+perhaps remove the junkyard mode altogether
+replace with: classic ()
 
 tooltips for dictionary
 
@@ -31,18 +65,25 @@ https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
 
 play sakura armament
 shoot armament mechanic
+make sure her tutorial is not ruined
 
 play setsuna
 clunky cards
 purge?
+make sure her tutorial is not ruined
 
 play discardless shiru
 purge?
+make sure her tutorial is not ruined
 
 play prehex x2 runs
 purge?
+make sure her tutorial is not ruined
 
 [more cards using the system put in place by feral, for coffee, guns, etc]
+sight of distant blade - damage, shiv, costs 1 less when played
+split shinmy cards that count as strikes to have defend variants
+
 diadem - gain 1 buffer, apply 2 weak to all enemies [tiara already exists, base off that]
 concealed carry - deal 6 damage to a random enemy, if exhausted, trigger effect and gain 2 strength
 uplink - gain 1 strength per quest completed, exhaust
@@ -172,6 +213,7 @@ alarm chili - when you play a skill this turn, deal 10 damage in all directions
 matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
 
 check that on mtg mode energy is never mentioned
+outdupes, outmtgerror
 
 [slio9]
 

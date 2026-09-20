@@ -45,7 +45,8 @@ class tutorialManager{
                     [{x:26,y:454,size:40}],
                     [{x:this.quickTile(0,0).x,y:this.quickTile(0,0).y-50,size:60}],
                     [],
-                    [{x:26,y:550,size:40}],
+                    //[{x:26,y:550,size:40}],
+                    [{x:66,y:578,size:40}],
                     [],
                 ]
                 this.pages=[
@@ -91,7 +92,10 @@ Relics (permanent buff), Items (single use), Upgrade a Card`,
                     [],
                     [],
                     [],
+                    [],
                     [{x:68,y:578,size:30},{x:26,y:578,size:30}],
+                    [],
+                    [],
                     [],
                     [],
                     [],
@@ -104,12 +108,15 @@ First, enter the rest site.`,
 `Rest sites give you several options for benefits.
 Typically, you get Heal (HP) and Upgrade (a card) as options.
 You may get more options from relics.`,
+`Pick an option at the rest site and navigate to the shop.`,
 `At a shop, you can buy cards, buy packs, remove a card, or buy relics.
 Alternate options at the shop (highlighted) include:
-Selling relics, Heal (10 HP for 60 Currency)`,
+Selling relics and healing (10 HP for 60 Currency)`,
+`Leave the shop (the button at the bottom) and navigate to the unknown.`,
 `Unknowns are completely random.
 They may be an event, which vary by quality.`,
-`Finally, the stash gives you a relic for free.`,
+`Complete the event and navigate to the stash.`,
+`The stash gives you a relic for free.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -219,8 +226,8 @@ Try these out in those places.`,
                     [],
                     [{x:this.quickTile(2,1).x,y:this.quickTile(2,1).y-50,size:60},{x:this.quickTile(2,2).x,y:this.quickTile(2,2).y-50,size:60}],
                     [],
+                    [{x:26,y:578,size:30}],
                     [],
-                    []
                 ]
                 this.pages=[
 `Here's an enemy. This one has 25 health and deals 10 damage,
@@ -428,7 +435,8 @@ before using them, as those characters will be afflicted.`,
 but as Lira, there are ways to remove fatigue or capitalize off of it.
 But still, Fatigue remains an issue during longer battles.`,
 `Finally, Poison acts similarly to Bleed. It deals damage each turn.
-It decreases by 1 each turn as well. Unlike Bleed, Poison bypasses Block.`,
+It decreases by 1 each turn as well. Poison also bypasses Block.`,
+//It decreases by 1 each turn as well. Unlike Bleed, Poison bypasses Block.`,
 `To see the full effect of Poison against this enemy,
 end you turn a couple times to let it take damage.`,
 `END OF TUTORIAL`,
@@ -600,12 +608,13 @@ know when to select them to be upgraded by another card.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Setsuna, the Duelist, is a character that can be focused on many things.
 Her gimmicks are Stances, Mantra, and creating cards.`,
-`Namely, the stances are: Wrath, Calm, Haste, Sturdy, Divinity.
-You can also be in no Stance, which is the default.`,
+//`Namely, the stances are: Wrath, Calm, Haste, Sturdy, Divinity.
+`Namely, the stances are: Wrath, Calm, Sturdy, and Divinity.
+You can also be in no Stance at all, which is the default.`,
 `Entering a stance causes you to be in that stance. Entering a stance from itself counts.
 Exiting stance means not being in that stance. Exit Stance as a keyword removes stance.
 As in, Exit Stance puts you in no stance, but stances can be exited to other stances`,
@@ -615,16 +624,17 @@ However, the added vulnerability makes it important to have a way to get out of 
 `Calm is the setup stance. It has no passive benefits or downsides.
 However, when you leave calm, you gain 2 energy. Rapid entry and exit can farm energy,
 or you can stay in calm to get a big turn later.`,
-`Haste is the movement stance. While in Haste, you get a Speed every turn.
-However, you cannot attack at all in Haste. Being able to leave it is very important.`,
-`Sturdy is the defense stance. You take 50% less damage in Haste.
+/*`Haste is the movement stance. While in Haste, you get a Speed every turn.
+However, you cannot attack at all in Haste. Being able to leave it is very important.`,*/
+`Sturdy is the defense stance. You take 50% less damage in Sturdy.
 However, you deal 50% less damage in Sturdy. While it is not required,
 being able to leave Sturdy is always beneficial.`,
 `Divinity is the final stance. There are few ways to instantly enter Divinity.
 Entering divinity requires building up 12 Mantra, which is gained through cards.
 When 12 Mantra is gained, you lose 12 Mantra and enter Divinity.`,
 `You deal 3x damage in Divinity, and when you enter Divinity,
-you also gain 3 energy and draw 3 cards. Divinity is very powerful.`,
+you also gain 3 energy to attack with. Divinity is very powerful.`,
+//you also gain 3 energy and draw 3 cards. Divinity is very powerful.`,
 `The final ability of Setsuna is to create cards. These cards are added by other cards.
 Appearing during combat, these cards usually have effective abilities.`,
 `END OF TUTORIAL`,
@@ -700,9 +710,11 @@ but becomes reliant on an ammo source to remain functional.`,
 Using them often requires playing cards to get them in the right place.`,
 `As Edgar, each turn is almost played out separately, even more than in normal runs.
 Finding the right way to play the cards you get as Edgar is simple, but key.`,
-`Burn is a status that never decays. It deals damage when the afflicted
+`Burn is a status that never decays. It increases damage taken when the
+target takes 20 or more damage. Try triggering it on this enemy.`,
+/*`Burn is a status that never decays. It deals damage when the afflicted
 doesn't get a hit by the end of each turn. Avoid the enemy's attack
-to damage him with burn.`,
+to damage him with burn.`,*/
 `END OF TUTORIAL`,
                 ]
             break
@@ -730,7 +742,8 @@ Using them can be difficult due to randomness, so don't take to many chances.`,
 Another is to have a backup plan with their downsides.
 And remember that most have a base power, and not to rely on the chance effects.`,
 `Some luck-based cards use dice rolls to determine their effects.
-They are marked as D6 or D20. These rolls are random but may be modified.`,
+They are marked as D6 or similar. These rolls are random but may be modified.`,
+//They are marked as D6 or D20. These rolls are random but may be modified.`,
 `These are generally more unreliable because of their inconsistency,
 but just like other luck cards, they can be manipulated.`,
 `Currency is a general game mechanic, but Chip has many cards that involve it.
@@ -790,10 +803,11 @@ when the energy doesn't work out in your favor.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                this.popups=[[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
 `DD-610, the Paradigm, has many valid strategies.
-Its gimmicks are: Claws, Shock, and Cables.`,
+Its gimmicks are: Claws and Shock`,
+//Its gimmicks are: Claws, Shock, and Cables.`,
 `Claws are a set of cards that interact with each other.
 Clawup refers to increasing the effect of other Claws.`,
 `While the diverse Claw cards can offer different effects, they're not
@@ -802,15 +816,16 @@ along with other cards as aggressively scaling claws is risky.`,
 `Shock is a status similar to Poison or Bleed, that does damage every turn.
 Unlike Poison or Bleed, however, it does not decrease every turn`,
 `Instead, Shock's weakness is that it applies when an enemy moves.
-Fast enemies are affected more, but nonmoving enemies are immune to Shock.`,
+Fast enemies are affected more, but nonmoving enemies are immune to Shock.
+End your turn to allow the enemy to move and take damage from Shock.`,
 `There are a variety of ways to apply Shock to enemies,
 or to take advantage on an already shocked enemy to gain benefits.
 DD-610 may also benefit from shocking itself and accepting the downside.`,
-`Cables are a set of attacks that have additional effects when used in
+/*`Cables are a set of attacks that have additional effects when used in
 one specific direction. While consistent even if the additional effects are not
 used, Cables are much better when their abilities can be taken advantage of.`,
 `Positioning and planning ahead are important to using Cables well,
-but keep in mind that sometimes the locations just won't align.`,
+but keep in mind that sometimes the locations just won't align.`,*/
 `A few of DD-610's cards also work with their stats and costs changing
 when they are played or when another card is played.`,
 `END OF TUTORIAL`,
@@ -869,10 +884,11 @@ but getting the turns can be expensive in terms of energy.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
-                this.popups=[[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Vincent, the Manufacturer, works best with things that can be held.
-His gimmicks include: Items, Concoctions, Prismatic Bombs.`,
+His gimmicks include: Items and Prismatic Bombs.`,
+//His gimmicks include: Items, Concoctions, Prismatic Bombs.`,
 `All characters can use items, but Vincent has access to a group of items
 known as temporary items that are removed at the end of combat. There are many
 ways to attain them, but they are used just like any other item.`,
@@ -887,13 +903,15 @@ is also important to consider, as only permanent items can be sold or
 saved for key moments, but temporary items can be cycled repeatedly when needed.`,
 `For that reason and becoems they're often temporary, rapidly using items is necessary.
 It's worth noting that Items can be wasted by using them and pressing Backspace.`,
-`Vincent can also use Concoctions, cards that can be upgraded multiple times.
+/*`Vincent can also use Concoctions, cards that can be upgraded multiple times.
 They can be upgraded repeatedly at standard rest sites or in battle.`,
 `Deciding how to work with Concoctions is a challenge as you have to consider
 how much weight they have compared to other cards in your deck.`,
 `Prismatic Bombs are cards that you can create in your draw and discard piles.
 When drawn, they have several beneficial effects, but are ethereal.
-You can pay to keep them from exhausting themselves by discarding them.`,
+You can pay to keep them from exhausting themselves by discarding them.`,*/
+`One such item is the Prismatic Bomb, which grants a range of powerful effects.
+However, obtaining Prismatic Bomb items themselves can be difficult.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1140,15 +1158,17 @@ can also be used as cheap fuel for any fuel cards.`,
                 for(let a=0,la=6;a<la;a++){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1-a].setMaxHP(10)
                 }
-                this.popups=[[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[]]
                 this.pages=[
 `Sagume, the Sage, works around creating and spending cards.
-Her gimmicks include: Discuses, Status Cards, and Bounce.`,
+Her gimmicks include: Discuses and Status Cards.`,
+//Her gimmicks include: Discuses, Status Cards, and Bounce.`,
 `Discuses are Sagume's colorless token cards.
 The difference is that they cannot be spammed, as they cost 2 Energy to play.
 They do retain, though, so a Discus can be held until the right time to use it.`,
-`Discuses also give bounce, so decisions regarding when to use them have
-to be made off when damage and bounce are needed and when energy is available.`,
+//`Discuses also give bounce, so decisions regarding when to use them have
+`Discuses also give block, so decisions regarding when to use them have
+to be made off when damage and block are needed and when energy is available.`,
 `Other than Discuses, Sagume's other creatable cards are status cards.
 These aren't playable, and must be exhausted to trigger their effects.`,
 `They can be exhausted normally through cards effects, but there is
@@ -1157,9 +1177,9 @@ a status card is drawn, exhausting the card and drawing another.`,
 `It's important to not fill your deck with too many status cards
 that you can't get rid of, but if you keep them under control,
 they can provide high benefits.`,
-`Bounce is a defense application similar to block.
+/*`Bounce is a defense application similar to block.
 However, when an enemy causes you to lose bounce to block damage,
-it will reflect the same amount to them.`,
+it will reflect the same amount to them.`,*/
 `END OF TUTORIAL`,
                 ]
             break
@@ -1177,7 +1197,7 @@ it will reflect the same amount to them.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
-                this.popups=[[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[]]
                 this.pages=[
 `Fernando, the Comedian, functions around standard statuses.
 This involves applying weak and vulnerable, both to enemies,
@@ -1192,9 +1212,9 @@ which ticks down each turn. As long as you have some,
 you are immune to weak, vulnerable, and frail.`,
 `If you have consistent Pity, these debuffs become pointless,
 so you can stack them onto yourself without any fear.`,
-`Fernando also has minor gimmicks in the Discover keyword,
+/*`Fernando also has minor gimmicks in the Discover keyword,
 which lets you choose a card from a selection, although
-the keyword is used on other characters' cards as well.`,
+the keyword is used on other characters' cards as well.`,*/
 `END OF TUTORIAL`,
                 ]
             break
@@ -1353,7 +1373,7 @@ You can gain caffeine from Coffee Cards, which give benefits.
 However, gaining caffeine is their downside.`,
 `A little bit of caffeine can't harm you, but be careful.
 If you reach 3, your caffeine tolerance, you'll overdose.
-This results losing 3 health, after which your caffeine resets.`,
+This results in losing 6 health, after which your caffeine resets.`,
 `However, that doesn't mean you shouldn't drink too much coffee.
 This is because the card Pristine exists, which removes caffeine.,
 Menessa has access to many sources of Pristines.`,
@@ -1542,7 +1562,8 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Push',types.card),0,types.card[findName('Push',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Push',types.card),0,types.card[findName('Push',types.card)].list)
-                        this.battle.cardManagers[0].hand.add(findName('Diagonal\nStep',types.card),0,types.card[findName('Diagonal\nStep',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Dash',types.card),0,types.card[findName('Dash',types.card)].list)
+                        //this.battle.cardManagers[0].hand.add(findName('Diagonal\nStep',types.card),0,types.card[findName('Diagonal\nStep',types.card)].list)
                     break
                     case 3:
                         this.battle.setupBattle(types.encounter[findName('TutorialBlank',types.encounter)])
@@ -1554,11 +1575,13 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.combatantManager.summonCombatantDefinite({x:2,y:3},findName('NumberDummy',types.combatant),150)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Shiv',types.card),0,0)
+                        //this.battle.cardManagers[0].hand.add(findName('Shiv',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Positioning\nMove',types.card),0,types.card[findName('Positioning\nMove',types.card)].list)
-                        this.battle.cardManagers[0].hand.add(findName('Pistol',types.card),0,types.card[findName('Pistol',types.card)].list)
+                        //this.battle.cardManagers[0].hand.add(findName('Pistol',types.card),0,types.card[findName('Pistol',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Quick\nKick',types.card),0,types.card[findName('Quick\nKick',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Taunt',types.card),0,types.card[findName('Taunt',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Pull',types.card),0,types.card[findName('Pull',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Pull',types.card),0,types.card[findName('Pull',types.card)].list)
                     break
                     case 4:
@@ -1575,7 +1598,8 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Poke',types.card),0,types.card[findName('Poke',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Nondirectional\nBeam',types.card),0,types.card[findName('Nondirectional\nBeam',types.card)].list)
-                        this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,types.card[findName('Shotgun',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Throw\nKnife',types.card),0,types.card[findName('Throw\nKnife',types.card)].list)
+                        //this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,types.card[findName('Shotgun',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Calculated\nStrike',types.card),0,types.card[findName('Calculated\nStrike',types.card)].list)
                     break
                     case 5:
@@ -1593,9 +1617,11 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.combatantManager.summonCombatantDefinite({x:4,y:3},findName('NumberDummy',types.combatant),90)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Close\nIn',types.card),0,types.card[findName('Close\nIn',types.card)].list)
+                        //this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        //this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
+                        //this.battle.cardManagers[0].hand.add(findName('Close\nIn',types.card),0,types.card[findName('Close\nIn',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Worldline',types.card),0,types.card[findName('Worldline',types.card)].list)
+                        this.battle.cardManagers[0].hand.add(findName('Pull',types.card),0,types.card[findName('Pull',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Pull',types.card),0,types.card[findName('Pull',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Repeater',types.card),0,types.card[findName('Repeater',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Split\nKick',types.card),0,types.card[findName('Split\nKick',types.card)].list)
@@ -1604,20 +1630,23 @@ while staying aware of when they can feed a quick combo.`,
                     case 6:
                         this.battle.setupBattle(types.encounter[findName('TutorialBlank',types.encounter)])
                         this.battle.combatantManager.summonCombatantDefinite({x:2,y:3},findName('AttackDummy',types.combatant),150)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        //this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(1)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=5
                         this.battle.combatantManager.summonCombatantDefinite({x:3,y:3},findName('NumberDummy',types.combatant),-150)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
                         this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Dazzling\nSpeed',types.card),0,types.card[findName('Dazzling\nSpeed',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Blaze\nAhead',types.card),0,types.card[findName('Blaze\nAhead',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Spot\nWeakness',types.card),0,types.card[findName('Spot\nWeakness',types.card)].list)
-                        this.battle.cardManagers[0].hand.add(findName('Sequence',types.card),0,types.card[findName('Sequence',types.card)].list)
+                        //this.battle.cardManagers[0].hand.add(findName('Sequence',types.card),0,types.card[findName('Sequence',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Clear\nUp',types.card),0,types.card[findName('Clear\nUp',types.card)].list)
-                        this.battle.dropDraw(0,findName('Caffeine\nHigh',types.card),0,types.card[findName('Caffeine\nHigh',types.card)].list)
+                        this.battle.dropDraw(0,findName('Wind\nUp',types.card),0,types.card[findName('Wind\nUp',types.card)].list)
+                        //this.battle.dropDraw(0,findName('Caffeine\nHigh',types.card),0,types.card[findName('Caffeine\nHigh',types.card)].list)
                     break
                 }
             break
@@ -1673,7 +1702,8 @@ while staying aware of when they can feed a quick combo.`,
                     break
                     case 3:
                         this.battle.cardManagers[0].hand.add(findName('Relegation',types.card),0,2)
-                        this.battle.cardManagers[0].hand.add(findName('Recoup',types.card),0,2)
+                        //this.battle.cardManagers[0].hand.add(findName('Recoup',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Civility',types.card),0,2)
                     break
                     case 4:
                         this.battle.combatantManager.resetCombatants()
@@ -1696,7 +1726,8 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Liquorice',types.card),0,2)
+                        //this.battle.cardManagers[0].hand.add(findName('Liquorice',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Blight',types.card),0,2)
                         this.battle.cardManagers[0].hand.add(findName('Poison\nSplash',types.card),0,2)
                     break
                 }
@@ -1803,7 +1834,8 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Build\nSpike Pillar',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Build\nTeleporter Start',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Build\nReadout',types.card),0,6)
-                        this.battle.cardManagers[0].hand.add(findName('Build\nGun Rack',types.card),0,6)
+                        //this.battle.cardManagers[0].hand.add(findName('Build\nGun Rack',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nMetal Box',types.card),0,6)
                     break
                     case 7:
                         this.battle.combatantManager.resetCombatants()
@@ -1813,7 +1845,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
-                        this.battle.cardManagers[0].hand.add(findName('Phase\nShift',types.card),0,6)
+                        //this.battle.cardManagers[0].hand.add(findName('Phase\nShift',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Expansion',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Materials',types.card),0,6)
                     break
@@ -1853,11 +1885,11 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Tranquility',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Empty\nFist',types.card),0,7)
                     break
-                    case 5:
+                    /*case 5:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Forward',types.card),0,7)
-                    break
-                    case 6:
+                    break*/
+                    case 5:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
@@ -1866,7 +1898,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Standstill',types.card),0,7)
                     break
-                    case 7:
+                    case 6:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
@@ -1877,7 +1909,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
                     break
-                    case 9:
+                    case 8:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(15)
@@ -1941,13 +1973,17 @@ while staying aware of when they can feed a quick combo.`,
                     break
                     case 5:
                         this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
+                        /*this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=5
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
-                        this.battle.updateTargetting()
+                        this.battle.updateTargetting()*/
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Bullet\nSupply',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,9)
                     break
@@ -1976,8 +2012,11 @@ while staying aware of when they can feed a quick combo.`,
                     break
                     case 4:
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Fixed\nDice',types.card),0,10)
-                        this.battle.cardManagers[0].hand.add(findName('Six\nSector',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Safe\nBet',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Facelift',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Dice\nDefense',types.card),0,10)
+                        /*this.battle.cardManagers[0].hand.add(findName('Fixed\nDice',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Six\nSector',types.card),0,10)*/
                     break
                     case 5:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -2011,7 +2050,7 @@ while staying aware of when they can feed a quick combo.`,
                     break
                     case 6:
                         this.battle.cardManagers[0].hand.add(findName('Acanthite',types.card),0,11)
-                        this.battle.cardManagers[0].hand.add(findName('Pyrargyrite',types.card),0,11)
+                        //this.battle.cardManagers[0].hand.add(findName('Pyrargyrite',types.card),0,11)
                     break
                 }
             break
@@ -2036,7 +2075,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('System\nScan',types.card),0,12)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
                     break
-                    case 6:
+                    /*case 6:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
@@ -2047,7 +2086,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
                         this.battle.setEnergy(99,0)
-                    break
+                    break*/
                 }
             break
             case 20:
@@ -2082,17 +2121,21 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Synthesis',types.card),0,14)
                         this.battle.cardManagers[0].hand.add(findName('Supply',types.card),0,14)
                     break
-                    case 6:
+                    /*case 6:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Unstable\nConcoction',types.card),0,14)
                         this.battle.cardManagers[0].hand.add(findName('Pipette',types.card),0,14)
-                    break
-                    case 8:
+                    break*/
+                    /*case 8:
                         this.battle.cardManagers[0].discard.cards=[]
                         this.battle.cardManagers[0].allEffect(2,22)
                         this.battle.cardManagers[0].hand.add(findName('Craft\nBomb',types.card),0,14)
                         this.battle.cardManagers[0].hand.add(findName('Examination',types.card),0,14)
                         this.battle.cardManagers[0].hand.add(findName('Examination',types.card),0,14)
+                    break*/
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,22)
+                        this.battle.cardManagers[0].hand.add(findName('Craft\nBomb',types.card),0,14)
                     break
                 }
             break
@@ -2268,7 +2311,8 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Charge\nStrike',types.card),0,19)
-                        this.battle.cardManagers[0].hand.add(findName('Big\nStrike',types.card),0,19)
+                        //this.battle.cardManagers[0].hand.add(findName('Big\nStrike',types.card),0,19)
+                        this.battle.cardManagers[0].hand.add(findName('Chunked',types.card),0,19)
                         this.battle.cardManagers[0].hand.add(findName('High\nGround',types.card),0,19)
                     break
                 }
@@ -2341,7 +2385,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Lost\nLegacy',types.card),0,21)
                         this.battle.cardManagers[0].hand.add(findName('Cast\nRegrets',types.card),0,21)
                     break
-                    case 6:
+                    /*case 6:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:2,y:1},findName('AttackDummy',types.combatant),-30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
@@ -2351,7 +2395,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.updateTargetting()
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Signal',types.card),0,21)
-                    break
+                    break*/
                 }
             break
             case 29:
@@ -2369,13 +2413,13 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Shtick',types.card),0,22)
                         this.battle.cardManagers[0].hand.add(findName('Disjoint',types.card),0,22)
                     break
-                    case 5:
+                    /*case 5:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Spilt',types.card),0,22)
-                    break
+                    break*/
                 }
             break
             case 30:

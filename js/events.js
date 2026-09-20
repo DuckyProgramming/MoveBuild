@@ -4191,7 +4191,7 @@ and the Spectre of Poverty appears before you, with an accursed smile.
 It's said that she rarely appears to people, but when she does,
 it never ends well for them.
 "Well, well, well..." she begins. "Are you poor?"`,
-                option:[`I'm Poor!`,`I'm not Poor!`],
+                option:[`I'm Poor!`,`I'm Not Poor!`],
                 optionDesc:['Lose All Currency','Become Cursed - Buy Safety'],
                 link:[1,2],
             },{
