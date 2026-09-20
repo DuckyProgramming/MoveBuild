@@ -16,7 +16,7 @@ types={
         {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`The last of a near-extinct species,\nspending his last days in a state\nof sorrow over his people's fate.\nOut to attack the dominant power\njust to leave some kind of legacy behind.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Tenured professor with the Konaian\nFirst University, gave up on work after\nreceiving terrible paychecks to\ncook product instead. After being\ncaught, he quickly escaped to the rebels.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`The "One Who Remembers", one of the\ntwo patron fairies of Konai, and\nself-proclaimed "Great Fairy".\nWorking with the council just because\nit's more interesting if they win.`},
-        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:457,effect:[16]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:`Priestess maintaining a small presence\non the lower slopes of Hinokizuka.\nAfter being driven away by the\nsects higher up on the mountain, she found\na new source of much-needed faith.`},
+        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:457,effect:[16]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:`Priestess maintaining a small presence\non the lower slopes of Hinokizuka.\nAfter being driven away by the\nsects higher up on the mountain, she found\na new source of much-needed mantra.`},
         {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:`Younger sister of the claimant to\nthe Konaian throne Jovina III,\ndissatisfied with her sister's\nconciliatory approach and desperate to\nprove the efficacy of the alternative.`},
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:`A ghost of a long-dead musical\ntradition on Konai, attempting to\nreclaim this lost ground for the arts.\nAwakened to return by great upheaval;\nthis is the chance to make a change.`},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:`Wild duck looking for somewhere\nsafe to settle, never finding somewhere\njsut right for his tastes.\nHaving surveyed most of Konai's landscapes,\nhe now sells that service to the rebels.`},
@@ -1531,7 +1531,8 @@ types={
         {name:'Skillful Tonic',internal:'2 Mana/Redraw Non-Skills',id:113,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (K) (K),\nRedraw All Non-Skill Cards'},
         {name:'Powerful Tonic',internal:'2 Mana/Redraw Non-Powers',id:114,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (W) (W),\nRedraw All Non-Power Cards'},
         {name:'Ceroline',internal:'Free Card',id:115,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Next Card Played is Free'},
-        {name:'Vortex Collapse',internal:'35 Damage/2 Riptides',id:116,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nRiptides to Hand\nRange 1-6'},
+        //{name:'Vortex Collapse',internal:'35 Damage/2 Riptides',id:116,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nRiptides to Hand\nRange 1-6'},
+        {name:'Vortex Collapse',internal:'35 Damage/Emergency Move',id:116,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 1\nEmergency Move to Hand\nRange 1-6'},
         {name:'Round Camera',internal:'Copy Card',id:117,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Make 3 Copies of\na Card in Hand'},
         {name:'Party Bottle',internal:'2 Strength/2 Dexterity',id:118,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Strength and 2 Dexterity'},
 
@@ -7116,8 +7117,9 @@ Unaffected by focus.`,
 `Stance. Add a Stride to Hand when entered, but you cannot attack.`,
         },{name:'Sturdy',mtg:0,desc:
 `Stance. Deal 60% damage and take 40% damage. `,
-        },{name:'Faith',mtg:0,desc:
-`Gained through cards. When you gain 8 faith, enter Divinity.`,
+        },{name:'Mantra',mtg:0,desc:
+//`Gained through cards. When you gain 8 Mantra, enter Divinity.`,
+`Gained through cards. When you gain 12 Mantra, enter Divinity.`,
         },{name:'Safety',mtg:0,desc:
 `Card that gives block, exhausts and retains.`,
         },{name:'Insight',mtg:0,desc:
@@ -7288,6 +7290,11 @@ Afterward, the Evolve counter increemnts by 1.`,
 Afterward, trigger its forge effect.`,
         },{name:'Coffee',mtg:0,desc:
 `When played, gain 1 caffeine.`,
+        },{name:'Faith',mtg:0,desc:
+`Gained through cards. When you gain 6 Faith, complete a Invocation.`,
+        },{name:'Invocation',mtg:0,desc:
+`Choose an Astrology or Riptide to add to hand.
+After adding both, also add a Miracle.`,
         },
         //mark dict
     ],diff:[

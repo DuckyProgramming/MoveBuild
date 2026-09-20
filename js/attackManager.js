@@ -40,6 +40,7 @@ class attackManager{
         this.endAfter=false
         this.nodeAfter=false
         this.finalAfter=false
+        this.finalWorldAfter=false
     }
     clear(){
         for(let a=0,la=this.attacks.length;a<la;a++){
@@ -127,6 +128,13 @@ class attackManager{
             this.finalAfter=false
             this.battle.nodeManager.world=3
             this.battle.setupBattle(types.encounter[findName(game.ascend>=33?'-h Rewriter':['Rewriter','Eternal Judge'][floor(random(0,2))],types.encounter)])
+        }else if(this.finalWorldAfter){
+            this.finalWorldAfter=false
+            this.battle.nodeManager.world=2
+            transition.trigger=true
+            transition.scene='bossstash'
+            this.battle.combatantManager.bossHeal()
+            this.battle.setupBossStash()
         }
     }
     update(){

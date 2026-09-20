@@ -201,6 +201,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[126])],//make common, no return, 190
                     [new overlay(this.layer,this.battle,0,2,[127])],//bring in draw card as foil, no return
                     [new overlay(this.layer,this.battle,0,2,[128,0,1,20])],//bring in discard card with spec
+                    [new overlay(this.layer,this.battle,0,17,[2,2])],//dual card choice, prayer
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

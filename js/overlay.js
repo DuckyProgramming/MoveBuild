@@ -75,6 +75,7 @@ class overlay{
             case 17:
                 this.card=0
                 this.cards=[]
+                this.polarity=[0,0]
             break
             case 20: case 29:
                 this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
@@ -2023,6 +2024,20 @@ class overlay{
                             this.cards[this.cards.length-1].position.y=this.layer.height/2+20
                         }
                     break
+                    case 2:
+                        switch(args[0]){
+                            case 0:
+                                for(let a=0,la=2;a<la;a++){
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Invoke\nKanako','Invoke\nSuwako'][a],types.card),0,variants.mtg?[]:0,0))
+                                    this.cards[this.cards.length-1].upSize=true
+                                    this.cards[this.cards.length-1].limit=a
+                                }
+                            break
+                            case 1:
+                                this.polarity=[0,0]
+                            break
+                        }
+                    break
                 }
             break
             case 20:
@@ -2718,6 +2733,11 @@ class overlay{
                         }else{
                             this.battle.cardManagers[this.player].hand.selfCall(33,args[0])
                         }
+                    break
+                    case 2:
+                        this.polarity[args[0].limit]++
+                        this.battle.cardManagers[this.player].hand.selfCall(34,args[0])
+                        this.battle.cardManagers[this.player].hand.selfCall(33,args[0])
                     break
                 }
             break
@@ -3733,7 +3753,7 @@ class overlay{
                 this.layer.rect(this.layer.width/2,this.layer.height/2,this.args[1]*120+40,200,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text(`Select Ability`,this.layer.width/2,this.layer.height/2-70)
+                this.layer.text(this.args[0]==2?`Select Invocation`:`Select Ability`,this.layer.width/2,this.layer.height/2-70)
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
                     this.cards[a].anim={select:0,afford:1}

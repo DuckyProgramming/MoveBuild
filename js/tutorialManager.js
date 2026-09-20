@@ -603,7 +603,7 @@ know when to select them to be upgraded by another card.`,
                 this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Setsuna, the Duelist, is a character that can be focused on many things.
-Her gimmicks are Stances, Faith, and creating cards.`,
+Her gimmicks are Stances, Mantra, and creating cards.`,
 `Namely, the stances are: Wrath, Calm, Haste, Sturdy, Divinity.
 You can also be in no Stance, which is the default.`,
 `Entering a stance causes you to be in that stance. Entering a stance from itself counts.
@@ -621,8 +621,8 @@ However, you cannot attack at all in Haste. Being able to leave it is very impor
 However, you deal 50% less damage in Sturdy. While it is not required,
 being able to leave Sturdy is always beneficial.`,
 `Divinity is the final stance. There are few ways to instantly enter Divinity.
-Entering divinity requires building up 12 Faith, which is gained through cards.
-When 12 Faith is gained, you lose 12 Faith and enter Divinity.`,
+Entering divinity requires building up 12 Mantra, which is gained through cards.
+When 12 Mantra is gained, you lose 12 Mantra and enter Divinity.`,
 `You deal 3x damage in Divinity, and when you enter Divinity,
 you also gain 3 energy and draw 3 cards. Divinity is very powerful.`,
 `The final ability of Setsuna is to create cards. These cards are added by other cards.

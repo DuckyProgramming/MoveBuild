@@ -1,20 +1,29 @@
-CS 118 [NEW SANAE]
+print clf str
+
+CS 119 [NEW SANAE]
+
+new animation for divination
+split get ripped so it says get 1 more rather than get double
+split belt whip
+split sundial
+split linkage slash and kinematic shield to give a status
+split ruin
+split light cycle
+split chernobyl
+split seize
 
 new sanae
-6 faith (replace favor) -> get miracle or riptide -> play both to get a miracle
-rename old faith
--> mantra
 split faithful meditation
 [mountain of faith]
 
 play new sanae
 also go purge her
 
-CS 119 [AIRI PURGE]
+CS 120 [AIRI PURGE]
 
 purge airi
 
-CS 120 [?]
+CS 121 [?]
 
 tooltips for dictionary
 
@@ -81,7 +90,6 @@ absolute field - add 13 block, if target intends to attack retain block this tur
 reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
 maid in heaven - gain 1 energy for each unique class of card in hand
 disarmament talks - you lose 1 strength, everybody else loses 2, exhaust(dukelis i assume)
-best foot forward - innate, 0 cost, scry 6 draw 1, gain 1 energy
 commencement - exhaust a card, if it's a curse or status put a card from discard into your hand
 wire key - every 3 turns, gain 1 conditioning
 

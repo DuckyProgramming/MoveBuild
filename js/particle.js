@@ -34,7 +34,7 @@ class particle{
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
             case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196: case 199: case 206:
-            case 225: case 244: case 252: case 268: case 269: case 273:
+            case 225: case 244: case 252: case 268: case 269: case 273: case 283:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -864,6 +864,16 @@ class particle{
                 this.loops=[]
                 this.fade=0
                 this.dark=0
+            break
+            case 282:
+                this.direction=args[0]
+                this.speed=args[1]
+                this.baseSpeed=args[1]
+                this.identify=args[2]
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
             break
 
         }
@@ -4582,6 +4592,31 @@ class particle{
                         this.layer.rotate(72)
                     }
                 break
+                case 282:
+                    this.layer.noFill()
+                    this.layer.stroke(...HSVtoRGB((this.time*2+this.identify*360)%360,0.5,255),this.fade*0.8)
+                    this.layer.strokeWeight(2)
+                    regStar(this.layer,0,0,5,10,10,3.2,3.2,this.time*4+360*this.identify)
+                    this.layer.stroke(255,this.fade*0.8)
+                    this.layer.strokeWeight(1)
+                    regStar(this.layer,0,0,5,10,10,3.2,3.2,this.time*4+360*this.identify)
+                break
+                case 283:
+                    this.layer.rotate(this.time*3)
+                    this.layer.noFill()
+                    this.layer.stroke(200,150,225,this.fade)
+                    this.layer.strokeJoin(ROUND)
+                    this.layer.strokeWeight(1)
+                    regPolyStellate(this.layer,0,0,5,2,12,12,15)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.arc(0,0,24,24,-12-90-15+a*72,12-90-15+a*72)
+                    }
+                    this.layer.strokeJoin(MITER)
+                    this.layer.strokeWeight(2)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.point(lsin(15+a*72)*12,lcos(15+a*72)*12)
+                    }
+                break
 
             }
             //mark p
@@ -4624,7 +4659,7 @@ class particle{
             case 95: case 97: case 99: case 103: case 104: case 110: case 114: case 115: case 116: case 117:
             case 118: case 119: case 120: case 121: case 126: case 152: case 154: case 155: case 156: case 168:
             case 169: case 170: case 173: case 192: case 193: case 196: case 211: case 212: case 225: case 228:
-            case 233: case 259: case 269:
+            case 233: case 259: case 269: case 283:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -5791,7 +5826,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 280:
+            case 280: case 282:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
                 this.direction+=9

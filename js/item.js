@@ -873,14 +873,22 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('1',0,0)
                 break
-                case '35 Damage/2 Riptides':
+                case '35 Damage/Emergency Move':
+                    displaySymbol(this.layer,-8,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,13,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('35',-8,0)
+                break
+                /*case '35 Damage/2 Riptides':
                     displaySymbol(this.layer,-8,0,18,0,1,this.fade)
                     displaySymbol(this.layer,10,0,173,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('35',-8,0)
                     this.layer.text('2',10,0)
-                break
+                break*/
                 case 'Copy Card':
                     displaySymbol(this.layer,0,0,174,0,1.2,this.fade)
                 break

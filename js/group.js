@@ -7469,6 +7469,16 @@ class group{
                 }
             }
         }
+        if(this.battle.attackManager.targetInfo[0]==75){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==36||this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[4])&&
+                    (this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[3]||this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[4]||this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[5])&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<constants.targetRadius){
+                    this.selfCall(3,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':

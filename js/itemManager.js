@@ -638,7 +638,8 @@ class itemManager{
                 userCombatant.statusEffect('Free Card',effectiveness)
             break
             case 116:
-                this.battle.cardManagers[player].hand.selfCall(6,[7962,[35*effectiveness,2*effectiveness],1,[2,1,6]])
+                //this.battle.cardManagers[player].hand.selfCall(6,[7962,[35*effectiveness,2*effectiveness],1,[2,1,6]])
+                this.battle.cardManagers[player].hand.selfCall(6,[9974,[35*effectiveness,effectiveness],1,[2,1,6]])
             break
             case 117:
                 this.battle.cardManagers[player].hand.duplicateSelect(3*effectiveness)

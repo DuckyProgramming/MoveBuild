@@ -111,9 +111,10 @@ class combatant{
             flash:[0,0,0,0],upFlash:[false,false,false,false],
             balance:0,
             orb:0,orbSpec:[],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],
+            stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0,0,0],
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
+            faith:[0,0,0,0,0],
             favor:[0,0,0,0,0,0],
             ringing:[0,0,0,0,0,0],
         }
@@ -133,7 +134,7 @@ class combatant{
                 'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
                 'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block Combat','Heal Gain Max HP',
                 'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
-                'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Health','Faith Per Turn',
+                'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Health','Mantra Per Turn',
                 'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
                 'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
                 'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
@@ -143,7 +144,7 @@ class combatant{
                 'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
                 'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Chained','Fragile Heal',
                 'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
-                'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
+                'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Mantra Next Turn',
                 'Hook','Temporary Vigor','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
                 'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
                 'Single Damage Convert','2 Exhaust Draw','Dice Boost','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
@@ -517,7 +518,7 @@ class combatant{
         this.lastOrb=0
         this.metal=this.name=='Donakho'?3:0
         this.stance=0
-        this.faith=0
+        this.mantra=0
         this.charge=0
         this.ammo=this.name=='Edgar'?3:0
         this.vision=0
@@ -525,6 +526,7 @@ class combatant{
         this.wish=this.name=='Shinmyoumaru'?3:0
         this.inspiration=0
         this.fugue=0
+        this.faith=0
         this.favor=0
         this.ringing=0
         this.caffeine=0
@@ -551,9 +553,10 @@ class combatant{
             bounce:0,bounceSize:1,bouncePush:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0,0,0],
+            stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0,0,0],
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
+            faith:[0,0,0,0,0],
             favor:[0,0,0,0,0,0],
             ringing:[0,0,0,0,0,0],
         }
@@ -5549,14 +5552,17 @@ class combatant{
             }
         }
     }
-    gainFavor(value){
-        this.favor+=value
+    gainFaith(value){
+        this.faith+=value
         if(this.status.main[819]>0&&this.id<this.battle.players){
             this.battle.addEnergy(this.status.main[819],this.id)
         }
         if(this.status.main[820]>0&&this.id<this.battle.players){
             this.battle.addSpecificEnergy(this.status.main[820],this.id,6)
         }
+    }
+    gainFavor(value){
+        this.favor+=value
     }
     bell(mult){
         this.statusEffect('Bell',1)
@@ -6218,7 +6224,7 @@ class combatant{
                         this.miniStatus('Dodge',this.status.main[this.status.ticker[a]]); break
                     case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
                     case 129: case 229:
-                        this.faith+=this.status.main[this.status.ticker[a]]; break
+                        this.mantra+=this.status.main[this.status.ticker[a]]; break
                     case 130: case 235:
                         if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
                     case 131: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}}; break
@@ -6424,7 +6430,7 @@ class combatant{
                     case 813: this.statusEffect('Temporary Strength',this.status.main[this.status.ticker[a]]);this.status.next[findList('Temporary Strength Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
                     case 814: this.miniStatus('Temporary Strength Cycle 3 1',this.status.main[this.status.ticker[a]]); break
                     case 815: this.miniStatus('Temporary Strength Cycle 3 2',this.status.main[this.status.ticker[a]]); break
-                    case 818: this.gainFavor(this.status.main[this.status.ticker[a]]); break
+                    case 818: this.gainFaith(this.status.main[this.status.ticker[a]]); break
                     case 821: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(1)} break
                     case 824: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(15)} break
                     case 825: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(2)} break
@@ -8185,22 +8191,25 @@ class combatant{
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
                 this.infoAnim.stance[a]=smoothAnim(this.infoAnim.stance[a],a==this.stance&&this.life>0,0,1,5)
             }
-            for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
-                this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
+            for(let a=0,la=this.infoAnim.mantra.length;a<la;a++){
+                this.infoAnim.mantra[a]=smoothAnim(this.infoAnim.mantra[a],this.mantra>a,0,1,5)
             }
             this.infoAnim.elemental=smoothAnim(this.infoAnim.elemental,this.elemental,0,1,5)
             for(let a=0,la=this.infoAnim.inspiration.length;a<la;a++){
                 this.infoAnim.inspiration[a]=smoothAnim(this.infoAnim.inspiration[a],this.inspiration>a,0,1,5)
             }
             this.infoAnim.fugue=smoothAnim(this.infoAnim.fugue,this.fugue>0,0,1,5)
+            for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
+                this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
+            }
             for(let a=0,la=this.infoAnim.favor.length;a<la;a++){
                 this.infoAnim.favor[a]=smoothAnim(this.infoAnim.favor[a],this.favor>a,0,1,5)
             }
             for(let a=0,la=this.infoAnim.ringing.length;a<la;a++){
                 this.infoAnim.ringing[a]=smoothAnim(this.infoAnim.ringing[a],this.ringing>a,0,1,5)
             }
-            if(this.faith>=12&&this.infoAnim.faith[9]>=1){
-                this.faith-=12
+            if(this.mantra>=12&&this.infoAnim.mantra[9]>=1){
+                this.mantra-=12
                 this.enterStance(5)
             }
             if(this.vision>=12){
@@ -8225,6 +8234,11 @@ class combatant{
                 if(this.status.main[753]>0){
                     this.statusEffect('Strength',this.status.main[753])
                 }
+            }
+            if(this.faith>=6){
+                this.faith-=6
+                this.battle.overlayManager.overlays[193][this.id].active=true
+                this.battle.overlayManager.overlays[193][this.id].activate([0])
             }
             if(this.favor>=6){
                 this.favor-=6

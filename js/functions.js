@@ -705,7 +705,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 8: return effect==1?(damage==effect&&bonus==0?tennify(effect)+'1*Combo':tennify(effect)+`1(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``):(damage==effect&&bonus==0?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 10: return damage==effect?tennify(effect):tennify(effect)+`(${tennify(damage)})`
 				case 11: return (damage==effect?(effect==1?``:`${tennify(effect)}`)+'X':tennify(effect)+`(${tennify(damage)})X`)
-				case 12: return effect==1?(damage==effect?'Faith':`1(${tennify(damage)})*Faith`):(damage==effect?tennify(effect)+'*Faith':tennify(effect)+`(${tennify(damage)})*Faith`)
+				case 12: return effect==1?(damage==effect?'Mantra':`1(${tennify(damage)})*Mantra`):(damage==effect?tennify(effect)+'*Mantra':tennify(effect)+`(${tennify(damage)})*Mantra`)
 				case 13: return effect==1?(damage==effect?'':`1(${tennify(damage)})*`):(damage==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(damage)})*`)
 				case 20: return (damage==effect?(effect==1?``:tennify(effect))+'XY':tennify(effect)+`(${tennify(damage)})XY`)+(bonus>0?`(+${tennify(bonus)})`:``)
 
@@ -2108,8 +2108,8 @@ function metal(value){
 function stance(value){
 	current.combatantManager.combatants[0].enterStance(value)
 }
-function faith(value){
-	current.combatantManager.combatants[0].faith+=value
+function mantra(value){
+	current.combatantManager.combatants[0].mantra+=value
 }
 function elemental(){
 	current.combatantManager.combatants[0].vision+=12
@@ -2246,6 +2246,7 @@ ${box}
 (${manager.listing.card[constants.playerNumber+3][3].length-listed[2]}) Partnership: ${manager.listing.card[constants.playerNumber+3][0].length}, ${manager.listing.card[constants.playerNumber+3][1].length}, ${manager.listing.card[constants.playerNumber+3][2].length}
 (${manager.listing.card[constants.playerNumber+4][3].length-listed[3]}) Tarot: ${manager.listing.card[constants.playerNumber+4][3].length}
 (${manager.listing.card[constants.playerNumber+5][3].length-listed[4]}) Spectral: ${manager.listing.card[constants.playerNumber+5][3].length}
+
 (${manager.listing.sub.length-unlisted[0]}) Subcard: ${manager.listing.sub.length}
 (${manager.listing.disband.length-unlisted[1]}) Disband: ${manager.listing.disband.length}
 (${manager.listing.junk[constants.playerNumber+1].length-unlisted[2]}) Junkyard: ${manager.listing.junk[constants.playerNumber+1].length}

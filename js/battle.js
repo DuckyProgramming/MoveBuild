@@ -617,6 +617,7 @@ class battle{
         if(variants.adoration){
             this.combatantManager.fullAllEffect(15,[2])
         }
+        this.overlayManager.overlays[193].forEach(overlay=>overlay.activate([1]))
         if(this.modded(63)&&floor(random(0,2))==0){
             this.sendReinforce()
             this.tileManager.fire()
