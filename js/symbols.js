@@ -10820,88 +10820,60 @@ function playerSymbolColor(type){
     switch(type){
         case 0:
             return [240,240,240]
-        break
         case 1:
             return [0,50,100]
-        break
         case 2:
             return [125,200,125]
-        break
         case 3:
             return [255,175,175]
-        break
         case 4:
             return [100,0,150]
-        break
         case 5:
             return [255,200,100]
-        break
         case 6:
             return [100,225,255]
-        break
         case 7:
             return [200,50,150]
-        break
         case 8:
             return [150,255,150]
-        break
         case 9:
             return [240,80,60]
-        break
         case 10:
             return [180,180,80]
-        break
         case 11:
             return [200,200,255]
-        break
         case 12:
             return [240,80,100]
-        break
         case 13:
             return [240,180,60]
-        break
         case 14:
             return [80,0,100]
-        break
         case 15:
             return [80,200,160]
-        break
         case 16:
             return [240,240,180]
-        break
         case 17:
             return [200,100,175]
-        break
         case 18:
             return [75,50,125]
-        break
         case 19:
             return [75,255,225]
-        break
         case 20:
             return [120,160,40]
-        break
         case 21:
             return [240,200,180]
-        break
         case 22:
             return [135,90,150]
-        break
         case 23:
             return [195,205,185]
-        break
         case 24:
             return [210,30,15]
-        break
         case 25:
             return [240,135,150]
-        break
         case 26:
             return [255,219,129]
-        break
         default:
             return [120,120,120]
-        break
     }
 }
 function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
@@ -10996,7 +10968,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         break
         case 6:
             layer.rotate(24)
-            layer.rect(0,0,5,16)
+            /*layer.rect(0,0,5,16)
             for(let a=0,la=2;a<la;a++){
                 layer.scale(1,-1)
                 layer.beginShape()
@@ -11015,7 +10987,99 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
                 layer.endShape()
             }
             regPoly(layer,-12,0,6,4,4,0)
-            regPoly(layer,12,0,6,4,4,0)
+            regPoly(layer,12,0,6,4,4,0)*/
+            /*layer.scale(0.9)
+            layer.beginShape()
+            layer.vertex(-2*constants.sqrt3,-6)
+            layer.vertex(-6*constants.sqrt3,-10)
+            layer.vertex(-6*constants.sqrt3,-18)
+            layer.vertex(-4*constants.sqrt3,-20)
+            layer.vertex(-2*constants.sqrt3,-18)
+            layer.vertex(-2*constants.sqrt3,-14)
+            layer.vertex(0,-12)
+            layer.vertex(2*constants.sqrt3,-14)
+            layer.vertex(2*constants.sqrt3,-18)
+            layer.vertex(4*constants.sqrt3,-20)
+            layer.vertex(6*constants.sqrt3,-18)
+            layer.vertex(6*constants.sqrt3,-10)
+            layer.vertex(2*constants.sqrt3,-6)
+            layer.vertex(2*constants.sqrt3,6)
+            layer.vertex(6*constants.sqrt3,10)
+            layer.vertex(6*constants.sqrt3,18)
+            layer.vertex(4*constants.sqrt3,20)
+            layer.vertex(2*constants.sqrt3,18)
+            layer.vertex(2*constants.sqrt3,14)
+            layer.vertex(0,12)
+            layer.vertex(-2*constants.sqrt3,14)
+            layer.vertex(-2*constants.sqrt3,18)
+            layer.vertex(-4*constants.sqrt3,20)
+            layer.vertex(-6*constants.sqrt3,18)
+            layer.vertex(-6*constants.sqrt3,10)
+            layer.vertex(-2*constants.sqrt3,6)
+            layer.endShape()
+            regPoly(layer,-8*constants.sqrt3,0,6,4,4,0)
+            regPoly(layer,8*constants.sqrt3,0,6,4,4,0)*/
+            /*layer.beginShape()
+            layer.vertex(-1.5*constants.sqrt3,-5)
+            layer.vertex(-5*constants.sqrt3,-9)
+            layer.vertex(-5*constants.sqrt3,-16)
+            layer.vertex(-3.5*constants.sqrt3,-18)
+            layer.vertex(-2*constants.sqrt3,-16)
+            layer.vertex(-2*constants.sqrt3,-12)
+            layer.vertex(0,-10)
+            layer.vertex(2*constants.sqrt3,-12)
+            layer.vertex(2*constants.sqrt3,-16)
+            layer.vertex(3.5*constants.sqrt3,-18)
+            layer.vertex(5*constants.sqrt3,-16)
+            layer.vertex(5*constants.sqrt3,-9)
+            layer.vertex(1.5*constants.sqrt3,-5)
+            layer.vertex(1.5*constants.sqrt3,5)
+            layer.vertex(5*constants.sqrt3,9)
+            layer.vertex(5*constants.sqrt3,16)
+            layer.vertex(3.5*constants.sqrt3,18)
+            layer.vertex(2*constants.sqrt3,16)
+            layer.vertex(2*constants.sqrt3,12)
+            layer.vertex(0,10)
+            layer.vertex(-2*constants.sqrt3,12)
+            layer.vertex(-2*constants.sqrt3,16)
+            layer.vertex(-3.5*constants.sqrt3,18)
+            layer.vertex(-5*constants.sqrt3,16)
+            layer.vertex(-5*constants.sqrt3,9)
+            layer.vertex(-1.5*constants.sqrt3,5)
+            layer.endShape()
+            regPoly(layer,-6.5*constants.sqrt3,0,6,4,4,0)
+            regPoly(layer,6.5*constants.sqrt3,0,6,4,4,0)*/
+            layer.scale(1.1)
+            layer.beginShape()
+            layer.vertex(-1.5*constants.sqrt3,-4.5)
+            layer.vertex(-5*constants.sqrt3,-8)
+            layer.vertex(-5*constants.sqrt3,-15)
+            layer.vertex(-3.5*constants.sqrt3,-17)
+            layer.vertex(-2*constants.sqrt3,-15)
+            layer.vertex(-2*constants.sqrt3,-11)
+            layer.vertex(0,-9)
+            layer.vertex(2*constants.sqrt3,-11)
+            layer.vertex(2*constants.sqrt3,-15)
+            layer.vertex(3.5*constants.sqrt3,-17)
+            layer.vertex(5*constants.sqrt3,-15)
+            layer.vertex(5*constants.sqrt3,-8)
+            layer.vertex(1.5*constants.sqrt3,-4.5)
+            layer.vertex(1.5*constants.sqrt3,4.5)
+            layer.vertex(5*constants.sqrt3,8)
+            layer.vertex(5*constants.sqrt3,15)
+            layer.vertex(3.5*constants.sqrt3,17)
+            layer.vertex(2*constants.sqrt3,15)
+            layer.vertex(2*constants.sqrt3,11)
+            layer.vertex(0,9)
+            layer.vertex(-2*constants.sqrt3,11)
+            layer.vertex(-2*constants.sqrt3,15)
+            layer.vertex(-3.5*constants.sqrt3,17)
+            layer.vertex(-5*constants.sqrt3,15)
+            layer.vertex(-5*constants.sqrt3,8)
+            layer.vertex(-1.5*constants.sqrt3,4.5)
+            layer.endShape()
+            regPoly(layer,-6*constants.sqrt3,0,6,3,3,0)
+            regPoly(layer,6*constants.sqrt3,0,6,3,3,0)
         break
         case 7:
             layer.ellipse(-12,0,5,5)
@@ -11031,7 +11095,8 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,10,20,20)
         break
         case 8:
-            layer.scale(1.2)
+            //layer.scale(1.2)
+            layer.scale(1.16)
             layer.stroke(255,fade)
             layer.noFill()
             layer.strokeWeight(2)
@@ -11070,12 +11135,18 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(3,2,8,1)
         break
         case 10:
-            layer.arc(-12,2,16,16,90,270)
+            /*layer.arc(-12,2,16,16,90,270)
             layer.arc(12,2,16,16,-90,90)
             layer.arc(0,-12,16,16,-180,0)
             layer.quad(-8,-12,0,-20,8,-12,0,6)
             layer.quad(-12,-6,-20,2,-12,10,4,2)
-            layer.quad(12,-6,20,2,12,10,-4,2)
+            layer.quad(12,-6,20,2,12,10,-4,2)*/
+            layer.arc(-12,2,16,16,60,300)
+            layer.arc(12,2,16,16,-120,120)
+            layer.arc(0,-12,16,16,-210,30)
+            layer.quad(-4*constants.sqrt3,-8,0,-20,4*constants.sqrt3,-8,0,4)
+            layer.quad(-8,2-4*constants.sqrt3,-20,2,-8,2+4*constants.sqrt3,2,2)
+            layer.quad(8,2-4*constants.sqrt3,20,2,8,2+4*constants.sqrt3,-2,2)
             layer.triangle(0,-4,4,20,-4,20)
             layer.fill(180,180,80,fade)
             layer.quad(-12,-2,-14,2,-12,6,-10,2)
@@ -11097,7 +11168,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(2.5,-10.5,3)
         break
         case 12:
-            for(let a=0,la=5;a<la;a++){
+            /*for(let a=0,la=5;a<la;a++){
                 layer.rect(0,20,8,2)
                 layer.rotate(72)
             }
@@ -11115,7 +11186,29 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             for(let a=0,la=5;a<la;a++){
                 regPoly(layer,0,-10,3,2.5,2.5,60)
                 layer.rotate(72)
-            }
+            }*/
+            /*layer.rect(0,-19,15,2)
+            layer.rect(0,19,15,2)
+            layer.rect(-19,0,2,15)
+            layer.rect(19,0,2,15)*/
+            layer.rect(0,-14,30,2)
+            layer.rect(0,14,30,2)
+            layer.rect(-14,0,2,30)
+            layer.rect(14,0,2,30)
+            layer.ellipse(-9,-9,4)
+            layer.ellipse(9,-9,4)
+            layer.ellipse(-9,9,4)
+            layer.ellipse(9,9,4)
+            layer.ellipse(-9.5,-4,3)
+            layer.ellipse(4,-9.5,3)
+            layer.ellipse(-4,9.5,3)
+            layer.ellipse(9.5,4,3)
+            layer.ellipse(-10,0,2)
+            layer.ellipse(0,-10,2)
+            layer.ellipse(0,10,2)
+            layer.ellipse(10,0,2)
+            layer.rotate(12)
+            layer.rect(0,0,6)
         break
         case 13:
             regPoly(layer,0,0,16,20,20,0)
@@ -11134,7 +11227,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.line(0,0,-5,8)
         break
         case 14:
-            layer.quad(-18,0,0,-6,18,0,0,6)
+            /*layer.quad(-18,0,0,-6,18,0,0,6)
             layer.quad(0,-9,-3,-8,0,-21,3,-8)
             layer.quad(0,9,-3,8,0,21,3,8)
             layer.triangle(-9,-6,-15,-4,-9,-18)
@@ -11153,10 +11246,31 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-4.5,-1.5,-4.5,1.5,-9,0)
             layer.triangle(4.5,-1.5,4.5,1.5,9,0)
             layer.fill(255,fade)
-            layer.ellipse(0,0,2)
+            layer.ellipse(0,0,2)*/
+            layer.scale(0.9)
+            layer.translate(-4,-4)
+            layer.stroke(255,fade)
+            layer.strokeWeight(2)
+            layer.noFill()
+            layer.line(0,0,5*constants.sqrt3,-5)
+            layer.line(10*constants.sqrt3,0,5*constants.sqrt3,-5)
+            layer.line(10*constants.sqrt3,0,15*constants.sqrt3,-5)
+            //layer.line(10*constants.sqrt3,0,10*constants.sqrt3,10)
+            for(let a=0,la=3;a<la;a++){
+                layer.line((9.6-a*0.4)*constants.sqrt3,(a+1)*10/3,(10.4+a*0.4)*constants.sqrt3,(a+1)*10/3)
+            }
+            layer.line(0*constants.sqrt3,0,-5*constants.sqrt3,-5)
+            layer.line(0,0,0,10)
+            layer.line(-5*constants.sqrt3,15,0,10)
+            layer.line(-5*constants.sqrt3,15,-10*constants.sqrt3,10)
+            layer.line(-10*constants.sqrt3,0,-10*constants.sqrt3,10)
+            layer.line(-5*constants.sqrt3,-5,-10*constants.sqrt3,0)
+            layer.line(-8*constants.sqrt3,2,-8*constants.sqrt3,8)
+            layer.line(-5*constants.sqrt3,11,-2*constants.sqrt3,8)
+            layer.line(-5*constants.sqrt3,-1,-2*constants.sqrt3,2)
         break
         case 15:
-            layer.rotate(45)
+            /*layer.rotate(45)
             for(let a=0,la=4;a<la;a++){
                 layer.fill(255,fade)
                 layer.arc(0,-10,20,10,90,270)
@@ -11178,7 +11292,38 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
                 layer.bezierVertex(-11,0,-11,0,-12,-2)
                 layer.endShape()
                 layer.rotate(90)
-            }
+            }*/
+            layer.noFill()
+            layer.stroke(255,fade)
+            layer.strokeWeight(2)
+            layer.bezier(0,4,-3,-10,-8,-13,-13,-15)
+            layer.bezier(-6,4,-14,4,-15,-12,-13,-15)
+            layer.bezier(0,4,3,-10,8,-13,13,-15)
+            layer.bezier(6,4,14,4,15,-12,13,-15)
+            layer.line(-6,4,6,4)
+            layer.bezier(0,4,-3,12,-5,15,-10,16)
+            layer.bezier(-4,4,-11,4,-12,12,-10,16)
+            layer.bezier(0,4,3,12,5,15,10,16)
+            layer.bezier(4,4,11,4,12,12,10,16)
+            layer.strokeWeight(1)
+            layer.line(0,4,-6,9)
+            layer.line(-10,11,-6,9)
+            layer.line(-7,15,-6,9)
+            layer.line(0,4,6,9)
+            layer.line(10,11,6,9)
+            layer.line(7,15,6,9)
+            layer.line(0,4,-6,-1)
+            layer.line(-13,-2,-6,-1)
+            layer.line(-4,-7,-6,-1)
+            layer.line(-6,-1,-8,-5)
+            layer.line(-14,-10,-8,-5)
+            layer.line(-9,-13,-8,-5)
+            layer.line(0,4,6,-1)
+            layer.line(13,-2,6,-1)
+            layer.line(4,-7,6,-1)
+            layer.line(6,-1,8,-5)
+            layer.line(14,-10,8,-5)
+            layer.line(9,-13,8,-5)
         break
         case 16:
             for(let a=0,la=6;a<la;a++){
@@ -11188,14 +11333,19 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         break
         case 17:
             regStar(layer,0,0,6,10,10,4,4,0)
-            for(let a=0,la=3;a<la;a++){
+            /*for(let a=0,la=3;a<la;a++){
                 layer.triangle(-22,0,-10,0,-16,8)
                 layer.triangle(22,0,10,0,16,-8)
                 layer.rotate(120)
+            }*/
+            for(let a=0,la=6;a<la;a++){
+                layer.triangle(-21,0,-11,0,-16,7)
+                layer.rotate(60)
             }
             layer.stroke(255,fade)
             layer.noFill()
-            layer.strokeWeight(4)
+            //layer.strokeWeight(4)
+            layer.strokeWeight(3)
             layer.strokeCap(SQUARE)
             for(let a=0,la=6;a<la;a++){
                 layer.arc(0,0,32,32,-185+a*60,-156+a*60)
@@ -11211,19 +11361,62 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(-8,-5,-8,-8,13,-12,13,-9)
         break
         case 19:
-            layer.ellipse(-6,-6,20)
-            layer.push()
+            /*layer.push()
             layer.translate(-6,-6)
             for(let a=0,la=3;a<la;a++){
                 layer.rect(17,0,3,9)
                 layer.rect(22,0,3,12)
                 layer.rotate(45)
             }
-            layer.pop()
+            layer.pop()*/
+            /*layer.ellipse(-6,-6,20)
             layer.fill(75,255,225,fade)
             layer.ellipse(-10,-10,5)
             layer.ellipse(-8,-1,4)
-            layer.ellipse(-1,-5,6)
+            layer.ellipse(-1,-5,6)*/
+            /*layer.rotate(-45)
+            layer.noFill()
+            layer.stroke(255,fade)
+            layer.strokeWeight(3)
+            layer.arc(0,0,36,10,-180,0)
+            layer.noStroke()
+            layer.fill(75,255,225,fade)
+            layer.ellipse(0,0,24)
+            layer.fill(255,fade)
+            layer.ellipse(0,0,20)
+            layer.fill(75,255,225,fade)
+            layer.rotate(45)
+            layer.ellipse(-4,-4,5)
+            layer.ellipse(-2,5,4)
+            layer.ellipse(5,1,6)
+            layer.rotate(-45)
+            layer.noFill()
+            layer.stroke(255,fade)
+            layer.strokeWeight(3)
+            layer.arc(0,0,36,10,0,180)*/
+            layer.rotate(10)
+            layer.fill(255,fade)
+            layer.ellipse(0,0,36)
+            layer.fill(75,255,225,fade)
+            layer.ellipse(0,0,32)
+            layer.quad(-5.5,0,5.5,0,2,22,-2,22)
+            layer.quad(0,-5,0,5,-18,2,-18,-2)
+            layer.quad(0,-5,0,5,18,2,18,-2)
+            layer.quad(-5.5,0,5.5,0,2,-22,-2,-22)
+            layer.fill(255,fade)
+            layer.triangle(-3.5,0,3.5,0,0,22)
+            layer.triangle(0,-3,0,3,-18,0)
+            layer.triangle(0,-3,0,3,18,0)
+            layer.triangle(-3.5,0,3.5,0,0,-22)
+            layer.rotate(-10)
+            layer.fill(75,255,225,fade)
+            layer.ellipse(0,0,18)
+            layer.fill(255,fade)
+            layer.ellipse(0,0,15)
+            layer.fill(75,255,225,fade)
+            layer.ellipse(-3,-3,3.75)
+            layer.ellipse(-1.5,3.75,3)
+            layer.ellipse(3.75,0.75,4.5)
         break
         case 20:
             layer.arc(0,0,30,30,60,120)
@@ -11288,10 +11481,13 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(195,205,185,fade)
             layer.ellipse(0,0,18)
             layer.fill(255,fade)
-            regPoly(layer,0,0,6,6,6,0)
+            //regPoly(layer,0,0,6,6,6,0)
+            regPoly(layer,0,0,5,6,6,72)
         break
         case 24:
-            layer.rect(10,0,27,6)
+            layer.rect(10,0,27,4)
+            //layer.rect(10,-2,27,2)
+            //layer.rect(10,2,27,2)
             layer.noFill()
             layer.stroke(210,30,15,fade)
             layer.strokeWeight(4)
@@ -11308,7 +11504,19 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,-8,0,5,6,6,2.5,2.5,180)
         break
         case 25:
-            layer.stroke(255,fade)
+            /*for(let a=0,la=5;a<la;a++){
+                layer.rotate(72)
+                layer.rect(0,8,1.2,16)
+                layer.quad(0,12.8,-2,16,0,22.4,2,16)
+            }
+            layer.fill(240,135,150,fade)
+            layer.ellipse(0,0,22)
+            layer.fill(255,fade)
+            layer.ellipse(0,0,18)
+            layer.fill(240,135,150,fade)
+            layer.ellipse(0,0,6)
+            layer.rect(0,3,2,6,1)*/
+            /*layer.stroke(255,fade)
             layer.strokeWeight(4)
             layer.line(0,16,lsin(-48)*20,18-lcos(-48)*20)
             layer.line(0,16,lsin(-16)*20,18-lcos(-16)*20)
@@ -11317,7 +11525,43 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.line(lsin(-48)*20+lsin(16)*20,18-lcos(-48)*20-lcos(16)*20,lsin(-48)*20,18-lcos(-48)*20)
             layer.line(lsin(-48)*20+lsin(16)*20,18-lcos(-48)*20-lcos(16)*20,lsin(16)*20,18-lcos(16)*20)
             layer.line(lsin(48)*20+lsin(-16)*20,18-lcos(48)*20-lcos(-16)*20,lsin(48)*20,18-lcos(48)*20)
-            layer.line(lsin(48)*20+lsin(-16)*20,18-lcos(48)*20-lcos(-16)*20,lsin(-16)*20,18-lcos(-16)*20)
+            layer.line(lsin(48)*20+lsin(-16)*20,18-lcos(48)*20-lcos(-16)*20,lsin(-16)*20,18-lcos(-16)*20)*/
+            /*layer.stroke(255,fade)
+            layer.strokeWeight(3)
+            layer.line(0,13,lsin(-48)*18,13-lcos(-48)*18)
+            layer.line(0,13,lsin(-16)*18,13-lcos(-16)*18)
+            layer.line(0,13,lsin(16)*18,13-lcos(16)*18)
+            layer.line(0,13,lsin(48)*18,13-lcos(48)*18)
+            layer.line(lsin(-48)*18+lsin(16)*18,13-lcos(-48)*18-lcos(16)*18,lsin(-48)*18,13-lcos(-48)*18)
+            layer.line(lsin(-48)*18+lsin(16)*18,13-lcos(-48)*18-lcos(16)*18,lsin(16)*18,13-lcos(16)*18)
+            layer.line(lsin(48)*18+lsin(-16)*18,13-lcos(48)*18-lcos(-16)*18,lsin(48)*18,13-lcos(48)*18)
+            layer.line(lsin(48)*18+lsin(-16)*18,13-lcos(48)*18-lcos(-16)*18,lsin(-16)*18,13-lcos(-16)*18)
+            layer.noStroke()
+            layer.fill(240,135,150,fade)
+            layer.ellipse(0,13,17.5)
+            layer.fill(255,fade)
+            layer.ellipse(0,13,13.5)
+            layer.fill(240,135,150,fade)
+            layer.ellipse(0,13,4.5)
+            layer.rect(0,15.25,1.5,4.5,0.75)*/
+            layer.stroke(255,fade)
+            layer.strokeWeight(3)
+            layer.line(0,-10,lsin(-48)*16,-10+lcos(-48)*16)
+            layer.line(0,-10,lsin(-16)*16,-10+lcos(-16)*16)
+            layer.line(0,-10,lsin(16)*16,-10+lcos(16)*16)
+            layer.line(0,-10,lsin(48)*16,-10+lcos(48)*16)
+            layer.line(lsin(-48)*16+lsin(16)*16,-10+lcos(-48)*16+lcos(16)*16,lsin(-48)*16,-10+lcos(-48)*16)
+            layer.line(lsin(-48)*16+lsin(16)*16,-10+lcos(-48)*16+lcos(16)*16,lsin(16)*16,-10+lcos(16)*16)
+            layer.line(lsin(48)*16+lsin(-16)*16,-10+lcos(48)*16+lcos(-16)*16,lsin(48)*16,-10+lcos(48)*16)
+            layer.line(lsin(48)*16+lsin(-16)*16,-10+lcos(48)*16+lcos(-16)*16,lsin(-16)*16,-10+lcos(-16)*16)
+            layer.noStroke()
+            layer.fill(240,135,150,fade)
+            layer.ellipse(0,-10,22)
+            layer.fill(255,fade)
+            layer.ellipse(0,-10,18)
+            layer.fill(240,135,150,fade)
+            layer.ellipse(0,-10,6)
+            layer.rect(0,-7,2,6,1)
         break
         case 26:
             layer.push()
