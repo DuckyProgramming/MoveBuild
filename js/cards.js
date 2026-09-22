@@ -3766,20 +3766,6 @@ types.card=[
             ],
         },
     },{
-        name:'Triebflügeljäger',rarity:2,list:1,
-        levels:[
-            {effect:[1],attack:1962,cost:1,target:[1,1,1],spec:[0,1],class:3},
-            {effect:[2],attack:1962,cost:1,target:[1,2,2],spec:[0,1],class:3},
-            {effect:[2],attack:1962,cost:1,target:[1,2,2],spec:[0],class:3},
-        ],mtg:{
-            rarity:2,list:1,color:[3,5],
-            levels:[
-                {effect:[1],attack:1962,cost:[3,5],target:[1,1,1],spec:[0,1],class:3},
-                {effect:[2],attack:1962,cost:[15,-1],target:[1,2,2],spec:[0,1],class:3},
-                {effect:[2],attack:1962,cost:[15],target:[1,2,2],spec:[0,1],class:3},
-            ],
-        },
-    },{
         name:'Mine\nCollapse',rarity:0,list:1,
         levels:[
             {effect:[10],attack:2041,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -115877,6 +115863,20 @@ types.card=[
                 {effect:[1,1,1],attack:1538,cost:[],target:[2,1,1],spec:[],class:1},
                 {effect:[2,2,2],attack:1538,cost:[],target:[2,1,1],spec:[],class:1},
                 {effect:[3,3,3],attack:1538,cost:[],target:[2,1,1],spec:[],class:1},
+            ],
+        },
+    },{
+        name:'Triebflügeljäger',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:1962,cost:1,target:[1,1,1],spec:[0,1],class:3},
+            {effect:[2],attack:1962,cost:1,target:[1,1,2],spec:[0,1],class:3},
+            {effect:[2],attack:1962,cost:1,target:[1,1,2],spec:[0],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3,5],
+            levels:[
+                {effect:[1],attack:1962,cost:[3,5],target:[1,1,1],spec:[0,1],class:3},
+                {effect:[2],attack:1962,cost:[15,-1],target:[1,1,2],spec:[0,1],class:3},
+                {effect:[2],attack:1962,cost:[15],target:[1,1,2],spec:[0,1],class:3},
             ],
         },
     },

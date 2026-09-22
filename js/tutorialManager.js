@@ -145,7 +145,7 @@ Most attack and movement cards have Fatigue.`,
 Cards can be exhausted in other ways and also go to the exhaust pile.`,
 `Cards in the exhaust pile remain there except for niche situations.
 In effect, Exhaust cards can only be used once per combat.
-Play in, it should not appear in your discard pile.`,
+Play this card, it should not appear in your discard pile.`,
 `Cards that Retain maintain through ending your turn.
 End your turn now, it should stay in your hand.`,
 `Cards that are Innate always start in your hand.
@@ -178,7 +178,8 @@ even if that card could be played.`,
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.nodeManager.setupTutorialMap()
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
-                this.battle.relicManager.addRelic(findInternal('No Effect',types.relic),0)
+                //this.battle.relicManager.addRelic(findInternal('No Effect',types.relic),0)
+                this.battle.relicManager.addRelic(findInternal('Placeholder',types.relic),0)
                 this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Hotkeys are an easy way to speed up gameplay.

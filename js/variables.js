@@ -771,7 +771,7 @@ types={
         {name:'Gun / Frail',class:1},
         {name:'1 Tile Drive',class:5},//440
         {name:'3 Spread Double Strike / Anti-Control',class:1},
-        {name:'All Enemy Block / Control',class:1},
+        {name:'All Enemy Block / Control',class:2},
         {name:'Statusing Triple Gun',class:1},
         {name:'Triple Spread Statusing Machine Gun',class:1},
         {name:'Advancing Gun',class:1},
@@ -7295,6 +7295,8 @@ Afterward, trigger its forge effect.`,
         },{name:'Invocation',mtg:0,desc:
 `Choose an Astrology or Riptide to add to hand.
 After adding both, also add a Miracle.`,
+        },{name:'Echo',mtg:0,desc:
+`When drawn, duplicates once when played.`,
         },
         //mark dict
     ],diff:[
@@ -7658,7 +7660,7 @@ constants={
     autoExec:-1,
     playerNumber:26,orbNumber:20,
     targetRadius:30,startEnergy:3,collisionDamage:4,
-    sqrt2:0,sqrt3:0,phi:0,trig:[[],[]],
+    sqrt2:0,sqrt3:0,sqrt5:0,phi:0,trig:[[],[]],
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

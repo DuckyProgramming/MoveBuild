@@ -24,6 +24,7 @@ function isInt(value){
 function setupConstants(){
 	constants.sqrt2=sqrt(2)
 	constants.sqrt3=sqrt(3)
+	constants.sqrt5=sqrt(5)
 	constants.phi=0.5*sqrt(5)+0.5
 }
 function setupLayer(layer){

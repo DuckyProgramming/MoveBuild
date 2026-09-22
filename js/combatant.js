@@ -7869,7 +7869,7 @@ class combatant{
         if(this.team==0){
             this.layer.fill(0,this.fade*this.infoAnim.life)
             this.layer.ellipse(28,0,11.5,11.5)
-            this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
+            this.layer.fill(...this.spec.includes(1)?[200,100,100]:this.spec.includes(0)?[200,180,100]:[140,200,100],this.fade*this.infoAnim.life)
             this.layer.ellipse(28,0,10,10)
         }
         for(let a=0,la=this.status.display.length;a<la;a++){
@@ -8329,12 +8329,19 @@ class combatant{
                     if(!options.oldUnbuild&&!this.battle.combatantManager.constructAlive(this.team)){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Unbuild'])
                     }
-                    if(this.name=='Teleporter Start'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nStart'){
+                    /*if(this.name=='Teleporter Start'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nStart'){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nStart'])
                     }else if(this.name=='Teleporter End'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nEnd'){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nEnd'])
                     }else if(this.name=='Swap Wall'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nSwap\nWall'){
                         this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nSwap\nWall'])
+                    }*/
+                    if(
+                        this.name=='Teleporter Start'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nStart'||
+                        this.name=='Teleporter End'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nEnd'||
+                        this.name=='Swap Wall'&&this.battle.cardManagers[this.team-1].hand.lastPlayed[0].name!='Use Teleporter\nSwap\nWall'
+                    ){
+                        this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use\nConstruct'])
                     }
                 }
             }

@@ -32435,6 +32435,7 @@ class attack{
                     break
                     case 676:
                         this.targetCombatant.life=0
+                        this.targetCombatant.programmedDeath=true
                         this.userCombatant.metal+=this.effect[0]
                     break
                     case 683:

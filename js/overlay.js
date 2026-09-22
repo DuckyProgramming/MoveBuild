@@ -3306,7 +3306,7 @@ class overlay{
                 this.layer.textSize(20)
                 this.layer.text(this.title,this.layer.width/2,this.layer.height/2-225)
                 switch(this.args[0]){
-                    case 0: case 1: case 2: case 9: case 23: case 24:
+                    case 0: case 1: case 2: case 9: case 23: case 24: case 97:
                         this.layer.text('Close',this.layer.width/2,this.layer.height/2+225); break
                     case 3: case 4: case 5: case 6: case 7: case 8: case 10: case 11: case 13: case 14:
                     case 15: case 16: case 12: case 17: case 18: case 19: case 20: case 21: case 22: case 25:
@@ -3316,11 +3316,10 @@ class overlay{
                     case 56: case 57: case 58: case 59: case 60: case 61: case 62: case 63: case 64: case 65:
                     case 66: case 67: case 68: case 69: case 70: case 71: case 72: case 73: case 74: case 75:
                     case 76: case 77: case 78: case 79: case 80: case 81: case 82: case 83: case 84: case 85:
-                    case 86: case 89: case 90: case 91: case 92: case 93: case 94: case 95: case 96: case 97:
-                    case 98: case 99: case 100: case 101: case 102: case 103: case 104: case 105: case 106: case 107:
-                    case 108: case 109: case 110: case 111: case 112: case 113: case 114: case 115: case 116: case 117:
-                    case 118: case 119: case 120: case 121: case 122: case 123: case 124: case 125: case 126: case 127:
-                    case 128:
+                    case 86: case 89: case 90: case 91: case 92: case 93: case 94: case 95: case 96: case 98:
+                    case 99: case 100: case 101: case 102: case 103: case 104: case 105: case 106:case 107: case 108:
+                    case 109: case 110: case 111: case 112: case 113: case 114: case 115: case 116:case 117: case 118:
+                    case 119: case 120: case 121: case 122: case 123: case 124: case 125: case 126:case 127: case 128:
                         this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
@@ -6175,7 +6174,7 @@ class overlay{
                             this.execute(this.rewards[a])
                         }
                     }
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                         this.battle.combatantManager.clearBlockCombatants()
                         this.battle.combatantManager.clearStatusCombatants()
@@ -6201,7 +6200,7 @@ class overlay{
                             this.page--
                         }else if(code==RIGHT_ARROW&&this.page<ceil(this.battle.tierManager.tiers[this.args[1]].cards.length/15)-1){
                             this.page++
-                        }else if(code==ENTER){
+                        }else if(code==ENTER||code==ESCAPE){
                             this.active=false
                         }
                     }else{
@@ -6263,7 +6262,7 @@ class overlay{
                             )
                         )){
                             this.page++
-                        }else if(code==ENTER&&this.args[0]!=87&&this.args[0]!=88){
+                        }else if(code==ENTER||code==ESCAPE&&this.args[0]!=87&&this.args[0]!=88){
                             this.active=false
                             this.execute()
                         }
@@ -7392,7 +7391,7 @@ class overlay{
                             }
                         }
                     }
-                    if(code==ENTER&&!this.battle.modded(83)){
+                    if(code==ENTER||code==ESCAPE&&!this.battle.modded(83)){
                         this.sets.splice(0,1)
                         if(this.sets.length>0){
                             this.activate([])
@@ -7424,7 +7423,7 @@ class overlay{
                     }
                 break
                 case 4:
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }else if(key=='e'||key=='E'){
                         this.active=false
@@ -7439,7 +7438,7 @@ class overlay{
                     }else if(code==RIGHT_ARROW&&
                         this.page<ceil((this.battle.relicManager.overTotal[this.player]-1)/30)-1){
                         this.page++
-                    }else if(code==ENTER){
+                    }else if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7468,7 +7467,7 @@ class overlay{
                                 }
                             }
                         }
-                    }else if(code==ENTER){
+                    }else if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7476,7 +7475,7 @@ class overlay{
                     if(key==UP_ARROW&&this.battle.currency.money[this.player]>=60){
                         this.battle.currency.money[this.player]-=60
                         this.battle.combatantManager.combatants[this.player].heal(10+this.battle.relicManager.relic[449][this.player+1]*5)
-                    }else if(code==ENTER){
+                    }else if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7503,7 +7502,7 @@ class overlay{
                         this.page=0
                     }else if(key=='}'){
                         this.page=this.marks[this.marks.length-1]
-                    }else if(code==ENTER){
+                    }else if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                     for(let a=0,la=this.cards.length;a<la;a++){
@@ -7536,7 +7535,7 @@ class overlay{
                             }
                         }
                     }
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player,this.cards])
@@ -7557,7 +7556,7 @@ class overlay{
                     }
                 break
                 case 10:
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7576,7 +7575,7 @@ class overlay{
                             this.battle.nodeManager.setCombat(2,this.battle.nodeManager.listing.static[this.world][2][a])
                         }
                     }
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7595,7 +7594,7 @@ class overlay{
                             this.battle.updateTargetting()
                         }
                     }
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7641,7 +7640,7 @@ class overlay{
                             this.active=false
                         }
                     }
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7677,7 +7676,7 @@ class overlay{
                     }
                 break
                 case 20:
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7707,12 +7706,12 @@ class overlay{
                     }else if(code==RIGHT_ARROW&&
                     this.page<ceil((finalTotal-1)/30)-1){
                         this.page++
-                    }else if(code==ENTER){
+                    }else if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
                 case 23:
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break
@@ -7723,7 +7722,7 @@ class overlay{
                             this.speed+=6
                         }
                     }
-                    if(code==ENTER&&this.collecting>0){
+                    if(code==ENTER||code==ESCAPE&&this.collecting>0){
                         this.battle.addCurrency(this.value,this.player)
                         this.active=false
                     }
@@ -7753,7 +7752,7 @@ class overlay{
                                 }
                             }
                         }
-                    }else if(code==ENTER){
+                    }else if(code==ENTER||code==ESCAPE){
                         if(this.suggestions.length>=1){
                             this.execute([this.suggestions[0]])
                         }else{
@@ -7787,7 +7786,7 @@ class overlay{
                                 }
                             }
                         }
-                    }else if(code==ENTER){
+                    }else if(code==ENTER||code==ESCAPE){
                         if(this.suggestions.length>=1){
                             this.execute([this.suggestions[0]])
                             this.active=false
@@ -7797,7 +7796,7 @@ class overlay{
                     }
                 break
                 case 29:
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                         this.battle.cardManagers[this.player].reserve.slideTop()
                         this.battle.cardManagers[this.player].draw(1)
@@ -7817,7 +7816,7 @@ class overlay{
                             }
                         }
                     }
-                    if(code==ENTER&&this.timer<=0){
+                    if(code==ENTER||code==ESCAPE&&this.timer<=0){
                         this.active=false
                         this.cards.forEach(card=>card.deSize=true)
                     }
@@ -7829,7 +7828,7 @@ class overlay{
                             this.active=false
                         }
                     })
-                    if(code==ENTER){
+                    if(code==ENTER||code==ESCAPE){
                         this.active=false
                     }
                 break

@@ -86,7 +86,7 @@ class battle{
         reader.battle=this
         reader.readAsText(file)
         reader.onload=function(){
-            this.load(reader.result);
+            this.battle.load(reader.result);
         }
     }
     loadCol(){
@@ -94,7 +94,9 @@ class battle{
         input.type='file'
         input.battle=this
         input.click()
-        input.addEventListener('change',function(){this.loadStp(this)},false)
+        input.addEventListener('change',()=>{
+            this.loadStp(input)
+        },false)
     }
     createBasic(){
         this.initialized=false
@@ -3515,10 +3517,16 @@ class battle{
                 this.anim.afford=smoothAnim(this.anim.afford,this.anim.upAfford,0,1,10)
                 this.anim.energyUp=smoothAnim(this.anim.energyUp,false,0,1,15)
                 this.anim.energyDown=smoothAnim(this.anim.energyDown,false,0,1,15)
-                if(this.result.defeat&&this.anim.defeat>=1){
+                if(this.result.defeat&&this.anim.defeat>=1&&!transition.trigger){
                     transition.trigger=true
-                    transition.scene='defeat'
-                    this.setupStats()
+                    if(this.tutorialManager.active){
+                        this.tutorialManager.active=false
+                        transition.scene='title'
+                        this.setupStats()
+                    }else{
+                        transition.scene='defeat'
+                        this.setupStats()
+                    }
                 }
                 if(this.anim.upAfford&&this.anim.afford>=1){
                     this.anim.upAfford=false
@@ -3631,9 +3639,9 @@ class battle{
                                     if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
                                         reward.push({type:3,value:[]})
                                     }
-                                    if(floor(random(0,6+this.nodeManager.world*3))==0){
+                                    /*if(floor(random(0,6+this.nodeManager.world*3))==0){
                                         reward.push({type:5,value:[1]})
-                                    }
+                                    }*/
                                 }
                             break
                             case 1:
@@ -3648,9 +3656,9 @@ class battle{
                                     if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
                                         reward.push({type:3,value:[]})
                                     }
-                                    if(floor(random(0,6))==0){
+                                    /*if(floor(random(0,6))==0){
                                         reward.push({type:5,value:[1]})
-                                    }
+                                    }*/
                                 }
                             break
                             case 2:
@@ -4340,9 +4348,10 @@ class battle{
         }
     }
     onKey(scene,key,code){
+        let disabled=false
         switch(scene){
             case 'title':
-                if(code==ENTER||key=='1'){
+                if(code==ENTER||code==ESCAPE||key=='1'){
                     transition.trigger=true
                     transition.scene='menu'
                     if(this.menu.combatant.length==2){
@@ -4382,7 +4391,7 @@ class battle{
                 }
             break
             case 'menu':
-                if(code==ENTER||key=='1'&&game.animRate==1){
+                if(code==ENTER||code==ESCAPE||key=='1'&&game.animRate==1){
                     this.startGame()
                 }
                 if(code==LEFT_ARROW){
@@ -4537,7 +4546,7 @@ class battle{
                         game.turnTime=[0,900,1800,3600][a]
                     }
                 }
-                if(code==ENTER){
+                if(code==ENTER||code==ESCAPE){
                     this.startGame()
                 }
             break
@@ -4546,7 +4555,7 @@ class battle{
                     let index=(int(inputs.lastKey[0])+9)%10*5+int(inputs.lastKey[1])-1
                     variants[variants.map[index]]=toggle(variants[variants.map[index]])
                 }
-                if(code==ENTER){
+                if(code==ENTER||code==ESCAPE){
                     transition.trigger=true
                     transition.scene='title'
                 }
@@ -4585,7 +4594,7 @@ class battle{
                         variants.prismrule.push(value)
                     }
                 }
-                if(code==ENTER){
+                if(code==ENTER||code==ESCAPE){
                     transition.trigger=true
                     transition.scene='variants'
                 }
@@ -4606,7 +4615,7 @@ class battle{
                         this.tutorialManager.setupTutorial(8+a)
                     }
                 }
-                if(code==ENTER){
+                if(code==ENTER||code==ESCAPE){
                     transition.trigger=true
                     transition.scene='title'
                 }
@@ -4647,14 +4656,26 @@ class battle{
                         }
                     }
                     if(this.overlayManager.anyActive){
-                        this.overlayManager.onKey(key,code)
+                        let overlay=this.relicManager.hasRelic(129,this.turn.main)?13:1
+                        if((key=='r'||key=='R')&&!this.relicManager.hasRelic(243,this.turn.main)&&this.overlayManager.overlays[overlay][this.turn.main].active){
+                            this.overlayManager.overlays[overlay][this.turn.main].active=false
+                        }else if((key=='d'||key=='D')&&!this.relicManager.hasRelic(243,this.turn.main)&&this.overlayManager.overlays[2][this.turn.main].active){
+                            this.overlayManager.overlays[2][this.turn.main].active=false
+                        }else if((key=='e'||key=='E')&&!this.relicManager.hasRelic(243,this.turn.main)&&this.overlayManager.overlays[147][this.turn.main].active){
+                            this.overlayManager.overlays[147][this.turn.main].active=false
+                        }/*else if((key=='s'||key=='S')&&this.overlayManager.overlays[24][this.turn.main].active){
+                            this.overlayManager.overlays[24][this.turn.main].active=false
+                        }*/else{
+                            this.overlayManager.onKey(key,code)
+                        }
                     }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         this.relicManager.onKey(stage.scene,key,code)
                         this.modManager.onKey(key,code)
                         if((key=='r'||key=='R')&&!this.relicManager.hasRelic(243,this.turn.main)){
-                            this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
-                            this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
+                            let overlay=this.relicManager.hasRelic(129,this.turn.main)?13:1
+                            this.overlayManager.overlays[overlay][this.turn.main].active=true
+                            this.overlayManager.overlays[overlay][this.turn.main].activate()
                         }else if((key=='d'||key=='D')&&!this.relicManager.hasRelic(243,this.turn.main)){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
@@ -4664,7 +4685,7 @@ class battle{
                         }else if(key=='s'||key=='S'){
                             this.overlayManager.overlays[24][this.turn.main].active=true
                             this.overlayManager.overlays[24][this.turn.main].activate()
-                        }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0&&!(this.tutorialManager.active&&this.tutorialManager.tutorial==6)){
+                        }else if(code==ENTER||code==ESCAPE&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0&&!(this.tutorialManager.active&&this.tutorialManager.tutorial==6)){
                             this.endTurn()
                         }else if(key=='.'&&variants.cyclicDraw){
                             this.cardManagers[this.turn.main].dropFirst()
@@ -4714,93 +4735,161 @@ class battle{
                 }
             break
             case 'map':
-                if(this.overlayManager.anyActive){
-                    this.overlayManager.onKey(key,code)
-                }else{
-                    this.nodeManager.onKey(key,code)
-                    this.relicManager.onKey(stage.scene,key,code)
-                    this.itemManager.onKey(stage.scene,key,code)
-                    this.modManager.onKey(key,code)
+                if(!this.overlayManager.anySpecificActive(24)){
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[4][a].active){
+                                this.overlayManager.overlays[4][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[4][a].active=true
+                                this.overlayManager.overlays[4][a].activate()
+                                disabled=true
+                            }
+                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[24][a].active){
+                                this.overlayManager.overlays[24][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[24][a].active=true
+                                this.overlayManager.overlays[24][a].activate()
+                                disabled=true
+                            }
+                        }
+                    }
                 }
-                for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[4][a].active=true
-                        this.overlayManager.overlays[4][a].activate()
-                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[24][a].active=true
-                        this.overlayManager.overlays[24][a].activate()
+                if(!disabled){
+                    if(this.overlayManager.anyActive){
+                        this.overlayManager.onKey(key,code)
+                    }else{
+                        this.nodeManager.onKey(key,code)
+                        this.relicManager.onKey(stage.scene,key,code)
+                        this.itemManager.onKey(stage.scene,key,code)
+                        this.modManager.onKey(key,code)
                     }
                 }
             break
             case 'rest':
-                for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
-                        !this.overlayManager.anySpecificActive(5)&&!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(62)
-                    ){
-                        this.overlayManager.overlays[4][a].active=true
-                        this.overlayManager.overlays[4][a].activate()
-                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[24][a].active=true
-                        this.overlayManager.overlays[24][a].activate()
+                if(!this.overlayManager.anySpecificActive(24)){
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
+                            !this.overlayManager.anySpecificActive(5)&&!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(62)
+                        ){
+                            if(this.overlayManager.overlays[4][a].active){
+                                this.overlayManager.overlays[4][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[4][a].active=true
+                                this.overlayManager.overlays[4][a].activate()
+                                disabled=true
+                            }
+                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[24][a].active){
+                                this.overlayManager.overlays[24][a].active=false
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[24][a].active=true
+                                this.overlayManager.overlays[24][a].activate()
+                                disabled=true
+                            }
+                        }
                     }
                 }
-                if(this.overlayManager.anyActive){
-                    this.overlayManager.onKey(key,code)
-                }else{
-                    for(let a=0,la=this.optionManagers.length;a<la;a++){
-                        if(!this.optionManagers[a].complete){
-                            this.optionManagers[a].onKey(key,code)
-                            break
+                if(!disabled){
+                    if(this.overlayManager.anyActive){
+                        this.overlayManager.onKey(key,code)
+                    }else{
+                        for(let a=0,la=this.optionManagers.length;a<la;a++){
+                            if(!this.optionManagers[a].complete){
+                                this.optionManagers[a].onKey(key,code)
+                                break
+                            }
                         }
                     }
                 }
             break
             case 'shop':
-                if(this.overlayManager.anyActive){
-                    this.overlayManager.onKey(key,code)
-                }else{
-                    this.itemManager.onKey(stage.scene,key,code)
-                    this.purchaseManager.onKey(key,code)
+                if(!this.overlayManager.anySpecificActive(24)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='f'||key=='F')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[27][a].active=true
-                            this.overlayManager.overlays[27][a].activate()
+                            if(this.overlayManager.overlays[27][a].active){
+                                this.overlayManager.overlays[27][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[27][a].active=true
+                                this.overlayManager.overlays[27][a].activate()
+                                disabled=true
+                            }
                         }else if(((key=='c'||key=='C')&&this.players==1||key=='c'&&a==0&&this.players==2||key=='C'&&a==1&&this.players==2)&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
                             this.purchaseManager.reroll()
                             this.purchaseManager.rerollActive[a]=true
                             this.currency.money[a]-=50
+                        }else if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                            //!this.overlayManager.anyNotSpecificActive(3)
+                            if(this.overlayManager.overlays[4][a].active){
+                                this.overlayManager.overlays[4][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[4][a].active=true
+                                this.overlayManager.overlays[4][a].activate()
+                                disabled=true
+                            }
+                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[24][a].active){
+                                this.overlayManager.overlays[24][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[24][a].active=true
+                                this.overlayManager.overlays[24][a].activate()
+                                disabled=true
+                            }
+                        }else if((key=='r'||key=='R')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[16][a].active){
+                                this.overlayManager.overlays[16][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[16][a].active=true
+                                this.overlayManager.overlays[16][a].activate()
+                                disabled=true
+                            }
                         }
                     }
                 }
-                for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
-                        !this.overlayManager.anyNotSpecificActive(3)
-                    ){
-                        this.overlayManager.overlays[4][a].active=true
-                        this.overlayManager.overlays[4][a].activate()
-                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[24][a].active=true
-                        this.overlayManager.overlays[24][a].activate()
-                    }else if((key=='r'||key=='R')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[16][a].active=true
-                        this.overlayManager.overlays[16][a].activate()
+                if(!disabled){
+                    if(this.overlayManager.anyActive){
+                        this.overlayManager.onKey(key,code)
+                    }else{
+                        this.itemManager.onKey(stage.scene,key,code)
+                        this.purchaseManager.onKey(key,code)
                     }
                 }
             break
             case 'victory': case 'defeat':
-                if(this.overlayManager.anyActive){
-                    this.overlayManager.onKey(key,code)
-                }
-                for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
-                        !this.overlayManager.anyNotSpecificActive(11)
-                    ){
-                        this.overlayManager.overlays[4][a].active=true
-                        this.overlayManager.overlays[4][a].activate()
-                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[24][a].active=true
-                        this.overlayManager.overlays[24][a].activate()
+                if(!this.overlayManager.anySpecificActive(24)){
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                            //!this.overlayManager.anyNotSpecificActive(11)
+                            if(this.overlayManager.overlays[4][a].active){
+                                this.overlayManager.overlays[4][a].active=false
+                                disabled=true
+                            }else{
+                                this.overlayManager.overlays[4][a].active=true
+                                this.overlayManager.overlays[4][a].activate()
+                                disabled=true
+                            }
+                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[24][a].active){
+                                this.overlayManager.overlays[24][a].active=false
+                                disabled=true
+                            }else{
+                                this.overlayManager.overlays[24][a].active=true
+                                this.overlayManager.overlays[24][a].activate()
+                                disabled=true
+                            }
+                        }
                     }
+                }
+                if(!disabled&&this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
                 }
             break
             case 'stash': case 'bossstash':
@@ -4835,24 +4924,40 @@ class battle{
                 }
             break
             case 'event':
-                let valid=!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(17)
-                if(this.overlayManager.anyActive){
-                    this.overlayManager.onKey(key,code)
-                }else{
-                    for(let a=0,la=this.eventManagers.length;a<la;a++){
-                        if(!this.eventManagers[a].complete){
-                            this.eventManagers[a].onKey(key,code)
-                            break
+                //let valid=!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(17)
+                if(!this.overlayManager.anySpecificActive(24)){
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[4][a].active){
+                                this.overlayManager.overlays[4][a].active=false
+                                disabled=true
+                            }else{
+                                this.overlayManager.overlays[4][a].active=true
+                                this.overlayManager.overlays[4][a].activate()
+                                disabled=true
+                            }
+                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[24][a].active){
+                                this.overlayManager.overlays[24][a].active=false
+                                disabled=true
+                            }else{
+                                this.overlayManager.overlays[24][a].active=true
+                                this.overlayManager.overlays[24][a].activate()
+                                disabled=true
+                            }
                         }
                     }
                 }
-                for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&valid){
-                        this.overlayManager.overlays[4][a].active=true
-                        this.overlayManager.overlays[4][a].activate()
-                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[24][a].active=true
-                        this.overlayManager.overlays[24][a].activate()
+                if(!disable){
+                    if(this.overlayManager.anyActive){
+                        this.overlayManager.onKey(key,code)
+                    }else{
+                        for(let a=0,la=this.eventManagers.length;a<la;a++){
+                            if(!this.eventManagers[a].complete){
+                                this.eventManagers[a].onKey(key,code)
+                                break
+                            }
+                        }
                     }
                 }
             break

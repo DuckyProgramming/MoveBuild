@@ -1,3 +1,5 @@
+monday 9/28 10:00 am coc building
+
 CS 119 [MISC / 8350]
 
 new animation for divination
@@ -16,6 +18,9 @@ card like visionary tuning for the sisters
 split defector
 split golf ball
 split touch of garlic
+split scatterbrain
+wtf is inject fuel
+resplit synchronicity
 
 CS 120 [NEW SANAE / 8400]
 
@@ -57,7 +62,7 @@ fill in remaining slots with randos from the reserve below
 CS 122 [?]
 
 perhaps remove the junkyard mode altogether
-replace with: classic ()
+replace with: classic (no tarots, no packs, no shop heal, etc)
 
 tooltips for dictionary
 
@@ -85,6 +90,7 @@ sight of distant blade - damage, shiv, costs 1 less when played
 split shinmy cards that count as strikes to have defend variants
 
 diadem - gain 1 buffer, apply 2 weak to all enemies [tiara already exists, base off that]
+teleport and nerf in all directions
 concealed carry - deal 6 damage to a random enemy, if exhausted, trigger effect and gain 2 strength
 uplink - gain 1 strength per quest completed, exhaust
 tumult - apply shock, gain block equal to target's shock

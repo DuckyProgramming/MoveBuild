@@ -145,6 +145,7 @@ class nodeManager{
             }
         }else{
             let possibilities=[]
+            //the comments below are because the game's total length was shortened from 69 to 66 nodes
             switch(this.world){
                 case 0:
                     for(let a=0,la=game.ascend>=1?27:game.diff>=1?28:30;a<la;a++){
@@ -153,16 +154,19 @@ class nodeManager{
                     for(let a=0,la=game.ascend>=1?9:game.diff>=1?8:6;a<la;a++){
                         possibilities.push(1)
                     }
-                    for(let a=0,la=9;a<la;a++){
+                    //for(let a=0,la=9;a<la;a++){
+                    for(let a=0,la=6;a<la;a++){
                         possibilities.push(3)
                     }
                     for(let a=0,la=5;a<la;a++){
                         possibilities.push(4)
                     }
-                    for(let a=0,la=16;a<la;a++){
+                    //for(let a=0,la=16;a<la;a++){
+                    for(let a=0,la=15;a<la;a++){
                         possibilities.push(5)
                     }
-                    this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
+                    //this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
+                    this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5]
                 break
                 case 1: case 2:
                     for(let a=0,la=game.ascend>=1?23:game.diff>=1?24:26;a<la;a++){
@@ -171,19 +175,23 @@ class nodeManager{
                     for(let a=0,la=game.ascend>=1?9:game.diff>=1?8:6;a<la;a++){
                         possibilities.push(1)
                     }
-                    for(let a=0,la=9;a<la;a++){
+                    //for(let a=0,la=9;a<la;a++){
+                    for(let a=0,la=6;a<la;a++){
                         possibilities.push(3)
                     }
                     for(let a=0,la=5;a<la;a++){
                         possibilities.push(4)
                     }
-                    for(let a=0,la=16;a<la;a++){
+                    //for(let a=0,la=16;a<la;a++){
+                    for(let a=0,la=15;a<la;a++){
                         possibilities.push(5)
                     }
-                    this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5,5]
+                    //this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5,5]
+                    this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
                 break
             }
-            let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
+            //let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
+            let length=(this.world>=2?20:21)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
                 for(let b=0,lb=min(a+1,4,la-a);b<lb;b++){
                     let type=game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:-1

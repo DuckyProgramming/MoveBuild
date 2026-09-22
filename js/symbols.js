@@ -11482,12 +11482,12 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,18)
             layer.fill(255,fade)
             //regPoly(layer,0,0,6,6,6,0)
-            regPoly(layer,0,0,5,6,6,72)
+            //regPoly(layer,0,0,5,6,6,72)
         break
         case 24:
-            layer.rect(10,0,27,4)
             //layer.rect(10,-2,27,2)
             //layer.rect(10,2,27,2)
+            /*layer.rect(10,0,27,4)
             layer.noFill()
             layer.stroke(210,30,15,fade)
             layer.strokeWeight(4)
@@ -11501,7 +11501,29 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
                 layer.arc(-8,0,24,24,(a+0.25)/la*360,(a+0.75)/la*360)
             }
             layer.fill(210,30,15,fade)
-            regStar(layer,-8,0,5,6,6,2.5,2.5,180)
+            regStar(layer,-8,0,5,6,6,2.5,2.5,180)*/
+            /*layer.fill(255,fade)
+            layer.ellipse(0,0,20)
+            for(let a=0,la=24;a<la;a++){
+                layer.arc(0,0,36,36,(a+0.25)/la*360,(a+0.75)/la*360)
+            }
+            layer.fill(210,30,15,fade)
+            regStar(layer,0,0,5,6,6,6/(1+constants.phi),6/(1+constants.phi),180)*/
+            layer.rect(0,0,48,8)
+            layer.noFill()
+            layer.stroke(210,30,15,fade)
+            layer.strokeWeight(4)
+            layer.ellipse(0,0,46)
+            layer.noStroke()
+            layer.fill(210,30,15,fade)
+            layer.ellipse(0,0,30)
+            layer.fill(255,fade)
+            layer.ellipse(0,0,16)
+            for(let a=0,la=24;a<la;a++){
+                layer.arc(0,0,24,24,(a+0.25)/la*360,(a+0.75)/la*360)
+            }
+            layer.fill(210,30,15,fade)
+            regStar(layer,0,0,5,6,6,6/(1+constants.phi),6/(1+constants.phi),180)
         break
         case 25:
             /*for(let a=0,la=5;a<la;a++){
