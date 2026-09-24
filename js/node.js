@@ -6,57 +6,6 @@ class node{
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
         this.readable=false
-        let index=0
-        switch(this.type){
-            case 0:
-                this.reality=this.type
-                let list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
-                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
-                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
-                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
-                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
-            break
-            case 1: case 2:
-                this.reality=this.type
-                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].length))
-                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type][index]
-                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].splice(index,1)
-            break
-            case 5:
-                index=floor(random(0,this.battle.nodeManager.unknownPossibilities.length))
-                this.reality=this.battle.nodeManager.unknownPossibilities[index]
-                this.battle.nodeManager.unknownPossibilities.splice(index,1)
-                switch(this.reality){
-                    case 0:
-                        let list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
-                            this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
-                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
-                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
-                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
-                    break
-                    case 1: case 2:
-                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
-                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
-                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
-                    break
-                }
-            break
-            case 6:
-                if(this.battle.nodeManager.world==1&&(game.ascend>=23||game.diff>=18)){
-                    this.reality=1
-                    index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
-                    this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
-                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
-                }else{
-                    this.reality=this.type
-                    this.combat=0
-                }
-            break
-            default:
-                this.reality=this.type
-                this.combat=0
-            break
-        }
         this.components()
     }
     save(){
@@ -89,6 +38,60 @@ class node{
         this.contain=false
 
         this.anim={complete:0,active:0,contain:0,past:0,description:0}
+    }
+    typeConstruct(){
+        let index
+        let list
+        switch(this.type){
+            case 0:
+                this.reality=this.type
+                list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
+                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
+                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
+                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+            break
+            case 1: case 2:
+                this.reality=this.type
+                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].length))
+                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type][index]
+                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].splice(index,1)
+            break
+            case 5:
+                index=floor(random(0,this.battle.nodeManager.unknownPossibilities.length))
+                this.reality=this.battle.nodeManager.unknownPossibilities[index]
+                this.battle.nodeManager.unknownPossibilities.splice(index,1)
+                switch(this.reality){
+                    case 0:
+                        list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                            this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
+                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
+                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
+                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+                    break
+                    case 1: case 2:
+                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
+                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
+                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
+                    break
+                }
+            break
+            case 6:
+                if((this.battle.nodeManager.world==1&&game.ascend>=23||this.battle.nodeManager.world==this.battle.nodeManager.mimic&&game.diff>=18)){
+                    this.reality=1
+                    index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
+                    this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
+                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
+                }else{
+                    this.reality=this.type
+                    this.combat=0
+                }
+            break
+            default:
+                this.reality=this.type
+                this.combat=0
+            break
+        }
     }
     establish(x,y,baseX,baseY,tileX,tileY,type,readable,reality,combat,connections,extraConnections,scroll,complete){
         this.position={x:x,y:y}

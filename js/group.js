@@ -2427,7 +2427,7 @@ class group{
                                     a--
                                 }
                             break
-                            case 7239:
+                            case 7239: case 10020:
                                 if(args[1]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
                                     if(args[0]==7470){
                                         this.add(findName('Malenkov',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
@@ -6220,11 +6220,21 @@ class group{
                 if(a.getBasic(1)&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
-                if(a.getBasic(1)&&userCombatant.getStatus('Strike Boost')!=0){
-                    this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.getStatus('Strike Boost'))
+                if(a.getBasic(1)){
+                    if(userCombatant.getStatus('Strike Boost')!=0){
+                        this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.getStatus('Strike Boost'))
+                    }
+                    if(userCombatant.getStatus('Strike Double')!=0){
+                        this.battle.attackManager.effect[0]*=2
+                    }
                 }
-                if(a.getBasic(2)&&userCombatant.getStatus('Defend Boost')!=0){
-                    this.battle.attackManager.effect[a.attack==5045?1:0]=max(0,this.battle.attackManager.effect[a.attack==5045?1:0]+userCombatant.getStatus('Defend Boost'))
+                if(a.getBasic(2)){
+                    if(userCombatant.getStatus('Defend Boost')!=0){
+                        this.battle.attackManager.effect[a.attack==5045?1:0]=max(0,this.battle.attackManager.effect[a.attack==5045?1:0]+userCombatant.getStatus('Defend Boost'))
+                    }
+                    if(userCombatant.getStatus('Defend Double')!=0){
+                        this.battle.attackManager.effect[a.attack==5045?1:0]*=2
+                    }
                 }
                 if(a.spec.includes(70)&&userCombatant.getStatus('Shiv Boost')>0){
                     this.battle.attackManager.effect[0]+=userCombatant.getStatus('Shiv Boost')
@@ -6942,14 +6952,14 @@ class group{
                             (
                                 this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||
                                 this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444||this.cards[a].attack==1455||this.cards[a].attack==1485||
-                                this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1623||this.cards[a].attack==1625||
-                                this.cards[a].attack==1626||this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||
-                                this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||this.cards[a].attack==1655||this.cards[a].attack==1740||
-                                this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
-                                this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
-                                this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==3196||
-                                this.cards[a].attack==4754||this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||this.cards[a].attack==4808||
-                                this.cards[a].attack==4833||this.cards[a].attack==4834||this.cards[a].attack==9661||
+                                this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1625||this.cards[a].attack==1626||
+                                this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||this.cards[a].attack==1649||
+                                this.cards[a].attack==1650||this.cards[a].attack==1654||this.cards[a].attack==1655||this.cards[a].attack==1740||this.cards[a].attack==1753||
+                                this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||this.cards[a].attack==1852||
+                                this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||this.cards[a].attack==1813||
+                                this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==3196||this.cards[a].attack==4754||
+                                this.cards[a].attack==4805||this.cards[a].attack==4806||this.cards[a].attack==4807||this.cards[a].attack==4808||this.cards[a].attack==4833||
+                                this.cards[a].attack==4834||this.cards[a].attack==9661||
                                 this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
                                 this.cards[a].attack==4772&&this.battle.attackManager.mtgEnergy.length==4||
                                 (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||

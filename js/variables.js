@@ -296,7 +296,7 @@ types={
         {name:'Teleporter Start',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
         {name:'Teleporter End',life:6,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
         {name:'Mirror Shield',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
-        {name:'Armored Turret',life:60,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
+        {name:'Armored Turret',life:60,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' hard`},
         {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[30,5]}],description:`Shotgun duck game?`},
         {name:'Exploding Wall',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Pay to win`},
         {name:'Swarm Turret',life:8,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:47,effect:[3]}],description:`Even less gun`},
@@ -7300,6 +7300,7 @@ After adding both, also add a Miracle.`,
         },
         //mark dict
     ],diff:[
+        //note the comments correspond to old ascend, not to current diff id
         {name:'Base',desc:'No Changes'},//0
         {name:'More Elites',desc:'Elites are More Likely to Spawn'},//1
         {name:'Enemy Power',desc:'Enemies Deal More Damage'},//2-4
@@ -7318,7 +7319,8 @@ After adding both, also add a Miracle.`,
         {name:'Enemy Tactics',desc:'Enemies Are More Dangerous'},//17-19
         {name:'Bad Cards',desc:'Basic Cards are Worse'},//20
         {name:'Broke',desc:'Start With No Currency'},//22
-        {name:'Mimic',desc:'The Second Stash is an Elite'},//23
+        //{name:'Mimic',desc:'The Second Stash is an Elite'},//23
+        {name:'Mimic',desc:'A Random Stash is an Elite'},//23
         {name:'Start More Cursed',desc:'Start With Ignominy'},//25
         {name:'Banlands',desc:'Anti-Player Spikes Apply Vulnerable'},//26
         {name:'Enemy Scaling',desc:'Enemies Scale Their Damage'},//27-29

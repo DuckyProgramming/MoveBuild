@@ -72,10 +72,10 @@ class turnManager{
         }
         this.turns.push(new turn(0,this.battle,findName('Self-Kill',types.attack),[damageMax],enemy))
     }
-    loadEnemyMove(enemy){
+    loadEnemyMove(enemy,cap=0){
         this.loads++
         this.auxiliary=true
-        for(let a=0,la=this.battle.combatantManager.combatants[enemy].move.speed;a<la;a++){
+        for(let a=0,la=max(this.battle.combatantManager.combatants[enemy].move.speed,cap);a<la;a++){
             this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
         }
     }

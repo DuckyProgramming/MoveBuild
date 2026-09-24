@@ -2931,7 +2931,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2737: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain ${effect[1]} Strength\nPermanently`; break
         case 2738: string+=`Exhaust Your Hand\nGain ${effect[0]} Knowledge\nRemove All of\nYour Debuffs`; break
         case 2739: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nRemove ${effect[2]} Fatigue${pl(effect[2])}`; break
-        case 2740: case 4123: case 6237: case 9978:
+        case 2740: case 4123: case 6237: case 9978: case 10001:
             string+=`Scry ${effect[0]}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
         case 2741: string+=`Gain ${effect[0]} Dodge\nGain ${effect[1]} Bleed\nIf You Have No Block`; break
         case 2742: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Refreshed${pl(effect[1])}\nto Hand`; break
@@ -7408,10 +7408,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 7167: string+=`Create 1 Plant Tile\nDiscover a Sakura Card`; break
         case 7168: string+=`Discover an\nUncommon Card\nIt Costs 0`; break
         case 7169: string+=`Discover an X${effect[0]>0?`+${effect[0]}`:``}\n${variants.mtg?`Total `:``}Cost Card\nIt Costs 0`; break
-        case 7170: string+=`Gain ${effect[0]} Energy\nDiscover a Character\nRare Card`; break
-        case 7171: string+=`Gain (E) (E) (E)\nDiscover a Character\nRare Card`; break
-        case 7172: string+=`Gain (E) (E) (E) (E)\nDiscover a Character\nRare Card`; break
-        case 7173: string+=`Gain (E) (E) (E) (E) (E)\nDiscover a Character\nRare Card`; break
+        case 7170: string+=`Gain ${effect[0]} Energy\nDiscover a Rare\nCharacter Card`; break
+        case 7171: string+=`Gain (E) (E) (E)\nDiscover a Rare\nCharacter Card`; break
+        case 7172: string+=`Gain (E) (E) (E) (E)\nDiscover a Rare\nCharacter Card`; break
+        case 7173: string+=`Gain (E) (E) (E) (E) (E)\nDiscover a Rare\nCharacter Card`; break
         case 7174: string+=`Discover an Ethereal Card\nIt Costs 0`; break
         case 7175: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nDiscover a Discus`; break
         case 7176: string+=`Discover a Skill\nIt Costs 0`; break
@@ -10241,6 +10241,35 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9998: string+=`Draw ${effect[0]} Movement${pl(effect[0])}`; break
         case 9999: string+=`Enter World 4`; break
         case 10000: string+=`Enter World 4\nGain ${effect[0]} Max Health`; break
+        case 10002: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPull 1 Tile if Possible`; break
+        case 10003: string+=`Gain ${effect[0]} Strength\nCenter of Hand:\nGain ${effect[1]} More Strength`; break
+        case 10004: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Strength,\nApply ${effect[1]} Weak`; break
+        case 10005: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Strength,\nApply ${effect[1]} Vulnerable`; break
+        case 10006: string+=`Even Turn:\nNext ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
+        case 10007: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${variants.mtg?`Basic Attack`:`Strike`}s Deal Double\nDamage This Turn`; break
+        case 10008: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n${variants.mtg?`Basic Defense`:`Defend`}s Add Double\nBlock This Turn`; break
+        case 10009: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Armor\nTake ${effect[2]} More Damage\nFrom Attacks This Turn`; break
+        case 10010: string+=`Status Card in Hand:\nExhaust It\nGain ${effect[0]} Energy`; break
+        case 10011: string+=`Status Card in Hand:\nExhaust It\nGain (W) (W)`; break
+        case 10012: string+=`Lose ${effect[0]} Health\nAssign ${effect[1]}:\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${pl(effect[3])}`; break
+        case 10013: string+=`Lose ${effect[0]} Health\nAssign ${effect[1]}:\nGain (E) (E) (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 10014: string+=`Lose ${effect[0]} Health\nAssign ${effect[1]}:\nGain (E) (E) (E) (E)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 10015: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscover a Rare\nCharacter Card`; break
+        case 10016: string+=`Draw ${effect[0]} Attack${pl(effect[0])}\nDraw and Upgrade\n${effect[1]} Worker${pl(effect[1])}`; break
+        case 10017: string+=`Draw ${effect[0]} Attack${pl(effect[0])}\nDraw ${effect[1]} Worker${pl(effect[1])}`; break
+        case 10018: string+=`Discover a Lira\nor Sakura Card\nIt Costs 0`; break
+        case 10019: string+=`Discover a Randy\nor Menessa Card\nIt Costs 0`; break
+        case 10020: string+=`Incremental:\nGain ${effect[0]} Strength\nSuccession:\nDeal ${effect[1]} Damage\nin a Single Attack`; break
+        case 10021: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCommon Card in Hand:\nNext Assign is Free`; break
+        case 10022: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nAdd ${this.calculateEffect(effect[1],1)} Block\nOtherwise:\nLose ${effect[2]} Block`; break
+        case 10023: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Regeneration\nGain ${effect[2]} Frail`; break
+        case 10024: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDiscard All Attacks`; break
+        case 10025: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDiscard All Defenses`; break
+        case 10026: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDiscard All Skills`; break
+        case 10027: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${this.calculateEffect(effect[1],1)} Block\nDiscard All Defenses`; break
+        case 10028: string+=`Force Construct to Move`; break
+        case 10029: string+=`Force Construct to Move\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 10030: string+=`When Construct is Destroyed,\nApply ${effect[0]} Weak\nand ${effect[1]} Vulnerable\nto its Destroyer`; break
 
         //mark p
         //mark q

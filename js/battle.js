@@ -3780,7 +3780,7 @@ class battle{
                     }
                 }
                 if(allClosed){
-                    let endless=false
+                    /*let endless=false
                     for(let a=0,la=this.overlayManager.overlays[11].length;a<la;a++){
                         if(this.overlayManager.overlays[11][a].endlessTrigger){
                             this.overlayManager.overlays[11][a].endlessTrigger=false
@@ -3788,6 +3788,11 @@ class battle{
                         }
                     }
                     if(!endless){
+                        transition.trigger=true
+                        transition.scene='title'
+                        this.initialized=false
+                    }*/
+                    if(!transition.trigger){
                         transition.trigger=true
                         transition.scene='title'
                         this.initialized=false
@@ -4864,7 +4869,7 @@ class battle{
                 }
             break
             case 'victory': case 'defeat':
-                if(!this.overlayManager.anySpecificActive(24)){
+                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(51)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             //!this.overlayManager.anyNotSpecificActive(11)
@@ -4948,7 +4953,7 @@ class battle{
                         }
                     }
                 }
-                if(!disable){
+                if(!disabled){
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onKey(key,code)
                     }else{

@@ -20,6 +20,7 @@ class nodeManager{
         this.saveClass=-1
         this.harmElite=0
         this.harmBoss=0
+        this.mimic=floor(random(0,3))
         this.endless=0
         
         this.unknownPossibilities=[]
@@ -121,6 +122,7 @@ class nodeManager{
             let list=[4,3,1,2]
             for(let a=0,la=4;a<la;a++){
                 this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150,0,a,game.allMap>=0?game.allMap:list[a]))
+                this.nodes[a].typeConstruct()
             }
             for(let a=0,la=this.nodes.length;a<la;a++){
                 for(let b=0,lb=this.nodes.length;b<lb;b++){
@@ -133,8 +135,11 @@ class nodeManager{
             let possibilities=game.ascend>=1||game.diff>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
-                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150-min(3,a)*10,0,a,
-                game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]))
+                this.nodes.push(new node(
+                    this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150-min(3,a)*10,0,a,
+                    game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]
+                ))
+                this.nodes[a].typeConstruct()
             }
             for(let a=0,la=this.nodes.length;a<la;a++){
                 for(let b=0,lb=this.nodes.length;b<lb;b++){
@@ -148,9 +153,6 @@ class nodeManager{
             //the comments below are because the game's total length was shortened from 69 to 66 nodes
             switch(this.world){
                 case 0:
-                    for(let a=0,la=game.ascend>=1?27:game.diff>=1?28:30;a<la;a++){
-                        possibilities.push(0)
-                    }
                     for(let a=0,la=game.ascend>=1?9:game.diff>=1?8:6;a<la;a++){
                         possibilities.push(1)
                     }
@@ -164,14 +166,14 @@ class nodeManager{
                     //for(let a=0,la=16;a<la;a++){
                     for(let a=0,la=15;a<la;a++){
                         possibilities.push(5)
+                    }
+                    for(let a=0,la=game.ascend>=1?27:game.diff>=1?28:30;a<la;a++){
+                        possibilities.push(0)
                     }
                     //this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
                     this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,1,1,3,4,5,5,5,5,5,5,5,5,5]:[0,0,0,1,3,4,5,5,5,5,5,5,5,5,5]
                 break
                 case 1: case 2:
-                    for(let a=0,la=game.ascend>=1?23:game.diff>=1?24:26;a<la;a++){
-                        possibilities.push(0)
-                    }
                     for(let a=0,la=game.ascend>=1?9:game.diff>=1?8:6;a<la;a++){
                         possibilities.push(1)
                     }
@@ -185,6 +187,9 @@ class nodeManager{
                     //for(let a=0,la=16;a<la;a++){
                     for(let a=0,la=15;a<la;a++){
                         possibilities.push(5)
+                    }
+                    for(let a=0,la=game.ascend>=1?23:game.diff>=1?24:26;a<la;a++){
+                        possibilities.push(0)
                     }
                     //this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5,5]
                     this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
@@ -192,16 +197,41 @@ class nodeManager{
             }
             //let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             let length=(this.world>=2?20:21)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
+            let empty=[]
             for(let a=0,la=length;a<la;a++){
                 for(let b=0,lb=min(a+1,4,la-a);b<lb;b++){
                     let type=game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:-1
-                    if(type==-1){
+                    /*if(type==-1){
                         let index=variants.sortmap?0:floor(random(0,possibilities.length))
                         type=possibilities[index]
                         possibilities.splice(index,1)
-                    }
+                    }*/
                     this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,type))
+                    if(type==-1){
+                        empty.push(this.nodes.length-1)
+                    }else{
+                        this.nodes[this.nodes.length-1].typeConstruct()
+                    }
                 }
+            }
+            let tick=0
+            while(possibilities.length>0){
+                let index=floor(random(0,empty.length))
+                let target=empty[index]
+                let adj=[]
+                if(this.nodes[target].tilePosition.x>0){
+                    adj.push(this.nodes[target-1])
+                }
+                if(this.nodes[target].tilePosition.x<4){
+                    adj.push(this.nodes[target+1])
+                }
+                if(possibilities[0]==0||possibilities[0]==5&&tick%2==0||adj.every(node=>node.type!=possibilities[0])){
+                    this.nodes[target].type=possibilities[0]
+                    this.nodes[target].typeConstruct()
+                    possibilities.splice(0,1)
+                    empty.splice(index,1)
+                }
+                tick++
             }
             let side=[floor(random(0,2)),floor(random(0,3)),floor(random(0,3)),floor(random(0,2))]
             for(let a=0,la=this.nodes.length;a<la;a++){
@@ -383,7 +413,7 @@ class nodeManager{
             break
             case 6:
                 this.stashWorld=min(this.stashWorld,this.world)+1
-                if(this.world==1&&(game.ascend>=23||game.diff>=18)){
+                if((this.world==1&&game.ascend>=23||this.world==this.mimic&&game.diff>=18)){
                     this.enterNode(args[1],y,true,args)
                 }else{
                     transition.scene='stash'

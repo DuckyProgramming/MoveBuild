@@ -686,6 +686,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage*=2
 				bonus*=2
 			}
+			if(args[4]&&user.status.main[975]!=0){
+				damage*=2
+				bonus*=2
+			}
 			if(user.stance==1){
 				damage*=user.status.main[478]>0?3:2
 				bonus*=user.status.main[478]>0?3:2
@@ -761,6 +765,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}
 			if(user.status.main[273]>0){
 				block=0
+			}
+			if(args[5]&&user.status.main[976]!=0){
+				block*=2
 			}
 			block=float(tennify(block))
 			switch(type){
@@ -2077,6 +2084,9 @@ function quickSummonB(name){
 function kill(index){
 	if(index<current.combatantManager.combatants.length){
 		current.combatantManager.combatants[index].life=0
+		if(current.combatantManager.combatants[index].getStatus('Cannot Die')>0){
+			current.combatantManager.combatants[index].status.main[findList('Cannot Die',current.combatantManager.combatants[index].status.name)]=0
+		}
 		return 'Dead'
 	}else{
 		return 'Invalid'
@@ -3487,4 +3497,18 @@ function firstDisband(){
 		}
 	})
 	print(minimal)
+}
+function checkExists(start,end){
+	for(let a=start,la=end;a<la;a++){
+		if(!types.card.some(card=>
+			card.levels[0].attack==a||
+			card.levels[1].attack==a||
+			card.levels[2].attack==a||
+			card.mtg.levels[0].attack==a||
+			card.mtg.levels[1].attack==a||
+			card.mtg.levels[2].attack==a
+		)){
+			print(a)
+		}
+	}
 }*/

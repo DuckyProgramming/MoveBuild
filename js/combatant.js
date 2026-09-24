@@ -219,7 +219,7 @@ class combatant{
                 'Attack Intent (E)','10 Draw Energy','10 Draw Random Mana','3 Lowroll Strength','3 Highroll Strength','3 Lowroll Dexterity','3 Highroll Dexterity','3 Lowroll Draw','3 Highroll Draw','3 Lowroll Energy',
                 '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
                 '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
-                'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn',
+                'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -319,7 +319,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//95
                 0,0,0,0,0,0,0,0,0,0,//96
                 0,0,0,0,0,0,0,1,1,0,//97
-                0,0,0,0,0,
+                0,0,0,0,0,1,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -419,7 +419,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//95
                 2,2,2,2,2,2,2,2,2,2,//96
                 2,2,2,2,2,2,2,2,2,2,//97
-                2,2,2,2,2,
+                2,2,2,2,2,2,2,
             ]}
         /*
         0-none
@@ -4011,6 +4011,7 @@ class combatant{
                     }
                     if(user>=0&&user<this.battle.players){
                         this.battle.cardManagers[user].trueAllGroupEffectArgs(65,[7239,damage])
+                        this.battle.cardManagers[user].trueAllGroupEffectArgs(65,[10020,damage])
                     }
                 }
             }

@@ -1,28 +1,14 @@
 monday 9/28 10:00 am coc building
 
-CS 119 [MISC / 8350]
-
-new animation for divination
-split riptide (new animation as well)
-split get ripped so it says get 1 more rather than get double
-split belt whip
-split sundial
-split linkage slash and kinematic shield to give a status
-split ruin
-split light cycle
-split chernobyl
-split seize
-split dispatch troops
-card like visionary tuning for the sisters
-[new khruschev]
-split defector
-split golf ball
-split touch of garlic
-split scatterbrain
-wtf is inject fuel
-resplit synchronicity
-
 CS 120 [NEW SANAE / 8400]
+
+rework every leader after khruschev
+split chernobyl again
+[entrap]
+split deft
+resplit synchronicity
+push your construct
+split touch of garlic (again)
 
 prayer stance - damage, temporary dexterity, faiths
 time magic - when you take an extra turn, discover a card, it costs 0

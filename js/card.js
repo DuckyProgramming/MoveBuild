@@ -2184,6 +2184,12 @@ class card{
             case 8812:
                 userCombatant.statusEffect('Armor',this.effect[1])
             break
+            case 10020:
+                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
+                this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
+                userCombatant.statusEffect('Strength',this.effect[0])
+            break
         }
     }
     callPostStartEffect(encounterClass){

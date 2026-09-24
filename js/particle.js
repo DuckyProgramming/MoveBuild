@@ -34,7 +34,7 @@ class particle{
             case 97: case 99: case 114: case 115: case 116: case 117: case 118: case 119: case 120: case 121:
             case 126: case 135: case 136: case 139: case 152: case 154: case 155: case 156: case 163: case 164:
             case 168: case 169: case 170: case 173: case 192: case 193: case 195: case 196: case 199: case 206:
-            case 225: case 244: case 252: case 268: case 269: case 273: case 283:
+            case 225: case 244: case 252: case 268: case 269: case 273: case 283: case 284:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -69,7 +69,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 12: case 13: case 91: case 92: case 107:
+            case 12: case 13: case 91: case 92: case 107: case 285:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -4617,6 +4617,37 @@ class particle{
                         this.layer.point(lsin(15+a*72)*12,lcos(15+a*72)*12)
                     }
                 break
+                case 284:
+                    this.layer.rotate(this.time*2)
+                    this.layer.noFill()
+                    this.layer.stroke(150,120,90,this.fade)
+                    this.layer.strokeWeight(2.5)
+                    for(let a=0,la=26;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.arc(16,4,8,8,-90,-15)
+                    }
+                    this.layer.stroke(165,135,105,this.fade)
+                    this.layer.strokeWeight(1.5)
+                    for(let a=0,la=26;a<la;a++){
+                        this.layer.rotate(360/la)
+                        this.layer.arc(16,4,8,8,-90,-15)
+                    }
+                break
+                case 285:
+                    this.layer.stroke(50,200,150,this.fade*0.1)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.strokeWeight(15-a*3)
+                        this.layer.line(0,0,this.position2.x,this.position2.y)
+                        for(let b=0,lb=7;b<lb;b++){
+                            this.layer.line(
+                                this.position2.x,
+                                this.position2.y,
+                                this.position2.x+lsin(b/lb*360+this.time*2)*(10+a*10),
+                                this.position2.y+lcos(b/lb*360+this.time*2)*(10+a*10)
+                            )
+                        }
+                    }
+                break
 
             }
             //mark p
@@ -4688,7 +4719,7 @@ class particle{
                     }
                 }
             break
-            case 12: case 13: case 87: case 91: case 92: case 107:
+            case 12: case 13: case 87: case 91: case 92: case 107: case 285:
                 this.fade-=1/15
                 if(this.fade<=0){
                     this.remove=true
@@ -4960,7 +4991,7 @@ class particle{
                     }
                 }
             break
-            case 135: case 163: case 164:
+            case 135: case 163: case 164: case 284:
                 this.fade-=0.05
                 this.scale+=0.1-this.time*0.005
                 if(this.fade<=0){
