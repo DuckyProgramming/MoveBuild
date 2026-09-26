@@ -12,7 +12,7 @@ turn.prototype.update=function(){
                 case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                 case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
                 case 420: case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459:
-                case 463: case 465: case 475: case 477:
+                case 463: case 465: case 475: case 477: case 489: case 493: case 495:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -55,7 +55,7 @@ turn.prototype.update=function(){
                     }
                 break
                 case 20: case 31: case 59: case 66: case 99: case 103: case 107: case 194: case 258: case 292:
-                case 305: case 317: case 348: case 354: case 358: case 380: case 437:
+                case 305: case 317: case 348: case 354: case 358: case 380: case 437: case 488:
                     if(variants.nobasicanim){
                         if(this.targetDistance>1){
                             this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)
@@ -264,7 +264,7 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 3: case 7: case 35: case 98: case 196: case 252: case 399:
+                case 3: case 7: case 35: case 98: case 196: case 252: case 399: case 485: case 486:
                     if(this.timer==1&&this.targetDistance>1){
                         this.userCombatant.startAnimation(0)
                     }else if(this.timer==15*this.targetDistance-14){
@@ -284,10 +284,16 @@ turn.prototype.update=function(){
                         this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                         this.battle.activate(1,this.userCombatant.id)
                     }else if(this.timer==15*this.targetDistance-5){
-                        if(this.type==252){
-                            this.targetCombatant.statusEffect('Dissipating',this.effect[0])
-                        }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        switch(this.type){
+                            case 252:
+                                this.targetCombatant.statusEffect('Dissipating',this.effect[0])
+                            break
+                            case 485: case 486:
+                                this.targetCombatant.statusEffect('Mortal',this.effect[0])
+                            break
+                            default:
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            break
                         }
                         switch(this.type){
                             case 35:
@@ -349,7 +355,7 @@ turn.prototype.update=function(){
                 case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
                 case 240: case 241: case 254: case 257: case 261: case 267: case 269: case 280: case 293: case 318:
                 case 346: case 359: case 365: case 376: case 392: case 401: case 405: case 408: case 410: case 411:
-                case 438: case 442: case 456: case 460: case 464: case 472: case 473: case 474:
+                case 438: case 442: case 456: case 460: case 464: case 472: case 473: case 474: case 491: case 496:
                     if(variants.nobasicanim){
                         this.selfCall(1)
                         this.remove=true
@@ -407,7 +413,7 @@ turn.prototype.update=function(){
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
                 case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449: case 468:
-                case 470: case 476:
+                case 470: case 476: case 490:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true
@@ -445,7 +451,7 @@ turn.prototype.update=function(){
                     }
                 break
                 case 16: case 17: case 54: case 128: case 132: case 198: case 215: case 217: case 255: case 256:
-                case 396:
+                case 396: case 487:
                     if(variants.nobasicanim){
                         this.selfCall(8)
                         this.remove=true
@@ -464,7 +470,7 @@ turn.prototype.update=function(){
                 case 18: case 25: case 26: case 43: case 46: case 63: case 70: case 109: case 159: case 167:
                 case 169: case 170: case 174: case 177: case 197: case 207: case 210: case 216: case 220: case 228:
                 case 281: case 289: case 294: case 296: case 300: case 345: case 349: case 356: case 413: case 421:
-                case 423: case 432: case 450: case 461: case 462: case 466: case 467:
+                case 423: case 432: case 450: case 461: case 462: case 466: case 467: case 478: case 492:
                     if(variants.nobasicanim){
                         this.selfCall(5)
                         this.remove=true
@@ -4102,9 +4108,156 @@ turn.prototype.update=function(){
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.x,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].position.y-50,265))
                     }
                     if(this.timer==900){
-                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('Eternal Judge',types.combatant),this.userCombatant.direction+180)
+                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('-h Eternal Judge',types.combatant),this.userCombatant.direction+180)
                     }
                     if(this.timer==960){
+                        this.remove=true
+                        game.animRate=this.procedure[0]
+                        if(this.userCombatant.spec.includes(2)){
+                            this.userCombatant.spec.splice(this.userCombatant.spec.indexOf(2))
+                        }
+                        this.userCombatant.spec.push(12)
+                        this.targetCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1]
+                        if(this.targetCombatant.spec.includes(2)){
+                            this.targetCombatant.spec.splice(this.targetCombatant.spec.indexOf(2))
+                        }
+                        this.targetCombatant.spec.push(12)
+                    }
+                break
+                case 479:
+                    if(this.timer==10){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,286,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                break
+                case 480:
+                    if(this.timer==10){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,287,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                break
+                case 481:
+                    if(this.timer==10){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,288,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Frail',this.effect[1])
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                break
+                case 482:
+                    if(this.timer==10){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,289,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Burn',this.effect[1])
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                break
+                case 483:
+                    if(this.timer==10){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,290,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                break
+                case 484:
+                    if(this.timer==10){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,291,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Shock',this.effect[1])
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                break
+                case 494:
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(8)
+                        this.procedure[0]=game.animRate
+                        game.animRate=1
+                    }
+                    if(this.timer<=15||this.timer>1005){
+                        this.userCombatant.runAnimation(1/30,8)
+                    }
+                    if(this.timer==15){
+                        if(this.userCombatant.sins.length>=7){
+                            this.userCombatant.sins.push(this.userCombatant.sins.length)
+                            this.userCombatant.infoAnim.sins.push(0)
+                        }else{
+                            let remaining=[0,1,2,3,4,5,6]
+                            for(let a=0,la=this.userCombatant.sins.length;a<la;a++){
+                                if(remaining.includes(this.userCombatant.sins[a])){
+                                    remaining.splice(remaining.indexOf(this.userCombatant.sins[a]),1)
+                                }
+                            }
+                            if(remaining.length>0){
+                                let sin=remaining[floor(random(0,remaining.length))]
+                                this.userCombatant.sins.push(sin)
+                                this.userCombatant.infoAnim.sins.push(0)
+                                this.userCombatant.addSin(sin)
+                            }
+                        }
+                    }
+                    if(this.timer==45){
+                        for(let a=0,la=5;a<la;a++){
+                            let set=[
+                                [8,2,1],
+                                [9,3,1],
+                                [10,4,1],
+                                [8,2,2],
+                                [9,3,2],
+                            ][a]
+                            this.battle.tileManager.tiles.push(new tile(
+                                this.battle.layer,this.battle,
+                                this.battle.tileManager.tiles[set[0]].position.x*(set[2]+1)-this.battle.tileManager.tiles[set[1]].position.x*set[2],
+                                this.battle.tileManager.tiles[set[0]].position.y*(set[2]+1)-this.battle.tileManager.tiles[set[1]].position.y*set[2],
+                                this.battle.tileManager.tiles[set[0]].relativePosition.x*(set[2]+1)-this.battle.tileManager.tiles[set[1]].relativePosition.x*set[2],
+                                this.battle.tileManager.tiles[set[0]].relativePosition.y*(set[2]+1)-this.battle.tileManager.tiles[set[1]].relativePosition.y*set[2],
+                                this.battle.tileManager.tiles[set[0]].tilePosition.x*(set[2]+1)-this.battle.tileManager.tiles[set[1]].tilePosition.x*set[2],
+                                this.battle.tileManager.tiles[set[0]].tilePosition.y*(set[2]+1)-this.battle.tileManager.tiles[set[1]].tilePosition.y*set[2],
+                                this.battle.tileManager.offset,[]
+                            ))
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1].fade=0
+                        }
+                        this.targetTile=[
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-5],
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-4],
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-3],
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-2],
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1]
+                        ]
+                    }
+                    if(this.timer==60){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetTile[1].position.x,this.targetTile[1].position.y,266,[50,[50,50,50]]))
+                    }
+                    if(this.timer>=45&&this.timer<75){
+                        for(let a=0,la=5;a<la;a++){
+                            this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-1-a].fade+=1/30
+                        }
+                    }
+                    if(this.timer==90){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-4].position.x,this.battle.tileManager.tiles[this.battle.tileManager.tiles.length-4].position.y-50,292))
+                    }
+                    if(this.timer==900){
+                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile[1].tilePosition,findName('-h Rewriter',types.combatant),this.userCombatant.direction)
+                    }
+                    if(this.timer==930){
+                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile[0].tilePosition,findName('Nil',types.combatant),this.userCombatant.direction)
+                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile[2].tilePosition,findName('Nil',types.combatant),this.userCombatant.direction)
+                    }
+                    if(this.timer==960){
+                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile[3].tilePosition,findName('Glitch',types.combatant),this.userCombatant.direction)
+                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile[4].tilePosition,findName('Glitch',types.combatant),this.userCombatant.direction)
+                    }
+                    if(this.timer==1020){
                         this.remove=true
                         game.animRate=this.procedure[0]
                         if(this.userCombatant.spec.includes(2)){

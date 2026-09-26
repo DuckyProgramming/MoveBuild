@@ -4445,7 +4445,7 @@ but his shop is looking a little shady.`,
             },
         ],
     },{
-        name:'The Traitor',id:134,list:-1,
+        name:'The Traitor',id:134,list:0,
         pages:[
             {
                 desc:

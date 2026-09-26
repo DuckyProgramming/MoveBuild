@@ -69,7 +69,8 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 12: case 13: case 91: case 92: case 107: case 285:
+            case 12: case 13: case 91: case 92: case 107: case 285: case 286: case 287: case 288: case 289:
+            case 290: case 291:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -857,7 +858,7 @@ class particle{
                 this.scale=0
                 this.delay=args[1]
             break
-            case 265:
+            case 265: case 292:
                 this.size=1
                 this.scale=1
                 this.shocks=[]
@@ -4648,6 +4649,82 @@ class particle{
                         }
                     }
                 break
+                case 286:
+                    this.layer.stroke(230,0,0,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
+                case 287:
+                    this.layer.stroke(230,30,0,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
+                case 288:
+                    this.layer.stroke(230,60,0,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
+                case 289:
+                    this.layer.stroke(230,90,0,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
+                case 290:
+                    this.layer.stroke(230,120,0,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
+                case 291:
+                    this.layer.stroke(230,150,0,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
+                case 292:
+                    this.layer.fill(55+this.dark*160,55+this.dark*150,65+this.dark*120,this.fade)
+                    this.layer.ellipse(0,0,110)
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.layer.stroke(50+this.dark*160,35+this.loops[a].color*25+this.dark*150,15+this.loops[a].color*75+this.dark*120,this.loops[a].fade)
+                        this.layer.strokeWeight(10)
+                        let width=sqrt(4900-this.loops[a].height**2)
+                        if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,-width,this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width,this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }
+                    }
+                    this.layer.noStroke()
+                    for(let a=0,la=this.shocks.length;a<la;a++){
+                        this.layer.fill(95+this.dark*160,80+this.shocks[a].color*25+this.dark*150,60+this.shocks[a].color*75+this.dark*120,this.shocks[a].fade)
+                        this.layer.rotate(this.shocks[a].direction)
+                        for(let b=0,lb=20;b<lb;b++){
+                            this.layer.quad(
+                                b*(1-b*0.025)*this.shocks[a].swivel*(b%2*2-1)-b/lb*this.shocks[a].width,-this.shocks[a].height-b*this.shocks[a].bar,
+                                b*(1-b*0.025)*this.shocks[a].swivel*(b%2*2-1)+b/lb*this.shocks[a].width,-this.shocks[a].height-b*this.shocks[a].bar,
+                                (b+1)*(1-(b+1)*0.025)*this.shocks[a].swivel*((b+1)%2*2-1)+(b+1)/lb*this.shocks[a].width,-this.shocks[a].height-(b+1)*this.shocks[a].bar,
+                                (b+1)*(1-(b+1)*0.025)*this.shocks[a].swivel*((b+1)%2*2-1)-(b+1)/lb*this.shocks[a].width,-this.shocks[a].height-(b+1)*this.shocks[a].bar
+                            )
+                        }
+                        this.layer.rotate(-this.shocks[a].direction)
+                    }
+                    for(let a=0,la=this.loops.length;a<la;a++){
+                        this.layer.stroke(95+this.dark*160,80+this.loops[a].color*25+this.dark*150,60+this.loops[a].color*75+this.dark*120,this.loops[a].fade)
+                        this.layer.strokeWeight(10)
+                        let width=sqrt(4900-this.loops[a].height**2)
+                        if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)>0&&lcos(this.loops[a].direction+this.loops[a].width)<=0){
+                            this.layer.line(width*lsin(this.loops[a].direction),this.loops[a].height,width,this.loops[a].height)
+                        }else if(lcos(this.loops[a].direction)<=0&&lcos(this.loops[a].direction+this.loops[a].width)>0){
+                            this.layer.line(-width,this.loops[a].height,width*lsin(this.loops[a].direction+this.loops[a].width),this.loops[a].height)
+                        }
+                    }
+                    this.layer.noStroke()
+                    this.layer.fill(95+this.dark*160,95+this.dark*150,105+this.dark*120,this.fade)
+                    this.layer.ellipse(0,0,150)
+                break
+                
 
             }
             //mark p
@@ -4719,7 +4796,8 @@ class particle{
                     }
                 }
             break
-            case 12: case 13: case 87: case 91: case 92: case 107: case 285:
+            case 12: case 13: case 87: case 91: case 92: case 107: case 285: case 286: case 287: case 288:
+            case 289: case 290: case 291:
                 this.fade-=1/15
                 if(this.fade<=0){
                     this.remove=true
@@ -5793,7 +5871,7 @@ class particle{
                     }
                 }
             break
-            case 265:
+            case 265: case 292:
                 for(let a=0,la=this.shocks.length;a<la;a++){
                     this.shocks[a].fade-=0.1
                     if(this.shocks[a].fade<=0){

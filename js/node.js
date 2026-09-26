@@ -42,11 +42,13 @@ class node{
     typeConstruct(){
         let index
         let list
+        this.combat=0
         switch(this.type){
             case 0:
                 this.reality=this.type
-                list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
-                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
+                //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
+                list=this.tilePosition.y<=1?4:this.tilePosition.y<=4&&this.battle.nodeManager.world==0?3:0
                 index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
                 this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
                 this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
@@ -63,8 +65,9 @@ class node{
                 this.battle.nodeManager.unknownPossibilities.splice(index,1)
                 switch(this.reality){
                     case 0:
-                        list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
-                            this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
+                        //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                        //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
+                        list=this.tilePosition.y<=1?4:this.tilePosition.y<=4&&this.battle.nodeManager.world==0?3:0
                         index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
                         this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
                         this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
@@ -92,6 +95,9 @@ class node{
                 this.combat=0
             break
         }
+        /*if(this.combat==undefined){
+            throw new Error(`Enemy Assignment Failure: ${this.reality}`)
+        }*/
     }
     establish(x,y,baseX,baseY,tileX,tileY,type,readable,reality,combat,connections,extraConnections,scroll,complete){
         this.position={x:x,y:y}

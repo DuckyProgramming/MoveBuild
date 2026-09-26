@@ -496,6 +496,7 @@ class battle{
         this.combatantManager.resetCombatants(1)
         
         this.resetAnim()
+        let pivot=floor(random(0,2))
         for(let a=0,la=this.players;a<la;a++){
             this.result.skipReward.push(false)
 
@@ -507,7 +508,8 @@ class battle{
                     playerCombatant.revive()
                 }
                 if(!this.modded(156)){
-                    this.positionCombatant(playerCombatant,{x:effectiveEncounter.player.position[la-1][a].x,y:effectiveEncounter.player.position[la-1][a].y})
+                    let index=la==1?0:(pivot+a)%2
+                    this.positionCombatant(playerCombatant,{x:effectiveEncounter.player.position[la-1][index].x,y:effectiveEncounter.player.position[la-1][index].y})
                 }
             }
         }
@@ -531,6 +533,17 @@ class battle{
             }
             if(effectiveName!='Prisoner Informant'&&effectiveName!='Gangster Machinegunner Informant'&&effectiveName!='Walker Driver Informant'){
                 this.counter.enemy++
+            }
+        }
+        if(effectiveEncounter.name=='Zenith'){
+            let type=findName('Zenith Eye A',types.combatant)
+            let shuffle=[0,1,2,3,4,5]
+                .map(value=>({value,sort:random(0,1)}))
+                .sort((a,b)=>a.sort-b.sort)
+                .map(({value})=>value)
+            for(let a=0,la=6;a<la;a++){
+                let move=transformDirection(0,-150+shuffle[a]*60)
+                this.addCombatant({x:1+move[0],y:1+move[1]},type+a,0,0,false)
             }
         }
         for(let a=0,la=this.players;a<la;a++){

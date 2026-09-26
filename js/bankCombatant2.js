@@ -1712,7 +1712,7 @@ combatant.prototype.setupGraphics=function(direction){
                 break
             }
         break
-        case 'Pointy': case 'Little Guy': case 'Rich Kid': case 'Latency': case 'Speedrunner':
+        case 'Pointy': case 'Little Guy': case 'Rich Kid': case 'Latency': case 'Speedrunner': case 'Ollie':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:12,bottom:0,length:{top:14,bottom:14}},{top:12,bottom:0,length:{top:14,bottom:14}}],
                 arms:[{top:27,bottom:12,length:{top:14,bottom:14}},{top:27,bottom:12,length:{top:14,bottom:14}}]}
@@ -1761,6 +1761,19 @@ combatant.prototype.setupGraphics=function(direction){
                     this.color.glasses=[[40,40,40],[255,255,255]]
                     this.fades.glasses=1
                     this.trigger.display.glasses=true
+                break
+                case 'Ollie':
+                    this.color={skin:{head:[240,220,180],body:[140,25,25],legs:[140,25,25],arms:[220,120,120]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[130,130,140]
+                    this.color.coat=[220,120,120]
+                    this.color.hat=[220,180,75]
+                    this.color.moustache=[60,40,0]
+                    this.fades.coat=1
+                    this.fades.hat=1
+                    this.fades.moustache=1
+                    this.trigger.display.coat=1
+                    this.trigger.display.hat=1
+                    this.trigger.display.moustache=1
                 break
             }
         break
@@ -1937,7 +1950,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
-        case 'Modicum':
+        case 'Modicum': case 'Mini Puffball':
             this.anim={direction:direction,eye:[0,0],arms:[{top:54,length:{top:6}},{top:54,length:{top:6}}]}
             this.fades={eye:[1,1],skin:{arms:1,body:1}}
             this.spin={arms:[{top:-90},{top:90}],eye:[-24,24]}
@@ -1947,7 +1960,14 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={eye:{back:[0,0,0]},skin:{body:[240,240,220],arms:[235,235,215]}}
+            switch(this.name){
+                case 'Modicum':
+                    this.color={eye:{back:[0,0,0]},skin:{body:[240,240,220],arms:[235,235,215]}}
+                break
+                case 'Mini Puffball':
+                    this.color={eye:{back:[75,125,150]},skin:{body:[160,200,220],arms:[120,160,180]}}
+                break
+            }
         break
         case 'Slime': case 'Spike Slime': case 'Slimoid': case 'Rainbow Slime':
             this.anim={direction:direction,eye:[0,0],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
@@ -2127,7 +2147,7 @@ combatant.prototype.setupGraphics=function(direction){
             }
             this.goal={anim:{direction:this.anim.direction}}
         break
-        case 'Fat Scrapper': case 'Lalex':
+        case 'Fat Scrapper': case 'Lalex': case 'Fat Biker':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:13,bottom:13}},{top:9,bottom:0,length:{top:13,bottom:13}}],
                 arms:[{top:24,bottom:9,length:{top:13,bottom:13}},{top:24,bottom:9,length:{top:13,bottom:13}}]}
@@ -2159,6 +2179,18 @@ combatant.prototype.setupGraphics=function(direction){
                     this.color.logo=[240,240,240]
                     this.fades.logo=1
                     this.trigger.display.logo=true
+                break
+                case 'Fat Biker':
+                    this.color={skin:{head:[240,220,180],body:[225,25,25],legs:[220,20,20],arms:[230,30,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.hat=[200,0,0]
+                    this.color.goggles=[255,255,255]
+                    this.color.beard=[140,120,120]
+                    this.fades.hat=1
+                    this.fades.goggles=0.6
+                    this.fades.beard=1
+                    this.trigger.display.hat=true
+                    this.trigger.display.goggles=true
+                    this.trigger.display.beard=true
                 break
             }
         break
@@ -2236,7 +2268,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.goal={anim:{direction:this.anim.direction}}
         break
-        case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown': case 'Rocket Launcher Management Robot': case 'Shotgun Management Robot': case 'Rammer Robot': case 'Management Experimental Robot':
+        case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Rammer Robot': case 'Experimental Robot': case 'Defective Robot A': case 'Defective Robot B': case 'Defective Robot C': case 'Rusted Robot': case 'Warning Robot':
             this.anim={direction:direction,head:direction,eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
@@ -2288,13 +2320,13 @@ combatant.prototype.setupGraphics=function(direction){
                     this.color={skin:{in:[240,240,40],out:[200,200,40],limb:[180,180,40]},eye:{back:[50,50,100],front:[75,75,125],glow:[150,150,255]}}
                     this.color.skin.bar=[[220,220,40],[170,170,40]]
                 break
-                case 'Rocket Launcher Management Robot':
+                case 'Rocket Launcher Robot':
                     this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
                     this.color.armor=[120,120,40]
                     this.fades.armor=1
                     this.trigger.display.armor=true
                 break
-                case 'Shotgun Management Robot':
+                case 'Shotgun Robot':
                     this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
                     this.color.panel=[120,40,120]
                     this.fades.panel=1
@@ -2306,11 +2338,20 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.hex=1
                     this.trigger.display.hex=true
                 break
-                case 'Management Experimental Robot':
+                case 'Experimental Robot':
                     this.color={skin:{in:[120,120,140],out:[100,100,120],limb:[95,95,115]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
                     this.color.visor=[200,200,255]
                     this.fades.visor=1
                     this.trigger.display.visor=true
+                break
+                case 'Rusted Robot':
+                    this.color={skin:{in:[180,170,160],out:[160,135,115],limb:[155,130,110]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
+                break
+                case 'Warning Robot':
+                    this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
+                    this.color.warning=[[90,90,90],[240,0,0]]
+                    this.fades.warning=1
+                    this.trigger.display.warning=true
                 break
                 default:
                     this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
@@ -2463,14 +2504,21 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95],head:[240,220,180]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
         break
-        case 'Louse':
+        case 'Louse': case 'Snail':
             this.anim={direction:direction}
             this.fades={antenna:1,body:1}
             this.trigger={display:{antenna:true,body:true}}
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={antenna:[225,120,100],body:[[145,170,85],[215,230,5]]}
+            switch(this.name){
+                case 'Louse':
+                    this.color={antenna:[225,120,100],body:[[145,170,85],[215,230,5]]}
+                break
+                case 'Snail':
+                    this.color={antenna:[100,175,120],body:[[85,170,145],[55,205,165]]}
+                break
+            }
         break
         case 'Fungling':
             this.anim={direction:direction,head:direction,eye:[1,1],eyeStyle:[1,1],arms:[{top:54,length:{top:14}},{top:54,length:{top:14}}],mouth:{x:8,y:5,open:0}}
@@ -2547,7 +2595,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={body:[190,235,255]}
         break
-        case 'Darkblot':
+        case 'Darkblot': case 'Inkblot':
             this.anim={direction:direction,eye:[0,0],arms:[{top:54,length:{top:12}},{top:54,length:{top:12}}]}
             this.fades={eye:[1,1],skin:{arms:1,body:1}}
             this.spin={arms:[{top:-90},{top:90}],eye:[-24,24]}
@@ -2557,7 +2605,14 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={eye:{back:[120,240,60]},skin:{body:[40,60,40],arms:[30,45,30]}}
+            switch(this.name){
+                case 'Darkblot':
+                    this.color={eye:{back:[120,240,60]},skin:{body:[40,60,40],arms:[30,45,30]}}
+                break
+                case 'Inkblot':
+                    this.color={eye:{back:[240,240,60]},skin:{body:[40,40,60],arms:[30,30,45]}}
+                break
+            }
             this.progress=0
         break
         case 'Managerial':
@@ -2968,6 +3023,77 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={skin:{out:[25,25,25],in:[55,55,55]},eye:{back:[25,25,25],in:[25,25,25],glow:[255,255,255]}}
             this.progress=2
+        break
+        case 'Infested Prism':
+            this.anim={direction:direction}
+            this.fades={body:1,balls:1,eye:1}
+            this.color={body:[[160,40,40],[120,40,40]],balls:[[40,100,160],[40,80,120]],eye:[[0,0,0],[200,160,40]]}
+            this.trigger={display:{body:true,balls:true,eye:1}}
+            this.animSet={loop:0,flip:0}
+            this.goal={anim:{direction:this.anim.direction}}
+        break
+        case 'Crow':
+            this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:6}},{top:24,length:{top:6}}],arms:[{top:54,length:{top:6}},{top:54,length:{top:6}}]}
+            this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
+            this.spin={legs:[{top:90},{top:-90}],arms:[{top:90},{top:-90}],eye:[-18,18]}
+            this.parts={eyeLevel:-40,beakLevel:-35,legs:[{top:{x:2,y:-18},middle:{x:0,y:0}},{top:{x:2,y:-18},middle:{x:0,y:0}}],arms:[{top:{x:3.5,y:-30},middle:{x:0,y:0}},{top:{x:3.5,y:-30},middle:{x:0,y:0}}]}
+            this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
+            this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true}}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            this.color={eye:{back:[0,0,0]},beak:{main:[28,21,47],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[37,30,55],body:[13,9,22],legs:[50,45,61],arms:[15,10,22]}}
+        break
+        case 'Zenith Eye A': case 'Zenith Eye B': case 'Zenith Eye C': case 'Zenith Eye D': case 'Zenith Eye E': case 'Zenith Eye F':
+            this.anim={direction:direction}
+            this.fades={body:1}
+            this.trigger={display:{body:true}}
+            this.animSet={loop:0,flip:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            switch(this.name){
+                case 'Zenith Eye A':
+                    this.color={body:[
+                        [245,85,0],
+                        [85,45,30],
+                        [70,20,5],
+                    ]}
+                break
+                case 'Zenith Eye B':
+                    this.color={body:[
+                        [235,240,245],
+                        [255,195,55],
+                        [20,25,35],
+                    ]}
+                break
+                case 'Zenith Eye C':
+                    this.color={body:[
+                        [30,135,35],
+                        [190,255,115],
+                        [25,90,35],
+                    ]}
+                break
+                case 'Zenith Eye D':
+                    this.color={body:[
+                        [100,45,75],
+                        [255,185,255],
+                        [55,30,50],
+                    ]}
+                break
+                case 'Zenith Eye E':
+                    this.color={body:[
+                        [255,255,245],
+                        [255,215,250],
+                        [45,50,45],
+                    ]}
+                break
+                case 'Zenith Eye F':
+                    this.color={body:[
+                        [210,230,250],
+                        [190,210,200],
+                        [75,160,170],
+                    ]}
+                break
+            }
         break
         //mark n
         default:
@@ -3643,7 +3769,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.cape=true
                     this.trigger.display.mouth=false
                 break
-                case 'Rewriter':
+                case 'Rewriter': case '-h Rewriter':
                     this.color={skin:{head:[220,220,225],body:[80,90,110],legs:[70,80,100],arms:[70,80,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.color.bowtie=[[150,160,180],[10,25,40]]
                     this.color.goggles=[[245,245,250],[30,30,40]]
@@ -4007,6 +4133,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.logo=true
                     this.trigger.display.band=true
                     this.trigger.display.helmet=true
+                    this.trigger.display.mouth=false
                 break
                 case 'Archivist':
                     this.color={skin:{head:[240,220,180],body:[160,100,40],legs:[150,90,30],arms:[150,90,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
@@ -4026,7 +4153,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.glasses=true
                     this.trigger.display.coat=true
                 break
-                case 'Eternal Judge':
+                case 'Eternal Judge': case '-h Eternal Judge':
                     this.color={skin:{head:[55,60,75],body:[65,15,25],legs:[55,5,15],arms:[45,50,65]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.anim.eye=[1,1]
                     this.anim.eyeStyle=[6,6]
@@ -4357,7 +4484,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.helmet=true
                     this.trigger.display.visor=true
                 break
-                case 'Warning Man':
+                case 'Liaison':
                     this.color={skin:{head:[240,220,180],body:[80,200,160],legs:[70,190,150],arms:[75,195,155]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.color.neck=[75,150,75]
                     this.color.bandana=[100,200,100]
@@ -4381,6 +4508,71 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.hat=true
                     this.trigger.display.tie=true
                 break
+                case 'Globe Head':
+                    this.color={skin:{head:[[89,168,217],[22,34,60]],body:[95,125,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.shock=[206,255,255]
+                    this.trigger.display.shock=true
+                    this.shocks=[]
+                break
+                case 'Smoker':
+                    this.color={skin:{head:[240,220,180],body:[50,75,125],legs:[40,65,110],arms:[230,210,170]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[220,220,220]
+                    this.color.smoke=[70,65,60]
+                    this.color.cigarette=[[240,230,220],[240,140,40]]
+                    this.fades.smoke=0.1
+                    this.fades.cigarette=1
+                    this.trigger.display.smoke=true
+                    this.trigger.display.cigarette=true
+                break
+                case 'Grail':
+                    this.color={skin:{head:[240,220,180],body:[20,25,30],legs:[15,20,25],arms:[180,170,160]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[80,95,105]
+                    this.color.briefcase=[25,25,25]
+                    this.color.tie=[[80,60,40],[220,220,220]]
+                    this.color.hat=[200,195,180]
+                    this.fades.briefcase=1
+                    this.fades.tie=1
+                    this.fades.hat=1
+                    this.trigger.display.briefcase=true
+                    this.trigger.display.tie=true
+                    this.trigger.display.hat=true
+                break
+                case 'Shipment':
+                    this.color={skin:{head:[240,220,180],body:[10,50,10],legs:[15,55,15],arms:[20,60,20]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.belt=[50,45,50]
+                    this.color.hat=[100,160,120]
+                    this.fades.belt=1
+                    this.fades.hat=1
+                    this.trigger.display.belt=true
+                    this.trigger.display.hat=true
+                break
+                case 'Bean Counter':
+                    this.color={skin:{head:[240,220,180],body:[40,60,80],legs:[30,50,70],arms:[170,200,200]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[180,210,210]
+                    this.color.glasses=[[120,120,120],[220,220,220]]
+                    this.color.pocket=[[220,220,220],[90,120,30]]
+                    this.fades.glasses=1
+                    this.fades.pocket=1
+                    this.trigger.display.glasses=true
+                    this.trigger.display.pocket=true
+                break
+                case 'Flanker':
+                    this.color={skin:{head:[40,85,25],body:[30,25,25],legs:[25,20,20],arms:[196,165,60]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.skin.upperBody=[30,75,15]
+                    this.color.upperArm=[20,65,5]
+                    this.fades.upperArm=1
+                    this.trigger.display.upperArm=true
+                break
+                case 'Zenith':
+                    this.color={skin:{head:[240,220,180],body:[4,4,4],legs:[2,2,2],arms:[3,3,3]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.epaulettes=[190,5,5]
+                    this.fades.epaulettes=1
+                    this.trigger.display.epaulettes=1
+                    this.trigger.display.skin.head=false
+                    this.trigger.display.mouth=false
+                    this.trigger.display.eye[0]=false
+                    this.trigger.display.eye[1]=false
+                break
                 default:
                     this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                 break
@@ -4390,7 +4582,7 @@ combatant.prototype.setupGraphics=function(direction){
     }
     if(this.battle.menu!=undefined&&this.battle.menu.date==26){
         //mark 26
-        if(this.spin.mouth==216&&this.anim.mouth.x==8&&this.anim.mouth.y==5){
+        if(this.spin!=undefined&&this.anim!=undefined&&this.spin.mouth!=undefined&&this.anim.mouth!=undefined&&this.spin.mouth==216&&this.anim.mouth.x==8&&this.anim.mouth.y==5){
             this.spin.mouth-=180
             this.parts.mouth-=4
         }
@@ -7199,6 +7391,57 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.layer.line(0,-4+g/2,0,3-g/2)
                     }
                     this.layer.pop()
+                break
+            }
+        break
+        case 'Smoker':
+            switch(type){
+                case 1:
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].bottom.x,this.graphics.arms[key].bottom.y)
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.cigarette[0][0],this.color.cigarette[0][1],this.color.cigarette[0][2],this.fade*this.fades.cigarette)
+                    this.layer.rect(-1,3,9,3)
+                    this.layer.fill(this.color.cigarette[1][0],this.color.cigarette[1][1],this.color.cigarette[1][2],this.fade*this.fades.cigarette)
+                    this.layer.rect(4.5,3,2,3)
+                    this.layer.pop()
+                break
+            }
+        break
+        case 'Grail':
+            switch(type){
+                case 1:
+                    this.layer.push()
+                    this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
+                    this.layer.scale(constrain(lsin(this.anim.direction+this.spin.arms[key].bottom-75)*2,-1,1),1)
+                    this.layer.fill(...this.color.briefcase,this.fade*this.fades.briefcase)
+                    this.layer.noStroke()
+                    this.layer.rect(0,14,24,16,2)
+                    this.layer.stroke(...this.color.briefcase,this.fade*this.fades.briefcase)
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.arc(0,6,8,8,-180,0)
+                    this.layer.pop()
+                break
+            }
+        break
+        case 'Flanker':
+            switch(type){
+                case 1:
+                    dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
+                    this.layer.fill(...this.flashColor(this.color.upperArm),this.fade*this.fades.upperArm)
+                    this.layer.noStroke()
+                    this.layer.quad(
+                        this.graphics.arms[key].top.x-2.1*sin(dir+90),
+                        this.graphics.arms[key].top.y-2.1*cos(dir+90),
+                        this.graphics.arms[key].top.x+2.1*sin(dir+90),
+                        this.graphics.arms[key].top.y+2.1*cos(dir+90),
+                        this.graphics.arms[key].top.x*0.2+this.graphics.arms[key].middle.x*0.8+3.2*sin(dir+90),
+                        this.graphics.arms[key].top.y*0.2+this.graphics.arms[key].middle.y*0.8+3.2*cos(dir+90),
+                        this.graphics.arms[key].top.x*0.2+this.graphics.arms[key].middle.x*0.8-3.2*sin(dir+90),
+                        this.graphics.arms[key].top.y*0.2+this.graphics.arms[key].middle.y*0.8-3.2*cos(dir+90)
+                    )
+                    this.layer.ellipse(this.graphics.arms[key].top.x,this.graphics.arms[key].top.y,4.2)
                 break
             }
         break

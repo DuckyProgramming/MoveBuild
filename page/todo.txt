@@ -1,7 +1,23 @@
+        {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
+        {name:'Glazer',life:65,behavior:1,spec:[24],move:{type:2,speed:2},attack:[{type:270,effect:[11]}],description:`The most egotistical man alive`},
+        {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:111,effect:[6]},{type:77,effect:[8]},{type:367,effect:[12]},{type:380,effect:[16]}],description:`PVZ Fusion looking`},
+
+returned mage
+ennealis
+
 monday 9/28 10:00 am coc building
+Skiles 006 Wednesday, October 21, at 1:00pm
 
 CS 120 [NEW SANAE / 8400]
 
+yapper murders you
+
+press d while picking card opens deck sometimes
+more forms of recoil step
+split flaming bottle
+split work experience
+
+quickbuild vs toolbox
 rework every leader after khruschev
 split chernobyl again
 [entrap]
@@ -26,6 +42,8 @@ prespoke incantation - gain 1 faith per attack or defense in hand
 kanako's blessing - when you invoke kanako, gain 1 dexterity
 suwako's blessing - when you invoke suwako, gain 1 strength
 rebuff dance - aerial but you also gain 1 control
+star falling - draw 2, gain 2 favor
+split star falling into no wind no waves
 
 split faithful meditation
 split gather faith
@@ -74,6 +92,12 @@ make sure her tutorial is not ruined
 [more cards using the system put in place by feral, for coffee, guns, etc]
 sight of distant blade - damage, shiv, costs 1 less when played
 split shinmy cards that count as strikes to have defend variants
+
+discus sap - target loses 4 health, add a dual discus to hand
+countertop - remove 3 cards, gain 1 random temporary item
+belt buckle - gain 1 strength, if you have no items gain 1 dexterity
+squall - 18 damage to anybody, get 3 random temporary items
+demographics - gain temp dex for every 5 population
 
 diadem - gain 1 buffer, apply 2 weak to all enemies [tiara already exists, base off that]
 teleport and nerf in all directions
@@ -208,6 +232,69 @@ check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
 
 [slio9]
+
+the 64/64/64/8 update (+25)
+
+world 3:
+3 starters
+[soul]
+move 8 enemies to easies, 4 easies
+[management roller robot (rammer robot but he attacks whenever you play a card)]
+[management shotgunner]
+[management light infantry]
+[pure swordsman]
+4 elites
+[soul boss]
+[glazer - he spawns a temporary copy of himself every turn]
+[vengeful speed]
+[lockdown been moved]
+new boss - zenith
+
+but what about on diff 31?
+modded(29)?
+new bonus mods
+
+[lunar scatter]
+
+world 4:
+new elite - golden guard
+-h eternal judge (spawns rewriter lol)
+
+the 400 relic update
++34 shop relics
+
+bag of sticks - apply 1 weak to all enemies when combat starts
+bag of marbles - apply 1 vulnerable to all enemies when combat starts
+five rings - when you add 5 cards to your deck, heal 20 health
+mini popper - all enemies lose 5 health at the start of combat
+sliced melon - when you exhaust 5 cards, draw a card
+dagger of hisou - when you play 3 attacks, trigger hisou
+spinner of hisou - when you play 3 defenses, trigger hisou
+hard candy - when you add a power to deck, gain a card reward
+tiny cannon - when you play an upgraded attack, gain 1 temporary strength
+thin shield - if you end your turn with 20 or more block, add 6 block
+loud basin - if you play no attacks on your turn, add 8 block
+vampiric parasol rebuild to give strength and dexterity on turn 3
+mailbox - when you rest, gain an item
+vambrace - 8 skill block (7)
+reballing clay - add 5 block when you lose health
+aorta - you cannot lose more than 20 health per turn
+chandelier - on turn 3, gain 3 energy
+coat of arms - the trail but it gives block
+rainbow ring - gain 1 energy the first time you attack, defend, and move each turn
+clamp - retain 10 block over every turn
+lightbulb cube - all enemies get the first debuff they take doubled each combat
+small game guide - elites give a bonus rare card reward
+lunar pastry - when you play a vanishing card, heal 3
+ghost seed - when taken, make a card ethereal
+tiny tent - choose any number of rest options
+ringing triangle - retain your hand on turn 1
+tang tang - when you add a card to your deck, duplicate it
+fresnel lens - when you play a power, all enemies gain 1 weak
+
+500 enemy attacks
+
+maybe kill the george packs
 
 GIMMICK BANK
 

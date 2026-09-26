@@ -49422,7 +49422,7 @@ types.card=[
             ],
         },
     },{
-        name:'Squall',rarity:2,list:22,
+        name:'Salt\nStorm',rarity:2,list:22,
         levels:[
             {effect:[18,3],attack:7213,cost:2,target:[5],spec:[0],class:1},
             {effect:[26,3],attack:7213,cost:2,target:[5],spec:[0],class:1},

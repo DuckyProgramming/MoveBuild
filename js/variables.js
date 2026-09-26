@@ -63,7 +63,7 @@ types={
         {name:'Big Spike Slime',life:21,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:32,effect:[6,1,'Spiked']},{type:33,effect:[2]}],description:`At least he's not a slimoid`},
         {name:'Moss Creature',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[3]},{type:10,effect:[2]}],description:`Teamwork somehow`},
         {name:'Goblin',life:8,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
-        {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
+        {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[5]},{type:35,effect:[10]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
         {name:'Nerfer',life:50,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:6,effect:[6]},{type:4,effect:[8]},{type:33,effect:[3]},{type:61,effect:[3]},{type:62,effect:[3]}],description:`Makes you worse`},
         {name:'Buffer',life:50,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:6,effect:[6]},{type:4,effect:[8]},{type:26,effect:[2]},{type:63,effect:[2]},{type:25,effect:[10]}],description:`Makes his guys better`},
         {name:'Scrapper',life:48,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:64,effect:[4]},{type:4,effect:[12]}],description:`Takes you apart`},
@@ -172,9 +172,6 @@ types={
         {name:'Gangster Assassin',life:72,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:369,effect:[22,1]}],description:`Good at stabbing`},
         {name:'Ducky Donka',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:370,effect:[2,2]}],description:`Legit`},
         {name:'Ducky McDuff',life:48,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:371,effect:[2,2]}],description:`Probably not legit`},
-        {name:'Embodimental Element',life:51,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:31,effect:[5]},{type:294,effect:[2,2]}],description:`Tandemaus`},
-        {name:'Kugelblitz Particle',life:31,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:374,effect:[7,1]},{type:375,effect:[7,1]}],description:`He's smol`},
-        {name:'Pure Swordsman',life:30,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:107,effect:[6,1]}],description:`Appointed up`},
         {name:'Sick Duck',life:13,behavior:2,spec:[],move:{type:2,speed:1},attack:[{type:394,effect:[2,1]},{type:5,effect:[1,'Cough']}],description:`Not referencing real events I promise`},
         {name:'Spirit of Wealth',life:26,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Seeing dollar signs`},
         {name:'Spirit of Elegance',life:26,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]},{type:395,effect:[7,1]}],description:`Who needs Max Health?`},
@@ -200,21 +197,55 @@ types={
         {name:'Hit Squad',life:36,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[12]},{type:427,effect:[9,1]},{type:428,effect:[9,1]}],description:`Take him out!`},
         {name:'Old Konaian',life:45,behavior:1,spec:[1],move:{type:14,speed:1},attack:[{type:429,effect:[13]},{type:430,effect:[9,2]}],description:`Classic style`},
         {name:'Caporegime',life:37,behavior:3,spec:[0],move:{type:12,speed:1},attack:[{type:431,effect:[2,'Hit Squad']},{type:21,effect:[1]}],description:`Won't do it himself`},
-        {name:'Rocket Launcher Management Robot',life:99,behavior:2,spec:[0,19],move:{type:2,speed:1},attack:[{type:208,effect:[11]},{type:432,effect:[3]}],description:`Call in the artillery`},
+        {name:'Rocket Launcher Robot',life:99,behavior:2,spec:[0,19],move:{type:2,speed:1},attack:[{type:208,effect:[11]},{type:432,effect:[3]}],description:`Call in the artillery`},
         {name:'Rainbow Slime',life:48,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:270,effect:[14,1]},{type:22,effect:[6,1,'Colorblind']},{type:434,effect:[2,2,2]}],description:`Not made during pride month`},
         {name:'Big Rainbow Slime',life:72,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:433,effect:[22,1]},{type:32,effect:[9,1,'Colorblind']},{type:435,effect:[2,2,2]}],description:`Compound color`},
-        {name:'Shotgun Management Robot',life:93,behavior:1,spec:[0,19],move:{type:2,speed:1},attack:[{type:303,effect:[20,2]},{type:436,effect:[12,2]},{type:10,effect:[5]}],description:`Actually quality troops`},
+        {name:'Shotgun Robot',life:93,behavior:1,spec:[0,19],move:{type:2,speed:1},attack:[{type:303,effect:[20,2]},{type:436,effect:[12,2]},{type:10,effect:[5]}],description:`Actually quality troops`},
         {name:'MMIS Agent',life:120,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:304,effect:[18]},{type:437,effect:[10]},{type:37,effect:[6,2]}],description:`George's old friend`},
         {name:'HVM Contractor',life:118,behavior:1,spec:[0],move:{type:15,speed:1},attack:[{type:438,effect:[16,8]},{type:12,effect:[13]},{type:439,effect:[11,2]}],description:`Kane's old employees`},
         {name:'Rammer Robot',life:102,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:440,effect:[18]}],description:`One-directional`},
         {name:'Management Experimental Robot',life:192,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:343,effect:[17,1]},{type:441,effect:[8,1]},{type:442,effect:[15,1]}],description:`Now obsolete`},
-        {name:'Warning Man',life:132,behavior:0,spec:[0],move:{type:12,speed:1},attack:[{type:450,effect:[16,6]},{type:29,effect:[17]}],description:`He'll find you if it's\nthe last thing he does`},
+        {name:'Liaison',life:132,behavior:0,spec:[0],move:{type:12,speed:1},attack:[{type:450,effect:[16,6]},{type:29,effect:[17]}],description:`He'll find you if it's\nthe last thing he does`},
         {name:'Nerfmaster',life:116,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:449,effect:[15]},{type:48,effect:[16]},{type:448,effect:[3,3,3]}],description:`Nerfed entire characters`},
         {name:'Big Bounce',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:10,effect:[12]},{type:447,effect:[10]},{type:39,effect:[1,'Bouncer']}],description:`Bounces you hard`},
         {name:'Pinstripe',life:123,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:444,effect:[3]},{type:445,effect:[13]},{type:446,effect:[9]}],description:`Purchased a machine gun`},
         {name:'Lost Management Officer',life:44,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[2]},{type:81,effect:[8,3,'Dazed']}],description:`Wishes his subordinates were here`},
         {name:'Ducksquad',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:`Duck with purpose`},
-        
+        {name:'Lockdown',life:216,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[2]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[27,9]},{type:409,effect:[22,11]}],description:`Stay in jail`},
+        {name:'Crusader',life:109,behavior:21,spec:[0],move:{type:0,speed:1},attack:[{type:342,effect:[8,2]},{type:6,effect:[12]},{type:344,effect:[15]},{type:48,effect:[13]},{type:347,effect:[15]}],description:`Two millennia late to the party`},
+
+        //mark 31
+        //mark mod(29)
+        {name:'Mini Puffball',life:1,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[4]},{type:4,effect:[8]}],description:`Apparently fluffy`},
+        {name:'Inkblot',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:31,effect:[6]},{type:29,effect:[9]},{type:21,effect:[]}],description:`Not really his fault`},
+        {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:152,effect:[999]}],description:`He had one job`},
+        {name:'Globe Head',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:493,effect:[7,2]},{type:30,effect:[5,10]}],description:`Don't want to be around him`},
+        {name:'Infested Prism',life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[11]},{type:378,effect:[10,10]},{type:492,effect:[2]}],description:`What's going on in there`},
+        {name:'Crow',life:25,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:31,effect:[4]}],description:`An IQ too high?`},
+
+        {name:'Smoker',life:73,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:396,effect:[7,7]},{type:54,effect:[4,1,'Dazed']}],description:`Don't do this`},
+        {name:'Grail',life:35,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:439,effect:[12,1]},{type:21,effect:[]},{type:491,effect:[5]}],description:`Not of the holy variety`},
+        {name:'Shipment',life:42,behavior:10,spec:[],move:{type:2,speed:1},attack:[{type:3,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in a single backup`},
+        {name:'Fat Biker',life:96,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:192,effect:[12]}],description:`Barely fits on his bike`},
+        {name:'Bean Counter',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:368,effect:[6,1]},{type:329,effect:[11,1]},{type:21,effect:[]}],description:`Racking up those numbers`},
+        {name:'Flanker',life:31,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:489,effect:[7]},{type:495,effect:[5]},{type:254,effect:[5,1]}],description:`Just turn around`},
+        {name:'Ollie',life:43,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:129,effect:[4]},{type:496,effect:[10,7]},{type:12,effect:[13]}],description:`He's trying his best`},
+
+        {name:'Defective Robot A',life:64,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]}],description:`Badly produced soldier`},
+        {name:'Defective Robot B',life:65,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:20,effect:[4]}],description:`Badly written microcode`},
+        {name:'Defective Robot C',life:66,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:10,effect:[4]}],description:`Badly planned architecture`},
+        {name:'Rusted Robot',life:81,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:27,effect:[5,2]},{type:488,effect:[2,2]},{type:10,effect:[3]}],description:`Produced far too long ago`},
+        {name:'Warning Robot',life:92,behavior:0,spec:[0,23],move:{type:0,speed:1},attack:[{type:20,effect:[3]}],description:`We've been expecting you`},
+
+        {name:'Zenith',life:111,behavior:0,spec:[0,2],move:{type:0,speed:0},attack:[{type:462,effect:[6,1]},{type:10,effect:[10]},{type:478,effect:[6,1]}],description:`All that's made can surely break`},
+        {name:'Zenith Eye A',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:479,effect:[8,2]}],description:`All`},
+        {name:'Zenith Eye B',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:480,effect:[8,2]}],description:`that's`},
+        {name:'Zenith Eye C',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:481,effect:[8,2]}],description:`made`},
+        {name:'Zenith Eye D',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:482,effect:[8,2]}],description:`can`},
+        {name:'Zenith Eye E',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:483,effect:[8,2]}],description:`surely`},
+        {name:'Zenith Eye F',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:484,effect:[8,2]}],description:`break`},
+        //mark enemy
+
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
         {name:'Gangster Machinegunner Informant',life:48,behavior:1,spec:[0,22],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`It goes to the top`},
         {name:'Walker Driver Informant',life:65,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`Gonna walk on out`},
@@ -223,15 +254,19 @@ types={
         {name:'Latency',life:13,behavior:0,spec:[],move:{type:1,speed:5},attack:[{type:1,effect:[5]}],description:`...`},
         {name:'Void Duck',life:120,behavior:2,spec:[1],move:{type:0,speed:1},attack:[{type:2,effect:[8]},{type:5,effect:[3,'Dazed']}],description:`Got spam-clicked on`},
         
+        {name:'Embodimental Element',life:51,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:31,effect:[5]},{type:294,effect:[2,2]}],description:`Tandemaus`},
+        {name:'Kugelblitz Particle',life:31,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:374,effect:[7,1]},{type:375,effect:[7,1]}],description:`He's smol`},
+        {name:'Pure Swordsman',life:30,behavior:1,spec:[0],move:{type:0,speed:2},attack:[{type:107,effect:[6,1]}],description:`Appointed up`},
+        
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
         {name:'Hexaghost Orb',life:16,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:4,effect:[6]},{type:70,effect:[5]}],description:`Should probably kill it`},
         {name:'Bodyguard',life:45,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:77,effect:[3]},{type:13,effect:[4,1,'Concussion']}],description:`Paid to die`},
-        {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
+        {name:'Bronze Orb B',life:33,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
-        {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:252,effect:[2]},{type:215,effect:[4,1]}],description:`Stolen`},
+        {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:485,effect:[1]}],description:`Stolen`},
         {name:'Glitch',life:15,behavior:5,spec:[],move:{type:6,speed:1},attack:[{type:6,effect:[8]},{type:9,effect:[12]}],description:`Intended`},
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[12]},{type:28,effect:[18]}],description:`Not intended`},
         {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[12,1,'Electrocuted']},{type:198,effect:[11,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My IQ`},
@@ -246,18 +281,17 @@ types={
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[6]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,1]},{type:39,effect:[2,'Flame']},{type:73,effect:[8,1,'Burn']},{type:74,effect:[1,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:200,effect:[8]},{type:425,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
-        {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[12,2]},{type:6,effect:[16]},{type:344,effect:[20]},{type:72,effect:[22,1]},{type:48,effect:[22]},{type:347,effect:[20]}],description:`Two millennia late to the party`},
         {name:'Thoughtless',life:144,behavior:17,spec:[0],move:{type:0,speed:1},attack:[{type:147,effect:[5]},{type:404,effect:[12,1]},{type:405,effect:[9,3]},{type:83,effect:[10,1,'Trough']}],description:`No brain lol`},
         {name:'The Looker',life:125,behavior:19,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:468,effect:[7,2]},{type:405,effect:[8,8]},{type:471,effect:[10]}],description:`Does he see?`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,2]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
-        {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Laser games`},
+        {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb B']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Laser games`},
         {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,2]},{type:39,effect:[1,'Red']},{type:169,effect:[4]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         {name:'Daughter of Heaven',life:240,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[10,2,2]},{type:19,effect:[6]},{type:349,effect:[1,1]},{type:296,effect:[12]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
-        {name:'Renegade Agent',life:250,behavior:18,spec:[0,2],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:192,effect:[12]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
+        {name:'Renegade Agent',life:250,behavior:18,spec:[0,2],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:87,effect:[14]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
@@ -266,10 +300,11 @@ types={
         {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,2,'Void']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
-        {name:'Lockdown',life:425,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[2]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[36,12]},{type:409,effect:[22,11]}],description:`Stay in jail`},
 
         {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[36,2,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
+        {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[36,2,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -746,8 +781,8 @@ types={
         {name:'Draw Status',class:4},
         {name:'2 Tile Triple Spin Strike',class:1},
         {name:'Star, Showering Starlight',class:4},
-        {name:'Left 3 Wide Strike',class:1},
-        {name:'Right 3 Wide Strike',class:1},
+        {name:'Left 3 Spread Strike',class:1},
+        {name:'Right 3 Spread Strike',class:1},
         {name:'6 Tile Bleed',class:1},
         {name:'6 Tile Freeze',class:1},//420
         {name:'Chocolate Chip',class:4},
@@ -807,7 +842,27 @@ types={
         {name:'6 Tile Strike / Draw Down',class:1},
         {name:'Crescent Strike / Weak / Frail',class:1},
         {name:'6 Tile Vulnerable',class:11},
+        {name:'Targetted Strike / Energy Down',class:5},
+        {name:'Zenith Beam A',class:1},
+        {name:'Zenith Beam B',class:1},//480
+        {name:'Zenith Beam C',class:1},
+        {name:'Zenith Beam D',class:1},
+        {name:'Zenith Beam E',class:1},
+        {name:'Zenith Beam F',class:1},
+        {name:'Push / Mortal',class:1},
+        {name:'6 Tile Push / Mortal',class:1},
+        {name:'Spin Strike / Mortal',class:1},
+        {name:'2 Tile Double Strike / Frail',class:1},
+        {name:'Back Strike',class:1},
+        {name:'3 Spread Strike / Block',class:1},//490
+        {name:'Armor',class:2},
+        {name:'Skill Play Vigor',class:4},
+        {name:'6 Tile Strike / Frail',class:1},
+        {name:'Ruination',class:4},
+        {name:'2 Tile Back Strike',class:1},
+        {name:'Counter Gun',class:2},
 
+        //mark attack
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,mtg:0,world:[0,3],description:''},
         {name:'Leftovers',internal:'Quick Heal',id:1,rarity:0,list:0,mtg:0,world:[0,2],description:'Heal 2 HP at\nthe End of Combat'},
@@ -829,7 +884,7 @@ types={
         {name:'Orange',internal:'10 Max HP',id:16,rarity:1,list:0,mtg:0,world:[0,3],description:'When Taken,\nGain 10 Max HP'},
         {name:'Sickle',internal:'Death Boost',id:17,rarity:2,list:0,mtg:1,world:[0,3],description:'When an Enemy Dies,\nGain 1 Energy and Draw 1 Card'},
         {name:'Mobius Strip',internal:'15 Card Draw',id:18,rarity:1,list:0,mtg:0,world:[0,3],description:'Every 15 Cards Played,\nDraw 1 Card'},
-        {name:'Dubious Steak',internal:'Emergency Heal',id:19,rarity:1,list:0,mtg:0,world:[0,2],description:'At the End of Combat, If Your\nHP is Below 50%, Heal 12 HP'},
+        {name:'Dubious Steak',internal:'Emergency Heal',id:19,rarity:2,list:0,mtg:0,world:[0,2],description:'At the End of Combat, If Your\nHP is Below 50%, Heal 12 HP'},
 
         {name:'Magic Consuming Duck',internal:'Power Cost Reduce',id:20,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Play a Power,\na Random Card Costs 1 Less'},
         {name:'Bauxite',internal:'Starting Buffer',id:21,rarity:2,list:0,mtg:0,world:[0,3],description:'Gain 1 Buffer\non Turn 1'},
@@ -1986,6 +2041,15 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
+            name:'Antihallway 5',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Hallway 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -2020,6 +2084,13 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Pushed Rectangular 3',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Squashed Rectangular 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -2033,6 +2104,15 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Semi-Winged Rectangular 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
@@ -2197,6 +2277,15 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Trapperzoid 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+            ],
+        },{
             name:'Trapezius 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -2284,6 +2373,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Inverted Triangle 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
             ],
         },{
             name:'Bisected Triangle 3',
@@ -2398,6 +2496,14 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Slighted Bicornered 4',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Crushed Hole 5',
@@ -2642,6 +2748,14 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:-1}],
             ],
         },{
+            name:'Factory2C 5',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Factory1 7',
             map:[
                 [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
@@ -2662,6 +2776,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Factory1C 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
             name:'Factory2 7',
@@ -2717,6 +2840,15 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
             ],
         },{
+            name:'Factory3B 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                ],
+        },{
             name:'Lounge 5',
             map:[
                 [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
@@ -2744,6 +2876,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Atrium 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Atrium 6',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -2752,6 +2893,18 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+            ],
+        },{
+            name:'Long 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
             name:'Long Spikes 5',
@@ -2973,6 +3126,15 @@ types={
                 [{type:-1},{type:-1},{type:[11]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Small Dump 5',
+            map:[
+                [{type:[]},{type:[]},{type:[11]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[11]},{type:-1}],
+                [{type:[11]},{type:[]},{type:[]},{type:[]},{type:[11]}],
+                [{type:-1},{type:[11]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[11]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Hole 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3054,6 +3216,13 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Half Triplet 6',
+            map:[
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Cord 7',
@@ -3273,6 +3442,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:-1},{type:[]}],
             ],
         },{
+            name:'Rebented 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:-1},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Temple 6',
             map:[
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
@@ -3383,6 +3561,17 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Short Judge 7',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Dihole 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3416,6 +3605,13 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Induction 3',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
             ],
         },{
             name:'Dual Induction 3',
@@ -3624,6 +3820,16 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Barred 4',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Barred 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -3640,6 +3846,15 @@ types={
                 [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Reverse Road 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },
@@ -3673,6 +3888,7 @@ types={
             ],
         },*/
     ],encounter:[
+        //mark encounter
         {
             level:[],class:0,world:-1,
             name:'',
@@ -3693,6 +3909,241 @@ types={
             ],ally:[
             ],
         },{
+            level:['Barred 5'],class:2,world:2,
+            name:'Zenith',
+            player:{position:[[{x:4,y:4}],[{x:4,y:5},{x:5,y:4}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Zenith'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Factory2C 5'],class:4,world:2,
+            name:'Warning Robot',
+            player:{position:[[{x:3,y:1}],[{x:3,y:1},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Warning Robot'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Factory3B 7'],class:4,world:2,
+            name:'Rusted Robot',
+            player:{position:[[{x:2,y:3}],[{x:2,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Rusted Robot'},
+                {position:{x:1,y:0},name:'Rusted Robot'},
+                {position:{x:3,y:0},name:'Management Robot'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:6,y:6},name:'Rusted Robot',turn:5},
+                {position:{x:5,y:6},name:'Rusted Robot',turn:10},
+            ],ally:[
+            ],
+        },{
+            level:['Long Spikes 5'],class:0,world:1,
+            name:'Ollie',
+            player:{position:[[{x:3,y:5}],[{x:2,y:5},{x:4,y:5}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Ollie'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Factory1C 7'],class:4,world:2,
+            name:'Defective Robot',
+            player:{position:[[{x:2,y:1}],[{x:2,y:0},{x:1,y:1}]]},
+            enemy:[
+                {position:{x:3,y:0},name:'Defective Robot A'},
+                {position:{x:5,y:4},name:'Defective Robot B'},
+                {position:{x:5,y:3},name:'Defective Robot C'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Trapperzoid 5'],class:0,world:0,
+            name:'Crow',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Crow'},
+                {position:{x:3,y:2},name:'Crow'},
+            ],reinforce:[
+                {position:{x:1,y:3},name:'Crow',turn:2},
+                {position:{x:5,y:3},name:'Crow',turn:2},
+                {position:{x:1,y:0},name:'Crow',turn:4},
+                {position:{x:2,y:0},name:'Crow',turn:4},
+            ],assaultReinforce:[
+                {position:{x:1,y:1},name:'Crow',turn:6},
+                {position:{x:3,y:1},name:'Crow',turn:6},
+            ],ally:[
+            ],
+        },{
+            level:['Rebented 5'],class:0,world:1,
+            name:'Flanker',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Flanker'},
+                {position:{x:2,y:4},name:'Flanker'},
+                {position:{x:2,y:0},name:'Flanker'},
+                {position:{x:4,y:4},name:'Flanker'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Flanker',turn:1},
+                {position:{x:0,y:0},name:'Flanker',turn:8},
+                {position:{x:2,y:0},name:'Flanker',turn:8},
+                {position:{x:2,y:4},name:'Flanker',turn:8},
+                {position:{x:4,y:4},name:'Flanker',turn:8},
+            ],ally:[
+            ],
+        },{
+            level:['Atrium 5'],class:0,world:1,
+            name:'Bean Counter',
+            player:{position:[[{x:3,y:4}],[{x:2,y:4},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Bean Counter'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Broken 7'],class:1,world:0,
+            name:'Crusader',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Crusader'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Antihallway 5'],class:1,world:1,
+            name:'Fat Biker',
+            player:{position:[[{x:2,y:2}],[{x:1,y:0},{x:0,y:1}]]},
+            enemy:[
+                {position:{x:1,y:2},name:'Fat Biker'},
+                {position:{x:0,y:0},name:'Biker'},
+                {position:{x:0,y:3},name:'Biker'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:1},name:'Biker',turn:7},
+                {position:{x:0,y:2},name:'Biker',turn:7},
+                {position:{x:3,y:3},name:'Biker',turn:11},
+            ],ally:[
+            ],
+        },{
+            level:['Semi-Winged Rectangular 4'],class:4,world:1,
+            name:'Shipment',
+            player:{position:[[{x:3,y:4}],[{x:2,y:4},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Shipment'},
+                {position:{x:2,y:0},name:'Shipment'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:4},name:'Shipment',turn:4},
+            ],ally:[
+            ],
+        },{
+            level:['Reverse Road 5'],class:0,world:1,
+            name:'Grail',
+            player:{position:[[{x:2,y:0}],[{x:1,y:0},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:1,y:3},name:'Grail'},
+                {position:{x:3,y:4},name:'Grail'},
+                {position:{x:4,y:3},name:'Grail'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:4},name:'Grail',turn:6},
+                {position:{x:4,y:4},name:'Grail',turn:6},
+            ],ally:[
+            ],
+        },{
+            level:['Small Dump 5'],class:4,world:1,
+            name:'Smoker',
+            player:{position:[[{x:3,y:3}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Smoker'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:0},name:'Smoker',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Barred 4'],class:2,world:0,
+            name:'The Looker',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'The Looker'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Short Judge 7'],class:4,world:3,
+            name:'-h Eternal Judge',
+            player:{position:[[{x:4,y:5}],[{x:4,y:6},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Eternal Judge'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Inverted Triangle 5'],class:1,world:0,
+            name:'Infested Prism',
+            player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:4,y:4},name:'Infested Prism'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Pushed Rectangular 3'],class:1,world:0,
+            name:'Globe Head',
+            player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
+            enemy:[
+                {position:{x:3,y:2},name:'Globe Head'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Induction 3'],class:4,world:0,
+            name:'Snail',
+            player:{position:[[{x:4,y:1}],[{x:4,y:1},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Snail'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Snail',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Half Triplet 6'],class:3,world:0,
+            name:'Inkblot',
+            player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:3,y:2},name:'Inkblot'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:0},name:'Inkblot',turn:3},
+            ],ally:[
+            ],
+        },{
+            level:['Slighted Bicornered 4'],class:4,world:0,
+            name:'Mini Puffball',
+            player:{position:[[{x:2,y:2}],[{x:3,y:2},{x:2,y:3}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Mini Puffball'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
             level:['Road 5'],class:0,world:-1,
             name:'Lost Management Officer',
             player:{position:[[{x:0,y:0}],[{x:0,y:0},{x:1,y:0}]]},
@@ -3702,8 +4153,9 @@ types={
             ],assaultReinforce:[
             ],ally:[
             ],
+
         },{
-            level:['Short Cord 7'],class:2,world:-1,
+            level:['Short Cord 7'],class:4,world:3,
             name:'-h Rewriter',
             player:{position:[[{x:5,y:5}],[{x:5,y:6},{x:6,y:5}]]},
             enemy:[
@@ -3725,16 +4177,6 @@ types={
                 {position:{x:0,y:2},name:'Glitch',turn:10},
                 {position:{x:5,y:6},name:'Glitched Giant',turn:16},
                 {position:{x:6,y:5},name:'Glitched Giant',turn:16},
-            ],ally:[
-            ],
-        },{
-            level:['Barred 5'],class:2,world:0,
-            name:'The Looker',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:0,y:0},name:'The Looker'},
-            ],reinforce:[
-            ],assaultReinforce:[
             ],ally:[
             ],
         },{
@@ -3781,10 +4223,10 @@ types={
             ],
         },{
             level:['Funneled 5'],class:1,world:1,
-            name:'Warning Man',
+            name:'Liaison',
             player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Warning Man'},
+                {position:{x:0,y:0},name:'Liaison'},
                 {position:{x:1,y:1},name:'Cartel'},
             ],reinforce:[
             ],assaultReinforce:[
@@ -3842,15 +4284,15 @@ types={
             ],
         },{
             level:['Factory2 5'],class:0,world:2,
-            name:'Shotgun Management Robot',
+            name:'Shotgun Robot',
             player:{position:[[{x:3,y:3}],[{x:3,y:4},{x:3,y:3}]]},
             enemy:[
-                {position:{x:0,y:2},name:'Shotgun Management Robot'},
-                {position:{x:2,y:0},name:'Shotgun Management Robot'},
+                {position:{x:0,y:2},name:'Shotgun Robot'},
+                {position:{x:2,y:0},name:'Shotgun Robot'},
             ],reinforce:[
             ],assaultReinforce:[
-                {position:{x:3,y:2},name:'Shotgun Management Robot',turn:6},
-                {position:{x:2,y:3},name:'Shotgun Management Robot',turn:9},
+                {position:{x:3,y:2},name:'Shotgun Robot',turn:6},
+                {position:{x:2,y:3},name:'Shotgun Robot',turn:9},
             ],ally:[
             ],
         },{
@@ -3885,16 +4327,16 @@ types={
             ],
         },{
             level:['Factory3 7'],class:0,world:2,
-            name:'Rocket Launcher Management Robot',
+            name:'Rocket Launcher Robot',
             player:{position:[[{x:3,y:5}],[{x:3,y:5},{x:4,y:5}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Rocket Launcher Management Robot'},
-                {position:{x:1,y:0},name:'Rocket Launcher Management Robot'},
+                {position:{x:0,y:0},name:'Rocket Launcher Robot'},
+                {position:{x:1,y:0},name:'Rocket Launcher Robot'},
                 {position:{x:3,y:0},name:'Management Robot'},
             ],reinforce:[
             ],assaultReinforce:[
-                {position:{x:6,y:6},name:'Rocket Launcher Management Robot',turn:5},
-                {position:{x:5,y:6},name:'Rocket Launcher Management Robot',turn:10},
+                {position:{x:6,y:6},name:'Rocket Launcher Robot',turn:5},
+                {position:{x:5,y:6},name:'Rocket Launcher Robot',turn:10},
             ],ally:[
             ],
         },{
@@ -3936,11 +4378,12 @@ types={
             ],ally:[
             ],
         },{
-            level:['Bumped Trapezoid 5'],class:0,world:0,
+            level:['Bumped Trapezoid 5'],class:1,world:0,
             name:'Pistol Duck',
             player:{position:[[{x:4,y:2}],[{x:4,y:2},{x:5,y:2}]]},
             enemy:[
                 {position:{x:1,y:1},name:'Pistol Duck'},
+                {position:{x:1,y:2},name:'Pistol Duck'},
                 {position:{x:3,y:0},name:'Pistol Duck'},
             ],reinforce:[
             ],assaultReinforce:[
@@ -4443,16 +4886,6 @@ types={
             ],ally:[
             ],
         },{
-            level:['Broken 7'],class:2,world:0,
-            name:'Crusader',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:0,y:0},name:'Crusader'},
-            ],reinforce:[
-            ],assaultReinforce:[
-            ],ally:[
-            ],
-        },{
             level:['Sliced 7'],class:1,world:3,
             name:'Dimension Wanderer',
             player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:5,y:3}]]},
@@ -4850,7 +5283,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Nudged 5'],class:3,world:0,
+            level:['Nudged 5'],class:4,world:0,
             name:'Rusty',
             player:{position:[[{x:3,y:2}],[{x:3,y:3},{x:4,y:3}]]},
             enemy:[
@@ -5002,7 +5435,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Dump 5'],class:0,world:1,
+            level:['Dump 5'],class:4,world:1,
             name:'Junkie',
             player:{position:[[{x:3,y:3}],[{x:4,y:3},{x:3,y:4}]]},
             enemy:[
@@ -5754,19 +6187,19 @@ types={
                 {position:{x:0,y:0},name:'Bronze Automaton'},
                 {position:{x:0,y:1},name:'Bronze Orb A'},
                 {position:{x:1,y:0},name:'Bronze Orb A'},
-                {position:{x:0,y:3},name:'Bronze Orb C'},
-                {position:{x:3,y:0},name:'Bronze Orb C'},
-                {position:{x:3,y:6},name:'Bronze Orb C'},
-                {position:{x:6,y:3},name:'Bronze Orb C'},
+                {position:{x:0,y:3},name:'Bronze Orb B'},
+                {position:{x:3,y:0},name:'Bronze Orb B'},
+                {position:{x:3,y:6},name:'Bronze Orb B'},
+                {position:{x:6,y:3},name:'Bronze Orb B'},
             ],reinforce:[
             ],assaultReinforce:[
-                {position:{x:0,y:0},name:'Bronze Orb C',turn:7},
-                {position:{x:3,y:3},name:'Bronze Orb C',turn:7},
-                {position:{x:6,y:6},name:'Bronze Orb C',turn:7},
-                {position:{x:0,y:2},name:'Bronze Orb C',turn:11},
-                {position:{x:2,y:0},name:'Bronze Orb C',turn:11},
-                {position:{x:4,y:6},name:'Bronze Orb C',turn:11},
-                {position:{x:6,y:4},name:'Bronze Orb C',turn:11},
+                {position:{x:0,y:0},name:'Bronze Orb B',turn:7},
+                {position:{x:3,y:3},name:'Bronze Orb B',turn:7},
+                {position:{x:6,y:6},name:'Bronze Orb B',turn:7},
+                {position:{x:0,y:2},name:'Bronze Orb B',turn:11},
+                {position:{x:2,y:0},name:'Bronze Orb B',turn:11},
+                {position:{x:4,y:6},name:'Bronze Orb B',turn:11},
+                {position:{x:6,y:4},name:'Bronze Orb B',turn:11},
             ],ally:[
             ],
         },{
@@ -6004,7 +6437,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Slid Crushed 5'],class:1,world:1,
+            level:['Slid Crushed 5'],class:0,world:1,
             name:'Agent Duck',
             player:{position:[[{x:3,y:1}],[{x:3,y:0},{x:4,y:2}]]},
             enemy:[
@@ -6721,7 +7154,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Traitor2 5'],class:2,world:0,
+            level:['Traitor2 5'],class:-1,world:-1,
             name:'The Traitor',
             player:{position:[[{x:3,y:3}],[{x:3,y:2},{x:2,y:3}]]},
             enemy:[
@@ -7476,7 +7909,7 @@ After adding both, also add a Miracle.`,
         {name:'Flame',desc:'Cards Have a 2% Chance to Vanish'},
         {name:'Hexaghost Orb',desc:'Enemies Heal 1 HP Each Turn For Every Other Enemy'},
         {name:'Bodyguard',desc:'Enemies Gain 2 Block Each Turn For Every Other Enemy'},//110
-        {name:'Bronze Orb C',desc:'All Damage Taken Increased by 1'},
+        {name:'Bronze Orb B',desc:'All Damage Taken Increased by 1'},
         {name:'Bronze Orb A',desc:'Damage Taken Must Be At Least 3'},
         {name:'Dark Priest',desc:'Randomly Start Battle With 2 Weak or 2 Miss'},
         {name:'Soul',desc:'Support Allies Spawn Souls on Death'},
@@ -7509,7 +7942,7 @@ After adding both, also add a Miracle.`,
         {name:'Lunaria',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
         {name:'Rewriter',desc:'Every Combat Spawns Glitched Tiles'},
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
-        {name:'Managerial',desc:'Immediately Fight 12 Management Robots'},
+        {name:'Managerial',desc:'Immediately Fight 12 Robots'},
         {name:'Luck',desc:'Gain 777 Currency'},
         {name:'The Looker',desc:'Relic Images Look Wrong'},
         //{name:'Developer',desc:'Add 1-5 of Nothings to Deck'},
@@ -7595,15 +8028,15 @@ After adding both, also add a Miracle.`,
         {name:'Hit Squad',desc:'No Booster Packs in Shop'},
         {name:'Old Konaian',desc:'Lose an Item Slot'},
         {name:'Caporegime',desc:'No Colorless Cards in Shop'},
-        {name:'Rocket Launcher Management Robot',desc:'Remove Half of All Purchases in the Shop'},
+        {name:'Rocket Launcher Robot',desc:'Remove Half of All Purchases in the Shop'},
         {name:'Rainbow Slime',desc:'Become Colorblind Turn 1'},//230
         {name:'Big Rainbow Slime',desc:'Shuffle 1 Colorblind into Draw Pile at the Start of Combat'},
-        {name:'Shotgun Management Robot',desc:'All Cards Are Slightly Less Tall'},
+        {name:'Shotgun Robot',desc:'All Cards Are Slightly Less Tall'},
         {name:'MMIS Agent',desc:'On Turn 4, Enemies Heal For the First Hit They Take'},
         {name:'HVM Contractor',desc:'Sales in the Shop are Less Effective'},
         {name:'Rammer Robot',desc:'Replace Text With Comic Sans'},
         {name:'Management Experimental Robot',desc:'Append Qualitative Terms to Card Names'},
-        {name:'Warning Man',desc:'Get Bombed on Turn 5'},
+        {name:'Liaison',desc:'Get Bombed on Turn 5'},
         {name:'Nerfmaster',desc:'When You Get Nerfed, Gain 1 Weak'},
         {name:'Big Bounce',desc:'Enemies Have a 10% Chance to be Tripled but Pushed Back 1 Turn'},
         {name:'Pinstripe',desc:'When an Enemy Dies, Take 2 Damage'},//240
