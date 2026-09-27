@@ -147,6 +147,11 @@ class modManager{
             case 235:
                 this.layer.textFont('Comic Sans MS')
             break
+            case 261:
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].loseMaxHP(10)
+                }
+            break
         }
     }
     display(){

@@ -926,11 +926,17 @@ class cardManager{
         if(turn%3==0&&this.battle.modded(0)){
             this.battle.drop(this.player,findName('Dazed',types.card),0,constants.playerNumber+1)
         }
+        if(turn%10==0&&this.battle.modded(29)){
+            this.battle.drop(this.player,findName('Stuck',types.card),0,constants.playerNumber+1)
+        }
         if(turn%5==0&&this.battle.modded(31)){
             this.battle.drop(this.player,findName('Spiked',types.card),0,constants.playerNumber+1)
         }
-        if(turn%10==0&&this.battle.modded(29)){
-            this.battle.drop(this.player,findName('Stuck',types.card),0,constants.playerNumber+1)
+        if(turn%3==0&&this.battle.modded(246)){
+            this.battle.drop(this.player,findName('Newspaper',types.card),0,constants.playerNumber+1)
+        }
+        if(turn%10==0&&this.battle.modded(273)){
+            this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
         }
         if(this.battle.modded(4)){
             this.hand.randomEffect(7,[1])

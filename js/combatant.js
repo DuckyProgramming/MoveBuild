@@ -644,6 +644,9 @@ class combatant{
             }
         }
         if(this.team==0){
+            if(this.battle.modded(251)){
+                this.statusEffect('Status Block',1)
+            }
             if(this.battle.modded(20)&&floor(random(0,4))==0){
                 this.statusEffect('Invisible',999)
             }
@@ -662,8 +665,13 @@ class combatant{
             if(this.battle.modded(45)&&(this.name.includes('S')||this.name.includes('s'))){
                 this.statusEffect('Strength',3)
             }
-            if(this.battle.modded(46)&&(this.name.includes('C')||this.name.includes('c'))){
-                this.statusEffect('Strength',3)
+            if(this.name.includes('C')||this.name.includes('c')){
+                if(this.battle.modded(46)){
+                    this.statusEffect('Strength',3)
+                }
+                if(this.battle.modded(271)){
+                    this.statusEffect('Dexterity',3)
+                }
             }
             if(this.battle.modded(47)&&(this.name.includes('F')||this.name.includes('f'))){
                 this.statusEffect('Strength',3)
@@ -675,6 +683,9 @@ class combatant{
                 this.statusEffect('Strength',3)
             }
             if(this.battle.modded(204)&&this.name.includes('Management')){
+                this.statusEffect('Strength',3)
+            }
+            if(this.battle.modded(258)&&(this.name.includes('W')||this.name.includes('w'))){
                 this.statusEffect('Strength',3)
             }
             if(this.battle.modded(88)){
@@ -756,6 +767,15 @@ class combatant{
             if(this.battle.modded(222)&&floor(random(0,4))==0){
                 this.statusEffect('Revive',1)
             }
+            if(this.battle.modded(241)&&floor(random(0,4))==0){
+                this.statusEffect('Buffer',4)
+            }
+            if(this.battle.modded(244)){
+                this.statusEffect('Power Play Vigor',4)
+            }
+            if(this.battle.modded(245)){
+                this.statusEffect('Skill Play Vigor',1)
+            }
         }
         if(this.name.includes('Duck')){
             if(this.battle.modded(22)){
@@ -765,6 +785,9 @@ class combatant{
             }
             if(this.battle.modded(106)){
                 this.statusEffect('Double Damage Turn',999)
+            }
+            if(this.battle.modded(272)){
+                this.statusEffect('Regeneration',10)
             }
         }
         let diffUnfair=game.ascend>=31||game.diff>=24
@@ -3853,6 +3876,9 @@ class combatant{
                 if(this.battle.modded(128)&&this.team==0&&this.spec.includes(2)&&this.battle.combatantManager.numberAbstract(2,[2])){
                     damage=0
                 }
+                if(this.battle.modded(262)&&this.team>0&&floor(random(0,10))==0){
+                    damage*=3
+                }
                 if(this.stance==1){
                     damage*=this.status.main[478]>0?3:2
                 }
@@ -5740,11 +5766,15 @@ class combatant{
     }
     statusEffect(name,value){
         let effectiveValue=value
-        if(!(
-            (this.battle.relicManager.hasRelic(23,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Weak'||
-            (this.battle.relicManager.hasRelic(24,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Frail'||
-            (this.battle.relicManager.hasRelic(25,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Vulnerable')&&
-            effectiveValue!=0
+        if(
+            !(
+                (this.battle.relicManager.hasRelic(23,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Weak'||
+                (this.battle.relicManager.hasRelic(24,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Frail'||
+                (this.battle.relicManager.hasRelic(25,this.id)||this.battle.relicManager.hasRelic(398,this.id))&&name=='Vulnerable'||
+                this.battle.modded(243)&&this.team==0&&name=='Weak'||
+                this.battle.modded(247)&&this.team==0&&name=='Vulnerable'||
+                this.battle.modded(248)&&this.team==0&&name=='Frail'
+            )&&effectiveValue!=0
         ){
             let status=findList(name,this.status.name)
             if(status>=0){
@@ -5812,6 +5842,21 @@ class combatant{
                 }
                 if(effectiveValue>0){
                     switch(this.status.name[status]){
+                        case 'Weak':
+                            if(this.id<this.battle.players&&this.battle.modded(254)){
+                                this.loseHealth(10)
+                            }
+                        break
+                        case 'Vulnerable':
+                            if(this.id<this.battle.players&&this.battle.modded(255)){
+                                this.loseHealth(10)
+                            }
+                        break
+                        case 'Frail':
+                            if(this.id<this.battle.players&&this.battle.modded(256)){
+                                this.loseHealth(10)
+                            }
+                        break
                         case 'Temporary Strength':
                             if(this.status.main[362]>0){
                                 this.statusEffect('Strength',this.status.main[362])
@@ -6329,8 +6374,7 @@ class combatant{
                     case 81: this.miniStatus('Energy Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 83: this.miniStatus('Double Damage Turn',this.status.main[this.status.ticker[a]]); break
                     case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[this.status.ticker[a]])}; break
-                    case 86: case 128:
-                        this.loseHealth(this.status.main[this.status.ticker[a]]); break
+                    case 86: if(this.battle.modded(260)&&this.team==0){this.heal(this.status.main[this.status.ticker[a]])}else{this.loseHealth(this.status.main[this.status.ticker[a]])} break
                     case 88: this.miniStatus('Intangible',this.status.main[this.status.ticker[a]]); break
                     case 89: this.miniStatus('Block Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 107: if(this.armed){this.addBlock(this.status.main[this.status.ticker[a]])} break
@@ -6341,6 +6385,7 @@ class combatant{
                     case 124: case 613:
                         this.miniStatus('Dodge',this.status.main[this.status.ticker[a]]); break
                     case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
+                    case 128: this.loseHealth(this.status.main[this.status.ticker[a]]); break
                     case 129: case 229:
                         this.mantra+=this.status.main[this.status.ticker[a]]; break
                     case 130: case 235:
@@ -8502,6 +8547,11 @@ class combatant{
                             this.battle.loseCurrency(200,a)
                         }
                     }
+                    if(this.battle.modded(259)){
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            this.battle.cardManagers[a].deck.add(findName('Shame',types.card),0,constants.playerNumber+2)
+                        }
+                    }
                 }
             }
         }else{
@@ -8627,6 +8677,9 @@ class combatant{
                         }
                         if(this.battle.modded(141)&&floor(random(0,2))==0&&this.initialName!='Soul'&&(this.battle.encounter.class==1||this.battle.encounter.class==2)){
                             this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
+                        }
+                        if(this.battle.modded(249)&&floor(random(0,2))==0&&this.initialName!="Sentry"){
+                            this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Sentry',types.combatant),this.goal.anim.direction)
                         }
                         /*if(this.battle.modded(29)){
                             switch(this.initialName){

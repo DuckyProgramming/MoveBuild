@@ -1,15 +1,11 @@
-new bonus mods
-
-ennealis
-
 monday 9/28 10:00 am coc building
 Skiles 006 Wednesday, October 21, at 1:00pm
 
 CS 120 [NEW SANAE / 8400]
 
-press d while picking card opens deck sometimes
-
+split telefrag to destroy spikes
 more forms of recoil step
+split sinister (dexter)
 split flaming bottle
 split work experience
 quickbuild vs toolbox
@@ -259,8 +255,6 @@ tiny tent - choose any number of rest options
 ringing triangle - retain your hand on turn 1
 tang tang - when you add a card to your deck, duplicate it
 fresnel lens - when you play a power, all enemies gain 1 weak
-
-500 enemy attacks
 
 maybe kill the george packs
 

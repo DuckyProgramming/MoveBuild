@@ -45,8 +45,11 @@ class tile{
         if(this.type.length==0&&this.battle.modded(136)&&floor(random(0,24))==0){
             this.addType(7)
         }
-        if(this.type.length==0&&this.battle.modded(142)&&floor(random(0,9))==0){
+        if(this.type.length==0&&this.battle.modded(142)&&floor(random(0,12))==0){
             this.addType(25)
+        }
+        if(this.type.length==0&&this.battle.modded(263)&&floor(random(0,12))==0){
+            this.addType(29)
         }
     }
     activate(type,id){

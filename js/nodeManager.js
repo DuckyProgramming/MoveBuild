@@ -4,12 +4,6 @@ class nodeManager{
         this.battle=battle
         this.nodes=[]
 
-        this.listing={
-            encounter:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],
-            static:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],
-            name:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]]
-        }
-
         this.tilePosition={x:0,y:-1}
         this.scroll=0
         this.world=0
@@ -65,6 +59,11 @@ class nodeManager{
         }
     }
     initialListing(){
+        this.listing={
+            encounter:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],
+            static:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],
+            name:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]]
+        }
         for(let a=0,la=types.encounter.length;a<la;a++){
             if(types.encounter[a].class>=0&&types.encounter[a].world>=0){
                 this.listing.encounter[types.encounter[a].world][types.encounter[a].class].push(a)

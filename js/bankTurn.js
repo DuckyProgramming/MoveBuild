@@ -776,7 +776,7 @@ turn.prototype.update=function(){
                     }
                     for(let a=0,la=this.targetCombatant.length;a<la;a++){
                         if(this.timer==10){
-                            this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                            this.targetCombatant[a].takeDamage(this.effect[0]*((this.type==87||this.type==157||this.type==192)&&this.battle.modded(250)?3:1),this.user)
                             if(this.type==157&&this.targetCombatant[a].id<this.battle.players){
                                 for(let b=0,lb=this.effect[1];b<lb;b++){
                                     this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,constants.playerNumber+1)

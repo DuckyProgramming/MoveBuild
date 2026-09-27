@@ -5,8 +5,8 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(true){
-            game.diff=26
+    if(false){
+            //game.diff=26
             //game.ascend=33
 
             /*stage.scene='tier'
@@ -84,7 +84,7 @@ function setup(){
 
             /*variants.mod=true
             for(let a=0,la=1;a<la;a++){
-                current.modManager.addMod(67+a)
+                current.modManager.addMod(274+a)
             }*/
 
             /*for(let a=0,la=5;a<la;a++){

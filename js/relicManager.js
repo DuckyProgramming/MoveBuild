@@ -1612,7 +1612,7 @@ class relicManager{
                         }
                         if(this.battle.modded(113)){
                             for(let a=0,la=this.battle.players;a<la;a++){
-                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect(['Weak','Miss'][floor(random(0,2))],2)
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect(['Weak','Vulnerable'][floor(random(0,2))],2)
                             }
                         }
                         if(this.battle.modded(133)){
@@ -1640,6 +1640,16 @@ class relicManager{
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Block Down',1)
                             }
                         }
+                        if(this.battle.modded(253)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Miss',1)
+                            }
+                        }
+                        if(this.battle.modded(264)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Cannot Move',1)
+                            }
+                        }
                         if(this.battle.modded(194)){
                             this.battle.dropDrawShuffle(floor(random(0,this.battle.players)),findName('Mail',types.card),0,constants.playerNumber+1)
                         }
@@ -1654,6 +1664,11 @@ class relicManager{
                             }
                             if(this.active[380][a+1]>0){
                                 this.getPlayer(a).heal(2*this.active[380][a+1])
+                            }
+                        }
+                        if(this.battle.modded(265)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Cannot Move',1)
                             }
                         }
                     break
@@ -1672,6 +1687,11 @@ class relicManager{
                         if(this.battle.modded(60)){
                             this.battle.combatantManager.allEffect(3,[3])
                         }
+                        if(this.battle.modded(266)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Cannot Move',1)
+                            }
+                        }
                     break
                     case 4:
                         if(this.battle.modded(168)){
@@ -1679,6 +1699,11 @@ class relicManager{
                         }
                         if(this.battle.modded(233)){
                             this.battle.combatantManager.allEffect(48,['Take Credit',1])
+                        }
+                        if(this.battle.modded(267)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Cannot Move',1)
+                            }
                         }
                     break
                     case 5:
@@ -1703,6 +1728,11 @@ class relicManager{
                         if(this.battle.modded(237)){
                             this.battle.tileManager.fireAreaZigzag(0,10,this.getPlayer(a).tilePosition,6)
                         }
+                        if(this.battle.modded(268)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Cannot Move',1)
+                            }
+                        }
                     break
                     case 6:
                         for(let a=0,la=this.battle.players;a<la;a++){
@@ -1710,10 +1740,20 @@ class relicManager{
                                 this.getPlayer(a).loseHealth(6*this.active[506][a+1])
                             }
                         }
+                        if(this.battle.modded(269)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Cannot Move',1)
+                            }
+                        }
                     break
                     case 7:
                         if(this.active[174][0]>0){
                             this.battle.combatantManager.allEffect(19,[52*this.active[174][0]])
+                        }
+                        if(this.battle.modded(270)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Cannot Move',1)
+                            }
                         }
                     break
                     case 10:

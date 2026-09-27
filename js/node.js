@@ -95,9 +95,32 @@ class node{
                 this.combat=0
             break
         }
-        /*if(this.combat==undefined){
-            throw new Error(`Enemy Assignment Failure: ${this.reality}`)
-        }*/
+        if(this.combat==undefined){
+            if(this.reality==0){
+                let highest=[100,[]]
+                for(let a=0,la=this.battle.nodeManager.nodes.length;a<la;a++){
+                    if(this.battle.nodeManager.nodes[a].reality==0&&this.battle.nodeManager.nodes[a].tilePosition.y>=2){
+                        if(this.battle.nodeManager.nodes[a].tilePosition.y<highest[0]){
+                            highest[0]=this.battle.nodeManager.nodes[a].tilePosition.y
+                            highest[1]=[this.battle.nodeManager.nodes[a]]
+                        }else if(this.battle.nodeManager.nodes[a].tilePosition.y==highest[0]){
+                            highest[1].push(this.battle.nodeManager.nodes[a])
+                        }
+                    }
+                }
+                let target=randin(highest[1])
+                this.combat=target.combat
+                list=3
+                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
+                target.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
+                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+                if(this.combat==undefined||target.combat==undefined){
+                    throw new Error(`Enemy Assignment Failure: ${this.reality}`)
+                }
+            }else{
+                throw new Error(`Enemy Assignment Failure: ${this.reality}`)
+            }
+        }
     }
     establish(x,y,baseX,baseY,tileX,tileY,type,readable,reality,combat,connections,extraConnections,scroll,complete){
         this.position={x:x,y:y}

@@ -64,7 +64,8 @@ class item{
                 this.layer.fill(150,this.fade)
                 this.layer.rect(0,0,2,40)
             }
-            switch(this.internal){
+            let internal=this.battle.modded(252)?types.item[this.type<=1?this.type:(this.type+10)%(types.item.length-1)+1].internal:this.internal
+            switch(internal){
                 case '':
                     displaySymbol(this.layer,0,0,30,0,1,this.fade)
                     this.layer.fill(0,this.fade)

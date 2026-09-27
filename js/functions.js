@@ -2216,6 +2216,7 @@ function quickItem(type,player){
 	current.itemManager.addItem(type,player)
 }
 function outEnc(){
+	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new nodeManager(current.layer,current):current.nodeManager
 	let goal=[
 		[24,16,8,12,4],
 		[36,16,8,0,4],
@@ -2223,31 +2224,31 @@ function outEnc(){
 		[0,4,2,0,2],
 	]
 	console.log(`
-Total: ${current.nodeManager.listing.static.reduce((a,n)=>a+n.reduce((a,n)=>a+n.length,0),0)}/${goal.reduce((a,n)=>a+n.reduce((a,n)=>a+n,0),0)}
+Total: ${manager.listing.static.reduce((a,n)=>a+n.reduce((a,n)=>a+n.length,0),0)}/${goal.reduce((a,n)=>a+n.reduce((a,n)=>a+n,0),0)}
 \nWorld 1:
-Starters:${current.nodeManager.listing.static[0][4].length}/${goal[0][4]}
-Easies:${current.nodeManager.listing.static[0][3].length}/${goal[0][3]}
-Enemies:${current.nodeManager.listing.static[0][0].length}/${goal[0][0]}
-Elites:${current.nodeManager.listing.static[0][1].length}/${goal[0][1]}
-Bosses:${current.nodeManager.listing.static[0][2].length}/${goal[0][2]}
-Total:${current.nodeManager.listing.static[0].reduce((a,n)=>a+n.length,0)}/${goal[0].reduce((a,n)=>a+n,0)}
+Starters:${manager.listing.static[0][4].length}/${goal[0][4]}
+Easies:${manager.listing.static[0][3].length}/${goal[0][3]}
+Enemies:${manager.listing.static[0][0].length}/${goal[0][0]}
+Elites:${manager.listing.static[0][1].length}/${goal[0][1]}
+Bosses:${manager.listing.static[0][2].length}/${goal[0][2]}
+Total:${manager.listing.static[0].reduce((a,n)=>a+n.length,0)}/${goal[0].reduce((a,n)=>a+n,0)}
 \nWorld 2:
-Starters:${current.nodeManager.listing.static[1][4].length}/${goal[1][4]}
-Enemies:${current.nodeManager.listing.static[1][0].length}/${goal[1][0]}
-Elites:${current.nodeManager.listing.static[1][1].length}/${goal[1][1]}
-Bosses:${current.nodeManager.listing.static[1][2].length}/${goal[1][2]}
-Total:${current.nodeManager.listing.static[1].reduce((a,n)=>a+n.length,0)}/${goal[1].reduce((a,n)=>a+n,0)}
+Starters:${manager.listing.static[1][4].length}/${goal[1][4]}
+Enemies:${manager.listing.static[1][0].length}/${goal[1][0]}
+Elites:${manager.listing.static[1][1].length}/${goal[1][1]}
+Bosses:${manager.listing.static[1][2].length}/${goal[1][2]}
+Total:${manager.listing.static[1].reduce((a,n)=>a+n.length,0)}/${goal[1].reduce((a,n)=>a+n,0)}
 \nWorld 3:
-Starters:${current.nodeManager.listing.static[2][4].length}/${goal[2][4]}
-Enemies:${current.nodeManager.listing.static[2][0].length}/${goal[2][0]}
-Elites:${current.nodeManager.listing.static[2][1].length}/${goal[2][1]}
-Bosses:${current.nodeManager.listing.static[2][2].length}/${goal[2][2]}
-Total:${current.nodeManager.listing.static[2].reduce((a,n)=>a+n.length,0)}/${goal[2].reduce((a,n)=>a+n,0)}
+Starters:${manager.listing.static[2][4].length}/${goal[2][4]}
+Enemies:${manager.listing.static[2][0].length}/${goal[2][0]}
+Elites:${manager.listing.static[2][1].length}/${goal[2][1]}
+Bosses:${manager.listing.static[2][2].length}/${goal[2][2]}
+Total:${manager.listing.static[2].reduce((a,n)=>a+n.length,0)}/${goal[2].reduce((a,n)=>a+n,0)}
 \nWorld 4:
-Elites:${current.nodeManager.listing.static[3][1].length}/${goal[3][1]}
-Bosses:${current.nodeManager.listing.static[3][2].length}/${goal[3][2]}
-Specials:${current.nodeManager.listing.static[3][4].length}/${goal[3][4]}
-Total:${current.nodeManager.listing.static[3].reduce((a,n)=>a+n.length,0)}/${goal[3].reduce((a,n)=>a+n,0)}
+Elites:${manager.listing.static[3][1].length}/${goal[3][1]}
+Bosses:${manager.listing.static[3][2].length}/${goal[3][2]}
+Specials:${manager.listing.static[3][4].length}/${goal[3][4]}
+Total:${manager.listing.static[3].reduce((a,n)=>a+n.length,0)}/${goal[3].reduce((a,n)=>a+n,0)}
 	`)
 }
 function outEncounter(){
@@ -2291,6 +2292,13 @@ Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.list
 function outUnusedEncounter(){
 	types.combatant.forEach((comb,index)=>{
 		if(!types.encounter.some(enc=>enc.name==comb.name)&&index>=findName(`Human`,types.combatant)&&index<=findName(`Ducksquad`,types.combatant)){
+			print(comb.name)
+		}
+	})
+}
+function outUnusedMod(){
+	types.combatant.forEach((comb,index)=>{
+		if(!types.mod.some(enc=>enc.name==comb.name)&&index>=findName(`Human`,types.combatant)&&index<=findName(`Managerial`,types.combatant)){
 			print(comb.name)
 		}
 	})

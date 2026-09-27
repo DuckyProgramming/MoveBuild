@@ -275,7 +275,10 @@ class battle{
         this.cardManagers.forEach(cardManager=>cardManager.initialDeck())
     }
     initial(){
-        this.nodeManager.setupMap()
+        for(let a=0,la=100;a<la;a++){
+            this.nodeManager.initialListing()
+            this.nodeManager.setupMap()
+        }
         this.resetAnim()
         if(variants.chaos){
             for(let a=0,la=types.card.length;a<la;a++){
@@ -1121,7 +1124,11 @@ class battle{
             if(this.turn.total<=1+this.relicManager.active[448][this.turn.main+1]){
                 if(!variants.initiative){
                     for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
-                        this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                        if(this.modded(257)){
+                            this.cardManagers[this.turn.main].hand.add(findName('Fatigue',types.card),0,constants.playerNumber+1)
+                        }else{
+                            this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                        }
                     }
                 }
             }
@@ -1331,6 +1338,9 @@ class battle{
         }
         if(this.modded(225)){
             userCombatant.statusEffect('Temporary Strength',-1)
+        }
+        if(this.modded(242)){
+            userCombatant.block=max(0,userCombatant.block-1)
         }
         if(variants.running){
             for(let a=0,la=this.cardManagers[player].hand.cards.length;a<la;a++){
@@ -4753,7 +4763,7 @@ class battle{
                 }
             break
             case 'map':
-                if(!this.overlayManager.anySpecificActive(24)){
+                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(169)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             if(this.overlayManager.overlays[4][a].active){
@@ -4788,7 +4798,7 @@ class battle{
                 }
             break
             case 'rest':
-                if(!this.overlayManager.anySpecificActive(24)){
+                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(169)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
                             !this.overlayManager.anySpecificActive(5)&&!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(62)
@@ -4826,7 +4836,7 @@ class battle{
                 }
             break
             case 'shop':
-                if(!this.overlayManager.anySpecificActive(24)){
+                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(169)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='f'||key=='F')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
                             if(this.overlayManager.overlays[27][a].active){
@@ -4882,7 +4892,7 @@ class battle{
                 }
             break
             case 'victory': case 'defeat':
-                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(51)){
+                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(51)&&!this.overlayManager.anySpecificActive(169)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             //!this.overlayManager.anyNotSpecificActive(11)
@@ -4943,7 +4953,7 @@ class battle{
             break
             case 'event':
                 //let valid=!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(17)
-                if(!this.overlayManager.anySpecificActive(24)){
+                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(169)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             if(this.overlayManager.overlays[4][a].active){
