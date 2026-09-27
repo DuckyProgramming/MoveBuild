@@ -27,20 +27,20 @@ function setup(){
 
         transition.trigger=false
 
-        //current.nodeManager.world=0
+            //current.nodeManager.world=0
 
         game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 
-        //event('Matching Game')
+            //event('Matching Game')
 
-        //fight('-h Rewriter')
+            //fight('-h Rewriter')
 
-        //game.animRate=4
+            //game.animRate=4
 
             /*stage.scene='histogram'
-            graphics.test=0*/
+            graphics.test=1*/
 
             /*current.packManagers[0].packs[0].take()
             current.packManagers[0].packs[1].take()

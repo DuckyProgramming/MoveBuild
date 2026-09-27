@@ -3278,17 +3278,21 @@ class battle{
                 let margin=50
                 let thick=3
                 switch(graphics.test){
-                    case 0:
+                    case 0: case 1:
                         this.layer.noStroke()
                         //let set=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
-                        let set=[[],[],[],[],[],[],[],[],[],[],[]]
-                        let total=[0,0,0,0,0,0,0,0,0,0,0]
+                        let set=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+                        let total=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         types.card.forEach(card=>{
                             //card.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
                             //card.mtg.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
                             //if(card.list!=-8){
-                                let series=floor((card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/1000)
+                                let series=[
+                                    floor((card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/1000),
+                                    card.levels[0].class.length==2?card.levels[0].class[0]:card.levels[0].class,
+                                ][graphics.test]
                                 let res=this.collectionManager.overListing(card)
+                                //if(series>=0&&card.levels[0].attack<5000){
                                 if(series>=0){
                                     total[series]++
                                     if(set[series].some(chunk=>chunk.list[1]==res[1])){
@@ -3299,9 +3303,10 @@ class battle{
                                 }
                             //}
                         })
-                        for(let a=0,la=10;a<la;a++){
-                            let barWidth=60
-                            let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
+                        for(let a=0,la=graphics.test==1?15:10;a<la;a++){
+                            let barWidth=600/la
+                            //let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
+                            let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Subcard','Event','Reserve','Developer','Disband','Basic','Pack','Misc']
                             set[a].sort((a,b)=>a.list-b.list)
                             //set[a]=set[a].filter(group=>group.list[1]!=constants.playerNumber+12)
                             //let prop=set[0][a]/(set[0][a]+set[1][a])
@@ -3326,11 +3331,11 @@ class battle{
                                     set[a][b].list[1]==constants.playerNumber+13?[160,160,160]:
                                     playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1)
                                 ))
-                                this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5,barWidth*total[a]/1000,(this.layer.height-margin*2)*prop)
+                                this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5,barWidth*(graphics.test==1?1:total[a]/1000),(this.layer.height-margin*2)*prop)
                                 if(set[a][b].list[1]==constants.playerNumber+9){
                                     this.layer.fill(255,255,50)
-                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la-barWidth*0.4*total[a]/1000,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
-                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la+barWidth*0.4*total[a]/1000,pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
+                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la-barWidth*0.4*(graphics.test==1?1:total[a]/1000),pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
+                                    this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la+barWidth*0.4*(graphics.test==1?1:total[a]/1000),pos-(this.layer.height-margin*2)*prop*0.5,2,(this.layer.height-margin*2)*prop)
                                 }
                                 this.layer.fill(set[a][b].list[1]==constants.playerNumber+9?240:0)
                                 this.layer.textSize(min(10,prop*500))
@@ -3342,8 +3347,10 @@ class battle{
                             this.layer.fill(200,margin,margin)
                             this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,margin+(this.layer.height-margin*2)*(1-prop)*0.5,60,(this.layer.height-margin*2)*(1-prop))*/
                             this.layer.fill(0)
+                            let name=graphics.test==0?`${a*1000}s`:[`None`,`Attack`,`Defense`,`Movement`,`Power`,`Status`,`Curse`,`Blueprint`,`Condition`,`Ally`,`Classless`,`Skill`,`Wish`,`Quest`,`Grand Quest`][a]
+                            this.layer.textSize(graphics.test==0?20:barWidth/name.length+5)
+                            this.layer.text(name,margin+(this.layer.width-margin*2)*(a+0.5)/la,this.layer.height-margin+25)
                             this.layer.textSize(20)
-                            this.layer.text(`${a*1000}s`,margin+(this.layer.width-margin*2)*(a+0.5)/la,this.layer.height-margin+25)
                             this.layer.text(total[a],margin+(this.layer.width-margin*2)*(a+0.5)/la,margin-25)
                             /*this.layer.textSize(15)
                             this.layer.text(`${floor(set[1][a]/6)}/${floor(set[0][a]/6+set[1][a]/6)}`,margin+(this.layer.width-margin*2)*(a+0.5)/la,80)*/
@@ -3352,9 +3359,9 @@ class battle{
                         this.layer.strokeWeight(thick*2)
                         this.layer.line(margin,this.layer.height-margin+thick,this.layer.width-margin,this.layer.height-margin+thick)
                     break
-                    case 1: case 2:
+                    case 2: case 3:
                         let part=1000
-                        let active=types.card.filter(card=>card.levels[0].class==graphics.test&&card.levels[0].cost==1&&card.levels[0].effect.length>0&&card.levels[0].effect[0]<=50)
+                        let active=types.card.filter(card=>card.levels[0].class==graphics.test-1&&card.levels[0].cost==1&&card.levels[0].effect.length>0&&card.levels[0].effect[0]<=50)
                         let maximum=[
                             active.reduce((acc,card)=>max(acc,card.levels[0].attack),0),
                             active.reduce((acc,card)=>max(acc,card.levels[0].effect[0]),0),

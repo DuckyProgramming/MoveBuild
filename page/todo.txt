@@ -65,6 +65,10 @@ play prehex x2 runs
 purge?
 make sure her tutorial is not ruined
 
+split palladium
+split button battery
+18 damage and exhaust 3
+split aggrandize to exhaust
 [more cards using the system put in place by feral, for coffee, guns, etc]
 sight of distant blade - damage, shiv, costs 1 less when played
 split shinmy cards that count as strikes to have defend variants

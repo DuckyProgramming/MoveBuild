@@ -2315,8 +2315,18 @@ function outListing(){
 		current.collectionManager.totals.list[constants.playerNumber+12][0]+
 		current.collectionManager.totals.list[constants.playerNumber+13][0]
 	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
+	let colorChanges=0
 	for(let a=0,la=constants.playerNumber;a<la;a++){
-		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length}, ${manager.listing.card[a+1][1].length}, ${manager.listing.card[a+1][2].length}\n`
+		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length>64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length>64?`%c`:``}, ${manager.listing.card[a+1][1].length>64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length>64?`%c`:``}, ${manager.listing.card[a+1][2].length>32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length>32?`%c`:``}\n`
+		if(manager.listing.card[a+1][0].length>64){
+			colorChanges++
+		}
+		if(manager.listing.card[a+1][1].length>64){
+			colorChanges++
+		}
+		if(manager.listing.card[a+1][2].length>32){
+			colorChanges++
+		}
 	}
 	let listed=[
 		80,//status
@@ -2365,7 +2375,8 @@ ${box}
 (${current.collectionManager.totals.list[constants.playerNumber+11][0]-listed[9]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
 (${current.collectionManager.totals.list[constants.playerNumber+12][0]-listed[10]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
 (${current.collectionManager.totals.list[constants.playerNumber+13][0]-listed[11]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+10][0]-unlisted[0]}) Disband: ${current.collectionManager.totals.list[constants.playerNumber+10][0]}`)
+(${current.collectionManager.totals.list[constants.playerNumber+10][0]-unlisted[0]}) Disband: ${current.collectionManager.totals.list[constants.playerNumber+10][0]}`,
+...multiplyArray(["color:red",""],colorChanges).flat())
 	/*console.log(`
 (${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
 (${actual-goal}) Listed Cards: ${actual}/${goal}
