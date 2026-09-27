@@ -2347,7 +2347,7 @@ class group{
                 break
                 case 65:
                     let changed=false
-                    if(this.cards[a].attack==args[0]||args[0]==7274||args[0]==7470){
+                    if(args[0]==this.cards[a].attack||(typeof args[0])=='object'&&args[0].includes(this.cards[a].attack)||args[0]==7274||args[0]==7470){
                         switch(this.cards[a].attack){
                             case 7236:
                                 this.cards[a].effect[1]++
@@ -2454,7 +2454,7 @@ class group{
                                     }
                                 }
                             break
-                            case 7240:
+                            case 7240: case 10039:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
                                 if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
                                     if(args[0]==7470){
@@ -2482,7 +2482,7 @@ class group{
                                     }
                                 }
                             break
-                            case 7241:
+                            case 7241: case 10040:
                                 if(args[0]==7470){
                                     this.add(findName('Brezhnev',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                 }else{
@@ -2507,7 +2507,7 @@ class group{
                                     a--
                                 }
                             break
-                            case 7242:
+                            case 7242: case 10041:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
                                 if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
                                     if(args[0]==7470){
@@ -2535,7 +2535,7 @@ class group{
                                     }
                                 }
                             break
-                            case 7243:
+                            case 7243: case 10042:
                                 this.cards[a].effect[2]+=round(args[1]*10)/10
                                 if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
                                     if(args[0]==7470){
@@ -2804,13 +2804,13 @@ class group{
                         &&!(effect==31&&this.cards[b].edition!=args[0])
                         &&!(effect==32&&!(this.cards[b].name==args[1]&&this.cards[b].cost>0))
                         &&!(effect==34&&(this.cards[b].retain||this.cards[b].retain2|this.cards[b].spec.includes(2)||this.cards[b].spec.includes(29)))
-                        &&!((effect==35||effect==75)&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||this.cards[b].class!=1))
+                        &&!((effect==35||effect==75)&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=1))
                         &&!((effect==36||effect==45||effect==71)&&(this.cards[b].level>=2||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
                         &&!(effect==38&&(this.cards[b].level!=1||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
                         &&!(effect==39&&this.cards[b].spec.includes(7))
                         &&!((effect==41||effect==44)&&!this.cards[b].spec.includes(53))
                         &&!(effect==42&&(this.cards[b].effect.length==0||this.cards[b].class!=1))
-                        &&!(effect==43&&(this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)))
+                        &&!(effect==43&&(this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)))
                         &&!(effect==46&&this.cards[b].list!=constants.playerNumber+2)
                         &&!(effect==47&&(this.cards[b].level<=1||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)))
                         &&!(effect==49&&this.cards[b].getCost(0)!=0)
@@ -2823,7 +2823,7 @@ class group{
                         &&!(effect==57&&(this.cards[b].class==args[0]&&args[0]!=0||this.cards[b].spec.includes(55)))
                         &&!(effect==58&&this.cards[b].class!=args[0]&&args[0]!=0)
                         &&!(effect==62&&(this.cards[b].getCost(1)<=0||this.cards[b].class!=args[0]&&args[0]!=0))
-                        &&!(effect==63&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||!this.cards[b].spec.includes(args[1])))
+                        &&!(effect==63&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||!this.cards[b].spec.includes(args[1])))
                         &&!(effect==64&&(this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].retain2))
                         &&!((effect==65||effect==83)&&this.cards[b].edition!=args[0])
                         &&!(effect==70&&!this.cards[b].spec.includes(15))
@@ -2833,8 +2833,9 @@ class group{
                         &&!(effect==77&&(this.cards[b].effect.length<=0||this.cards[b].effect[0]>=args[1]))
                         &&!(effect==78&&!this.cards[b].spec.includes(60))
                         &&!(effect==79&&this.cards[b].spec.includes(args[0]))
-                        &&!(effect==80&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(41)||this.cards[b].class!=1||this.cards[b].id==args[1]))
+                        &&!(effect==80&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=1||this.cards[b].id==args[1]))
                         &&!(effect==82&&(this.cards[b].getCost(1)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(55)||this.cards[b].spec.includes(59)||this.cards[b].spec.includes(60)||this.cards[b].class!=args[1]))
+                        &&!(effect==85&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=7))
                     ){
                         list.push(b)
                     }
@@ -2865,7 +2866,7 @@ class group{
                     case 4: case 65:
                         this.copySelf(index)
                     break
-                    case 5: case 62: case 72: case 75: case 80:
+                    case 5: case 62: case 72: case 75: case 80: case 85:
                         this.cards[index].setCost(0,[0])
                     break
                     case 6:
@@ -4754,7 +4755,7 @@ class group{
         let possible=!this.cards[index].spec.includes(7)&&!(this.battle.initialized&&this.battle.modded(97))
         if(possible){
             if(this.cards[index].class!=14){
-                this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7241])
+                this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[[7241,10040]])
             }
             this.cards[index].callRemoveEffect()
             this.allEffectArgs(55,[`callAnotherRemovedEffect`,[this.cards[index]]])
@@ -7095,9 +7096,9 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64||this.battle.attackManager.targetInfo[0]==67||this.battle.attackManager.targetInfo[0]==74){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64||this.battle.attackManager.targetInfo[0]==67||this.battle.attackManager.targetInfo[0]==74||this.battle.attackManager.targetInfo[0]==76){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&
+                if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==76)&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
                     !(this.battle.attackManager.targetInfo[0]==22&&this.battle.combatantManager.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<constants.targetRadius){
@@ -7565,10 +7566,10 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64||this.battle.attackManager.targetInfo[0]==67||this.battle.attackManager.targetInfo[0]==74){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53||this.battle.attackManager.targetInfo[0]==62||this.battle.attackManager.targetInfo[0]==63||this.battle.attackManager.targetInfo[0]==64||this.battle.attackManager.targetInfo[0]==67||this.battle.attackManager.targetInfo[0]==74||this.battle.attackManager.targetInfo[0]==76){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                    if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&
+                    if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==76)&&
                         (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
                         !(this.battle.attackManager.targetInfo[0]==22&&this.battle.combatantManager.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
                         this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){

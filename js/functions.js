@@ -2304,14 +2304,38 @@ function outUnusedMod(){
 	})
 }
 function outListing(){
+	current.collectionManager.executeQuery()
 	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new cardManager(current.layer,current,0):current.cardManagers[0]
-	let actual=manager.listing.allListableCard[3].length
+	let actual=manager.listing.allListableCard[3].length+
+		current.collectionManager.totals.list[constants.playerNumber+6][0]+
+		current.collectionManager.totals.list[constants.playerNumber+7][0]+
+		current.collectionManager.totals.list[constants.playerNumber+8][0]+
+		current.collectionManager.totals.list[constants.playerNumber+9][0]+
+		current.collectionManager.totals.list[constants.playerNumber+11][0]+
+		current.collectionManager.totals.list[constants.playerNumber+12][0]+
+		current.collectionManager.totals.list[constants.playerNumber+13][0]
 	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
 	for(let a=0,la=constants.playerNumber;a<la;a++){
 		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length}, ${manager.listing.card[a+1][1].length}, ${manager.listing.card[a+1][2].length}\n`
 	}
-	let listed=[80,80,40,32,24]
+	let listed=[
+		80,//status
+		80,//curse
+		40,//partnership
+		32,//tarot
+		24,//spectral
+		40,//subcard
+		24,//event
+		120,//reserve
+		160,//developer
+		12,//basic
+		32,//pack
+		36,//misc
+	]
 	let unlisted=[
+		5000,//disband
+	]
+	/*let unlisted=[
 		40,//subcard
 		3200,//disband
 		constants.playerNumber*8,//junkyard
@@ -2321,11 +2345,28 @@ function outListing(){
 		32,//pack
 		160,//misc
 		72,//error
-	]
+	]*/
 	let arbitrary=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)+unlisted.reduce((acc,num)=>acc+num,0)
 	let goal=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)
-	current.collectionManager.executeQuery()
 	console.log(`
+(${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
+(${actual-goal}) Listed Cards: ${actual}/${goal}
+
+${box}
+(${manager.listing.card[constants.playerNumber+1][3].length-listed[0]}) Status: ${manager.listing.card[constants.playerNumber+1][3].length}
+(${manager.listing.card[constants.playerNumber+2][3].length-listed[1]}) Curse: ${manager.listing.card[constants.playerNumber+2][3].length}
+(${manager.listing.card[constants.playerNumber+3][3].length-listed[2]}) Partnership: ${manager.listing.card[constants.playerNumber+3][0].length}, ${manager.listing.card[constants.playerNumber+3][1].length}, ${manager.listing.card[constants.playerNumber+3][2].length}
+(${manager.listing.card[constants.playerNumber+4][3].length-listed[3]}) Tarot: ${manager.listing.card[constants.playerNumber+4][3].length}
+(${manager.listing.card[constants.playerNumber+5][3].length-listed[4]}) Spectral: ${manager.listing.card[constants.playerNumber+5][3].length}
+(${current.collectionManager.totals.list[constants.playerNumber+6][0]-listed[5]}) Subcard: ${current.collectionManager.totals.list[constants.playerNumber+6][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+7][0]-listed[6]}) Event: ${current.collectionManager.totals.list[constants.playerNumber+7][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+8][0]-listed[7]}) Reserve: ${current.collectionManager.totals.list[constants.playerNumber+8][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+9][0]-listed[8]}) Developer: ${current.collectionManager.totals.list[constants.playerNumber+9][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+11][0]-listed[9]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+12][0]-listed[10]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+13][0]-listed[11]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+10][0]-unlisted[0]}) Disband: ${current.collectionManager.totals.list[constants.playerNumber+10][0]}`)
+	/*console.log(`
 (${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
 (${actual-goal}) Listed Cards: ${actual}/${goal}
 
@@ -2344,7 +2385,7 @@ ${box}
 (${current.collectionManager.totals.list[constants.playerNumber+11][0]-unlisted[5]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
 (${current.collectionManager.totals.list[constants.playerNumber+12][0]-unlisted[6]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
 (${current.collectionManager.totals.list[constants.playerNumber+13][0]-unlisted[7]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
-(${types.card.filter(card=>card.list==-10).length-unlisted[8]}) Error: ${types.card.filter(card=>card.list==-10).length}`)
+(${types.card.filter(card=>card.list==-10).length-unlisted[8]}) Error: ${types.card.filter(card=>card.list==-10).length}`)*/
 }
 function outListingOld(){
 	let arbitrary=8500
@@ -3515,6 +3556,12 @@ function factor(num){
     }
     set.push(current)
     return set.join(`, `)
+}
+function checkSpawns(){
+	types.encounter.forEach(encounter=>{
+		encounter.enemy.forEach(enemy=>{if(findName(enemy.name,types.combatant)==-1){print(enemy.name)}})
+		encounter.assaultReinforce.forEach(enemy=>{if(findName(enemy.name,types.combatant)==-1){print(enemy.name)}})
+	})
 }
 function checkPast(){
 	if(types.past==undefined){

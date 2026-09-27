@@ -48,7 +48,7 @@ class node{
                 this.reality=this.type
                 //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
                 //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
-                list=this.tilePosition.y<=1?4:this.tilePosition.y<=4&&this.battle.nodeManager.world==0?3:0
+                list=this.tilePosition.y<=1?4:this.tilePosition.y<=(variants.shortMap?3:4)&&this.battle.nodeManager.world==0?3:0
                 index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
                 this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
                 this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
@@ -67,7 +67,7 @@ class node{
                     case 0:
                         //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
                         //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
-                        list=this.tilePosition.y<=1?4:this.tilePosition.y<=4&&this.battle.nodeManager.world==0?3:0
+                        list=this.tilePosition.y<=1?4:this.tilePosition.y<=(variants.shortMap?3:4)&&this.battle.nodeManager.world==0?3:0
                         index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
                         this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
                         this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)

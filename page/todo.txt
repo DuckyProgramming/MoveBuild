@@ -3,20 +3,6 @@ Skiles 006 Wednesday, October 21, at 1:00pm
 
 CS 120 [NEW SANAE / 8400]
 
-split telefrag to destroy spikes
-more forms of recoil step
-split sinister (dexter)
-split flaming bottle
-split work experience
-quickbuild vs toolbox
-rework every leader after khruschev
-split chernobyl again
-[entrap]
-split deft
-resplit synchronicity
-push your construct
-split touch of garlic (again)
-
 prayer stance - damage, temporary dexterity, faiths
 time magic - when you take an extra turn, discover a card, it costs 0
 sleight forsight - draw a power, gain faith
@@ -56,7 +42,6 @@ fill in remaining slots with randos from the reserve below
 
 CS 122 [?]
 
-perhaps remove the junkyard mode altogether
 replace with: classic (no tarots, no packs, no shop heal, etc)
 
 tooltips for dictionary
@@ -83,12 +68,12 @@ make sure her tutorial is not ruined
 [more cards using the system put in place by feral, for coffee, guns, etc]
 sight of distant blade - damage, shiv, costs 1 less when played
 split shinmy cards that count as strikes to have defend variants
-
 discus sap - target loses 4 health, add a dual discus to hand
 countertop - remove 3 cards, gain 1 random temporary item
 belt buckle - gain 1 strength, if you have no items gain 1 dexterity
 squall - 18 damage to anybody, get 3 random temporary items
 demographics - gain temp dex for every 5 population
+self-fulfillment - gain 3 temporary strength when in wrath and 3 temporary dexterity when in sturdy
 
 diadem - gain 1 buffer, apply 2 weak to all enemies [tiara already exists, base off that]
 teleport and nerf in all directions

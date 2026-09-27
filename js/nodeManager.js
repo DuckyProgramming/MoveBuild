@@ -135,7 +135,8 @@ class nodeManager{
             }
         }else if(variants.singlemap){
             let possibilities=game.ascend>=1||game.diff>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
-            let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
+            //let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
+            let length=(this.world==1?21:20)-(variants.shortmap?8:0)-(variants.shortermap?13:0)
             for(let a=0,la=length;a<la;a++){
                 this.nodes.push(new node(
                     this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150-min(3,a)*10,0,a,
@@ -197,28 +198,46 @@ class nodeManager{
                     this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,1,1,3,4,5,5,5,5,5,5,5,5,5,5]:[0,0,1,3,4,5,5,5,5,5,5,5,5,5,5]
                 break
             }*/
-            for(let a=0,la=game.diff>=1?6:5;a<la;a++){
-                possibilities.push(1)
+            if(variants.shortmap){
+                for(let a=0,la=game.diff>=1?3:2;a<la;a++){
+                    possibilities.push(1)
+                }
+                for(let a=0,la=3;a<la;a++){
+                    possibilities.push(3)
+                }
+                for(let a=0,la=2;a<la;a++){
+                    possibilities.push(4)
+                }
+                for(let a=0,la=7;a<la;a++){
+                    possibilities.push(5)
+                }
+                for(let a=0,la=game.diff>=1?11:12;a<la;a++){
+                    possibilities.push(0)
+                }
+            }else{
+                for(let a=0,la=game.diff>=1?7:5;a<la;a++){
+                    possibilities.push(1)
+                }
+                for(let a=0,la=6;a<la;a++){
+                    possibilities.push(3)
+                }
+                for(let a=0,la=4;a<la;a++){
+                    possibilities.push(4)
+                }
+                for(let a=0,la=16;a<la;a++){
+                    possibilities.push(5)
+                }
+                for(let a=0,la=game.diff>=1?25:27;a<la;a++){
+                    possibilities.push(0)
+                }
             }
-            for(let a=0,la=6;a<la;a++){
-                possibilities.push(3)
-            }
-            for(let a=0,la=4;a<la;a++){
-                possibilities.push(4)
-            }
-            for(let a=0,la=16;a<la;a++){
-                possibilities.push(5)
-            }
-            for(let a=0,la=game.diff>=1?26:27;a<la;a++){
-                possibilities.push(0)
-            }
-            this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,0,1,1,3,3,4,5,5,5,5,5,5,5,5]:[0,0,0,0,1,3,3,4,5,5,5,5,5,5,5,5]
+            this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,floor(random(0,2)),1,1,3,3,4,5,5,5,5,5,5,5,5]:[0,0,0,0,1,3,3,4,5,5,5,5,5,5,5,5]
             //let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             //let length=(this.world>=2?20:21)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
-            let length=(this.world==1?21:20)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
+            let length=(this.world==1?21:20)-(variants.shortmap?8:0)-(variants.shortermap?13:0)
             //21 for the first 2 worlds and 20 for the third, note that slay the spire has 15, 14, and 13 respectively (it was previously 22/21)
             //because of this, as of 9/24/26, the 20,21,20,4 reform will be implemented
-            //after all the reofrms, the number of elites ranges from 6-12 and the number of regular enemies from 32-34
+            //after all the reofrms, the number of elites ranges from 6-14 and the number of regular enemies from 30-34
             let empty=[]
             for(let a=0,la=length;a<la;a++){
                 for(let b=0,lb=min(a+1,4,la-a);b<lb;b++){
@@ -226,16 +245,16 @@ class nodeManager{
                         a<2?0://first 2 rows are normals
                         a==la-1?2://end boss
                         a==la-2?3://end rests
-                        a==la-9?6://stash
+                        a==la-(variants.shortmap?6:9)?6://stash
                         a==5&&this.world==1?7://fortune
                         //a==round(la/2)?6://stash
                         //a==round(la/4)&&this.world==1?7://fortune
                         -1
-                    //worlds 1 and 2 have 72 total nodes
-                    //world 3 has 68 total nodes
+                    //worlds 1 and 3 have 68 total nodes
+                    //world 2 has 72 total nodes
                     //however, 10 nodes are eaten by the start, end, and stash and 4 in world 2 are occupied by fortune
-                    //this means that world 1 has 62 total nodes and worlds 2 and 3 have 58
-                    //post-reform, this has been changed to 58 for all
+                    //this means that every world has 58 functionally
+                    //or a paltry 26 (nice) when playing on short map mode
                     /*if(type==-1){
                         let index=variants.sortmap?0:floor(random(0,possibilities.length))
                         type=possibilities[index]
@@ -250,7 +269,7 @@ class nodeManager{
                 }
             }
             let tick=0
-            while(possibilities.length>0){
+            while(possibilities.length>0&&empty.length>0){
                 let index=floor(random(0,empty.length))
                 let target=empty[index]
                 let adj=[]

@@ -4025,7 +4025,7 @@ types={
                 {position:{x:1,y:1},name:'Vengeful Speed'},
             ],reinforce:[
             ],assaultReinforce:[
-                {position:{x:0,y:2},name:'Veneful',turn:5},
+                {position:{x:0,y:2},name:'Vengeful',turn:5},
             ],ally:[
             ],
         },{
@@ -5298,8 +5298,25 @@ types={
             ],ally:[
             ],
         },{
-            level:['Quadral 7'],class:1,world:2,
+            level:['Quadral 7'],class:0,world:2,
             name:'Danger',
+            player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Danger'},
+                {position:{x:6,y:4},name:'Danger'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Danger',turn:3},
+                {position:{x:4,y:2},name:'Danger',turn:3},
+                {position:{x:1,y:0},name:'Danger',turn:9},
+                {position:{x:3,y:0},name:'Danger',turn:9},
+                {position:{x:3,y:4},name:'Danger',turn:9},
+                {position:{x:5,y:4},name:'Danger',turn:9},
+            ],ally:[
+            ],
+        },{
+            level:['Quadral 7'],class:1,world:2,
+            name:'Old Danger',
             player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Danger'},
@@ -8285,24 +8302,33 @@ variants={
     lowhealth:false,midhealth:false,terminal:false,
     sortmap:false,
     vanish:false,transcend:false,
-    cliff:false,running:false,
+    cliff:false,running:false,junk:false,
     commoners:false,quarterPool:false,close:false,
 
     speedmove:false,speedcard:false,nobasicanim:false,
     deckbuild:false,selectCombat:false,shortermap:false,unary:false,
 
-    map:[
+    /*map:[
         'mtg','mod','randomCombat','initiative',
         'assault','business','domain','relicspam',
         'lowHealth','hungry','unexpected','adoration',
         'shortmap','singlemap','blind','overheat',
-        'prism','ultraprism','junk','colorshift',
+        'prism','ultraprism','','colorshift',
     ],names:[
         'MTG Mana','Bonus Mods','Random Combat Maps','Enemy Initiative',
         'Assault','Business','Domain Expansion','Relic Pile',
         'Half Health','Hungry','Expect the Unexpected','Adoration',
         'Short Map','Straight Map','Blind','Overheat',
-        'Prism','Ultraprism','Junkyard','Colorshift',
+        'Prism','Ultraprism','','Colorshift',
+    ],*/
+    map:[
+        'mtg','mod','randomCombat','initiative',
+        'assault','domain','midhealth','unexpected',
+        'shortmap','blind','prism','ultraprism',
+    ],names:[
+        'MTG Mana','Bonus Mods','Random Combat Maps','Enemy Initiative',
+        'Assault','Domain Expansion','Half Health','Expect the Unexpected',
+        'Short Map','Blind','Prism','Ultraprism',
     ],
 }
 constants={

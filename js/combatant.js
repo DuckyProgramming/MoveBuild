@@ -480,6 +480,7 @@ class combatant{
         if(this.battle.players>0&&this.battle.initialized){
             this.initialBuff()
         }
+        this.alwaysBuff()
     }
     save(){
         let composite={
@@ -1674,12 +1675,6 @@ class combatant{
                 this.base.life*=0.9
             }
         }
-        if(variants.lowhealth){
-            this.subHealthBuff(0.2)
-        }
-        if(variants.midhealth){
-            this.subHealthBuff(0.5)
-        }
         if(variants.shortmap&&this.team==0){
             this.subHealthBuff(0.8**this.battle.nodeManager.world)
             if(this.battle.encounter.class==2){
@@ -1700,6 +1695,14 @@ class combatant{
         }
         if(this.spec.includes(6)){
             this.threshold=this.life-25
+        }
+    }
+    alwaysBuff(){
+        if(variants.lowhealth){
+            this.subHealthBuff(0.2)
+        }
+        if(variants.midhealth){
+            this.subHealthBuff(0.5)
         }
     }
     subHealthBuff(value){
@@ -4140,8 +4143,7 @@ class combatant{
                         this.statusEffect('Weak',this.battle.relicManager.active[475][user+1])
                     }
                     if(user>=0&&user<this.battle.players){
-                        this.battle.cardManagers[user].trueAllGroupEffectArgs(65,[7239,damage])
-                        this.battle.cardManagers[user].trueAllGroupEffectArgs(65,[10020,damage])
+                        this.battle.cardManagers[user].trueAllGroupEffectArgs(65,[[7239,10020],damage])
                     }
                 }
             }
@@ -6261,7 +6263,7 @@ class combatant{
             if(this.id<this.battle.players){
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
-                this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[7242,amount])
+                this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[[7242,10041],amount])
                 this.battle.cardManagers[this.id].hand.allEffectArgs(55,['callHealthLossEffect',[amount]])
             }
             if(this.status.main[655]>0){

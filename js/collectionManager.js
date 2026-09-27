@@ -42,25 +42,29 @@ class collectionManager{
         }/*else if(cardData.rarity<0&&cardData.list==constants.playerNumber+5){
             sublist=-1
             resultlist=constants.playerNumber+6
-        }*/else if(cardData.rarity==-10){
+        }else if(cardData.rarity==-10){
             return [
                 -1,
                 constants.playerNumber+6
             ]
-        }else if(cardData.rarity==-6){
+        }*/else if(cardData.rarity==-6){
+            return [
+                -1,
+                constants.playerNumber+6
+            ]
+        }else if(cardData.rarity==-8){
             return [
                 -2,
                 constants.playerNumber+7
             ]
-        }else if(cardData.rarity==-8){
+        }else if(cardData.list==-9){
+            /*sublist=-4
+            resultlist=constants.playerNumber+9*/
             return [
                 -3,
                 constants.playerNumber+8
             ]
-        }/*else if(cardData.list==-9){
-            sublist=-4
-            resultlist=constants.playerNumber+9
-        }*/else if(cardData.rarity==-5&&cardData.list==-1){
+        }else if(cardData.rarity==-5&&cardData.list==-1){
             return [
                 -4,
                 constants.playerNumber+9
@@ -229,7 +233,8 @@ class collectionManager{
                 }*/
             break
             case 'listQuery':
-                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','SUBCARD','EVENT'/*,'RESERVE'*/,'DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                //let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','SUBCARD','EVENT'/*,'RESERVE'*/,'DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBCARD','EVENT','RESERVE','DEVELOPER','REMOVED','BASIC','PACK','MISC']
 			    this.layer.textSize(10)
                 for(let a=0,la=40;a<la;a++){
                     this.layer.fill(240*this.anim.query.list[a])

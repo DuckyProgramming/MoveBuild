@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],ally:[],dev:[],disband:[],mtg:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],sub:[],dev:[],disband:[],mtg:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -61,7 +61,7 @@ class cardManager{
     }
     subAllList(a){
         if(types.card[a].rarity<4){
-            if(types.card[a].rarity<0){
+            if(types.card[a].rarity<0||types.card[a].rarity==3){
                 this.listing.all[floor(random(0,3))].push(a)
             }else{
                 this.listing.all[types.card[a].rarity].push(a)
@@ -69,9 +69,9 @@ class cardManager{
         }else{
             throw new Error(`${types.card[a].name} is broken`)
         }
-        if(types.card[a].rarity!=3){
-            this.listing.all[3].push(a)
-        }
+        //if(types.card[a].rarity!=3){
+        this.listing.all[3].push(a)
+        //}
     }
     initialListing(){
         for(let a=0;a<constants.playerNumber+6;a++){
@@ -81,9 +81,9 @@ class cardManager{
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
-        this.listing.junk=multiplyArray([],constants.playerNumber+2)
+        //this.listing.junk=multiplyArray([],constants.playerNumber+2)
         this.listing.sub=[]
-        this.listing.ally=[]
+        //this.listing.ally=[]
         this.listing.dev=[]
         this.listing.disband=[]
         for(let a=0,la=types.card.length;a<la;a++){
@@ -100,16 +100,16 @@ class cardManager{
                 cardData=types.card[a]
             }
             if(!(variants.quarterPool&&floor(random(0,4))!=0)){
-                if(cardData.rarity==-10){
+                /*if(cardData.rarity==-10){
                     this.listing.junk[cardData.list].push(a)
                     this.listing.junk[constants.playerNumber+1].push(a)
-                }
+                }*/
                 if(cardData.rarity==-6){
                     this.listing.sub.push(a)
                 }
-                if(cardData.levels[0].class==9){
+                /*if(cardData.levels[0].class==9){
                     this.listing.ally.push(a)
-                }
+                }*/
                 if(cardData.rarity==-5&&cardData.list==-1){
                     this.listing.dev.push(a)
                 }
@@ -124,27 +124,27 @@ class cardManager{
                     if(variants.prismrule.includes(-1)){
                         this.subAllList(a)
                     }
-                }*/else if(cardData.rarity==-10){
+                }else if(cardData.rarity==-10){
                     if(variants.prismrule.includes(-1)){
                         this.subAllList(a)
                     }
-                }else if(cardData.rarity==-6){
-                    if(variants.prismrule.includes(-2)){
+                }*/else if(cardData.rarity==-6){
+                    if(variants.prismrule.includes(-1)){
                         this.subAllList(a)
                     }
                 }else if(cardData.rarity==-8){
+                    if(variants.prismrule.includes(-2)){
+                        this.subAllList(a)
+                    }
+                }else if(cardData.list==-9){
                     if(variants.prismrule.includes(-3)){
                         this.subAllList(a)
                     }
-                }/*else if(cardData.list==-9){
-                    if(variants.prismrule.includes(-5)){
-                        this.subAllList(a)
-                    }
-                }*/else if(cardData.rarity==-5&&cardData.list==-1){
+                }else if(cardData.rarity==-5&&cardData.list==-1){
                     if(variants.prismrule.includes(-4)){
                         this.subAllList(a)
                     }
-                }else if(cardData.rarity==-1&&cardData.list==-8){
+                }else if(cardData.rarity==-1&&cardData.list==-8||cardData.rarity==-1&&cardData.list==-10){
                     if(variants.prismrule.includes(-5)){
                         this.subAllList(a)
                     }

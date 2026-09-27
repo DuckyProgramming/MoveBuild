@@ -9251,7 +9251,8 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2+105,layer.height*0.7-10,125,125)
 			layer.rect(layer.width/2+105,layer.height*0.7+90,200,55)*/
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.rect(layer.width/2-650+a%5*325,layer.height/2-220+floor(a/5)*80,295,70)
+				layer.rect(layer.width/2-487.5+a%4*325,layer.height/2-140+floor(a/4)*80,295,70)
+				//layer.rect(layer.width/2-650+a%5*325,layer.height/2-220+floor(a/5)*80,295,70)
 				//layer.rect(layer.width/2-570+a%4*380,layer.height/2-250+floor(a/4)*80,350,70)
 			}
 			layer.fill(0)
@@ -9264,7 +9265,8 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2+105,layer.height*0.7-10,100,100)
 			layer.rect(layer.width/2+105,layer.height*0.7+90,175,30)*/
 			for(let a=0,la=variants.names.length;a<la;a++){
-				layer.rect(layer.width/2-650+a%5*325,layer.height/2-220+floor(a/5)*80,270,45)
+				layer.rect(layer.width/2-487.5+a%4*325,layer.height/2-140+floor(a/4)*80,270,45)
+				//layer.rect(layer.width/2-650+a%5*325,layer.height/2-220+floor(a/5)*80,270,45)
 				/*layer.rect(layer.width/2-597.5+a%4*380,layer.height/2-250+floor(a/4)*80,270,45)
 				layer.rect(layer.width/2-430+a%4*380,layer.height/2-250+floor(a/4)*80,45,45)*/
 			}
@@ -9282,11 +9284,17 @@ function setupBackground(type,layer){
 				layer.text(variants.names[a].toUpperCase(),layer.width/2-650+a%5*325,layer.height/2-220+floor(a/5)*80)
 				layer.text(variants.names[a].toUpperCase(),layer.width/2-597.5+a%4*380,layer.height/2-250+floor(a/4)*80)
 			}*/
-			for(let a=0,la=4;a<la;a++){
+			/*for(let a=0,la=4;a<la;a++){
 				layer.text((a+1)%10,layer.width/2-815,layer.height/2-220+a*80)
 			}
 			for(let a=0,la=5;a<la;a++){
 				layer.text(a+1,layer.width/2-650+a*325,layer.height/2-270)
+			}*/
+			for(let a=0,la=3;a<la;a++){
+				layer.text((a+1)%10,layer.width/2-652.5,layer.height/2-140+a*80)
+			}
+			for(let a=0,la=4;a<la;a++){
+				layer.text(a+1,layer.width/2-487.5+a*325,layer.height/2-190)
 			}
 			/*for(let a=0,la=5;a<la;a++){
 				layer.text(a+1,layer.width/2-770,layer.height/2-250+a*80)

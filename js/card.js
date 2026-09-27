@@ -2190,6 +2190,40 @@ class card{
                 this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
                 userCombatant.statusEffect('Strength',this.effect[0])
             break
+            case 10039:
+                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
+                this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
+                userCombatant.statusEffect('Strength',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])
+                userCombatant.heal(this.effect[0])
+            break
+            case 10040:
+                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
+                this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
+                userCombatant.statusEffect('Strength',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])
+                userCombatant.heal(types.card[findName('Brezhnev',types.card)].levels[0].effect[0])
+                this.battle.combatantManager.randomEnemyEffect(23,['Weak',this.effect[0]])
+            break
+            case 10041:
+                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
+                this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
+                userCombatant.statusEffect('Strength',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])
+                userCombatant.heal(types.card[findName('Brezhnev',types.card)].levels[0].effect[0])
+                this.battle.combatantManager.randomEnemyEffect(23,['Weak',types.card[findName('Andropov',types.card)].levels[0].effect[0]])
+                userCombatant.statusEffect('Control',this.effect[0])
+            break
+            case 10042: case 10043:
+                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
+                this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
+                userCombatant.statusEffect('Strength',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])
+                userCombatant.heal(types.card[findName('Brezhnev',types.card)].levels[0].effect[0])
+                this.battle.combatantManager.randomEnemyEffect(23,['Weak',types.card[findName('Andropov',types.card)].levels[0].effect[0]])
+                userCombatant.statusEffect('Control',types.card[findName('Chernenko',types.card)].levels[0].effect[0])
+                this.battle.cardManagers[this.player].hand.upgrade(types.card[findName('Gorbachev',types.card)].levels[0].effect[0])
+            break
         }
     }
     callPostStartEffect(encounterClass){

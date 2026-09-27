@@ -139,9 +139,9 @@ class battle{
         }
         for(let a=-9,la=constants.playerNumber+6;a<la;a++){
             this.menu.anim.prismrule.push(0)
-            if(a!=-6){
-                variants.prismrule.push(a)
-            }
+            //if(a!=-6){
+            variants.prismrule.push(a)
+            //}
         }
         for(let a=0,la=2;a<la;a++){
             this.menu.anim.mtg.push(0)
@@ -2549,7 +2549,7 @@ class battle{
             }else{
                 this.currency.money[player]+=round((amount+bonus)*multi)
             }
-            this.cardManagers[player].trueAllGroupEffectArgs(65,[7243,round((amount+bonus)*multi)])
+            this.cardManagers[player].trueAllGroupEffectArgs(65,[[7243,10042],round((amount+bonus)*multi)])
             if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].getStatus('Currency Block')>0){
                 this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].addBlock(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].getStatus('Currency Block')*amount)
             }
@@ -2561,7 +2561,7 @@ class battle{
                 this.cardManagers[player].deck.add(findName('Debt',types.card),0,constants.playerNumber+2)
             }*/
             this.currency.money[player]-=round(amount)
-            this.cardManagers[player].trueAllGroupEffectArgs(65,[7240,round(amount)])
+            this.cardManagers[player].trueAllGroupEffectArgs(65,[[7240,10039],round(amount)])
         }
     }
     getCurrency(player){
@@ -2818,10 +2818,13 @@ class battle{
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     this.layer.fill(240*this.menu.anim.variants[a])
-                    this.layer.rect(this.layer.width/2-325+a%5*162.5,this.layer.height/2-110+floor(a/5)*40,135,22.5)
+                    //this.layer.rect(this.layer.width/2-325+a%5*162.5,this.layer.height/2-110+floor(a/5)*40,135,22.5)
+                    this.layer.rect(this.layer.width/2-243.75+a%4*162.5,this.layer.height/2-70+floor(a/4)*40,135,22.5)
                     this.layer.fill(240*(1-this.menu.anim.variants[a]))
-                    this.layer.textSize(a==10?9:10)
-                    this.layer.text(variants.names[a].toUpperCase(),this.layer.width/2-325+a%5*162.5,this.layer.height/2-110+floor(a/5)*40)
+                    //this.layer.textSize(a==10?9:10)
+                    this.layer.textSize(a==7?9:10)
+                    //this.layer.text(variants.names[a].toUpperCase(),this.layer.width/2-325+a%5*162.5,this.layer.height/2-110+floor(a/5)*40)
+                    this.layer.text(variants.names[a].toUpperCase(),this.layer.width/2-243.75+a%4*162.5,this.layer.height/2-70+floor(a/4)*40)
                     /*if(this.menu.anim.variants[a]>0){
                         this.layer.fill(240,this.menu.anim.variants[a])
                         this.layer.ellipse(this.layer.width/2-215+a%4*190,this.layer.height/2-125+floor(a/4)*40,10)
@@ -2830,7 +2833,8 @@ class battle{
             break
             case 'custom':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','SUBCARD','EVENT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                //let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','SUBCARD','EVENT','DEVELOPER','REMOVED','BASIC','PACK','MISC']
+                let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','SUBCARD','EVENT','RESERVE','DEVELOPER','REMOVED','BASIC','PACK','MISC']
                 this.layer.textSize(10)
                 for(let a=0,la=40;a<la;a++){
                     this.layer.fill(240*this.menu.anim.prismrule[a])
@@ -3277,8 +3281,8 @@ class battle{
                     case 0:
                         this.layer.noStroke()
                         //let set=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
-                        let set=[[],[],[],[],[],[],[],[],[],[]]
-                        let total=[0,0,0,0,0,0,0,0,0,0]
+                        let set=[[],[],[],[],[],[],[],[],[],[],[]]
+                        let total=[0,0,0,0,0,0,0,0,0,0,0]
                         types.card.forEach(card=>{
                             //card.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
                             //card.mtg.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
@@ -4072,7 +4076,8 @@ class battle{
             case 'variants':
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-125+floor(a/4)*40},width:22.5,height:22.5})){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-325+a%5*162.5,y:this.layer.height/2-110+floor(a/5)*40},width:135,height:22.5})){
+                    //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-325+a%5*162.5,y:this.layer.height/2-110+floor(a/5)*40},width:135,height:22.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-243.75+a%4*162.5,y:this.layer.height/2-70+floor(a/5)*40},width:135,height:22.5})){
                         variants[variants.map[a]]=toggle(variants[variants.map[a]])
                     }
                 }
@@ -4579,8 +4584,10 @@ class battle{
                 }
             break
             case 'variants':
-                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=4&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=5){
-                    let index=(int(inputs.lastKey[0])+9)%10*5+int(inputs.lastKey[1])-1
+                //if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=4&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=5){
+                if(key==' '&&int(inputs.lastKey[0])>=1&&int(inputs.lastKey[0])<=3&&int(inputs.lastKey[1])>=1&&int(inputs.lastKey[1])<=4){
+                    //let index=(int(inputs.lastKey[0])+9)%10*5+int(inputs.lastKey[1])-1
+                    let index=(int(inputs.lastKey[0])+9)%10*4+int(inputs.lastKey[1])-1
                     variants[variants.map[index]]=toggle(variants[variants.map[index]])
                 }
                 if(code==ENTER||code==ESCAPE){
