@@ -262,6 +262,14 @@ class tile{
                         }
                     }
                 break
+                case 29:
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bolt',types.combatant),-150+floor(random(0,6))*60)
+                            this.anim.upPart[a]=false
+                        }
+                    }
+                break
             }
         }
     }
@@ -652,6 +660,12 @@ class tile{
                             this.layer.triangle(-1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,10-lc*10+c*20,-3+3/2-lb*3/2+b*3)
                         }
                     }
+                break
+                case 29:
+                    this.layer.fill(200,255,255,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,8)
+                    this.layer.fill(100,255,255,this.fade*this.anim.part[a])
+                    this.layer.quad(0,-3,-3,0,0,3,3,0)
                 break
             }
         }

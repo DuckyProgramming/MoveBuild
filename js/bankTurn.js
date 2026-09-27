@@ -213,7 +213,7 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 11:
+                case 11: case 499:
                     if(this.timer==1&&this.targetDistance>1){
                         this.userCombatant.startAnimation(0)
                     }else if(this.timer==15*this.targetDistance-14){
@@ -373,7 +373,7 @@ turn.prototype.update=function(){
                 break
                 case 5: case 39: case 40: case 41: case 42: case 51: case 52: case 56: case 57: case 74:
                 case 75: case 78: case 88: case 92: case 93: case 94: case 155: case 186: case 189: case 244:
-                case 249: case 301: case 302: case 352: case 391: case 414: case 458:
+                case 249: case 301: case 302: case 352: case 391: case 414: case 458: case 497: case 498:
                     if(variants.nobasicanim){
                         this.selfCall(2)
                         this.remove=true
@@ -391,7 +391,7 @@ turn.prototype.update=function(){
                             if(
                                 this.userCombatant.name=='General Duckion'||
                                 this.type!=39&&this.type!=56&&this.type!=74&&this.type!=75&&this.type!=78&&this.type!=92&&this.type!=93&&this.type!=94&&this.type!=155&&this.type!=186&&
-                                this.type!=189&&this.type!=244&&this.type!=249&&this.type!=352&&this.type!=392&&this.type!=414
+                                this.type!=189&&this.type!=244&&this.type!=249&&this.type!=352&&this.type!=392&&this.type!=414&&this.type!=497&&this.type!=498
                             ){
                                 if(this.timer==1){
                                     this.userCombatant.startAnimation(3)

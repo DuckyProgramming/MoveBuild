@@ -1323,6 +1323,9 @@ function intentDescription(attack,user,info){
 			case 493: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\nRange 1-6`
 			case 495: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDeals Double Damage\nFrom Directly Behind\nRange 1-2`
 			case 496: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[1],user,0):`?`} Gun`
+			case 497: return `Create ${info?attack.effect[0]:`?`} Bolt${pl(attack.effect[0])}`
+			case 498: return `Create ${info?attack.effect[0]:`?`} Bolt${pl(attack.effect[0])}\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block to All Enemies`
+			case 499: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6`
 
 			//mark desc
 			/*

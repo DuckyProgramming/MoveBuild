@@ -3716,11 +3716,8 @@ combatant.prototype.setupGraphics=function(direction){
                 case 'Councilman':
                     this.color={skin:{head:[140,125,120],body:[35,40,45],legs:[25,30,35],arms:[30,35,40]},eye:{back:[255,250,220]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.color.halo=[250,240,230]
-                    this.color.wing=[250,235,210]
                     this.fades.halo=1
-                    this.fades.wing-1
                     this.trigger.display.halo=true
-                    this.trigger.display.wing-true
                     this.size=1.2
                 break
                 case 'Shadow Trooper':
@@ -3746,6 +3743,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.skin.body=0.4
                     this.fades.skin.legs=0.3
                     this.fades.skin.arms=0.3
+                    this.size=0.9
                 break
                 case 'Glitch':
                     this.colorChances=[[200,0,255],[0,100,200],[0,150,255],[255,150,50],[255,75,255],[50,255,50],[125,255,125],[255,255,100],[180,180,180],[255,100,100]]
@@ -4572,6 +4570,62 @@ combatant.prototype.setupGraphics=function(direction){
                     this.trigger.display.mouth=false
                     this.trigger.display.eye[0]=false
                     this.trigger.display.eye[1]=false
+                break
+                case 'Ascended Soul':
+                    this.color={skin:{head:[255,255,255],body:[255,255,255],legs:[255,255,255],arms:[255,255,255]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.fades.skin.head=0.5
+                    this.fades.skin.body=0.4
+                    this.fades.skin.legs=0.3
+                    this.fades.skin.arms=0.3
+                    this.color.halo=[255,255,35]
+                    this.color.wing=[255,255,255]
+                    this.fades.halo=0.5
+                    this.fades.wing=0.5
+                    this.trigger.display.halo=true
+                    this.trigger.display.wing=true
+                    this.size=1.05
+                break
+                case 'Glazer':
+                    this.color={skin:{head:[50,180,220],body:[50,180,220],legs:[50,180,220],arms:[50,180,220]},eye:{back:[60,205,250],front:[60,205,250],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.fades.skin.head=0.5
+                    this.fades.skin.body=0.4
+                    this.fades.skin.legs=0.3
+                    this.fades.skin.arms=0.3
+                    this.color.watch=[220,220,225]
+                    this.fades.watch=1
+                    this.trigger.display.watch=1
+                break
+                case 'Glazer Clone':
+                    this.color={skin:{head:[50,180,220],body:[50,180,220],legs:[50,180,220],arms:[50,180,220]},eye:{back:[60,205,250],front:[60,205,250],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.fades.skin.head=0.25
+                    this.fades.skin.body=0.2
+                    this.fades.skin.legs=0.15
+                    this.fades.skin.arms=0.15
+                break
+                case 'Vengeful Speed':
+                    this.color={skin:{head:[45,70,135],body:[30,35,55],legs:[20,25,45],arms:[20,25,45]},eye:{back:[230,250,255],front:[230,250,255],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.wing=[220,185,255]
+                    this.color.quad=[90,80,200]
+                    this.color.band=[180,170,240]
+                    this.fades.wing=1
+                    this.fades.quad=1
+                    this.fades.band=1
+                    this.trigger.display.wing=true
+                    this.trigger.display.quad=true
+                    this.trigger.display.band=true
+                break
+                case 'Volt King':
+                    this.size=1.2
+                    this.color={skin:{head:[150,165,255],body:[25,30,35],legs:[20,25,30],arms:[15,20,25]},eye:{back:[80,90,135],front:[90,100,145],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.cape=[[90,115,180],[50,85,165]]
+                    this.color.circlet=[[40,80,115],[140,175,230]]
+                    this.color.shock=[160,175,255]
+                    this.fades.cape=1
+                    this.fades.circlet=1
+                    this.trigger.display.cape=true
+                    this.trigger.display.circlet=true
+                    this.trigger.display.shock=true
+                    this.shocks=[[],[]]
                 break
                 default:
                     this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
@@ -7445,6 +7499,40 @@ combatant.prototype.minorDisplay=function(type,key){
                 break
             }
         break
+        case 'Vengeful Speed':
+            switch(type){
+                case 1:
+                    this.layer.fill(...this.color.band,this.fade*this.fades.band)
+                    this.layer.noStroke()
+                    this.layer.ellipse(this.graphics.arms[key].top.x*0.3+this.graphics.arms[key].middle.x*0.7,this.graphics.arms[key].top.y*0.3+this.graphics.arms[key].middle.y*0.7,2)
+                    this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,3)
+                    this.layer.ellipse(this.graphics.arms[key].middle.x*0.7+this.graphics.arms[key].bottom.x*0.3,this.graphics.arms[key].middle.y*0.7+this.graphics.arms[key].bottom.y*0.3,2)
+                break
+            }
+        break
+        case 'Glazer':
+            switch(type){
+                case 1:
+                    dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.watch[0],this.color.watch[1],this.color.watch[2],this.fade*this.fades.watch)
+                    hexagon(this.layer,
+                        this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7-2*lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7-2*lcos(dir+90),
+                        this.graphics.arms[key].middle.x*0.2+this.graphics.arms[key].bottom.x*0.8-lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.2+this.graphics.arms[key].bottom.y*0.8-lcos(dir+90),
+                        this.graphics.arms[key].middle.x*0.2+this.graphics.arms[key].bottom.x*0.8+lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.2+this.graphics.arms[key].bottom.y*0.8+lcos(dir+90),
+                        this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7+2*lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7+2*lcos(dir+90),
+                        this.graphics.arms[key].middle.x*0.4+this.graphics.arms[key].bottom.x*0.6+lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.4+this.graphics.arms[key].bottom.y*0.6+lcos(dir+90),
+                        this.graphics.arms[key].middle.x*0.4+this.graphics.arms[key].bottom.x*0.6-lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.4+this.graphics.arms[key].bottom.y*0.6-lcos(dir+90),
+                    )
+                break
+            }
+        break
     }
 }
 combatant.prototype.minorDisplayGeneral=function(type,key){
@@ -7516,7 +7604,7 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
                 this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
             }else if(this.name=='Decratite'){
                 for(let c=0,lc=8;c<lc;c++){
-                    this.layer.stroke(...upColor(this.color.eye.back,50,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c]),this.fade*this.fades.eye[key])
+                    this.layer.stroke(...upColor(...this.color.eye.back,50,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c]),this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)*(1-c/lc*0.5))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
@@ -7643,18 +7731,18 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
         case 3:
             this.layer.noFill()
             if(this.anim.eyeStyle[key]==6&&this.anim.eye[key]>0){
-                this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*4,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
-                this.layer.stroke(this.color.eye.front,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*4,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2)
             }else if(this.anim.eyeStyle[key]==5){
-                this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((6-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 if(this.anim.eye[key]==0){
                     this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
@@ -7663,7 +7751,7 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
                 }
-                this.layer.stroke(this.color.eye.front,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((6-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 if(this.anim.eye[key]==0){
                     this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
@@ -7677,40 +7765,39 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
                     this.layer.strokeWeight(0.6)
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,2.7*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),2.7*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
                     if(this.anim.eyeStyle[key]==4){
-                        this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                        this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                         this.layer.strokeWeight(0.5)
                         this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,10*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),10*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
                     }
                 }
             }else if(this.anim.eyeStyle[key]==3&&this.anim.eye[key]>0){
-                this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
-                this.layer.stroke(this.color.eye.front,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
             }else if(this.anim.eyeStyle[key]==2&&this.anim.eye[key]>0){
-                this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
-                this.layer.stroke(this.color.eye.front,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
             }else if(this.anim.eyeStyle[key]==1&&this.anim.eye[key]>0){                    
-                this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
-                this.layer.stroke(this.color.eye.front,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
             }else if(this.name=='Decratite'){
                 for(let c=0,lc=8;c<lc;c++){
-                    this.layer.stroke(...upColor(this.color.eye.back,50,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c]),this.fade*this.fades.eye[key])
+                    this.layer.stroke(...upColor(...this.color.eye.back,50,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c]),this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)*(1-c/lc*0.5))
                     if(this.anim.eye[key]==0){
-                        this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
                     }else{
                         this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
@@ -7722,25 +7809,23 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
                     this.layer.strokeWeight(0.6)
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
                     if(this.anim.eyeStyle[key]==4){
-                        this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                        this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                         this.layer.strokeWeight(0.5)
                         this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
                     }
                 }
             }else{
-                this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 if(this.anim.eye[key]==0){
-                    this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
                     this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
                 }else{
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
                 }
-                this.layer.stroke(this.color.eye.front,this.fade*this.fades.eye[key])
+                this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 if(this.anim.eye[key]==0){
-                    this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
                     this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
                 }else{
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
@@ -7751,7 +7836,7 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
                     this.layer.strokeWeight(0.6)
                     this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
                     if(this.anim.eyeStyle[key]==4){
-                        this.layer.stroke(this.color.eye.back,this.fade*this.fades.eye[key])
+                        this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                         this.layer.strokeWeight(0.5)
                         this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
                     }

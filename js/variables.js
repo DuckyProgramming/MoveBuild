@@ -213,37 +213,30 @@ types={
         {name:'Ducksquad',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:`Duck with purpose`},
         {name:'Lockdown',life:216,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[2]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[27,9]},{type:409,effect:[22,11]}],description:`Stay in jail`},
         {name:'Crusader',life:109,behavior:21,spec:[0],move:{type:0,speed:1},attack:[{type:342,effect:[8,2]},{type:6,effect:[12]},{type:344,effect:[15]},{type:48,effect:[13]},{type:347,effect:[15]}],description:`Two millennia late to the party`},
-
-        //mark 31
-        //mark mod(29)
         {name:'Mini Puffball',life:1,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[4]},{type:4,effect:[8]}],description:`Apparently fluffy`},
         {name:'Inkblot',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:31,effect:[6]},{type:29,effect:[9]},{type:21,effect:[]}],description:`Not really his fault`},
         {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:152,effect:[999]}],description:`He had one job`},
         {name:'Globe Head',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:493,effect:[7,2]},{type:30,effect:[5,10]}],description:`Don't want to be around him`},
         {name:'Infested Prism',life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[11]},{type:378,effect:[10,10]},{type:492,effect:[2]}],description:`What's going on in there`},
-        {name:'Crow',life:25,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:31,effect:[4]}],description:`An IQ too high?`},
-
+        {name:'Crow',life:13,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:31,effect:[4]}],description:`An IQ too high?`},
         {name:'Smoker',life:73,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:396,effect:[7,7]},{type:54,effect:[4,1,'Dazed']}],description:`Don't do this`},
-        {name:'Grail',life:35,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:439,effect:[12,1]},{type:21,effect:[]},{type:491,effect:[5]}],description:`Not of the holy variety`},
+        {name:'Grail',life:35,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:439,effect:[10,1]},{type:21,effect:[]},{type:491,effect:[5]}],description:`Not of the holy variety`},
         {name:'Shipment',life:42,behavior:10,spec:[],move:{type:2,speed:1},attack:[{type:3,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in a single backup`},
         {name:'Fat Biker',life:96,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:192,effect:[12]}],description:`Barely fits on his bike`},
         {name:'Bean Counter',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:368,effect:[6,1]},{type:329,effect:[11,1]},{type:21,effect:[]}],description:`Racking up those numbers`},
-        {name:'Flanker',life:31,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:489,effect:[7]},{type:495,effect:[5]},{type:254,effect:[5,1]}],description:`Just turn around`},
+        {name:'Flanker',life:31,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:489,effect:[7]},{type:495,effect:[5]},{type:254,effect:[5,1]}],description:`Just turn around`},
         {name:'Ollie',life:43,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:129,effect:[4]},{type:496,effect:[10,7]},{type:12,effect:[13]}],description:`He's trying his best`},
-
         {name:'Defective Robot A',life:64,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]}],description:`Badly produced soldier`},
         {name:'Defective Robot B',life:65,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:20,effect:[4]}],description:`Badly written microcode`},
         {name:'Defective Robot C',life:66,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:10,effect:[4]}],description:`Badly planned architecture`},
         {name:'Rusted Robot',life:81,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:27,effect:[5,2]},{type:488,effect:[2,2]},{type:10,effect:[3]}],description:`Produced far too long ago`},
-        {name:'Warning Robot',life:92,behavior:0,spec:[0,23],move:{type:0,speed:1},attack:[{type:20,effect:[3]}],description:`We've been expecting you`},
+        {name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[3]}],description:`We've been expecting you`},
+        {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
+        {name:'Glazer',life:60,behavior:1,spec:[23],move:{type:2,speed:2},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
+        {name:'Glazer Clone',life:60,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
+        {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[4]},{type:77,effect:[6]},{type:367,effect:[9]},{type:380,effect:[12]}],description:`PVZ Fusion looking`},
+        {name:'Volt King',life:162,behavior:6,spec:[0],move:{type:0,speed:2},attack:[{type:497,effect:[6]},{type:59,effect:[10]},{type:45,effect:[6]},{type:53,effect:[10,1,'Electrocuted']},{type:5,effect:[1,'Electrocuted']}],description:`One with nothing`},
 
-        {name:'Zenith',life:111,behavior:0,spec:[0,2],move:{type:0,speed:0},attack:[{type:462,effect:[6,1]},{type:10,effect:[10]},{type:478,effect:[6,1]}],description:`All that's made can surely break`},
-        {name:'Zenith Eye A',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:479,effect:[8,2]}],description:`All`},
-        {name:'Zenith Eye B',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:480,effect:[8,2]}],description:`that's`},
-        {name:'Zenith Eye C',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:481,effect:[8,2]}],description:`made`},
-        {name:'Zenith Eye D',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:482,effect:[8,2]}],description:`can`},
-        {name:'Zenith Eye E',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:483,effect:[8,2]}],description:`surely`},
-        {name:'Zenith Eye F',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:484,effect:[8,2]}],description:`break`},
         //mark enemy
 
         {name:'Prisoner Informant',life:28,behavior:1,spec:[22],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Whose side is he on?`},
@@ -266,13 +259,19 @@ types={
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
         {name:'Bronze Orb B',life:33,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
-        {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:485,effect:[1]}],description:`Stolen`},
+        {name:'Soul',life:80,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:485,effect:[1]}],description:`Stolen`},
         {name:'Glitch',life:15,behavior:5,spec:[],move:{type:6,speed:1},attack:[{type:6,effect:[8]},{type:9,effect:[12]}],description:`Intended`},
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[12]},{type:28,effect:[18]}],description:`Not intended`},
         {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[12,1,'Electrocuted']},{type:198,effect:[11,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My IQ`},
         {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:2,effect:[3]},{type:3,effect:[10]},{type:4,effect:[6]},{type:225,effect:[]}],description:`Stuck in the ground`},
         {name:'Keystone',life:62,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
         {name:'Paramilitary',life:60,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:403,effect:[10]}],description:`"Faction"`},
+        {name:'Zenith Eye A',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:479,effect:[8,2]}],description:`All`},
+        {name:'Zenith Eye B',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:480,effect:[8,2]}],description:`that's`},
+        {name:'Zenith Eye C',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:481,effect:[8,2]}],description:`made`},
+        {name:'Zenith Eye D',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:482,effect:[8,2]}],description:`can`},
+        {name:'Zenith Eye E',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:483,effect:[8,2]}],description:`surely`},
+        {name:'Zenith Eye F',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:484,effect:[8,2]}],description:`break`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:403,effect:[11]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
@@ -300,6 +299,7 @@ types={
         {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,2,'Void']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
+        {name:'Zenith',life:111,behavior:0,spec:[0,2],move:{type:0,speed:0},attack:[{type:462,effect:[6,1]},{type:10,effect:[10]},{type:478,effect:[6,1]}],description:`All that's made can surely break`},
 
         {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[36,2,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
@@ -861,6 +861,9 @@ types={
         {name:'Ruination',class:4},
         {name:'2 Tile Back Strike',class:1},
         {name:'Counter Gun',class:2},
+        {name:'Summon Bolt',class:4},
+        {name:'Summon Bolt / Block All',class:4},
+        {name:'6 Tile Pentuple Strike',class:1},
 
         //mark attack
     ],relic:[
@@ -2134,6 +2137,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Cut Rectangular 6',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Rectangular 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -2260,6 +2272,15 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Peak Overextended 3',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'A 5',
@@ -2430,6 +2451,23 @@ types={
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Redistapered 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Redistributed 5',
+            map:[
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
             ],
         },{
             name:'Induction 4',
@@ -2660,6 +2698,17 @@ types={
                 [{type:-1},{type:[]},{type:[9]},{type:[9]},{type:[]},{type:[9]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[9]},{type:[9]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Volt 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[29]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[29]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[29]},{type:-1}],
+                [{type:[29]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[29]}],
+                [{type:-1},{type:[29]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[29]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[29]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Dualized 7',
@@ -3468,6 +3517,14 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
+            name:'Stop 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Inducer 7',
             map:[
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -3590,11 +3647,28 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Mini Induction 7',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
+            ],
+        },{
             name:'Canyon 4',
             map:[
                 [{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+            ],
+        },{
+            name:'Canyon 5',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]}],
             ],
         },{
             name:'Rooftop 5',
@@ -3840,6 +3914,17 @@ types={
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Barred 6',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Road 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3909,6 +3994,104 @@ types={
             ],ally:[
             ],
         },{
+            level:['Barred 6'],class:2,world:0,
+            name:'Volt King',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Volt King'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:3},name:'Bolt',turn:2},
+                {position:{x:3,y:0},name:'Bolt',turn:2},
+                {position:{x:1,y:4},name:'Bolt',turn:5},
+                {position:{x:4,y:1},name:'Bolt',turn:5},
+                {position:{x:2,y:5},name:'Bolt',turn:8},
+                {position:{x:5,y:2},name:'Bolt',turn:8},
+                {position:{x:3,y:6},name:'Bolt',turn:11},
+                {position:{x:6,y:3},name:'Bolt',turn:11},
+                {position:{x:4,y:6},name:'Bolt',turn:14},
+                {position:{x:6,y:4},name:'Bolt',turn:14},
+                {position:{x:5,y:6},name:'Bolt',turn:17},
+                {position:{x:6,y:5},name:'Bolt',turn:17},
+                {position:{x:6,y:6},name:'Bolt',turn:20},
+            ],ally:[
+            ],
+        },{
+            level:['Peak Overextended 3'],class:1,world:2,
+            name:'Vengeful Speed',
+            player:{position:[[{x:4,y:3}],[{x:5,y:3},{x:5,y:4}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Vengeful Speed'},
+                {position:{x:1,y:1},name:'Vengeful Speed'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:0,y:2},name:'Veneful',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Redistributed 5'],class:1,world:2,
+            name:'Ascended Soul',
+            player:{position:[[{x:0,y:1}],[{x:0,y:1},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Ascended Soul'},
+                {position:{x:2,y:0},name:'Soul'},
+                {position:{x:2,y:4},name:'Soul'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:1},name:'Soul',turn:5},
+                {position:{x:2,y:3},name:'Soul',turn:10},
+            ],ally:[
+            ],
+        },{
+            level:['Stop 5'],class:1,world:2,
+            name:'Glazer',
+            player:{position:[[{x:5,y:2}],[{x:5,y:1},{x:5,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Glazer'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Mini Induction 7'],class:0,world:2,
+            name:'Management Shotgunner',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:3}]]},
+            enemy:[
+                {position:{x:4,y:1},name:'Management Shotgunner'},
+                {position:{x:5,y:3},name:'Management Shotgunner'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:4,y:2},name:'Management Shotgunner',turn:6},
+            ],ally:[
+            ],
+        },{
+            level:['Canyon 5'],class:0,world:2,
+            name:'Management Light Infantry',
+            player:{position:[[{x:0,y:1}],[{x:0,y:1},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Management Light Infantry'},
+                {position:{x:4,y:1},name:'Management Light Infantry'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:0},name:'Management Soldier',turn:6},
+                {position:{x:4,y:3},name:'Management Soldier',turn:7},
+            ],ally:[
+            ],
+        },{
+            level:['Redistapered 5'],class:0,world:2,
+            name:'Soul',
+            player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:2,y:2}]]},
+            enemy:[
+                {position:{x:3,y:0},name:'Soul'},
+                {position:{x:1,y:3},name:'Soul'},
+                {position:{x:4,y:3},name:'Soul'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:1},name:'Soul',turn:5},
+                {position:{x:2,y:2},name:'Soul',turn:10},
+            ],ally:[
+            ],
+        },{
             level:['Barred 5'],class:2,world:2,
             name:'Zenith',
             player:{position:[[{x:4,y:4}],[{x:4,y:5},{x:5,y:4}]]},
@@ -3935,7 +4118,6 @@ types={
             enemy:[
                 {position:{x:0,y:0},name:'Rusted Robot'},
                 {position:{x:1,y:0},name:'Rusted Robot'},
-                {position:{x:3,y:0},name:'Management Robot'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:6,y:6},name:'Rusted Robot',turn:5},
@@ -3943,7 +4125,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Long Spikes 5'],class:0,world:1,
+            level:['Long 5'],class:0,world:1,
             name:'Ollie',
             player:{position:[[{x:3,y:5}],[{x:2,y:5},{x:4,y:5}]]},
             enemy:[
@@ -4523,7 +4705,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Managerial 7'],class:2,world:2,
+            level:['Managerial 7'],class:1,world:2,
             name:'Lockdown',
             player:{position:[[{x:6,y:6}],[{x:6,y:6},{x:0,y:0}]]},
             enemy:[
@@ -6231,13 +6413,13 @@ types={
             ],ally:[
             ],
         },{
-            level:['Rectangular 6'],class:1,world:1,
+            level:['Cut Rectangular 6'],class:1,world:1,
             name:'Chief Deployer',
-            player:{position:[[{x:4,y:4}],[{x:2,y:4},{x:6,y:4}]]},
+            player:{position:[[{x:4,y:3}],[{x:2,y:3},{x:6,y:3}]]},
             enemy:[
-                {position:{x:2,y:0},name:'Chief Deployer'},
-                {position:{x:1,y:0},name:'Sentry'},
-                {position:{x:3,y:0},name:'Sentry'},
+                {position:{x:3,y:1},name:'Chief Deployer'},
+                {position:{x:2,y:1},name:'Sentry'},
+                {position:{x:4,y:1},name:'Sentry'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
@@ -7827,7 +8009,7 @@ After adding both, also add a Miracle.`,
         {name:'Spheron',desc:'Enemies Retain Block'},
         {name:'Enforcer',desc:'All Enemies Gain 1 Strength When Attacked'},
         {name:'Rock Golem',desc:'Enemies Have a 25% Chance to Get 20 Block Each Turn'},
-        {name:'Big Slime',desc:'More Elites Split on Death'},
+        {name:'Big Slime',desc:'Get Stuck Every 10 Turns'},
         {name:'Spike Slime',desc:'All Fatigues Become Spiked, and You Get 50% More'},//30
         {name:'Big Spike Slime',desc:'Get Spiked Every 5 Turns'},
         {name:'Moss Creature',desc:'All Enemies Get 3 Block Per Turn'},
@@ -8040,6 +8222,37 @@ After adding both, also add a Miracle.`,
         {name:'Nerfmaster',desc:'When You Get Nerfed, Gain 1 Weak'},
         {name:'Big Bounce',desc:'Enemies Have a 10% Chance to be Tripled but Pushed Back 1 Turn'},
         {name:'Pinstripe',desc:'When an Enemy Dies, Take 2 Damage'},//240
+
+        /*{name:'Mini Puffball',desc:''},
+        {name:'Inkblot',desc:''},
+        {name:'Snail',desc:''},
+        {name:'Globe Head',desc:''},
+        {name:'Infested Prism',desc:''},
+        {name:'Crow',desc:''},
+        {name:'Smoker',desc:''},
+        {name:'Grail',desc:''},
+        {name:'Shipment',desc:''},
+        {name:'Fat Biker',desc:''},//250
+        {name:'Bean Counter',desc:''},
+        {name:'Flanker',desc:''},
+        {name:'Ollie',desc:''},
+        {name:'Defective Robot A',desc:''},
+        {name:'Defective Robot B',desc:''},
+        {name:'Defective Robot C',desc:''},
+        {name:'Rusted Robot',desc:''},
+        {name:'Warning Robot',desc:''},
+        {name:'Ascended Soul',desc:''},
+        {name:'Glazer',desc:''},//260
+        {name:'Glazer Clone',desc:''},
+        {name:'Vengeful Speed',desc:''},
+        {name:'Volt King',desc:''},
+        {name:'Zenith',desc:''},
+        {name:'Zenith Eye A',desc:''},
+        {name:'Zenith Eye B',desc:''},
+        {name:'Zenith Eye C',desc:''},
+        {name:'Zenith Eye D',desc:''},
+        {name:'Zenith Eye E',desc:''},
+        {name:'Zenith Eye F',desc:''},*///270
 
         //mark mod
     ],deckmode:[

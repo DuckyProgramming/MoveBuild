@@ -1,8 +1,5 @@
-        {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
-        {name:'Glazer',life:65,behavior:1,spec:[24],move:{type:2,speed:2},attack:[{type:270,effect:[11]}],description:`The most egotistical man alive`},
-        {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:111,effect:[6]},{type:77,effect:[8]},{type:367,effect:[12]},{type:380,effect:[16]}],description:`PVZ Fusion looking`},
+new bonus mods
 
-returned mage
 ennealis
 
 monday 9/28 10:00 am coc building
@@ -10,13 +7,11 @@ Skiles 006 Wednesday, October 21, at 1:00pm
 
 CS 120 [NEW SANAE / 8400]
 
-yapper murders you
-
 press d while picking card opens deck sometimes
+
 more forms of recoil step
 split flaming bottle
 split work experience
-
 quickbuild vs toolbox
 rework every leader after khruschev
 split chernobyl again
@@ -232,33 +227,6 @@ check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
 
 [slio9]
-
-the 64/64/64/8 update (+25)
-
-world 3:
-3 starters
-[soul]
-move 8 enemies to easies, 4 easies
-[management roller robot (rammer robot but he attacks whenever you play a card)]
-[management shotgunner]
-[management light infantry]
-[pure swordsman]
-4 elites
-[soul boss]
-[glazer - he spawns a temporary copy of himself every turn]
-[vengeful speed]
-[lockdown been moved]
-new boss - zenith
-
-but what about on diff 31?
-modded(29)?
-new bonus mods
-
-[lunar scatter]
-
-world 4:
-new elite - golden guard
--h eternal judge (spawns rewriter lol)
 
 the 400 relic update
 +34 shop relics

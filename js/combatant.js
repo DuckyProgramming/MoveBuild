@@ -220,7 +220,7 @@ class combatant{
                 '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
                 '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
                 'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
-                'Splash Weak Per Turn','Status Block',
+                'Splash Weak Per Turn','Status Block','Counter Shock All Combat'
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -321,7 +321,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//96
                 0,0,0,0,0,0,0,1,1,0,//97
                 0,0,0,0,0,1,1,0,0,0,//98
-                0,0,
+                0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -422,7 +422,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//96
                 2,2,2,2,2,2,2,2,2,2,//97
                 2,2,2,2,2,2,2,0,0,0,//98
-                0,2,
+                0,2,0,
             ]}
         /*
         0-none
@@ -822,8 +822,9 @@ class combatant{
                     this.statusEffect('Invisible Per Turn',1)
                 }
             break
-            case 'Soul':
-                this.statusEffect('Dissipating',5)
+            case 'Soul': case 'Ascended Soul':
+                //this.statusEffect('Dissipating',5)
+                this.statusEffect('Mortal',diffUnfair?1:5)
             break
             case 'Spike Pillar':
                 this.statusEffect('Counter All Combat',8)
@@ -970,16 +971,19 @@ class combatant{
                 this.statusEffect('Splash Vulnerable Per Turn',1)
             break
             case 'Grail':
-                this.statusEffect('Dexterity on Hit',2)
+                this.statusEffect('Dexterity on Hit',diffUnfair?3:2)
             break
             case 'Bean Counter':
-                this.statusEffect('Status Block',3)
+                this.statusEffect('Status Block',diffUnfair?5:3)
             break
             case 'Crow':
-                this.statusEffect('Dodge',1)
+                this.statusEffect('Dodge',diffUnfair?2:1)
             break
             case 'Ollie':
-                this.statusEffect('Miss',999)
+                this.statusEffect('Miss',diffUnfair?5:999)
+            break
+            case 'Glazer Clone':
+                this.statusEffect('Mortal',diffUnfair?15:20)
             break
         }
         //mark b
@@ -1072,7 +1076,8 @@ class combatant{
                         this.statusEffect('Strength Per Turn',1)
                         this.statusEffect('Control',1)
                     break
-                    case 'Pointy': case 'Sentry': case 'Prisoner': case 'Elf Archer': case 'Normal1': case 'Structural Energy': case 'Disorder Energy': case 'Prisoner Informant': case 'Inconsistent': case 'Latency': case 'Dark Priest': case 'Brawler':
+                    case 'Pointy': case 'Sentry': case 'Prisoner': case 'Elf Archer': case 'Normal1': case 'Structural Energy': case 'Disorder Energy': case 'Prisoner Informant': case 'Inconsistent': case 'Latency':
+                    case 'Dark Priest': case 'Brawler': case 'Flanker': case 'Darkblot': case 'Inkblot':
                         this.spec.push(0)
                     break
                     case 'Romeo':
@@ -1121,8 +1126,14 @@ class combatant{
                     case 'Big Slime': case 'Big Spike Slime': case 'Big Slimoid':
                         this.subAttackTypeSwitch([[2,32,32,[1,2]]])
                     break
-                    case 'Moss Creature': case 'Deployer': case 'Chief Deployer':
+                    case 'Moss Creature': case 'Deployer':
                         this.statusEffect('Armor',5)
+                    break
+                    case 'Chief Deployer':
+                        this.statusEffect('Armor',6)
+                    break
+                    case 'Shipment':
+                        this.statusEffect('Armor',4)
                     break
                     case 'Goblin':
                         this.attack.splice(0,1)
@@ -1156,7 +1167,7 @@ class combatant{
                         this.spec.push(7)
                         this.removeAttack(4)
                     break
-                    case 'Management Robot': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Management Robot Commander': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Experimental Robot':
+                    case 'Management Robot': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Management Robot Commander': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Experimental Robot': case 'Rusted Robot': case 'Defective Robot A': case 'Defective Robot B':
                         this.spec.push(7)
                     break
                     case 'Management Soldier':
@@ -1211,7 +1222,7 @@ class combatant{
                         this.statusEffect('Metallicize',1)
                     break
                     case 'Lightspeed':
-                        this.move.speed++
+                        //this.move.speed++
                         this.subAttackTypeSwitch([[0,101,77,[]],[0,19,367,[]],[0,99,380,[]],[0,100,38,[]]])
                     break
                     case 'Swordmaster':
@@ -1575,6 +1586,37 @@ class combatant{
                     case 'Rammer Robot':
                         this.spec.push(20)
                     break
+                    case 'Volt King':
+                        this.subAttackTypeSwitch([[1,497,498,[10]]])
+                    break
+                    case 'Vengeful Speed':
+                        this.subAttackTypeSwitch([[2,11,499,[1.5]]])
+                        this.removeAttack(77)
+                    break
+                    case 'Glazer': case 'Glazer Clone':
+                        this.subAttackTypeSwitch([[0,270,433,[]]])
+                    break
+                    case 'Zenith':
+                        this.subAttackTypeSwitch([[0,10,126,[]]])
+                    break
+                    case 'Zenith Eye A': case 'Zenith Eye B': case 'Zenith Eye C': case 'Zenith Eye D': case 'Zenith Eye E': case 'Zenith Eye F':
+                        this.statusEffect('Double Damage',1)
+                    break
+                    case 'Warning Robot':
+                        this.subAttackTypeSwitch([[0,31,20,[]]])
+                    break
+                    case 'Defective Robot C':
+                        this.statusEffect('Counter Shock All Combat',1)
+                    break
+                    case 'Smoker':
+                        this.statusEffect('Splash Weak Per Turn',1)
+                    break
+                    case 'Fat Biker':
+                        this.addAttack(195,[22])
+                    break
+                    case 'Snail':
+                        this.subAttackTypeSwitch([[0,2,11,[]]])
+                    break
 
                     //mark 31
                 }
@@ -1676,6 +1718,7 @@ class combatant{
                         &&this.attack[a].type!=189
                         &&this.attack[a].type!=300
                         &&this.attack[a].type!=391
+                        &&this.attack[a].type!=497
                     ){
                         this.attack[a].effect[b]=min(this.attack[a].effect[b]*value,999)
                         this.attack[a].baseEffect[b]=min(this.attack[a].baseEffect[b]*value,999)
@@ -2069,7 +2112,7 @@ class combatant{
             case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420:
             case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
             case 459: case 463: case 471: case 475: case 477: case 479: case 480: case 481: case 482: case 483:
-            case 484: case 486: case 493:
+            case 484: case 486: case 493: case 499:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2706,7 +2749,7 @@ class combatant{
         if(this.spec.includes(8)){
             this.battle.turnManager.loadEnemyAttackRepeat(this.id)
         }
-        if(this.spec.includes(20)&&!this.spec.includes(-1)||this.spec.includes(23)){
+        if(this.spec.includes(20)&&!this.spec.includes(-1)){
             this.battle.turnManager.loadEnemyAttackRepeat(this.id)
             this.spec.push(-1)
         }
@@ -2865,7 +2908,7 @@ class combatant{
                         case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361:
                         case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                         case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
-                        case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493:
+                        case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3096,7 +3139,7 @@ class combatant{
                     case 327: case 328: case 336: case 337: case 338: case 340: case 346: case 353: case 358: case 361:
                     case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                     case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
-                    case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493:
+                    case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -4484,6 +4527,9 @@ class combatant{
                         }
                         if(this.status.main[559]>0){
                             userCombatant.statusEffect('Weak',this.status.main[559])
+                        }
+                        if(this.status.main[982]>0){
+                            userCombatant.statusEffect('Shock',this.status.main[982])
                         }
                         if(this.status.main[50]>0){
                             this.addBlock(this.status.main[50])
@@ -6185,8 +6231,15 @@ class combatant{
         this.turnStatus=[0,0,0,0,0,0]
     }
     tick(sub){
-        if(this.name==`Airi`){
-            this.charge++
+        switch(this.name){
+            case 'Airi':
+                this.charge++
+            break
+            case 'Glazer':
+                if(this.life>0){
+                    this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Glazer Clone',types.combatant),this.goal.anim.direction)
+                }
+            break
         }
         if(this.elemental){
             if(this.status.main[305]<=0){
@@ -8154,12 +8207,12 @@ class combatant{
                                 case 20: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+a*10); break
                                 case 21: this.layer.text('On Survival, Heal 15 HP\nand Gain 250 Currency',40,305+a*10); break
                                 case 22: this.layer.text('On Survival, Gain 100 Currency',40,305+a*10); break
-                                case 23: this.layer.text('Attacks When You Play a Card',40,305+a*10); break
+                                case 23: this.layer.text('Creates a Copy of Self Each Turn',40,305+a*10); break
 
                             }
                         }
                     }
-                    if(this.name=='Eternal Judge'){
+                    if(this.name=='Eternal Judge'||this.name=='-h Eternal Judge'){
                         this.layer.fill(0,this.fade*this.infoAnim.description)
                         for(let a=0,la=this.sins.length;a<la;a++){
                             switch(this.sins[a]){
@@ -8575,7 +8628,7 @@ class combatant{
                         if(this.battle.modded(141)&&floor(random(0,2))==0&&this.initialName!='Soul'&&(this.battle.encounter.class==1||this.battle.encounter.class==2)){
                             this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
                         }
-                        if(this.battle.modded(29)){
+                        /*if(this.battle.modded(29)){
                             switch(this.initialName){
                                 case 'Big Duck':
                                     this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
@@ -8689,7 +8742,7 @@ class combatant{
                                 break
 
                             }
-                        }
+                        }*/
                         switch(this.initialName){
                             case 'Slimoid':
                                 type=findName('Modicum',types.combatant)
@@ -8894,6 +8947,23 @@ class combatant{
                     this.shocks.push([random(0,360),1])
                 }
             break
+            case 'Volt King':
+                for(let a=0,la=this.shocks.length;a<la;a++){
+                    for(let b=0,lb=this.shocks[a].length;b<lb;b++){
+                        this.shocks[a][b][1]-=0.05
+                        if(this.shocks[a][b][1]<=0){
+                            delete this.shocks[a][b]
+                            this.shocks[a].splice(b,1)
+                            b--
+                            lb--
+                        }
+                    }
+                }
+                if(this.time%5==0){
+                    this.shocks[0].push([random(0,360),1])
+                    this.shocks[1].push([random(0,360),1])
+                }
+            break
             case 'Glitch': case 'Glitched Giant':
                 if(this.time%5==0){
                     let part=floor(random(0,6))
@@ -8907,7 +8977,7 @@ class combatant{
                     }
                 }
             break
-            case 'Eternal Judge':
+            case 'Eternal Judge': case '-h Eternal Judge':
                 for(let a=0,la=this.sins.length;a<la;a++){
                     this.infoAnim.sins[a]=smoothAnim(this.infoAnim.sins[a],this.sins[a]>=0,0,1,5)
                     if(this.life>0){
@@ -8932,6 +9002,22 @@ class combatant{
                 this.fades.shield=smoothAnim(this.fades.shield,this.status.main[14]>0,0,1,15)
                 this.move.type=this.status.main[14]>0?1:0
                 this.move.speed=this.status.main[14]>0?2:1
+            break
+            case 'Glazer':
+                this.fades.skin.head=0.5*(0.75+lsin(this.time*3)*0.25)
+                this.fades.skin.body=0.4*(0.75+lsin(this.time*3)*0.25)
+                this.fades.skin.legs=0.3*(0.75+lsin(this.time*3)*0.25)
+                this.fades.skin.arms=0.3*(0.75+lsin(this.time*3)*0.25)
+                this.fades.mouth=0.75+lsin(this.time*3)*0.25
+                this.fades.eye=[0.75+lsin(this.time*3)*0.25,0.75+lsin(this.time*3)*0.25]
+            break
+            case 'Glazer Clone':
+                this.fades.skin.head=0.25*(0.5+lsin(this.time*3)*0.5)
+                this.fades.skin.body=0.2*(0.5+lsin(this.time*3)*0.5)
+                this.fades.skin.legs=0.15*(0.5+lsin(this.time*3)*0.5)
+                this.fades.skin.arms=0.15*(0.5+lsin(this.time*3)*0.5)
+                this.fades.mouth=0.5+lsin(this.time*3)*0.5
+                this.fades.eye=[0.5+lsin(this.time*3)*0.5,0.5+lsin(this.time*3)*0.5]
             break
         }
     }
