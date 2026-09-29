@@ -34,7 +34,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=57
+        this.listKey=58
         this.listInput=[
             [0,4],
             [1,8],
@@ -87,6 +87,7 @@ class group{
             [52,63],
             [53,64],
             [56,65],
+            [57,66],
         ]
 
         this.reset()
@@ -2762,6 +2763,11 @@ class group{
                         this.battle.addSpecificEnergy(args[0],this.player,6)
                     }
                 break
+                case 79:
+                    if(this.cards[a].name==args[1]){
+                        this.cards[a].costDown(0,[args[0]])
+                    }
+                break
                 //mark allargs
             }
         }
@@ -3299,6 +3305,7 @@ class group{
             }
         }
         userCombatant.activateDraw()
+        this.battle.combatantManager.drawCardFront(card.class,card)
         this.battle.relicManager.activate(19,[card,this.player])
         if(card.getBasicMultiple([1,2])){
             if(this.basicChange[0]>0){
@@ -5164,7 +5171,7 @@ class group{
                     this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],
                     this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),
                     this.anim[37],this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],
-                    this.anim[50],this.anim[51],this.anim[52],this.anim[54],this.anim[55],this.anim[56],
+                    this.anim[50],this.anim[51],this.anim[52],this.anim[54],this.anim[55],this.anim[56],this.anim[57],
                 ]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
@@ -6610,6 +6617,17 @@ class group{
                 this.cards[a].fuel+=this.statusMarker[1]
                 if(this.status[56]>0){
                     this.status[56]--
+                }
+            break
+            case 66:
+                if(this.cards[a].attack!=-3){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    this.battle.combatantManager.areaAbstract(2,['Burn',this.status[57]*max(0,this.cards[a].getCost(0))],userCombatant.tilePosition,[3,userCombatant.id],[0,2],false,0)
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status[57]>0){
+                        this.status[57]=0
+                    }
                 }
             break
         }

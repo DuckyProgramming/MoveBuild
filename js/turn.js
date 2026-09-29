@@ -92,7 +92,11 @@ class turn{
                 }
                 if(this.userCombatant.getStatus('Single Attack Regeneration')>0){
                     this.clearAttack[15]=true
-                    this.userCombatant.tempStatus[4]+=this.userCombatant.getStatus('Single Attack Regeneration')
+                    this.userCombatant.tempStatus[5]+=this.userCombatant.getStatus('Single Attack Regeneration')
+                }
+                if(this.userCombatant.getStatus('Single Attack Poison')>0){
+                    this.clearAttack[16]=true
+                    this.userCombatant.tempStatus[6]+=this.userCombatant.getStatus('Single Attack Poison')
                 }
             break
         }

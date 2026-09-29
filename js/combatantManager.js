@@ -1421,6 +1421,9 @@ class combatantManager{
     playCardFront(cardClass,card){
         this.combatants.forEach(combatant=>combatant.playCardFront(cardClass,card))
     }
+    drawCardFront(cardClass,card){
+        this.combatants.forEach(combatant=>combatant.drawCardFront(cardClass,card))
+    }
     getRandomNonplayerCombatantIndex(){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){

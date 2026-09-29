@@ -1173,6 +1173,9 @@ class card{
         if((this.spec.includes(5)||this.spec.includes(41))&&userCombatant.getStatus('Unplayable Discard Damage Random')>0){
             this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Unplayable Discard Damage Random'),userCombatant.id])
         }
+        if(userCombatant.getStatus('Discard Damage Random')>0){
+            this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Discard Damage Random'),userCombatant.id])
+        }
         if(this.class==11&&userCombatant.getStatus('Skill Discard Draw')>0){
             this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Skill Discard Draw'))
         }
@@ -1606,7 +1609,7 @@ class card{
             case 1202:
                 this.battle.dropDrawShuffle(this.player,findName('Rewrite',types.card),0,0)
             break
-            case 2580:
+            case 2580: case 10169:
                 userCombatant.addBlock(this.effect[1])
             break
             case 2770:
@@ -1886,7 +1889,7 @@ class card{
             case 5472:
                 userCombatant.statusEffect('Counter All',this.effect[2])
             break
-            case 5473:
+            case 5473: case 10115:
                 if(this.battle.cardManagers[this.player].midDraw){
                     this.battle.cardManagers[this.player].reserve.drawEffects.push([5,this.effect[1]])
                 }else{
@@ -1940,7 +1943,7 @@ class card{
                 this.battle.overlayManager.overlays[8][this.player].active=true
                 this.battle.overlayManager.overlays[8][this.player].activate()
             break
-            case 5630:
+            case 5630: case 10118:
                 userCombatant.statusEffect('Strength',this.effect[1])
             break
             case 5661:
@@ -2871,7 +2874,7 @@ class card{
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
             case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078: case 9644: case 9645:
-            case 9894:
+            case 9894: case 10108: case 10169:
                 this.costDown(2,[1])
             break
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
@@ -3018,7 +3021,7 @@ class card{
             case 5752:
                 this.effect[0]+=this.effect[2]
             break
-            case 5973:
+            case 5973: case 10153:
                 this.effect[0]+=this.effect[1]
                 this.costUp(2,[1])
             break
@@ -6470,7 +6473,7 @@ class card{
                 if(anim[a]>0){
                     switch(a){
                         case 0: case 23: this.layer.stroke(255,0,0,this.fade*anim[a]); break
-                        case 1: case 24: case 28: case 29: case 31: this.layer.stroke(100,255,255,this.fade*anim[a]); break
+                        case 1: case 24: case 28: case 29: case 31: case 46: this.layer.stroke(100,255,255,this.fade*anim[a]); break
                         case 2: this.layer.stroke(255,225,0,this.fade*anim[a]); break
                         case 3: this.layer.stroke(255,100,255,this.fade*anim[a]); break
                         case 4: case 21: case 26: case 27: case 33: case 36: case 43: case 44: this.layer.stroke(255,200,200,this.fade*anim[a]); break
@@ -6498,7 +6501,7 @@ class card{
                     switch(a){
                         case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31:
                         case 32: case 33: case 34: case 35: case 37: case 39: case 40: case 42: case 43: case 44:
-                        case 45:
+                        case 45: case 46:
                             switch(a){
                                 case 21: case 23: case 24: case 45:
                                     this.layer.stroke(220,this.fade*anim[a])
@@ -6553,6 +6556,9 @@ class card{
                                 break
                                 case 44:
                                     this.layer.stroke(150,0,200,this.fade*anim[a])
+                                break
+                                case 46:
+                                    this.layer.stroke(150,0,0,this.fade*anim[a])
                                 break
                             }
                             this.layer.strokeWeight(1)
@@ -6674,13 +6680,15 @@ class card{
     }
     getBasic(cardClass){
         return this.basic&&(this.class==cardClass||cardClass==-1)||
-            this.attack==5045&&(cardClass==1||cardClass==2||cardClass==-1)||
-            (this.attack==6928||this.attack==7128||this.attack==7129)&&(cardClass==1||cardClass==-1)
+            (this.attack==5045||this.attack==10147)&&(cardClass==1||cardClass==2||cardClass==-1)||
+            (this.attack==6928||this.attack==7128||this.attack==7129)&&(cardClass==1||cardClass==-1)||
+            (this.attack==10146)&&(cardClass==2||cardClass==-1)
     }
     getBasicMultiple(cardClasses){
         return this.basic&&cardClasses.includes(this.class)||
-            this.attack==5045&&(cardClasses.includes(1)||cardClasses.includes(2))||
-            (this.attack==6928||this.attack==7128||this.attack==7129)&&cardClasses.includes(1)
+            (this.attack==5045||this.attack==10147)&&(cardClasses.includes(1)||cardClasses.includes(2))||
+            (this.attack==6928||this.attack==7128||this.attack==7129)&&cardClasses.includes(1)||
+            (this.attack==10146)&&cardClasses.includes(2)
     }
     free(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]

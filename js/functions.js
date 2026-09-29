@@ -608,9 +608,12 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[195]!=0){
 				totalStr+=user.status.main[195]
 			}
-			/*if(user.caffeine!=0){
+			if(user.status.main[984]>0&&user.caffeine!=0){
+				totalStr+=user.faith
+			}
+			if(user.status.main[985]>0&&user.caffeine!=0){
 				totalStr+=user.caffeine
-			}*/
+			}
 			if(totalStr>0){
 				damage*=1+totalStr*0.1
 				bonus*=1+totalStr*0.1
@@ -745,6 +748,12 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}
 			if(user.status.main[18]!=0){
 				totalDex+=user.status.main[18]
+			}
+			if(user.status.main[984]>0&&user.caffeine>0){
+				totalDex+=userCombatant.faith
+			}
+			if(user.status.main[985]>0&&user.caffeine>0){
+				totalDex+=userCombatant.caffeine
 			}
 			if(totalDex>0){
 				block*=1+totalDex*0.1
@@ -3004,9 +3013,11 @@ function oracle(){
 		cardData.display()
 	}
 }
-function oracle(){
+function oracleCut(start,end){
 	current.overlayManager.overlays[35][0].active=true
     current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.attack>=start&&card.attack<end)
+    current.overlayManager.overlays[35][0].activate([-99])
 	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()

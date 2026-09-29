@@ -183,7 +183,7 @@ class battle{
         this.lastEncounter=types.encounter[0]
         
         this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,endReady:false,active:false}
-        this.counter={enemy:0,killed:0,tooltip:0}
+        this.counter={enemy:0,killed:0,turnKilled:0,tooltip:0}
         this.result={defeat:false,victory:false,noAnim:false,skipReward:[]}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
         this.first=true
@@ -1187,6 +1187,7 @@ class battle{
         this.turn.main=this.players==2?this.turn.swivel:0
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
+        this.counter.turnKilled=0
         let combatant
         for(let a=0,la=this.energy.gen.length;a<la;a++){
             combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]

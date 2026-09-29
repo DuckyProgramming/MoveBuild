@@ -122,7 +122,8 @@ attack.prototype.update=function(){
         case 9646: case 9647: case 9648: case 9651: case 9654: case 9657: case 9661: case 9678: case 9679: case 9680: case 9685: case 9688: case 9695: case 9706: case 9710: case 9716: case 9717: case 9718: case 9729: case 9731:
         case 9732: case 9735: case 9736: case 9737: case 9750: case 9769: case 9770: case 9773: case 9780: case 9789: case 9809: case 9810: case 9814: case 9822: case 9826: case 9827: case 9828: case 9835: case 9836: case 9838:
         case 9839: case 9842: case 9845: case 9846: case 9847: case 9848: case 9850: case 9851: case 9854: case 9885: case 9886: case 9887: case 9888: case 9889: case 9890: case 9891: case 9892: case 9894: case 9925: case 9954:
-        case 9957: case 9960: case 9984: case 9991: case 10004: case 10005: case 10007: case 10015: case 10021: case 10028: case 10029: case 10030: case 10035: case 10037:
+        case 9957: case 9960: case 9984: case 9991: case 10004: case 10005: case 10007: case 10015: case 10021: case 10028: case 10029: case 10030: case 10035: case 10037: case 10062: case 10078: case 10079: case 10082: case 10108:
+        case 10112: case 10113: case 10147: case 10148: case 10154: case 10155: case 10156: case 10157: case 10158: case 10169: case 10187:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -285,7 +286,7 @@ attack.prototype.update=function(){
         case 9505: case 9523: case 9534: case 9550: case 9551: case 9552: case 9553: case 9557: case 9563: case 9564: case 9565: case 9566: case 9567: case 9568: case 9569: case 9572: case 9576: case 9577: case 9578: case 9579:
         case 9588: case 9592: case 9608: case 9609: case 9610: case 9624: case 9664: case 9681: case 9682: case 9686: case 9687: case 9719: case 9720: case 9721: case 9733: case 9738: case 9739: case 9740: case 9754: case 9755:
         case 9781: case 9782: case 9785: case 9788: case 9791: case 9804: case 9805: case 9806: case 9811: case 9817: case 9819: case 9840: case 9868: case 9881: case 9900: case 9909: case 9914: case 9921: case 9926: case 9941:
-        case 9958: case 9961: case 9981: case 9985: case 9989: case 10008: case 10009:
+        case 9958: case 9961: case 9981: case 9985: case 9989: case 10008: case 10009: case 10066: case 10102: case 10111: case 10146: case 10160: case 10173: case 10178:
             //mark 2
             if(
                 this.timer==1&&(
@@ -396,7 +397,7 @@ attack.prototype.update=function(){
         case 9599: case 9600: case 9601: case 9633: case 9668: case 9713: case 9714: case 9715: case 9722: case 9723:
         case 9724: case 9734: case 9741: case 9742: case 9743: case 9768: case 9787: case 9790: case 9880: case 9959:
         case 9962: case 9980: case 10024: case 10025: case 10026: case 10027: case 10053: case 10054: case 10055: case 10056:
-        case 10057: case 10058: case 10059: case 10060:
+        case 10057: case 10058: case 10059: case 10060: case 10116: case 10142: case 10167:
             //mark 3
             if(
                 this.timer==1&&(
@@ -483,7 +484,7 @@ attack.prototype.update=function(){
         case 5360: case 5361: case 5367: case 5368: case 5369: case 5370: case 5372: case 5959: case 5975: case 6858:
         case 6859: case 7510: case 7532: case 8377: case 8389: case 8536: case 8575: case 8599: case 8823: case 8944:
         case 8960: case 8988: case 9029: case 9085: case 9173: case 9243: case 9244: case 9632: case 9689: case 9797:
-        case 10047: case 10048: case 10049: case 10050: case 10051:
+        case 10047: case 10048: case 10049: case 10050: case 10051: case 10151: case 10152:
             if(
                 this.type==121&&this.userCombatant.armed||
                 this.type==9689&&(variants.mtg?this.cost[0]:this.cost)!=0
@@ -605,77 +606,78 @@ attack.prototype.update=function(){
         break
         case -15: case -30: case -39: case -40: case -89: case -92:
         case 6: case 30: case 41: case 71: case 92: case 98: case 113: case 128: case 149: case 150: case 181: case 184: case 198: case 200: case 203: case 204: case 212: case 215: case 223: case 225:
-        case 226: case 231: case 239: case 240: case 249: case 264: case 278: case 286: case 299: case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372: case 381:
-        case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454: case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615: case 619:
-        case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656: case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755: case 760: case 761: case 763:
-        case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822: case 836: case 838: case 839: case 841: case 842: case 852: case 864: case 873: case 876: case 886: case 893: case 896:
-        case 898: case 901: case 914: case 937: case 948: case 1008: case 1019: case 1033: case 1053: case 1063: case 1074: case 1079: case 1093: case 1094: case 1108: case 1124: case 1125: case 1138: case 1159: case 1165:
-        case 1206: case 1208: case 1215: case 1220: case 1229: case 1260: case 1264: case 1265: case 1269: case 1294: case 1302: case 1304: case 1306: case 1323: case 1327: case 1365: case 1366: case 1375: case 1381: case 1396:
-        case 1402: case 1407: case 1419: case 1466: case 1467: case 1468: case 1475: case 1476: case 1494: case 1497: case 1540: case 1542: case 1544: case 1549: case 1551: case 1553: case 1554: case 1563: case 1601: case 1638:
-        case 1641: case 1657: case 1658: case 1659: case 1715: case 1717: case 1719: case 1734: case 1735: case 1741: case 1750: case 1758: case 1767: case 1802: case 1807: case 1816: case 1817: case 1832: case 1839: case 1840:
-        case 1841: case 1842: case 1843: case 1844: case 1847: case 1896: case 1901: case 1915: case 1916: case 1942: case 1964: case 1988: case 1989: case 1993: case 1994: case 1995: case 1996: case 1997: case 1998: case 2015:
-        case 2019: case 2020: case 2029: case 2031: case 2056: case 2105: case 2147: case 2205: case 2217: case 2258: case 2269: case 2278: case 2292: case 2294: case 2306: case 2312: case 2321: case 2322: case 2333: case 2335:
-        case 2336: case 2372: case 2373: case 2376: case 2377: case 2385: case 2394: case 2407: case 2408: case 2409: case 2415: case 2417: case 2419: case 2429: case 2448: case 2472: case 2478: case 2486: case 2518: case 2549:
-        case 2555: case 2558: case 2559: case 2566: case 2567: case 2568: case 2638: case 2639: case 2643: case 2673: case 2704: case 2741: case 2756: case 2768: case 2792: case 2802: case 2817: case 2826: case 2827: case 2922:
-        case 2962: case 2966: case 2975: case 2984: case 2992: case 2993: case 3003: case 3029: case 3048: case 3050: case 3071: case 3083: case 3087: case 3092: case 3107: case 3122: case 3133: case 3161: case 3162: case 3167:
-        case 3172: case 3199: case 3200: case 3203: case 3205: case 3206: case 3208: case 3209: case 3235: case 3236: case 3238: case 3253: case 3254: case 3269: case 3271: case 3299: case 3302: case 3325: case 3346: case 3348:
-        case 3362: case 3388: case 3406: case 3408: case 3416: case 3417: case 3418: case 3419: case 3420: case 3421: case 3422: case 3423: case 3424: case 3425: case 3426: case 3427: case 3428: case 3434: case 3435: case 3436:
-        case 3437: case 3438: case 3439: case 3440: case 3441: case 3442: case 3443: case 3444: case 3445: case 3466: case 3484: case 3497: case 3501: case 3502: case 3507: case 3508: case 3510: case 3514: case 3539: case 3540:
-        case 3541: case 3542: case 3543: case 3544: case 3550: case 3551: case 3563: case 3571: case 3572: case 3575: case 3576: case 3589: case 3590: case 3596: case 3610: case 3624: case 3636: case 3648: case 3649: case 3650:
-        case 3652: case 3653: case 3654: case 3655: case 3664: case 3676: case 3678: case 3679: case 3710: case 3718: case 3723: case 3750: case 3757: case 3760: case 3761: case 3769: case 3777: case 3783: case 3785: case 3820:
-        case 3837: case 3841: case 3845: case 3856: case 3858: case 3859: case 3865: case 3887: case 3897: case 3898: case 3899: case 3900: case 3911: case 3914: case 3916: case 3934: case 3942: case 3956: case 3957: case 3958:
-        case 3959: case 3960: case 3961: case 3962: case 3963: case 3964: case 3965: case 3966: case 3967: case 3968: case 3969: case 3970: case 3971: case 3972: case 3973: case 3974: case 3975: case 3976: case 3977: case 3978:
-        case 3987: case 3991: case 3992: case 3993: case 4013: case 4032: case 4041: case 4042: case 4043: case 4044: case 4055: case 4057: case 4065: case 4074: case 4092: case 4111: case 4115: case 4116: case 4131: case 4134:
-        case 4135: case 4136: case 4144: case 4147: case 4148: case 4171: case 4173: case 4174: case 4178: case 4187: case 4188: case 4189: case 4213: case 4214: case 4215: case 4239: case 4240: case 4241: case 4260: case 4292:
-        case 4305: case 4313: case 4320: case 4324: case 4325: case 4326: case 4330: case 4342: case 4343: case 4344: case 4351: case 4352: case 4353: case 4398: case 4399: case 4400: case 4401: case 4402: case 4403: case 4404:
-        case 4405: case 4406: case 4411: case 4412: case 4420: case 4435: case 4436: case 4437: case 4453: case 4455: case 4458: case 4459: case 4460: case 4468: case 4469: case 4470: case 4489: case 4490: case 4491: case 4492:
-        case 4493: case 4494: case 4504: case 4505: case 4506: case 4534: case 4535: case 4536: case 4537: case 4538: case 4539: case 4540: case 4541: case 4542: case 4544: case 4545: case 4546: case 4549: case 4553: case 4555:
-        case 4556: case 4557: case 4560: case 4561: case 4564: case 4565: case 4569: case 4570: case 4571: case 4572: case 4573: case 4574: case 4575: case 4576: case 4577: case 4579: case 4580: case 4581: case 4582: case 4583:
-        case 4584: case 4595: case 4620: case 4621: case 4650: case 4654: case 4658: case 4659: case 4660: case 4661: case 4662: case 4664: case 4665: case 4666: case 4669: case 4677: case 4698: case 4702: case 4721: case 4731:
-        case 4732: case 4733: case 4734: case 4735: case 4747: case 4748: case 4749: case 4753: case 4756: case 4757: case 4758: case 4760: case 4779: case 4780: case 4781: case 4794: case 4796: case 4798: case 4801: case 4802:
-        case 4803: case 4823: case 4824: case 4825: case 4826: case 4827: case 4830: case 4840: case 4841: case 4842: case 4843: case 4849: case 4863: case 4864: case 4865: case 4867: case 4886: case 4893: case 4894: case 4895:
-        case 4896: case 4897: case 4903: case 4911: case 4912: case 4913: case 4914: case 4915: case 4916: case 4917: case 4918: case 4943: case 4944: case 4945: case 4949: case 4950: case 4951: case 4952: case 4953: case 4954:
-        case 4955: case 4968: case 4969: case 4971: case 4973: case 4993: case 5010: case 5011: case 5012: case 5013: case 5017: case 5018: case 5020: case 5021: case 5023: case 5030: case 5047: case 5058: case 5059: case 5073:
-        case 5074: case 5075: case 5096: case 5097: case 5101: case 5103: case 5104: case 5136: case 5144: case 5145: case 5148: case 5151: case 5180: case 5181: case 5182: case 5183: case 5195: case 5228: case 5239: case 5272:
-        case 5273: case 5274: case 5275: case 5276: case 5277: case 5289: case 5304: case 5307: case 5308: case 5309: case 5310: case 5314: case 5315: case 5317: case 5318: case 5321: case 5327: case 5328: case 5329: case 5330:
-        case 5331: case 5332: case 5377: case 5378: case 5379: case 5380: case 5384: case 5385: case 5406: case 5407: case 5409: case 5453: case 5473: case 5474: case 5475: case 5476: case 5533: case 5535: case 5545: case 5552:
-        case 5553: case 5554: case 5555: case 5556: case 5559: case 5560: case 5602: case 5607: case 5608: case 5614: case 5626: case 5630: case 5642: case 5677: case 5678: case 5687: case 5690: case 5694: case 5696: case 5697:
-        case 5698: case 5699: case 5700: case 5701: case 5707: case 5710: case 5728: case 5737: case 5738: case 5739: case 5770: case 5793: case 5805: case 5810: case 5811: case 5812: case 5813: case 5831: case 5832: case 5847:
-        case 5848: case 5849: case 5850: case 5863: case 5866: case 5873: case 5878: case 5879: case 5887: case 5881: case 5882: case 5883: case 5884: case 5888: case 5889: case 5890: case 5891: case 5901: case 5912: case 5914:
-        case 5916: case 5924: case 5925: case 5937: case 5943: case 5968: case 5969: case 5970: case 6001: case 6002: case 6016: case 6035: case 6036: case 6037: case 6038: case 6040: case 6044: case 6050: case 6068: case 6074:
-        case 6076: case 6082: case 6083: case 6084: case 6085: case 6087: case 6094: case 6095: case 6096: case 6097: case 6106: case 6112: case 6115: case 6116: case 6117: case 6123: case 6145: case 6147: case 6179: case 6211:
-        case 6214: case 6215: case 6220: case 6223: case 6224: case 6235: case 6236: case 6252: case 6271: case 6272: case 6277: case 6290: case 6304: case 6314: case 6326: case 6327: case 6328: case 6329: case 6333: case 6354:
-        case 6355: case 6356: case 6357: case 6358: case 6370: case 6377: case 6379: case 6380: case 6393: case 6406: case 6411: case 6421: case 6426: case 6427: case 6428: case 6429: case 6436: case 6437: case 6438: case 6439:
-        case 6440: case 6443: case 6444: case 6457: case 6458: case 6475: case 6504: case 6525: case 6533: case 6534: case 6543: case 6546: case 6558: case 6569: case 6570: case 6571: case 6592: case 6607: case 6614: case 6630:
-        case 6631: case 6632: case 6633: case 6634: case 6637: case 6638: case 6639: case 6648: case 6662: case 6663: case 6667: case 6674: case 6696: case 6697: case 6698: case 6704: case 6708: case 6733: case 6734: case 6740:
-        case 6749: case 6750: case 6751: case 6769: case 6779: case 6801: case 6802: case 6854: case 6857: case 6880: case 6881: case 6883: case 6893: case 6894: case 6904: case 6909: case 6910: case 6911: case 6912: case 6914:
-        case 6915: case 6916: case 6929: case 6942: case 6950: case 6969: case 6997: case 7012: case 7026: case 7029: case 7030: case 7031: case 7032: case 7034: case 7038: case 7039: case 7040: case 7041: case 7048: case 7049:
-        case 7050: case 7058: case 7059: case 7060: case 7061: case 7078: case 7079: case 7082: case 7083: case 7084: case 7085: case 7094: case 7095: case 7124: case 7125: case 7126: case 7139: case 7140: case 7155: case 7195:
-        case 7198: case 7205: case 7206: case 7207: case 7217: case 7218: case 7228: case 7229: case 7230: case 7252: case 7254: case 7256: case 7259: case 7265: case 7266: case 7267: case 7268: case 7279: case 7280: case 7291:
-        case 7292: case 7293: case 7294: case 7294: case 7295: case 7296: case 7299: case 7310: case 7340: case 7341: case 7347: case 7353: case 7366: case 7367: case 7370: case 7390: case 7391: case 7392: case 7393: case 7405:
-        case 7419: case 7423: case 7432: case 7433: case 7435: case 7481: case 7483: case 7484: case 7489: case 7513: case 7520: case 7521: case 7530: case 7531: case 7541: case 7542: case 7548: case 7557: case 7558: case 7562:
-        case 7563: case 7564: case 7565: case 7566: case 7567: case 7575: case 7596: case 7597: case 7629: case 7660: case 7661: case 7662: case 7663: case 7678: case 7679: case 7680: case 7686: case 7711: case 7717: case 7751:
-        case 7752: case 7754: case 7755: case 7759: case 7778: case 7782: case 7783: case 7786: case 7797: case 7802: case 7806: case 7810: case 7811: case 7812: case 7817: case 7818: case 7904: case 7915: case 7917: case 7918:
-        case 7947: case 7952: case 7953: case 7954: case 7955: case 7958: case 7970: case 7975: case 7979: case 7980: case 7981: case 7986: case 7993: case 7994: case 7998: case 7999: case 8000: case 8001: case 8023: case 8041:
-        case 8052: case 8057: case 8058: case 8059: case 8060: case 8061: case 8062: case 8063: case 8068: case 8069: case 8070: case 8071: case 8085: case 8091: case 8092: case 8093: case 8097: case 8098: case 8099: case 8100:
-        case 8111: case 8112: case 8125: case 8126: case 8127: case 8149: case 8150: case 8151: case 8152: case 8159: case 8160: case 8171: case 8178: case 8193: case 8198: case 8207: case 8208: case 8216: case 8224: case 8227:
-        case 8228: case 8241: case 8267: case 8268: case 8273: case 8274: case 8275: case 8283: case 8296: case 8297: case 8329: case 8330: case 8331: case 8332: case 8337: case 8359: case 8360: case 8361: case 8362: case 8367:
-        case 8371: case 8373: case 8411: case 8415: case 8416: case 8417: case 8418: case 8419: case 8421: case 8434: case 8435: case 8459: case 8460: case 8461: case 8463: case 8464: case 8465: case 8466: case 8468: case 8474:
-        case 8484: case 8485: case 8486: case 8487: case 8492: case 8493: case 8502: case 8503: case 8504: case 8505: case 8509: case 8510: case 8511: case 8512: case 8520: case 8521: case 8534: case 8539: case 8541: case 8542:
-        case 8544: case 8545: case 8565: case 8585: case 8586: case 8587: case 8588: case 8619: case 8646: case 8651: case 8665: case 8670: case 8678: case 8679: case 8680: case 8681: case 8682: case 8690: case 8691: case 8695:
-        case 8697: case 8698: case 8730: case 8731: case 8732: case 8733: case 8734: case 8735: case 8736: case 8737: case 8740: case 8741: case 8751: case 8766: case 8784: case 8785: case 8786: case 8787: case 8793: case 8796:
-        case 8815: case 8816: case 8817: case 8818: case 8829: case 8830: case 8831: case 8832: case 8860: case 8869: case 8875: case 8887: case 8888: case 8889: case 8890: case 8897: case 8901: case 8902: case 8903: case 8904:
-        case 8908: case 8912: case 8921: case 8923: case 8924: case 8925: case 8926: case 8927: case 8967: case 8968: case 8969: case 8970: case 8972: case 8983: case 8985: case 8998: case 8999: case 9003: case 9004: case 9011:
-        case 9019: case 9020: case 9022: case 9023: case 9060: case 9120: case 9130: case 9142: case 9156: case 9164: case 9166: case 9167: case 9176: case 9178: case 9179: case 9206: case 9207: case 9255: case 9256: case 9257:
-        case 9258: case 9269: case 9282: case 9283: case 9286: case 9287: case 9303: case 9304: case 9306: case 9311: case 9312: case 9313: case 9314: case 9315: case 9317: case 9317: case 9318: case 9319: case 9320: case 9321:
-        case 9322: case 9323: case 9324: case 9332: case 9304: case 9341: case 9342: case 9343: case 9348: case 9349: case 9350: case 9351: case 9375: case 9376: case 9377: case 9378: case 9414: case 9414: case 9417: case 9450:
-        case 9451: case 9452: case 9453: case 9454: case 9465: case 9466: case 9467: case 9468: case 9469: case 9472: case 9473: case 9487: case 9496: case 9502: case 9503: case 9517: case 9518: case 9519: case 9520: case 9524:
-        case 9527: case 9529: case 9530: case 9580: case 9582: case 9615: case 9616: case 9617: case 9618: case 9620: case 9625: case 9626: case 9627: case 9629: case 9642: case 9649: case 9650: case 9653: case 9670: case 9671:
-        case 9672: case 9673: case 9683: case 9684: case 9693: case 9752: case 9753: case 9756: case 9757: case 9758: case 9759: case 9760: case 9761: case 9762: case 9763: case 9764: case 9765: case 9766: case 9767: case 9776:
-        case 9777: case 9778: case 9779: case 9792: case 9793: case 9794: case 9795: case 9798: case 9799: case 9800: case 9801: case 9802: case 9803: case 9807: case 9808: case 9812: case 9813: case 9821: case 9824: case 9830:
-        case 9831: case 9832: case 9833: case 9855: case 9856: case 9857: case 9875: case 9876: case 9877: case 9878: case 9883: case 9884: case 9895: case 9896: case 9897: case 9904: case 9915: case 9918: case 9919: case 9920:
-        case 9928: case 9929: case 9930: case 9931: case 9937: case 9942: case 9943: case 9946: case 9947: case 9951: case 9967: case 9968: case 9970: case 9971: case 9972: case 9973: case 9982: case 9992: case 9996: case 10003:
-        case 10006: case 10012: case 10013: case 10014: case 10038: case 10044: case 10061:
+        case 226: case 231: case 238: case 239: case 240: case 249: case 264: case 278: case 286: case 299: case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
+        case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454: case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
+        case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656: case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755: case 760: case 761:
+        case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822: case 836: case 838: case 839: case 841: case 842: case 852: case 864: case 873: case 876: case 886: case 893:
+        case 896: case 898: case 901: case 914: case 937: case 948: case 1008: case 1019: case 1033: case 1053: case 1063: case 1074: case 1079: case 1093: case 1094: case 1108: case 1124: case 1125: case 1138: case 1159:
+        case 1165: case 1206: case 1208: case 1215: case 1220: case 1229: case 1260: case 1264: case 1265: case 1269: case 1294: case 1302: case 1304: case 1306: case 1323: case 1327: case 1365: case 1366: case 1375: case 1381:
+        case 1396: case 1402: case 1407: case 1419: case 1466: case 1467: case 1468: case 1475: case 1476: case 1494: case 1497: case 1540: case 1542: case 1544: case 1549: case 1551: case 1553: case 1554: case 1563: case 1601:
+        case 1638: case 1641: case 1657: case 1658: case 1659: case 1715: case 1717: case 1719: case 1734: case 1735: case 1741: case 1750: case 1758: case 1767: case 1802: case 1807: case 1816: case 1817: case 1832: case 1839:
+        case 1840: case 1841: case 1842: case 1843: case 1844: case 1847: case 1896: case 1901: case 1915: case 1916: case 1942: case 1964: case 1988: case 1989: case 1993: case 1994: case 1995: case 1996: case 1997: case 1998:
+        case 2015: case 2019: case 2020: case 2029: case 2031: case 2056: case 2105: case 2147: case 2205: case 2217: case 2258: case 2269: case 2278: case 2292: case 2294: case 2306: case 2312: case 2321: case 2322: case 2333:
+        case 2335: case 2336: case 2372: case 2373: case 2376: case 2377: case 2385: case 2394: case 2407: case 2408: case 2409: case 2415: case 2417: case 2419: case 2429: case 2448: case 2472: case 2478: case 2486: case 2518:
+        case 2549: case 2555: case 2558: case 2559: case 2566: case 2567: case 2568: case 2638: case 2639: case 2643: case 2673: case 2704: case 2741: case 2756: case 2768: case 2792: case 2802: case 2817: case 2826: case 2827:
+        case 2922: case 2962: case 2966: case 2975: case 2984: case 2992: case 2993: case 3003: case 3029: case 3048: case 3050: case 3071: case 3083: case 3087: case 3092: case 3107: case 3122: case 3133: case 3161: case 3162:
+        case 3167: case 3172: case 3199: case 3200: case 3203: case 3205: case 3206: case 3208: case 3209: case 3235: case 3236: case 3238: case 3253: case 3254: case 3269: case 3271: case 3299: case 3302: case 3325: case 3346:
+        case 3348: case 3362: case 3388: case 3406: case 3408: case 3416: case 3417: case 3418: case 3419: case 3420: case 3421: case 3422: case 3423: case 3424: case 3425: case 3426: case 3427: case 3428: case 3434: case 3435:
+        case 3436: case 3437: case 3438: case 3439: case 3440: case 3441: case 3442: case 3443: case 3444: case 3445: case 3466: case 3484: case 3497: case 3501: case 3502: case 3507: case 3508: case 3510: case 3514: case 3539:
+        case 3540: case 3541: case 3542: case 3543: case 3544: case 3550: case 3551: case 3563: case 3571: case 3572: case 3575: case 3576: case 3589: case 3590: case 3596: case 3610: case 3624: case 3636: case 3648: case 3649:
+        case 3650: case 3652: case 3653: case 3654: case 3655: case 3664: case 3676: case 3678: case 3679: case 3710: case 3718: case 3723: case 3750: case 3757: case 3760: case 3761: case 3769: case 3777: case 3783: case 3785:
+        case 3820: case 3837: case 3841: case 3845: case 3856: case 3858: case 3859: case 3865: case 3887: case 3897: case 3898: case 3899: case 3900: case 3911: case 3914: case 3916: case 3934: case 3942: case 3956: case 3957:
+        case 3958: case 3959: case 3960: case 3961: case 3962: case 3963: case 3964: case 3965: case 3966: case 3967: case 3968: case 3969: case 3970: case 3971: case 3972: case 3973: case 3974: case 3975: case 3976: case 3977:
+        case 3978: case 3987: case 3991: case 3992: case 3993: case 4013: case 4032: case 4041: case 4042: case 4043: case 4044: case 4055: case 4057: case 4065: case 4074: case 4092: case 4111: case 4115: case 4116: case 4131:
+        case 4134: case 4135: case 4136: case 4144: case 4147: case 4148: case 4171: case 4173: case 4174: case 4178: case 4187: case 4188: case 4189: case 4213: case 4214: case 4215: case 4239: case 4240: case 4241: case 4260:
+        case 4292: case 4305: case 4313: case 4320: case 4324: case 4325: case 4326: case 4330: case 4342: case 4343: case 4344: case 4351: case 4352: case 4353: case 4398: case 4399: case 4400: case 4401: case 4402: case 4403:
+        case 4404: case 4405: case 4406: case 4411: case 4412: case 4420: case 4435: case 4436: case 4437: case 4453: case 4455: case 4458: case 4459: case 4460: case 4468: case 4469: case 4470: case 4489: case 4490: case 4491:
+        case 4492: case 4493: case 4494: case 4504: case 4505: case 4506: case 4534: case 4535: case 4536: case 4537: case 4538: case 4539: case 4540: case 4541: case 4542: case 4544: case 4545: case 4546: case 4549: case 4553:
+        case 4555: case 4556: case 4557: case 4560: case 4561: case 4564: case 4565: case 4569: case 4570: case 4571: case 4572: case 4573: case 4574: case 4575: case 4576: case 4577: case 4579: case 4580: case 4581: case 4582:
+        case 4583: case 4584: case 4595: case 4620: case 4621: case 4650: case 4654: case 4658: case 4659: case 4660: case 4661: case 4662: case 4664: case 4665: case 4666: case 4669: case 4677: case 4698: case 4702: case 4721:
+        case 4731: case 4732: case 4733: case 4734: case 4735: case 4747: case 4748: case 4749: case 4753: case 4756: case 4757: case 4758: case 4760: case 4779: case 4780: case 4781: case 4794: case 4796: case 4798: case 4801:
+        case 4802: case 4803: case 4823: case 4824: case 4825: case 4826: case 4827: case 4830: case 4840: case 4841: case 4842: case 4843: case 4849: case 4863: case 4864: case 4865: case 4867: case 4886: case 4893: case 4894:
+        case 4895: case 4896: case 4897: case 4903: case 4911: case 4912: case 4913: case 4914: case 4915: case 4916: case 4917: case 4918: case 4943: case 4944: case 4945: case 4949: case 4950: case 4951: case 4952: case 4953:
+        case 4954: case 4955: case 4968: case 4969: case 4971: case 4973: case 4993: case 5010: case 5011: case 5012: case 5013: case 5017: case 5018: case 5020: case 5021: case 5023: case 5030: case 5047: case 5058: case 5059:
+        case 5073: case 5074: case 5075: case 5096: case 5097: case 5101: case 5103: case 5104: case 5136: case 5144: case 5145: case 5148: case 5151: case 5180: case 5181: case 5182: case 5183: case 5195: case 5228: case 5239:
+        case 5272: case 5273: case 5274: case 5275: case 5276: case 5277: case 5289: case 5304: case 5307: case 5308: case 5309: case 5310: case 5314: case 5315: case 5317: case 5318: case 5321: case 5327: case 5328: case 5329:
+        case 5330: case 5331: case 5332: case 5377: case 5378: case 5379: case 5380: case 5384: case 5385: case 5406: case 5407: case 5409: case 5453: case 5473: case 5474: case 5475: case 5476: case 5533: case 5535: case 5545:
+        case 5552: case 5553: case 5554: case 5555: case 5556: case 5559: case 5560: case 5602: case 5607: case 5608: case 5614: case 5626: case 5630: case 5642: case 5677: case 5678: case 5687: case 5690: case 5694: case 5696:
+        case 5697: case 5698: case 5699: case 5700: case 5701: case 5707: case 5710: case 5728: case 5737: case 5738: case 5739: case 5770: case 5793: case 5805: case 5810: case 5811: case 5812: case 5813: case 5831: case 5832:
+        case 5847: case 5848: case 5849: case 5850: case 5863: case 5866: case 5873: case 5878: case 5879: case 5887: case 5881: case 5882: case 5883: case 5884: case 5888: case 5889: case 5890: case 5891: case 5901: case 5912:
+        case 5914: case 5916: case 5924: case 5925: case 5937: case 5943: case 5968: case 5969: case 5970: case 6001: case 6002: case 6016: case 6035: case 6036: case 6037: case 6038: case 6040: case 6044: case 6050: case 6068:
+        case 6074: case 6076: case 6082: case 6083: case 6084: case 6085: case 6087: case 6094: case 6095: case 6096: case 6097: case 6106: case 6112: case 6115: case 6116: case 6117: case 6123: case 6145: case 6147: case 6179:
+        case 6211: case 6214: case 6215: case 6220: case 6223: case 6224: case 6235: case 6236: case 6252: case 6271: case 6272: case 6277: case 6290: case 6304: case 6314: case 6326: case 6327: case 6328: case 6329: case 6333:
+        case 6354: case 6355: case 6356: case 6357: case 6358: case 6370: case 6377: case 6379: case 6380: case 6393: case 6406: case 6411: case 6421: case 6426: case 6427: case 6428: case 6429: case 6436: case 6437: case 6438:
+        case 6439: case 6440: case 6443: case 6444: case 6457: case 6458: case 6475: case 6504: case 6525: case 6533: case 6534: case 6543: case 6546: case 6558: case 6569: case 6570: case 6571: case 6592: case 6607: case 6614:
+        case 6630: case 6631: case 6632: case 6633: case 6634: case 6637: case 6638: case 6639: case 6648: case 6662: case 6663: case 6667: case 6674: case 6696: case 6697: case 6698: case 6704: case 6708: case 6733: case 6734:
+        case 6740: case 6749: case 6750: case 6751: case 6769: case 6779: case 6801: case 6802: case 6854: case 6857: case 6880: case 6881: case 6883: case 6893: case 6894: case 6904: case 6909: case 6910: case 6911: case 6912:
+        case 6914: case 6915: case 6916: case 6929: case 6942: case 6950: case 6969: case 6997: case 7012: case 7026: case 7029: case 7030: case 7031: case 7032: case 7034: case 7038: case 7039: case 7040: case 7041: case 7048:
+        case 7049: case 7050: case 7058: case 7059: case 7060: case 7061: case 7078: case 7079: case 7082: case 7083: case 7084: case 7085: case 7094: case 7095: case 7124: case 7125: case 7126: case 7139: case 7140: case 7155:
+        case 7195: case 7198: case 7205: case 7206: case 7207: case 7217: case 7218: case 7228: case 7229: case 7230: case 7252: case 7254: case 7256: case 7259: case 7265: case 7266: case 7267: case 7268: case 7279: case 7280:
+        case 7291: case 7292: case 7293: case 7294: case 7294: case 7295: case 7296: case 7299: case 7310: case 7340: case 7341: case 7347: case 7353: case 7366: case 7367: case 7370: case 7390: case 7391: case 7392: case 7393:
+        case 7405: case 7419: case 7423: case 7432: case 7433: case 7435: case 7481: case 7483: case 7484: case 7489: case 7513: case 7520: case 7521: case 7530: case 7531: case 7541: case 7542: case 7548: case 7557: case 7558:
+        case 7562: case 7563: case 7564: case 7565: case 7566: case 7567: case 7575: case 7596: case 7597: case 7629: case 7660: case 7661: case 7662: case 7663: case 7678: case 7679: case 7680: case 7686: case 7711: case 7717:
+        case 7751: case 7752: case 7754: case 7755: case 7759: case 7778: case 7782: case 7783: case 7786: case 7797: case 7802: case 7806: case 7810: case 7811: case 7812: case 7817: case 7818: case 7904: case 7915: case 7917:
+        case 7918: case 7947: case 7952: case 7953: case 7954: case 7955: case 7958: case 7970: case 7975: case 7979: case 7980: case 7981: case 7986: case 7993: case 7994: case 7998: case 7999: case 8000: case 8001: case 8023:
+        case 8041: case 8052: case 8057: case 8058: case 8059: case 8060: case 8061: case 8062: case 8063: case 8068: case 8069: case 8070: case 8071: case 8085: case 8091: case 8092: case 8093: case 8097: case 8098: case 8099:
+        case 8100: case 8111: case 8112: case 8125: case 8126: case 8127: case 8149: case 8150: case 8151: case 8152: case 8159: case 8160: case 8171: case 8178: case 8193: case 8198: case 8207: case 8208: case 8216: case 8224:
+        case 8227: case 8228: case 8241: case 8267: case 8268: case 8273: case 8274: case 8275: case 8283: case 8296: case 8297: case 8329: case 8330: case 8331: case 8332: case 8337: case 8359: case 8360: case 8361: case 8362:
+        case 8367: case 8371: case 8373: case 8411: case 8415: case 8416: case 8417: case 8418: case 8419: case 8421: case 8434: case 8435: case 8459: case 8460: case 8461: case 8463: case 8464: case 8465: case 8466: case 8468:
+        case 8474: case 8484: case 8485: case 8486: case 8487: case 8492: case 8493: case 8502: case 8503: case 8504: case 8505: case 8509: case 8510: case 8511: case 8512: case 8520: case 8521: case 8534: case 8539: case 8541:
+        case 8542: case 8544: case 8545: case 8565: case 8585: case 8586: case 8587: case 8588: case 8619: case 8646: case 8651: case 8665: case 8670: case 8678: case 8679: case 8680: case 8681: case 8682: case 8690: case 8691:
+        case 8695: case 8697: case 8698: case 8730: case 8731: case 8732: case 8733: case 8734: case 8735: case 8736: case 8737: case 8740: case 8741: case 8751: case 8766: case 8784: case 8785: case 8786: case 8787: case 8793:
+        case 8796: case 8815: case 8816: case 8817: case 8818: case 8829: case 8830: case 8831: case 8832: case 8860: case 8869: case 8875: case 8887: case 8888: case 8889: case 8890: case 8897: case 8901: case 8902: case 8903:
+        case 8904: case 8908: case 8912: case 8921: case 8923: case 8924: case 8925: case 8926: case 8927: case 8967: case 8968: case 8969: case 8970: case 8972: case 8983: case 8985: case 8998: case 8999: case 9003: case 9004:
+        case 9011: case 9019: case 9020: case 9022: case 9023: case 9060: case 9120: case 9130: case 9142: case 9156: case 9164: case 9166: case 9167: case 9176: case 9178: case 9179: case 9206: case 9207: case 9255: case 9256:
+        case 9257: case 9258: case 9269: case 9282: case 9283: case 9286: case 9287: case 9303: case 9304: case 9306: case 9311: case 9312: case 9313: case 9314: case 9315: case 9317: case 9317: case 9318: case 9319: case 9320:
+        case 9321: case 9322: case 9323: case 9324: case 9332: case 9304: case 9341: case 9342: case 9343: case 9348: case 9349: case 9350: case 9351: case 9375: case 9376: case 9377: case 9378: case 9414: case 9414: case 9417:
+        case 9450: case 9451: case 9452: case 9453: case 9454: case 9465: case 9466: case 9467: case 9468: case 9469: case 9472: case 9473: case 9487: case 9496: case 9502: case 9503: case 9517: case 9518: case 9519: case 9520:
+        case 9524: case 9527: case 9529: case 9530: case 9580: case 9582: case 9615: case 9616: case 9617: case 9618: case 9620: case 9625: case 9626: case 9627: case 9629: case 9642: case 9649: case 9650: case 9653: case 9670:
+        case 9671: case 9672: case 9673: case 9683: case 9684: case 9693: case 9752: case 9753: case 9756: case 9757: case 9758: case 9759: case 9760: case 9761: case 9762: case 9763: case 9764: case 9765: case 9766: case 9767:
+        case 9776: case 9777: case 9778: case 9779: case 9792: case 9793: case 9794: case 9795: case 9798: case 9799: case 9800: case 9801: case 9802: case 9803: case 9807: case 9808: case 9812: case 9813: case 9821: case 9824:
+        case 9830: case 9831: case 9832: case 9833: case 9855: case 9856: case 9857: case 9875: case 9876: case 9877: case 9878: case 9883: case 9884: case 9895: case 9896: case 9897: case 9904: case 9915: case 9918: case 9919:
+        case 9920: case 9928: case 9929: case 9930: case 9931: case 9937: case 9942: case 9943: case 9946: case 9947: case 9951: case 9967: case 9968: case 9970: case 9971: case 9972: case 9973: case 9982: case 9992: case 9996:
+        case 10003: case 10006: case 10012: case 10013: case 10014: case 10038: case 10044: case 10061: case 10064: case 10070: case 10074: case 10075: case 10076: case 10077: case 10085: case 10086: case 10087: case 10088: case 10089:
+        case 10090: case 10094: case 10114: case 10194: case 10118: case 10119: case 10122: case 10123: case 10124: case 10125: case 10138: case 10139: case 10140: case 10141: case 10159: case 10185: case 10186:
             //mark 4
             if(
                 this.timer==1&&(
@@ -790,7 +792,8 @@ attack.prototype.update=function(){
         case 9420: case 9431: case 9432: case 9433: case 9434: case 9435: case 9436: case 9437: case 9438: case 9439: case 9446: case 9456: case 9471: case 9474: case 9475: case 9476: case 9477: case 9478: case 9479: case 9480:
         case 9481: case 9482: case 9483: case 9484: case 9486: case 9521: case 9531: case 9532: case 9547: case 9562: case 9581: case 9584: case 9593: case 9606: case 9658: case 9666: case 9690: case 9691: case 9692: case 9701:
         case 9702: case 9704: case 9707: case 9728: case 9751: case 9815: case 9841: case 9843: case 9844: case 9859: case 9870: case 9871: case 9898: case 9899: case 9901: case 9906: case 9908: case 9910: case 9911: case 9912:
-        case 9917: case 9927: case 9940: case 9948: case 9953: case 9955: case 9956: case 9983: case 9986: case 9987: case 9998: case 10016: case 10017: case 10018: case 10019: case 10045: case 10046:
+        case 9917: case 9927: case 9940: case 9948: case 9953: case 9955: case 9956: case 9983: case 9986: case 9987: case 9998: case 10016: case 10017: case 10018: case 10019: case 10045: case 10046: case 10063: case 10067: case 10068:
+        case 10069: case 10083: case 10084: case 10091: case 10092: case 10099: case 10103: case 10104: case 10105: case 10109: case 10110: case 10135: case 10149: case 10153: case 10161: case 10175:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -977,7 +980,7 @@ attack.prototype.update=function(){
         case 8928: case 9059: case 9066: case 9067: case 9071: case 9075: case 9077: case 9078: case 9132: case 9165:
         case 9170: case 9186: case 9187: case 9330: case 9362: case 9603: case 9604: case 9605: case 9655: case 9708:
         case 9709: case 9820: case 9863: case 9864: case 9865: case 9874: case 9932: case 9936: case 9969: case 9997:
-        case 10032: case 10033: case 10034:
+        case 10032: case 10033: case 10034: case 10134: case 10137: case 10184:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -2026,7 +2029,8 @@ attack.prototype.update=function(){
         case 9293: case 9345: case 9394: case 9397: case 9408: case 9409: case 9410: case 9411: case 9512: case 9585:
         case 9602: case 9634: case 9635: case 9636: case 9637: case 9659: case 9660: case 9662: case 9697: case 9698:
         case 9699: case 9700: case 9703: case 9725: case 9786: case 9796: case 9816: case 9825: case 9837: case 9852:
-        case 9853: case 9861: case 9922: case 9923: case 9944: case 10036:
+        case 9853: case 9861: case 9922: case 9923: case 9944: case 10036: case 10106: case 10117: case 10133: case 10150:
+        case 10163: case 10170: case 10171: case 10172:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2042,7 +2046,7 @@ attack.prototype.update=function(){
                 this.type==8049&&this.timer==1&&!this.userCombatant.spendCharge(this.effect[0])||
                 this.type==8453&&this.userManager.hand.numberAbstract(4,[[2]])>0||
                 this.type==8866&&this.battle.currency.money[this.player]<this.effect[0]||
-                this.type==9268&&this.userManager.hand.numberAbstract(4,[[1]])<this.effect[0]
+                (this.type==9268||this.type==10170||this.type==10171||this.type==10172)&&this.userManager.hand.numberAbstract(4,[[1]])<this.effect[0]
             ){
                 this.remove=true
             }else if(variants.nobasicanim){
@@ -2306,7 +2310,7 @@ attack.prototype.update=function(){
         break
         case 54: case 87: case 486: case 976: case 979: case 988: case 2382: case 2658: case 2748: case 2749:
         case 2762: case 2946: case 4076: case 4278: case 7666: case 8107: case 8219: case 8704: case 9005: case 9007:
-        case 9015: case 9016: case 9048: case 9111: case 9112: case 9470: case 10031:
+        case 9015: case 9016: case 9048: case 9111: case 9112: case 9470: case 10031: case 10176:
             if(this.type==9470&&(variants.mtg?this.cost[0]:this.cost)!=0){
                 this.remove=true
             }else{
@@ -2385,6 +2389,9 @@ attack.prototype.update=function(){
                         case 10031:
                             this.battle.combatantManager.clearTile(this.targetTile)
                             this.targetTile.clearTypes()
+                        break
+                        case 10176:
+                            this.userCombatant.statusEffect('Cannot Move',1)
                         break
                     }
                     this.userCombatant.moveTile(this.direction,this.distance)
@@ -2638,7 +2645,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 77: case 1503: case 1538: case 8306: case 9391:
+        case 77: case 1503: case 1538: case 8306: case 9391: case 10145:
             if(this.timer==1){
                 this.userCombatant.startAnimation(24)
             }
@@ -2664,6 +2671,9 @@ attack.prototype.update=function(){
                         case 9391:
                             this.userCombatant.statusEffect('Claw Up',this.effect[2])
                         break
+                        case 10145:
+                            this.userManager.hand.exhaust(this.effect[2])
+                        break
                     }
                 }
             }else if(this.timer>=12){
@@ -2675,7 +2685,7 @@ attack.prototype.update=function(){
         case 1900: case 2127: case 2308: case 2398: case 3175: case 3373: case 3452: case 3594: case 3786: case 3901:
         case 3946: case 3990: case 4559: case 4778: case 4881: case 4887: case 4965: case 5067: case 5994: case 5997:
         case 6005: case 6445: case 6446: case 6785: case 7119: case 7354: case 7580: case 7584: case 8104: case 8612:
-        case 9621:
+        case 9621: case 10132:
             //mark 10
             if(
                 this.type==1640&&this.energy!=this.effect[0]||
@@ -2904,7 +2914,9 @@ attack.prototype.update=function(){
         case 9493: case 9494: case 9507: case 9509: case 9510: case 9511: case 9525: case 9543: case 9548: case 9573:
         case 9638: case 9639: case 9694: case 9711: case 9726: case 9727: case 9783: case 9818: case 9829: case 9866:
         case 9867: case 9869: case 9872: case 9873: case 9879: case 9882: case 9902: case 9903: case 9905: case 9933:
-        case 9938: case 9939: case 10010: case 10011: case 10023: case 10052:
+        case 9938: case 9939: case 10010: case 10011: case 10023: case 10052: case 10093: case 10096: case 10101: case 10107:
+        case 10115: case 10129: case 10136: case 10164: case 10165: case 10166: case 10168: case 10179: case 10180: case 10181:
+        case 10182: case 10183:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -3096,7 +3108,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 134: case 7411:
+        case 134: case 7411: case 10189: case 10195:
             if(this.timer==1&&this.targetDistance>1){
                 this.userCombatant.startAnimation(0)
             }else if(this.timer==15*this.targetDistance-14){
@@ -3172,7 +3184,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 135: case 7412:
+        case 135: case 7412: case 10190: case 10196:
             if(this.timer==1&&this.targetDistance>1){
                 this.userCombatant.startAnimation(0)
             }else if(this.timer==15*this.targetDistance-14){
@@ -3682,7 +3694,7 @@ attack.prototype.update=function(){
         case 3635: case 4105: case 4857: case 5114: case 5757: case 6168: case 6175: case 6396: case 6732: case 6743:
         case 6865: case 6971: case 7132: case 7346: case 7396: case 7404: case 7636: case 7637: case 7638: case 7639:
         case 7879: case 8003: case 8218: case 8266: case 8357: case 8386: case 8568: case 8614: case 8791: case 9108:
-        case 9508: case 9963:
+        case 9508: case 9963: case 10065: case 10120: case 10121: case 10174:
             if(
                 this.type==1815&&this.energy!=0||
                 this.type==4857&&this.mtgEnergy.length!=0
@@ -3814,6 +3826,15 @@ attack.prototype.update=function(){
                             case 9963:
                                 for(let a=0,la=this.userCombatant.orbs.filter(a=>a==-1).length;a<la;a++){
                                     this.userCombatant.holdOrb(12)
+                                }
+                            break
+                            case 10065:
+                                this.userCombatant.statusEffect('Control',this.effect[1])
+                                this.userCombatant.gainFaith(this.effect[2])
+                            break
+                            case 10120:
+                                if(this.targetCombatant.blocked<=1){
+                                    this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                                 }
                             break
                         }
@@ -3949,6 +3970,14 @@ attack.prototype.update=function(){
                                     this.userCombatant.statusEffect('Dexterity',this.effect[2])
                                 }
                             break
+                            case 10121:
+                                if(this.userCombatant.getStatus('Vulnerable')>0){
+                                    this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                                }
+                            break
+                            case 10174:
+                                this.userManager.drawAbstract(this.effect[1],0,2,[1])
+                            break
                         }
                     }
                     switch(this.type){
@@ -4016,7 +4045,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 236:
+        case 236: case 10191:
             if(this.timer==1&&this.targetDistance>1){
                 this.userCombatant.startAnimation(0)
             }else if(this.timer==15*this.targetDistance-14){
@@ -4090,7 +4119,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 237:
+        case 237: case 10192:
             if(this.timer==1&&this.targetDistance>1){
                 this.userCombatant.startAnimation(0)
             }else if(this.timer==15*this.targetDistance-14){
@@ -4884,7 +4913,8 @@ attack.prototype.update=function(){
         case 9202: case 9302: case 9331: case 9367: case 9368: case 9369: case 9370: case 9371: case 9372: case 9373:
         case 9374: case 9383: case 9384: case 9396: case 9499: case 9536: case 9537: case 9538: case 9589: case 9611:
         case 9640: case 9696: case 9730: case 9747: case 9771: case 9775: case 9784: case 9823: case 9860: case 9862:
-        case 9916: case 9935: case 9949: case 9950: case 9952: case 9966: case 9999: case 10000:
+        case 9916: case 9935: case 9949: case 9950: case 9952: case 9966: case 9999: case 10000: case 10072: case 10073:
+        case 10080: case 10081: case 10130: case 10131: case 10188:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -5636,7 +5666,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 674: case 2763:
+        case 674: case 2763: case 10177:
             if(this.procedure[0]==1){
                 if(this.timer==1){
                     this.userCombatant.startAnimation(19)
@@ -5669,8 +5699,15 @@ attack.prototype.update=function(){
                     this.remove=true
                 }
             }
-            if(this.remove&&this.type==2763){
-                this.battle.attackManager.endAfter=true
+            if(this.remove){
+                switch(this.type){
+                    case 2763:
+                        this.battle.attackManager.endAfter=true
+                    break
+                    case 10177:
+                        this.userCombatant.statusEffect('Cannot Move',1)
+                    break
+                }
             }
         break
         case 703:
@@ -7682,7 +7719,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 2553: case 2617:
+        case 2553: case 2617: case 10162:
             if(variants.nobasicanim){
                 this.selfCall(1)
                 this.selfCall(1)
@@ -7694,6 +7731,13 @@ attack.prototype.update=function(){
                 this.userCombatant.runAnimation(1/20,1)
                 if(this.timer==10||this.timer==30){
                     this.selfCall(1)
+                    if(this.timer==30){
+                        switch(this.type){
+                            case 10162:
+                                this.userCombatant.statusEffect('Temporary Resonance',this.effect[1])
+                            break
+                        }
+                    }
                 }else if(this.timer>=40){
                     this.remove=true
                 }
@@ -9599,7 +9643,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3454:
+        case 3454: case 10193:
             if(variants.nobasicanim){
                 this.selfCall(1)
                 this.remove=true
@@ -10352,7 +10396,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3822: case 4974:
+        case 3822: case 4974: case 10095:
             if(variants.nobasicanim){
                 this.selfCall(1)
                 this.remove=true
@@ -13004,7 +13048,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 6522:
+        case 6522: case 10100:
             if(this.timer==1){
                 this.userCombatant.startAnimation(32)
             }
@@ -13014,6 +13058,10 @@ attack.prototype.update=function(){
                     case 6522:
                         this.userManager.hand.allEffectArgs(34,[11])
                         this.userManager.hand.allEffectArgs(30,[1,[1]])
+                    break
+                    case 10100:
+                        this.userManager.hand.allEffectArgs(34,[1])
+                        this.userManager.hand.allEffectArgs(30,[1,[11]])
                     break
                 }
                 this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,252,[5]))
@@ -15119,21 +15167,45 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 9975: case 9976:
+        case 9975: case 9976: case 10097: case 10098:
             if(this.timer==1){
                 this.userCombatant.startAnimation(10)
             }
             this.userCombatant.runAnimation(1/10,10)
             if(this.timer==10){
                 switch(this.type){
-                    case 9975:
+                    case 9975: case 10097:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.add(findName('Divination',types.card),this.level,this.color)
                         }
+                        if(this.userCombatant.getStatus('Kanako Energy')){
+                            this.battle.addEnergy(this.userCombatant.getStatus('Kanako Energy'),this.player)
+                        }
+                        if(this.userCombatant.getStatus('Kanako (E)')){
+                            this.battle.addSpecificEnergy(this.userCombatant.getStatus('Kanako (E)'),this.player,6)
+                        }
+                        if(this.userCombatant.getStatus('Kanako Strength')){
+                            this.userCombatant.statusEffect('Strength',this.userCombatant.getStatus('Kanako Strength'))
+                        }
+                        if(this.type==10097){
+                            this.userCombatant.statusEffect('Free Attack',1)
+                        }
                     break
-                    case 9976:
+                    case 9976: case 10098:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.add(findName('Riptide',types.card),this.level,this.color)
+                        }
+                        if(this.userCombatant.getStatus('Suwako Energy')){
+                            this.battle.addEnergy(this.userCombatant.getStatus('Suwako Energy'),this.player)
+                        }
+                        if(this.userCombatant.getStatus('Suwako (E)')){
+                            this.battle.addSpecificEnergy(this.userCombatant.getStatus('Suwako (E)'),this.player,6)
+                        }
+                        if(this.userCombatant.getStatus('Suwako Dexterity')){
+                            this.userCombatant.statusEffect('Dexterity',this.userCombatant.getStatus('Suwako Dexterity'))
+                        }
+                        if(this.type==10098){
+                            this.userCombatant.statusEffect('Free Defense',1)
                         }
                     break
                 }
@@ -15273,6 +15345,74 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
+        case 10071:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(1)
+                if(!this.userCombatant.orbs.some(orb=>orb<0)){
+                    this.procedure[0]=1
+                    for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                        if(this.userManager.hand.cards[a].id==this.id){
+                            this.userManager.hand.cards[a].exhaust=true
+                        }
+                    }
+                }else{
+                    this.procedure[0]=0
+                }
+            }
+            this.userCombatant.runAnimation(1/30,1)
+            if(this.timer==15){
+                this.selfCall(1)
+                if(this.procedure[0]==1){
+                    this.userCombatant.newOrb()
+                }
+            }else if(this.timer>=30){
+                this.remove=true
+            }
+        break
+        case 10128:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(2)
+                if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))==0){
+                    this.procedure[0]=1
+                    this.userCombatant.highRoll()
+                    for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                        if(this.userManager.hand.cards[a].id==this.id){
+                            this.userManager.hand.cards[a].exhaust=true
+                        }
+                    }
+                }else{
+                    this.procedure[0]=0
+                    this.userCombatant.lowRoll()
+                }
+            }
+            this.userCombatant.runAnimation(1/30,2)
+            if(this.timer==15){
+                this.selfCall(0)
+                if(this.procedure[0]==1){
+                    this.userCombatant.statusEffect('Extra Turn',1)
+                }
+            }else if(this.timer>=30){
+                this.remove=true
+            }
+        break
+        case 10143:
+            if(variants.nobasicanim){
+                for(let a=0,la=3;a<la;a++){
+                    this.selfCall(1)
+                }
+                this.remove=true
+            }else{
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(1)
+                }
+                this.userCombatant.runAnimation(1/15,1)
+                if(this.timer==10||this.timer==25||this.timer==40){
+                    this.selfCall(1)
+                }else if(this.timer>=45){
+                    this.remove=true
+                }
+            }
+        break
 
         default:
             this.remove=true
@@ -15352,7 +15492,10 @@ attack.prototype.update=function(){
                 if(this.userCombatant.getStatus('Single Attack Regeneration')>0&&this.clearAttack[15]){
                     this.userCombatant.status.main[findList('Single Attack Regeneration',this.userCombatant.status.name)]=0
                 }
-                this.userCombatant.tempStatus=[1,0,0,0,0,0]
+                if(this.userCombatant.getStatus('Single Attack Poison')>0&&this.clearAttack[16]){
+                    this.userCombatant.status.main[findList('Single Attack Poison',this.userCombatant.status.name)]=0
+                }
+                this.userCombatant.tempStatus=[1,0,0,0,0,0,0]
             break
         }
     }

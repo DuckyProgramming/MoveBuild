@@ -1636,7 +1636,14 @@ class overlay{
                 this.battle.combatantManager.combatants[this.player].infoAnim.life=0
             break
             case 8:
-                if(
+                if(args[0]==-99){
+                    let tick=0
+                    for(let a=0,la=this.cards.length;a<la;a++){
+                        this.cards[a].position.x=this.layer.width/2-350+tick%8*100
+                        this.cards[a].position.y=this.layer.height/2-130+floor(tick/8)%3*130
+                        tick++
+                    }
+                }else if(
                     this.cards.length==0||
                     args[0]!=this.cards[0].level||
                     this.args[2]==3||
@@ -5638,7 +5645,7 @@ class overlay{
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((pointInsideBox({position:inputs.rel},this.cards[a])||this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170+(this.options>=8?75:0)},width:120,height:40}))&&!this.cards[a].deSize){
                             if(this.setupArgs[2]==22){
-                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%3],this.setupArgs[4+a%2])
                             }
                             let lists=[]
                             switch(this.args[0]){
@@ -5707,7 +5714,13 @@ class overlay{
                                     }
                                     if(this.setupArgs[3].includes(2)){
                                         let cardClass=constrain(this.cards[a].class-1,0,1)
-                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
+                                        if(this.setupArgs[2]==22){
+                                            if(cardClass==10){
+                                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].faith+=this.setupArgs[5][2]
+                                            }else{
+                                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
+                                            }
+                                        }
                                     }
                                 }else{
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
@@ -7368,7 +7381,11 @@ class overlay{
                                     }
                                     if(this.setupArgs[3].includes(2)){
                                         let cardClass=constrain(this.cards[a].class-1,0,1)
-                                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
+                                        if(cardClass==10){
+                                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].faith+=this.setupArgs[5][2]
+                                        }else{
+                                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
+                                        }
                                     }
                                 }else{
                                     this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)

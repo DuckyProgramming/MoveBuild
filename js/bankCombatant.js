@@ -151,10 +151,10 @@ combatant.prototype.display=function(){
                 if(this.infoAnim.faith[a]>0&&lcos([0,120,240,60,180,300][a]+this.time*2)<0){
                     this.layer.stroke(...HSVtoRGB((this.time*2+a/la*360)%360,0.5,255),this.fade*0.8*this.infoAnim.faith[a])
                     this.layer.strokeWeight(1)
-                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.6,1.6,this.time+360*a/la)
+                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.8,1.8,this.time+360*a/la)
                     this.layer.stroke(255,this.fade*0.8*this.infoAnim.faith[a])
                     this.layer.strokeWeight(0.5)
-                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.6,1.6,this.time+360*a/la)
+                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.8,1.8,this.time+360*a/la)
                 }
             }
             this.layer.noStroke()
@@ -16961,10 +16961,10 @@ combatant.prototype.display=function(){
                 if(this.infoAnim.faith[a]>0&&lcos([0,120,240,60,180,300][a]+this.time*2)>=0){
                     this.layer.stroke(...HSVtoRGB((this.time*2+a/la*360)%360,0.5,255),this.fade*0.8*this.infoAnim.faith[a])
                     this.layer.strokeWeight(1)
-                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.6,1.6,this.time+360*a/la)
+                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.8,1.8,this.time+360*a/la)
                     this.layer.stroke(255,this.fade*0.8*this.infoAnim.faith[a])
                     this.layer.strokeWeight(0.5)
-                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.6,1.6,this.time+360*a/la)
+                    regStar(this.layer,lsin([0,144,288,72,216][a]+this.time*2)*40,lcos(720*a/la+this.time*2)*10+lsin([0,144,288,72,216][a]+this.time*2)*30,5,5,5,1.8,1.8,this.time+360*a/la)
                 }
             }
             if(this.infoAnim.elemental>0){

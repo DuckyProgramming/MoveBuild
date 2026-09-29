@@ -1,19 +1,12 @@
-Thursday, October 1 6 PM idk
-Sunday, October 4 2026 at 2:00 PM
-Skiles 006 Wednesday, October 21, at 1:00pm
-
 CS 121 [NEW SANAE / 8500]
 
+put a card in jail
 fresh tutorial
 does sanae boss still get barrier
 
 fill in remaining slots with randos from the reserve below
 
-CS 122 [GREATER LEGACY / 8600]
-
-checkExists from 500 forward
-
-CS 123 [AIRI / 8700]
+CS 122 [AIRI / 8600]
 
 down 2 events
 
@@ -22,11 +15,13 @@ make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
+CS 123 [GREATER LEGACY / 8700]
+
+checkExists from 500 forward
+
 CS 124 [?]
 
 tooltips for dictionary
-
-https://forum.axishistory.com/viewtopic.php?t=260043
 
 play sakura armament
 shoot armament mechanic
@@ -37,14 +32,30 @@ clunky cards
 purge?
 make sure her tutorial is not ruined
 
+play edgar
+purge?
+make sure his tutorial is not ruined
+
 play discardless shiru
 purge?
 make sure her tutorial is not ruined
 
 play prehex x2 runs
 purge?
+make sure his tutorial is not ruined
+
+play shinmy
+purge?
 make sure her tutorial is not ruined
 
+split red sky
+split axal bolt
+split cursed dice
+split twin slam
+split snapshot
+split ammo reserve
+split copypaste (old version has 6 range, new version has full-map range)
+replace lead barricade with a card similar to vantage
 (the below is very similar to 10193!)
 onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn
 vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
@@ -148,6 +159,11 @@ debug - add 9 block, exhaust a random curse in your draw pile
 tiny blade - 0 cost 1 damage and 1 lock on in all directions
 creative writing - when you are debuffed, draw a card
 aleph - lose your first relic, gain a relic, vanishing 1
+
+headhunt - 5 damage to all enemies, if fatal gain 25 block
+call of the grave - exhume a card, get wisp
+tumbleweed - counter all this combat, and apply 999 frail to a random enemy (tumble)
+cloak of moonlight - add 12 block per pristine in hand
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror

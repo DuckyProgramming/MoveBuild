@@ -220,7 +220,8 @@ class combatant{
                 '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
                 '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
                 'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
-                'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat',
+                'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
+                'Kanako Strength','Suwako Strength','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -321,7 +322,8 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//96
                 0,0,0,0,0,0,0,1,1,0,//97
                 0,0,0,0,0,1,1,0,0,0,//98
-                0,0,0,0,
+                0,0,0,0,1,1,0,0,0,0,//99
+                0,0,0,0,0,0,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -422,7 +424,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//96
                 2,2,2,2,2,2,2,2,2,2,//97
                 2,2,2,2,2,2,2,0,0,0,//98
-                0,2,0,0,
+                0,2,0,0,2,2,2,2,2,2,//99
+                2,2,2,2,2,2,1,1,2,
             ]}
         /*
         0-none
@@ -436,10 +439,10 @@ class combatant{
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
         this.turnStatus=[0,0,0,0,0,0]
         //dodges,taken,life lost,heal,highrolls,lowrolls
-        this.tempStatus=[1,0,0,0,0,0]
+        this.tempStatus=[1,0,0,0,0,0,0]
         //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed,single attack regeneration
-        this.interiorStatus=[0,0]
-        //repeat extra turn 1,has done damage
+        this.interiorStatus=[0,0,0]
+        //repeat extra turn 1,has done damage,total faith
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
             this.status.next.push(0)
@@ -541,7 +544,7 @@ class combatant{
         this.constants()
         this.resetAnim()
         this.tempStatus=[1,0,0,0,0,0]
-        this.interiorStatus=[0,0]
+        this.interiorStatus=[0,0,0]
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
             this.status.next[a]=0
@@ -2814,6 +2817,11 @@ class combatant{
             }
         }
     }
+    drawCardFront(cardClass,card){
+        if(this.status.main[997]>0){
+            this.takeDamage(this.status.main[997],-1)
+        }
+    }
     autoAim(){
         let list=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -3397,6 +3405,9 @@ class combatant{
             if(this.status.main[965]>0){
                 this.addBlock(this.status.main[965])
             }
+            if(this.status.main[985]>0){
+                this.statusEffect('Luck Guarantee',this.status.main[985])
+            }
         }
     }
     highRoll(){
@@ -3459,6 +3470,9 @@ class combatant{
             if(this.status.main[966]>0){
                 this.addBlock(this.status.main[966])
             }
+            if(this.status.main[986]>0){
+                this.statusEffect('Luck Guarantee Fail',this.status.main[986])
+            }
         }
     }
     takeDamage(value,user,spec=0){
@@ -3517,9 +3531,12 @@ class combatant{
                     damage=0
                     userCombatant.status.main[250]--
                 }
-                /*if(userCombatant.caffeine>0){
+                if(userCombatant.status.main[984]>0&&userCombatant.caffeine>0){
+                    totalStr+=userCombatant.faith
+                }
+                if(userCombatant.status.main[985]>0&&userCombatant.caffeine>0){
                     totalStr+=userCombatant.caffeine
-                }*/
+                }
                 if(totalStr>0){
                     damage*=1+totalStr*0.1
                 }else if(totalStr<0){
@@ -4097,6 +4114,9 @@ class combatant{
                     if(userCombatant.tempStatus[5]!=0){
                         this.statusEffect('Regeneration',userCombatant.tempStatus[5])
                     }
+                    if(userCombatant.tempStatus[6]!=0){
+                        this.statusEffect('Poison',userCombatant.tempStatus[6])
+                    }
                     if(userCombatant.status.main[98]>0){
                         this.statusEffect('Bleed',userCombatant.status.main[98])
                     }
@@ -4667,6 +4687,12 @@ class combatant{
             }
             if(this.status.main[18]!=0){
                 totalDex+=this.status.main[18]
+            }
+            if(this.status.main[984]>0&&this.caffeine>0){
+                totalDex+=this.faith
+            }
+            if(this.status.main[985]>0&&this.caffeine>0){
+                totalDex+=this.caffeine
             }
             if(totalDex>0){
                 block*=1+totalDex*0.1
@@ -5694,8 +5720,8 @@ class combatant{
             }
         }
     }
-    gainFaith(value){
-        this.faith+=value
+    gainFavor(value){
+        this.favor+=value
         if(this.status.main[819]>0&&this.id<this.battle.players){
             this.battle.addEnergy(this.status.main[819],this.id)
         }
@@ -5703,8 +5729,9 @@ class combatant{
             this.battle.addSpecificEnergy(this.status.main[820],this.id,6)
         }
     }
-    gainFavor(value){
-        this.favor+=value
+    gainFaith(value){
+        this.faith+=value
+        this.interiorStatus[2]+=value
     }
     bell(mult){
         this.statusEffect('Bell',1)
@@ -5878,6 +5905,9 @@ class combatant{
                         case 'Intangible':
                             if(this.status.main[800]>0){
                                 this.statusEffect('Strength',this.status.main[800])
+                            }
+                            if(this.status.main[995]>0){
+                                this.gainFaith(this.status.main[995])
                             }
                         break
                         case 'Poison':
@@ -6602,7 +6632,7 @@ class combatant{
                     case 813: this.statusEffect('Temporary Strength',this.status.main[this.status.ticker[a]]);this.status.next[findList('Temporary Strength Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
                     case 814: this.miniStatus('Temporary Strength Cycle 3 1',this.status.main[this.status.ticker[a]]); break
                     case 815: this.miniStatus('Temporary Strength Cycle 3 2',this.status.main[this.status.ticker[a]]); break
-                    case 818: this.gainFaith(this.status.main[this.status.ticker[a]]); break
+                    case 818: this.gainFavor(this.status.main[this.status.ticker[a]]); break
                     case 821: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(1)} break
                     case 824: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(15)} break
                     case 825: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(2)} break
@@ -6632,6 +6662,7 @@ class combatant{
                     case 906: this.miniStatus('Temporary Dexterity Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     case 974: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(12)} break
                     case 980: this.battle.combatantManager.areaAbstract(2,[this.team==0?'Weak Next Turn':'Weak',this.status.main[this.status.ticker[a]]],this.tilePosition,[3,this.id],[0,1],false,0); break
+                    case 984: this.gainFaith(this.status.main[this.status.ticker[a]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
@@ -8573,6 +8604,7 @@ class combatant{
                 this.battle.tileManager.activate()
                 if(this.name!='Prisoner Informant'&&this.name!='Gangster Machinegunner Informant'&&this.name!='Walker Driver Informant'){
                     this.battle.counter.killed++
+                    this.battle.counter.turnKilled++
                 }
                 this.battle.updateTargetting()
                 if(this.battle.turn.main<this.battle.players){
