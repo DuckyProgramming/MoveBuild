@@ -675,7 +675,7 @@ attack.prototype.update=function(){
         case 9777: case 9778: case 9779: case 9792: case 9793: case 9794: case 9795: case 9798: case 9799: case 9800: case 9801: case 9802: case 9803: case 9807: case 9808: case 9812: case 9813: case 9821: case 9824: case 9830:
         case 9831: case 9832: case 9833: case 9855: case 9856: case 9857: case 9875: case 9876: case 9877: case 9878: case 9883: case 9884: case 9895: case 9896: case 9897: case 9904: case 9915: case 9918: case 9919: case 9920:
         case 9928: case 9929: case 9930: case 9931: case 9937: case 9942: case 9943: case 9946: case 9947: case 9951: case 9967: case 9968: case 9970: case 9971: case 9972: case 9973: case 9982: case 9992: case 9996: case 10003:
-        case 10006: case 10012: case 10013: case 10014: case 10038: case 10044:
+        case 10006: case 10012: case 10013: case 10014: case 10038: case 10044: case 10061:
             //mark 4
             if(
                 this.timer==1&&(

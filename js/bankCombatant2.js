@@ -2676,7 +2676,7 @@ combatant.prototype.setupGraphics=function(direction){
                 break
             }
         break
-        case 'Spike Pillar':
+        case 'Spike Pillar': case 'Sticky Pillar':
             this.anim={direction:direction}
             this.fades={body:1}
             this.trigger={display:{body:true}}

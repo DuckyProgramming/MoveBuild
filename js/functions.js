@@ -3574,6 +3574,30 @@ function checkSpawns(){
 		encounter.assaultReinforce.forEach(enemy=>{if(findName(enemy.name,types.combatant)==-1){print(enemy.name)}})
 	})
 }
+function checkExists(start,end){
+	let invalid=[
+		5,16,134,135,201,236,237,244,245,250,
+		447,465,466,467,468,487,//push
+		62,//invalid enlighten
+		116,//invalid false surrender
+		188,440,//damage taken up
+		275,//old crescent
+		423,//old unbalanced
+		83,84,85,86,//items
+	]
+	for(let a=start,la=end;a<la;a++){
+		if(!invalid.includes(a)&&!types.card.some(card=>
+			card.levels[0].attack==a||
+			card.levels[1].attack==a||
+			card.levels[2].attack==a||
+			card.mtg.levels[0].attack==a||
+			card.mtg.levels[1].attack==a||
+			card.mtg.levels[2].attack==a
+		)){
+			print(a)
+		}
+	}
+}
 function checkPast(){
 	if(types.past==undefined){
 		print('No Past')
@@ -3633,18 +3657,4 @@ function firstDisband(){
 		}
 	})
 	print(minimal)
-}
-function checkExists(start,end){
-	for(let a=start,la=end;a<la;a++){
-		if(!types.card.some(card=>
-			card.levels[0].attack==a||
-			card.levels[1].attack==a||
-			card.levels[2].attack==a||
-			card.mtg.levels[0].attack==a||
-			card.mtg.levels[1].attack==a||
-			card.mtg.levels[2].attack==a
-		)){
-			print(a)
-		}
-	}
 }*/

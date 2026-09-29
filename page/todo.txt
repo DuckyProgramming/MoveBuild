@@ -1,52 +1,32 @@
-monday 9/28 10:00 am coc building
+Thursday, October 1 6 PM idk
+Sunday, October 4 2026 at 2:00 PM
 Skiles 006 Wednesday, October 21, at 1:00pm
 
-CS 120 [NEW SANAE / 8400]
+CS 121 [NEW SANAE / 8500]
 
-prayer stance - damage, temporary dexterity, faiths
-time magic - when you take an extra turn, discover a card, it costs 0
-sleight forsight - draw a power, gain faith
-strength testing - gain 1 strength, if you have dexterity, gives 1 more strength
-cyan mist - damage 2 times, gain 1 control, gain 1 faith
-spellcard study - block, rare card in hand: gain faith
-holy relics - gain 1 faith per item you have
-invocation preparation - gain faith, get dazed
-tie dye - faith, gain 1 energy, gain 1 energy next turn
-pillar of phosphor - damage 2 times equal to 3 * dexterity, gain faith
-major motivator - faith functions like temporary strength and dexterity
-[menessa] woman of action - caffeine functions like temporary strength and dexterity
-prespoke incantation - gain 1 faith per attack or defense in hand
-kanako's blessing - when you invoke kanako, gain 1 dexterity
-suwako's blessing - when you invoke suwako, gain 1 strength
-rebuff dance - aerial but you also gain 1 control
-star falling - draw 2, gain 2 favor
-split star falling into no wind no waves
-
-split faithful meditation
-split gather faith
-split prison of faith
-split faithful guide
-[mountain of faith]
-
-also go purge her if we go over
 fresh tutorial
+does sanae boss still get barrier
 
 fill in remaining slots with randos from the reserve below
 
-CS 121 [AIRI PURGE / 8500]
+CS 122 [GREATER LEGACY / 8600]
+
+checkExists from 500 forward
+
+CS 123 [AIRI / 8700]
+
+down 2 events
 
 purge airi
 make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
-CS 122 [?]
-
-replace with: classic (no tarots, no packs, no shop heal, etc)
+CS 124 [?]
 
 tooltips for dictionary
 
-https://forum.axishistory.com/posting.php?mode=reply&t=260043#preview
+https://forum.axishistory.com/viewtopic.php?t=260043
 
 play sakura armament
 shoot armament mechanic
@@ -65,19 +45,22 @@ play prehex x2 runs
 purge?
 make sure her tutorial is not ruined
 
-split palladium
-split button battery
-18 damage and exhaust 3
-split aggrandize to exhaust
-[more cards using the system put in place by feral, for coffee, guns, etc]
-sight of distant blade - damage, shiv, costs 1 less when played
-split shinmy cards that count as strikes to have defend variants
-discus sap - target loses 4 health, add a dual discus to hand
-countertop - remove 3 cards, gain 1 random temporary item
+(the below is very similar to 10193!)
+onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn
+vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
+alarm chili - when you play a skill this turn, deal 10 damage in all directions
+matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
+
 belt buckle - gain 1 strength, if you have no items gain 1 dexterity
 squall - 18 damage to anybody, get 3 random temporary items
 demographics - gain temp dex for every 5 population
 self-fulfillment - gain 3 temporary strength when in wrath and 3 temporary dexterity when in sturdy
+time magic - when you take an extra turn, discover a card, it costs 0
+maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand(char dependent)
+classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
+the road taken - the next quest played returns to your hand
+
+[mountain flowers]
 
 diadem - gain 1 buffer, apply 2 weak to all enemies [tiara already exists, base off that]
 teleport and nerf in all directions
@@ -165,48 +148,6 @@ debug - add 9 block, exhaust a random curse in your draw pile
 tiny blade - 0 cost 1 damage and 1 lock on in all directions
 creative writing - when you are debuffed, draw a card
 aleph - lose your first relic, gain a relic, vanishing 1
-
-C - draw and upgrade some cards, then slightly compact your hand (based on assembly)(C sounds good but what about C+?)
-cantilever - add 8x block, gain 2x energy next turn
-law of large numbers - when you highroll, guarantee a lowroll next, when you lowroll, guarantee a highroll next(ehhhh works well for consitency but Chip's funner without consitency)
-metallic fortress - gain armor per dark matter, pulled: draw a card, has mass
-breakdown - if target has block, apply 1 vulnerable, deal 9 damage twice
-split dazzling dash, new dazzling dash - draw 3 cards, 7 or more cards in hand: gain 1 strength instead
-split touch of garlic - old version becomes touch grass, new version lets you pick between gaining a bit of vigor or vigil
-maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand(char dependent)
-classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
-the road taken - the next quest played returns to your hand
-
-brambles - 2 cost, gain 3 regen, your attacks apply poison equal to your regen
-bolas - free zipper that replenishes(mtg reference?)
-metabolize - lose 1 caffeine, if you do gain 1 energy(good)
-triple axel - add 4 block 3 times
-hypothermia - remove all block from target, target retains freeze for 1 turn(good)
-munch - [bite], then exhaust a card(see previous notes about unknown mechanics)
-time of troubles - gain 1 wisdom, gain 1 history per dead enemy
-stop laughing - push target, draw a card, remove a random debuff from self
-abrogate - draw 2 for 0 cost, increases by 1, cost increases by 1
-split twirling ribbon - new twirling ribbon adds 4 block twice and gives vigil, maybe have a counterpart for damage as well
-
-frost lily - apply 1 frail, apply 3 freeze to every adjacent enemy
-funnel emitter - all cards in hand gain fuel equal to the highest in hand
-inspect armor - add a shiv to hand, it gains damage equal to target's block(cooler name like sense vulnerability/weakness?)
-burn documents - 0 cost, exhaust a card, apply burn in all directions equal to its cost
-playful bolt - target loses 3 health, prime 1, retain(so this is a bolt so it could be primed to prime again (yes))
-ferrous blade - deal 4 damage, cost increases by 1, when exhausted put a 0-cost copy of this card in your hand(yo discount immortal spark)
-the last resort - 2 cost, add 24 block, discover a defense, it duplicates once
-overwrite - 1 cost, exhaust the top 3 cards of your draw pile, then exhume 1(idk exhume)
-uproar - damage 2 times, draw an attack it costs 0
-
-quick scour - if target intends to attack, draw 2 cards, otherwise scry 3
-snitch - if an enemy has been killed, apply 3 vulnerable to any enemy and draw a card
-tragic slip - apply 1 weak, 0 cost, applies 999 instead if an enemy died this turn
-hook and drag - deal 10 damage, target loses 2 hp when you draw a card this turn
-hit the road - gain 1 tmeporary strength when a card is discarded from your hand
-onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn
-vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
-alarm chili - when you play a skill this turn, deal 10 damage in all directions
-matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror

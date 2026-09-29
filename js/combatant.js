@@ -220,7 +220,7 @@ class combatant{
                 '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
                 '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
                 'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
-                'Splash Weak Per Turn','Status Block','Counter Shock All Combat'
+                'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -321,7 +321,7 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,0,//96
                 0,0,0,0,0,0,0,1,1,0,//97
                 0,0,0,0,0,1,1,0,0,0,//98
-                0,0,0,
+                0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -422,7 +422,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//96
                 2,2,2,2,2,2,2,2,2,2,//97
                 2,2,2,2,2,2,2,0,0,0,//98
-                0,2,0,
+                0,2,0,0,
             ]}
         /*
         0-none
@@ -1008,6 +1008,9 @@ class combatant{
             break
             case 'Glazer Clone':
                 this.statusEffect('Mortal',diffUnfair?15:20)
+            break
+            case 'Sticky Pillar':
+                this.statusEffect('Counter Temporary Speed Down All Combat',1)
             break
         }
         //mark b
@@ -2038,7 +2041,7 @@ class combatant{
             //this is two different chunks which both share absolutely no subparts
             case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
             case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall':
-            case 'Compactor': case 'Discounter':
+            case 'Compactor': case 'Discounter': case 'Sticky Pillar':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -4559,6 +4562,9 @@ class combatant{
                         if(this.status.main[982]>0){
                             userCombatant.statusEffect('Shock',this.status.main[982])
                         }
+                        if(this.status.main[983]>0){
+                            userCombatant.statusEffect('Temporary Speed Down',this.status.main[982])
+                        }
                         if(this.status.main[50]>0){
                             this.addBlock(this.status.main[50])
                             this.status.main[50]=0
@@ -6933,7 +6939,7 @@ class combatant{
             
             case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start':
             case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone':
-            case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall':
+            case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall': case 'Sticky Pillar':
                 switch(type){
                     case 19:
                         this.animSet.loop=0
@@ -7808,7 +7814,10 @@ class combatant{
                 }
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall':
+            
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret':
+            case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret':
+            case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall': case 'Sticky Pillar':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate

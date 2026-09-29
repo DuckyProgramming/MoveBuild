@@ -15578,7 +15578,7 @@ class attack{
                             this.userManager.hand.add(findName('Keyblade',types.card),this.level,0)
                         }
                     break
-                    case 1306:
+                    case 1306: case 10061:
                         this.battle.multiplyEnergy(this.amplify?3:2,this.player)
                     break
                     case 1323:

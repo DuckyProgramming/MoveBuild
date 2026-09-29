@@ -14542,6 +14542,26 @@ combatant.prototype.display=function(){
                     this.layer.pop()
                 }
             break
+            case 'Sticky Pillar':
+                if(this.trigger.display.body){
+                    this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                    for(let a=0,la=15;a<la;a++){
+                        if(lcos(a*96+this.anim.direction+this.time)<=0){
+                            this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*8,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
+                            this.layer.rect(lsin(a*96+this.anim.direction+this.time)*6,-45*a*3,lsin(a*96+this.anim.direction+this.time)*4,2)
+                        }
+                    }
+                    this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                    this.layer.rect(0,-24,8,48,2)
+                    this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                    for(let a=0,la=15;a<la;a++){
+                        if(lcos(a*96+this.anim.direction+this.time)>0){
+                            this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*8,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
+                            this.layer.rect(lsin(a*96+this.anim.direction+this.time)*6,-45*a*3,lsin(a*96+this.anim.direction+this.time)*4,2)
+                        }
+                    }
+                }
+            break
             case '':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){

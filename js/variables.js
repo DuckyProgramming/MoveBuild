@@ -317,6 +317,7 @@ types={
         {name:'Explosive Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:208,effect:[25]}],description:`Sentry but exploding`},
         {name:'Multiturret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:233,effect:[20]}],description:`Bullet spammer`},
         {name:'Barbed Pillar',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
+        {name:'Sticky Pillar',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Sounds a little weird`},
         {name:'Gun Rack',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:234,effect:[1]}],description:`Big brain augmentation`},
         {name:'Repulse Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:235,effect:[12]}],description:`Get off my property!`},
         {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[8]}],description:`More gun`},
@@ -5315,7 +5316,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Quadral 7'],class:1,world:2,
+            level:['Quadral 7'],class:0,world:-1,
             name:'Old Danger',
             player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
