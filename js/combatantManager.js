@@ -572,6 +572,8 @@ class combatantManager{
                     return index
                 case 25:
                     return this.combatants[index]
+                case 26:
+                    this.combatants[index].loseHealth(args[0])
             }
         }
     }

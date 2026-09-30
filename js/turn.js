@@ -26,7 +26,7 @@ class turn{
         }
         switch(this.attackClass){
             case 1:
-                this.userCombatant.tempStatus=[1,0,0,0,0,0]
+                this.userCombatant.resetTempStatus()
                 this.clearAttack=[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
                 if(this.userCombatant.getStatus('Double Damage')>0){
                     this.clearAttack[0]=true

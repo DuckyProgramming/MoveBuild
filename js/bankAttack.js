@@ -286,7 +286,7 @@ attack.prototype.update=function(){
         case 9505: case 9523: case 9534: case 9550: case 9551: case 9552: case 9553: case 9557: case 9563: case 9564: case 9565: case 9566: case 9567: case 9568: case 9569: case 9572: case 9576: case 9577: case 9578: case 9579:
         case 9588: case 9592: case 9608: case 9609: case 9610: case 9624: case 9664: case 9681: case 9682: case 9686: case 9687: case 9719: case 9720: case 9721: case 9733: case 9738: case 9739: case 9740: case 9754: case 9755:
         case 9781: case 9782: case 9785: case 9788: case 9791: case 9804: case 9805: case 9806: case 9811: case 9817: case 9819: case 9840: case 9868: case 9881: case 9900: case 9909: case 9914: case 9921: case 9926: case 9941:
-        case 9958: case 9961: case 9981: case 9985: case 9989: case 10008: case 10009: case 10066: case 10102: case 10111: case 10146: case 10160: case 10173: case 10178:
+        case 9958: case 9961: case 9981: case 9985: case 9989: case 10008: case 10009: case 10066: case 10102: case 10111: case 10146: case 10160: case 10173: case 10178: case 10172:
             //mark 2
             if(
                 this.timer==1&&(
@@ -311,7 +311,8 @@ attack.prototype.update=function(){
                 this.type==4836&&this.mtgEnergy.length<2||
                 (this.type==5305||this.type==5376||this.type==9495)&&(variants.mtg?this.cost[0]:this.cost)!=0||
                 this.type==5734&&this.limit%2!=1||
-                this.type==7070&&this.userManager.hand.turnPlayed[1]>0
+                this.type==7070&&this.userManager.hand.turnPlayed[1]>0||
+                this.type==10172&&this.userManager.hand.numberAbstract(4,[[1]])<this.effect[0]
             ){
                 this.remove=true
             }else if(variants.nobasicanim){
@@ -793,7 +794,7 @@ attack.prototype.update=function(){
         case 9481: case 9482: case 9483: case 9484: case 9486: case 9521: case 9531: case 9532: case 9547: case 9562: case 9581: case 9584: case 9593: case 9606: case 9658: case 9666: case 9690: case 9691: case 9692: case 9701:
         case 9702: case 9704: case 9707: case 9728: case 9751: case 9815: case 9841: case 9843: case 9844: case 9859: case 9870: case 9871: case 9898: case 9899: case 9901: case 9906: case 9908: case 9910: case 9911: case 9912:
         case 9917: case 9927: case 9940: case 9948: case 9953: case 9955: case 9956: case 9983: case 9986: case 9987: case 9998: case 10016: case 10017: case 10018: case 10019: case 10045: case 10046: case 10063: case 10067: case 10068:
-        case 10069: case 10083: case 10084: case 10091: case 10092: case 10099: case 10103: case 10104: case 10105: case 10109: case 10110: case 10135: case 10149: case 10153: case 10161: case 10175:
+        case 10069: case 10083: case 10084: case 10091: case 10092: case 10099: case 10103: case 10104: case 10105: case 10109: case 10110: case 10126: case 10127: case 10135: case 10149: case 10153: case 10161: case 10175:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -2029,8 +2030,8 @@ attack.prototype.update=function(){
         case 9293: case 9345: case 9394: case 9397: case 9408: case 9409: case 9410: case 9411: case 9512: case 9585:
         case 9602: case 9634: case 9635: case 9636: case 9637: case 9659: case 9660: case 9662: case 9697: case 9698:
         case 9699: case 9700: case 9703: case 9725: case 9786: case 9796: case 9816: case 9825: case 9837: case 9852:
-        case 9853: case 9861: case 9922: case 9923: case 9944: case 10036: case 10106: case 10117: case 10133: case 10150:
-        case 10163: case 10170: case 10171: case 10172:
+        case 9853: case 9861: case 9922: case 9923: case 9944: case 10036: case 10106: case 10117: case 10133: case 10144:
+        case 10150: case 10163: case 10170: case 10171:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2046,7 +2047,7 @@ attack.prototype.update=function(){
                 this.type==8049&&this.timer==1&&!this.userCombatant.spendCharge(this.effect[0])||
                 this.type==8453&&this.userManager.hand.numberAbstract(4,[[2]])>0||
                 this.type==8866&&this.battle.currency.money[this.player]<this.effect[0]||
-                (this.type==9268||this.type==10170||this.type==10171||this.type==10172)&&this.userManager.hand.numberAbstract(4,[[1]])<this.effect[0]
+                (this.type==9268||this.type==10170||this.type==10171)&&this.userManager.hand.numberAbstract(4,[[1]])<this.effect[0]
             ){
                 this.remove=true
             }else if(variants.nobasicanim){
@@ -3135,7 +3136,7 @@ attack.prototype.update=function(){
             }else if(this.timer==15*this.targetDistance-5){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 switch(this.type){
-                    case 7411:
+                    case 7411: case 10195:
                         this.userCombatant.statusEffect('Cycle Defense',1)
                     break
                 }
@@ -3211,7 +3212,7 @@ attack.prototype.update=function(){
             }else if(this.timer==15*this.targetDistance-5){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                 switch(this.type){
-                    case 7412:
+                    case 7412: case 10196:
                         this.userCombatant.statusEffect('Cycle Defense',1)
                     break
                 }
@@ -15174,9 +15175,9 @@ attack.prototype.update=function(){
             this.userCombatant.runAnimation(1/10,10)
             if(this.timer==10){
                 switch(this.type){
-                    case 9975: case 10097:
+                    case 9975:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.hand.add(findName('Divination',types.card),this.level,this.color)
+                            this.userManager.hand.add(findName('Divination',types.card),this.level,0)
                         }
                         if(this.userCombatant.getStatus('Kanako Energy')){
                             this.battle.addEnergy(this.userCombatant.getStatus('Kanako Energy'),this.player)
@@ -15187,13 +15188,10 @@ attack.prototype.update=function(){
                         if(this.userCombatant.getStatus('Kanako Strength')){
                             this.userCombatant.statusEffect('Strength',this.userCombatant.getStatus('Kanako Strength'))
                         }
-                        if(this.type==10097){
-                            this.userCombatant.statusEffect('Free Attack',1)
-                        }
                     break
-                    case 9976: case 10098:
+                    case 9976:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.hand.add(findName('Riptide',types.card),this.level,this.color)
+                            this.userManager.hand.add(findName('Riptide',types.card),this.level,0)
                         }
                         if(this.userCombatant.getStatus('Suwako Energy')){
                             this.battle.addEnergy(this.userCombatant.getStatus('Suwako Energy'),this.player)
@@ -15204,13 +15202,38 @@ attack.prototype.update=function(){
                         if(this.userCombatant.getStatus('Suwako Dexterity')){
                             this.userCombatant.statusEffect('Dexterity',this.userCombatant.getStatus('Suwako Dexterity'))
                         }
-                        if(this.type==10098){
-                            this.userCombatant.statusEffect('Free Defense',1)
+                    break
+                    case 10097:
+                        this.userCombatant.statusEffect('Free Attack',1)
+                        this.battle.overlayManager.overlays[193][this.player].polarity[0]++
+                        this.userManager.hand.add(findName('Divination',types.card),this.level,0)
+                        if(this.userCombatant.getStatus('Kanako Energy')){
+                            this.battle.addEnergy(this.userCombatant.getStatus('Kanako Energy'),this.player)
+                        }
+                        if(this.userCombatant.getStatus('Kanako (E)')){
+                            this.battle.addSpecificEnergy(this.userCombatant.getStatus('Kanako (E)'),this.player,6)
+                        }
+                        if(this.userCombatant.getStatus('Kanako Strength')){
+                            this.userCombatant.statusEffect('Strength',this.userCombatant.getStatus('Kanako Strength'))
+                        }
+                    break
+                    case 10098:
+                        this.userCombatant.statusEffect('Free Defense',1)
+                        this.battle.overlayManager.overlays[193][this.player].polarity[1]++
+                        this.userManager.hand.add(findName('Riptide',types.card),this.level,0)
+                        if(this.userCombatant.getStatus('Suwako Energy')){
+                            this.battle.addEnergy(this.userCombatant.getStatus('Suwako Energy'),this.player)
+                        }
+                        if(this.userCombatant.getStatus('Suwako (E)')){
+                            this.battle.addSpecificEnergy(this.userCombatant.getStatus('Suwako (E)'),this.player,6)
+                        }
+                        if(this.userCombatant.getStatus('Suwako Dexterity')){
+                            this.userCombatant.statusEffect('Dexterity',this.userCombatant.getStatus('Suwako Dexterity'))
                         }
                     break
                 }
                 if(this.battle.overlayManager.overlays[193][this.player].polarity[0]==this.battle.overlayManager.overlays[193][this.player].polarity[1]){
-                    this.userManager.hand.add(findName('Miracle',types.card),this.level,this.color)
+                    this.userManager.hand.add(findName('Miracle',types.card),this.level,0)
                 }
                 for(let a=0,la=5;a<la;a++){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,

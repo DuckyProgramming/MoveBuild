@@ -221,7 +221,7 @@ class combatant{
                 '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
                 'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
                 'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
-                'Kanako Strength','Suwako Strength','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random',
+                'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -439,8 +439,7 @@ class combatant{
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
         this.turnStatus=[0,0,0,0,0,0]
         //dodges,taken,life lost,heal,highrolls,lowrolls
-        this.tempStatus=[1,0,0,0,0,0,0]
-        //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed,single attack regeneration
+        this.resetTempStatus()
         this.interiorStatus=[0,0,0]
         //repeat extra turn 1,has done damage,total faith
         for(let a=0;a<this.status.name.length;a++){
@@ -543,7 +542,7 @@ class combatant{
     resetInfo(){
         this.constants()
         this.resetAnim()
-        this.tempStatus=[1,0,0,0,0,0]
+        this.resetTempStatus()
         this.interiorStatus=[0,0,0]
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -567,6 +566,10 @@ class combatant{
             favor:[0,0,0,0,0,0],
             ringing:[0,0,0,0,0,0],
         }
+    }
+    resetTempStatus(){
+        this.tempStatus=[1,0,0,0,0,0,0]
+        //multiplier,add,damage block convert,damage repeat in 2 turns,single attack bleed,single attack regeneration
     }
     reset(){
         this.size=this.base.size
@@ -3405,8 +3408,8 @@ class combatant{
             if(this.status.main[965]>0){
                 this.addBlock(this.status.main[965])
             }
-            if(this.status.main[985]>0){
-                this.statusEffect('Luck Guarantee',this.status.main[985])
+            if(this.status.main[993]>0){
+                this.statusEffect('Luck Guarantee',this.status.main[993])
             }
         }
     }
@@ -3470,8 +3473,8 @@ class combatant{
             if(this.status.main[966]>0){
                 this.addBlock(this.status.main[966])
             }
-            if(this.status.main[986]>0){
-                this.statusEffect('Luck Guarantee Fail',this.status.main[986])
+            if(this.status.main[994]>0){
+                this.statusEffect('Luck Guarantee Fail',this.status.main[994])
             }
         }
     }
@@ -4583,7 +4586,7 @@ class combatant{
                             userCombatant.statusEffect('Shock',this.status.main[982])
                         }
                         if(this.status.main[983]>0){
-                            userCombatant.statusEffect('Temporary Speed Down',this.status.main[982])
+                            userCombatant.statusEffect('Temporary Speed Up',-this.status.main[983])
                         }
                         if(this.status.main[50]>0){
                             this.addBlock(this.status.main[50])

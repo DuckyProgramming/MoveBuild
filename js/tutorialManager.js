@@ -966,9 +966,9 @@ Wisdom increases the cap on Knowledge, but more Knowledge is needed first.`,
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(40)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=15
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
-                this.popups=[[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
-`Sanae, the Purifier, is designed around creating a sort of balance
+/*`Sanae, the Purifier, is designed around creating a sort of balance
 between the usage of offensive and defensive cards and playstyles.
 Her gimmicks include: Barrier, Discuses, Scry and Scry-Based Cards, and Freeze.`,
 `Barrier is similar to block in that it prevents damage coming in.
@@ -981,7 +981,25 @@ barrier being retained, it is harder to gain in large amounts.`,
 If you dislike the cards, you can click on them to discard them.
 Otherwise, skip so you can draw them next turn (or this turn).`,
 `Some Sanae strategies also allow you to gain advantages
+based on the cards in your draw pile that you can Scry.`,*/
+`Sanae, the Purifier, is designed around careful planning and
+manipulation, both of enemies and of your own cards, over the long term.
+Her gimmicks include: Scry, Faith, and Miracles.`,
+`Scrying allows you to look at the top X cards of your draw pile.
+If you dislike the cards, you can click on them to discard them.
+Otherwise, skip so you can draw them next turn (or this turn).`,
+`Some Sanae strategies also allow you to gain advantages
 based on the cards in your draw pile that you can Scry.`,
+`Sanae can also invoke her two gods, Kanako and Suwako.
+To do so, she must first gather Faith, of which 6 must be collected.`,
+`At that point, you can pick which god to invoke.
+If you invoke Kanako, you add a Divination (scrying card) to your hand.
+If you invoke Suwako, you add a Riptide (attack card) to your hand.`,
+`Each time you invoke both of them, you also add a Miracle to your hand.
+The Miracle is a fairly common energy-giving token card among characters,
+but as Sanae, you can benefit uniquely from easily gained Miracles.`,
+`Finally, while all characters have access to various power cards,
+and can gain intangible, Sanae can uniquely use these.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -2172,11 +2190,11 @@ while staying aware of when they can feed a quick combo.`,
             break
             case 23:
                 switch(this.page){
-                    case 1:
+                    /*case 1:
                         this.battle.cardManagers[0].hand.add(findName('Quietude',types.card),0,16)
                         this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,16)
-                    break
-                    case 3:
+                    break*/
+                    case 1:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
@@ -2185,7 +2203,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.dropDraw(0,findName('Defend',types.card),0,16)
                         this.battle.dropDraw(0,findName('Strike',types.card),0,16)
                     break
-                    case 4:
+                    case 2:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
@@ -2195,6 +2213,27 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.dropDraw(0,findName('Defend',types.card),0,16)
                         this.battle.dropDraw(0,findName('Strike',types.card),0,16)
                         this.battle.dropDraw(0,findName('Strike',types.card),0,16)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('NumberDummy',types.combatant),5)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Gather\nFaith',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Gather\nFaith',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Gather\nFaith',types.card),0,16)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Gather\nFaith',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Gather\nFaith',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Gather\nFaith',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Rainbow\nMountain',types.card),0,16)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Prayer\nBanks',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Evaporate',types.card),0,16)
                     break
                 }
             break

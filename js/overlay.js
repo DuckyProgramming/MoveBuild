@@ -1241,7 +1241,7 @@ class overlay{
                                         for(let c=0,lc=list[b].length;c<lc;c++){
                                             if((
                                                 !variants.mtg&&types.card[list[b][c]].levels[args[0]].cost!=args[1][1][b]||
-                                                variants.mtg&&types.card[list[b][c]].levels[args[0]].cost.length!=args[1][1][b]
+                                                variants.mtg&&types.card[list[b][c]].mtg.levels[args[0]].cost.length!=args[1][1][b]
                                             )){
                                                 list[b].splice(c,1)
                                                 c--
@@ -1381,6 +1381,24 @@ class overlay{
                                         findName('Discus of Mountain\nand Rain',types.card),
                                         findName('Discus of Moon\nand Sky',types.card),
                                     ]
+                                break
+                                case 21:
+                                    list=[]
+                                    for(let a=0,la=args[1][1].length;a<la;a++){
+                                        list.push((variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]]))[3])
+                                    }
+                                    for(let b=0,lb=list.length;b<lb;b++){
+                                        for(let c=0,lc=list[b].length;c<lc;c++){
+                                            if((
+                                                !variants.mtg&&types.card[list[b][c]].levels[args[0]].class!=args[1][1][b]||
+                                                variants.mtg&&types.card[list[b][c]].mtg.levels[args[0]].class!=args[1][1][b]
+                                            )){
+                                                list[b].splice(c,1)
+                                                c--
+                                                lc--
+                                            }
+                                        }
+                                    }
                                 break
                                 default:
                                     list=[]
@@ -1529,7 +1547,7 @@ class overlay{
                             }
                             for(let a=0,la=this.options;a<la;a++){
                                 switch(args[1][0]){
-                                    case 6: case 9: case 12: case 16: case 17:
+                                    case 6: case 9: case 12: case 16: case 17: case 21:
                                         if(list[a%list.length].length>0){
                                             let index=floor(random(0,list[a%list.length].length))
                                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[a%list.length][index],args[0],this.battle.standardColorize(list[a%list.length][index]),-1))
@@ -5645,7 +5663,7 @@ class overlay{
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((pointInsideBox({position:inputs.rel},this.cards[a])||this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170+(this.options>=8?75:0)},width:120,height:40}))&&!this.cards[a].deSize){
                             if(this.setupArgs[2]==22){
-                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%3],this.setupArgs[4+a%2])
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
                             }
                             let lists=[]
                             switch(this.args[0]){
@@ -5713,13 +5731,11 @@ class overlay{
                                         }
                                     }
                                     if(this.setupArgs[3].includes(2)){
-                                        let cardClass=constrain(this.cards[a].class-1,0,1)
-                                        if(this.setupArgs[2]==22){
-                                            if(cardClass==10){
-                                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].faith+=this.setupArgs[5][2]
-                                            }else{
-                                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
-                                            }
+                                        let cardClass=constrain(this.cards[a].class-1,0,10)
+                                        if(cardClass==10){
+                                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].faith+=this.setupArgs[5][2]
+                                        }else{
+                                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][cardClass],this.setupArgs[5][cardClass])
                                         }
                                     }
                                 }else{
@@ -6795,7 +6811,7 @@ class overlay{
                                 break
                             }
                             for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
-                                if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select&&
+                                if(key==inputs.hexadec[this.battle.cardManagers[this.player].discard.cards[a].relIndex%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select&&
                                     !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].spec.includes(37))&&
                                     !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].level>=2&&!this.battle.cardManagers[this.player].discard.cards[a].spec.includes(53))&&
                                     !(this.args[0]==112&&this.battle.cardManagers[this.player].discard.cards[a].getCost(0)>this.args[1])
@@ -6946,7 +6962,7 @@ class overlay{
                                 }
                                 if(a>=0&&a<la&&this.activeTimer<=0){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
-                                    if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&
+                                    if(key==inputs.hexadec[this.battle.cardManagers[this.player].discard.cards[a].relIndex%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&
                                             !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].spec.includes(37))&&
                                             !(this.args[0]==77&&this.battle.cardManagers[this.player].discard.cards[a].level>=2&&!this.battle.cardManagers[this.player].discard.cards[a].spec.includes(53))
                                         ){
@@ -7380,7 +7396,7 @@ class overlay{
                                         }
                                     }
                                     if(this.setupArgs[3].includes(2)){
-                                        let cardClass=constrain(this.cards[a].class-1,0,1)
+                                        let cardClass=constrain(this.cards[a].class-1,0,10)
                                         if(cardClass==10){
                                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].faith+=this.setupArgs[5][2]
                                         }else{

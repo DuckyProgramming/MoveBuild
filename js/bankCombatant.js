@@ -14548,7 +14548,7 @@ combatant.prototype.display=function(){
                     for(let a=0,la=15;a<la;a++){
                         if(lcos(a*96+this.anim.direction+this.time)<=0){
                             this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*8,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
-                            this.layer.rect(lsin(a*96+this.anim.direction+this.time)*6,-45*a*3,lsin(a*96+this.anim.direction+this.time)*4,2)
+                            this.layer.rect(lsin(a*96+this.anim.direction+this.time)*6,-45+a*3,lsin(a*96+this.anim.direction+this.time)*4,2)
                         }
                     }
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
@@ -14557,7 +14557,7 @@ combatant.prototype.display=function(){
                     for(let a=0,la=15;a<la;a++){
                         if(lcos(a*96+this.anim.direction+this.time)>0){
                             this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*8,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
-                            this.layer.rect(lsin(a*96+this.anim.direction+this.time)*6,-45*a*3,lsin(a*96+this.anim.direction+this.time)*4,2)
+                            this.layer.rect(lsin(a*96+this.anim.direction+this.time)*6,-45+a*3,lsin(a*96+this.anim.direction+this.time)*4,2)
                         }
                     }
                 }
