@@ -3658,7 +3658,7 @@ class group{
                     this.drawEffects.push([0,17,[]])
                 }
             break
-            case 1239:
+            case 1239: case 10200:
                 userCombatant.statusEffect('Damage Down',card.effect[0])
             break
             case 1240:
@@ -4005,6 +4005,11 @@ class group{
             break
             case 9643:
                 userCombatant.statusEffect('Bleed',card.effect[1])
+            break
+            case 10198:
+                let roll=floor(random(0,3))+1
+                card.effect[0]=roll
+                card.target[2]=roll
             break
 
         }
@@ -6958,6 +6963,7 @@ class group{
                             (
                                 this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
                                 this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||this.cards[a].attack==9648||this.cards[a].attack==9651||
+                                this.cards[a].attack==10203||this.cards[a].attack==10204||
                                 (
                                     this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890||
                                     this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680||this.cards[a].attack==6852||this.cards[a].attack==8724&&this.battle.attackManager.lastPlayed[0].class==11

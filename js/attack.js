@@ -315,7 +315,7 @@ class attack{
             case 9966: case 9979: case 9984: case 9990: case 9991: case 10002: case 10004: case 10005: case 10007: case 10015: case 10021: case 10022: case 10028: case 10029: case 10030: case 10035: case 10036: case 10037: case 10047: case 10048:
             case 10049: case 10050: case 10051: case 10062: case 10065: case 10073: case 10078: case 10079: case 10082: case 10106: case 10108: case 10112: case 10113: case 10117: case 10120: case 10121: case 10128: case 10130: case 10132: case 10133:
             case 10144: case 10145: case 10147: case 10148: case 10151: case 10152: case 10154: case 10155: case 10156: case 10157: case 10158: case 10163: case 10165: case 10168: case 10169: case 10170: case 10171: case 10174: case 10179: case 10180:
-            case 10181: case 10182: case 10183: case 10187: case 10189: case 10190: case 10191: case 10192: case 10195: case 10196:
+            case 10181: case 10182: case 10183: case 10187: case 10189: case 10190: case 10191: case 10192: case 10195: case 10196: case 10197: case 10199: case 10202: case 10203: case 10204:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -405,7 +405,7 @@ class attack{
             case 9713: case 9714: case 9715: case 9722: case 9723: case 9724: case 9734: case 9741: case 9742: case 9743:
             case 9768: case 9787: case 9790: case 9880: case 9749: case 9893: case 9959: case 9962: case 9980: case 10024:
             case 10025: case 10026: case 10027: case 10031: case 10053: case 10054: case 10055: case 10056: case 10057: case 10058:
-            case 10059: case 10060: case 10116: case 10142: case 10150: case 10167: case 10176: case 10177:
+            case 10059: case 10060: case 10116: case 10142: case 10150: case 10167: case 10176: case 10177: case 10198:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -8343,6 +8343,16 @@ class attack{
                     break
                     case 10187:
                         this.targetCombatant.statusEffect('Take Per Card Drawn',this.effect[1])
+                    break
+                    case 10197:
+                        this.userCombatant.heal(this.effect[1])
+                        this.userCombatant.statusEffect('Lose Health',this.effect[2])
+                    break
+                    case 10199:
+                        if(this.userCombatant.spendCharge(this.effect[1])){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.userManager.draw(this.effect[2])
+                        }
                     break
 
                 }
@@ -26659,6 +26669,11 @@ class attack{
                         this.battle.overlayManager.overlays[19][this.player].activate()
                         this.userManager.hand.exhaust(this.effect[0])
                     break
+                    case 10201:
+                        this.userCombatant.statusEffect('Buffer',this.effect[0])
+                        this.userManager.draw(this.effect[1],this.userCombatant.elemental?1:0)
+                        this.userManager.hand.rewind(this.effect[2])
+                    break
 
                 }
                 //mark 5
@@ -28769,7 +28784,7 @@ class attack{
             break
             case 7:
                 switch(this.type){
-                    case 38: case 1255: case 1348:
+                    case 38: case 1255: case 1348: case 10202:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])

@@ -1,17 +1,17 @@
-CS 122 [AIRI / 8600]
+CS 123 [GREATER LEGACY]
 
-down 2 events
+checkExists from 1200 forward
+
+CS 124 [AIRI / 8750]
 
 purge airi
 make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
-CS 123 [GREATER LEGACY / 8700]
+CS 125 [?]
 
-checkExists from 500 forward
-
-CS 124 [?]
+down 2 events
 
 tooltips for dictionary
 
@@ -36,27 +36,32 @@ play prehex x2 runs
 purge?
 make sure his tutorial is not ruined
 
-play shinmy
-purge?
-make sure her tutorial is not ruined
+play vincent
+minor vincent purge
+reorganize the items
+https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
+make sure his tutorial is not ruined
 
 this.battle.overlayManager.overlays[10][this.player].active=true
 this.battle.overlayManager.overlays[10][this.player].activate([this.level,[21,[1,2,11]],57,[],[this.effect[0],this.effect[1],this.effect[2]]])
 this thing splits new year visit
 
-split red sky
-split axal bolt
-split cursed dice
-split twin slam
+split treadmill
+split prospector
 split snapshot
 split ammo reserve
+split strength stash
+split grand potential (only exhausts when successful)
 split copypaste (old version has 6 range, new version has full-map range)
 replace lead barricade with a card similar to vantage
+split time of troubles
+
 (the below is very similar to 10193!)
 onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn
 vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
 alarm chili - when you play a skill this turn, deal 10 damage in all directions
 matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
+broken matter - deal damage equal to your block, lose all block, overdrive 3: don't lose block
 
 belt buckle - gain 1 strength, if you have no items gain 1 dexterity
 squall - 18 damage to anybody, get 3 random temporary items
@@ -66,6 +71,7 @@ time magic - when you take an extra turn, discover a card, it costs 0
 maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand(char dependent)
 classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
 the road taken - the next quest played returns to your hand
+highfive - add 15 block, but so does target (can be enemy or ally or anything)
 
 [mountain flowers]
 
@@ -160,6 +166,34 @@ headhunt - 5 damage to all enemies, if fatal gain 25 block
 call of the grave - exhume a card, get wisp
 tumbleweed - counter all this combat, and apply 999 frail to a random enemy (tumble)
 cloak of moonlight - add 12 block per pristine in hand
+quantum speed - add 3 block, if played first put a card from discard pile into hand
+event fragment - 4 damage, return on colorless card
+try again - add 9 block, gain 3 vigor per attack in hand
+[attack counterpart of the above]
+
+electric soda - gain 1 energy, gain 3 regeneration, trigger all enemies' shock, exhaust
+light buster - deal 10 damage, 3 range, evoke first orb, add its evoke effect to this card this combat
+kill drive - when you play a claw, draw a card
+final battle - gain 5 mortal, deal double damage for the rest of this combat
+master of fear - apply 999 vulnerable to all enemies
+high moment - gain 10 temporary strength, lose 3 health
+toxic rampart - poison for every 8? health you have
+cards that increase effect of divination and riptide
+
+lightweight - 2 cost power, smite costs 1 less
+[safety counterpart]
+secure self - gain 1 control, remove a random debuff from self
+suffocate - 0 cost, 4 damage, if target has vulnerable apply 1 weak
+transfusion - block, gain 1 strength if you lost health this turn
+better days - when you lose hp, heal up to 1 of it back
+nanomachines - gain 1 buffer, add a random temporary item
+hard labor - all assigned workers are discarded instead of exhausted
+strike the earth - deal 4 damage, retain a card until played (7597)
+
+pale flame - deal 4 damage, gain 1 wisdom, exhaust a card
+beloved from above - 1 cost, retain, gain 2 faith, draw a card it costs 1 less
+parhelion blur - gain 1 intangible, next luck card is guaranteed
+summarize - gain 1 strength per enemy that will attack
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror

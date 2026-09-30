@@ -3304,7 +3304,7 @@ class battle{
                                 }
                             //}
                         })
-                        for(let a=0,la=graphics.test==1?15:10;a<la;a++){
+                        for(let a=0,la=graphics.test==1?15:11;a<la;a++){
                             let barWidth=600/la
                             //let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
                             let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Subcard','Event','Reserve','Developer','Disband','Basic','Pack','Misc']

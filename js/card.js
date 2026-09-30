@@ -983,7 +983,7 @@ class card{
             case 187:
                 userCombatant.takeDamage(this.effect[1],-1)
             break
-            case 1255:
+            case 1255: case 10202:
                 userCombatant.statusEffect('Damage Down',this.effect[2])
             break
             case 3212:
@@ -1591,7 +1591,7 @@ class card{
             case -102:
                 this.battle.cardManagers[this.player].hand.add(this.type,this.level,this.color,this.edition)
             break
-            case 202: case 1710:
+            case 202:
                 userCombatant.combo+=this.effect[1]
             break
             case 303: case 5810:
@@ -1608,6 +1608,9 @@ class card{
             break
             case 1202:
                 this.battle.dropDrawShuffle(this.player,findName('Rewrite',types.card),0,0)
+            break
+            case 1710:
+                userCombatant.combo+=this.effect[2]
             break
             case 2580: case 10169:
                 userCombatant.addBlock(this.effect[1])
@@ -1815,7 +1818,7 @@ class card{
                 this.battle.cardManagers[this.player].deck.add(findName('Fury\nSpell',types.card),0,0)
             break
             case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433: case 1565: case 1903:
-            case 2469: case 2479: case 2480: case 2551: case 2821: case 2822: case 9705:
+            case 2469: case 2479: case 2480: case 2551: case 2821: case 2822: case 9705: case 10200:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
@@ -3021,11 +3024,11 @@ class card{
             case 5752:
                 this.effect[0]+=this.effect[2]
             break
-            case 5973: case 10153:
+            case 5973: case 10153: case 10203:
                 this.effect[0]+=this.effect[1]
                 this.costUp(2,[1])
             break
-            case 5974:
+            case 5974: case 10204:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
                 this.costUp(2,[1])
             break

@@ -3588,22 +3588,38 @@ function checkSpawns(){
 function checkExists(start,end){
 	let invalid=[
 		5,16,134,135,201,236,237,244,245,250,
-		447,465,466,467,468,487,//push
+		447,465,466,467,468,487,974,986,987,1001,
+		1017,1281,//invalid push
 		62,//invalid enlighten
-		116,//invalid false surrender
-		188,440,//damage taken up
-		275,//old crescent
-		423,//old unbalanced
+		116,665,//invalid false surrender
+		188,440,1239,1255,1841,//damage taken up
+		275,//invalid crescent
+		423,//invalid unbalanced
+		507,//invalid clawchain
+		526,//invalid charge soruce
+		531,532,//invalid severance
+		564,//invalid cheap shot
+		651,657,//invalid close in, keep distance
+		770,//invalid credence
+		853,//invalid energy recoil
+		870,871,//invalid frenzy
+		1098,//invalid ii - the priestess
+		1123,//invalid nothings
+		1284,//invalid lucky 7
+		1307,//invalid boston bat
+		1369,//invalid high vis jacket
+		1739,2053,//invalid password
+		1914,//old tin snips
 		83,84,85,86,//items
 	]
 	for(let a=start,la=end;a<la;a++){
 		if(!invalid.includes(a)&&!types.card.some(card=>
-			card.levels[0].attack==a||
-			card.levels[1].attack==a||
-			card.levels[2].attack==a||
-			card.mtg.levels[0].attack==a||
-			card.mtg.levels[1].attack==a||
-			card.mtg.levels[2].attack==a
+			card.levels[0].attack==a||card.levels[0].spec.includes(12)&&card.levels[0].attack.includes(a)||
+			card.levels[1].attack==a||card.levels[1].spec.includes(12)&&card.levels[1].attack.includes(a)||
+			card.levels[2].attack==a||card.levels[2].spec.includes(12)&&card.levels[2].attack.includes(a)||
+			card.mtg.levels[0].attack==a||card.mtg.levels[0].spec.includes(12)&&card.mtg.levels[0].attack.includes(a)||
+			card.mtg.levels[1].attack==a||card.mtg.levels[1].spec.includes(12)&&card.mtg.levels[1].attack.includes(a)||
+			card.mtg.levels[2].attack==a||card.mtg.levels[2].spec.includes(12)&&card.mtg.levels[2].attack.includes(a)
 		)){
 			print(a)
 		}

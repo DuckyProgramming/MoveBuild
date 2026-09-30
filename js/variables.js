@@ -212,7 +212,7 @@ types={
         {name:'Lost Management Officer',life:44,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[2]},{type:81,effect:[8,3,'Dazed']}],description:`Wishes his subordinates were here`},
         {name:'Ducksquad',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:`Duck with purpose`},
         {name:'Lockdown',life:216,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[2]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[27,9]},{type:409,effect:[22,11]}],description:`Stay in jail`},
-        {name:'Crusader',life:109,behavior:21,spec:[0],move:{type:0,speed:1},attack:[{type:342,effect:[8,2]},{type:6,effect:[12]},{type:344,effect:[15]},{type:48,effect:[13]},{type:347,effect:[15]}],description:`Two millennia late to the party`},
+        {name:'Crusader',life:109,behavior:21,spec:[0],move:{type:0,speed:1},attack:[{type:342,effect:[8,2]},{type:6,effect:[12]},{type:344,effect:[15]},{type:29,effect:[11]},{type:347,effect:[15]}],description:`Two millennia late to the party`},
         {name:'Mini Puffball',life:1,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[4]},{type:4,effect:[8]}],description:`Apparently fluffy`},
         {name:'Inkblot',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:31,effect:[6]},{type:29,effect:[9]},{type:21,effect:[]}],description:`Not really his fault`},
         {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:152,effect:[999]}],description:`He had one job`},
