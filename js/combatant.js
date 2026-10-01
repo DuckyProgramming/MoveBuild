@@ -3534,7 +3534,7 @@ class combatant{
                     damage=0
                     userCombatant.status.main[250]--
                 }
-                if(userCombatant.status.main[984]>0&&userCombatant.caffeine>0){
+                if(userCombatant.status.main[984]>0&&userCombatant.faith>0){
                     totalStr+=userCombatant.faith
                 }
                 if(userCombatant.status.main[985]>0&&userCombatant.caffeine>0){
@@ -4691,7 +4691,7 @@ class combatant{
             if(this.status.main[18]!=0){
                 totalDex+=this.status.main[18]
             }
-            if(this.status.main[984]>0&&this.caffeine>0){
+            if(this.status.main[984]>0&&this.faith>0){
                 totalDex+=this.faith
             }
             if(this.status.main[985]>0&&this.caffeine>0){

@@ -215,7 +215,7 @@ types={
         {name:'Crusader',life:109,behavior:21,spec:[0],move:{type:0,speed:1},attack:[{type:342,effect:[8,2]},{type:6,effect:[12]},{type:344,effect:[15]},{type:29,effect:[11]},{type:347,effect:[15]}],description:`Two millennia late to the party`},
         {name:'Mini Puffball',life:1,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[4]},{type:4,effect:[8]}],description:`Apparently fluffy`},
         {name:'Inkblot',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:31,effect:[6]},{type:29,effect:[9]},{type:21,effect:[]}],description:`Not really his fault`},
-        {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:152,effect:[999]}],description:`He had one job`},
+        {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:152,effect:[999]}],description:`He had one job`},
         {name:'Globe Head',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:493,effect:[7,2]},{type:30,effect:[5,10]}],description:`Don't want to be around him`},
         {name:'Infested Prism',life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[11]},{type:378,effect:[10,10]},{type:492,effect:[2]}],description:`What's going on in there`},
         {name:'Crow',life:13,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:31,effect:[4]}],description:`An IQ too high?`},
@@ -1541,7 +1541,7 @@ types={
         {name:'Grimoire Page',internal:'Any Uncommon Card',id:69,rarity:2,list:0,menu:true,temp:false,mtg:1,description:'Choose an Uncommon Card From Any\nCharacter to Add to Deck'},
 
         {name:'Pocket Oracle',internal:'Oracle',id:70,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Choose ANY Character or Colorless\nCard to Add to Hand'},
-        {name:'Blinker Light',internal:'24 Damage/Limited Extra Turn',id:71,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 24 Damage, Take Another Turn\nAll Cards Cost 1 More on That Turn\nRange 1-6'},
+        {name:'Blinker Light',internal:'24 Damage/Limited Extra Turn',id:71,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Deal 24 Damage, Take Another Turn\nAll Cards Cost 1 More on That Turn\nRange 1-6'},
         {name:'Vacuum Collapse',internal:'35 Damage/2 Prismatic Bombs',id:72,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 2\nPrismatic Bombs to Draw Pile\nRange 1-6'},
         {name:'Binary Die',internal:'Double or Nothing',id:73,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Randomly Duplicate a Card\nor Destroy it Permanently'},
         {name:'Replacement Papers',internal:'Edition',id:74,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Edition a Card'},

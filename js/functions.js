@@ -608,7 +608,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[195]!=0){
 				totalStr+=user.status.main[195]
 			}
-			if(user.status.main[984]>0&&user.caffeine!=0){
+			if(user.status.main[984]>0&&user.faith!=0){
 				totalStr+=user.faith
 			}
 			if(user.status.main[985]>0&&user.caffeine!=0){
@@ -749,7 +749,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[18]!=0){
 				totalDex+=user.status.main[18]
 			}
-			if(user.status.main[984]>0&&user.caffeine>0){
+			if(user.status.main[984]>0&&user.faith>0){
 				totalDex+=userCombatant.faith
 			}
 			if(user.status.main[985]>0&&user.caffeine>0){
@@ -3589,10 +3589,10 @@ function checkExists(start,end){
 	let invalid=[
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
-		1017,1281,//invalid push
+		1017,1281,2186,2187,2664,2776,2837,//invalid push
 		62,//invalid enlighten
 		116,665,//invalid false surrender
-		188,440,1239,1255,1841,//damage taken up
+		188,440,1239,1255,1841,2813,//damage taken up/down
 		275,//invalid crescent
 		423,//invalid unbalanced
 		507,//invalid clawchain
@@ -3605,13 +3605,19 @@ function checkExists(start,end){
 		870,871,//invalid frenzy
 		1098,//invalid ii - the priestess
 		1123,//invalid nothings
-		1284,//invalid lucky 7
+		1284,2583,//invalid lucky 7, edict
 		1307,//invalid boston bat
 		1369,//invalid high vis jacket
 		1739,2053,//invalid password
-		1914,//old tin snips
+		1914,//invalid tin snips
+		1991,2017,//invalid overthrow, underthrow
+		2286,//invalid pleonasm
+		2386,2387,//invalid rng
+		2431,2753,//invalid extending step, extending strike
+		2695,//invalid learn by example
 		83,84,85,86,//items
 	]
+	let total=0
 	for(let a=start,la=end;a<la;a++){
 		if(!invalid.includes(a)&&!types.card.some(card=>
 			card.levels[0].attack==a||card.levels[0].spec.includes(12)&&card.levels[0].attack.includes(a)||
@@ -3622,8 +3628,10 @@ function checkExists(start,end){
 			card.mtg.levels[2].attack==a||card.mtg.levels[2].spec.includes(12)&&card.mtg.levels[2].attack.includes(a)
 		)){
 			print(a)
+			total++
 		}
 	}
+	print(`Total: ${total}`)
 }
 function checkPast(){
 	if(types.past==undefined){

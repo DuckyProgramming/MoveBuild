@@ -369,7 +369,7 @@ class card{
             this.colorDetail=types.color.card[this.color]
         }
         if(this.colorDetail==undefined){
-            print(this.name)
+            print(this.name,`colorDetail fail`)
         }
     }
     getCost(type){

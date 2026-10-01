@@ -1,17 +1,18 @@
-CS 123 [GREATER LEGACY]
+CS 124 [GREATER LEGACY]
 
-checkExists from 1200 forward
+checkExists from 2700 forward
 
-CS 124 [AIRI / 8750]
+CS 125 [AIRI / 8750]
 
 purge airi
 make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
-CS 125 [?]
+CS 126 [?]
 
 down 2 events
+down 1 rare item
 
 tooltips for dictionary
 
@@ -55,6 +56,7 @@ split grand potential (only exhausts when successful)
 split copypaste (old version has 6 range, new version has full-map range)
 replace lead barricade with a card similar to vantage
 split time of troubles
+fresh animation for dreamseal
 
 (the below is very similar to 10193!)
 onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn

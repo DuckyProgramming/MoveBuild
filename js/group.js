@@ -2768,6 +2768,12 @@ class group{
                         this.cards[a].costDown(0,[args[0]])
                     }
                 break
+                case 80:
+                    if(this.cards[a].class==4){
+                        this.cards[a].costDown(2,[args[0]])
+                        this.cards[a].spec.push(1)
+                    }
+                break
                 //mark allargs
             }
         }
@@ -4784,7 +4790,7 @@ class group{
         return !this.cards[index].spec.includes(7)
     }
     unRemove(){
-        this.battle.cardManagers[this.player].remove.send(this.cards,this.battle.cardManagers[this.player].remove.cards.length-1,this.battle.cardManagers[this.player].remove.length,0)
+        this.battle.cardManagers[this.player].remove.send(this.cards,this.battle.cardManagers[this.player].remove.cards.length-1,this.battle.cardManagers[this.player].remove.cards.length,0)
     }
     hasCard(type){
         for(let a=0,la=this.cards.length;a<la;a++){
