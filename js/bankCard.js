@@ -10464,6 +10464,11 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10215: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Each (E) Spent:\nDraw ${effect[1]} Power${pl(effect[1])}`; break
         case 10216: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nIf Last Card\nContains 'Strike',\nGain (E) (E) (E) (E) (E)`; break
         case 10217: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nTarget Takes ${effect[1]}\nMore Damage\nGain ${effect[2]} Dodge\nAdvance`; break
+        case 10218: string+=`+1: Add ${this.calculateEffect(effect[0],1)} Block\n-3: Gain (W) (W) (W)\n-7: Gain ${effect[1]} Intangible`; break
+        case 10219: string+=`Gain (E) (E)\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Pristine to Hand\nLose ${effect[1]} Health`; break
+        case 10220: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Pristine to Hand\nLose ${effect[1]} Health`; break
+        case 10221: string+=`Gain (E) (E) (E) (E)\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Pristine to Hand\nLose ${effect[1]} Health`; break
+        case 10222: string+=`Gain (E) at the\nStart of Your Turn\nAdd to Discard:\nDazed\nBurn\nVoid`; break
 
         //mark p
         //mark q

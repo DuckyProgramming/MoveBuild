@@ -3615,6 +3615,8 @@ function checkExists(start,end){
 		2386,2387,//invalid rng
 		2431,2753,//invalid extending step, extending strike
 		2695,//invalid learn by example
+		3018,//invalid lily of the valley
+		3080,//star, showering starlight proxy
 		83,84,85,86,//items
 	]
 	let total=0

@@ -316,7 +316,7 @@ class attack{
             case 10047: case 10048: case 10049: case 10050: case 10051: case 10062: case 10065: case 10073: case 10078: case 10079: case 10082: case 10106: case 10108: case 10112: case 10113: case 10117: case 10120: case 10121: case 10128: case 10130:
             case 10132: case 10133: case 10144: case 10145: case 10147: case 10148: case 10151: case 10152: case 10154: case 10155: case 10156: case 10157: case 10158: case 10163: case 10165: case 10168: case 10169: case 10170: case 10171: case 10174:
             case 10179: case 10180: case 10181: case 10182: case 10183: case 10187: case 10189: case 10190: case 10191: case 10192: case 10195: case 10196: case 10197: case 10199: case 10202: case 10203: case 10204: case 10205: case 10206: case 10213:
-            case 10214: case 10215: case 10216: case 10217:
+            case 10214: case 10215: case 10216: case 10217: case 10218:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -36545,9 +36545,7 @@ class attack{
                                 }
                             }
                         }else{
-                            if(this.targetCombatant.id==this.userCombatant.id){
-                                this.userCombatant.addBlock(this.effect[0])
-                            }
+                            this.userCombatant.addBlock(this.effect[0])
                             for(let a=0,la=list2830.length;a<la;a++){
                                 for(let b=0,lb=list2830[a].length;b<lb;b++){
                                     if(list2830[a][b].id==this.id){
@@ -39413,6 +39411,37 @@ class attack{
                     case 10212:
                         for(let a=0,la=min(this.energy*this.effect[0],100);a<la;a++){
                             this.userCombatant.holdOrb(floor(random(0,constants.orbNumber)))
+                        }
+                    break
+                    case 10218:
+                        let list10218=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards]
+                        if(this.effect[2]>=7&&this.targetCombatant.id==this.userCombatant.id){
+                            this.userCombatant.statusEffect('Intangible',this.effect[1])
+                            for(let a=0,la=list10218.length;a<la;a++){
+                                for(let b=0,lb=list10218[a].length;b<lb;b++){
+                                    if(list10218[a][b].id==this.id){
+                                        list10218[a][b].effect[2]-=7
+                                    }
+                                }
+                            }
+                        }else if(this.effect[2]>=3&&this.targetCombatant.id==this.userCombatant.id){
+                            this.battle.addSpecificEnergy(3,this.player,1)
+                            for(let a=0,la=list10218.length;a<la;a++){
+                                for(let b=0,lb=list10218[a].length;b<lb;b++){
+                                    if(list10218[a][b].id==this.id){
+                                        list10218[a][b].effect[2]-=3
+                                    }
+                                }
+                            }
+                        }else{
+                            this.userCombatant.addBlock(this.effect[0])
+                            for(let a=0,la=list10218.length;a<la;a++){
+                                for(let b=0,lb=list10218[a].length;b<lb;b++){
+                                    if(list10218[a][b].id==this.id){
+                                        list10218[a][b].effect[2]++
+                                    }
+                                }
+                            }
                         }
                     break
 

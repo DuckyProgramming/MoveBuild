@@ -5908,6 +5908,7 @@ class card{
                     this.layer.ellipse(-this.width/2+10,-this.height/2+(this.colorful?15:12),20)
                 }
                 if(spec.includes(11)){
+                    //combo
                     this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12))
                     this.layer.noFill()
                     this.layer.stroke(240,240,40,this.fade)
@@ -5923,6 +5924,7 @@ class card{
                     this.layer.strokeCap(ROUND)
                     this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-(this.colorful?15:12))
                 }else if(spec.includes(21)){
+                    //metal
                     this.layer.fill(140,120,160,this.fade)
                     this.layer.stroke(120,100,140,this.fade)
                     this.layer.strokeWeight(variants.mtg?1.6:2)
@@ -5932,6 +5934,7 @@ class card{
                         regPoly(this.layer,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12),8,7,7,0)
                     }
                 }else if(spec.includes(35)){
+                    //countdown
                     if(variants.mtg){
                         let finalCost=this.editCost(cost,1)
                         let totals=[0,0,0,0,0,0,0,0]
@@ -5970,6 +5973,7 @@ class card{
                         this.layer.strokeJoin(MITER)
                     }
                 }else if(spec.includes(40)){
+                    //twos
                     this.layer.noStroke()
                     this.layer.fill(225,this.fade)
                     if(variants.mtg){
@@ -5984,6 +5988,7 @@ class card{
                         this.layer.ellipse(-this.width/2+13.75,-this.height/2+16.75,3)
                     }
                 }else if(spec.includes(55)){
+                    //activated ally
                     if(this.colorful){
                         this.layer.fill(125,this.fade)
                         this.layer.stroke(100,this.fade)
@@ -5996,6 +6001,7 @@ class card{
                         regStar(this.layer,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+13,5,variants.mtg?9.6:12,variants.mtg?9.6:12,variants.mtg?3.6:4.5,variants.mtg?3.6:4.5,36)
                     }
                 }else if(spec.includes(58)){
+                    //health-costing
                     this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12))
                     this.layer.fill(255,50,50,this.fade)
                     this.layer.stroke(200,0,0,this.fade)
@@ -6023,6 +6029,7 @@ class card{
                     }
                     this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-(this.colorful?15:12))
                 }else if(spec.includes(59)){
+                    //wish
                     this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+12+(this.colorful?3:0))
                     if(!spec.includes(60)){
                         this.layer.fill(90,90,135,this.fade)
@@ -6053,6 +6060,7 @@ class card{
                     }
                     this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-12-(this.colorful?3:0))
                 }else if(spec.includes(67)){
+                    //quest
                     this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+12+(this.colorful?3:0))
                     this.layer.fill(50,225,125,this.fade)
                     this.layer.stroke(25,200,100,this.fade)

@@ -4921,7 +4921,7 @@ attack.prototype.update=function(){
         case 9374: case 9383: case 9384: case 9396: case 9499: case 9536: case 9537: case 9538: case 9589: case 9611:
         case 9640: case 9696: case 9730: case 9747: case 9771: case 9775: case 9784: case 9823: case 9860: case 9862:
         case 9916: case 9935: case 9949: case 9950: case 9952: case 9966: case 9999: case 10000: case 10072: case 10073:
-        case 10080: case 10081: case 10130: case 10131: case 10188: case 10205: case 10211: case 10212:
+        case 10080: case 10081: case 10130: case 10131: case 10188: case 10205: case 10211: case 10212: case 10218:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -8361,7 +8361,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3104: case 3628: case 5249: case 5250: case 5251: case 5252: case 9652:
+        case 3104: case 3628: case 5249: case 5250: case 5251: case 5252: case 9652: case 10222:
             if(this.timer==1){
                 this.userCombatant.startAnimation(5)
             }
@@ -8392,12 +8392,12 @@ attack.prototype.update=function(){
                         this.userCombatant.statusEffect('(E) Next Turn',3)
                         this.userCombatant.statusEffect('(E) in 2 Turns',3)
                     break
-                    case 9652:
+                    case 9652: case 10222:
                         this.battle.addSpecificEnergyGen(1,this.player,6)
                     break
                 }
                 switch(this.type){
-                    case 3104:
+                    case 3104: case 10222:
                         this.battle.drop(this.player,findName('Dazed',types.card),0,constants.playerNumber+1)
                         this.battle.drop(this.player,findName('Burn',types.card),0,constants.playerNumber+1)
                         this.battle.drop(this.player,findName('Void',types.card),0,constants.playerNumber+1)
@@ -8688,7 +8688,8 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3165: case 3448: case 4587: case 4588: case 4589: case 8962: case 8963: case 8964: case 8965:
+        case 3165: case 3448: case 4587: case 4588: case 4589: case 8962: case 8963: case 8964: case 8965: case 10219:
+        case 10220: case 10221:
             if(this.timer==1){
                 this.userCombatant.startAnimation(6)
             }
@@ -8756,6 +8757,21 @@ attack.prototype.update=function(){
                             this.userManager.hand.add(findName('Pristine',types.card),0,0)
                         }
                         this.userCombatant.loseHealth(this.effect[2])
+                    break
+                    case 10219:
+                        this.battle.addSpecificEnergy(2,this.player,6)
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 10220:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.userCombatant.loseHealth(this.effect[0])
+                    break
+                    case 10221:
+                        this.battle.addSpecificEnergy(4,this.player,6)
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        this.userCombatant.loseHealth(this.effect[0])
                     break
                 }
             }else if(this.timer>=20){

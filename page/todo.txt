@@ -1,15 +1,15 @@
-CS 124 [GREATER LEGACY]
+CS 125 [GREATER LEGACY]
 
 checkExists from 2700 forward
 
-CS 125 [AIRI / 8750]
+CS 126 [AIRI / 8750]
 
 purge airi
 make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
-CS 126 [?]
+CS 127 [?]
 
 down 2 events
 down 1 rare item

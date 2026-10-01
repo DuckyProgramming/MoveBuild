@@ -1560,7 +1560,7 @@ class group{
                     }
                 break
                 case 47:
-                    if(this.cards[a].attack==1305||this.cards[a].attack==2827||this.cards[a].attack==2828||this.cards[a].attack==2829||this.cards[a].attack==2830||this.cards[a].attack==4580||this.cards[a].attack==6439||this.cards[a].attack==6440){
+                    if(this.cards[a].attack==1305||this.cards[a].attack==2827||this.cards[a].attack==2828||this.cards[a].attack==2829||this.cards[a].attack==2830||this.cards[a].attack==4580||this.cards[a].attack==6439||this.cards[a].attack==6440||this.cards[a].attack==10218){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,2)
                         a--
                         la--
