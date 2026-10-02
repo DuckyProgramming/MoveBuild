@@ -1,15 +1,15 @@
-CS 126 [GREATER LEGACY]
+CS 127 [GREATER LEGACY]
 
-checkExists from 4000 forward
+checkExists from 5500 forward
 
-CS 127 [AIRI / 8750]
+CS 128 [AIRI / 8750]
 
 purge airi
 make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
-CS 128 [?]
+CS 129 [?]
 
 down 2 events
 down 1 rare item
@@ -47,8 +47,6 @@ this.battle.overlayManager.overlays[10][this.player].active=true
 this.battle.overlayManager.overlays[10][this.player].activate([this.level,[21,[1,2,11]],57,[],[this.effect[0],this.effect[1],this.effect[2]]])
 this thing splits new year visit
 
-split treadmill
-split prospector
 split snapshot
 split ammo reserve
 split strength stash
@@ -56,6 +54,7 @@ split grand potential (only exhausts when successful)
 split copypaste (old version has 6 range, new version has full-map range)
 replace lead barricade with a card similar to vantage
 split time of troubles
+split output
 fresh animation for dreamseal
 
 (the below is very similar to 10193!)

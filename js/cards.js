@@ -11889,20 +11889,6 @@ types.card=[
             ],
         },
     },{
-        name:'Drop and\nRun',rarity:0,list:5,
-        levels:[
-            {effect:[1],attack:575,cost:0,target:[1,1,1],spec:[0],class:3},
-            {effect:[2],attack:575,cost:0,target:[1,1,2],spec:[0],class:3},
-            {effect:[2],attack:575,cost:0,target:[1,1,2],spec:[],class:3},
-        ],mtg:{
-            rarity:0,list:5,color:[3],
-            levels:[
-                {effect:[1],attack:575,cost:[3],target:[1,1,1],spec:[0],class:3},
-                {effect:[2],attack:575,cost:[3],target:[1,1,2],spec:[0],class:3},
-                {effect:[2],attack:575,cost:[-1],target:[1,1,2],spec:[0],class:3},
-            ],
-        },
-    },{
         name:'Derecho',rarity:2,list:5,
         levels:[
             {effect:[18,1],attack:3895,cost:2,target:[5],spec:[0],class:1},
@@ -13874,6 +13860,20 @@ types.card=[
                 {effect:[9,1],attack:5215,cost:[11],target:[0],spec:[2],class:2},
                 {effect:[14,1],attack:5215,cost:[11],target:[0],spec:[2],class:2},
                 {effect:[17,1],attack:5215,cost:[11],target:[0],spec:[2],class:2},
+            ],
+        },
+    },{
+        name:'Cardinal\nPoint',rarity:0,list:5,
+        levels:[
+            {effect:[1,1],attack:5266,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,2],attack:5266,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,3],attack:5266,cost:1,target:[1,1,1],spec:[0],class:3},
+        ],mtg:{
+            rarity:0,list:5,color:[5],
+            levels:[
+                {effect:[1],attack:5267,cost:[5,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:5268,cost:[5,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:5269,cost:[5,-1],target:[1,1,1],spec:[0],class:3},
             ],
         },
     },
@@ -16076,6 +16076,20 @@ types.card=[
                 {effect:[],attack:10150,cost:[3],target:[1,1,1],spec:[21],class:7},
                 {effect:[],attack:10150,cost:[3],target:[1,1,1],spec:[2,21],class:7},
                 {effect:[],attack:10150,cost:[3],target:[1,1,1],spec:[2,21,22],class:7},
+            ],
+        },
+    },{
+        name:'Prospector',rarity:0,list:6,
+        levels:[
+            {effect:[5,1],attack:5265,cost:1,target:[0],spec:[1],class:11},
+            {effect:[5,2],attack:5265,cost:1,target:[0],spec:[1],class:11},
+            {effect:[10,2],attack:5265,cost:1,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:0,list:6,color:[2,3],
+            levels:[
+                {effect:[10,1],attack:5265,cost:[2,3],target:[0],spec:[1],class:11},
+                {effect:[10,2],attack:5265,cost:[2,3],target:[0],spec:[1],class:11},
+                {effect:[15,2],attack:5265,cost:[11,-1],target:[0],spec:[1],class:11},
             ],
         },
     },
@@ -35759,15 +35773,15 @@ types.card=[
     },{
         name:'Time of\nTroubles',rarity:1,list:15,
         levels:[
-            {effect:[1,1],attack:10149,cost:1,target:[0],spec:[2],class:11},
-            {effect:[1,2],attack:10149,cost:1,target:[0],spec:[2],class:11},
-            {effect:[2,2],attack:10149,cost:1,target:[0],spec:[2],class:11},
+            {effect:[1,1,1],attack:5270,cost:1,target:[0],spec:[2],class:11},
+            {effect:[1,1,2],attack:5270,cost:1,target:[0],spec:[2],class:11},
+            {effect:[1,2,2],attack:5270,cost:1,target:[0],spec:[2],class:11},
         ],mtg:{
             rarity:1,list:15,color:[2,3],
             levels:[
-                {effect:[1,2],attack:10149,cost:[2,3],target:[0],spec:[2],class:11},
-                {effect:[1,3],attack:10149,cost:[2,3],target:[0],spec:[2],class:11},
-                {effect:[2,3],attack:10149,cost:[2,3],target:[0],spec:[2],class:11},
+                {effect:[1,1,2],attack:5270,cost:[2,3],target:[0],spec:[2],class:11},
+                {effect:[1,1,3],attack:5270,cost:[2,3],target:[0],spec:[2],class:11},
+                {effect:[1,2,3],attack:5270,cost:[2,3],target:[0],spec:[2],class:11},
             ],
         },
     },
@@ -37900,6 +37914,20 @@ types.card=[
                 {effect:[1],attack:10186,cost:[2,4],target:[0],spec:[],class:4},
                 {effect:[1],attack:10186,cost:[12],target:[0],spec:[],class:4},
                 {effect:[1],attack:10186,cost:[12],target:[0],spec:[3],class:4},
+            ],
+        },
+    },{
+        name:'Carried\nAway',rarity:0,list:16,
+        levels:[
+            {effect:[1,1],attack:5261,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,2],attack:5261,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,3],attack:5261,cost:1,target:[1,1,1],spec:[0],class:3},
+        ],mtg:{
+            rarity:0,list:16,color:[4],
+            levels:[
+                {effect:[1],attack:5262,cost:[4,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:5263,cost:[4,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:5264,cost:[4,-1],target:[1,1,1],spec:[0],class:3},
             ],
         },
     },
@@ -40803,9 +40831,9 @@ types.card=[
         ],mtg:{
             rarity:0,list:18,color:[2],
             levels:[
-                {effect:[5,1],attack:4702,cost:[2,-1,-1,-1,-1],target:[0],spec:[1,2],class:11},
-                {effect:[5,1],attack:4702,cost:[2,-1,-1,-1],target:[0],spec:[1,2],class:11},
-                {effect:[5,1],attack:4702,cost:[2,-1,-1],target:[0],spec:[1,2],class:11},
+                {effect:[],attack:4702,cost:[2,-1,-1,-1,-1],target:[0],spec:[1,2],class:11},
+                {effect:[],attack:4702,cost:[2,-1,-1,-1],target:[0],spec:[1,2],class:11},
+                {effect:[],attack:4702,cost:[2,-1,-1],target:[0],spec:[1,2],class:11},
             ],
         },
     },{
@@ -67079,7 +67107,7 @@ types.card=[
         ],mtg:{
             rarity:-5,list:-1,color:[0],
             levels:[
-                {effect:[2,2],attack:6244,cost:[-1,-1,-1],target:[0],spec:[],class:4},
+                {effect:[2,2],attack:4737,cost:[-1,-1],target:[0],spec:[],class:4},
                 {effect:[2,2],attack:6244,cost:[-1,-1],target:[0],spec:[],class:4},
                 {effect:[3,3],attack:6244,cost:[-1,-1],target:[0],spec:[],class:4},
             ],
@@ -96623,34 +96651,6 @@ types.card=[
             ],
         },
     },{
-        name:'Basin\nCard',rarity:-1,list:-8,
-        levels:[
-            {effect:[1],attack:3117,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[2],attack:3117,cost:1,target:[1,1,2],spec:[0],class:3},
-            {effect:[2],attack:3117,cost:0,target:[1,1,2],spec:[0],class:3},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[1],attack:3117,cost:[0,-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3117,cost:[-1,-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3117,cost:[-1],target:[1,1,1],spec:[0],class:3},
-            ],
-        },
-    },{
-        name:'Regality\nTheory',rarity:-1,list:-8,
-        levels:[
-            {effect:[0],attack:4550,cost:1,target:[2,1,1],spec:[],class:1},
-            {effect:[6],attack:4550,cost:1,target:[2,1,1],spec:[],class:1},
-            {effect:[10],attack:4550,cost:1,target:[2,1,1],spec:[],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[0],attack:4550,cost:[0],target:[2,1,1],spec:[0],class:1},
-                {effect:[7],attack:4550,cost:[0],target:[2,1,1],spec:[0],class:1},
-                {effect:[12],attack:4550,cost:[0],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
         name:'Runescape',rarity:-1,list:-8,
         levels:[
             {effect:[1],attack:-63,cost:0,target:[0],spec:[4,5],class:5},
@@ -96721,20 +96721,6 @@ types.card=[
             ],
         },
     },{
-        name:'Limestone',rarity:-1,list:-8,
-        levels:[
-            {effect:[1],attack:3122,cost:2,target:[0],spec:[1],class:11},
-            {effect:[1],attack:3122,cost:2,target:[0],spec:[],class:11},
-            {effect:[1],attack:3122,cost:1,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[1],attack:3122,cost:[0,-1,-1,-1],target:[0],spec:[1],class:11},
-                {effect:[1],attack:3122,cost:[0,-1,-1],target:[0],spec:[1],class:11},
-                {effect:[1],attack:3122,cost:[0,-1],target:[0],spec:[1],class:11},
-            ],
-        },
-    },{
         name:'Gooning\nFork',rarity:-1,list:-8,
         levels:[
             {effect:[8,1],attack:8430,cost:1,target:[2,2,2],spec:[0],class:1},
@@ -96746,20 +96732,6 @@ types.card=[
                 {effect:[16,1],attack:8430,cost:[11,11],target:[2,2,2],spec:[0],class:1},
                 {effect:[26,1],attack:8430,cost:[11,11],target:[2,2,2],spec:[0],class:1},
                 {effect:[34,1],attack:8430,cost:[11,11],target:[2,2,2],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'A-Line',rarity:-1,list:-8,
-        levels:[
-            {effect:[24],attack:3086,cost:2,target:[0],spec:[],class:2},
-            {effect:[36],attack:3086,cost:2,target:[0],spec:[],class:2},
-            {effect:[45],attack:3086,cost:2,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[28],attack:3086,cost:[0,-1,-1],target:[0],spec:[],class:2},
-                {effect:[42],attack:3086,cost:[0,-1,-1],target:[0],spec:[],class:2},
-                {effect:[52],attack:3086,cost:[0,-1,-1],target:[0],spec:[],class:2},
             ],
         },
     },{
@@ -108103,20 +108075,6 @@ types.card=[
             ],
         },
     },{
-        name:'Silverswivel',rarity:-1,list:-8,
-        levels:[
-            {effect:[7,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
-            {effect:[11,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
-            {effect:[14,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[3],
-            levels:[
-                {effect:[9],attack:9661,cost:[3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
-                {effect:[14],attack:9661,cost:[3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
-                {effect:[18],attack:9661,cost:[3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
-            ],
-        },
-    },{
         name:'Streamstaff',rarity:-1,list:-8,
         levels:[
             {effect:[20,1],attack:1890,cost:4,target:[2,1,3],spec:[0,2,35],class:1},
@@ -109307,7 +109265,7 @@ types.card=[
             ],
         },
     },{
-        name:'Late\nStart',rarity:-1,list:-8,
+        name:'Poor\nStrike',rarity:-1,list:-8,
         levels:[
             {effect:[8,1],attack:2110,cost:1,target:[2,1,1],spec:[0,3],class:1},
             {effect:[12,1],attack:2110,cost:1,target:[2,1,1],spec:[0,3],class:1},
@@ -109321,7 +109279,7 @@ types.card=[
             ],
         },
     },{
-        name:'Late\nShield',rarity:-1,list:-8,
+        name:'Poor\nShield',rarity:-1,list:-8,
         levels:[
             {effect:[12,1],attack:2111,cost:1,target:[0],spec:[3],class:2},
             {effect:[18,1],attack:2111,cost:1,target:[0],spec:[3],class:2},
@@ -118155,7 +118113,7 @@ types.card=[
             ],
         },
     },{
-        name:'Prospector',rarity:-1,list:-8,
+        name:'Rush to\nthe West',rarity:-1,list:-8,
         levels:[
             {effect:[5,1],attack:7984,cost:1,target:[0],spec:[1],class:11},
             {effect:[5,2],attack:7984,cost:1,target:[0],spec:[1],class:11},
@@ -120308,6 +120266,398 @@ types.card=[
                 {effect:[22],attack:4375,cost:[7,7,-1],target:[5],spec:[0],class:1},
                 {effect:[32],attack:4376,cost:[7,7,-1],target:[5],spec:[0],class:1},
                 {effect:[40],attack:4377,cost:[7,7,-1],target:[5],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Focus\nPost',rarity:-1,list:-8,
+        levels:[
+            {effect:[11,1,1],attack:10234,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[16,1,1],attack:10234,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[20,1,1],attack:10234,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[18,1],attack:4408,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[27,1],attack:4408,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[32,1],attack:4408,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Belladonna',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1],attack:2449,cost:1,target:[0],spec:[],class:11},
+            {effect:[1,2],attack:2449,cost:1,target:[0],spec:[],class:11},
+            {effect:[1,3],attack:2449,cost:1,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,4],
+            levels:[
+                {effect:[1],attack:4421,cost:[9],target:[0],spec:[],class:11},
+                {effect:[1],attack:4422,cost:[9],target:[0],spec:[],class:11},
+                {effect:[1],attack:4423,cost:[9],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Misaligned\nStrike',rarity:-1,list:-8,
+        levels:[
+            {effect:[8,1],attack:10236,cost:1,target:[2,1,1],spec:[0,3],class:1},
+            {effect:[12,1],attack:10236,cost:1,target:[2,1,1],spec:[0,3],class:1},
+            {effect:[15,1],attack:10236,cost:1,target:[2,1,1],spec:[0,3],class:1},
+        ],mtg:{
+        arity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[13,1],attack:4477,cost:[2,-1],target:[2,1,1],spec:[0,3],class:1},
+                {effect:[19,1],attack:4478,cost:[2,-1],target:[2,1,1],spec:[0,3],class:1},
+                {effect:[24,1],attack:4479,cost:[2,-1],target:[2,1,1],spec:[0,3],class:1},
+            ],
+        },
+    },{
+        name:'Misaligned\nShield',rarity:-1,list:-8,
+        levels:[
+            {effect:[12,1],attack:10237,cost:1,target:[0],spec:[3],class:2},
+            {effect:[18,1],attack:10237,cost:1,target:[0],spec:[3],class:2},
+            {effect:[22,1],attack:10237,cost:1,target:[0],spec:[3],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[18,1],attack:4480,cost:[2,-1],target:[0],spec:[3],class:2},
+                {effect:[27,1],attack:4481,cost:[2,-1],target:[0],spec:[3],class:2},
+                {effect:[33,1],attack:4482,cost:[2,-1],target:[0],spec:[3],class:2},
+            ],
+        },
+    },{
+        name:'Misaligned\nStart',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1],attack:10235,cost:1,target:[1,1,1],spec:[0,3],class:1},
+            {effect:[2,1],attack:10235,cost:1,target:[1,1,2],spec:[0,3],class:1},
+            {effect:[3,1],attack:10235,cost:1,target:[1,1,3],spec:[0,3],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[1,1],attack:4483,cost:[2,-1],target:[1,1,1],spec:[0,3],class:1},
+                {effect:[2,1],attack:10238,cost:[2,-1],target:[1,1,2],spec:[0,3],class:1},
+                {effect:[3,1],attack:10239,cost:[2,-1],target:[1,1,3],spec:[0,3],class:1},
+            ],
+        },
+    },{
+        name:'Corundum',rarity:-1,list:-8,
+        levels:[
+            {effect:[8,1,1],attack:10240,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12,1,1],attack:10240,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15,2,2],attack:10240,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[13,1,1],attack:4529,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[20,1,1],attack:4529,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[25,2,2],attack:4529,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'A-Line',rarity:-1,list:-8,
+        levels:[
+            {effect:[24],attack:3086,cost:2,target:[0],spec:[],class:2},
+            {effect:[36],attack:3086,cost:2,target:[0],spec:[],class:2},
+            {effect:[45],attack:3086,cost:2,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[28],attack:3086,cost:[0,-1,-1],target:[0],spec:[],class:2},
+                {effect:[40],attack:3994,cost:[0,-1,-1],target:[0],spec:[],class:2},
+                {effect:[50],attack:3994,cost:[0,-1,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Regality\nTheory',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:5368,cost:1,target:[2,1,1],spec:[],class:1},
+            {effect:[6],attack:5369,cost:1,target:[2,1,1],spec:[],class:1},
+            {effect:[10],attack:5369,cost:1,target:[2,1,1],spec:[],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[],attack:5368,cost:[0],target:[2,1,1],spec:[0],class:1},
+                {effect:[],attack:10241,cost:[0],target:[2,1,1],spec:[0],class:1},
+                {effect:[5],attack:5370,cost:[0],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Basin\nCard',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:3117,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[2],attack:3117,cost:1,target:[1,1,2],spec:[0],class:3},
+            {effect:[2],attack:3117,cost:0,target:[1,1,2],spec:[0],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[1],attack:3117,cost:[0,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:4552,cost:[0,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:4552,cost:[-1,-1],target:[1,1,1],spec:[0],class:3},
+            ],
+        },
+    },{
+        name:'Limestone',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:3122,cost:2,target:[0],spec:[1],class:11},
+            {effect:[1],attack:3122,cost:2,target:[0],spec:[],class:11},
+            {effect:[1],attack:3122,cost:1,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[1],attack:3122,cost:[0,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1],attack:4553,cost:[0,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1],attack:4553,cost:[0,-1,-1],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Silverswivel',rarity:-1,list:-8,
+        levels:[
+            {effect:[7,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[11,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[14,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[9,0],attack:4808,cost:[3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[14,0],attack:4808,cost:[3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[18,0],attack:4808,cost:[3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+            ],
+        },
+    },{
+        name:'Pixel\nDrop',rarity:-1,list:-8,
+        levels:[
+            {effect:[12,1],attack:4563,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[15,2],attack:4563,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[20,3],attack:4563,cost:1,target:[2,1,3],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3,5],
+            levels:[
+                {effect:[20,1],attack:4563,cost:[15,-1],target:[2,1,2],spec:[0],class:1},
+                {effect:[25,2],attack:4563,cost:[15,-1],target:[2,1,3],spec:[0],class:1},
+                {effect:[33,3],attack:4563,cost:[15,-1],target:[2,1,3],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Lunar\nBoil',rarity:-1,list:-8,
+        levels:[
+            {effect:[2,1],attack:3133,cost:0,target:[0],spec:[],class:11},
+            {effect:[3,1],attack:3133,cost:0,target:[0],spec:[],class:11},
+            {effect:[4,1],attack:3133,cost:0,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[1],attack:4582,cost:[0],target:[0],spec:[],class:11},
+                {effect:[1],attack:4583,cost:[0],target:[0],spec:[],class:11},
+                {effect:[1],attack:4584,cost:[0],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Warranty',rarity:-1,list:-8,
+        levels:[
+            {effect:[3],attack:41,cost:3,target:[0],spec:[1,2],class:11},
+            {effect:[4],attack:41,cost:3,target:[0],spec:[1,2],class:11},
+            {effect:[5],attack:41,cost:3,target:[0],spec:[1,2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[],attack:4703,cost:[2,-1,-1,-1,-1],target:[0],spec:[1,2],class:11},
+                {effect:[],attack:4703,cost:[2,-1,-1,-1],target:[0],spec:[1,2],class:11},
+                {effect:[],attack:4703,cost:[2,-1,-1],target:[0],spec:[1,2],class:11},
+            ],
+        },
+    },{
+        name:'Potential\nFor Anything',rarity:-1,list:-8,
+        levels:[
+            {effect:[16,4],attack:10242,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[20,8],attack:10242,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[20,12],attack:10242,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,3],
+            levels:[
+                {effect:[16,4],attack:4741,cost:[2,3,-1,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[20,8],attack:4741,cost:[2,3,-1,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[20,12],attack:4741,cost:[2,3,-1,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+            ],
+        },
+    },{
+        name:'Positive\nForce',rarity:-1,list:-8,
+        levels:[
+            {effect:[24,6],attack:10243,cost:3,target:[0],spec:[0,2,35],class:2},
+            {effect:[30,12],attack:10243,cost:3,target:[0],spec:[0,2,35],class:2},
+            {effect:[30,18],attack:10243,cost:3,target:[0],spec:[0,2,35],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,3],
+            levels:[
+                {effect:[24,6],attack:4742,cost:[2,3,-1,-1,-1],target:[0],spec:[0,2,35],class:2},
+                {effect:[30,12],attack:4742,cost:[2,3,-1,-1,-1],target:[0],spec:[0,2,35],class:2},
+                {effect:[30,18],attack:4742,cost:[2,3,-1,-1,-1],target:[0],spec:[0,2,35],class:2},
+            ],
+        },
+    },{
+        name:'Popular\nPotpurri',rarity:-1,list:-8,
+        levels:[
+            {effect:[12,4,4],attack:10244,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[16,8,8],attack:10244,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[18,12,12],attack:10244,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,2,3],
+            levels:[
+                {effect:[12,4,4],attack:4743,cost:[1,2,3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[16,8,8],attack:4743,cost:[1,2,3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[18,12,12],attack:4743,cost:[1,2,3,-1,-1],target:[2,1,1],spec:[0,2,35],class:1},
+            ],
+        },
+    },{
+        name:'Legion of\nStationery',rarity:-1,list:-8,
+        levels:[
+            {effect:[13,3],attack:5117,cost:2,target:[2,1,1],spec:[0,2],class:1},
+            {effect:[19,4],attack:5117,cost:2,target:[2,1,1],spec:[0,2],class:1},
+            {effect:[22,5],attack:5117,cost:2,target:[2,1,1],spec:[0,2],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,5],
+            levels:[
+                {effect:[17,3],attack:5117,cost:[10,-1,-1],target:[2,1,1],spec:[0,2],class:1},
+                {effect:[25,4],attack:5117,cost:[10,-1,-1],target:[2,1,1],spec:[0,2],class:1},
+                {effect:[29,5],attack:5117,cost:[10,-1,-1],target:[2,1,1],spec:[0,2],class:1},
+            ],
+        },
+    },{
+        name:'Tin\nBash',rarity:-1,list:-8,
+        levels:[
+            {effect:[13,13,2],attack:5165,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[19,19,2],attack:5165,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[22,22,3],attack:5165,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3,4],
+            levels:[
+                {effect:[16,16,2],attack:5165,cost:[3,4,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[23,23,2],attack:5165,cost:[3,4,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[26,26,3],attack:5165,cost:[3,4,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Wish\nCharm',rarity:-1,list:-8,
+        levels:[
+            {effect:[5,1],attack:5235,cost:1,target:[0],spec:[1],class:11},
+            {effect:[10,1],attack:5235,cost:1,target:[0],spec:[1],class:11},
+            {effect:[15,1],attack:5235,cost:1,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,5],
+            levels:[
+                {effect:[5,1],attack:5235,cost:[13],target:[0],spec:[1],class:11},
+                {effect:[10,1],attack:5235,cost:[13],target:[0],spec:[1],class:11},
+                {effect:[15,1],attack:5235,cost:[13],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Underground\nSociety',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:5236,cost:2,target:[0],spec:[1],class:11},
+            {effect:[2],attack:5236,cost:1,target:[0],spec:[1],class:11},
+            {effect:[3],attack:5236,cost:1,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[2],attack:5236,cost:[5,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[2],attack:5236,cost:[5,-1],target:[0],spec:[1],class:11},
+                {effect:[3],attack:5236,cost:[5,-1],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Zemsky\nSobor',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1],attack:10149,cost:1,target:[0],spec:[2],class:11},
+            {effect:[1,2],attack:10149,cost:1,target:[0],spec:[2],class:11},
+            {effect:[2,2],attack:10149,cost:1,target:[0],spec:[2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,3],
+            levels:[
+                {effect:[1,2],attack:10149,cost:[2,3],target:[0],spec:[2],class:11},
+                {effect:[1,3],attack:10149,cost:[2,3],target:[0],spec:[2],class:11},
+                {effect:[2,3],attack:10149,cost:[2,3],target:[0],spec:[2],class:11},
+            ],
+        },
+    },{
+        name:'Point\nand Shoot',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:10245,cost:1,target:[0],spec:[],class:11},
+            {effect:[1],attack:10245,cost:0,target:[0],spec:[],class:11},
+            {effect:[1],attack:10245,cost:0,target:[0],spec:[2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[1],attack:5299,cost:[],target:[0],spec:[],class:11},
+                {effect:[1],attack:10245,cost:[],target:[0],spec:[],class:11},
+                {effect:[1],attack:10245,cost:[],target:[0],spec:[2],class:11},
+            ],
+        },
+    },{
+        name:'Aluminum\nElectrolysis',rarity:-1,list:-8,
+        levels:[
+            {effect:[6],attack:5421,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[10],attack:5421,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[13],attack:5421,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[10],attack:5421,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[16],attack:5421,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:5421,cost:[3,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Aluminum\nRecycling',rarity:-1,list:-8,
+        levels:[
+            {effect:[9],attack:5422,cost:1,target:[0],spec:[],class:2},
+            {effect:[15],attack:5422,cost:1,target:[0],spec:[],class:2},
+            {effect:[20],attack:5422,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[15],attack:5422,cost:[3,-1],target:[0],spec:[],class:2},
+                {effect:[24],attack:5422,cost:[3,-1],target:[0],spec:[],class:2},
+                {effect:[30],attack:5422,cost:[3,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Aluminum\nAntimonide',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:5423,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:5423,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:5423,cost:0,target:[1,1,2],spec:[],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[1],attack:5423,cost:[3,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:5423,cost:[-1,-1],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:5423,cost:[-1],target:[1,1,2],spec:[0],class:3},
+            ],
+        },
+    },{
+        name:'Sunlight\nShooter',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1,1],attack:10246,cost:1,target:[0],spec:[1],class:11},
+            {effect:[1,1,1],attack:10246,cost:1,target:[0],spec:[1,2],class:11},
+            {effect:[1,1,1],attack:10246,cost:0,target:[0],spec:[1,2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[1,1,1],attack:5497,cost:[5],target:[0],spec:[1],class:11},
+                {effect:[1,1,1],attack:10246,cost:[5],target:[0],spec:[1],class:11},
+                {effect:[1,1,1],attack:10246,cost:[],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Drop and\nRun',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:575,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[2],attack:575,cost:0,target:[1,1,2],spec:[0],class:3},
+            {effect:[2],attack:575,cost:0,target:[1,1,2],spec:[],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[1],attack:575,cost:[3],target:[1,1,1],spec:[0],class:3},
+                {effect:[2],attack:575,cost:[3],target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:575,cost:[-1],target:[1,1,2],spec:[0],class:3},
             ],
         },
     },

@@ -316,7 +316,7 @@ class attack{
             case 10047: case 10048: case 10049: case 10050: case 10051: case 10062: case 10065: case 10073: case 10078: case 10079: case 10082: case 10106: case 10108: case 10112: case 10113: case 10117: case 10120: case 10121: case 10128: case 10130:
             case 10132: case 10133: case 10144: case 10145: case 10147: case 10148: case 10151: case 10152: case 10154: case 10155: case 10156: case 10157: case 10158: case 10163: case 10165: case 10168: case 10169: case 10170: case 10171: case 10174:
             case 10179: case 10180: case 10181: case 10182: case 10183: case 10187: case 10189: case 10190: case 10191: case 10192: case 10195: case 10196: case 10197: case 10199: case 10202: case 10203: case 10204: case 10205: case 10206: case 10213:
-            case 10214: case 10215: case 10216: case 10217: case 10218: case 10224: case 10225: case 10226: case 10227: case 10229: case 10230:
+            case 10214: case 10215: case 10216: case 10217: case 10218: case 10224: case 10225: case 10226: case 10227: case 10229: case 10230: case 10234: case 10236: case 10240: case 10241: case 10242: case 10244:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -369,44 +369,45 @@ class attack{
             case 4608: case 4613: case 4638: case 4643: case 4691: case 4692: case 4693: case 4878: case 4879: case 4880:
             case 4948: case 5004: case 5037: case 5048: case 5049: case 5050: case 5056: case 5060: case 5113: case 5125:
             case 5126: case 5127: case 5128: case 5129: case 5130: case 5149: case 5150: case 5162: case 5176: case 5177:
-            case 5203: case 5204: case 5205: case 5206: case 5207: case 5217: case 5231: case 5253: case 5302: case 5303:
-            case 5396: case 5423: case 5458: case 5467: case 5487: case 5494: case 5495: case 5523: case 5524: case 5525:
-            case 5527: case 5528: case 5529: case 5530: case 5531: case 5565: case 5566: case 5567: case 5568: case 5569:
-            case 5570: case 5571: case 5572: case 5573: case 5574: case 5575: case 5576: case 5577: case 5578: case 5579:
-            case 5580: case 5581: case 5582: case 5583: case 5584: case 5649: case 5650: case 5654: case 5655: case 5656:
-            case 5663: case 5670: case 5672: case 5784: case 5785: case 5786: case 5787: case 5827: case 5841: case 5867:
-            case 5871: case 5895: case 5992: case 6077: case 6113: case 6139: case 6140: case 6141: case 6142: case 6155:
-            case 6162: case 6184: case 6185: case 6216: case 6217: case 6283: case 6284: case 6285: case 6286: case 6361:
-            case 6395: case 6476: case 6481: case 6482: case 6483: case 6484: case 6485: case 6486: case 6487: case 6491:
-            case 6541: case 6554: case 6559: case 6583: case 6584: case 6585: case 6598: case 6601: case 6602: case 6603:
-            case 6610: case 6629: case 6664: case 6671: case 6721: case 6730: case 6744: case 6788: case 6811: case 6812:
-            case 6813: case 6814: case 6821: case 6825: case 6846: case 6847: case 6848: case 6849: case 6850: case 7013:
-            case 7067: case 7097: case 7098: case 7099: case 7100: case 7101: case 7102: case 7103: case 7104: case 7105:
-            case 7106: case 7107: case 7158: case 7159: case 7167: case 7182: case 7193: case 7286: case 7309: case 7314:
-            case 7318: case 7319: case 7320: case 7321: case 7322: case 7323: case 7324: case 7325: case 7326: case 7327:
-            case 7328: case 7329: case 7330: case 7331: case 7332: case 7333: case 7334: case 7339: case 7348: case 7427:
-            case 7428: case 7429: case 7430: case 7434: case 7440: case 7442: case 7444: case 7445: case 7446: case 7447:
-            case 7448: case 7449: case 7450: case 7451: case 7453: case 7457: case 7491: case 7504: case 7539: case 7540:
-            case 7608: case 7612: case 7613: case 7614: case 7615: case 7647: case 7648: case 7649: case 7650: case 7651:
-            case 7652: case 7653: case 7666: case 7727: case 7737: case 7777: case 7814: case 7815: case 7827: case 7837:
-            case 7910: case 7974: case 7987: case 7988: case 8029: case 8030: case 8031: case 8032: case 8066: case 8067:
-            case 8083: case 8107: case 8129: case 8130: case 8131: case 8132: case 8176: case 8202: case 8219: case 8225:
-            case 8230: case 8233: case 8234: case 8237: case 8238: case 8239: case 8240: case 8251: case 8253: case 8259:
-            case 8285: case 8286: case 8287: case 8288: case 8334: case 8343: case 8352: case 8446: case 8499: case 8501:
-            case 8518: case 8572: case 8573: case 8589: case 8668: case 8702: case 8704: case 8705: case 8706: case 8707:
-            case 8709: case 8722: case 8723: case 8746: case 8767: case 8807: case 8808: case 8814: case 8825: case 8826:
-            case 8827: case 8828: case 8867: case 8872: case 8873: case 8916: case 8937: case 8959: case 8978: case 8984:
-            case 8992: case 9000: case 9005: case 9006: case 9007: case 9009: case 9016: case 9037: case 9038: case 9039:
-            case 9041: case 9042: case 9043: case 9044: case 9045: case 9046: case 9047: case 9062: case 9063: case 9064:
-            case 9065: case 9073: case 9110: case 9111: case 9112: case 9145: case 9168: case 9171: case 9204: case 9205:
-            case 9216: case 9259: case 9260: case 9261: case 9262: case 9290: case 9296: case 9301: case 9305: case 9335:
-            case 9336: case 9338: case 9347: case 9353: case 9354: case 9361: case 9386: case 9387: case 9388: case 9389:
-            case 9425: case 9426: case 9427: case 9428: case 9429: case 9470: case 9506: case 9533: case 9544: case 9554:
-            case 9594: case 9595: case 9596: case 9597: case 9598: case 9599: case 9600: case 9601: case 9633: case 9668:
-            case 9713: case 9714: case 9715: case 9722: case 9723: case 9724: case 9734: case 9741: case 9742: case 9743:
-            case 9768: case 9787: case 9790: case 9880: case 9749: case 9893: case 9959: case 9962: case 9980: case 10024:
-            case 10025: case 10026: case 10027: case 10031: case 10053: case 10054: case 10055: case 10056: case 10057: case 10058:
-            case 10059: case 10060: case 10116: case 10142: case 10150: case 10167: case 10176: case 10177: case 10198:
+            case 5203: case 5204: case 5205: case 5206: case 5207: case 5217: case 5231: case 5253: case 5261: case 5262:
+            case 5263: case 5264: case 5266: case 5267: case 5268: case 5269: case 5302: case 5303: case 5396: case 5423:
+            case 5458: case 5467: case 5487: case 5494: case 5495: case 5523: case 5524: case 5525: case 5527: case 5528:
+            case 5529: case 5530: case 5531: case 5565: case 5566: case 5567: case 5568: case 5569: case 5570: case 5571:
+            case 5572: case 5573: case 5574: case 5575: case 5576: case 5577: case 5578: case 5579: case 5580: case 5581:
+            case 5582: case 5583: case 5584: case 5649: case 5650: case 5654: case 5655: case 5656: case 5663: case 5670:
+            case 5672: case 5784: case 5785: case 5786: case 5787: case 5827: case 5841: case 5867: case 5871: case 5895:
+            case 5992: case 6077: case 6113: case 6139: case 6140: case 6141: case 6142: case 6155: case 6162: case 6184:
+            case 6185: case 6216: case 6217: case 6283: case 6284: case 6285: case 6286: case 6361: case 6395: case 6476:
+            case 6481: case 6482: case 6483: case 6484: case 6485: case 6486: case 6487: case 6491: case 6541: case 6554:
+            case 6559: case 6583: case 6584: case 6585: case 6598: case 6601: case 6602: case 6603: case 6610: case 6629:
+            case 6664: case 6671: case 6721: case 6730: case 6744: case 6788: case 6811: case 6812: case 6813: case 6814:
+            case 6821: case 6825: case 6846: case 6847: case 6848: case 6849: case 6850: case 7013: case 7067: case 7097:
+            case 7098: case 7099: case 7100: case 7101: case 7102: case 7103: case 7104: case 7105: case 7106: case 7107:
+            case 7158: case 7159: case 7167: case 7182: case 7193: case 7286: case 7309: case 7314: case 7318: case 7319:
+            case 7320: case 7321: case 7322: case 7323: case 7324: case 7325: case 7326: case 7327: case 7328: case 7329:
+            case 7330: case 7331: case 7332: case 7333: case 7334: case 7339: case 7348: case 7427: case 7428: case 7429:
+            case 7430: case 7434: case 7440: case 7442: case 7444: case 7445: case 7446: case 7447: case 7448: case 7449:
+            case 7450: case 7451: case 7453: case 7457: case 7491: case 7504: case 7539: case 7540: case 7608: case 7612:
+            case 7613: case 7614: case 7615: case 7647: case 7648: case 7649: case 7650: case 7651: case 7652: case 7653:
+            case 7666: case 7727: case 7737: case 7777: case 7814: case 7815: case 7827: case 7837: case 7910: case 7974:
+            case 7987: case 7988: case 8029: case 8030: case 8031: case 8032: case 8066: case 8067: case 8083: case 8107:
+            case 8129: case 8130: case 8131: case 8132: case 8176: case 8202: case 8219: case 8225: case 8230: case 8233:
+            case 8234: case 8237: case 8238: case 8239: case 8240: case 8251: case 8253: case 8259: case 8285: case 8286:
+            case 8287: case 8288: case 8334: case 8343: case 8352: case 8446: case 8499: case 8501: case 8518: case 8572:
+            case 8573: case 8589: case 8668: case 8702: case 8704: case 8705: case 8706: case 8707: case 8709: case 8722:
+            case 8723: case 8746: case 8767: case 8807: case 8808: case 8814: case 8825: case 8826: case 8827: case 8828:
+            case 8867: case 8872: case 8873: case 8916: case 8937: case 8959: case 8978: case 8984: case 8992: case 9000:
+            case 9005: case 9006: case 9007: case 9009: case 9016: case 9037: case 9038: case 9039: case 9041: case 9042:
+            case 9043: case 9044: case 9045: case 9046: case 9047: case 9062: case 9063: case 9064: case 9065: case 9073:
+            case 9110: case 9111: case 9112: case 9145: case 9168: case 9171: case 9204: case 9205: case 9216: case 9259:
+            case 9260: case 9261: case 9262: case 9290: case 9296: case 9301: case 9305: case 9335: case 9336: case 9338:
+            case 9347: case 9353: case 9354: case 9361: case 9386: case 9387: case 9388: case 9389: case 9425: case 9426:
+            case 9427: case 9428: case 9429: case 9470: case 9506: case 9533: case 9544: case 9554: case 9594: case 9595:
+            case 9596: case 9597: case 9598: case 9599: case 9600: case 9601: case 9633: case 9668: case 9713: case 9714:
+            case 9715: case 9722: case 9723: case 9724: case 9734: case 9741: case 9742: case 9743: case 9768: case 9787:
+            case 9790: case 9880: case 9749: case 9893: case 9959: case 9962: case 9980: case 10024: case 10025: case 10026:
+            case 10027: case 10031: case 10053: case 10054: case 10055: case 10056: case 10057: case 10058: case 10059: case 10060:
+            case 10116: case 10142: case 10150: case 10167: case 10176: case 10177: case 10198: case 10235: case 10238: case 10239:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -5468,19 +5469,19 @@ class attack{
                         this.userCombatant.statusEffect('(N) Next Turn',1)
                     break
                     case 4477:
-                        if(this.battle.turn.total==1){
+                        if(this.battle.turn.total==2){
                             this.battle.addSpecificEnergy(1,this.player,2)
                             this.battle.addSpecificEnergy(1,this.player,0)
                         }
                     break
                     case 4478:
-                        if(this.battle.turn.total==1){
+                        if(this.battle.turn.total==2){
                             this.battle.addSpecificEnergy(2,this.player,2)
                             this.battle.addSpecificEnergy(1,this.player,0)
                         }
                     break
                     case 4479:
-                        if(this.battle.turn.total==1){
+                        if(this.battle.turn.total==2){
                             this.battle.addSpecificEnergy(2,this.player,6)
                             this.battle.addSpecificEnergy(1,this.player,2)
                         }
@@ -5655,7 +5656,7 @@ class attack{
                         this.battle.setEnergy(0,this.player)
                     break
                     case 4808: case 4926:
-                        this.battle.addSpecificEnergy(this.selfCall(26)*this.effect[1],this.player,0)
+                        this.battle.addSpecificEnergy(this.selfCall(26)+this.effect[1],this.player,0)
                     break
                     case 4839:
                         if(this.mtgEnergy.length==3){
@@ -8377,6 +8378,22 @@ class attack{
                             this.battle.addSpecificEnergy(5,this.player,6)
                         }
                     break
+                    case 10234:
+                        if(this.targetCombatant.life<=0){
+                            this.battle.loseEnergy(this.effect[1],this.player)
+                            this.userManager.randomEffect(2,1,[this.effect[2]])
+                        }
+                    break
+                    case 10236:
+                        if(this.battle.turn.total==2){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 10240:
+                        if(this.energy%3==0){
+                            this.battle.itemManager.tempEffectiveness[this.player]=max(2,this.battle.itemManager.tempEffectiveness[this.player])
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -10315,19 +10332,19 @@ class attack{
                         this.userCombatant.statusEffect('(W) in 2 Turns',1)
                     break
                     case 4480:
-                        if(this.battle.turn.total==1){
+                        if(this.battle.turn.total==2){
                             this.battle.addSpecificEnergy(1,this.player,2)
                             this.battle.addSpecificEnergy(1,this.player,0)
                         }
                     break
                     case 4481:
-                        if(this.battle.turn.total==1){
+                        if(this.battle.turn.total==2){
                             this.battle.addSpecificEnergy(2,this.player,2)
                             this.battle.addSpecificEnergy(1,this.player,0)
                         }
                     break
                     case 4482:
-                        if(this.battle.turn.total==1){
+                        if(this.battle.turn.total==2){
                             this.battle.addSpecificEnergy(2,this.player,6)
                             this.battle.addSpecificEnergy(1,this.player,2)
                         }
@@ -12444,6 +12461,11 @@ class attack{
                     case 10207:
                         this.userCombatant.statusEffect('Block Vigor Convert',1)
                     break
+                    case 10237:
+                        if(this.battle.turn.total==2){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -13644,7 +13666,7 @@ class attack{
                         }
                     break
                     case 4483:
-                        if(this.battle.turn.total==1){
+                        if(this.battle.turn.total==2){
                             this.battle.addSpecificEnergy(1,this.player,2)
                             this.battle.addSpecificEnergy(1,this.player,0)
                         }
@@ -13895,6 +13917,54 @@ class attack{
                         this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.user])
                         this.userCombatant.addBlock(this.effect[2])
                         this.userManager.draw(this.effect[3])
+                    break
+                    case 5261:
+                        if(this.userCombatant.getStatus('Dexterity')>0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 5262:
+                        if(this.userCombatant.getStatus('Dexterity')>0){
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 5263:
+                        if(this.userCombatant.getStatus('Dexterity')>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                        }
+                    break
+                    case 5264:
+                        if(this.userCombatant.getStatus('Dexterity')>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 5266:
+                        if(this.userCombatant.getStatus('Focus')>0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 5267:
+                        if(this.userCombatant.getStatus('Focus')>0){
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 5268:
+                        if(this.userCombatant.getStatus('Focus')>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                        }
+                    break
+                    case 5269:
+                        if(this.userCombatant.getStatus('Focus')>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,4)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
                     break
                     case 5302:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1]*this.energy)
@@ -15185,6 +15255,23 @@ class attack{
                     case 10142:
                         if(this.userCombatant.caffeine>0){
                             this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 10235:
+                        if(this.battle.turn.total==2){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 10238:
+                        if(this.battle.turn.total==2){
+                            this.battle.addSpecificEnergy(2,this.player,2)
+                            this.battle.addSpecificEnergy(1,this.player,0)
+                        }
+                    break
+                    case 10239:
+                        if(this.battle.turn.total==2){
+                            this.battle.addSpecificEnergy(2,this.player,6)
+                            this.battle.addSpecificEnergy(1,this.player,2)
                         }
                     break
 
@@ -17437,6 +17524,10 @@ class attack{
                     case 4702:
                         this.battle.addSpecificEnergy(3,this.player,6)
                         this.battle.addSpecificEnergy(6,this.player,0)
+                    break
+                    case 4703:
+                        this.battle.addSpecificEnergy(3,this.player,6)
+                        this.battle.addSpecificEnergy(3,this.player,0)
                     break
                     case 4721: case 9004:
                         this.battle.overlayManager.overlays[114][this.player].active=true
@@ -26712,6 +26803,15 @@ class attack{
                         this.userManager.draw(this.effect[1],this.userCombatant.elemental?1:0)
                         this.userManager.hand.rewind(this.effect[2])
                     break
+                    case 10246:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Revolver',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.randomEffect(2,13,[])
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
 
                 }
                 //mark 5
@@ -34241,6 +34341,15 @@ class attack{
                         this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,132,[10,0,0]))
                         this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,132,[10,0.5,10]))
                     break
+                    case 5265:
+                        this.battle.addCurrency(this.effect[0],this.player)
+                        this.userCombatant.metal+=this.effect[1]
+                    break
+                    case 5270:
+                        this.userManager.hand.rewind(this.effect[0])
+                        this.userCombatant.statusEffect('Wisdom',this.effect[1])
+                        this.userCombatant.statusEffect('History',this.effect[2]*this.battle.counter.killed)
+                    break
                     case 5295:
                         this.userManager.addRandomAbstract(2,this.level,0,2,0,[1],[3,-1])
                         this.battle.addEnergy(this.effect[0],this.player)
@@ -39466,6 +39575,12 @@ class attack{
                             }
                         }
                     break
+                    case 10245:
+                        this.userManager.allEffect(2,2)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Revolver',types.card),0,0)
+                        }
+                    break
 
                 }
                 //mark 12
@@ -40495,6 +40610,7 @@ class attack{
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
                     break
                     case 5370:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([0,0,40,2])
                     break
@@ -40562,6 +40678,10 @@ class attack{
                     case 10152:
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.statusEffect('Pity',this.effect[1])
+                    break
+                    case 10241:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,40,2])
                     break
                     default:
                         if(this.type==7510){

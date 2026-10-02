@@ -331,7 +331,7 @@ class itemManager{
                 }
             break
             case 35:
-                this.battle.cardManagers[player].hand.duplicate(2)
+                this.battle.cardManagers[player].hand.duplicate(2*effectiveNess)
             break
             case 36:
                 this.battle.cardManagers[player].draw(3*effectiveness,5)

@@ -2690,6 +2690,9 @@ class card{
                     }
                 }
             break
+            case 10242: case 10243: case 10244:
+                this.effect[0]=max(0,this.effect[0]-this.effect[1])
+            break
         }
     }
     onIncrementAnotherCountdown(spent){
@@ -3706,6 +3709,11 @@ class card{
                 case 9690:
                     if(card.getCost(4)&&this.battle.attackManager.energy>=3){
                         this.costDown(0,[1])
+                    }
+                break
+                case 10244:
+                    if(cardClass==3){
+                        this.effect[0]=max(0,this.effect[0]-this.effect[2])
                     }
                 break
                 

@@ -310,7 +310,7 @@ class overlay{
                     let upKey=0
                     if(
                         args[2]==7||args[2]==9||args[2]==10||args[2]==11||args[2]==17||args[2]==22||args[2]==26||args[2]==27||args[2]==34||args[2]==33||
-                        args[2]==37||args[2]==46||args[2]==49||args[2]==59
+                        args[2]==37||args[2]==39||args[2]==40||args[2]==41||args[2]==42||args[2]==46||args[2]==49||args[2]==59
                     ){
                         this.options=args[3]
                     }else{
