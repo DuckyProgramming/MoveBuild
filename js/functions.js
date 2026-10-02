@@ -3589,10 +3589,11 @@ function checkExists(start,end){
 	let invalid=[
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
-		1017,1281,2186,2187,2664,2776,2837,//invalid push
+		1017,1281,2186,2187,2664,2776,2837,3214,3333,3368,
+		4063,4066,4067,//invalid push
 		62,//invalid enlighten
-		116,665,//invalid false surrender
-		188,440,1239,1255,1841,2813,//damage taken up/down
+		116,665,4180,4181,//invalid false surrender
+		188,440,1239,1255,1841,2813,3201,3488,3579,//damage taken up/down
 		275,//invalid crescent
 		423,//invalid unbalanced
 		507,//invalid clawchain
@@ -3605,7 +3606,7 @@ function checkExists(start,end){
 		870,871,//invalid frenzy
 		1098,//invalid ii - the priestess
 		1123,//invalid nothings
-		1284,2583,//invalid lucky 7, edict
+		1284,2583,3151,3152,//invalid lucky 7, edict, graphite, graphene
 		1307,//invalid boston bat
 		1369,//invalid high vis jacket
 		1739,2053,//invalid password
@@ -3613,11 +3614,18 @@ function checkExists(start,end){
 		1991,2017,//invalid overthrow, underthrow
 		2286,//invalid pleonasm
 		2386,2387,//invalid rng
-		2431,2753,//invalid extending step, extending strike
+		2431,2753,3476,//invalid concealed step, extending strike, extending step
 		2695,//invalid learn by example
 		3018,//invalid lily of the valley
 		3080,//star, showering starlight proxy
-		83,84,85,86,//items
+		3154,//invalid blueshift
+		3298,//invalid fall into poverty
+		3357,//invalid black keys
+		3551,//invalid artifice
+		3589,3590,3591,3678,3755,3756,3757,3764,3765,3882,
+		3943,4190,//invalid mtg mergers
+		3662,//invalid recycling
+		83,84,85,86,3595,3632,//items
 	]
 	let total=0
 	for(let a=start,la=end;a<la;a++){

@@ -316,7 +316,7 @@ class attack{
             case 10047: case 10048: case 10049: case 10050: case 10051: case 10062: case 10065: case 10073: case 10078: case 10079: case 10082: case 10106: case 10108: case 10112: case 10113: case 10117: case 10120: case 10121: case 10128: case 10130:
             case 10132: case 10133: case 10144: case 10145: case 10147: case 10148: case 10151: case 10152: case 10154: case 10155: case 10156: case 10157: case 10158: case 10163: case 10165: case 10168: case 10169: case 10170: case 10171: case 10174:
             case 10179: case 10180: case 10181: case 10182: case 10183: case 10187: case 10189: case 10190: case 10191: case 10192: case 10195: case 10196: case 10197: case 10199: case 10202: case 10203: case 10204: case 10205: case 10206: case 10213:
-            case 10214: case 10215: case 10216: case 10217: case 10218:
+            case 10214: case 10215: case 10216: case 10217: case 10218: case 10224: case 10225: case 10226: case 10227: case 10229: case 10230:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -9142,6 +9142,9 @@ class attack{
                     case 10102:
                         this.userCombatant.addBlock(this.effect[0]*this.userCombatant.interiorStatus[2])
                     break
+                    case 10228:
+                        this.userCombatant.addBlock(this.effect[0]*(this.userManager.hand.turnPlayed[4]>=this.effect[1]?3:1))
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -16370,8 +16373,8 @@ class attack{
                         this.userCombatant.statusEffect('Extra Turn',1)
                     break
                     case 3206:
-                        this.userCombatant.statusEffect('Dodge',this.effect[0])
                         this.userCombatant.statusEffect('Extra Turn',1)
+                        this.userCombatant.statusEffect('Dodge',this.effect[0])
                     break
                     case 3208:
                         this.userCombatant.statusEffect('Take Half Damage',1)
@@ -32303,6 +32306,25 @@ class attack{
                     case 10163:
                         this.battle.combatantManager.areaAbstract(2,['Freeze',this.effect[0]],this.targetCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
+                    case 10227:
+                        if(this.mtgEnergy.length==5){
+                            this.targetCombatant.status.main[findList('Dodge',this.targetCombatant.status.name)]=0
+                            this.targetCombatant.takeDamage(this.effect[0],this.user,2)
+                        }
+                    break
+                    case 10229:
+                        this.targetCombatant.statusEffect('Dodge',this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 10230:
+                        this.targetCombatant.statusEffect('Dodge',this.effect[0])
+                        this.battle.addSpecificEnergy(1,this.player,6)
+                        this.battle.addSpecificEnergy(1,this.player,1)
+                        this.battle.addSpecificEnergy(1,this.player,2)
+                        this.userManager.draw(this.effect[1])
+                    break
 
                 }
                 //mark 8
@@ -32982,7 +33004,7 @@ class attack{
                             this.userCombatant.rearm()
                         }
                     break
-                    case 112: case 4205: case 5750: case 5976:
+                    case 112: case 5750: case 5976:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.add(findName('Shiv',types.card),0,0)
                         }
@@ -33317,7 +33339,7 @@ class attack{
                         }
                         this.userManager.draw(this.effect[1])
                     break
-                    case 1727:
+                    case 1727: case 4205:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.add(findName('Deluxe\nShiv',types.card),0,0)
                         }
@@ -33693,7 +33715,7 @@ class attack{
                     case 3197:
                         this.battle.combatantManager.allEffect(42,[this.effect[0],this.effect[1]])
                     break
-                    case 3201:
+                    case 3201: case 10223:
                         this.userCombatant.statusEffect('Attack Damage Taken Up Turn',this.effect[0])
                     break
                     case 3202:

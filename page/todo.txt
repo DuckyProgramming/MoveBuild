@@ -1,15 +1,15 @@
-CS 125 [GREATER LEGACY]
+CS 126 [GREATER LEGACY]
 
-checkExists from 2700 forward
+checkExists from 4000 forward
 
-CS 126 [AIRI / 8750]
+CS 127 [AIRI / 8750]
 
 purge airi
 make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
-CS 127 [?]
+CS 128 [?]
 
 down 2 events
 down 1 rare item
@@ -64,6 +64,7 @@ vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
 alarm chili - when you play a skill this turn, deal 10 damage in all directions
 matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
 broken matter - deal damage equal to your block, lose all block, overdrive 3: don't lose block
+fairy abode - add 9 block when an ally card is played
 
 belt buckle - gain 1 strength, if you have no items gain 1 dexterity
 squall - 18 damage to anybody, get 3 random temporary items

@@ -2114,7 +2114,7 @@ class group{
                     this.cards[a].costDown(0,[args[0]])
                 break
                 case 22:
-                    this.cards[a].costDown(2,args[0])
+                    this.cards[a].costDown(2,[args[0]])
                 break
                 case 23:
                     if(this.cards[a].cost>=0&&!this.cards[a].colorless()){
@@ -4016,6 +4016,10 @@ class group{
                 let roll=floor(random(0,3))+1
                 card.effect[0]=roll
                 card.target[2]=roll
+            break
+            case 10231: case 10232: case 10233:
+                this.battle.addSpecificEnergy(card.attack-10229,this.player,4)
+                this.sendAmounts[sendId]+=card.effect[0]
             break
 
         }

@@ -287,7 +287,7 @@ attack.prototype.update=function(){
         case 9505: case 9523: case 9534: case 9550: case 9551: case 9552: case 9553: case 9557: case 9563: case 9564: case 9565: case 9566: case 9567: case 9568: case 9569: case 9572: case 9576: case 9577: case 9578: case 9579:
         case 9588: case 9592: case 9608: case 9609: case 9610: case 9624: case 9664: case 9681: case 9682: case 9686: case 9687: case 9719: case 9720: case 9721: case 9733: case 9738: case 9739: case 9740: case 9754: case 9755:
         case 9781: case 9782: case 9785: case 9788: case 9791: case 9804: case 9805: case 9806: case 9811: case 9817: case 9819: case 9840: case 9868: case 9881: case 9900: case 9909: case 9914: case 9921: case 9926: case 9941:
-        case 9958: case 9961: case 9981: case 9985: case 9989: case 10008: case 10009: case 10066: case 10102: case 10111: case 10146: case 10160: case 10173: case 10178: case 10172: case 10207:
+        case 9958: case 9961: case 9981: case 9985: case 9989: case 10008: case 10009: case 10066: case 10102: case 10111: case 10146: case 10160: case 10173: case 10178: case 10172: case 10207: case 10228:
             //mark 2
             if(
                 this.timer==1&&(
@@ -2033,7 +2033,7 @@ attack.prototype.update=function(){
         case 9602: case 9634: case 9635: case 9636: case 9637: case 9659: case 9660: case 9662: case 9697: case 9698:
         case 9699: case 9700: case 9703: case 9725: case 9786: case 9796: case 9816: case 9825: case 9837: case 9852:
         case 9853: case 9861: case 9922: case 9923: case 9944: case 10036: case 10106: case 10117: case 10133: case 10144:
-        case 10150: case 10163: case 10170: case 10171: case 10202:
+        case 10150: case 10163: case 10170: case 10171: case 10202: case 10227: case 10229: case 10230:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2919,7 +2919,7 @@ attack.prototype.update=function(){
         case 9867: case 9869: case 9872: case 9873: case 9879: case 9882: case 9902: case 9903: case 9905: case 9933:
         case 9938: case 9939: case 10010: case 10011: case 10023: case 10052: case 10093: case 10096: case 10101: case 10107:
         case 10115: case 10129: case 10136: case 10164: case 10165: case 10166: case 10168: case 10179: case 10180: case 10181:
-        case 10182: case 10183:
+        case 10182: case 10183: case 10223:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -9047,7 +9047,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 3222: case 3232: case 4728: case 4729: case 4730: case 7270: case 7271:
+        case 3222: case 3232: case 4728: case 4729: case 4730: case 7270: case 7271: case 10224: case 10225: case 10226:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -9092,6 +9092,24 @@ attack.prototype.update=function(){
                             this.battle.addSpecificEnergy(4,this.player,6)
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,2,0])
+                            }
+                        break
+                        case 10224:
+                            this.battle.addSpecificEnergy(3,this.player,1)
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,2])
+                            }
+                        break
+                        case 10225:
+                            this.battle.addSpecificEnergy(4,this.player,1)
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,2])
+                            }
+                        break
+                        case 10226:
+                            this.battle.addSpecificEnergy(4,this.player,6)
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.addRandomAbstract(2,0,0,0,1,[0],[3,2])
                             }
                         break
                     }
