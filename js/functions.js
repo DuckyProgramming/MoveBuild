@@ -3590,7 +3590,7 @@ function checkExists(start,end){
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
 		1017,1281,2186,2187,2664,2776,2837,3214,3333,3368,
-		4063,4066,4067,4550,4554,4812,5014,//invalid push
+		4063,4066,4067,4550,4554,4812,5014,7411,7412,//invalid push
 		62,//invalid enlighten
 		116,665,4180,4181,//invalid false surrender
 		188,440,1239,1255,1841,2813,3201,3488,3579,//damage taken up/down
@@ -3625,6 +3625,9 @@ function checkExists(start,end){
 		3589,3590,3591,3678,3755,3756,3757,3764,3765,3882,
 		3943,4190,//invalid mtg mergers
 		3662,//invalid recycling
+		5868,//invalid halflife
+		6032,//invalid seven hakus
+		6199,//invalid cleaver
 		9661,//invalid silverswivel
 		83,84,85,86,3595,3632,//items
 	]

@@ -5,7 +5,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    if(true){
+    if(false){
             //game.diff=26
             //game.ascend=33
 

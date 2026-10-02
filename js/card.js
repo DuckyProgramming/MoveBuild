@@ -3218,7 +3218,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 415: case 5933:
+                case 415: case 5933: case 10252:
                     if(cardClass==2){
                         this.costDown(0,[1])
                     }
