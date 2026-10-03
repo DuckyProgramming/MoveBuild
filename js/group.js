@@ -2774,6 +2774,11 @@ class group{
                         this.cards[a].spec.push(1)
                     }
                 break
+                case 81:
+                    if(this.cards[a].getCost(0)>0&&this.cards[a].spec.includes(args[1])){
+                        this.cards[a].costDown(0,[args[0]])
+                    }
+                break
                 //mark allargs
             }
         }

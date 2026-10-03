@@ -1,14 +1,20 @@
-CS 129 [AIRI / 8750]
+CS 130 [8800]
 
-change all population cards to work with only worker population
-also its not in the dictionary
+more divination/riptides
+rebalance all faith cards
+
+new dukelis packs
+marx - gain 1 currency per worker in hand
+mao zedong - all the chinese leaders are really hard to get through and they start with a huge debuff but scale
+
+CS 131 [AIRI]
 
 purge airi
 make sure her tutorial is not ruined
 
 fill in remaining slots with randos from the reserve below
 
-CS 130 [?]
+CS 132 [?]
 
 fugue/faith animation
 
@@ -43,24 +49,6 @@ minor vincent purge
 reorganize the items
 https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
 make sure his tutorial is not ruined
-
-split angelfrost, demonfire
-locomotion - 2 cost, move 2 tiles, add 2 block, draw 2 cards
-split tactical retreat - it now forces you to move back like dine&dash but gives you more block
-split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
-pump action - 1 cost, draw 1 card, all guns in hand cost 1 less temporarily, exhaust (rare card)
-fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
-blazing bullet - shoot a guy and burn him(name change:dragonbreath shot sidenote go look at that stuff its cool)
-
-hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
-adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
-rollin' - gain 12 vigil, gain 1 energy next turn
-[disband meri duplicate cards that are unnecessary]
-dive down - target takes 12 damage and gains 2 weak in 2 turns
-weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
-flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
-a decade here - take another turn, all enemies gain 10 block
-rewire - exhaust a card, if it is an attack, draw 3 cards
 
 crisp lightning - 1 cost, deal 5 damage to anybody, draw a card, costs 1 less when a card is exhausted(may i suggest lightning bolt)
     bolt
@@ -158,7 +146,19 @@ beloved from above - 1 cost, retain, gain 2 faith, draw a card it costs 1 less
 parhelion blur - gain 1 intangible, next luck card is guaranteed
 summarize - gain 1 strength per enemy that will attack
 multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
+fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
+split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
 split clockwork
+
+hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
+adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
+rollin' - gain 12 vigil, gain 1 energy next turn
+[disband meri duplicate cards that are unnecessary]
+dive down - target takes 12 damage and gains 2 weak in 2 turns
+weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
+flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
+a decade here - take another turn, all enemies gain 10 block
+rewire - exhaust a card, if it is an attack, draw 3 cards
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
@@ -197,7 +197,7 @@ ringing triangle - retain your hand on turn 1
 tang tang - when you add a card to your deck, duplicate it
 fresnel lens - when you play a power, all enemies gain 1 weak
 
-maybe kill the george packs
+get names from scryfall
 
 GIMMICK BANK
 

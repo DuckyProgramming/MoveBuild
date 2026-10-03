@@ -750,10 +750,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				totalDex+=user.status.main[18]
 			}
 			if(user.status.main[984]>0&&user.faith>0){
-				totalDex+=userCombatant.faith
+				totalDex+=user.faith
 			}
 			if(user.status.main[985]>0&&user.caffeine>0){
-				totalDex+=userCombatant.caffeine
+				totalDex+=user.caffeine
 			}
 			if(totalDex>0){
 				block*=1+totalDex*0.1
@@ -2058,6 +2058,18 @@ function qa(name){
 		return 'Invalid'
 	}
 }
+function qad(name,quantity=1,level=0,color=0){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		for(let a=0,la=quantity;a<la;a++){
+			current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.add(type,level,color)
+			current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.cards.length-1].colorful=true
+		}
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
 function quickAdd(name){
 	let type=findNameApprox(name,types.card)
 	if(type>=0){
@@ -2339,17 +2351,17 @@ function outListing(){
 		}
 	}
 	let listed=[
-		80,//status
-		80,//curse
+		64,//status
+		64,//curse
 		40,//partnership
 		32,//tarot
 		24,//spectral
 		40,//subcard
 		24,//event
-		120,//reserve
+		160,//reserve
 		160,//developer
 		12,//basic
-		32,//pack
+		24,//pack
 		36,//misc
 	]
 	let unlisted=[

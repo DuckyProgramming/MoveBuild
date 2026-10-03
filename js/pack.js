@@ -33,7 +33,7 @@ class pack{
             for(let a=0,la=4;a<la;a++){
                 if(list[group[a]].length>0){
                     let index=floor(random(0,list[group[a]].length))
-                    let type=a==0&&this.battle.player[this.player]==1&&!variants.mtg&&!variants.junk&&!variants.ultraprism&&!variants.prism?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):
+                    let type=//a==0&&this.battle.player[this.player]==1&&!variants.mtg&&!variants.junk&&!variants.ultraprism&&!variants.prism?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):
                         a==0&&this.battle.player[this.player]==24&&!variants.mtg&&!variants.junk&&!variants.ultraprism&&!variants.prism?findName('Lenin',types.card):
                         list[group[a]][index]
                     this.cards.push(new card(this.layer,this.battle,this.player,this.position.x-60+a*40,this.position.y-5+a%2*10,

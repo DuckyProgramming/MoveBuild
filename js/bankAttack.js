@@ -124,7 +124,8 @@ attack.prototype.update=function(){
         case 9839: case 9842: case 9845: case 9846: case 9847: case 9848: case 9850: case 9851: case 9854: case 9885: case 9886: case 9887: case 9888: case 9889: case 9890: case 9891: case 9892: case 9894: case 9925: case 9954:
         case 9957: case 9960: case 9984: case 9991: case 10004: case 10005: case 10007: case 10015: case 10021: case 10028: case 10029: case 10030: case 10035: case 10037: case 10062: case 10078: case 10079: case 10082: case 10108:
         case 10112: case 10113: case 10147: case 10148: case 10154: case 10155: case 10156: case 10157: case 10158: case 10169: case 10187: case 10197: case 10199: case 10203: case 10204: case 10206: case 10213: case 10214: case 10215:
-        case 10216: case 10234: case 10236: case 10240: case 10242: case 10244: case 10254: case 10255: case 10270: case 10271: case 10272: case 10273: case 10275: case 10278: case 10287: case 10288:
+        case 10216: case 10234: case 10236: case 10240: case 10242: case 10244: case 10254: case 10255: case 10270: case 10271: case 10272: case 10273: case 10275: case 10278: case 10287: case 10288: case 10297: case 10300: case 10302:
+        case 10309: case 10312: case 10313:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -288,7 +289,7 @@ attack.prototype.update=function(){
         case 9588: case 9592: case 9608: case 9609: case 9610: case 9624: case 9664: case 9681: case 9682: case 9686: case 9687: case 9719: case 9720: case 9721: case 9733: case 9738: case 9739: case 9740: case 9754: case 9755:
         case 9781: case 9782: case 9785: case 9788: case 9791: case 9804: case 9805: case 9806: case 9811: case 9817: case 9819: case 9840: case 9868: case 9881: case 9900: case 9909: case 9914: case 9921: case 9926: case 9941:
         case 9958: case 9961: case 9981: case 9985: case 9989: case 10008: case 10009: case 10066: case 10102: case 10111: case 10146: case 10160: case 10173: case 10178: case 10172: case 10207: case 10228: case 10237: case 10243:
-        case 10252: case 10253: case 10266: case 10290:
+        case 10252: case 10253: case 10266: case 10290: case 10298: case 10303: case 10310:
             //mark 2
             if(
                 this.timer==1&&(
@@ -401,7 +402,8 @@ attack.prototype.update=function(){
         case 9601: case 9633: case 9668: case 9713: case 9714: case 9715: case 9722: case 9723: case 9724: case 9734:
         case 9741: case 9742: case 9743: case 9768: case 9787: case 9790: case 9880: case 9959: case 9962: case 9980:
         case 10024: case 10025: case 10026: case 10027: case 10053: case 10054: case 10055: case 10056: case 10057: case 10058:
-        case 10059: case 10060: case 10116: case 10142: case 10167: case 10198: case 10235: case 10238: case 10239:
+        case 10059: case 10060: case 10116: case 10142: case 10167: case 10198: case 10235: case 10238: case 10239: case 10299:
+        case 10304: case 10305: case 10306: case 10307: case 10321:
             //mark 3
             if(
                 this.timer==1&&(
@@ -682,7 +684,7 @@ attack.prototype.update=function(){
         case 9919: case 9920: case 9928: case 9929: case 9930: case 9931: case 9937: case 9942: case 9943: case 9946: case 9947: case 9951: case 9967: case 9968: case 9970: case 9971: case 9972: case 9973: case 9982: case 9992:
         case 9996: case 10003: case 10006: case 10012: case 10013: case 10014: case 10038: case 10044: case 10061: case 10064: case 10070: case 10074: case 10075: case 10076: case 10077: case 10085: case 10086: case 10087: case 10088:
         case 10089: case 10090: case 10094: case 10114: case 10194: case 10118: case 10119: case 10122: case 10123: case 10124: case 10125: case 10138: case 10139: case 10140: case 10141: case 10159: case 10185: case 10186: case 10208:
-        case 10209: case 10210: case 10247: case 10248: case 10249: case 10250: case 10251: case 10263: case 10280: case 10282: case 10283: case 10291: case 10294:
+        case 10209: case 10210: case 10247: case 10248: case 10249: case 10250: case 10251: case 10263: case 10280: case 10282: case 10283: case 10291: case 10294: case 10311: case 10317:
             //mark 4
             if(
                 this.timer==1&&(
@@ -799,7 +801,7 @@ attack.prototype.update=function(){
         case 9701: case 9702: case 9704: case 9707: case 9728: case 9751: case 9815: case 9841: case 9843: case 9844: case 9859: case 9870: case 9871: case 9898: case 9899: case 9901: case 9906: case 9908: case 9910: case 9911:
         case 9912: case 9917: case 9927: case 9940: case 9948: case 9953: case 9955: case 9956: case 9983: case 9986: case 9987: case 9998: case 10016: case 10017: case 10018: case 10019: case 10045: case 10046: case 10063: case 10067:
         case 10068: case 10069: case 10083: case 10084: case 10091: case 10092: case 10099: case 10103: case 10104: case 10105: case 10109: case 10110: case 10126: case 10127: case 10135: case 10149: case 10153: case 10161: case 10175: case 10201:
-        case 10246: case 10256: case 10258: case 10284: case 10285:
+        case 10246: case 10256: case 10258: case 10284: case 10285: case 10301: case 10323:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1337,6 +1339,7 @@ attack.prototype.update=function(){
         case 8053: case 8134: case 8372: case 8490: case 8535: case 8547: case 8566: case 8613: case 8625: case 8675:
         case 8701: case 8824: case 8858: case 8862: case 9069: case 9091: case 9150: case 9192: case 9203: case 9252:
         case 9292: case 9359: case 9413: case 9445: case 9488: case 9491: case 9612: case 9669: case 9934: case 10276:
+        case 10315:
             //mark 7
             if(
                 this.timer==1&&(
@@ -2036,7 +2039,8 @@ attack.prototype.update=function(){
         case 9602: case 9634: case 9635: case 9636: case 9637: case 9659: case 9660: case 9662: case 9697: case 9698:
         case 9699: case 9700: case 9703: case 9725: case 9786: case 9796: case 9816: case 9825: case 9837: case 9852:
         case 9853: case 9861: case 9922: case 9923: case 9944: case 10036: case 10106: case 10117: case 10133: case 10144:
-        case 10150: case 10163: case 10170: case 10171: case 10202: case 10227: case 10229: case 10230:
+        case 10150: case 10163: case 10170: case 10171: case 10202: case 10227: case 10229: case 10230: case 10318: case 10319:
+        case 10320:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -2563,7 +2567,7 @@ attack.prototype.update=function(){
         case 6616: case 6693: case 6709: case 6820: case 6979: case 6995: case 7222: case 7438: case 7439:
         case 7461: case 7482: case 7616: case 7626: case 7676: case 7792: case 7820: case 8021: case 8022:
         case 8086: case 8196: case 8255: case 8310: case 8427: case 8439: case 8440: case 8798: case 8799:
-        case 9036: case 9184: case 9622: case 9665: case 9858: case 10293:
+        case 9036: case 9184: case 9622: case 9665: case 9858: case 10293: case 10308:
             //mark 9
             if(
                 this.type==1288&&this.relPos[1]!=0||
@@ -2694,7 +2698,7 @@ attack.prototype.update=function(){
         case 1900: case 2127: case 2308: case 2398: case 3175: case 3373: case 3452: case 3594: case 3786: case 3901:
         case 3946: case 3990: case 4559: case 4778: case 4881: case 4887: case 4965: case 5067: case 5994: case 5997:
         case 6005: case 6445: case 6446: case 6785: case 7119: case 7354: case 7580: case 7584: case 8104: case 8612:
-        case 9621: case 10132: case 10259: case 10260: case 10261:
+        case 9621: case 10132: case 10259: case 10260: case 10261: case 10324:
             //mark 10
             if(
                 this.type==1640&&this.energy!=this.effect[0]||
@@ -4928,7 +4932,7 @@ attack.prototype.update=function(){
         case 9640: case 9696: case 9730: case 9747: case 9771: case 9775: case 9784: case 9823: case 9860: case 9862:
         case 9916: case 9935: case 9949: case 9950: case 9952: case 9966: case 9999: case 10000: case 10072: case 10073:
         case 10080: case 10081: case 10130: case 10131: case 10188: case 10205: case 10211: case 10212: case 10218: case 10245:
-        case 10267: case 10281: case 10286:
+        case 10267: case 10281: case 10286: case 10314:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -13807,7 +13811,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 8020: case 8034: case 8996: case 9228: case 9229:
+        case 8020: case 8034: case 8996: case 9228: case 9229: case 10322:
             if(this.timer==1){
                 this.userCombatant.startAnimation(22)
                 let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x*2-this.targetCombatant.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetCombatant.tilePosition.y)
@@ -13832,6 +13836,10 @@ attack.prototype.update=function(){
                     break
                     case 9229:
                         this.userCombatant.heal(this.effect[0])
+                    break
+                    case 10322:
+                        this.userCombatant.addBlock(this.effect[0])
+                        this.userManager.draw(this.effect[1])
                     break
                 }
             }
@@ -15513,6 +15521,42 @@ attack.prototype.update=function(){
             if(this.timer==15){
                 this.selfCall(0)
             }else if(this.timer>=30){
+                this.remove=true
+            }
+        break
+        case 10296:
+            if(this.timer==1){
+                this.procedure[0]=1+floor(this.userManager.deck.numberAbstract(3,[82])/this.effect[1])
+            }
+            if(this.procedure[0]<=0){
+                this.remove=true
+            }else{
+                if(this.timer%30==1){
+                    this.userCombatant.startAnimation(2)
+                }
+                this.userCombatant.runAnimation(1/30,2)
+                if(this.timer%30==15){
+                    switch(this.type){
+                        default:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        break
+                    }
+                }else if(this.timer>=30*this.procedure[0]){
+                    this.remove=true
+                }
+            }
+        break
+        case 10316:
+            if(this.timer==1){
+                this.procedure[0]=(this.userManager.deck.numberAbstract(3,[82])>=this.effect[2]?1:0)+(this.userCombatant.assign(this.effect[3])?1:0)
+            }
+            if(this.timer%30==1){
+                this.userCombatant.startAnimation(2)
+            }
+            this.userCombatant.runAnimation(1/30,2)
+            if(this.timer%30==15){
+                this.selfCall(0)
+            }else if(this.timer>=30+this.procedure[0]*30){
                 this.remove=true
             }
         break

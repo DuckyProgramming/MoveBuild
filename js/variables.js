@@ -1146,7 +1146,7 @@ types={
         {name:'Starfish',internal:'2 Tile Move Draw',id:250,rarity:0,list:0,mtg:0,world:[0,3],description:'After Moving 2 or More\nTiles, Draw 1 Card'},
         {name:'Rosemary',internal:'Fatigue Draw',id:251,rarity:2,list:0,mtg:0,world:[0,3],description:'Draw 1 Card When You Play a Fatigue'},
         {name:'Frozen Frog',internal:'Extra Energy Double Damage',id:252,rarity:2,list:0,mtg:1,world:[0,3],description:'When You End Your Turn With\n2 or More Energy, Your Next\nAttack Played Deals Double Damage'},
-        {name:'Blood Diamond',internal:'Health Loss Currency',id:253,rarity:0,list:0,mtg:0,world:[0,2],description:'When You Lose Health,\nGain 3 Currency Per HP Lost'},
+        {name:'Blood Diamond',internal:'Health Loss Currency',id:253,rarity:-1,list:0,mtg:0,world:[0,2],description:'When You Lose Health,\nGain 3 Currency Per HP Lost'},
         {name:'Managerial Banner',internal:'Rest Cost Down',id:254,rarity:2,list:0,mtg:0,world:[0,2],description:'You May Reduce the Cost of a\nCard By 1 When Resting, 3 Uses'},
         {name:'Quartz Cube',internal:'3 Enemy Stun',id:255,rarity:1,list:0,mtg:0,world:[0,3],description:'On Turn 1 Combats With 3 or More\nEnemies, Apply 2 Stun to a Random Enemy'},
         {name:'House of Cards',internal:'Fragile Damage Up',id:256,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 2 Fragile Damage Up\non Turn 1'},
@@ -7930,6 +7930,8 @@ Afterward, trigger its forge effect.`,
 After adding both, also add a Miracle.`,
         },{name:'Echo',mtg:0,desc:
 `When drawn, duplicates once when played.`,
+        },{name:'Population',mtg:0,desc:
+`The number of workers in your deck.`,
         },
         //mark dict
     ],diff:[

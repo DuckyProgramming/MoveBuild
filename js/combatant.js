@@ -1001,7 +1001,7 @@ class combatant{
                 this.statusEffect('Power Play Vigor',diffUnfair?10:6)
             break
             case 'Infested Prism':
-                this.statusEffect('Skill Play Vigor',diffUnfair?4:2)
+                this.statusEffect('Skill Play Vigor',diffUnfair?3:2)
             break
             case 'Smoker':
                 this.statusEffect('Splash Vulnerable Per Turn',1)
@@ -6688,7 +6688,7 @@ class combatant{
                     case 906: this.miniStatus('Temporary Dexterity Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     case 974: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(12)} break
                     case 980: this.battle.combatantManager.areaAbstract(2,[this.team==0?'Weak Next Turn':'Weak',this.status.main[this.status.ticker[a]]],this.tilePosition,[3,this.id],[0,1],false,0); break
-                    case 984: this.gainFaith(this.status.main[this.status.ticker[a]]); break
+                    case 992: this.gainFaith(this.status.main[this.status.ticker[a]]); break
                     case 1000: if(this.stance==1){this.miniStatus('Temporary Strength',this.status.main[this.status.ticker[a]])} break
                     case 1001: if(this.stance==4){this.miniStatus('Temporary Dexterity',this.status.main[this.status.ticker[a]])} break
                     case 1003: this.miniStatus('Counter Management Beam Once',this.status.main[this.status.ticker[a]]); break
