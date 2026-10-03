@@ -10649,6 +10649,64 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(120,210,240,fade)
             layer.triangle(-1.5,1.5,2.5,1.5,-1.5,-2.5)
         break
+        case 999:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(255,255,50,fade)
+            layer.stroke(225,225,50,fade)
+            layer.strokeWeight(0.5)
+            regStar(layer,0,0,5,3,3,1,1,36)
+        break
+        case 1000:
+            layer.stroke(255,75,75,fade)
+            layer.strokeWeight(1)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
+            layer.noStroke()
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 1001:
+            layer.stroke(150,75,0,fade)
+            layer.strokeWeight(1)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
+            layer.noStroke()
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 1002:
+            layer.fill(0,100,255,fade)
+            layer.rect(1,0,12,2)
+            layer.fill(100,fade)
+            layer.ellipse(-5,0,4,4)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.quad(-9,0,-8,-2,-7,0,-8,2)
+        break
+        case 1003:
+            layer.fill(0,100,255,fade)
+            layer.rect(1,0,12,2)
+            layer.fill(100,fade)
+            layer.ellipse(-5,0,4,4)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.quad(-9,0,-8,-2,-7,0,-8,2)
+            layer.triangle(-1,4.5,1,4.5,0,6)
+        break
     }
     //mark s
     layer.pop()

@@ -98,7 +98,7 @@ class combatant{
         
         this.compression=0
         this.permanent=[0,0]
-        this.carry=[0,0,0,0,0]
+        this.carry=[0,0,0,0,0,0]
 
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
@@ -221,7 +221,8 @@ class combatant{
                 '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
                 'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
                 'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
-                'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random',
+                'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
+                'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -323,7 +324,8 @@ class combatant{
                 0,0,0,0,0,0,0,1,1,0,//97
                 0,0,0,0,0,1,1,0,0,0,//98
                 0,0,0,0,1,1,0,0,0,0,//99
-                0,0,0,0,0,0,0,2,0,
+                0,0,0,0,0,0,0,2,0,0,//100
+                0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -425,7 +427,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,2,//97
                 2,2,2,2,2,2,2,0,0,0,//98
                 0,2,0,0,2,2,2,2,2,2,//99
-                2,2,2,2,2,2,1,1,2,
+                2,2,2,2,2,2,1,1,2,2,//100
+                2,2,
             ]}
         /*
         0-none
@@ -603,6 +606,9 @@ class combatant{
                     break
                     case 4:
                         this.statusEffect('Extra Turn',this.carry[a])
+                    break
+                    case 5:
+                        this.statusEffect('Dexterity',this.carry[a])
                     break
                 }
                 this.carry[a]=0
@@ -1017,6 +1023,10 @@ class combatant{
             break
             case 'Sticky Pillar':
                 this.statusEffect('Counter Temporary Speed Down All Combat',1)
+            break
+            case 'Management Drone':
+                this.statusEffect('Counter Management Beam Once Per Turn',6)
+                this.statusEffect('Counter Management Beam Once',6)
             break
         }
         //mark b
@@ -4394,6 +4404,13 @@ class combatant{
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,87,[this.status.main[722]],this.id,false))
                                     this.status.main[722]=0
                                 }
+                                if(this.status.main[1002]>0&&distance>=0&&distance<=6){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,115,[this.status.main[1002]],this.id,false))
+                                    this.status.main[1002]=0
+                                }
                             }else{
                                 if(this.status.main[1]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -4551,6 +4568,12 @@ class combatant{
                                 if(this.status.main[722]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,87,[this.status.main[607]],this.id,false))
                                     this.status.main[722]=0
+                                }
+                                if(this.status.main[1002]>0&&distance>=0&&distance<=6){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[1002]],this.id,false))
+                                    this.status.main[1002]=0
                                 }
                             }
                         }
@@ -6666,6 +6689,9 @@ class combatant{
                     case 974: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(12)} break
                     case 980: this.battle.combatantManager.areaAbstract(2,[this.team==0?'Weak Next Turn':'Weak',this.status.main[this.status.ticker[a]]],this.tilePosition,[3,this.id],[0,1],false,0); break
                     case 984: this.gainFaith(this.status.main[this.status.ticker[a]]); break
+                    case 1000: if(this.stance==1){this.miniStatus('Temporary Strength',this.status.main[this.status.ticker[a]])} break
+                    case 1001: if(this.stance==4){this.miniStatus('Temporary Dexterity',this.status.main[this.status.ticker[a]])} break
+                    case 1003: this.miniStatus('Counter Management Beam Once',this.status.main[this.status.ticker[a]]); break
                     
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
@@ -8995,7 +9021,7 @@ class combatant{
                 la--
             }
         }
-        if(this.type>0&&this.type<=constants.playerNumber){
+        if(this.type>=0&&this.type<=constants.playerNumber){
             this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
             if(this.balance>this.balanceCap){
                 if(this.status.main[105]>0){

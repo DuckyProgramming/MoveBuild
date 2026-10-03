@@ -1404,6 +1404,9 @@ class card{
             case 9676:
                 this.battle.cardManagers[this.player].drawAbstract(this.effect[0],0,0,[1])
             break
+            case 10290:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[2],0,0,[4])
+            break
         }
     }
     callAnotherDrawEffect(number){
@@ -1769,6 +1772,10 @@ class card{
             break
             case 9926:
                 userCombatant.addBlock(this.effect[0])
+            break
+            case 10295:
+                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+                userCombatant.statusEffect('Strength',this.effect[1])
             break
 
         }
@@ -3716,6 +3723,9 @@ class card{
                         this.effect[0]=max(0,this.effect[0]-this.effect[2])
                     }
                 break
+                case 10277:
+                    userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                break
                 
             }
         }
@@ -3964,6 +3974,12 @@ class card{
                 for(let a=0,la=this.effect[0];a<la;a++){
                     userCombatant.holdOrb(1)
                 }
+            break
+            case 10274:
+                userCombatant.addBlock(this.effect[1])
+            break
+            case 10275:
+                this.costUp(0,[1])
             break
         }
         if(this.spec.includes(55)){

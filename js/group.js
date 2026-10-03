@@ -1455,7 +1455,7 @@ class group{
                     this.cards[a].discardEffectBuffered.push(0)
                 break
                 case 28:
-                    if(this.cards[a].attack==736){
+                    if(this.cards[a].attack==736||this.cards[a].attack==10284){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                         a--
                         la--
@@ -2848,6 +2848,7 @@ class group{
                         &&!(effect==80&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=1||this.cards[b].id==args[1]))
                         &&!(effect==82&&(this.cards[b].getCost(1)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(55)||this.cards[b].spec.includes(59)||this.cards[b].spec.includes(60)||this.cards[b].class!=args[1]))
                         &&!(effect==85&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=7))
+                        &&!(effect==86&&this.cards[b].class!=args[1]&&args[1]!=0)
                     ){
                         list.push(b)
                     }
@@ -3221,7 +3222,7 @@ class group{
                         let result=this.cards[index].spec.includes(args[1])
                         this.send(args[0],index,index+1,1)
                         return result
-                    case 69:
+                    case 69: case 86:
                         this.copySelf(index)
                         for(let a=0,la=args[0].length;a<la;a++){
                             this.cards[index+1].spec.push(args[0][a])
@@ -3409,7 +3410,7 @@ class group{
             case -20:
                 this.drawEffects.push([2,[card.effect[0]]])
             break
-            case -22: card.drawMark=false; return true
+            case -22: case 10286: card.drawMark=false; return true
             case -23:
                 for(let a=0,la=card.effect[0];a<la;a++){
                     this.drawEffects.push([0,13,[]])
@@ -4103,7 +4104,8 @@ class group{
             variant==22&&args[0].includes(this.cards[index].class)||
             variant==23&&this.cards[index].name.includes(args[0])&&args[1].includes(this.cards[index].class)||
             variant==24&&(this.cards[index].name.includes(args[0])||this.cards[index].spec.includes(args[1]))||
-            variant==25&&this.cards[index].getCost(4)
+            variant==25&&this.cards[index].getCost(4)||
+            variant==26&&this.cards[index].id==args[0]
         )
     }
     checkAbstract(amount,variant,args){

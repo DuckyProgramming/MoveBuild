@@ -1,8 +1,7 @@
-CS 128 [GREATER LEGACY]
-
-checkExists from 7400 forward
-
 CS 129 [AIRI / 8750]
+
+change all population cards to work with only worker population
+also its not in the dictionary
 
 purge airi
 make sure her tutorial is not ruined
@@ -14,8 +13,8 @@ CS 130 [?]
 fugue/faith animation
 
 down 2 events
-down 1 rare item
-
+down 1 rare item - boss buster - grenade but triple damage to bosses
+   
 tooltips for dictionary
 
 play sakura armament
@@ -45,49 +44,9 @@ reorganize the items
 https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
 make sure his tutorial is not ruined
 
-this.battle.overlayManager.overlays[10][this.player].active=true
-this.battle.overlayManager.overlays[10][this.player].activate([this.level,[21,[1,2,11]],57,[],[this.effect[0],this.effect[1],this.effect[2]]])
-this thing splits new year visit
-
-split snapshot
-split ammo reserve
-split strength stash
-split grand potential (only exhausts when successful)
-split copypaste (old version has 6 range, new version has full-map range)
-replace lead barricade with a card similar to vantage
-split time of troubles
-split output
-fresh animation for dreamseal
-
-(the below is very similar to 10193!)
-onslaught - 3 cost, deal 21 damage, gain 1 energy per attack played this turn
-vocal fry - 22 damage, 2 cost, retain, when retained, cost increases by 1
-alarm chili - when you play a skill this turn, deal 10 damage in all directions
-matter of fact - 3 damage twice, gain 1 temporary strength per card played with this in hand
-broken matter - deal damage equal to your block, lose all block, overdrive 3: don't lose block
-fairy abode - add 9 block when an ally card is played
-
-belt buckle - gain 1 strength, if you have no items gain 1 dexterity
-squall - 18 damage to anybody, get 3 random temporary items
-demographics - gain temp dex for every 5 population
-self-fulfillment - gain 3 temporary strength when in wrath and 3 temporary dexterity when in sturdy
-time magic - when you take an extra turn, discover a card, it costs 0
-maiden's regret - when drawn, gain 2 strength, 2 dexterity, and draw 2 cards, but discard your hand(char dependent)
-classic mixup - 6 damage, draw 3 cards, discard them if they don't cost 1
-the road taken - the next quest played returns to your hand
-highfive - add 15 block, but so does target (can be enemy or ally or anything)
-
-[mountain flowers]
-
-diadem - gain 1 buffer, apply 2 weak to all enemies [tiara already exists, base off that]
-teleport and nerf in all directions
-concealed carry - deal 6 damage to a random enemy, if exhausted, trigger effect and gain 2 strength
-uplink - gain 1 strength per quest completed, exhaust
-tumult - apply shock, gain block equal to target's shock
-multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
+split angelfrost, demonfire
 locomotion - 2 cost, move 2 tiles, add 2 block, draw 2 cards
 split tactical retreat - it now forces you to move back like dine&dash but gives you more block
-
 split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
 pump action - 1 cost, draw 1 card, all guns in hand cost 1 less temporarily, exhaust (rare card)
 fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
@@ -198,6 +157,8 @@ pale flame - deal 4 damage, gain 1 wisdom, exhaust a card
 beloved from above - 1 cost, retain, gain 2 faith, draw a card it costs 1 less
 parhelion blur - gain 1 intangible, next luck card is guaranteed
 summarize - gain 1 strength per enemy that will attack
+multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
+split clockwork
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror

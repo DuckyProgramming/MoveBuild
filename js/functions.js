@@ -2171,7 +2171,8 @@ function edition(edition){
 	current.cardManagers[0].hand.cards[0].edition=edition
 }
 function fight(name){
-	current.setupBattle(types.encounter[findName(name,types.encounter)])
+	//current.setupBattle(types.encounter[findName(name,types.encounter)])
+	current.setupBattle(types.encounter[findNameApprox(name,types.encounter)])
 }
 function quickNode(type){
 	current.nodeManager.enterNode(type)
@@ -3628,8 +3629,10 @@ function checkExists(start,end){
 		5868,//invalid halflife
 		6032,//invalid seven hakus
 		6199,//invalid cleaver
+		7929,//invalid suit up
+		8695,//invalid set sail
 		9661,//invalid silverswivel
-		83,84,85,86,3595,3632,//items
+		83,84,85,86,9974,//items
 	]
 	let total=0
 	for(let a=start,la=end;a<la;a++){

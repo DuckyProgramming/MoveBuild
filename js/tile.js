@@ -73,7 +73,7 @@ class tile{
                     }
                 break
                 case 3:
-                    if(this.combatant>=0&&!this.battle.combatantManager.combatants[this.combatant].armed){
+                    if(this.combatant>=0&&!this.battle.combatantManager.combatants[this.combatant].armed&&this.battle.combatantManager.combatants[this.combatant].team!=0){
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
                             this.battle.combatantManager.combatants[this.combatant].rearm()
                             this.anim.upPart[a]=false

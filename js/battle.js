@@ -992,8 +992,8 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
-            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163,6511,9416])
-            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511,9416])
+            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163,6511,9416,10285])
+            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511,9416,10285])
             extra=true
         }else{
             if(this.players==2){
@@ -1528,6 +1528,11 @@ class battle{
             case 5:
                 if(userCombatant.getStatus('Status Exhaust')>0){
                     this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Status Exhaust'))
+                }
+            break
+            case 9:
+                if(!card.spec.includes(55)&&userCombatant.getStatus('Ally Block')>0){
+                    userCombatant.addBlock(userCombatant.getStatus('Ally Block'))
                 }
             break
             case 11:
