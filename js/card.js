@@ -2237,6 +2237,9 @@ class card{
                 userCombatant.statusEffect('Control',types.card[findName('Chernenko',types.card)].levels[0].effect[0])
                 this.battle.cardManagers[this.player].hand.upgrade(types.card[findName('Gorbachev',types.card)].levels[0].effect[0])
             break
+            case 10330:
+                this.battle.addCurrency(this.effect[0]*this.battle.cardManagers[this.player].deck.numberAbstract(3,[82]),this.player)
+            break
         }
     }
     callPostStartEffect(encounterClass){

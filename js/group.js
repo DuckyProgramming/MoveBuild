@@ -2615,6 +2615,7 @@ class group{
                                 }
                             break
                             case 7555:
+                                //there's no leader before alexander III added yet
                                 if(args[0]!=7470){
                                     this.add(findName('Nicholas\nII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     if(this.id==0){
