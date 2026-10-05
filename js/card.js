@@ -368,7 +368,7 @@ class card{
         }else{
             this.colorDetail=types.color.card[this.color]
         }
-        if(this.colorDetail==undefined){
+        if(this.colorDetail==undefined||variants.mtg&&this.color.length>1&&this.colorDetail.includes(undefined)){
             print(this.name,`colorDetail fail`)
         }
     }

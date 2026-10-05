@@ -2582,6 +2582,11 @@ Total: ${count[a][1][3]}\n`
 	console.log(`${mtgd}/${types.card.length} (${round(mtgd/types.card.length*1000/10)}%) Converted`)
 }
 function outMtgError(){
+	let set=[
+		-2,
+		0,1,2,3,4,5,
+		constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5
+	]
 	for(let a=0,la=types.card.length;a<la;a++){
 		if(types.card[a].list>=0&&types.card[a].mtg.list>=0&&types.card[a].list!=types.card[a].mtg.list){
 			console.log(types.card[a].name,`A`)
@@ -2589,13 +2594,16 @@ function outMtgError(){
 		if(types.card[a].rarity>=0&&types.card[a].mtg.rarity>=0&&types.card[a].rarity!=types.card[a].mtg.rarity){
 			console.log(types.card[a].name,`B`)
 		}
+		if(types.card[a].mtg.color.some(a=>!set.includes(a))){
+			console.log(types.card[a].name,`C`)
+		}
 		if(types.card[a].name!='Bozo'&&types.card[a].name!=`Ascender's\nBozo`){
 			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
 				if(
 					types.card[a].mtg.levels[b].cost==undefined||
 					types.card[a].mtg.levels[b].cost.length==undefined
 				){
-					console.log(types.card[a].name,`C`)
+					console.log(types.card[a].name,`D`)
 				}else{
 					if(
 						!types.card[a].mtg.levels[b].spec.includes(11)&&
@@ -2624,9 +2632,8 @@ function outMtgError(){
 								types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
 							)&&!specialCost(types.card[a].mtg.levels[b])
 						){
-							console.log(types.card[a].name,`D`)
-						}
-						if(types.card[a].mtg.levels[b].cost.length>0&&types.card[a].mtg.levels[b].cost.some(cost=>cost!=-1&&cost!=-3)&&(
+							console.log(types.card[a].name,`E`)
+						}else if(types.card[a].mtg.levels[b].cost.length>0&&types.card[a].mtg.levels[b].cost.some(cost=>cost!=-1&&cost!=-3)&&(
 							types.card[a].mtg.color.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(6)||
 							types.card[a].mtg.color.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(8)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(10)||
 							types.card[a].mtg.color.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(11)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(13)||
@@ -2634,11 +2641,29 @@ function outMtgError(){
 							types.card[a].mtg.color.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(14)&&!types.card[a].mtg.levels[b].cost.includes(16)||
 							types.card[a].mtg.color.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(10)&&!types.card[a].mtg.levels[b].cost.includes(13)&&!types.card[a].mtg.levels[b].cost.includes(15)&&!types.card[a].mtg.levels[b].cost.includes(16)
 						)){
-							console.log(types.card[a].name,`E`)
+							console.log(types.card[a].name,`F`)
 						}
 					}
 				}
 			}
+		}
+	}
+	for(let a=0,la=types.relic.length;a<la;a++){
+		if(types.relic[a].mtg==1&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==2)){
+			print(types.relic[a].name,'R-A')
+		}
+		if(types.relic[a].mtg==2&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==1)){
+			print(types.relic[a].name,'R-B')
+		}
+	}
+}
+function outMtgRelic(){
+	for(let a=0,la=types.relic.length;a<la;a++){
+		if(types.relic[a].mtg==1&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==2&&relic.rarity!=types.relic[a].rarity)){
+			print(types.relic[a].name,'A')
+		}
+		if(types.relic[a].mtg==2&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==1&&relic.rarity!=types.relic[a].rarity)){
+			print(types.relic[a].name,'B')
 		}
 	}
 }

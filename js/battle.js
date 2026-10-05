@@ -4093,7 +4093,7 @@ class battle{
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215+a%4*190,y:this.layer.height/2-125+floor(a/4)*40},width:22.5,height:22.5})){
                     //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-325+a%5*162.5,y:this.layer.height/2-110+floor(a/5)*40},width:135,height:22.5})){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-243.75+a%4*162.5,y:this.layer.height/2-70+floor(a/5)*40},width:135,height:22.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-243.75+a%4*162.5,y:this.layer.height/2-70+floor(a/4)*40},width:135,height:22.5})){
                         variants[variants.map[a]]=toggle(variants[variants.map[a]])
                     }
                 }

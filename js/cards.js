@@ -93533,7 +93533,7 @@ types.card=[
             {effect:[15],attack:7455,cost:0,target:[2,1,1],spec:[],class:1},
             {effect:[19],attack:7455,cost:0,target:[2,1,1],spec:[],class:1},
         ],mtg:{
-            rarity:0,list:22,color:[3],
+            rarity:-1,list:-8,color:[3],
             levels:[
                 {effect:[10],attack:7455,cost:[],target:[2,1,1],spec:[],class:1},
                 {effect:[15],attack:7455,cost:[],target:[2,1,1],spec:[],class:1},
@@ -93547,7 +93547,7 @@ types.card=[
             {effect:[24,9],attack:7456,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[30,12],attack:7456,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
-            rarity:1,list:22,color:[3],
+            rarity:-1,list:-8,color:[3],
             levels:[
                 {effect:[12,6],attack:7456,cost:[3],target:[2,1,1],spec:[0],class:1},
                 {effect:[18,9],attack:7456,cost:[3],target:[2,1,1],spec:[0],class:1},
@@ -93561,7 +93561,7 @@ types.card=[
             {effect:[1,16],attack:7457,cost:1,target:[1,1,1],spec:[0],class:3},
             {effect:[1,22],attack:7457,cost:1,target:[1,1,1],spec:[0],class:3},
         ],mtg:{
-            rarity:1,list:22,color:[3],
+            rarity:-1,list:-8,color:[3],
             levels:[
                 {effect:[1,10],attack:7457,cost:[3,-1],target:[1,1,1],spec:[0],class:3},
                 {effect:[1,20],attack:7457,cost:[3,-1],target:[1,1,1],spec:[0],class:3},
@@ -93799,7 +93799,7 @@ types.card=[
             {effect:[12,1],attack:3405,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[15,1],attack:3405,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
-            rarity:0,list:26,color:[1],
+            rarity:-1,list:-8,color:[1],
             levels:[
                 {effect:[6,1],attack:3405,cost:[1],target:[2,1,1],spec:[0],class:1},
                 {effect:[9,1],attack:3405,cost:[1],target:[2,1,1],spec:[0],class:1},
@@ -93813,7 +93813,7 @@ types.card=[
             {effect:[18,1],attack:3740,cost:1,target:[0],spec:[],class:2},
             {effect:[22,1],attack:3740,cost:1,target:[0],spec:[],class:2},
         ],mtg:{
-            rarity:0,list:26,color:[1],
+            rarity:-1,list:-8,color:[1],
             levels:[
                 {effect:[9,1],attack:3740,cost:[1],target:[0],spec:[],class:2},
                 {effect:[14,1],attack:3740,cost:[1],target:[0],spec:[],class:2},
@@ -96151,7 +96151,7 @@ types.card=[
             {effect:[2],attack:8106,cost:0,target:[0],spec:[],class:11},
             {effect:[3],attack:8106,cost:0,target:[0],spec:[],class:11},
         ],mtg:{
-            rarity:-1,list:-1,color:[2],
+            rarity:-1,list:-8,color:[2],
             levels:[
                 {effect:[2],attack:8106,cost:[2],target:[0],spec:[],class:11},
                 {effect:[3],attack:8106,cost:[2],target:[0],spec:[],class:11},
@@ -96755,7 +96755,7 @@ types.card=[
             {effect:[2,1],attack:8097,cost:0,target:[0],spec:[1],class:11},
             {effect:[2,2],attack:8097,cost:0,target:[0],spec:[1],class:11},
         ],mtg:{
-            rarity:-1,list:-1,color:[0],
+            rarity:-1,list:-8,color:[0],
             levels:[
                 {effect:[1],attack:8098,cost:[],target:[0],spec:[1],class:11},
                 {effect:[1],attack:8099,cost:[],target:[0],spec:[1],class:11},
@@ -97805,7 +97805,7 @@ types.card=[
             {effect:[12,12,1],attack:8755,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[15,15,1],attack:8755,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
-            rarity:2,list:-1,color:[1,5],
+            rarity:-1,list:-8,color:[1,5],
             levels:[
                 {effect:[13,13,1],attack:8755,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[20,20,1],attack:8755,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
@@ -101389,7 +101389,7 @@ types.card=[
             {effect:[3],attack:1393,cost:0,target:[0],spec:[5],class:8},
             {effect:[4],attack:1393,cost:0,target:[0],spec:[5],class:8},
         ],mtg:{
-            rarity:-1,list:-8,color:[9],
+            rarity:-1,list:-8,color:[0],
             levels:[
                 {effect:[2],attack:1393,cost:[],target:[0],spec:[5],class:8},
                 {effect:[3],attack:1393,cost:[],target:[0],spec:[5],class:8},
@@ -107311,7 +107311,7 @@ types.card=[
             {effect:[3,2],attack:950,cost:0,target:[2,1,1],spec:[1],class:1},
             {effect:[4,2],attack:950,cost:0,target:[2,1,1],spec:[1],class:1},
         ],mtg:{
-            rarity:-1,list:-8,color:[9],
+            rarity:-1,list:-8,color:[0],
             levels:[
                 {effect:[2,2],attack:950,cost:[],target:[2,1,1],spec:[1],class:1},
                 {effect:[3,2],attack:950,cost:[],target:[2,1,1],spec:[1],class:1},
@@ -110265,7 +110265,7 @@ types.card=[
             {effect:[4,1],attack:5783,cost:0,target:[2,1,1],spec:[],class:1},
             {effect:[6,1],attack:5783,cost:0,target:[2,1,1],spec:[],class:1},
         ],mtg:{
-            rarity:0,list:10,color:[2,5],
+            rarity:-1,list:-8,color:[2,5],
             levels:[
                 {effect:[2,1],attack:5783,cost:[],target:[2,1,1],spec:[],class:1},
                 {effect:[4,1],attack:5783,cost:[],target:[2,1,1],spec:[],class:1},
@@ -110279,7 +110279,7 @@ types.card=[
             {effect:[6,1],attack:6086,cost:0,target:[0],spec:[],class:2},
             {effect:[8,1],attack:6086,cost:0,target:[0],spec:[],class:2},
         ],mtg:{
-            rarity:0,list:10,color:[2,5],
+            rarity:-1,list:-8,color:[2,5],
             levels:[
                 {effect:[3,1],attack:6086,cost:[],target:[0],spec:[],class:2},
                 {effect:[6,1],attack:6086,cost:[],target:[0],spec:[],class:2},
@@ -111329,7 +111329,7 @@ types.card=[
             {effect:[1,3,1],attack:8585,cost:0,target:[0],spec:[],class:11},
             {effect:[1,4,1],attack:8585,cost:0,target:[0],spec:[],class:11},
         ],mtg:{
-            rarity:0,list:-1,color:[3],
+            rarity:-1,list:-8,color:[3],
             levels:[
                 {effect:[1,1],attack:8735,cost:[],target:[0],spec:[],class:11},
                 {effect:[1,1],attack:8736,cost:[],target:[0],spec:[],class:11},
@@ -118533,13 +118533,13 @@ types.card=[
             ],
         },
     },{
-        name:'Wide\nDisjoint',rarity:0,list:-9,
+        name:'Wide\nDisjoint',rarity:-1,list:-8,
         levels:[
             {effect:[11,1],attack:1974,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[16,1],attack:1974,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[20,1],attack:1974,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
-            rarity:0,list:-9,color:[4],
+            rarity:-1,list:-8,color:[4],
             levels:[
                 {effect:[18,1],attack:1974,cost:[4,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[25,1],attack:1974,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
@@ -118547,13 +118547,13 @@ types.card=[
             ],
         },
     },{
-        name:'Wide\nDislocate',rarity:0,list:-9,
+        name:'Wide\nDislocate',rarity:-1,list:-8,
         levels:[
             {effect:[11,1],attack:1975,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[16,1],attack:1975,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[20,1],attack:1975,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
-            rarity:0,list:-9,color:[4],
+            rarity:-1,list:-8,color:[4],
             levels:[
                 {effect:[18,1],attack:1975,cost:[4,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[25,1],attack:1975,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
@@ -118561,13 +118561,13 @@ types.card=[
             ],
         },
     },{
-        name:'Wide\nDisarrange',rarity:0,list:-9,
+        name:'Wide\nDisarrange',rarity:-1,list:-8,
         levels:[
             {effect:[11,1],attack:1976,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[16,1],attack:1976,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[20,1],attack:1976,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
-            rarity:0,list:-9,color:[4],
+            rarity:-1,list:-8,color:[4],
             levels:[
                 {effect:[18,1],attack:1976,cost:[4,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[25,1],attack:1976,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
@@ -118575,13 +118575,13 @@ types.card=[
             ],
         },
     },{
-        name:'Wide\nWhack',rarity:0,list:-9,
+        name:'Wide\nWhack',rarity:-1,list:-8,
         levels:[
             {effect:[10,1],attack:1977,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[15,1],attack:1977,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[19,1],attack:1977,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
-            rarity:0,list:-9,color:[4],
+            rarity:-1,list:-8,color:[4],
             levels:[
                 {effect:[15,1],attack:1977,cost:[4,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[21,1],attack:1977,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
@@ -119575,7 +119575,7 @@ types.card=[
             {effect:[9,3,5,0],attack:2828,cost:0,target:[45],spec:[],class:9},
             {effect:[12,3,6,0],attack:2828,cost:0,target:[45],spec:[],class:9},
         ],mtg:{
-            rarity:-1,list:-8,color:[45],
+            rarity:-1,list:-8,color:[4,5],
             levels:[
                 {effect:[6,3,4,0],attack:2828,cost:[],target:[45],spec:[],class:9},
                 {effect:[9,3,5,0],attack:2828,cost:[],target:[45],spec:[],class:9},
