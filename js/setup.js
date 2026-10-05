@@ -36,7 +36,7 @@ function setup(){
             /*quickNode(4)
             money(1000)*/
 
-            //event('Stone of All Time')
+            //event('Friendly Duck')
 
             //fight('-h Rewriter')
 
@@ -90,9 +90,9 @@ function setup(){
                 current.modManager.addMod(275+a)
             }*/
 
-            /*for(let a=0,la=6;a<la;a++){
+            /*for(let a=0,la=1;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(593+a,0)
+                quickRelic(600+a,0)
             }*/
             //current.overlayManager.closeAll()
 

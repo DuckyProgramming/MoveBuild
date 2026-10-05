@@ -141,8 +141,6 @@ outdupes, outmtgerror
 
 [slio9]
 
-+2 relics (total 600/400)
-
 GIMMICK BANK
 
 trace - like orbs, but you can't evoke them

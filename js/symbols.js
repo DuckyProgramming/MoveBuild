@@ -18178,6 +18178,18 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,3.5,4,13)
             layer.triangle(-6,-2,6,-2,0,-10)
         break
+        case 183:
+            layer.fill(30,30,35,fade)
+            layer.stroke(30,30,35,fade)
+            layer.strokeWeight(2)
+            layer.line(-15,2,15,2)
+            layer.quad(-11,2,11,2,8,-4,-8,-4)
+            layer.fill(200,25,0,fade)
+            layer.noStroke()
+            layer.arc(-2,3,7,7,-180,0)
+            layer.ellipse(3,0,3)
+            layer.ellipse(-0.5,-2.5,2.5)
+        break
 
     }
     layer.pop()
@@ -18362,4 +18374,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 180-Mailshield
 181-Free Power
 182-Weird Move
+183-Bowler
 */

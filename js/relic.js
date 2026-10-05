@@ -4450,6 +4450,16 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('2',8,0)
                 break
+                case 'Item Temporary Strength':
+                    displaySymbol(this.layer,-9,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,41,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',8,0)
+                break
+                case 'Bowler':
+                    displaySymbol(this.layer,0,0,183,0,1,this.fade)
+                break
 
                 //mark p
             }

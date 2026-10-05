@@ -63,6 +63,9 @@ class combatantManager{
                 a=la
             }
         }
+        if(type==findName('Bowler Duck',types.combatant)){
+            this.battle.relicManager.addRelic(findInternal('Bowler',types.relic),player)
+        }
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){

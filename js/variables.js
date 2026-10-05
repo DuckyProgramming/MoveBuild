@@ -1528,6 +1528,9 @@ types={
         {name:'Fingernail',internal:'Item Dexterity',id:596,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 1 Dexterity'},
         {name:'Swan Beak',internal:'Item Energy',id:597,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
         {name:'Swan Beak',internal:'Item Mana',id:598,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},
+        {name:'Reptile Trinket',internal:'Item Temporary Strength',id:599,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 3 Temporary Strength'},
+
+        {name:'Bloodstained Bowler Hat',internal:'Bowler',id:600,rarity:-1,list:0,mtg:0,world:[0,3],description:`Don't Forget Him`},
 
         //mark mtg mark r
     ],item:[

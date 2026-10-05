@@ -3436,6 +3436,9 @@ class relicManager{
                 if(this.active[598][args[1]+1]>0){
                     this.battle.addSpecificEnergy(2*this.active[598][args[1]+1],args[1],6)
                 }
+                if(this.active[599][args[1]+1]>0){
+                    this.getPlayer(args[1]).statusEffect('Temporary Strength',3*this.active[599][args[1]+1])
+                }
             break
         }
     }
