@@ -3414,6 +3414,29 @@ class relicManager{
                     this.battle.combatantManager.randomEnemyEffect(3,[this.active[481][args[1]+1]*args[0],this.getPlayer(args[1]).id])
                 }
             break
+            case 24://use item [item type,player]
+                if(this.active[80][args[1]+1]>0&&floor(random(0,100))<(100-100*0.5**this.active[80][args[1]+1])){
+                    this.addRandomItem(player)
+                }
+                if(this.active[593][args[1]+1]>0){
+                    this.getPlayer(args[1]).heal(5*this.active[593][args[1]+1])
+                }
+                if(this.active[594][args[1]+1]>0){
+                    this.battle.cardManagers[args[1]].draw(2*this.active[594][args[1]+1])
+                }
+                if(this.active[595][args[1]+1]>0){
+                    this.getPlayer(args[1]).statusEffect('Strength',this.active[595][args[1]+1])
+                }
+                if(this.active[596][args[1]+1]>0){
+                    this.getPlayer(args[1]).statusEffect('Dexterity',this.active[596][args[1]+1])
+                }
+                if(this.active[597][args[1]+1]>0){
+                    this.battle.addSpecificEnergy(this.active[597][args[1]+1],args[1],6)
+                }
+                if(this.active[598][args[1]+1]>0){
+                    this.battle.addSpecificEnergy(2*this.active[598][args[1]+1],args[1],6)
+                }
+            break
         }
     }
     display(scene,args){

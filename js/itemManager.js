@@ -747,8 +747,8 @@ class itemManager{
             break
         }
         this.tempEffectiveness[player]=holdTempEffectiveness
-        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])&&!types.item[type].temp){
-            this.addRandomItem(player)
+        if(!types.item[type].temp){
+            this.battle.relicManager.activate(24,[type,player])
         }
     }
     activatePreEndBattle(player,encounterClass){

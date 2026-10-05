@@ -1522,6 +1522,12 @@ types={
         {name:'Pancake',internal:'Card Service Duplicate',id:590,rarity:-1,list:0,mtg:0,world:[0,3],description:'Card Service at the Shop\nCan Duplicate a Card Instead'},
         {name:'Alex',internal:'First Duplicate',id:591,rarity:-1,list:0,mtg:0,world:[0,3],description:'Duplicate the First Card\nPlayed Each Combat'},
         {name:'Cheese House',internal:'World 3 Heal',id:592,rarity:-1,list:0,mtg:0,world:[0,3],description:'In World 3, Heal 6 HP at\nthe End of Combat'},
+        {name:'Magic Leech',internal:'Item Heal',id:593,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nHeal 5 Health'},
+        {name:'Stringent Amulet',internal:'Item Draw',id:594,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nDraw 2 Cards'},
+        {name:'Bat Wing',internal:'Item Strength',id:595,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 1 Strength'},
+        {name:'Fingernail',internal:'Item Dexterity',id:596,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 1 Dexterity'},
+        {name:'Swan Beak',internal:'Item Energy',id:597,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
+        {name:'Swan Beak',internal:'Item Mana',id:598,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},
 
         //mark mtg mark r
     ],item:[

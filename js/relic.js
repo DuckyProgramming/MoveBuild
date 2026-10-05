@@ -4408,6 +4408,48 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('6',-10,0)
                 break
+                case 'Item Heal':
+                    displaySymbol(this.layer,-9,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',8,0)
+                break
+                case 'Item Draw':
+                    displaySymbol(this.layer,-9,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,0)
+                break
+                case 'Item Strength':
+                    displaySymbol(this.layer,-9,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,11,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
+                case 'Item Dexterity':
+                    displaySymbol(this.layer,-9,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,12,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
+                case 'Item Energy':
+                    displaySymbol(this.layer,-9,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
+                case 'Item Mana':
+                    displaySymbol(this.layer,-9,0,30,0,0.6,this.fade)
+                    displayMtgManaSymbol(this.layer,8,0,6,0,0.7,this.fade,-1,[])
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,0)
+                break
 
                 //mark p
             }

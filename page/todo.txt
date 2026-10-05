@@ -141,8 +141,7 @@ outdupes, outmtgerror
 
 [slio9]
 
-600 relics (only 400 active)
-this requires +8, many of them will be the below event relics
++2 relics (total 600/400)
 
 GIMMICK BANK
 
