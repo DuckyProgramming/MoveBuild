@@ -10645,6 +10645,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2906: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier`; break
         case 5337: string+=`Push 1 Tile`; break
         */
+        //spec 89 occupied
     }
     if(string[string.length-1]=='\n'){
         string=string.substring(0,string.length-1)
@@ -10837,6 +10838,9 @@ card.prototype.description=function(attack,effect,spec,target){
     }
     if(spec.includes(84)){
         string+='\nCoffee'
+    }
+    if(spec.includes(89)){
+        string+='\nQuantum'
     }
     if(spec.includes(25)){
         string+='\nGun'

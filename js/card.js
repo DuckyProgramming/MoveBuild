@@ -6698,7 +6698,7 @@ class card{
                 (userCombatant.getStatus('Free Attack')>0||userCombatant.getStatus('Cycle Attack')>0)&&this.class==1||
                 (userCombatant.getStatus('Free Defense')>0||userCombatant.getStatus('Cycle Defense')>0)&&this.class==2||
                 (userCombatant.getStatus('Free Movement')>0||userCombatant.getStatus('Cycle Movement')>0)&&this.class==3||
-                userCombatant.getStatus('Cycle Power')>0&&this.class==4||
+                (userCombatant.getStatus('Free Power')>0||userCombatant.getStatus('Cycle Power')>0)&&this.class==4||
                 (userCombatant.getStatus('Free Skill')>0||userCombatant.getStatus('Cycle Skill')>0)&&this.class==11||
                 userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0&&this.colorless()&&this.rarity!=2||
                 userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
@@ -6735,7 +6735,7 @@ class card{
             (userCombatant.getStatus('Free Attack')>0||userCombatant.getStatus('Cycle Attack')>0)&&this.class==1||
             (userCombatant.getStatus('Free Defense')>0||userCombatant.getStatus('Cycle Defense')>0)&&this.class==2||
             (userCombatant.getStatus('Free Movement')>0||userCombatant.getStatus('Cycle Movement')>0)&&this.class==3||
-            userCombatant.getStatus('Cycle Power')>0&&this.class==4||
+            (userCombatant.getStatus('Free Power')>0||userCombatant.getStatus('Cycle Power')>0)&&this.class==4||
             (userCombatant.getStatus('Free Skill')>0||userCombatant.getStatus('Cycle Skill')>0)&&this.class==11||
             userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0&&this.colorless()&&this.rarity!=2||
             userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||

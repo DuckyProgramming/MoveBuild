@@ -224,6 +224,20 @@ class option{
                 this.layer.textSize(24)
                 this.layer.text('Deluxe Upgrade',0,60-this.player*120)
             break
+            case 13:
+                this.layer.stroke(...color,this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,60,80,5)
+                regTriangle(this.layer,-15,0,10,10,0)
+                regTriangle(this.layer,0,-15,10,10,30)
+                regTriangle(this.layer,15,0,10,10,60)
+                regTriangle(this.layer,0,15,10,10,90)
+                this.layer.noStroke()
+                this.layer.fill(...color,this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Transform',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

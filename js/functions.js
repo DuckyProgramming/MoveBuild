@@ -2794,11 +2794,13 @@ function outUniqueEffects(){
 	console.log(list.length)
 }
 function outRelic(){
-	console.log(`Common: ${current.relicManager.listing.relic[0].length}/${current.relicManager.listing.all[0].length}
-Uncommon: ${current.relicManager.listing.relic[1].length}/${current.relicManager.listing.all[1].length}
-Rare: ${current.relicManager.listing.relic[2].length}/${current.relicManager.listing.all[2].length}
-Shop: ${current.relicManager.listing.relic[3].length}/${current.relicManager.listing.all[3].length}
-Boss: ${current.relicManager.listing.relic[4].length}/${current.relicManager.listing.all[4].length}`)
+	let manager=current.relicManager==undefined?new relicManager(current.layer,current):current.relicManager
+	console.log(`Common: ${manager.listing.relic[0].length}/${manager.listing.all[0].length}
+Uncommon: ${manager.listing.relic[1].length}/${manager.listing.all[1].length}
+Rare: ${manager.listing.relic[2].length}/${manager.listing.all[2].length}
+Shop: ${manager.listing.relic[3].length}/${manager.listing.all[3].length}
+Boss: ${manager.listing.relic[4].length}/${manager.listing.all[4].length}
+Total: ${manager.listing.relic.reduce((a,c)=>a+c.length,0)}/${manager.listing.all.reduce((a,c)=>a+c.length,0)}`)
 }
 function outItem(){
 	console.log(`Common: ${current.itemManager.listing.item[0].length}

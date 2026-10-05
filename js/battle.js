@@ -1123,11 +1123,12 @@ class battle{
         }else if(combatant.life>0){
             if(this.turn.total<=1+this.relicManager.active[448][this.turn.main+1]){
                 if(!variants.initiative){
+                    let level=this.relicManager.hasRelic(587,this.turn.main)?1:0
                     for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
                         if(this.modded(257)){
-                            this.cardManagers[this.turn.main].hand.add(findName('Fatigue',types.card),0,constants.playerNumber+1)
+                            this.cardManagers[this.turn.main].hand.add(findName('Fatigue',types.card),level,constants.playerNumber+1)
                         }else{
-                            this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                            this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),level,0)
                         }
                     }
                 }
@@ -3740,6 +3741,8 @@ class battle{
                                 }
                             }
                         }
+                        let io=a=>a<=1?1-a:a
+                        reward=reward.sort((a,b)=>io(a.type)-io(b.type))
                         this.overlayManager.overlays[0][a].activate([0,reward])
                     }
                     this.relicManager.activate(1,[this.encounter.class])

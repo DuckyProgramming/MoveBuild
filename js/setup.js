@@ -33,6 +33,9 @@ function setup(){
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 
+            /*quickNode(4)
+            money(1000)*/
+
             //event('Matching Game')
 
             //fight('-h Rewriter')
@@ -87,9 +90,9 @@ function setup(){
                 current.modManager.addMod(274+a)
             }*/
 
-            /*for(let a=0,la=5;a<la;a++){
+            /*for(let a=0,la=1;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(534+a,0)
+                quickRelic(589+a,0)
             }*/
             //current.overlayManager.closeAll()
 

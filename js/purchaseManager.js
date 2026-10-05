@@ -33,18 +33,22 @@ class purchaseManager{
         }
     }
     setup(type){
-        this.scroll=0
-        this.goalScroll=0
+        if(type!=4){
+            this.scroll=0
+            this.goalScroll=0
+        }
         let group
         let cost
         let list
         let bar
+        let sale
+        let antisale
         switch(type){
             case 0:
                 this.purchases=[]
                 if(this.battle.tutorialManager.active){
-                    let sale=floor(random(0,game.diff>=7?9:10))
-                    let antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                    sale=floor(random(0,game.diff>=7?9:10))
+                    antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
                     group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
                     cost=this.generalizedListing(0)
                     for(let a=0,la=group.length;a<la;a++){
@@ -84,14 +88,14 @@ class purchaseManager{
                         let price=round(random(cost[group[a]][0],cost[group[a]][1]))
                         this.purchases.push(new purchase(this.layer,this.battle,0,855+(a%2)*90,100+floor(a/2)*100,3,
                             [this.battle.relicManager.hasRelic(85,-1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1)],
-                            [list],
-                            group[a]+9
+                            [list,a==index],
+                            group[a]+10
                         ))
                     }
                 }else if(this.battle.players==1){
                     if(this.battle.currency.money[0]>=100){
-                        let sale=floor(random(0,game.diff>=7?9:10))
-                        let antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                        sale=floor(random(0,game.diff>=7?9:10))
+                        antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
                         list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                         group=game.diff>=7?
                             (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,1,2]:[0,0,0,0,0,1,1,1,1,2]):
@@ -164,7 +168,7 @@ class purchaseManager{
                             this.purchases.push(new purchase(this.layer,this.battle,0,game.diff>=7?725+a*90:1040,game.diff>=7?450+a*20:160+a*140,5,
                                 [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,80][type]],
                                 [type],
-                                type+9
+                                type+10
                             ))
                         }
                         group=game.diff>=7?
@@ -177,8 +181,8 @@ class purchaseManager{
                             let price=list[a]==516?0:round(random(cost[group[a]][0],cost[group[a]][1]))
                             this.purchases.push(new purchase(this.layer,this.battle,0,855+(a%2)*90-(game.diff>=7?130:0),100+floor(a/2)*100+(game.diff>=7?30:0),3,
                                 [this.battle.relicManager.hasRelic(85,-1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1)],
-                                [list[a]],
-                                group[a]+15
+                                [list[a],a==index],
+                                group[a]+14
                             ))
                         }
                     }else{
@@ -206,8 +210,8 @@ class purchaseManager{
                 }else{
                     if(this.battle.currency.money[0]>=100&&this.battle.currency.money[1]>=100){
                         for(let a=0,la=this.battle.players;a<la;a++){
-                            let sale=floor(random(0,8))
-                            let antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                            sale=floor(random(0,8))
+                            antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
                             list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[constants.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                             group=game.diff>=7?
                                 (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,1,2]:[0,0,0,0,0,1,1,1,1,2]):
@@ -285,8 +289,8 @@ class purchaseManager{
                                     this.battle.relicManager.hasRelic(85,0)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1),
                                     this.battle.relicManager.hasRelic(85,1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],1)?0.5:1)*(this.battle.relicManager.hasRelic(345,1)?2:1)
                                 ],
-                                [list[a]],
-                                group[a]+15
+                                [list[a],a==index],
+                                group[a]+14
                             ))
                         }
                         for(let a=0,la=this.battle.players;a<la;a++){
@@ -301,7 +305,7 @@ class purchaseManager{
                             this.purchases.push(new purchase(this.layer,this.battle,-1,game.diff>=7?450:400+a%2*100,game.diff>=7?160+a*140:160+floor(a/2)*140,5,
                                 [(this.battle.relicManager.hasRelic([270,271,272,273][type],0)?0.5:1)*[100,160,200,80][type],(this.battle.relicManager.hasRelic([270,271,272,273][type],1)?0.5:1)*[100,160,200,80][type]],
                                 [type],
-                                type+9
+                                type+10
                             ))
                         }
                         list=variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][constants.playerNumber+3]):copyArrayStack(this.battle.cardManagers[0].listing.card[constants.playerNumber+3])
@@ -375,7 +379,7 @@ class purchaseManager{
                         this.purchases.push(new purchase(this.layer,this.battle,0,200+(a%6)*100,200+floor(a/6)*100,3,
                             [this.battle.relicManager.hasRelic(85,-1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1)],
                             [list[a]],
-                            group[a]+15
+                            group[a]+14
                         ))
                     }
                 }else{
@@ -391,7 +395,7 @@ class purchaseManager{
                                 this.battle.relicManager.hasRelic(85,1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],1)?0.5:1)*(this.battle.relicManager.hasRelic(345,1)?2:1)
                             ],
                             [list[a]],
-                            group[a]+15
+                            group[a]+14
                         ))
                     }
                 }
@@ -473,7 +477,7 @@ class purchaseManager{
                 }
             break
             case 4:
-                this.purchases=this.purchases.filter(purchase=>purchase.tag<15||purchase.tag>=19)
+                this.purchases=this.purchases.filter(purchase=>purchase.tag<14||purchase.tag>18)
                 group=[2,2,2,2,2,2,2,2,2,2]
                 cost=this.generalizedListing(2)
                 list=this.battle.relicManager.makeRelicSelection(group)
@@ -481,23 +485,23 @@ class purchaseManager{
                     let index=floor(random(0,group.length))
                     for(let a=0,la=group.length;a<la;a++){
                         let price=list[a]==516?0:round(random(cost[group[a]][0],cost[group[a]][1]))
-                        this.purchases.push(new purchase(this.layer,this.battle,0,855+(a%2)*90,100+floor(a/2)*100,3,
+                        this.purchases.push(new purchase(this.layer,this.battle,0,855+(a%2)*90-this.scroll-(game.diff>=7?130:0),100+floor(a/2)*100,3,
                             [this.battle.relicManager.hasRelic(85,-1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1)],
                             [list[a]],
-                            group[a]+15
+                            group[a]+14
                         ))
                     }
                 }else{
                     let index=floor(random(0,group.length))
                     for(let a=0,la=group.length;a<la;a++){
                         let price=list[a]==516?0:round(random(cost[group[a]][0],cost[group[a]][1]))
-                        this.purchases.push(new purchase(this.layer,this.battle,-1,305+a%2*290,100+floor(a/2)*100,3,
+                        this.purchases.push(new purchase(this.layer,this.battle,-1,305+a%2*290-this.scroll,100+floor(a/2)*100,3,
                             [
                                 this.battle.relicManager.hasRelic(85,0)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],0)?0.5:1)*(this.battle.relicManager.hasRelic(345,0)?2:1),
                                 this.battle.relicManager.hasRelic(85,1)&&a==index?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],1)?0.5:1)*(this.battle.relicManager.hasRelic(345,1)?2:1)
                             ],
                             [list[a]],
-                            group[a]+15
+                            group[a]+14
                         ))
                     }
                 }
@@ -524,10 +528,87 @@ class purchaseManager{
     rerollRare(){
         this.setupKey=15
         this.setupIndex=4
-        this.purchases.filter(purchase=>purchase.tag>=15&&purchase.tag<19).forEach(purchase=>{
+        this.purchases.filter(purchase=>purchase.tag>=14&&purchase.tag<=18).forEach(purchase=>{
             purchase.deSize=true
             purchase.costFollow=true
         })
+    }
+    rerollSpecific(item){
+        for(let a=0,la=this.purchases.length;a<la;a++){
+            if(this.purchases[a]==item){
+                let list
+                let cost
+                let rarity
+                let index
+                let price
+                switch(item.tag){
+                    case 1: case 2: case 3:
+                        cost=this.generalizedListing(0)
+                        list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[item.player]])
+                        rarity=item.tag-1
+                        index=floor(random(0,list[rarity].length))
+                        price=this.battle.relicManager.hasRelic([216,267,268][rarity],item.player)?0:round(random(cost[rarity][0],cost[rarity][1])*(item.args[3]?(this.battle.modded(234)?0.8:0.5):1)*(item.args[4]?2:1))
+                        this.purchases[a]=new purchase(this.layer,this.battle,item.player,item.position.x,item.position.y,1,
+                            this.battle.player.map(a=>price),
+                            [list[rarity][index],0,this.battle.standardColorize(list[rarity][index]),item.args[3],item.args[4]],
+                            item.tag
+                        )
+                    break
+                    case 4: case 5: case 6:
+                        cost=this.generalizedListing(1)
+                        list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[0])
+                        rarity=item.tag-4
+                        index=floor(random(0,list[rarity].length))
+                        this.purchases[a]=new purchase(this.layer,this.battle,item.player,item.position.x,item.position.y,1,
+                            this.battle.player.map((a,index)=>(this.battle.relicManager.hasRelic([269,300,301][rarity],index)?0.5:1)*round(random(cost[rarity][0],cost[rarity][1])*(item.args[3]?(this.battle.modded(234)?0.8:0.5):1)*(item.args[4]?2:1))),
+                            [list[rarity][index],0,this.battle.standardColorize(list[rarity][index]),item.args[3],item.args[4]],
+                            item.tag
+                        )
+                    break
+                    case 7: case 8: case 9:
+                        cost=[[100,125],[140,175],[260,325]]
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[1][constants.playerNumber+3]):copyArrayStack(this.battle.cardManagers[0].listing.card[constants.playerNumber+3])
+                        rarity=item.tag-7
+                        index=floor(random(0,list[rarity].length))
+                        this.purchases[a]=new purchase(this.layer,this.battle,item.player,item.position.x,item.position.y,1,
+                            this.battle.player.map(a=>round(random(cost[rarity][0],cost[rarity][1])*(item.args[3]?(this.battle.modded(234)?0.8:0.5):1)*(item.args[4]?2:1))),
+                            [list[rarity][index],0,this.battle.standardColorize(list[rarity][index]),item.args[3],item.args[4]],
+                            item.tag
+                        )
+                    break
+                    case 10: case 11: case 12: case 13:
+                        let type=[0,0,1,2,3][floor(random(0,5))]
+                        this.purchases[a]=new purchase(this.layer,this.battle,item.player,item.position.x,item.position.y,5,
+                            this.battle.player.map((a,index)=>(this.battle.relicManager.hasRelic([270,271,272,273][type],index)?0.5:1)*[100,160,200,80][type]),
+                            [type],
+                            type+10
+                        )
+                    break
+                    case 14: case 15: case 16: case 17: case 18:
+                        cost=this.generalizedListing(2)
+                        rarity=item.tag-14
+                        list=this.battle.relicManager.getRelicSelection()[rarity].filter(relic=>!this.purchases.some(purchase=>purchase.type==3&&purchase.args[0]==relic))
+                        let res=list.length==0?findName('Menger Square',types.relic):randin(list)
+                        /*let overrun=0
+                        while(this.purchases.some(purchase=>purchase.type==3&&purchase.args[0]==list)){
+                            list=this.battle.relicManager.makeRelicSelection([rarity])[0]
+                            overrun++
+                            if(overrun>=1000){
+                                list=findName('Menger Square',types.relic)
+                                break
+                            }
+                        }*/
+                        price=res==516?0:round(random(cost[rarity][0],cost[rarity][1]))
+                        this.purchases[a]=new purchase(this.layer,this.battle,item.player,item.position.x,item.position.y,3,
+                            this.battle.player.map((a,index)=>this.battle.relicManager.hasRelic(85,index)&&item.args[1]?0:price*(this.battle.relicManager.hasRelic([302,303,304,305][group[a]],index)?0.5:1)*(this.battle.relicManager.hasRelic(345,index)?2:1)),
+                            [res,item.args[1]],
+                            item.tag
+                        )
+                    break
+                }
+                break
+            }
+        }
     }
     costChange(player,tag,value){
         for(let a=0,la=this.purchases.length;a<la;a++){
@@ -573,8 +654,8 @@ class purchaseManager{
         0 remove card
         1-3 character card
         4-6 colorless card
-        7-8 ally card
-        9-13 booster pack
+        7-9 ally card
+        10-13 booster pack
         14-18 relic
         19 trade offer
         20-22 item
@@ -588,7 +669,7 @@ class purchaseManager{
         }
     }
     bogo(player,type){
-        list=[]
+        let list=[]
         for(let a=0,la=this.purchases.length;a<la;a++){
             if(this.purchases[a].type==type&&this.purchases[a].cost[player]>0&&this.purchases[a].usable){
                 list.push(a)
@@ -596,6 +677,17 @@ class purchaseManager{
         }
         if(list.length>0){
             this.purchases[list[floor(random(0,list.length))]].cost[player]=0
+        }
+    }
+    bogoTag(player,tag){
+        let list=[]
+        for(let a=0,la=this.purchases.length;a<la;a++){
+            if(this.purchases[a].tag==tag&&this.purchases[a].cost[player]>0&&this.purchases[a].usable){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            this.purchases[randin(list)].cost[player]=0
         }
     }
     display(){

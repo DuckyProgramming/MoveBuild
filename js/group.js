@@ -366,48 +366,48 @@ class group{
                 }
             }else{
                 let effectiveColor=variants.mtg?(types.card[type].mtg!=undefined?types.card[type].mtg.color:[0]):color
-                this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),effectiveColor,game.id))
-                this.cards[this.cards.length-1].edition=edition
-                if(this.id==0){
-                    this.cards[this.cards.length-1].nonCalc=true
-                    this.added()
-                }else{
-                    this.subAdded()
-                }
-                for(let a=0,la=this.addEffect.length;a<la;a++){
-                    switch(this.addEffect[a][0]){
-                        case 0:
-                            this.cards[this.cards.length-1].edition=this.addEffect[a][1]
-                        break
+                for(let a=0,la=1+this.battle.relicManager.hasRelic(573,this.id);a<la;a++){
+                    this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),effectiveColor,game.id))
+                    this.cards[this.cards.length-1].edition=edition
+                    if(this.id==0){
+                        this.cards[this.cards.length-1].nonCalc=true
+                        this.added()
+                    }else{
+                        this.subAdded()
                     }
-                    this.addEffect.splice(a,1)
-                    a--
-                    la--
-                }
-                if(this.id>=1&&this.id<=3&&this.cards[this.cards.length-1].spec.includes(70)&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')>0){
-                    this.cards[this.cards.length-1].target[2]+=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')
-                }
-                if(this.battle.initialized&&this.id==0){
-                    if(
-                        this.cards[this.cards.length-1].level==0&&(
-                        this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
-                        this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
-                        this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
-                        this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player)||
-                        this.cards[this.cards.length-1].class==11&&this.battle.relicManager.hasRelic(311,this.player)||
-                        this.cards[this.cards.length-1].rarity==0&&this.battle.relicManager.hasRelic(487,this.player)||
-                        this.cards[this.cards.length-1].rarity==1&&this.battle.relicManager.hasRelic(488,this.player)||
-                        this.cards[this.cards.length-1].rarity==2&&this.battle.relicManager.hasRelic(489,this.player)||
-                        this.cards[this.cards.length-1].color!=this.battle.player[this.player]&&this.battle.relicManager.hasRelic(491,this.player)
-                    )){
-                        this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
-                        this.generalUpgrade(this.cards[this.cards.length-1])
+                    for(let b=0,lb=this.addEffect.length;b<lb;b++){
+                        switch(this.addEffect[b][0]){
+                            case 0:
+                                this.cards[this.cards.length-1].edition=this.addEffect[b][1]
+                            break
+                        }
                     }
-                    this.battle.relicManager.activate(5,[this.player])
-                    if(types.card[type].rarity>=0||types.card[type].list>=0){
-                        this.battle.stats.card[this.player]++
+                    if(this.id>=1&&this.id<=3&&this.cards[this.cards.length-1].spec.includes(70)&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')>0){
+                        this.cards[this.cards.length-1].target[2]+=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')
+                    }
+                    if(this.battle.initialized&&this.id==0){
+                        if(
+                            this.cards[this.cards.length-1].level==0&&(
+                            this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
+                            this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
+                            this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
+                            this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player)||
+                            this.cards[this.cards.length-1].class==11&&this.battle.relicManager.hasRelic(311,this.player)||
+                            this.cards[this.cards.length-1].rarity==0&&this.battle.relicManager.hasRelic(487,this.player)||
+                            this.cards[this.cards.length-1].rarity==1&&this.battle.relicManager.hasRelic(488,this.player)||
+                            this.cards[this.cards.length-1].rarity==2&&this.battle.relicManager.hasRelic(489,this.player)||
+                            this.cards[this.cards.length-1].color!=this.battle.player[this.player]&&this.battle.relicManager.hasRelic(491,this.player)
+                        )){
+                            this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+                            this.generalUpgrade(this.cards[this.cards.length-1])
+                        }
+                        this.battle.relicManager.activate(5,[this.player,this.cards[this.cards.length-1]])
+                        if(types.card[type].rarity>=0||types.card[type].list>=0){
+                            this.battle.stats.card[this.player]++
+                        }
                     }
                 }
+                this.addEffect=[]
                 return true
             }
         }
@@ -1287,6 +1287,9 @@ class group{
                         this.cards[a].usable=false
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
+                    }else if(this.cards[a].spec.includes(89)){
+                        this.cards[a].deSize=true
+                        this.cards[a].discardEffect.push(20)
                     }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.cards[a].spec.includes(60)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained(this.cards[a]))
@@ -4895,6 +4898,14 @@ class group{
             }
         }
     }
+    unArbitrary(cardClass,spec){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].additionalSpec.includes(spec)&&(cardClass==-1||this.cards[a].class==cardClass)){
+                this.cards[a].spec.splice(this.cards[a].spec.indexOf(spec),1)
+                this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(spec),1)
+            }
+        }
+    }
     unCostDown(type,args){
         if(this.costDownListing.length>0){
             for(let a=0,la=this.cards.length;a<la;a++){
@@ -4979,6 +4990,8 @@ class group{
                     userCombatant.status.main[findList('Free Defense',userCombatant.status.name)]--
                 }else if(calculatoryCost!=0&&cardClass==3&&userCombatant.getStatus('Free Movement')>0){
                     userCombatant.status.main[findList('Free Movement',userCombatant.status.name)]--
+                }else if(calculatoryCost!=0&&cardClass==4&&userCombatant.getStatus('Free Power')>0){
+                    userCombatant.status.main[findList('Free Power',userCombatant.status.name)]--
                 }else if(calculatoryCost!=0&&cardClass==11&&userCombatant.getStatus('Free Skill')>0){
                     userCombatant.status.main[findList('Free Skill',userCombatant.status.name)]--
                 }else if(calculatoryCost==1&&userCombatant.getStatus('Free 1 Cost Card')>0){
@@ -6882,6 +6895,13 @@ class group{
                                 this.generalUpgrade(this.cards[a])
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(17),1)
+                            }else if(this.cards[a].discardEffect.includes(20)){
+                                let hold=this.cards[a].discardEffect
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(4),1)
+                                this.cards[a].spec.push(89)
+                                this.cards[a].additionalSpec.push(89)
                             }
                             if(this.cards[a].discardEffect.includes(1)){
                                 this.cards[a].discardEffect=[]

@@ -259,13 +259,13 @@ class relic{
                     this.layer.text('-20',0,-4)
                 break
                 case 'Power Heal':
-                    displaySymbol(this.layer,-8,-4,8,0,1,this.fade)
-                    displaySymbol(this.layer,-8,-4,21,0,0.6,this.fade)
-                    displaySymbol(this.layer,-8,10,4,0,0.6,this.fade)
-                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,-7,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,-4,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,-7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,2,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',8,0)
+                    this.layer.text('2',9,0)
                 break
                 case 'Retain Energy':
                     displaySymbol(this.layer,-10,-4,9,0,0.8,this.fade)
@@ -3979,6 +3979,403 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('5',0,0)
                 break
+                case 'Card Add Heal':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',8,0)
+                break
+                case 'Turn 1 Weak':
+                    displaySymbol(this.layer,-8,0,24,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break  
+                case 'Turn 1 Vulnerable':
+                    displaySymbol(this.layer,-8,0,26,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Turn 1 Frail':
+                    displaySymbol(this.layer,-8,0,25,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Turn 1 Health Loss':
+                    displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-5',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case '5 Exhaust Draw':
+                    displaySymbol(this.layer,-8,0,54,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',-8,0)
+                break
+                case '3 Attack Splash':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,164,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-7,0)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',8,0)
+                break
+                case '3 Defense Splash':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,19,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,164,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-7,0)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',8,0)
+                break
+                case 'Power Add Reward':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,-8,0,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,17,0,0.3,this.fade)
+                break
+                case 'Skill Temporary Strength':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,123,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,41,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',10,0)
+                break
+                case 'Bonus Existing Block':
+                    displaySymbol(this.layer,-9,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,1,12,4,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('20',-9,-2)
+                    this.layer.text('6',9,-2)
+                break
+                case 'No Attack Block':
+                    displaySymbol(this.layer,-8,0,18,0,0.75,this.fade)
+                    displaySymbol(this.layer,-8,0,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,-3,27,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('8',9,-3)
+                break
+                case 'Turn 3 Strength/Dexterity':
+                    displaySymbol(this.layer,-8,-7,11,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,7,12,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,-7)
+                    this.layer.text('1',-8,7)
+                    this.layer.textSize(15)
+                    this.layer.text('3',8,-3)
+                break
+                case 'Rest Item':
+                    displaySymbol(this.layer,-8,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-6,32,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,6,32,0,0.8,this.fade)
+                break
+                case '8 Skill Block':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,123,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,27,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('8',-8,0)
+                    this.layer.text('6',9,0)
+                break
+                case 'Health Loss Block':
+                    displaySymbol(this.layer,0,0,18,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,27,0,1.2,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
+                break 
+                case 'Turn 3 Energy':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('3',8,-3)
+                break
+                case 'Turn 3 Mana':
+                    displayMtgManaSymbol(this.layer,-8,0,6,0,0.8,this.fade,-1,[])
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('3',8,-3)
+                break
+                case 'Triple Class Energy':
+                    displaySymbol(this.layer,-12,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-12,0,18,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,10,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,10,19,0,0.5,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,12,0,20,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,-10,9,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,-10)
+                break
+                case 'Triple Class Mana':
+                    displaySymbol(this.layer,-12,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-12,0,18,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,10,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,10,19,0,0.5,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,12,0,20,0,0.5,this.fade)
+                    displayMtgManaSymbol(this.layer,0,-10,6,0,0.6,this.fade,-1,[])
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,-10)
+                break
+                case 'Retain 10 Block':
+                    displaySymbol(this.layer,0,-4,27,0,1,this.fade)
+                    displaySymbol(this.layer,0,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(8)
+                    this.layer.text('10',0,-4)
+                break
+                case 'Double First Debuff':
+                    displaySymbol(this.layer,-9,0,24,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,0,26,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,25,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('x2',0,0)
+                break
+                case 'Elite Rare Card':
+                    displaySymbol(this.layer,-9,0,34,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,85,0,0.5,this.fade)
+                break
+                case 'Vanish Heal':
+                    displaySymbol(this.layer,-7,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,-4,113,0,1,this.fade)
+                    displaySymbol(this.layer,-7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',9,0)
+                break
+                case 'Ethereal Card':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,179,1.5,this.fade)
+                break
+                case 'Starting Retain Hand':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7.5,-3.5,49,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8.5,3.5,49,180,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Power Weak All':
+                    displaySymbol(this.layer,-7,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,-4,21,0,0.6,this.fade)
+                    displaySymbol(this.layer,-7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,24,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',9,0)
+                break
+                case 'Defending Attack':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,19,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,41,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',10,0)
+                break
+                case 'Defense Temporary Dexterity':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,19,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,42,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',10,0)
+                break
+                case 'Fatigue Vigor':
+                    displaySymbol(this.layer,-8,0,60,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,29,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,0)
+                break
+                case '20 Card Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('20',-8,0)
+                break
+                case 'Shop Replace':
+                    displaySymbol(this.layer,-8,-2,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,-2,28,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,-2,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,-2,28,0,0.4,this.fade)
+                    displaySymbol(this.layer,1,12,4,0,0.8,this.fade)
+                break
+                case 'Unpushable':
+                    displaySymbol(this.layer,-8,0,20,0,0.6,this.fade)
+                    displaySymbol(this.layer,6,0,3,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
+                case 'Starting Discover Attack':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,18,0,0.8,this.fade)
+                    if(variants.mtg){
+                        displayMtgManaSymbol(this.layer,-8,0,-1,0,0.4,this.fade,-1,[])
+                    }else{
+                        displaySymbol(this.layer,-8,0,9,0,0.6,this.fade)
+                    }
+                    displaySymbol(this.layer,8,8,4,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Double Add':
+                    displaySymbol(this.layer,0,0,89,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,17,0,0.4,this.fade)
+                break
+                case '2 Starting Block':
+                    displaySymbol(this.layer,0,0,180,0,1.8,this.fade)
+                break
+                case 'Discover Editions':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,88,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('?',-8,0)
+                break
+                case 'Death Temporary Dexterity':
+                    displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,42,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',9,0)
+                break
+                case 'First Power Free':
+                    displaySymbol(this.layer,0,0,181,0,2.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Starting Strength All':
+                    displaySymbol(this.layer,-9,0,11,0,1,this.fade)
+                    displaySymbol(this.layer,6,-6,11,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,8,3,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-9,0)
+                    this.layer.text('1',6,-6)
+                break
+                case 'Innate Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,58,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
+                case 'No Retain Block':
+                    displaySymbol(this.layer,0,0,74,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
+                case 'Rest Transform':
+                    displaySymbol(this.layer,0,-6,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,-6,159,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                break
+                case 'Quantum Card':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,-4,159,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,6,49,0,0.6,this.fade)
+                break
+                case 'Buy Rare Get Common':
+                    displaySymbol(this.layer,-10,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-10,-4,85,0,0.5,this.fade)
+                    displaySymbol(this.layer,10,-4,100,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,-4,4,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,10,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',0,10)
+                break
+                case '2 Max HP / Starting Temporary Strength':
+                    displaySymbol(this.layer,-8,0,10,0,0.5,this.fade)
+                    displaySymbol(this.layer,10,0,41,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-8,0)
+                    this.layer.text('2',10,0)
+                break
+                case 'Item Sell Value':
+                    displaySymbol(this.layer,0,0,30,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('x5',0,0)
+                break
+                case 'Sell Duplicate':
+                    displaySymbol(this.layer,-9,0,16,0,0.6,this.fade)
+                    displaySymbol(this.layer,-9,0,1,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,0,89,0,1,this.fade)
+                break
+                case 'Upgrade Initiative':
+                    displaySymbol(this.layer,-5,0,7,0,0.5,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-11,0,182,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Skill Temporary Dexterity':
+                    displaySymbol(this.layer,-7,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-7,0,123,0,0.6,this.fade)
+                    displaySymbol(this.layer,10,0,42,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',10,0)
+                break
 
                 //mark p
             }
@@ -4009,12 +4406,17 @@ class relic{
                         this.layer.textSize(6)
                         this.layer.text(`${detail%15}/15`,0,-16)
                     break
-                    case '8 Attack Strength': case '8 Attack Dexterity': case '8 Skill Draw': case '8 Attack Mana': case '8 Defense Energy':
+                    case '20 Card Draw':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(6)
+                        this.layer.text(`${detail%20}/20`,0,-16)
+                    break
+                    case '8 Attack Strength': case '8 Attack Dexterity': case '8 Skill Draw': case '8 Attack Mana': case '8 Defense Energy': case '8 Skill Block':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%8}/8`,0,-16)
                     break
-                    case '3 Attack Block': case '3 Defense Metallicize': case '3 Card Draw': case 'White Mana/3 Attack Cleanse':
+                    case '3 Attack Block': case '3 Defense Metallicize': case '3 Card Draw': case 'White Mana/3 Attack Cleanse': case '3 Attack Splash': case '3 Defense Splash':
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%3}/3`,0,-16)
@@ -4088,6 +4490,11 @@ class relic{
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(6)
                         this.layer.text(`${detail%6}/6`,0,-16)
+                    break
+                    case '5 Exhaust Draw':
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(5)
+                        this.layer.text(`${detail%5}/5`,0,-16)
                     break
                     case 'Store Card':
                         this.layer.fill(0,this.fade)

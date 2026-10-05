@@ -456,7 +456,7 @@ class overlay{
                                     }
                                 }
                             }
-                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(521,this.player)&&this.battle.relicManager.detail[521][this.player]==1){
+                            if(this.cards.length>0&&this.args[0]==0&&this.battle.relicManager.hasRelic(521,this.player)&&this.battle.relicManager.detail[521][this.player]==1){
                                 this.battle.relicManager.detail[521][this.player]=0
                                 for(let a=0,la=this.battle.relicManager.active[521][this.player+1];a<la;a++){
                                     if(this.cards.length>0){
@@ -1613,6 +1613,14 @@ class overlay{
                                             list.splice(index,1)
                                         }
                                     break
+                                }
+                            }
+                            if(this.cards.length>0&&this.battle.relicManager.hasRelic(575,this.player)){
+                                for(let a=0,la=this.battle.relicManager.active[575][this.player+1];a<la;a++){
+                                    if(this.cards.length>0){
+                                        let roll=floor(random(0,12))
+                                        randin(this.cards).edition=this.rollEdition(roll)
+                                    }
                                 }
                             }
                         break

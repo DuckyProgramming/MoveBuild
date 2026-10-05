@@ -144,39 +144,7 @@ outdupes, outmtgerror
 
 [slio9]
 
-the 400 relic update
-+34 shop relics
-
-bag of sticks - apply 1 weak to all enemies when combat starts
-bag of marbles - apply 1 vulnerable to all enemies when combat starts
-five rings - when you add 5 cards to your deck, heal 20 health
-mini popper - all enemies lose 5 health at the start of combat
-sliced melon - when you exhaust 5 cards, draw a card
-dagger of hisou - when you play 3 attacks, trigger hisou
-spinner of hisou - when you play 3 defenses, trigger hisou
-hard candy - when you add a power to deck, gain a card reward
-tiny cannon - when you play an upgraded attack, gain 1 temporary strength
-thin shield - if you end your turn with 20 or more block, add 6 block
-loud basin - if you play no attacks on your turn, add 8 block
-vampiric parasol rebuild to give strength and dexterity on turn 3
-mailbox - when you rest, gain an item
-vambrace - 8 skill block (7)
-reballing clay - add 5 block when you lose health
-aorta - you cannot lose more than 20 health per turn
-chandelier - on turn 3, gain 3 energy
-coat of arms - the trail but it gives block
-rainbow ring - gain 1 energy the first time you attack, defend, and move each turn
-clamp - retain 10 block over every turn
-lightbulb cube - all enemies get the first debuff they take doubled each combat
-small game guide - elites give a bonus rare card reward
-lunar pastry - when you play a vanishing card, heal 3
-ghost seed - when taken, make a card ethereal
-tiny tent - choose any number of rest options
-ringing triangle - retain your hand on turn 1
-tang tang - when you add a card to your deck, duplicate it
-fresnel lens - when you play a power, all enemies gain 1 weak
-
-get names from scryfall
+500 relics (only 400 active)
 
 GIMMICK BANK
 

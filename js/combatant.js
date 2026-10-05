@@ -222,7 +222,7 @@ class combatant{
                 'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
                 'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
                 'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
-                'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn',
+                'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff',
             ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
             behavior:[
                 0,2,1,1,2,0,0,0,1,1,//1
@@ -325,7 +325,7 @@ class combatant{
                 0,0,0,0,0,1,1,0,0,0,//98
                 0,0,0,0,1,1,0,0,0,0,//99
                 0,0,0,0,0,0,0,2,0,0,//100
-                0,0,
+                0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -428,7 +428,7 @@ class combatant{
                 2,2,2,2,2,2,2,0,0,0,//98
                 0,2,0,0,2,2,2,2,2,2,//99
                 2,2,2,2,2,2,1,1,2,2,//100
-                2,2,
+                2,2,2,1,
             ]}
         /*
         0-none
@@ -868,9 +868,9 @@ class combatant{
             case 'Barbed Pillar':
                 this.statusEffect('Counter Bleed All Combat',4)
             break
-            case 'Glitch':
+            /*case 'Glitch':
                 this.statusEffect('End Move',floor(random(1,3)))
-            break
+            break*/
             case 'Rewriter': case '-h Rewriter':
                 this.statusEffect('Cannot Die',999)
                 this.loseHealth(this.battle.combatantManager.finalBossSwitch)
@@ -1565,6 +1565,7 @@ class combatant{
                     break
                     case 'Mailman':
                         this.subAttackTypeSwitch([[2,5,5,[1.5]]])
+                        this.subAttackTypeSwitch([[2,414,414,[1.25]]])
                     break
                     case 'Guard':
                         this.spec.push(0)
@@ -1763,6 +1764,7 @@ class combatant{
                         &&this.attack[a].type!=189
                         &&this.attack[a].type!=300
                         &&this.attack[a].type!=391
+                        &&this.attack[a].type!=414
                         &&this.attack[a].type!=497
                     ){
                         this.attack[a].effect[b]=min(this.attack[a].effect[b]*value,999)
@@ -2749,6 +2751,9 @@ class combatant{
             this.battle.combatantManager.holdSummonCombatant(this.tilePosition,this.type,this.direction)
         }
     }
+    noPush(){
+        return this.status.main[2]>0||this.battle.relicManager.hasRelic(571,this.id)
+    }
     anotherDead(){
         if(this.status.main[103]>0){
             this.heal(this.status.main[103])
@@ -3556,7 +3561,7 @@ class combatant{
                     damage*=max(0.2,1+totalStr*0.1)
                 }
                 if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
-                    damage+=4*this.battle.relicManager.active[175][userCombatant.id+1]
+                    damage+=4*this.battle.relicManager.active[69][userCombatant.id+1]
                 }
                 if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
                     damage+=3*this.battle.relicManager.active[175][userCombatant.id+1]
@@ -4879,6 +4884,8 @@ class combatant{
             round(this.block*(1-0.5**this.battle.relicManager.active[444][this.id+1])):
             this.battle.relicManager.hasRelic(37,this.id)?
             max(this.block-20,0):
+            this.battle.relicManager.hasRelic(559,this.id)?
+            min(this.block,10):
             0
         }
         this.bounce=0
@@ -5854,11 +5861,28 @@ class combatant{
                 if(this.status.name[status].includes('Counter')&&this.team==0&&this.battle.modded(19)){
                     mult*=2
                 }
-                if((this.status.class[status]==1||this.status.class[status]==3)&&this.team>0&&this.battle.modded(35)){
-                    mult*=2
+                if(
+                    (this.status.class[status]==1||this.status.class[status]==3)&&effectiveValue>0||
+                    (this.status.class[status]==0||this.status.class[status]==2)&&effectiveValue<0
+                ){
+                    if(this.team>0&&this.battle.modded(35)){
+                        mult*=2
+                    }
+                    if(this.status.main[1005]>0){
+                        this.status.main[1005]--
+                        mult*=2
+                    }
                 }
-                if((this.status.class[status]==0||this.status.class[status]==2)&&this.team==0&&this.battle.modded(36)){
-                    mult*=2
+                if(
+                    (this.status.class[status]==0||this.status.class[status]==2)&&effectiveValue>0||
+                    (this.status.class[status]==1||this.status.class[status]==3)&&effectiveValue<0
+                ){
+                    if(this.team==0&&this.battle.modded(36)){
+                        mult*=2
+                    }
+                }
+                if(status==11&&this.battle.relicManager.hasRelic(580)){
+                    mult*=0
                 }
                 if(this.status.main[292]>0){
                     this.status.main[292]--

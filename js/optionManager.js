@@ -146,6 +146,10 @@ class optionManager{
                 this.battle.overlayManager.overlays[28][this.player].active=true
                 this.battle.overlayManager.overlays[28][this.player].activate()
             break
+            case 13:
+                this.battle.overlayManager.overlays[9][this.player].active=true
+                this.battle.overlayManager.overlays[9][this.player].activate()
+            break
         }
     }
     reset(){
@@ -170,7 +174,8 @@ class optionManager{
             (this.selected==7||this.selected==9)&&!this.battle.overlayManager.overlays[3][this.player].active||
             this.selected==8&&!this.battle.overlayManager.overlays[12][this.player].active||
             this.selected==10&&!this.battle.overlayManager.overlays[62][this.player].active||
-            this.selected==12&&!this.battle.overlayManager.overlays[28][this.player].active
+            this.selected==12&&!this.battle.overlayManager.overlays[28][this.player].active||
+            this.selected==13&&!this.battle.overlayManager.overlays[9][this.player].active
         ){
             this.finishSelection()
         }

@@ -33474,7 +33474,9 @@ class attack{
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
                     break
                     case -101:
-                        this.battle.combatantManager.allEffect(51,['Mailshield',1])
+                        if(this.battle.combatantManager.allEffect(67,['Mailshield',1])>0&&!this.battle.relicManager.hasRelic(574,this.player)){
+                            this.battle.relicManager.addRelic(574,this.player)
+                        }
                     break
                     case -153:
                         this.userManager.allEffect(2,52)

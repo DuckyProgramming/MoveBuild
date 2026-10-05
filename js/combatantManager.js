@@ -574,6 +574,7 @@ class combatantManager{
                     return this.combatants[index]
                 case 26:
                     this.combatants[index].loseHealth(args[0])
+                break
             }
         }
     }
@@ -906,6 +907,7 @@ class combatantManager{
         return total
     }
     allEffect(effect,args){
+        let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
                 switch(effect){
@@ -1200,8 +1202,20 @@ class combatantManager{
                     case 66:
                         this.combatants[a].takeDamage(this.combatants[a].getStatus(args[0])*args[1])
                     break
+                    case 67:
+                        for(let b=0,lb=floor(args.length/2);b<lb;b++){
+                            if(this.combatants[a].status.main[findList(args[b*2],this.combatants[a].status.name)]==0&&this.combatants[a].name=='Mailman'){
+                                total++
+                            }else{
+                                this.combatants[a].status.main[findList(args[b*2],this.combatants[a].status.name)]=max(0,this.combatants[a].status.main[findList(args[b*2],this.combatants[a].status.name)]-args[b*2+1])
+                            }
+                        }
+                    break
                 }
             }
+        }
+        if(effect==67){
+            return total
         }
     }
     allConstructEffect(builder,effect,args){

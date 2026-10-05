@@ -26233,20 +26233,6 @@ types.card=[
             ],
         },
     },{
-        name:'Vampire\nHuntress',rarity:1,list:11,
-        levels:[
-            {effect:[9],attack:6594,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[14],attack:6594,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[18],attack:6594,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:11,color:[2],
-            levels:[
-                {effect:[15],attack:6594,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[22],attack:6594,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[27],attack:6594,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
         name:'Hexasplit',rarity:1,list:11,
         levels:[
             {effect:[5],attack:6865,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -66070,20 +66056,6 @@ types.card=[
                 {effect:[],attack:40,cost:[],target:[0],spec:[1,4],class:11},
                 {effect:[],attack:40,cost:[],target:[0],spec:[1,2],class:11},
                 {effect:[],attack:40,cost:[],target:[0],spec:[1,2,22],class:11},
-            ],
-        },
-    },{
-        name:'Selective\nRedraw',rarity:-6,list:0,
-        levels:[
-            {effect:[1,1],attack:55,cost:0,target:[0],spec:[1,4],class:11},
-            {effect:[2,2],attack:55,cost:0,target:[0],spec:[1,4],class:11},
-            {effect:[2,2],attack:55,cost:0,target:[0],spec:[1,2],class:11},
-        ],mtg:{
-            rarity:-6,list:0,color:[0],
-            levels:[
-                {effect:[1,1],attack:55,cost:[],target:[0],spec:[1,4],class:11},
-                {effect:[2,2],attack:55,cost:[],target:[0],spec:[1,4],class:11},
-                {effect:[2,2],attack:55,cost:[],target:[0],spec:[1,2],class:11},
             ],
         },
     },{
@@ -122450,6 +122422,34 @@ types.card=[
                 {effect:[20],attack:10342,cost:[3,5],target:[0],spec:[],class:2},
                 {effect:[29],attack:10342,cost:[3,5],target:[0],spec:[],class:2},
                 {effect:[36],attack:10342,cost:[3,5],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Selective\nRedraw',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1],attack:55,cost:0,target:[0],spec:[1,4],class:11},
+            {effect:[2,2],attack:55,cost:0,target:[0],spec:[1,4],class:11},
+            {effect:[2,2],attack:55,cost:0,target:[0],spec:[1,2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[1,1],attack:55,cost:[],target:[0],spec:[1,4],class:11},
+                {effect:[2,2],attack:55,cost:[],target:[0],spec:[1,4],class:11},
+                {effect:[2,2],attack:55,cost:[],target:[0],spec:[1,2],class:11},
+            ],
+        },
+    },{
+        name:'Vampire\nHuntress',rarity:-1,list:-8,
+        levels:[
+            {effect:[9],attack:6594,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14],attack:6594,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18],attack:6594,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[15],attack:6594,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[22],attack:6594,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[27],attack:6594,cost:[2,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },

@@ -14,7 +14,7 @@ class purchase{
         this.deSize=false
         this.upSize=false
         this.costFollow=true
-        this.anim={usable:1,afford:0}
+        this.anim={usable:1,unusable:0,afford:0}
         let roll=0
         this.formerCost=copyArray(this.cost)
         switch(this.type){
@@ -149,6 +149,25 @@ class purchase{
                             this.battle.relicManager.detail[118][purchaser]=1
                         }
                     break
+                }
+                if(this.battle.relicManager.hasRelic(583,purchaser)){
+                    switch(this.tag){
+                        case 3:
+                            this.battle.purchaseManager.bogoTag(purchaser,1)
+                        break
+                        case 6:
+                            this.battle.purchaseManager.bogoTag(purchaser,4)
+                        break
+                        case 9:
+                            this.battle.purchaseManager.bogoTag(purchaser,7)
+                        break
+                        case 16:
+                            this.battle.purchaseManager.bogoTag(purchaser,14)
+                        break
+                        case 22:
+                            this.battle.purchaseManager.bogoTag(purchaser,20)
+                        break
+                    }
                 }
             }
         }
@@ -408,7 +427,7 @@ class purchase{
                             this.layer.fill(255,50,50,this.anim.usable)
                             this.layer.text('Markup',0,-72.5)
                         }
-                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.fill(255,0,0,this.anim.unusable)
                         this.layer.text('Sold Out',0,72.5)
                     break
                     case 3: case 6:
@@ -417,7 +436,7 @@ class purchase{
                             this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
                             this.layer.text(round(this.cost[a]),20-la*20+a*40,40)
                         }
-                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.fill(255,0,0,this.anim.unusable)
                         this.layer.text('Sold Out',0,40)
                     break
                     case 5:
@@ -426,7 +445,7 @@ class purchase{
                             this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
                             this.layer.text(round(this.cost[a]),20-la*20+a*40,58)
                         }
-                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.fill(255,0,0,this.anim.unusable)
                         this.layer.textSize(9.6)
                         this.layer.text('Sold Out',0,58)
                     break
@@ -444,21 +463,21 @@ class purchase{
                             this.layer.fill(255,50,50,this.anim.usable)
                             this.layer.text('Markup',0,-72.5)
                         }
-                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.fill(255,0,0,this.anim.unusable)
                         this.layer.text('Sold Out',0,72.5)
                     break
                     case 3: case 6:
                         this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                         this.layer.textSize(16)
                         this.layer.text(round(this.cost[this.player]),0,40)
-                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.fill(255,0,0,this.anim.unusable)
                         this.layer.text('Sold Out',0,40)
                     break
                     case 5:
                         this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                         this.layer.textSize(12.8)
                         this.layer.text(round(this.cost[this.player]),0,58)
-                        this.layer.fill(255,0,0,1-this.anim.usable)
+                        this.layer.fill(255,0,0,this.anim.unusable)
                         this.layer.text('Sold Out',0,58)
                     break
                 }
@@ -484,9 +503,12 @@ class purchase{
         }
         if(this.size>=1){
             this.costFollow=false
+        }else if(this.size<=0&&this.battle.relicManager.hasRelic(570,this.player)&&!this.costFollow){
+            this.battle.purchaseManager.rerollSpecific(this)
         }
         this.midSize=1
         this.anim.usable=smoothAnim(this.anim.usable,this.usable,0,1,5)
+        this.anim.unusable=smoothAnim(this.anim.unusable,!this.usable&&this.size<=0,0,1,5)
         if(this.player==-1){
             for(let a=0,la=this.battle.players;a<la;a++){
                 this.anim.afford[a]=smoothAnim(this.anim.afford[a],this.battle.currency.money[a]>=round(this.cost[a])-(this.battle.relicManager.hasRelic(187,a)?200:0),0,1,5)
@@ -520,7 +542,7 @@ class purchase{
         }
     }
     onClick(){
-        if((this.position.x<this.layer.width&&
+        if(this.size>=1&&(this.position.x<this.layer.width&&
             this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width*this.midSize,height:this.card.height*this.midSize})||
             this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90*this.midSize,height:120*this.midSize})||
             this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size||

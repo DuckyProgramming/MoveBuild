@@ -808,7 +808,11 @@ class itemManager{
                 this.layer.fill(230,230,210)
                 this.layer.textSize(12)
                 this.layer.textAlign(LEFT,CENTER)
-                this.layer.text('Sell For 10:',10,36)
+                this.layer.text(`Sell For ${this.battle.relicManager.hasRelic(585,0)?50:10}`,10,36)
+                if(this.battle.players==2){
+                    this.layer.textAlign(RIGHT,CENTER)
+                    this.layer.text(`Sell For ${this.battle.relicManager.hasRelic(585,1)?50:10}`,890,36)
+                }
                 this.layer.textAlign(CENTER,CENTER)
             break
         }
@@ -896,7 +900,7 @@ class itemManager{
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].name!='Mundane Dust'&&this.items[a][b].type>=2&&this.up[a]){
-                            this.battle.addCurrency(types.item[this.items[a][b].type].id==85?50:10,a)
+                            this.battle.addCurrency((types.item[this.items[a][b].type].id==85?50:10)*(this.battle.relicManager.hasRelic(585,a)?5:1),a)
                             this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
