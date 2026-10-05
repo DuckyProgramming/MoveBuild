@@ -42,7 +42,7 @@ types.loading=[
     `Konai under Management vassalage was constrained and economically backwards, but only due to their own faults.`,
     `Governor Kirt Kodrax received the nickname "The Constructionist" for his love of fortifications.`,
     `Gordon Vorynx saved Rueso from its first siege, earning a promotion to Brigadier and command over the Konai garrison.`,
-    `The town of Daistilia and nine other villages form the League of Ten Communes to defend their neutrality.`,
+    `The town of Daistilia and nine other villages form the League of the Ten Communes to defend their neutrality.`,
     `The Minzi Bridge was built to span the Inland Sea, something that Konai's royal engineers never accomplished.`,
     `The Inland Sea's poor weather renders it often impassable. This works out in the Management's favor.`,
     //40
@@ -256,7 +256,7 @@ types.loading=[
     `While appearing politically irrelevant, Konai at least sits as the second planet of its sector.`,
     `Kirt Kodrax led a highly mediocre military career before his current position as Governor of Konai.`,
     `Governor Kodrax wished to promote Gordon Vorynx to Major General but was told he lacked the authority.`,
-    `The Gameshow industry on Konai is dominated by Ducks primarily because of their charisma.`,
+    `The gameshow industry on Konai is dominated by Ducks primarily because of their charisma.`,
     `Konai's royal crown has spent the last few centuries in the Origin Museum of Human History.`,
     `Of all former Human Empire military leaders, only the defector Grant avoided jail time for his "crimes".`,
     `Director Ledis of Operation Godhood had the rare privilege to directly take orders from the Admiral-Manager.`,
@@ -265,7 +265,39 @@ types.loading=[
 
     `The Management spacecraft designation SCT stands for "Standard Calibration Transport".`,
     `Adrian Kane, CEO of HVM, was given his current position for his excellent personal firearms experience.`,
-    //222
+    `The Sozoa Valley is the one part of Konai that remains entirely agrarian, isolated in its outdated existence.`,
+    `Lord Hanyel, ruler of the Sozoa Valley, randomly appeared one day before the Queen and asked for some land.`,
+    `Only one position along the coast of the Inland Sea, Ennealis Castle, is still held by the royalists.`,
+    `The recent war has caused a sharp decline in production standards at Management Robot Factories.` ,
+    `Other than the League of the Ten Communes in western Konai, two other leagues have formed in other regions.`,
+    `Management depots on Konai are notoriously oversupplied with small arms and undersupplied with vehicles.`,
+    `The rank of Grand Admiral was once prestigious but was greatly tarnished by Vitalian Grant's honorary title.`,
+    `Earlier in Gordon Vorynx's career, he commanded a heavy artillery battalion in the Intergalactic War.`,
+    //230
+
+    `Most of the experimental weapons found on Konai, like the Vengeful Speed, are leftovers from past experiments.`,
+    `Despite Orofos being liquidated many years ago, it's still remembered by many as a sort of legend.`,
+    `Under the Management's recent reforms, robots can now earn medals, although it is rare for them to do so.`,
+    `Prior to leading his own organization, the Duckforce, General Duckion was a outlaw mercenary.`,
+    `While contact between the various rebel groups and the Management is minimal, negotiations still happen.`,
+    `The Ring Mountains are notably less impressive in height than the nearby Charchallan range.`,
+    `The Konaian First University was established in the days of King Enric I and has remained ever since.`,
+    `Class-General Maximilian Ledai briefly ascended to the rank of Supreme General before being purged.`,
+    `Thanks to the sieges, Rueso is quite badly deopulated and cheap housing there is easy to find.`,
+    `Back when it was called the Council of 24, the Operator worked tirelessly to communicate with Rueso.`,
+    //240
+
+    `After the exile of Maximilian Ledai, the title of Supreme General was greatly weakened.`,
+    `When Kirt Kodrax first become military governor of Konai, he attempted a largely diplomatic approach.`,
+    `Jovina III is often criticized for being too similar to her mother Syura IV in her inaction.`,
+    `The Sozoa Valley is one of the eeriest places on Konai, lacking almost entirely in natural light.`,
+    `Ennealis Castle recently survived a Management platoon-sized assault, which was executed rather poorly.`,
+    `Because of the Great Escarpment's existence, a few parts of map are still unmapped today.`,
+    `The special military command of Origin is surrounded by four Megasector commands in the cardinal directions.`,
+    `The Megasectors, Oversectors, and regular Sectors each have a general and an admiral assigned to them.`,
+    `The only experimental planet created by the Management, Sanctity, was abandoned during a rebellion.`,
+    `The Solonia flower can grow anywhere but struggles against most of the regular flora of Konai.`,
+    //250
 
     /*
     ``,
@@ -949,7 +981,7 @@ returning to the air.`,
             },
         ],
     },{
-        name:'The Bet',id:24,list:0,
+        name:'The Bet',id:24,list:-1,
         pages:[
             {
                 desc:
@@ -2637,7 +2669,7 @@ beckons you to enter. Rather than products, the
 shop contains only a counter, where he explains
 that he is a collector of rare items and may be
 interested in trading with you.`,
-                option:['Try Trading','Get Out'],
+                option:['Trade','Get Out'],
                 optionDesc:['',''],
                 link:[-2,1],
             },{
@@ -3130,9 +3162,9 @@ you if you'd like to buy something.`,
                 link:[1,2],
             },{
                 desc:'Paying her, you look to find a book you like.',
-                option:['Take a Book','Take a Book'],
-                optionDesc:['Add a Relic - A Brief History of Time','Add a Relic - The Road to Reality'],
-                link:[-1,-1],
+                option:['Take a Book','Take a Book','Take a Book'],
+                optionDesc:['Add a Relic - A Brief History of Time','Add a Relic - The Road to Reality','Add a Relic - Innumeracy'],
+                link:[-1,-1,-1],
             },{
                 desc:'You look over the books and choose not to buy.',
                 option:['Leave'],
@@ -3434,7 +3466,7 @@ But they're all too small for you, so there's not much you can really take.`,
             },
         ],
     },{
-        name:'Graveyard',id:102,list:0,
+        name:'Graveyard',id:102,list:-1,
         pages:[
             {
                 desc:
@@ -5621,7 +5653,7 @@ You take all the supplies, escaping before he returns.`,
             },
         ],
     },{
-        name:'Guess the Damage',id:174,list:0,
+        name:'Guess the Damage',id:174,list:-1,
         pages:[
             {
                 desc:
@@ -5697,7 +5729,7 @@ One offers to induct you into the group.`,
             },
         ],
     },{
-        name:'Guess the Block',id:177,list:0,
+        name:'Guess the Block',id:177,list:-1,
         pages:[
             {
                 desc:
@@ -6578,10 +6610,127 @@ He's a little mortified and backs up instead of trying an exchange.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Cheese House',id:197,list:0,
+        pages:[
+            {
+                desc:
+`Lying around on a random countertop, you see a small model house.
+Except, it's completely made of cheese. The roof, the windows, everything.
+You couldn't possibly imagine why it's here or who made it,
+but it's probably not the weirdest thing you've seen so far.`,
+                option:['Keep it','Eat it','Leave'],
+                optionDesc:['Gain a Relic - Cheese House','Heal to Full, Become Cursed - Overweight',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You pick up the house. It's pretty light, especially since it's full of holes.
+You're not sure what you're gonna do with it, but you guess you have it now.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You eat the whole thing. For a model house, it's surprisingly tasty.
+Except, maybe you ate a little too much cheese. Balanced meals and all that.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You don't want to deal with that thing.
+Isn't that how mousetraps get their victims, anyway?`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Stuffed Ducks',id:198,list:0,
+        pages:[
+            {
+                desc:
+`You run across some stuffed ducks left on a shelf.
+All of them are cute, but you wouldn't want to take them all.`,
+                option:['Take a Duck','Eat a Duck','Run'],
+                optionDesc:['','',''],
+                link:[1,2,3],
+            },{
+                desc:
+`You look at the ducks, who have name tags.
+Which one do you want to keep?`,
+                option:['Take a Duck','Take a Duck','Take a Duck'],
+                optionDesc:['Add a Relic - Tang Tang','Add a Relic - Pancake','Add a Relic - Alex'],
+                link:[-1,-1,-1],
+            },{
+                desc:
+`You didn't think you could actually eat a stuffed duck.
+Right?`,
+                option:['Ow'],  
+                optionDesc:['Lose 10 Health'],
+                link:[-1],
+            },{
+                desc:'You fear taking the ducks... for some reason.',
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Unrest Site',id:199,list:0,
+        pages:[
+            {
+                desc:
+`You find a nice spot to get some rest and set up your campfire.
+Except, the second you light the fire, the bushes around you rustle.
+A burst of wind then puts your fire out. Every single time you light it.
+Can you really sleep under these conditions?`,
+                option:['Rest','Fight the Bushes'],
+                optionDesc:['Heal 30 Health, Become Cursed - Sleep Loss','Start Fight'],
+                link:[1,-2],
+            },{
+                desc:
+`You try your best to sleep, but in the cold and in fear of what's around you.
+It's not the worst sleep imaginable, but it's probably close.
+By the time the morning comes, you're somewhat grateful.`,
+                option:['Get Out'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
+    },{
+        name:'Stone of All Time',id:200,list:0,
+        pages:[
+            {
+                desc:
+`On the side of a mountain you see a man pushing a rock up the mountain.
+After he makes a bit of progress, it slides all the way back down.
+"This is impossible!" he says, before storming off, his task undone.
+You approach the rock after he leaves. It's only a bit heavy.`,
+                option:['Push it','Punch it'],
+                optionDesc:['',''],
+                link:[1,2],
+            },{
+                desc:
+`You drop everything you have with you and start pushing it up the hill.
+A good few hours later, you somehow manage to reach the top.
+Perhaps it wasn't so impossible after all.`,
+                option:['Leave'],
+                optionDesc:['Gain 5 Max HP, Lose All Items'],
+                link:[-1],
+            },{
+                desc:
+`You give it a solid punch, and to your surprise, it cracks in half.
+Your fist does hurt just a little, but not too badly.`,
+                option:['Leave'],
+                optionDesc:['Lose 1 Health, Upgrade a Random Attack'],
+                link:[-1],
+            },
+        ],
     },
     
     /*{
-        name:'',id:177,list:0,
+        name:'',id:201,list:0,
         pages:[
             {
                 desc:

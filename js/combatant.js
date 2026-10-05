@@ -1534,7 +1534,7 @@ class combatant{
                         this.move.speed++
                         this.subAttackTypeSwitch([[0,9,28,[]]])
                     break
-                    case 'Lunaria':
+                    case 'Lunar Servent':
                         this.statusEffect('Block Cycle 2 1',40)
                         this.statusEffect('Heal Per Turn',10)
                         for(let a=0,la=2;a<la;a++){
@@ -1660,6 +1660,10 @@ class combatant{
                     break
                     case 'Snail':
                         this.subAttackTypeSwitch([[0,2,11,[]]])
+                    break
+                    case 'Big Bush Thing':
+                        this.spec.push(0)
+                        this.subAttackTypeSwitch([[1,28,500,[1]],[2,110,110,[2]]])
                     break
 
                     //mark 31
@@ -2037,7 +2041,7 @@ class combatant{
             break
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slime Boss': case 'Slimoid': case 'Big Slimoid': case 'Modicum': case 'Rock Golem': case 'Shield Particle':
             case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick': case 'Puffball': case 'Graphite Block': case 'Rainbow Slime':
-            case 'Big Rainbow Slime': case 'Mini Puffball': case 'Inkblot':
+            case 'Big Rainbow Slime': case 'Mini Puffball': case 'Inkblot': case 'Big Bush Thing':
                 for(let g=0;g<2;g++){
                     this.parts.arms[g].middle.x=this.parts.arms[g].top.x+lsin(this.anim.arms[g].top)*this.anim.arms[g].length.top
                     this.parts.arms[g].middle.y=this.parts.arms[g].top.y+lcos(this.anim.arms[g].top)*this.anim.arms[g].length.top
@@ -2180,7 +2184,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0],this.tilePosition.y+transformDirection(0,150)[1])
                 ]
             case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357: case 360:
-            case 381: case 387: case 388: case 404: case 409: case 468:
+            case 381: case 387: case 388: case 404: case 409: case 468: case 500:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2942,7 +2946,7 @@ class combatant{
                         case 259: case 264: case 265: case 278: case 288: case 291: case 292: case 308: case 330: case 350:
                         case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395:
                         case 396: case 403: case 404: case 409: case 415: case 417: case 418: case 441: case 449: case 451:
-                        case 452: case 468: case 470: case 471: case 476: case 487: case 490:
+                        case 452: case 468: case 470: case 471: case 476: case 487: case 490: case 500:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3170,7 +3174,7 @@ class combatant{
                     case 222: case 255: case 256: case 259: case 264: case 265: case 278: case 288: case 291: case 292:
                     case 308: case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384:
                     case 387: case 388: case 395: case 396: case 404: case 409: case 415: case 417: case 418: case 441:
-                    case 449: case 451: case 452: case 468: case 470: case 476: case 487: case 490:
+                    case 449: case 451: case 452: case 468: case 470: case 476: case 487: case 490: case 500:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
@@ -4806,6 +4810,9 @@ class combatant{
                     this.barrier+=block
                 }else{
                     this.block+=block
+                }
+                if(this.battle.modded(274)&&this.team==0){
+                    this.heal(2)
                 }
                 if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
@@ -7000,7 +7007,7 @@ class combatant{
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slimoid': case 'Big Slimoid': case 'Rainbow Slime': case 'Big Rainbow Slime':
             
             case 'Modicum': case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick':
-            case 'Golden Duck': case 'Puffball': case 'Graphite Block': case 'Mini Puffball': case 'Inkblot':
+            case 'Golden Duck': case 'Puffball': case 'Graphite Block': case 'Mini Puffball': case 'Inkblot': case 'Big Bush Thing':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -7035,7 +7042,7 @@ class combatant{
                     case 0: case 2: case 4: case 6:
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
-                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&(type==2||type==6)){
+                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&(type==2||type==6)){
                             this.animSet.loop=0
                             this.goal.anim.sword=true
                         }
@@ -7670,7 +7677,7 @@ class combatant{
             break
             case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slime Boss': case 'Slimoid': case 'Big Slimoid': case 'Rainbow Slime': case 'Big Rainbow Slime': case 'Modicum':
             case 'Rock Golem': case 'Shield Particle':  case 'Bush Thing': case 'Fireball': case 'Fungling': case 'Bee': case 'Pixie': case 'Darkblot': case 'Lead Brick': case 'Puffball':
-            case 'Graphite Block': case 'Mini Puffball': case 'Inkblot':
+            case 'Graphite Block': case 'Mini Puffball': case 'Inkblot': case 'Big Bush Thing':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -7955,7 +7962,7 @@ class combatant{
                     break
                     case 2:
                         this.animSet.loop+=rate
-                        if(this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian'){
+                        if(this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian'){
                             this.anim.arms[0].top=24+lsin(this.animSet.loop*180)*36
                             this.anim.arms[0].bottom=9+lsin(this.animSet.loop*180)*96
                             this.spin.arms[0].top=-93+lsin(this.animSet.loop*180)*63

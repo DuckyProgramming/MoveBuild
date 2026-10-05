@@ -9,9 +9,6 @@ CS 132 [?]
 
 new dukelis packs
 mao zedong - all the chinese leaders are really hard to get through and they start with a huge debuff but scale
-
-down 2 events
-down 1 rare item - boss buster - grenade but triple damage to bosses
    
 tooltips for dictionary
 
@@ -144,7 +141,8 @@ outdupes, outmtgerror
 
 [slio9]
 
-500 relics (only 400 active)
+600 relics (only 400 active)
+this requires +8, many of them will be the below event relics
 
 GIMMICK BANK
 

@@ -214,7 +214,7 @@ class turn{
                                     ]
                                 break
                                 case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357: case 360:
-                                case 381: case 387: case 388: case 404: case 409: case 468:
+                                case 381: case 387: case 388: case 404: case 409: case 468: case 500:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -669,7 +669,8 @@ class turn{
                                 this.type==153||this.type==157||this.type==166||this.type==168||this.type==171||this.type==176||this.type==192||this.type==204||this.type==213||this.type==222||
                                 this.type==223||this.type==224||this.type==259||this.type==264||this.type==265||this.type==278||this.type==288||this.type==291||this.type==292||this.type==308||
                                 this.type==330||this.type==350||this.type==351||this.type==357||this.type==360||this.type==368||this.type==379||this.type==381||this.type==387||this.type==388||
-                                this.type==395||this.type==404||this.type==409||this.type==417||this.type==418||this.type==441||this.type==449||this.type==468||this.type==470||this.type==476
+                                this.type==395||this.type==404||this.type==409||this.type==417||this.type==418||this.type==441||this.type==449||this.type==468||this.type==470||this.type==476||
+                                this.type==500
                             ){
                                 this.targetCombatant=[]
                                 this.direction=[]
@@ -2084,7 +2085,7 @@ class turn{
                         case 84: case 404:
                             this.targetCombatant[a].statusEffect('Weak Next Turn',this.effect[1])
                         break
-                        case 114:
+                        case 114: case 500:
                             this.targetCombatant[a].statusEffect('Frail Next Turn',this.effect[1])
                         break
                         case 124:
@@ -2104,15 +2105,12 @@ class turn{
                         case 288:
                             this.targetCombatant[a].statusEffect('Miss',this.effect[1])
                         break
-                        case 368:
+                        case 368: case 468:
                             this.targetCombatant[a].statusEffect('Vulnerable Next Turn',this.effect[1])
                         break
                         case 379:
                             this.targetCombatant[a].statusEffect('Weak Next Turn',this.effect[1])
                             this.targetCombatant[a].statusEffect('Vulnerable Next Turn',this.effect[2])
-                        break
-                        case 468:
-                            this.targetCombatant[a].statusEffect('Vulnerable Next Turn',this.effect[1])
                         break
                         case 470:
                             this.targetCombatant[a].statusEffect('Block Down',this.effect[1])

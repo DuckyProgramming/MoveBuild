@@ -14576,6 +14576,58 @@ combatant.prototype.display=function(){
                     }
                 }
             break
+            case 'Big Bush Thing':
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
+                        this.layer.fill(...this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])),this.fade*this.fades.skin.arms)
+                        this.layer.noStroke()
+                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24)
+                        switch(this.name){
+                            case 'Big Bush Thing':
+                                for(let a=0,la=13;a<la;a++){
+                                    this.layer.ellipse(lsin(360*a/la)*10+this.graphics.arms[g].middle.x,lcos(360*a/la)*10+this.graphics.arms[g].middle.y,7)
+                                }
+                            break
+                        }
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
+                    this.layer.ellipse(0,-30,72,72)
+                    switch(this.name){
+                        case 'Big Bush Thing':
+                            for(let a=0,la=22;a<la;a++){
+                                this.layer.ellipse(lsin(360*a/la)*30.5,lcos(360*a/la)*30.5-30,14)
+                            }
+                        break
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){
+                        this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
+                        this.layer.noStroke()
+                        this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,24)
+                        switch(this.name){
+                            case 'Big Bush Thing':
+                                for(let a=0,la=13;a<la;a++){
+                                    this.layer.ellipse(lsin(360*a/la)*10+this.graphics.arms[g].middle.x,lcos(360*a/la)*10+this.graphics.arms[g].middle.y,7)
+                                }
+                            break
+                        }
+                    }
+                    if(this.trigger.display.eye[g]){
+                        this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[g])
+                        this.layer.strokeWeight((5-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
+                        if(this.anim.eye[g]==0){
+                            this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*33-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                            this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*33-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                        }else{
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*33-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*33+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*33-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*33+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                        }
+                    }
+                }
+            break
             case '':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -14660,7 +14712,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Lunaria'&&this.trigger.display.stars){
+                if(this.name=='Lunar Servent'&&this.trigger.display.stars){
                     this.layer.noStroke()
                     this.layer.fill(this.color.stars[0],this.color.stars[1],this.color.stars[2],this.fade*this.fades.stars)
                     for(let a=0,la=9;a<la;a++){
@@ -15012,7 +15064,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -15114,12 +15166,12 @@ combatant.prototype.display=function(){
                     this.layer.rect(7.5*lsin(this.anim.direction+90),-48,2,6)
                     this.layer.rect(7.5*lsin(this.anim.direction+90),-52,1,2)
                 }
-                if(this.name=='Lunaria'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)<=0){
+                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)<=0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-lcos(this.spin.under.under.top[0]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[0]+this.anim.direction)*5.2,-53,lcos(this.spin.under.under.top[0]+this.anim.direction)*2.5+3.5,6)
                 }
-                if(this.name=='Lunaria'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)<=0){
+                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)<=0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-lcos(this.spin.under.under.top[1]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[1]+this.anim.direction)*5.2,-53,lcos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
@@ -15641,12 +15693,12 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Lunaria'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)>0){
+                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,lcos(this.spin.under.under.top[0]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[0]+this.anim.direction)*5.2,-52,lcos(this.spin.under.under.top[0]+this.anim.direction)*2.5+3.5,6)
                 }
-                if(this.name=='Lunaria'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)>0){
+                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,lcos(this.spin.under.under.top[1]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[1]+this.anim.direction)*5.2,-52,lcos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
@@ -15840,7 +15892,7 @@ combatant.prototype.display=function(){
                     )
                 }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
@@ -16146,7 +16198,7 @@ combatant.prototype.display=function(){
                         this.layer.triangle(lsin(this.anim.direction)*11-lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*11+lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*10,-57)
                     }
                     for(let g=0;g<2;g++){
-                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
+                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
@@ -16694,7 +16746,7 @@ combatant.prototype.display=function(){
                     this.layer.rect(0,-91,30,12,3)
                     this.layer.rect(lsin(this.anim.direction+180)*15,-87,24,4)
                 }
-                if((this.name=='Councilman'||this.name=='Lunaria'||this.name=='Ascended Soul')&&this.trigger.display.halo){
+                if((this.name=='Councilman'||this.name=='Lunar Servent'||this.name=='Ascended Soul')&&this.trigger.display.halo){
                     this.layer.noFill()
                     this.layer.stroke(this.color.halo[0],this.color.halo[1],this.color.halo[2],this.fade*this.fades.halo)
                     this.layer.strokeWeight(2)
@@ -16737,7 +16789,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Lunaria'&&this.trigger.display.stars){
+                if(this.name=='Lunar Servent'&&this.trigger.display.stars){
                     this.layer.noStroke()
                     this.layer.fill(this.color.stars[0],this.color.stars[1],this.color.stars[2],this.fade*this.fades.stars)
                     for(let a=0,la=9;a<la;a++){

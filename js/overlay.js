@@ -3809,23 +3809,32 @@ class overlay{
                 }
             break
             case 19:
+                let have19=this.battle.relicManager.hasRelic(590,this.player)
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2,280,200,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2,have19?400:280,200,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 this.layer.text(`Select Service`,this.layer.width/2,this.layer.height/2-70)
                 this.layer.strokeWeight(5)
                 this.layer.fill(225,150,150)
                 this.layer.stroke(200,125,125)
-                this.layer.rect(this.layer.width/2-60,this.layer.height/2+20,90,120,5)
+                this.layer.rect(this.layer.width/2-(have19?120:60),this.layer.height/2+20,90,120,5)
                 this.layer.fill(150,225,150)
                 this.layer.stroke(125,200,125)
-                this.layer.rect(this.layer.width/2+60,this.layer.height/2+20,90,120,5)
+                this.layer.rect(this.layer.width/2+(have19?0:60),this.layer.height/2+20,90,120,5)
+                if(have19){
+                    this.layer.fill(225,225,150)
+                    this.layer.stroke(200,200,125)
+                    this.layer.rect(this.layer.width/2+120,this.layer.height/2+20,90,120,5)
+                }
                 this.layer.noStroke()
                 this.layer.fill(0)
                 this.layer.textSize(10)
-                this.layer.text('Remove Card',this.layer.width/2-60,this.layer.height/2+20)
-                this.layer.text('Deluxe Upgrade',this.layer.width/2+60,this.layer.height/2+20)
+                this.layer.text('Remove Card',this.layer.width/2-(have19?120:0),this.layer.height/2+20)
+                this.layer.text('Deluxe Upgrade',this.layer.width/2+(have19?0:60),this.layer.height/2+20)
+                if(have19){
+                    this.layer.text('Duplicate',this.layer.width/2+120,this.layer.height/2+20)
+                }
             break
             case 20:
                 this.layer.fill(160,this.fade*0.8)
@@ -6021,13 +6030,17 @@ class overlay{
                     }
                 break
                 case 19:
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-60,y:this.layer.height/2+20},width:90,height:120})&&this.active){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-(this.battle.relicManager.hasRelic(590,this.player)?120:60),y:this.layer.height/2+20},width:90,height:120})&&this.active){
                         this.battle.overlayManager.overlays[6][this.player].active=true
                         this.battle.overlayManager.overlays[6][this.player].activate()
                         this.active=false
-                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+60,y:this.layer.height/2+20},width:90,height:120})&&this.active){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+(this.battle.relicManager.hasRelic(590,this.player)?0:60),y:this.layer.height/2+20},width:90,height:120})&&this.active){
                         this.battle.overlayManager.overlays[28][this.player].active=true
                         this.battle.overlayManager.overlays[28][this.player].activate()
+                        this.active=false
+                    }else if(this.battle.relicManager.hasRelic(590,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+120,y:this.layer.height/2+20},width:90,height:120})&&this.active){
+                        this.battle.overlayManager.overlays[12][this.player].active=true
+                        this.battle.overlayManager.overlays[12][this.player].activate()
                         this.active=false
                     }
                 break
@@ -7713,6 +7726,10 @@ class overlay{
                     }else if((int(key)+9)%10==1&&this.active){
                         this.battle.overlayManager.overlays[28][this.player].active=true
                         this.battle.overlayManager.overlays[28][this.player].activate()
+                        this.active=false
+                    }else if(this.battle.relicManager.hasRelic(590,this.player)&&(int(key)+9)%10==2&&this.active){
+                        this.battle.overlayManager.overlays[12][this.player].active=true
+                        this.battle.overlayManager.overlays[12][this.player].activate()
                         this.active=false
                     }
                 break

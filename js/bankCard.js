@@ -3939,7 +3939,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 3693: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nChoose and Exhaust a\nCard From the First ${effect[1]}\nin Draw Pile`; break
         case 3694: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 2nd Time Played,\nIgnore Block\nOn Play: ${this.limit%2+1}/2`; break
         case 3695: string+=`Every 2nd Time Played,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nOtherwise,\nHeal Target For ${effect[1]}\nOn Play: ${this.limit%2+1}/2`; break
-        case 3696: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 2nd Time Played,\nAdd ${this.calculateEffect(effect[1],1)} Block\nOn Play: ${this.limit%2+1}/2`; break
+        case 3696: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 2nd Time Played,\nAdd ${this.calculateEffect(effect[1],17)} Bounce\nOn Play: ${this.limit%2+1}/2`; break
         case 3697: string+=`Every 2nd Time Played,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nOtherwise,\nDraw ${effect[1]} Card${pl(effect[1])}\nOn Play: ${this.limit%2+1}/2`; break
         case 3698: string+=`Every 4th Time Played,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nOtherwise,\nHeal Target For ${effect[1]}\nOn Play: ${this.limit%4+1}/4`; break
         case 3699: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 2nd Time Played,\nDeals Double Damage\nEvery 4th Time Played,\nHeals Target Instead\nOn Play: ${this.limit%4+1}/4`; break
@@ -10610,6 +10610,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10349: string+=`Discard Your Hand\nDraw That Many Cards\nGain (E) (E) and\nDraw ${effect[1]} Card${pl(effect[1])}\nNext Turn`; break
         case 10350: string+=`Gain ${effect[0]} Temporary\nStrength and\nGain ${effect[1]} Temporary\nDexterity Next Turn`; break
         case 10351: string+=`Gain ${effect[0]} Faith\nGain ${effect[1]} Faith\nPer Item You Have`; break
+        case 10352: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nDeals ${effect[1]} Times\nMore to Bosses`; break
+        //3595
 
         //mark p
         //mark q

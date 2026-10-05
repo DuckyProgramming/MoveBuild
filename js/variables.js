@@ -163,7 +163,7 @@ types={
         {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
         {name:'Anomaly',life:93,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[5,1]},{type:2,effect:[6]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
-        {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
+        {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunar Servent in never spawning`},
         {name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[15]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
@@ -236,6 +236,7 @@ types={
         {name:'Glazer Clone',life:60,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
         {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[4]},{type:77,effect:[6]},{type:367,effect:[9]},{type:380,effect:[12]}],description:`PVZ Fusion looking`},
         {name:'Volt King',life:162,behavior:6,spec:[0],move:{type:0,speed:2},attack:[{type:497,effect:[6]},{type:59,effect:[10]},{type:45,effect:[6]},{type:53,effect:[10,1,'Electrocuted']},{type:5,effect:[1,'Electrocuted']}],description:`One with nothing`},
+        {name:'Big Bush Thing',life:36,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:28,effect:[10]},{type:110,effect:[5,5]},{type:111,effect:[4]}],description:`Preparing his child for greatness`},
 
         //mark enemy
 
@@ -297,7 +298,7 @@ types={
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Shrapnel']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,2,'Burn']}],description:`Classic war criminal`},
         {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,2,'Void']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
-        {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
+        {name:'Lunar Servent',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
         {name:'Zenith',life:111,behavior:0,spec:[0,2],move:{type:0,speed:0},attack:[{type:462,effect:[6,1]},{type:10,effect:[10]},{type:478,effect:[6,1]}],description:`All that's made can surely break`},
 
@@ -865,6 +866,7 @@ types={
         {name:'Summon Bolt',class:4},
         {name:'Summon Bolt / Block All',class:4},
         {name:'6 Tile Pentuple Strike',class:1},
+        {name:'2 Tile 3 Spread Strike / Frail',class:1},//500
 
         //mark attack
     ],relic:[
@@ -985,7 +987,7 @@ types={
         {name:'Fake Meat',internal:'Remove Max HP',id:104,rarity:-1,list:0,mtg:0,world:[0,2],description:'When a Card is Removed,\nGain 7 Max HP'},
         {name:'Anger Insurance',internal:'Low Health Strength',id:105,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 1 Strength Every Turn\nWhen Health Below 50%'},
         {name:'Clear Candle',internal:'Status Immunity',id:106,rarity:-1,list:0,mtg:0,world:[0,3],description:'Status Cards Other Than\nFatigue Exhaust When Drawn'},
-        {name:'Oil Can',internal:'Early Initiative',id:107,rarity:-1,list:0,mtg:0,world:[0,3],description:'Start Each Combat With 2 Initiative'},
+        {name:'Oil Ban',internal:'Early Initiative',id:107,rarity:-1,list:0,mtg:0,world:[0,3],description:'Start Each Combat With 2 Initiative'},
         {name:'Orange Peel',internal:'Less Fatigue',id:108,rarity:0,list:0,mtg:0,world:[0,3],description:'Remove the First Fatigue\nAdded Each Combat'},
         {name:'Loot Glove',internal:'More Stashes',id:109,rarity:1,list:0,mtg:0,world:[0,1],description:'Stashes Contain 2 More Relics'},
 
@@ -1376,7 +1378,7 @@ types={
         
         {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:460,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
         {name:'Converging Stick',internal:'Status Damage Up',id:461,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Draw a Status Card,\nGain 3 Vigor'},
-        {name:'Opportunity',internal:'Starting Attack',id:462,rarity:-1,list:0,mtg:0,world:[0,1],description:'On Turn 1, Add a Random Attack to Hand\nIt Costs 0 Temporary and\nHas Exhaust and Ethereal'},
+        {name:'Means and Motive',internal:'Starting Attack',id:462,rarity:-1,list:0,mtg:0,world:[0,1],description:'On Turn 1, Add a Random Attack to Hand\nIt Costs 0 Temporary and\nHas Exhaust and Ethereal'},
         {name:'Hubris',internal:'Death Temporary Strength',id:463,rarity:2,list:0,mtg:0,world:[0,3],description:'When an Enemy Dies,\nGain 5 Temporary Strength'},
         {name:'Refills',internal:'Empty Items',id:464,rarity:3,list:0,mtg:0,world:[0,2],description:'Gain an Item at the Start of Combat\nIf You Have No Items'},
         {name:'Vitrine',internal:'Store Card',id:465,rarity:3,list:0,mtg:0,world:[1,2],description:'When Taken, Remove a Card\nYou May Add it to\nHand Once Per Combat'},
@@ -1492,13 +1494,13 @@ types={
         {name:'Fresnel Lens',internal:'Power Weak All',id:565,rarity:1,list:0,mtg:0,world:[0,3],description:'When You Play a Power,\nApply 1 Weak to All Enemies'},
         {name:'Reality Charm',internal:'Defending Attack',id:566,rarity:1,list:0,mtg:0,world:[0,3],description:'When You Play a Defense,\nGain 1 Temporary Strength'},
         {name:'Tiny Fortress',internal:'Defense Temporary Dexterity',id:567,rarity:1,list:0,mtg:0,world:[0,3],description:'When You Play a Defense,\nGain 1 Temporary Dexterity'},
-        {name:'Converging Stick',internal:'Fatigue Vigor',id:568,rarity:0,list:0,mtg:0,world:[0,3],description:'Gain 2 Vigor When\nYou Play a Fatigue'},
+        {name:'Detention Chair',internal:'Fatigue Vigor',id:568,rarity:0,list:0,mtg:0,world:[0,3],description:'Gain 2 Vigor When\nYou Play a Fatigue'},
         {name:'Mobius Strip',internal:'20 Card Draw',id:569,rarity:0,list:0,mtg:0,world:[0,3],description:'Every 20 Cards Played,\nDraw 1 Card'},
 
-        {name:'Merchant Business Card',internal:'Shop Replace',id:570,rarity:3,list:0,mtg:0,world:[0,2],description:'When You Buy a Card, Relicm or Pack From\nthe Shop, Another Replaces it'},
+        {name:'Merchant Business Card',internal:'Shop Replace',id:570,rarity:3,list:0,mtg:0,world:[0,2],description:'When You Buy a Card, Relic or Pack From\nthe Shop, Another Replaces it'},
         {name:'Ball and Chain',internal:'Unpushable',id:571,rarity:3,list:0,mtg:0,world:[0,3],description:'You Can Never be Pushed'},
         {name:'Opportunity',internal:'Starting Discover Attack',id:572,rarity:0,list:0,mtg:0,world:[0,1],description:'On Turn 1, Discover an Attack, It Costs 0'},
-        {name:'Tang Tang',internal:'Double Add',id:573,rarity:3,list:0,mtg:0,world:[0,3],description:'Duplicate All Cards Added'},
+        {name:'Tang Tang',internal:'Double Add',id:573,rarity:-1,list:0,mtg:0,world:[0,3],description:'Duplicate All Cards Added'},
         {name:'Spare Mail',internal:'2 Starting Block',id:574,rarity:-1,list:0,mtg:0,world:[0,3],description:'Add 2 Block\non Turn 1'},
         {name:'High Fidelity Headphones',internal:'Discover Editions',id:575,rarity:3,list:0,mtg:0,world:[0,3],description:'When You Discover,\nAt Least One Card Will Have an Edition'},
         {name:'Gold Bridge Model',internal:'Death Temporary Dexterity',id:576,rarity:2,list:0,mtg:0,world:[0,3],description:'When an Enemy Dies,\nGain 5 Temporary Dexterity'},
@@ -1515,6 +1517,11 @@ types={
         {name:'Amber Butterfly',internal:'Sell Duplicate',id:586,rarity:2,list:0,mtg:0,world:[0,1],description:'When Sold, Duplicate\nthe Last Card in Deck'},
         {name:'Oil Can',internal:'Upgrade Initiative',id:587,rarity:0,list:0,mtg:0,world:[0,3],description:'Initiatives are Upgraded'},
         {name:'Canned Sardines',internal:'Skill Temporary Dexterity',id:588,rarity:2,list:0,mtg:0,world:[0,3],description:'When You Play a Skill,\nGain 1 Temporary Dexterity'},
+        {name:'Innumeracy',internal:'Turn 10 Remove Fatigue',id:589,rarity:-1,list:0,mtg:0,world:[0,3],description:'On Turn 10, Remove 10 Fatigues'},
+
+        {name:'Pancake',internal:'Card Service Duplicate',id:590,rarity:-1,list:0,mtg:0,world:[0,3],description:'Card Service at the Shop\nCan Duplicate a Card Instead'},
+        {name:'Alex',internal:'First Duplicate',id:591,rarity:-1,list:0,mtg:0,world:[0,3],description:'Duplicate the First Card\nPlayed Each Combat'},
+        {name:'Cheese House',internal:'World 3 Heal',id:592,rarity:-1,list:0,mtg:0,world:[0,3],description:'In World 3, Heal 6 HP at\nthe End of Combat'},
 
         //mark mtg mark r
     ],item:[
@@ -1649,6 +1656,7 @@ types={
         {name:'Vortex Collapse',internal:'35 Damage/Emergency Move',id:116,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 35 Damage, Add 1\nEmergency Move to Hand\nRange 1-6'},
         {name:'Round Camera',internal:'Copy Card',id:117,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Make 3 Copies of\na Card in Hand'},
         {name:'Party Bottle',internal:'2 Strength/2 Dexterity',id:118,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Strength and 2 Dexterity'},
+        {name:'Boss Buster',internal:'Boss Splash Damage',id:119,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 30 Splash Damage\nDeals 5x More to Bosses\nRange 1-3'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},
@@ -2578,6 +2586,15 @@ types={
             name:'Cornered 5',
             map:[
                 [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Supercornered 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
@@ -4050,6 +4067,17 @@ types={
             ],ally:[
             ],
         },{
+            level:['Supercornered 5'],class:0,world:-1,
+            name:'Big Bush Thing',
+            player:{position:[[{x:3,y:3}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Big Bush Thing'},
+                {position:{x:1,y:1},name:'Bush Thing'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
             level:['Barred 6'],class:1,world:2,
             name:'Volt King',
             player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
@@ -5451,10 +5479,10 @@ types={
             ],
         },{
             level:['Redraw 7'],class:2,world:2,
-            name:'Lunaria',
+            name:'Lunar Servent',
             player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Lunaria'},
+                {position:{x:0,y:0},name:'Lunar Servent'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:3,y:0},name:'Soul',turn:2},
@@ -8196,7 +8224,7 @@ After adding both, also add a Miracle.`,
         {name:'Chief Engineering Officer',desc:'25% of Cards are Stapled'},
         {name:'Shadow Trooper',desc:'All Enemies are Invisible First Turn'},
         {name:'Purge X02',desc:'Enemies Add Double Block'},//140
-        {name:'Lunaria',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
+        {name:'Lunar Servent',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
         {name:'Rewriter',desc:'Every Combat Spawns Glitched Tiles'},
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
         {name:'Managerial',desc:'Immediately Fight 12 Robots'},
@@ -8330,6 +8358,7 @@ After adding both, also add a Miracle.`,
         {name:'Lost Management Officer',desc:'Enemies With a C in Their Name Get 3 Dexterity'},
         {name:'Ducksquad',desc:'All Ducks Gain 10 Regeneration'},
         {name:'Void Duck',desc:'Get Void Every 10 Turns'},
+        {name:'Big Bush Thing',desc:'Enemies Heal 2 Health When They Gain Block'},
 
         //mark mod
     ],deckmode:[

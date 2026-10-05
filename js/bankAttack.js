@@ -2727,7 +2727,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 82: case 3595: case 3613: case 4427:
+        case 82: case 3595: case 3613: case 4427: case 10352:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
             }
@@ -2736,7 +2736,7 @@ attack.prototype.update=function(){
             }
             if(this.timer==15){
                 switch(this.type){
-                    case 82: case 3595:
+                    case 82: case 3595: case 10352:
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,7,[atan2(this.targetTile.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetTile.position.y),5*this.targetDistance-2]))
                     break
                     case 3613: case 4427:
@@ -2745,7 +2745,7 @@ attack.prototype.update=function(){
                 }
             }else if(this.timer==10*this.targetDistance+15){
                 switch(this.type){
-                    case 82: case 3595:
+                    case 82: case 3595: case 10352:
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetTile.position.x,this.targetTile.position.y,10,[10]))
                     break
                     case 3613:
@@ -2759,7 +2759,14 @@ attack.prototype.update=function(){
                         this.battle.addSpecificEnergy(this.selfCall(26),this.player,0)
                     break
                 }
-                this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetTile.tilePosition,[0],[0,1],false,0)
+                switch(this.type){
+                    case 10352:
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetTile.tilePosition,[0],[0,1],false,0)
+                    break
+                    default:
+                        this.battle.combatantManager.areaAbstract(15,[this.effect[0],this.user,0,this.effect[1]],this.targetTile.tilePosition,[0],[0,1],false,0)
+                    break
+                }
             }else if(this.timer>=10*this.targetDistance+25){
                 this.remove=true
             }
@@ -10201,7 +10208,7 @@ attack.prototype.update=function(){
                     case 3696:
                         this.targetCombatant.takeDamage(this.effect[0],this.player)
                         if(this.limit%2==1){
-                            this.userCombatant.addBlock(this.effect[0])
+                            this.userCombatant.addBounce(this.effect[0])
                         }
                     break
                     case 3697:

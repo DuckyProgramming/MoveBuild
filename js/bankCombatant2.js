@@ -3095,6 +3095,22 @@ combatant.prototype.setupGraphics=function(direction){
                 break
             }
         break
+        case 'Big Bush Thing':
+            this.anim={direction:direction,eye:[0,0],arms:[{top:54,length:{top:21}},{top:54,length:{top:21}}]}
+            this.fades={eye:[1,1],skin:{arms:1,body:1}}
+            this.spin={arms:[{top:-90},{top:90}],eye:[-24,24]}
+            this.parts={eyeLevel:-36,arms:[{top:{x:21,y:-30},middle:{x:0,y:0}},{top:{x:21,y:-30},middle:{x:0,y:0}}]}
+            this.graphics={arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
+            this.trigger={display:{eye:[true,true],skin:{arms:true,body:true}}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0}
+            this.goal={anim:{direction:this.anim.direction}}
+            switch(this.name){
+                case 'Big Bush Thing':
+                    this.color={eye:{back:[255,0,0]},skin:{body:[40,120,40],arms:[30,90,30]}}
+                break
+            }
+        break
         //mark n
         default:
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
@@ -3831,7 +3847,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.sword=1
                     this.trigger.display.extra={sword:true}
                 break
-                case 'Lunaria':
+                case 'Lunar Servent':
                     this.color={skin:{head:[150,120,200],body:[50,20,55],legs:[40,10,45],arms:[40,10,45]},eye:{back:[255,255,255],front:[255,255,255],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.color.halo=[255,245,200]
                     this.color.stars=[255,255,235]
@@ -7152,7 +7168,7 @@ combatant.prototype.minorDisplay=function(type,key){
                 break
             }
         break
-        case 'Lunaria':
+        case 'Lunar Servent':
             switch(type){
                 case 0:
                     this.layer.push()

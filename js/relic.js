@@ -2602,7 +2602,6 @@ class relic{
                     displaySymbol(this.layer,0,0,154,0.9,this.fade)
                 break
                 case '3 Turn Duplicate':
-                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,89,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,120,0,1,this.fade)
                     displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
@@ -4375,6 +4374,39 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('1',10,0)
+                break
+                case 'Turn 10 Remove Fatigue':
+                    displaySymbol(this.layer,-8,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,51,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,16,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(12)
+                    this.layer.text('10',8,-3)
+                break
+                case 'Card Service Duplicate':
+                    displaySymbol(this.layer,-12,0,8,0,0.5,this.fade)
+                    displaySymbol(this.layer,-12,0,16,0,0.5,this.fade)
+                    displaySymbol(this.layer,0.5,0,89,0,0.6,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.7,this.fade)
+                    displaySymbol(this.layer,10.6,0,7,0,0.28,this.fade)
+                    displaySymbol(this.layer,13.4,0,7,0,0.28,this.fade)
+                break
+                case 'First Duplicate':
+                    displaySymbol(this.layer,-8,0,89,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,120,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'World 3 Heal':
+                    displaySymbol(this.layer,-10,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,9,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-4,97,0,1.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',-10,0)
                 break
 
                 //mark p

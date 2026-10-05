@@ -90,12 +90,12 @@ class eventManager{
                 !(this.listing.event[a]==55&&userCombatant.life<10)&&
                 !(this.listing.event[a]==56&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==60&&userCombatant.life>userCombatant.base.life-12)&&
-                !(this.listing.event[a]==63&&(this.listing.complete.length<=3||this.battle.nodeManager.world==0))&&
+                !(this.listing.event[a]==63&&(this.listing.complete.length<=3||this.battle.nodeManager.world!=2))&&
                 !(this.listing.event[a]==66&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==67&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==68&&this.battle.cardManagers[this.player].deck.numberAbstract(8,[])<=0)&&
                 !(this.listing.event[a]==69&&userCombatant.life<7)&&
-                !(this.listing.event[a]==73&&this.battle.nodeManager.world==0)&&
+                !(this.listing.event[a]==73&&this.battle.nodeManager.world!=1)&&
                 !(this.listing.event[a]==74&&userCombatant.life<9)&&
                 !(this.listing.event[a]==75&&(userCombatant.life>userCombatant.base.life-20||this.battle.currency.money[this.player]<35))&&
                 !(this.listing.event[a]==76&&userCombatant.life<9||userCombatant.base.life<17)&&
@@ -185,7 +185,11 @@ class eventManager{
                 !(this.listing.event[a]==191&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==192&&userCombatant.life<9||userCombatant.base.life<17)&&
                 !(this.listing.event[a]==193&&this.battle.currency.money[this.player]<250)&&
-                !(this.listing.event[a]==196&&this.battle.nodeManager.world==0)&&
+                !(this.listing.event[a]==196&&this.battle.nodeManager.world!=2)&&
+                !(this.listing.event[a]==197&&userCombatant.life>userCombatant.base.life-20)&&
+                !(this.listing.event[a]==198&&userCombatant.life<11)&&
+                !(this.listing.event[a]==199&&(userCombatant.life>userCombatant.base.life-30||this.battle.nodeManager.world!=0))&&
+                !(this.listing.event[a]==200&&(userCombatant.life<2||this.battle.itemManager.hasEmpty(this.player)))&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -1291,6 +1295,8 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             this.battle.relicManager.addRelic(findInternal('Turn 10 Turn',types.relic),this.player)
                         }else if(this.page==1&&a==1){
                             this.battle.relicManager.addRelic(findInternal('Turn 5 Buffer',types.relic),this.player)
+                        }else if(this.page==1&&a==2){
+                            this.battle.relicManager.addRelic(findInternal('Turn 10 Remove Fatigue',types.relic),this.player)
                         }
                     break
                     case 91:
@@ -2464,6 +2470,43 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             this.pages[0].optionDesc[0]=`Remove ${this.battle.cardManagers[this.player].deck.cards[this.selection].name.replaceAll(`\n`,` `)}`
                         }else if(this.page==0&&a==2){
                             this.harm(userCombatant,3)
+                        }
+                    break
+                    case 197:
+                        if(this.page==0&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('World 3 Heal',types.relic),this.player)
+                        }else if(this.page==0&&a==1){
+                            userCombatant.heal(userCombatant.base.life)
+                            this.battle.cardManagers[this.player].deck.add(findName('Overweight',types.card),0,constants.playerNumber+2)
+                        }
+                    break
+                    case 198:
+                        if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Double Add',types.relic),this.player)
+                        }else if(this.page==1&&a==1){
+                            this.battle.relicManager.addRelic(findInternal('Card Service Duplicate',types.relic),this.player)
+                        }else if(this.page==1&&a==2){
+                            this.battle.relicManager.addRelic(findInternal('First Duplicate',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.harm(userCombatant,10)
+                        }
+                    break
+                    case 199:
+                        if(this.page==0&&a==0){
+                            userCombatant.heal(30)
+                            this.battle.cardManagers[this.player].deck.add(findName('Sleep\nLoss',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==0&&a==1){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Big Bush Thing',types.encounter)])
+                        }
+                    break
+                    case 200:
+                        if(this.page==1&&a==0){
+                            userCombatant.gainMaxHP(5)
+                            this.battle.itemManager.loseAll(this.player)
+                        }else if(this.page==2&&a==0){
+                            this.harm(userCombatant,1)
+                            this.battle.cardManagers[this.player].deck.randomEffect(2,[1])
                         }
                     break
 

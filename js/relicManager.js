@@ -1950,6 +1950,9 @@ class relicManager{
                     if(this.active[457][a+1]>0&&this.detail[457][a]==0){
                         this.getPlayer(a).heal(4*this.active[457][a+1])
                     }
+                    if(this.active[592][a+1]>0&&this.battle.nodeManager.world==2){
+                        this.getPlayer(a).heal(6*this.active[592][a+1])
+                    }
                     if(this.battle.modded(224)){
                         this.getPlayer(a).loseMaxHP(1)
                     }
@@ -2170,6 +2173,13 @@ class relicManager{
                         if(this.active[584][args[1]+1]>0){
                             this.getPlayer(args[1]).statusEffect('Temporary Strength',2*this.active[584][args[1]+1])
                         }
+                        if(this.active[591][args[1]+1]>0){
+                            if(options.oldDuplicate){
+                                this.getPlayer(args[1]).statusEffect('Double Play',this.active[591][a+1])
+                            }else{
+                                this.battle.cardManagers[args[1]].hand.duplicate(this.active[591][args[1]+1])
+                            }
+                        }
                         if(this.battle.modded(62)){
                             for(let a=0,la=3;a<la;a++){
                                 this.battle.cardManagers[args[1]].fatigue()
@@ -2245,6 +2255,11 @@ class relicManager{
                         if(this.active[248][args[1]+1]>0){
                             this.getPlayer(args[1]).statusEffect('Temporary Strength',4*this.active[248][args[1]+1])
                             this.getPlayer(args[1]).addBlock(20*this.active[248][args[1]+1])
+                        }
+                    break
+                    case 10:
+                        if(this.active[589][args[1]+1]>0){
+                            this.battle.cardManagers[args[1]].deAbstract(1,10*this.active[589][args[1]+1],[])
                         }
                     break
                 }

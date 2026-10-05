@@ -1041,7 +1041,7 @@ class attack{
                     }
                 }
             break
-            case 3595:
+            case 3595: case 10352:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
                 this.target[1]=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
                 if(this.target[1]>=0){

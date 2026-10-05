@@ -1335,6 +1335,7 @@ function intentDescription(attack,user,info){
 			case 497: return `Create ${info?attack.effect[0]:`?`} Bolt${pl(attack.effect[0])}`
 			case 498: return `Create ${info?attack.effect[0]:`?`} Bolt${pl(attack.effect[0])}\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block to All Enemies`
 			case 499: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6`
+			case 500: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\n3 Tiles Wide\nRange 1-2`
 
 			//mark desc
 			/*
@@ -2801,6 +2802,9 @@ Rare: ${manager.listing.relic[2].length}/${manager.listing.all[2].length}
 Shop: ${manager.listing.relic[3].length}/${manager.listing.all[3].length}
 Boss: ${manager.listing.relic[4].length}/${manager.listing.all[4].length}
 Total: ${manager.listing.relic.reduce((a,c)=>a+c.length,0)}/${manager.listing.all.reduce((a,c)=>a+c.length,0)}`)
+}
+function outRelicText(start,end){
+	print(range(start,end).map(a=>`${types.relic[a].name} (${types.relic[a].rarity==-1?`Unlisted`:[`Common`,`Uncommon`,`Rare`,`Shop`,`Boss`][types.relic[a].rarity]}): ${types.relic[a].description.replaceAll(`\n`,` `)}`).join(`\n`))
 }
 function outItem(){
 	console.log(`Common: ${current.itemManager.listing.item[0].length}

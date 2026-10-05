@@ -20417,7 +20417,7 @@ types.card=[
             {effect:[2,1],attack:10341,cost:1,target:[0],spec:[2],class:11},
             {effect:[3,1],attack:10341,cost:1,target:[0],spec:[2],class:11},
         ],mtg:{
-            rarity:0,list:-1,color:[1],
+            rarity:1,list:-1,color:[1],
             levels:[
                 {effect:[2,1],attack:10341,cost:[1],target:[0],spec:[2],class:11},
                 {effect:[3,1],attack:10341,cost:[1],target:[0],spec:[2],class:11},
@@ -29283,7 +29283,7 @@ types.card=[
         ],mtg:{
             rarity:0,list:12,color:[5],
             levels:[
-                {effect:[4,1],attack:10331,cost:[1],target:[5],spec:[0],class:1},
+                {effect:[4,1],attack:10331,cost:[5],target:[5],spec:[0],class:1},
                 {effect:[6,1],attack:10331,cost:[5],target:[5],spec:[0],class:1},
                 {effect:[8,1],attack:10331,cost:[5],target:[5],spec:[0],class:1},
             ],
@@ -58089,7 +58089,7 @@ types.card=[
             {effect:[6,2,4],attack:10337,cost:0,target:[2,1,1],spec:[],class:1},
             {effect:[8,2,4],attack:10337,cost:0,target:[2,1,1],spec:[],class:1},
         ],mtg:{
-            rarity:0,list:25,color:[5],
+            rarity:0,list:25,color:[1],
             levels:[
                 {effect:[7,2,3],attack:10337,cost:[1],target:[2,1,1],spec:[0],class:1},
                 {effect:[11,2,4],attack:10337,cost:[1],target:[2,1,1],spec:[0],class:1},
@@ -105835,7 +105835,7 @@ types.card=[
             ],
         },
     },{
-        name:'Prism\nConcerto',rarity:-1,list:-8,
+        name:'Rainbow\nConcerto',rarity:-1,list:-8,
         levels:[
             {effect:[1,1],attack:5249,cost:3,target:[0],spec:[],class:4},
             {effect:[1,1],attack:5249,cost:2,target:[0],spec:[],class:4},
@@ -107403,7 +107403,7 @@ types.card=[
             ],
         },
     },{
-        name:'Scrap\nStab',rarity:-1,list:-8,
+        name:'Scrap\nAntibody',rarity:-1,list:-8,
         levels:[
             {effect:[1],attack:3599,cost:1,target:[0],spec:[15],limit:5,class:11},
             {effect:[2],attack:3599,cost:1,target:[0],spec:[15],limit:3,class:11},
@@ -119051,7 +119051,7 @@ types.card=[
             ],
         },
     },{
-        name:'Magic\nSeed',rarity:-1,list:-8,
+        name:'Magic\nBead',rarity:-1,list:-8,
         levels:[
             {effect:[],attack:2424,cost:0,target:[0],spec:[5],class:8},
             {effect:[],attack:2424,cost:0,target:[0],spec:[5,62],class:8},
@@ -119401,7 +119401,7 @@ types.card=[
             ],
         },
     },{
-        name:'Turquoise\nLake',rarity:-1,list:-8,
+        name:'Lime\nLake',rarity:-1,list:-8,
         levels:[
             {effect:[8,1],attack:2757,cost:1,target:[2,1,2],spec:[0,1],class:1},
             {effect:[12,1],attack:2757,cost:1,target:[2,1,2],spec:[0,1],class:1},
@@ -119709,7 +119709,7 @@ types.card=[
             ],
         },
     },{
-        name:'Disintegrating\nWinds',rarity:-1,list:-8,
+        name:'Disintegrating\nGas',rarity:-1,list:-8,
         levels:[
             {effect:[15,5],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
             {effect:[20,7],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
@@ -119723,7 +119723,7 @@ types.card=[
             ],
         },
     },{
-        name:'Reforming\nWinds',rarity:-1,list:-8,
+        name:'Reforming\nGas',rarity:-1,list:-8,
         levels:[
             {effect:[20,8],attack:3099,cost:2,target:[0],spec:[],class:2},
             {effect:[25,11],attack:3099,cost:2,target:[0],spec:[],class:2},
@@ -120241,7 +120241,7 @@ types.card=[
             ],
         },
     },{
-        name:'Spades\nSlick',rarity:-1,list:-8,
+        name:'Slick\nSurface',rarity:-1,list:-8,
         levels:[
             {effect:[18,1],attack:2193,cost:2,target:[5],spec:[0],class:1},
             {effect:[26,1],attack:2193,cost:2,target:[5],spec:[0],class:1},

@@ -413,7 +413,7 @@ turn.prototype.update=function(){
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
                 case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449: case 468:
-                case 470: case 476: case 490:
+                case 470: case 476: case 490: case 500:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true

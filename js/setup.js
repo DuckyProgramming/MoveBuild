@@ -36,7 +36,7 @@ function setup(){
             /*quickNode(4)
             money(1000)*/
 
-            //event('Matching Game')
+            //event('Stone of All Time')
 
             //fight('-h Rewriter')
 
@@ -87,12 +87,12 @@ function setup(){
 
             /*variants.mod=true
             for(let a=0,la=1;a<la;a++){
-                current.modManager.addMod(274+a)
+                current.modManager.addMod(275+a)
             }*/
 
             /*for(let a=0,la=1;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(589+a,0)
+                quickRelic(592+a,0)
             }*/
             //current.overlayManager.closeAll()
 

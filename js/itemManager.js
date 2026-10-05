@@ -120,6 +120,15 @@ class itemManager{
             this.total[player]--
         }
     }
+    loseAll(player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type>1){
+                this.items[player][a].type=1
+                this.items[player][a].refresh()
+                this.total[player]--
+            }
+        }
+    }
     makeRandom(){
         let possible=[0,0,0,1,1,2]
         let rarity=possible[floor(random(0,possible.length))]
@@ -647,6 +656,9 @@ class itemManager{
             case 118:
                 userCombatant.statusEffect('Strength',2*effectiveness)
                 userCombatant.statusEffect('Dexterity',2*effectiveness)
+            break
+            case 119:
+                this.battle.cardManagers[player].hand.selfCall(6,[3595,[30*effectiveness,5],1,[2,1,3]])
             break
 
             //mark p
