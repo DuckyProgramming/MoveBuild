@@ -34007,15 +34007,15 @@ types.card=[
     },{
         name:'Knowledge\nis Power',rarity:1,list:15,
         levels:[
-            {effect:[3],attack:2704,cost:1,target:[0],spec:[],class:11},
-            {effect:[4],attack:2704,cost:1,target:[0],spec:[],class:11},
-            {effect:[5],attack:2704,cost:1,target:[0],spec:[],class:11},
+            {effect:[2],attack:2704,cost:1,target:[0],spec:[2],class:11},
+            {effect:[3],attack:2704,cost:1,target:[0],spec:[2],class:11},
+            {effect:[4],attack:2704,cost:1,target:[0],spec:[2],class:11},
         ],mtg:{
             rarity:1,list:15,color:[2,5],
             levels:[
-                {effect:[4],attack:2704,cost:[2,5],target:[0],spec:[],class:11},
-                {effect:[5],attack:2704,cost:[2,5],target:[0],spec:[],class:11},
-                {effect:[6],attack:2704,cost:[2,5],target:[0],spec:[],class:11},
+                {effect:[3],attack:2704,cost:[2,5],target:[0],spec:[2],class:11},
+                {effect:[4],attack:2704,cost:[2,5],target:[0],spec:[2],class:11},
+                {effect:[5],attack:2704,cost:[2,5],target:[0],spec:[2],class:11},
             ],
         },
     },{

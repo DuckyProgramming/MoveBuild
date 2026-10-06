@@ -44,7 +44,13 @@ play meri
 minor meri purge
 make sure her tutorial is not ruined
 
-split fortify, jumpy, yield point, wheel of black
+[sliced rice, based on ricecake]
+split fortify
+split jumpy
+split yield point
+split wheel of black
+split mountain blessing, now just removes a fatigue
+
 parhelion blur - gain 1 intangible, next luck card is guaranteed
 absolute field - add 13 block, if target intends to attack retain block this turn
 reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
@@ -88,6 +94,18 @@ debug - add 9 block, exhaust a random curse in your draw pile
 tiny blade - 0 cost 1 damage and 1 lock on in all directions
 creative writing - when you are debuffed, draw a card
 aleph - lose your first relic, gain a relic, vanishing 1
+locked medkit - blemished steel but it full heals you instead
+
+cultural creator - deal 4 damage to any enemy, gain 2 knowledge if you already have knowledge
+daybreak - [evening], draw a card if in elemental form
+demeaning gaze - apply 2 vulnerable, if target intends to attack, gain 1 knowledge
+split semester, it gives block actually
+split timeline terror to create lost days - retains, extends your elemental form by a turn if in elemental form
+split devour history, new devour history - remove 2 fatigues, gain 2 history
+elemental knowledge - based on elemental power
+split moonshift to give 2 vision on play
+spli stroll - now gives [light the way] and exhausts a card
+maybe rework all cards that say "drawn 2+ times" as this keyword just doesn't sound good
 
 headhunt - 5 damage to all enemies, if fatal gain 25 block
 call of the grave - exhume a card, get wisp
@@ -95,7 +113,9 @@ tumbleweed - counter all this combat, and apply 999 frail to a random enemy (tum
 cloak of moonlight - add 12 block per pristine in hand
 quantum speed - add 3 block, if played first put a card from discard pile into hand
 event fragment - 4 damage, return on colorless card
+morning mist - 5 block, 0 cost, put a card in discard on top of draw pile
 try again - add 9 block, gain 3 vigor per attack in hand
+unhurried - [havoc], gain faith
 [attack counterpart of the above]
 
 electric soda - gain 1 energy, gain 3 regeneration, trigger all enemies' shock, exhaust
@@ -106,6 +126,7 @@ master of fear - apply 999 vulnerable to all enemies
 high moment - gain 10 temporary strength, lose 3 health
 toxic rampart - poison for every 8? health you have
 cards that increase effect of divination and riptide
+another journey - next x cards played are free
 
 lightweight - 2 cost power, smite costs 1 less
 [safety counterpart]
