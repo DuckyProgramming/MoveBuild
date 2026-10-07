@@ -2633,24 +2633,24 @@ function generateSprite(layer,type,direction){
 			displayTrianglesFront(layer,data.parts.hair.main,direction,0,35,1,0.1,data.color.hair.front,1)
 			layer.arc(0,0,35,34,-180,0)
 			layer.line(-17.5,0,17.5,0)
-			layer.strokeWeight(0.75)
+			/*layer.strokeWeight(0.75)
 			for(let g=0,lg=data.parts.hair.strand.length;g<lg;g++){
 				if(lcos(data.parts.hair.strand[g]+direction)>0){
 					layer.line(lsin(data.parts.hair.strand[g]+direction)*15.5,0,lsin(data.parts.hair.strand[g]+direction)*14,18)
 				}
-			}
+			}*/
 			layer.strokeWeight(0.5)
 			layer.noFill()
 			layer.arc(lcos(direction+data.parts.hair.top)*-5,-10,16*lcos(direction+data.parts.hair.top),12,-180,0)
 		break
 		case 11:
 			displayTrianglesBack(layer,data.parts.hair.main,direction,0,35,1,0.1,data.color.hair.back,1)
-			layer.strokeWeight(0.75)
+			/*layer.strokeWeight(0.75)
 			for(let g=0,lg=data.parts.hair.strand.length;g<lg;g++){
 				if(lcos(data.parts.hair.strand[g]+direction)<=0){
 					layer.line(lsin(data.parts.hair.strand[g]+direction)*15.5,0,lsin(data.parts.hair.strand[g]+direction)*14,18)
 				}
-			}
+			}*/
 			displayTrianglesBack(layer,data.parts.hair.inside,direction,0,33,1,0.1,data.color.hair.insideBack,1)
 		break
 		case 12:

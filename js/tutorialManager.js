@@ -627,7 +627,8 @@ However, when you leave calm, you gain 2 energy. Rapid entry and exit can farm e
 or you can stay in calm to get a big turn later.`,
 /*`Haste is the movement stance. While in Haste, you get a Speed every turn.
 However, you cannot attack at all in Haste. Being able to leave it is very important.`,*/
-`Sturdy is the defense stance. You take 50% less damage in Sturdy.
+//`Sturdy is the defense stance. You take 50% less damage in Sturdy.
+`Sturdy is the defense stance. You add double block in Sturdy.
 However, you deal 50% less damage in Sturdy. While it is not required,
 being able to leave Sturdy is always beneficial.`,
 `Divinity is the final stance. There are few ways to instantly enter Divinity.

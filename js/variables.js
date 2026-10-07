@@ -163,7 +163,7 @@ types={
         {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
         {name:'Anomaly',life:93,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[5,1]},{type:2,effect:[6]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
-        {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunar Servent in never spawning`},
+        {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunar Servant in never spawning`},
         {name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[15]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
@@ -218,7 +218,7 @@ types={
         {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:152,effect:[999]}],description:`He had one job`},
         {name:'Globe Head',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:493,effect:[7,2]},{type:30,effect:[5,10]}],description:`Don't want to be around him`},
         {name:'Infested Prism',life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[11]},{type:378,effect:[10,10]},{type:492,effect:[2]}],description:`What's going on in there`},
-        {name:'Crow',life:13,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:31,effect:[4]}],description:`An IQ too high?`},
+        {name:'Crow',life:13,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:31,effect:[4]}],description:`An IQ too high?`},
         {name:'Smoker',life:73,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:396,effect:[7,7]},{type:54,effect:[4,1,'Dazed']}],description:`Don't do this`},
         {name:'Grail',life:35,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:439,effect:[10,1]},{type:21,effect:[]},{type:491,effect:[5]}],description:`Not of the holy variety`},
         {name:'Shipment',life:42,behavior:10,spec:[],move:{type:2,speed:1},attack:[{type:3,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in a single backup`},
@@ -298,7 +298,7 @@ types={
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Shrapnel']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,2,'Burn']}],description:`Classic war criminal`},
         {name:'Purge X02',life:500,behavior:0,spec:[0,2,19],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:32,effect:[20,2,'Void']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
-        {name:'Lunar Servent',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
+        {name:'Lunar Servant',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
         {name:'Zenith',life:111,behavior:0,spec:[0,2],move:{type:0,speed:0},attack:[{type:462,effect:[6,1]},{type:10,effect:[10]},{type:478,effect:[6,1]}],description:`All that's made can surely break`},
 
@@ -5488,10 +5488,10 @@ types={
             ],
         },{
             level:['Redraw 7'],class:2,world:2,
-            name:'Lunar Servent',
+            name:'Lunar Servant',
             player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Lunar Servent'},
+                {position:{x:0,y:0},name:'Lunar Servant'},
             ],reinforce:[
             ],assaultReinforce:[
                 {position:{x:3,y:0},name:'Soul',turn:2},
@@ -7841,7 +7841,9 @@ Unaffected by focus.`,
         },{name:'Haste',mtg:0,desc:
 `Stance. Add a Stride to Hand when entered, but you cannot attack.`,
         },{name:'Sturdy',mtg:0,desc:
-`Stance. Deal 60% damage and take 40% damage. `,
+//`Stance. Deal 60% damage and take 40% damage.`,
+//`Stance. Deal 50% damage and take 50% damage.`,
+`Stance. Deal 50% damage and add double block.`,
         },{name:'Mantra',mtg:0,desc:
 //`Gained through cards. When you gain 8 Mantra, enter Divinity.`,
 `Gained through cards. When you gain 12 Mantra, enter Divinity.`,
@@ -8233,7 +8235,7 @@ After adding both, also add a Miracle.`,
         {name:'Chief Engineering Officer',desc:'25% of Cards are Stapled'},
         {name:'Shadow Trooper',desc:'All Enemies are Invisible First Turn'},
         {name:'Purge X02',desc:'Enemies Add Double Block'},//140
-        {name:'Lunar Servent',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
+        {name:'Lunar Servant',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
         {name:'Rewriter',desc:'Every Combat Spawns Glitched Tiles'},
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
         {name:'Managerial',desc:'Immediately Fight 12 Robots'},
@@ -8442,7 +8444,21 @@ constants={
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
-options={damage:false,alt:false,replay:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false,devGen:false,spin:false,massDrop:true}
+options={
+    id:false,//shows the id of cards in the corner
+    attack:false,//shows the attack id of cards in the corner
+    massDrop:true,//shows the player that cards were pulled
+
+    oldDuplicate:false,//duplicate cards by copying them, rather than reusing them, DEPRECATED
+    oldUnbuild:false,//multiple copies of unbuild, 1 per construct, DEPRECATED
+    
+    damage:false,//enables some (few) characters to change appearance when injured, DEPRECATED/BUGGY
+    alt:false,//enables some (few) characters to change appearance permanently, DEPRECATED/BUGGY
+    preGen:[],//generate some character graphics when loading the game initially, DEPRECATED
+    spin:false,//causes all combatants to spin, for some reason, DEPRECATED
+    devGen:false,//on dev mode, enables starting with the 6 most recently added cards to your character, DEPRECATED
+    replay:false,//enables the replay feature after battles, DEPRECATED/BUGGY
+}
 graphics={main:0,backgroundGen:17,backgroundCombatantGen:8,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],paperball:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false,loading:``,bump:{trigger:false,anim:0}}
 inputs={mouse:{x:0,y:0},prev:{x:0,y:0},rel:{x:0,y:0},prevRel:{x:0,y:0},above:'!@#$%^&*()',lastKey:[],hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}

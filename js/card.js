@@ -6285,6 +6285,9 @@ class card{
                             if(options.id){
                                 this.layer.text(this.id,this.width/2-8,-this.height/2+8)
                             }
+                            if(options.attack){
+                                this.layer.text(this.attack,this.width/2-8,-this.height/2+8)
+                            }
                             if(spec.includes(12)){
                                 if(variants.mtg){
                                     this.layer.textAlign(LEFT,CENTER)

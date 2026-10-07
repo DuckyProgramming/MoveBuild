@@ -14712,7 +14712,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Lunar Servent'&&this.trigger.display.stars){
+                if(this.name=='Lunar Servant'&&this.trigger.display.stars){
                     this.layer.noStroke()
                     this.layer.fill(this.color.stars[0],this.color.stars[1],this.color.stars[2],this.fade*this.fades.stars)
                     for(let a=0,la=9;a<la;a++){
@@ -15064,7 +15064,7 @@ combatant.prototype.display=function(){
                     }
                 }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servant'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -15166,12 +15166,12 @@ combatant.prototype.display=function(){
                     this.layer.rect(7.5*lsin(this.anim.direction+90),-48,2,6)
                     this.layer.rect(7.5*lsin(this.anim.direction+90),-52,1,2)
                 }
-                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)<=0){
+                if(this.name=='Lunar Servant'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)<=0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-lcos(this.spin.under.under.top[0]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[0]+this.anim.direction)*5.2,-53,lcos(this.spin.under.under.top[0]+this.anim.direction)*2.5+3.5,6)
                 }
-                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)<=0){
+                if(this.name=='Lunar Servant'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)<=0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-lcos(this.spin.under.under.top[1]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[1]+this.anim.direction)*5.2,-53,lcos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
@@ -15693,12 +15693,12 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)>0){
+                if(this.name=='Lunar Servant'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[0]+this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,lcos(this.spin.under.under.top[0]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[0]+this.anim.direction)*5.2,-52,lcos(this.spin.under.under.top[0]+this.anim.direction)*2.5+3.5,6)
                 }
-                if(this.name=='Lunar Servent'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)>0){
+                if(this.name=='Lunar Servant'&&this.trigger.display.under.under.top&&lcos(this.spin.under.under.top[1]+this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,lcos(this.spin.under.under.top[1]+this.anim.direction))),this.fade*this.fades.under.under.top)
                     this.layer.ellipse(lsin(this.spin.under.under.top[1]+this.anim.direction)*5.2,-52,lcos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
@@ -15892,7 +15892,7 @@ combatant.prototype.display=function(){
                     )
                 }
                 for(let g=0;g<2;g++){
-                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
+                    if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servant'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
@@ -16198,7 +16198,7 @@ combatant.prototype.display=function(){
                         this.layer.triangle(lsin(this.anim.direction)*11-lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*11+lcos(this.anim.direction)*5,-71,lsin(this.anim.direction)*10,-57)
                     }
                     for(let g=0;g<2;g++){
-                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
+                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunar Servant'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
@@ -16746,7 +16746,7 @@ combatant.prototype.display=function(){
                     this.layer.rect(0,-91,30,12,3)
                     this.layer.rect(lsin(this.anim.direction+180)*15,-87,24,4)
                 }
-                if((this.name=='Councilman'||this.name=='Lunar Servent'||this.name=='Ascended Soul')&&this.trigger.display.halo){
+                if((this.name=='Councilman'||this.name=='Lunar Servant'||this.name=='Ascended Soul')&&this.trigger.display.halo){
                     this.layer.noFill()
                     this.layer.stroke(this.color.halo[0],this.color.halo[1],this.color.halo[2],this.fade*this.fades.halo)
                     this.layer.strokeWeight(2)
@@ -16789,7 +16789,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Lunar Servent'&&this.trigger.display.stars){
+                if(this.name=='Lunar Servant'&&this.trigger.display.stars){
                     this.layer.noStroke()
                     this.layer.fill(this.color.stars[0],this.color.stars[1],this.color.stars[2],this.fade*this.fades.stars)
                     for(let a=0,la=9;a<la;a++){

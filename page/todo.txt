@@ -1,63 +1,48 @@
 CS 131 [AIRI]
 
-purge airi
-make sure her tutorial is not ruined
-
 fill in remaining slots with randos from the reserve below
-
-CS 132 [?]
 
 new dukelis packs
 mao zedong - all the chinese leaders are really hard to get through and they start with a huge debuff but scale
-more communizing
+
+restore the sakura tutorial
+
+CS 132 [?]
+
+minor vincent purge
+reorganize the items
+https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
+make sure his tutorial is not ruined
 
 tooltips for dictionary
 
-play sakura armament
-shoot armament mechanic
-make sure her tutorial is not ruined
-
-play setsuna
+test setsuna
 clunky cards
 purge?
 make sure her tutorial is not ruined
 
-play edgar
+test edgar
 purge?
 make sure his tutorial is not ruined
 
-play discardless shiru
+test discardless shiru
 purge?
 make sure her tutorial is not ruined
 
-play prehex x2 runs
+test prehex x2 runs
 purge?
-make sure his tutorial is not ruined
-
-play vincent
-minor vincent purge
-reorganize the items
-https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
 make sure his tutorial is not ruined
 
 play meri
 minor meri purge
 make sure her tutorial is not ruined
 
-[sliced rice, based on ricecake]
-split fortify
-split jumpy
-split yield point
-split wheel of black
-split mountain blessing, now just removes a fatigue
-
-parhelion blur - gain 1 intangible, next luck card is guaranteed
+bombing card for dukelis
 absolute field - add 13 block, if target intends to attack retain block this turn
 reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
 maid in heaven - gain 1 energy for each unique class of card in hand
 disarmament talks - you lose 1 strength, everybody else loses 2, exhaust(dukelis i assume)
 commencement - exhaust a card, if it's a curse or status put a card from discard into your hand
-wire key - every 3 turns, gain 1 conditioning
 
 port priority - deal 8 damage, deal 4 damage to the first enemy in acting order
 scapegoat - gain 1 intangible, gain vigor equal to damage taken this turn(quite strong)
@@ -77,6 +62,7 @@ special order - draw 2 cards, gain 1 energy per status card drawn
 crime of the century - if played during an elite combat, gain a relic and leave combat
 googolplex - when you play a power, discover a power(copying STS eh with the defect powers build)
 classic gamble - double or nothing any amount of money, chances cannot be edited (still counts as highroll or lowroll) (rename to something else like daily double or moist tomato?)
+more communizing
 
 remold - double upgrade a card permanently, remove a card permanently, lose 20 max hp
 split ddos - new ddos applies shock in all directions
@@ -86,6 +72,7 @@ key ring - add 5 block 2 times, every 3 times played gain 2 energy
 wing flail - remove all block from target, 2 damage 3 times, retain(quite good espially late game)
 crossing boundaries - recall for 1 cost BUT set caffeine to your limit(once again maybe a rename to pushing boundaries)
 rebalancer - unupgrade a random upgraded card, upgrade a card permanently
+pillars of creation - when you create a card add 2 block
 
 condemnation - deal damage, then trigger [choreograph] for 1 card(idk what [choreograph] is so cant comment)
 foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status](see above about unknown mechanics)
@@ -125,8 +112,8 @@ final battle - gain 5 mortal, deal double damage for the rest of this combat
 master of fear - apply 999 vulnerable to all enemies
 high moment - gain 10 temporary strength, lose 3 health
 toxic rampart - poison for every 8? health you have
+homely hermit - draw 2 cards, they cost 0, divinity: gain 1 energy
 cards that increase effect of divination and riptide
-another journey - next x cards played are free
 
 lightweight - 2 cost power, smite costs 1 less
 [safety counterpart]
@@ -160,6 +147,7 @@ mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
+grammar check
 
 [slio9]
 

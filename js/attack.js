@@ -20172,7 +20172,7 @@ class attack{
                     break
                     case 8784:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
-                        this.battle.combatantManager.areaAbstract(2,['Shock',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Shock',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 8785:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
@@ -21145,7 +21145,7 @@ class attack{
                     break
                     case 9972:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
-                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 9973:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
@@ -21351,7 +21351,7 @@ class attack{
                     break
                     case 10291:
                         this.userCombatant.statusEffect('Buffer',this.effect[0])
-                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 10294:
                         this.userCombatant.statusEffect('Strength',this.effect[0]*this.userManager.discard.numberAbstract(4,[[13]]))
@@ -40087,6 +40087,8 @@ class attack{
                     break
                     case 5715:
                         this.battle.combatantManager.areaAbstract(2,['Freeze',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        //this card has 2 range, do not copy this code over to any other cards that have range 1
+                        //it's not the first time you've made this mistake
                     break
                     case 5950:
                         this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
@@ -40096,10 +40098,10 @@ class attack{
                         this.battle.combatantManager.areaAbstract(2,['Bleed',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 6870:
-                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 6871:
-                        this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 7071:
                         this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
@@ -40112,7 +40114,7 @@ class attack{
                         this.battle.combatantManager.areaAbstract(0,[this.userManager.deck.cards.length,this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 7753:
-                        this.battle.combatantManager.areaAbstract(10,['Vulnerable',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(10,['Vulnerable',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 8535:
                         this.battle.combatantManager.areaAbstract(11,[this.effect[0],this.effect[1],this.user,0,this.userCombatant],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
@@ -40137,7 +40139,7 @@ class attack{
                         }
                     break
                     case 9252:
-                        this.battle.combatantManager.areaAbstract(2,['Frail',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['Frail',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 10276:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0]*this.userManager.hand.numberAbstract(4,[[11]]),this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
@@ -40467,7 +40469,7 @@ class attack{
                         this.userCombatant.statusEffect('Counter Once',this.effect[1])
                     break
                     case 7757:
-                        this.battle.combatantManager.areaAbstract(2,['No Heal',999],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
+                        this.battle.combatantManager.areaAbstract(2,['No Heal',999],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 7874:
                         for(let a=0,la=this.effect[1]*this.energy;a<la;a++){

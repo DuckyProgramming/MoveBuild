@@ -241,7 +241,7 @@ class combatant{
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
-                0,0,0,1,2,2,0,1,0,1,//17
+                0,0,0,1,2,0,0,1,0,1,//17
                 1,0,1,0,2,0,2,2,0,2,//18
                 2,2,2,0,2,2,0,0,0,2,//19
                 0,0,0,0,0,0,1,0,1,0,//20
@@ -1534,7 +1534,7 @@ class combatant{
                         this.move.speed++
                         this.subAttackTypeSwitch([[0,9,28,[]]])
                     break
-                    case 'Lunar Servent':
+                    case 'Lunar Servant':
                         this.statusEffect('Block Cycle 2 1',40)
                         this.statusEffect('Heal Per Turn',10)
                         for(let a=0,la=2;a<la;a++){
@@ -2669,7 +2669,7 @@ class combatant{
                                 this.progress=0
                                 this.intent=3
                             }else{
-                                this.intent=this.progress
+                                this.intent=constrain(this.progress,0,2)
                                 this.progress++
                             }
                         break
@@ -3927,9 +3927,9 @@ class combatant{
                 if(this.stance==1){
                     damage*=this.status.main[478]>0?3:2
                 }
-                if(this.stance==4){
+                /*if(this.stance==4){
                     damage*=0.5
-                }
+                }*/
                 if(this.status.main[321]>0){
                     damage=ceil(damage/5)*5
                 }
@@ -4758,6 +4758,9 @@ class combatant{
                 this.status.main[761]--
             }
             if(this.status.main[652]>0&&this.stance==1){
+                block*=2
+            }
+            if(this.stance==4){
                 block*=2
             }
             block=round(block*10)/10
@@ -7042,7 +7045,7 @@ class combatant{
                     case 0: case 2: case 4: case 6:
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
-                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&(type==2||type==6)){
+                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunar Servant'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian')&&(type==2||type==6)){
                             this.animSet.loop=0
                             this.goal.anim.sword=true
                         }
@@ -7962,7 +7965,7 @@ class combatant{
                     break
                     case 2:
                         this.animSet.loop+=rate
-                        if(this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunar Servent'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian'){
+                        if(this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunar Servant'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'||this.name=='Daughter of Heaven'||this.name=='Pure Swordsman'||this.name=='Old Konaian'){
                             this.anim.arms[0].top=24+lsin(this.animSet.loop*180)*36
                             this.anim.arms[0].bottom=9+lsin(this.animSet.loop*180)*96
                             this.spin.arms[0].top=-93+lsin(this.animSet.loop*180)*63

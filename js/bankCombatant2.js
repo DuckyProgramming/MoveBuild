@@ -3847,7 +3847,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.sword=1
                     this.trigger.display.extra={sword:true}
                 break
-                case 'Lunar Servent':
+                case 'Lunar Servant':
                     this.color={skin:{head:[150,120,200],body:[50,20,55],legs:[40,10,45],arms:[40,10,45]},eye:{back:[255,255,255],front:[255,255,255],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     this.color.halo=[255,245,200]
                     this.color.stars=[255,255,235]
@@ -7168,7 +7168,7 @@ combatant.prototype.minorDisplay=function(type,key){
                 break
             }
         break
-        case 'Lunar Servent':
+        case 'Lunar Servant':
             switch(type){
                 case 0:
                     this.layer.push()

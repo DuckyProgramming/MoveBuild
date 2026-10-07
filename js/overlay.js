@@ -3830,7 +3830,7 @@ class overlay{
                 this.layer.noStroke()
                 this.layer.fill(0)
                 this.layer.textSize(10)
-                this.layer.text('Remove Card',this.layer.width/2-(have19?120:0),this.layer.height/2+20)
+                this.layer.text('Remove Card',this.layer.width/2-(have19?120:60),this.layer.height/2+20)
                 this.layer.text('Deluxe Upgrade',this.layer.width/2+(have19?0:60),this.layer.height/2+20)
                 if(have19){
                     this.layer.text('Duplicate',this.layer.width/2+120,this.layer.height/2+20)

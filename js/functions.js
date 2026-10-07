@@ -2648,14 +2648,15 @@ function outMtgError(){
 			}
 		}
 	}
-	for(let a=0,la=types.relic.length;a<la;a++){
+	/*for(let a=0,la=types.relic.length;a<la;a++){
 		if(types.relic[a].mtg==1&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==2)){
 			print(types.relic[a].name,'R-A')
 		}
 		if(types.relic[a].mtg==2&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==1)){
 			print(types.relic[a].name,'R-B')
 		}
-	}
+	}*/
+	//this complained about 2 relics that aren't really a problem
 }
 function outMtgRelic(){
 	for(let a=0,la=types.relic.length;a<la;a++){
@@ -3066,6 +3067,18 @@ function oracleCut(start,end){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()
 	}
+}
+function oracleOrder(){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	let z=(card)=>{return typeof card.attack=='object'?max(card.attack[0],card.attack[1]):card.attack}
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.sort((a,b)=>z(a)-z(b))
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+	options.attack=true
 }
 function movebuildle(){
 	current.overlayManager.overlays.push([new overlay(current.overlayManager.layer,current.overlayManager.battle,0,27,[])])
@@ -3669,10 +3682,12 @@ function checkExists(start,end){
 		3589,3590,3591,3678,3755,3756,3757,3764,3765,3882,
 		3943,4190,//invalid mtg mergers
 		3662,//invalid recycling
+		4298,//invalid shooting echo
 		5868,//invalid halflife
 		6032,//invalid seven hakus
 		6199,//invalid cleaver
 		7929,//invalid suit up
+		8540,//invalid luminescent pillar
 		8695,//invalid set sail
 		9661,//invalid silverswivel
 		83,84,85,86,9974,//items

@@ -6,6 +6,8 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     if(false){
+        game.dev=true
+
             //game.diff=26
             //game.ascend=33
 
@@ -15,7 +17,7 @@ function setup(){
         current.menu.combatant=[0]
         current.menu.deck=[-1]
 
-            variants.mtg=true
+            //variants.mtg=true
 
         if(variants.mtg){
             for(let a=0,la=current.menu.combatant.length;a<la;a++){
@@ -29,7 +31,6 @@ function setup(){
 
             //current.nodeManager.world=0
 
-        game.dev=true
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 

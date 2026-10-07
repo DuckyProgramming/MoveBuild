@@ -54,7 +54,7 @@ class purchaseManager{
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
                             [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?0.8:0.5):1)*(antisale==a?2:1))],
-                            [findName(['Placeholder\nCommon','Placeholder\nUncommon','Placeholder\nRare'][group[a]],types.card),0,0,sale==a,antisale==a],
+                            [findName(['Character\nCommon','Character\nUncommon','Character\nRare'][group[a]],types.card),0,0,sale==a,antisale==a],
                             group[a]+1
                         ))
                     }

@@ -8705,8 +8705,10 @@ attack.prototype.update=function(){
                         }
                     break
                     case 9988:
-                        this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[1,0],57,[],[]])
+                        for(let a=0;a<this.effect[1];a++){
+                            this.battle.overlayManager.overlays[10][this.player].active=true
+                            this.battle.overlayManager.overlays[10][this.player].activate([this.level,[1,0],57,[],[]])
+                        }
                     break
                 }
             }else if(this.timer>=20){
