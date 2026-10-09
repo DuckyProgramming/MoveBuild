@@ -923,7 +923,7 @@ class card{
                 userCombatant.takeDamage(this.effect[0],-1)
                 this.effect[0]+=this.effect[1]
             break
-            case -90:
+            case -90: case 10374:
                 userCombatant.charge=max(0,userCombatant.charge-this.effect[0])
             break
             case -95:
@@ -1074,6 +1074,12 @@ class card{
             break
             case 9688:
                 userCombatant.statusEffect('(E) Next Turn',2)
+            break
+            case 10407:
+                this.discardEffect.push(20)
+            break
+            case 10408:
+                this.discardEffect.push(21)
             break
         }
     }
@@ -1699,7 +1705,7 @@ class card{
             case 6479:
                 userCombatant.addBounce(this.effect[0])
             break
-            case 6550:
+            case 6550: case 10406:
                 this.battle.combatantManager.lowestEffect(0,[this.effect[0],userCombatant.id])
             break
             case 6563:
@@ -1776,6 +1782,12 @@ class card{
             case 10295:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
                 userCombatant.statusEffect('Strength',this.effect[1])
+            break
+            case 10374:
+                userCombatant.charge+=this.effect[1]
+            break
+            case 10405:
+                this.battle.combatantManager.lowestEffect(0,[this.effect[1],userCombatant.id])
             break
 
         }

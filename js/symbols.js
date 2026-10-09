@@ -529,11 +529,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 65:
             layer.fill(150,175,200,fade)
-            layer.rect(0,0,3,9)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            /*layer.rect(0,0,3,9)
             layer.rect(-3,0,2,6)
             layer.rect(3,0,2,6)
             layer.triangle(-1,-5,1,-5,0,-6)
-            layer.triangle(-1,5,1,5,0,6)
+            layer.triangle(-1,5,1,5,0,6)*/
         break
         case 66:
             layer.fill(255,200,255,fade)
@@ -10728,6 +10730,66 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-2,6,-4,0,0,0)
             layer.triangle(2,0,4,-6,0,-6)
         break
+        case 1006:
+            layer.fill(150,0,0,fade)
+            layer.arc(0,0,8,8,0,180)
+            layer.triangle(-4,0,-3,-4,-2,0)
+            layer.triangle(4,0,3,-4,2,0)
+            layer.triangle(-2,0,2,0,0,-6)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
+        case 1007:
+            layer.fill(125,255,255,fade)
+            layer.rect(0,0,9,9)
+            layer.fill(175,255,255,fade)
+            layer.rect(0,0,6,6)
+            layer.fill(225,255,255,fade)
+            layer.rect(0,0,3,3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+        break
+        case 1008:
+            layer.fill(255,255,50,fade)
+            layer.beginShape()
+            layer.vertex(0.5,-10)
+            layer.vertex(-4,1.5)
+            layer.vertex(0.5,1.5)
+            layer.vertex(-0.5,10)
+            layer.vertex(4,-1.5)
+            layer.vertex(-0.5,-1.5)
+            layer.endShape()
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+        break
+        case 1009:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            layer.fill(240,fade)
+            layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
+        break
+        case 1010:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            layer.fill(240,fade)
+            layer.rect(0,0,1,8)
+            layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
+        break
+        case 1011:
+            layer.fill(150,175,200,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            layer.fill(240,fade)
+            layer.rect(-0.75,0,1,8)
+            layer.rect(0.75,0,1,8)
+            layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
+        break
     }
     //mark s
     layer.pop()
@@ -17407,11 +17469,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         break
         case 96:
             layer.fill(150,175,200,fade)
-            layer.rect(0,0,3,9)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            /*layer.rect(0,0,3,9)
             layer.rect(-3,0,2,6)
             layer.rect(3,0,2,6)
             layer.triangle(-1,-5,1,-5,0,-6)
-            layer.triangle(-1,5,1,5,0,6)
+            layer.triangle(-1,5,1,5,0,6)*/
         break
         case 97:
             layer.fill(100,255,100,fade)

@@ -18,6 +18,7 @@ class group{
         this.turnPlayedEdition=[0,0,0,0,0,0,0,0,0]
         this.lastTurnPlayedEdition=[0,0,0,0,0,0,0,0,0]
         this.compact=1
+        this.compactSpecial=false
         this.cardInUse=0
         this.cardSelectIndex=0
         this.cardShuffledIndex=0
@@ -2783,6 +2784,12 @@ class group{
                         this.cards[a].costDown(0,[args[0]])
                     }
                 break
+                case 82:
+                    if(this.cards[a].name==args[0]){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                    }
+                break
                 //mark allargs
             }
         }
@@ -3323,6 +3330,9 @@ class group{
         userCombatant.activateDraw()
         this.battle.combatantManager.drawCardFront(card.class,card)
         this.battle.relicManager.activate(19,[card,this.player])
+        if(this.compactSpecial&&!this.cards[a].spec.includes(34)){
+            this.cards[a].spec.push(34)
+        }
         if(card.getBasicMultiple([1,2])){
             if(this.basicChange[0]>0){
                 card.setCost(0,[0])
@@ -3649,7 +3659,7 @@ class group{
                     this.sendAmounts[sendId]+=userCombatant.getStatus('Drawn Shiv Draw')
                 }
             break
-            case 933: case 4010: case 4290: case 4291:
+            case 933: case 4010: case 4290: case 4291: case 10405:
                 if(variants.mtg){
                     this.battle.addSpecificEnergy(card.effect[0],this.player,6)
                 }else{
@@ -3866,7 +3876,7 @@ class group{
             case 4566: case 4567: case 4568:
                 this.battle.addSpecificEnergy(card.attack-4564,this.player,4)
             break
-            case 4655: case 4656: case 4657:
+            case 4655: case 4656: case 4657: case 10406:
                 this.battle.addSpecificEnergy(1,this.player,6)
             break
             case 4746: case 6431:
@@ -5046,23 +5056,23 @@ class group{
                         let amplifyCost=[]
                         switch(this.battle.attackManager.type){
                             case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646: case 4892: case 4937: case 4938:
-                            case 4939:
+                            case 4939: case 10358: case 10359: case 10369: case 10361: case 10398: case 10456: case 10457: case 10458:
                                 amplifyCost=[1]
                             break
-                            case 4637:
+                            case 4637: case 10400:
                                 amplifyCost=[3,-1]
                             break
                             case 4642: case 4645:
                                 amplifyCost=[1,5]
                             break
-                            case 4650: case 6000: case 6229: case 8257:
+                            case 4650: case 6000: case 6229: case 8257: case 10393:
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
                             case 10061:
                                 amplifyCost=[6]
                             break
-                            case 4663: case 6946:
+                            case 4663: case 6946: case 10368:
                                 amplifyCost=[2]
                             break
                             case 4672: case 4866:
@@ -6899,9 +6909,19 @@ class group{
                                 let hold=this.cards[a].discardEffect
                                 this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
                                 this.cards[a].discardEffect=hold
-                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(4),1)
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(20),1)
                                 this.cards[a].spec.push(89)
                                 this.cards[a].additionalSpec.push(89)
+                            }else if(this.cards[a].discardEffect.includes(21)){
+                                let hold=this.cards[a].discardEffect
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific('Operational\nDefend')
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(21),1)
+                            }else if(this.cards[a].discardEffect.includes(22)){
+                                let hold=this.cards[a].discardEffect
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific('Operational\nStrike')
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(22),1)
                             }
                             if(this.cards[a].discardEffect.includes(1)){
                                 this.cards[a].discardEffect=[]

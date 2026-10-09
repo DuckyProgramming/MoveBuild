@@ -1125,6 +1125,9 @@ class cardManager{
     transformCardToBasic(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(['Strike','Defend','Step'][floor(random(0,3))],types.card),base.level,base.color,base.id)
     }
+    transformCardSpecific(name){
+        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(name,types.card),base.level,base.color,base.id)
+    }
     clear(){
         this.reserve.cards=[]
         this.hand.cards=[]
@@ -1178,6 +1181,12 @@ class cardManager{
         }
         if(this.battle.relicManager.active[230][this.player+1]>0){
             this.hand.compact*=0.8**this.battle.relicManager.active[230][this.player+1]
+        }
+        this.hand.compactSpecial=false
+        for(let a=0,la=this.deck.cards.length;a<la;a++){
+            if(this.deck.cards[a].attack==10448){
+                this.hand.compactSpecial=true
+            }
         }
     }
     display(scene,args){

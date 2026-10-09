@@ -1,11 +1,6 @@
 CS 131 [AIRI]
 
-fill in remaining slots with randos from the reserve below
-
-new dukelis packs
-mao zedong - all the chinese leaders are really hard to get through and they start with a huge debuff but scale
-
-restore the sakura tutorial
+script, test, and deploy this set
 
 CS 132 [?]
 
@@ -38,6 +33,9 @@ minor meri purge
 make sure her tutorial is not ruined
 
 bombing card for dukelis
+split perseids
+[you're shocked, disbanded]
+[sacridice]
 absolute field - add 13 block, if target intends to attack retain block this turn
 reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
 maid in heaven - gain 1 energy for each unique class of card in hand

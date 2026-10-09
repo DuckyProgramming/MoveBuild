@@ -1,3 +1,332 @@
+constants.status={
+    name:[
+        'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
+        'Vulnerable','Retain Block','Vigor','Block Next Turn','Armor','Control','Cannot Add Block','Temporary Strength','Temporary Dexterity','Metallicize',
+        'Weak Next Turn','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Cannot Move Next Turn',
+        'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Add Block Next Turn','Counter Push','Counter Bleed',
+        'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
+        'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
+        'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
+        'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
+        'Explode on Death','Energy in 2 Turns','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Mortal','Shiv on Hit','Intangible Next Turn','Block in 2 Turns',
+        'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
+        'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block Combat','Heal Gain Max HP',
+        'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
+        'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Health','Mantra Per Turn',
+        'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
+        'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
+        'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
+        '1.5x Block','Upgrade Created','Lowroll Strength','Decrementing Strength','Energy in 3 Turns','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
+        'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
+        'Take Damage Next Turn','Take Damage in 2 Turns','Block in 3 Turns','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
+        'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
+        'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Chained','Fragile Heal',
+        'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
+        'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Mantra Next Turn',
+        'Hook','Temporary Vigor','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
+        'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
+        'Single Damage Convert','2 Exhaust Draw','Dice Boost','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
+        '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
+        'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
+        'Heal Damage Random','Block Vigor Convert','Strength in 2 Turns','Dexterity in 2 Turns','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength in 3 Turns','Free Movement','Cable Swap',
+        'Strike Block','0 Cost Vigor','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
+        'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed in 2 Turns','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
+        'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
+        'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
+        'Barrier Damage Random','Scry Per Turn','Wheel Ghost Per Turn','Temporary Draw Next Turn','Temporary Draw in 2 Turns','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
+        'Wheel Boost','3+ Cost Free Wheel','3+ Cost Free Upgraded Wheel','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
+        'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
+        'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
+        'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Bounce','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
+        'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets','Counter Gun','Counter Bomb','Low Health Construct','Temporary Strength Per Turn',
+        'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn','Damage All','Armament Bypass',
+        'Burn Strength','Burn Bypass','Strike Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
+        'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
+        'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
+        '2+ Cost Vigor','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Health Loss Splash',variants.mtg?'Mana Gain Splash':'Energy Gain Splash',
+        'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
+        'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
+        'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
+        'Single Attack Mortal','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Mana',
+        '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
+        '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
+        'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
+        'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn','Colorless Cost Down',
+        'Colorless Neutral Convert','Single Attack Weak','Amplify Draw','(E) in 2 Turns','(W) in 2 Turns','(B) in 2 Turns','(K) in 2 Turns','(G) in 2 Turns','(R) in 2 Turns','(N) in 2 Turns',
+        '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns','Lowroll (E)','Highroll (E)','All Mana (W)',
+        'All Mana (B)','All Mana (K)','All Mana (G)','All Mana (R)','Claw Up','Metallicize All','Frail Next Turn','Retain Dodge','Counter Once Per Turn','Counter Bleed Once',
+        'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
+        'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Vigor','3+ Cost Block','Item Use (N)','(E) Cyscle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
+        '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
+        'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
+        'Wheel Temporary Strength','Wheel Temporary Dexterity','Electric Orb Per Turn','Electric Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
+        'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
+        'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
+        variants.mtg?'Mana Gain Temporary Strength':'Energy Gain Temporary Strength','X Cost Vigor','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable',variants.mtg?'Mana Gain Splash Freeze':'Energy Gain Splash Freeze',
+        'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
+        'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap','2+ Cost Attack Energy','2+ Cost Attack (E)',
+        'Dark Matter Fuel All','Combo Spend Draw','Double Wrath Block','Turn Exhaust','Skill Draw Next Turn','Health Loss Poison Random','Free Minerals','Lose Health in 2 Turns','Lock On Bleed','Elemental Entrance Draw',
+        'Dodge on Kill','5 or Less Charge Block','Amplify Charge','Radiation','Retain Radiation','Radiation Per Turn','Dark Matter Pull Radiation','Dark Matter Radiation Trigger','Calm Next Turn','Unplayable Draw Retain Once',
+        'Basic Orb Boost','Prismatic Bomb Items','Skill Draw','Defense Draw','Evoke Block','Orb Tick Per Turn','Revive','Invulnerable','Calm Bonus','Scry Damage All',
+        'Wisp Exhaust Charge','Shiv Scatter','Shiv Block','X Cost Chocolate Chip','Hand Copy Next Turn','Poison Damage','Shiv Extra Target','Unplayable Draw Block','Lock On Poison','Bleed Boost',
+        'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
+        'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
+        'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
+        'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
+        'Reversal Per Turn','Sharp Word Per Turn','Wheel Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
+        'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
+        'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
+        '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
+        'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Vigor','Assign Return','Assign Temporary Strength','Pity',
+        'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
+        'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
+        'Intangible Strength','Debuff Draw','"Debuff"','Wheel Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
+        'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
+        'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
+        'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
+        'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
+        'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
+        'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
+        'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
+        'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block','Burn Trigger All Per Turn','Power Claw Up','Dual Discus Per Turn',
+        'Discus Boost','Discus Temporary Strength','Discus Temporary Dexterity','Discus Pure','Discus Flip Top','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Splash Attach Vulnerable','Free Skill Discover Per Turn','Common Colorless Discover Per Turn',
+        'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash','Temporary Dexterity Cycle 3 1','Temporary Dexterity Cycle 3 2','Temporary Dexterity Cycle 3 3','0 Cost Temporary Strength','Charge Consume Temporary Strength','Silver Temporary Strength',
+        'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength','Fragile Skill Cost Down',
+        'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn','Temporary Dexterity Convert','Split Card Block','X Cost Strength','Tile Exhaust','Status Exhaust',
+        'Scry Block','Overdose (W)','Overdose (B)','Overdose (G)','Overdose (R)','Attack Intent (N)','Attack Intent (W)','Attack Intent (B)','Attack Intent (K)','Attack Intent (G)',
+        'Attack Intent (E)','10 Draw Energy','10 Draw Random Mana','3 Lowroll Strength','3 Highroll Strength','3 Lowroll Dexterity','3 Highroll Dexterity','3 Lowroll Draw','3 Highroll Draw','3 Lowroll Energy',
+        '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
+        '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
+        'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
+        'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
+        'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
+        'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
+        'Conditioning Cycle 3 2','Conditioning Cycle 3 3',
+    ],
+    behavior:[
+        0,2,1,1,2,0,0,0,1,1,//1
+        1,0,0,2,0,0,1,2,2,0,//2
+        2,0,0,0,1,1,2,0,1,2,//3
+        0,1,1,1,0,0,0,2,1,2,//4
+        2,2,0,0,0,0,0,2,0,0,//5
+        0,1,0,1,0,2,2,1,2,2,//6
+        1,0,2,0,2,0,0,1,0,0,//7
+        0,0,2,2,0,2,0,2,0,1,//8
+        0,2,2,2,0,0,0,0,2,2,//9
+        0,0,1,1,1,0,0,1,2,0,//10
+        0,0,2,0,0,0,2,0,0,0,//11
+        0,0,0,0,0,0,0,1,0,0,//12
+        2,1,0,0,2,0,0,0,2,0,//13
+        1,1,1,0,0,0,0,1,0,0,//14
+        0,0,0,0,0,1,2,2,2,1,//15
+        0,0,0,0,0,2,0,0,0,0,//16
+        0,0,0,1,2,0,0,1,0,1,//17
+        1,0,1,0,2,0,2,2,0,2,//18
+        2,2,2,0,2,2,0,0,0,2,//19
+        0,0,0,0,0,0,1,0,1,0,//20
+        0,0,0,0,1,2,2,2,1,2,//21
+        1,0,2,0,0,0,0,1,0,0,//22
+        2,0,0,0,0,0,0,0,1,2,//23
+        1,2,2,1,0,2,0,2,0,0,//24
+        1,0,1,1,2,2,2,0,2,0,//25
+        0,0,0,0,0,0,0,0,0,2,//26
+        1,1,2,1,0,2,0,0,2,2,//27
+        2,0,2,0,0,0,1,2,1,0,//28
+        0,2,2,2,0,2,0,2,0,1,//29
+        0,0,0,0,0,0,0,1,0,1,//30
+        0,0,2,2,0,1,6,0,0,1,//31
+        1,0,0,0,0,0,0,0,2,1,//32
+        0,1,0,0,0,0,0,0,0,1,//33
+        0,0,0,2,2,0,0,0,0,2,//34
+        0,0,0,2,2,0,2,0,2,2,//35
+        2,2,0,0,2,0,2,1,0,0,//36
+        2,0,0,0,1,0,0,0,2,2,//37
+        2,2,2,2,1,1,0,2,0,1,//38
+        0,1,0,0,0,0,2,2,0,0,//39
+        2,0,0,0,2,2,0,2,0,1,//40
+        0,1,0,0,0,1,1,1,0,0,//41
+        1,0,1,0,1,0,0,0,0,0,//42
+        0,0,0,0,0,1,1,0,2,2,//43
+        0,0,0,0,0,0,0,0,0,0,//44
+        0,0,0,0,0,0,0,0,0,0,//45
+        0,0,0,1,0,0,0,0,0,0,//46
+        0,1,2,2,0,2,2,0,2,0,//47
+        0,0,0,0,0,0,0,2,1,0,//48
+        0,0,0,2,0,2,0,2,0,0,//49
+        0,2,0,0,0,0,0,2,2,0,//50
+        0,2,2,2,2,2,2,2,2,0,//51
+        0,0,0,0,0,0,0,0,2,0,//52
+        1,0,0,2,2,2,2,2,2,2,//53
+        2,2,2,2,2,2,2,0,0,0,//54
+        0,0,0,0,0,0,2,1,0,2,//55
+        0,2,0,0,0,2,2,2,2,0,//56
+        0,2,0,0,0,0,2,2,2,2,//57
+        2,2,2,2,2,2,2,2,2,2,//58
+        0,2,2,2,0,0,0,0,0,0,//59
+        0,0,0,0,0,0,0,0,2,0,//60
+        0,0,0,0,2,0,0,2,0,0,//61
+        0,2,0,0,2,2,0,0,0,2,//62
+        0,0,0,0,0,0,0,0,0,0,//63
+        0,0,0,0,0,0,0,0,0,0,//64
+        0,0,0,0,1,0,0,0,0,0,//65
+        0,0,1,0,2,0,1,2,0,0,//66
+        0,0,0,6,1,0,0,0,1,1,//67
+        0,0,0,0,0,0,0,1,0,0,//68
+        0,0,0,0,2,0,0,0,0,0,//69
+        0,0,0,0,2,0,0,0,0,0,//70
+        0,0,0,0,0,0,0,0,0,0,//71
+        1,0,0,0,0,0,0,0,0,0,//72
+        0,0,2,0,0,0,0,0,0,0,//73
+        0,0,0,0,2,1,0,0,2,2,//74
+        1,0,2,0,0,0,1,0,0,0,//75
+        0,1,0,0,2,2,2,2,2,1,//76
+        0,0,2,1,0,0,2,0,1,0,//77
+        1,2,2,2,2,0,0,0,0,1,//78
+        0,0,0,0,0,0,0,0,0,0,//79
+        0,2,0,0,1,0,0,0,0,0,//80
+        0,0,0,0,0,0,1,0,0,0,//81
+        2,2,2,2,2,2,1,0,0,0,//82
+        0,0,0,0,0,0,0,0,2,0,//83
+        0,1,1,0,0,0,0,0,0,2,//84
+        0,0,0,0,2,2,2,0,0,0,//85
+        0,0,2,2,1,0,0,0,0,0,//86
+        0,2,2,2,0,2,0,0,2,2,//87
+        2,0,0,0,0,0,0,0,0,1,//88
+        0,0,1,1,0,2,0,0,0,0,//89
+        0,0,0,0,0,0,0,0,0,0,//90
+        0,0,1,0,2,2,2,0,0,0,//91
+        0,0,0,0,0,0,0,0,0,0,//92
+        0,0,0,0,0,0,0,0,0,0,//93
+        0,0,0,0,0,0,0,0,0,0,//94
+        0,0,0,0,0,0,0,0,0,0,//95
+        0,0,0,0,0,0,0,0,0,0,//96
+        0,0,0,0,0,0,0,1,1,0,//97
+        0,0,0,0,0,1,1,0,0,0,//98
+        0,0,0,0,1,1,0,0,0,0,//99
+        0,0,0,0,0,0,0,2,0,0,//100
+        0,0,0,0,0,0,2,2,2,2,//101
+        2,2,
+    ],
+    /*
+    0-none
+    1-decrement
+    2-remove
+    3-early decrement, player
+    4-early decrement, enemy
+    5-early decrement, general
+    6-half decrement
+    */
+    class:[
+        0,2,0,0,2,1,0,0,1,1,//1
+        1,0,0,0,0,0,1,0,0,0,//2
+        1,0,2,4,0,0,0,2,3,1,//3
+        0,1,1,0,0,2,0,1,2,2,//4
+        0,2,3,0,2,2,1,0,1,1,//5
+        0,0,3,0,2,0,0,0,0,0,//6
+        2,2,1,1,2,0,2,3,2,2,//7
+        2,2,2,2,2,0,2,1,0,3,//8
+        3,2,0,0,2,3,1,2,0,0,//9
+        2,2,2,2,2,0,1,0,0,0,//10
+        0,1,2,0,2,2,2,2,0,2,//11
+        1,2,2,2,2,2,2,3,2,1,//12
+        2,1,2,1,0,2,2,2,1,2,//13
+        2,2,2,2,1,2,2,0,0,0,//14
+        2,2,2,3,2,2,0,2,3,3,//15
+        2,2,2,0,0,2,2,2,3,0,//16
+        0,2,2,0,2,1,2,1,0,0,//17
+        2,1,0,0,2,1,2,2,1,1,//18
+        1,1,0,0,0,0,0,0,2,2,//19
+        2,1,2,2,1,0,3,1,1,3,//20
+        2,0,2,0,1,0,2,0,1,0,//21
+        2,1,1,0,2,1,0,0,2,0,//22
+        1,1,2,2,1,2,2,3,3,2,//23
+        2,0,2,2,1,2,0,2,0,0,//24
+        1,0,0,0,3,3,3,3,1,2,//25
+        1,2,2,2,2,2,2,2,2,1,//26
+        2,2,2,2,1,1,2,0,0,0,//27
+        0,1,0,1,2,2,0,0,1,2,//28
+        2,2,0,0,0,2,0,0,2,2,//29
+        2,2,2,1,0,2,3,2,2,2,//30
+        1,0,1,1,2,2,2,2,2,2,//31
+        2,2,3,2,2,2,2,2,0,0,//32
+        2,1,2,2,2,2,2,2,2,2,//33
+        2,2,2,2,2,2,4,2,2,3,//34
+        2,2,2,2,2,2,2,2,0,2,//35
+        2,2,0,0,2,2,2,1,0,0,//36
+        2,2,2,0,3,2,2,2,2,2,//37
+        0,0,0,0,2,2,2,0,3,2,//38
+        2,2,2,2,2,2,2,2,3,0,//39
+        2,2,2,2,2,2,2,2,2,2,//40
+        2,2,2,2,2,2,2,2,2,2,//41
+        2,2,2,2,2,2,2,2,2,2,//42
+        2,2,2,2,2,2,2,2,1,3,//43
+        2,2,0,0,0,2,2,2,2,2,//44
+        2,2,2,2,2,2,2,2,2,2,//45
+        2,2,2,0,2,2,2,2,2,2,//46
+        0,1,1,0,2,3,3,2,0,2,//47
+        0,0,0,2,0,2,2,0,2,2,//48
+        2,2,2,0,2,0,3,3,2,2,//49
+        2,1,2,2,2,2,2,2,2,2,//50
+        2,2,2,2,2,2,2,2,2,2,//51
+        2,2,2,2,2,2,2,2,2,2,//52
+        2,0,2,2,2,2,2,2,2,2,//53
+        2,2,2,2,2,2,2,2,2,2,//54
+        2,2,2,2,2,2,1,2,2,2,//55
+        2,2,2,2,0,2,2,2,2,2,//56
+        2,2,2,2,2,2,2,2,2,2,//57
+        2,2,2,2,2,2,2,2,2,2,//58
+        2,2,2,0,2,2,2,2,2,2,//59
+        2,2,2,2,2,2,2,2,2,2,//60
+        2,2,3,2,0,2,2,2,2,2,//61
+        3,2,2,2,2,2,3,2,2,2,//62
+        2,2,2,2,2,2,2,2,2,2,//63
+        2,2,2,2,2,2,2,2,2,2,//64
+        2,2,2,2,2,2,2,2,2,2,//65
+        2,2,2,2,2,2,2,1,2,2,//66
+        1,2,2,0,2,2,2,2,2,2,//67
+        2,2,2,2,2,2,0,0,2,2,//68
+        2,2,2,2,2,2,2,2,2,2,//69
+        2,2,2,2,2,2,2,3,2,2,//70
+        2,2,2,2,2,2,0,1,1,2,//71
+        2,2,2,2,2,2,2,2,2,2,//72
+        2,2,2,2,0,2,2,2,2,2,//73
+        2,2,2,2,2,1,2,2,2,2,//74
+        2,2,2,2,2,2,2,2,2,0,//75
+        0,1,2,2,2,2,2,2,2,2,//76
+        2,1,3,3,3,2,2,2,2,2,//77
+        3,2,2,2,2,2,2,2,2,2,//78
+        2,2,2,2,2,2,2,2,2,2,//79
+        2,2,2,2,2,2,2,2,2,2,//80
+        2,2,3,2,2,2,3,2,2,2,//81
+        0,0,2,0,0,0,2,2,2,2,//82
+        2,2,2,2,2,2,2,0,2,2,//83
+        2,2,2,2,2,2,2,2,2,2,//84
+        2,2,2,2,2,2,2,2,2,2,//85
+        2,3,1,1,2,1,2,2,2,2,//86
+        2,2,2,2,2,2,2,2,0,0,//87
+        0,2,2,2,2,2,2,2,2,0,//88
+        2,2,2,2,2,0,0,2,2,2,//89
+        2,2,2,2,2,2,2,2,2,2,//90
+        2,2,2,2,0,0,0,2,2,2,//91
+        2,2,2,2,2,2,2,2,2,2,//92
+        2,2,2,2,2,2,2,2,2,2,//93
+        2,2,2,2,2,2,2,2,2,2,//94
+        2,2,2,2,2,2,2,2,2,2,//95
+        2,2,2,2,2,2,2,2,2,2,//96
+        2,2,2,2,2,2,2,2,2,2,//97
+        2,2,2,2,2,2,2,0,0,0,//98
+        0,2,0,0,2,2,2,2,2,2,//99
+        2,2,2,2,2,2,1,1,2,2,//100
+        2,2,2,1,2,1,0,0,0,0,//101
+        0,0,
+    ]
+    /*
+    0-good
+    1-bad
+    2-nonclassified good
+    3-nonclassified bad, 4-disband
+    */
+}
 class disabledCombatant{
     constructor(){}
     getStatus(){return 0}
@@ -121,325 +450,11 @@ class combatant{
         this.dodges=[]
         this.communizers=[]
         this.status={
-            main:[],name:[
-                'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-                'Vulnerable','Retain Block','Vigor','Block Next Turn','Armor','Control','Cannot Add Block','Temporary Strength','Temporary Dexterity','Metallicize',
-                'Weak Next Turn','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Cannot Move Next Turn',
-                'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Add Block Next Turn','Counter Push','Counter Bleed',
-                'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
-                'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
-                'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
-                'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
-                'Explode on Death','Energy in 2 Turns','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Mortal','Shiv on Hit','Intangible Next Turn','Block in 2 Turns',
-                'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
-                'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block Combat','Heal Gain Max HP',
-                'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Node','Focus Per Turn','Freeze',
-                'Step Next Turn','Jagged Bleed','Counter Bleed All Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Health','Mantra Per Turn',
-                'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
-                'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
-                'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
-                '1.5x Block','Upgrade Created','Lowroll Strength','Decrementing Strength','Energy in 3 Turns','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
-                'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
-                'Take Damage Next Turn','Take Damage in 2 Turns','Block in 3 Turns','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
-                'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
-                'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Chained','Fragile Heal',
-                'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
-                'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Mantra Next Turn',
-                'Hook','Temporary Vigor','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
-                'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
-                'Single Damage Convert','2 Exhaust Draw','Dice Boost','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
-                '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
-                'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
-                'Heal Damage Random','Block Vigor Convert','Strength in 2 Turns','Dexterity in 2 Turns','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength in 3 Turns','Free Movement','Cable Swap',
-                'Strike Block','0 Cost Vigor','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
-                'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed in 2 Turns','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
-                'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
-                'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
-                'Barrier Damage Random','Scry Per Turn','Wheel Ghost Per Turn','Temporary Draw Next Turn','Temporary Draw in 2 Turns','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
-                'Wheel Boost','3+ Cost Free Wheel','3+ Cost Free Upgraded Wheel','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
-                'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
-                'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
-                'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Bounce','Enemy Death Shiv','Single Splash Damage','Retain Intent','Move Retain Combo',
-                'Construct Speed Up','Weak Reverse','Drawn Shiv Draw','Prismatic Bomb Freeze','Prismatic Bomb Poison','Prismatic Bomb Targets','Counter Gun','Counter Bomb','Low Health Construct','Temporary Strength Per Turn',
-                'Single Damage All','Prismatic Bomb Per Turn','Fatigue Splash','Random Deck Card Per Turn','Energy Cycle 2 1','Energy Cycle 2 2','Random Negative Per Turn','Rewind Next Turn','Damage All','Armament Bypass',
-                'Burn Strength','Burn Bypass','Strike Boost','Mineral Boost','Cable Boost','Free Defenses','Exhausting Defenses','Strike Range','Skill Cost Down','Exhausting Skills',
-                'Step Draw','Cable Range','Mineral Range','Common Attack Boost','Free Cables','Construct Turn','Construct Dual Block','Metal Per Turn','All Construct Speed Up','Construct Strength',
-                'Construct Dexterity','Gun Temporary Strength','Gun Block','Turn Speed','Extra Turn Block','Turn Reversal','Deluxe Weak','Prismatic Bomb Boost','No Damage Turn Next Turn','Play Limit',
-                '2+ Cost Vigor','2+ Cost Block','Damage Block Convert','Damage Half Block Convert','Single Block Damage Convert','Draw Exhaust Per Turn','Elemental Block','X Cost Boost','Self Health Loss Splash',variants.mtg?'Mana Gain Splash':'Energy Gain Splash',
-                'Attack Draw Per Turn','Random Free Exhausting Skill Per Turn','3 Exhaust Draw','Exhaust Shiv','12+ Block Draw','Buff Loss Barrier','Astrology Per Turn','Construct Metal','Attack Jinx Combat','Attack Shock Combat',
-                'Ammo Per Turn','Countdown Chain','Common Colorless Per Turn','Damage Delay 2','Combo Cost Down','All Cost Down','Random Card Cost Less Next Turn','Defense Cost Down','Dodge Strength','Dodge Energy',
-                'Damage Repeat in 2 Turns','Lock On','Temporary Damage Taken Up','Attack Lock On Turn','Retain Energy','Temporary All Cost Up','Temporary All Cost Up Next Turn','Retain Hand','Buffer Next Turn','Free Skill',
-                'Single Attack Mortal','Single Attack Remove Block','Counter Bleed Combat','Single Dice Up','Block Repeat in 2 Turns','Exhaust Temporary Strength','Attack Poison Combat','Counter Once Next Turn','Triple Wrath','5 Card Random Mana',
-                '5 Card Energy','Drawn Status Draw','Skill Temporary Strength','Counter Poison','Free Defense','Counter Dexterity Down','Random Card Cost More Next Turn','Play Limit Next Turn','Wish Power Per Turn','13 Card Block',
-                '13 Card Draw','Lose Health Next Turn','Wish Miracle','Turn Exhaust and Draw Equal','Colorless Cost Up','Dice Roll Block','Vision Per Turn','Knowledge Next Turn','Knowledge in 2 Turns','Elemental Energy',
-                'Elemental Draw','(E) Next Turn','(W) Next Turn','(B) Next Turn','(K) Next Turn','(G) Next Turn','(R) Next Turn','(N) Next Turn','(E) on Hit','Free Draw Up',
-                'Stance Temporary Strength','Debuff Block','Basic Temporary Strength','Basic Draw','Card Delay Exhaust','Card Delay Draw','Balance (E)','Invisible Per Turn','Random Mana Next Turn','Colorless Cost Down',
-                'Colorless Neutral Convert','Single Attack Weak','Amplify Draw','(E) in 2 Turns','(W) in 2 Turns','(B) in 2 Turns','(K) in 2 Turns','(G) in 2 Turns','(R) in 2 Turns','(N) in 2 Turns',
-                '(E) in 3 Turns','(W) in 3 Turns','(B) in 3 Turns','(K) in 3 Turns','(G) in 3 Turns','(R) in 3 Turns','(N) in 3 Turns','Lowroll (E)','Highroll (E)','All Mana (W)',
-                'All Mana (B)','All Mana (K)','All Mana (G)','All Mana (R)','Claw Up','Metallicize All','Frail Next Turn','Retain Dodge','Counter Once Per Turn','Counter Bleed Once',
-                'Counter Bleed Once Per Turn','Counter Gun Once','Counter Gun Once Per Turn','Counter Push Combat','Attack Burn Combat','All Strength Cycle 4 1','All Strength Cycle 4 2','All Strength Cycle 4 3','All Strength Cycle 4 4','Counter Weak All Combat',
-                'Counter Shockwave Combat','Protected Invisible Next Turn','Power Play Strength','3+ Cost Vigor','3+ Cost Block','Item Use (N)','(E) Cyscle 2 1','(E) Cycle 2 2','(W) Cycle 2 1','(W) Cycle 2 2',
-                '(B) Cycle 2 1','(B) Cycle 2 2','(K) Cycle 2 1','(K) Cycle 2 2','(G) Cycle 2 1','(G) Cycle 2 2','(R) Cycle 2 1','(R) Cycle 2 2','(N) Cycle 2 1','(N) Cycle 2 2',
-                'Elemental (E)','Base (E) Next Turn','Base (E) in 2 Turns','Temporary Damage Taken Down','Dodge (G)','Defend Boost','Random Base Mana Per Turn','Shuffle (E)','(E) Spend Splash','2+ Cost (E)',
-                'Wheel Temporary Strength','Wheel Temporary Dexterity','Electric Orb Per Turn','Electric Orb Boost','Retain Mana','Free Overdrive','Burn All Per Turn','Freeze All Per Turn','Shiv Next Turn','Rearm Draw',
-                'Retain Once Per Turn','Dodge Splash','All Cost Up','Strike Lock On','Temporary Damage Cap','Dice Max Boost','Exhaust Block','Counter Shockwave','Frail on Kill','Mailshield',
-                'Intent Change Threshold','Counter Push Once','Counter Push Once Per Turn','Dodge Per Turn','Dodge Cycle 2 1','Dodge Cycle 2 2','Play Limit Combat','Damage Cap','Lasting Single Counter','Random Mana in 2 Turns',
-                variants.mtg?'Mana Gain Temporary Strength':'Energy Gain Temporary Strength','X Cost Vigor','X Cost Block','X Cost Energy','X Cost (E)','Chocolate Chip','Mass Pull Damage Random','Turn Exhaust Random','Freeze Vulnerable',variants.mtg?'Mana Gain Splash Freeze':'Energy Gain Splash Freeze',
-                'Skill Draw Per Turn','Quest Chain','Tile Draw','Movement Draw Per Turn','Dark Matter Per Turn','Dark Matter Draw Block','Retain Bar Per Turn','Mass Pull Boost','Splash Attach Poison','Splash Boost',
-                'Basic Orb Per Turn','Calm Block Per Turn','Dark Matter Pull Fuel All','Snowflake Per Turn','Counter All Spread','Flame Orb Splash','Dark Light Orb Swap','Light Dark Orb Swap','2+ Cost Attack Energy','2+ Cost Attack (E)',
-                'Dark Matter Fuel All','Combo Spend Draw','Double Wrath Block','Turn Exhaust','Skill Draw Next Turn','Health Loss Poison Random','Free Minerals','Lose Health in 2 Turns','Lock On Bleed','Elemental Entrance Draw',
-                'Dodge on Kill','5 or Less Charge Block','Amplify Charge','Radiation','Retain Radiation','Radiation Per Turn','Dark Matter Pull Radiation','Dark Matter Radiation Trigger','Calm Next Turn','Unplayable Draw Retain Once',
-                'Basic Orb Boost','Prismatic Bomb Items','Skill Draw','Defense Draw','Evoke Block','Orb Tick Per Turn','Revive','Invulnerable','Calm Bonus','Scry Damage All',
-                'Wisp Exhaust Charge','Shiv Scatter','Shiv Block','X Cost Chocolate Chip','Hand Copy Next Turn','Poison Damage','Shiv Extra Target','Unplayable Draw Block','Lock On Poison','Bleed Boost',
-                'Control Base','Random Free Exhausting Ethereal Card Per Turn','Attack Freeze Combat','Blueprint Cost Down','Gun Draw Next Turn','Shock All Per Turn','Amplify Poison All','No Draw Next Turn','Energy Gain Energy','Energy Gain (E)',
-                'Cable Claw Up','Energy Orb Per Turn','Basic Energy','Basic (E)','Bleed Damage','Dust Orb Boost','Armor Per Turn','Max Health Gift','Fragile','Free Card Per Turn',
-                'Draw Pull','Power Energy Next Turn','Power (N) Next Turn','Power Strength','Unplayable Discard Damage Random','Silver Block','Mineral Block','Mineral Draw','End of Combat Lose','End of Combat Item',
-                'Moriya Talisman Per Turn','Drawn Status Exhaust','Counter Shockwave Once','Counter Shockwave Once Per Turn','Attack Bruise Combat','Pure','Drawn Status Block','Drawn Curse Block','Dodge Draw','All Damage Convert',
-                'Reversal Per Turn','Sharp Word Per Turn','Wheel Flip Top','Shining Moon Per Turn','Intangible in 2 Turns','No Heal','Drawn Status Temporary Strength','Drawn Status Temporary Dexterity','Temporary Card Play Temporary Strength','Temporary Card Play Temporary Strength Next Turn',
-                'Retain Duplicate','Power Cost Up','Temporary All Damage Convert','Extra Turn Play Limit Per Turn','Auto Follow-Up','Calm Temporary Strength','Bleed Attack Intent','Rearm Strength','All X Cost Boost','Move Block',
-                'Base Attack Vulnerable Combat','Retain Freeze','Orb Hold Tick','Fugue Strength','Cycle Attack','Cycle Defense','Cycle Movement','Cycle Power','Cycle Skill','Speed Strike',
-                '2+ Cost Strength','Half Block','Random Mana in 3 Turns','No Extra Turns','No Extra Turns Next Turn','Cost Down Per Turn','Bounce Next Turn','Scry Discard Block','Play Evolve','Evolve Temporary Strength',
-                'Communized','Energy in 4 Turns','Energy in 5 Turns','(E) in 4 Turns','(E) in 5 Turns','0 Cost Block','Charge Consume Vigor','Assign Return','Assign Temporary Strength','Pity',
-                'Death Energy','Death (E)','Debuff Temporary Strength','Basic Temporary Dexterity','Communized Weak','Communized Vulnerable','Turn Confuse','Confuse Cost Down','Prime Draw','Cycle Draw',
-                'Recover Draw','Recover Next Turn','Recover Up','Shiv Temporary Damage Taken Up','Free War','Skill Discard Draw','Worker Draw Per Turn','Worker Boost','Assign Draw','Free Assign',
-                'Intangible Strength','Debuff Draw','"Debuff"','Wheel Pure','Cycle Rotation','Base Attack Weak Combat','Retain Lock On','History Rewind Tick','Gun Draw','Retain Until Played Per Turn',
-                'Temporary Strength in 2 Turns','Temporary Strength in 3 Turns','Single Splash Vulnerable','Temporary Strength Cycle 3 1','Temporary Strength Cycle 3 2','Temporary Strength Cycle 3 3','Indefinite Pure','Fragile Turn Splash','Favor Per Turn','Favor Energy',
-                'Favor (E)','Shield Orb Per Turn','Shield Orb Boost','Iron Orb Boost','Dust Orb Per Turn','Explosive Orb Per Turn','Dark Matter Draw','Vigil','Temporary Item Next Turn','Vigor Per Turn',
-                'Vigil Per Turn','Vigor Tickrule','Vigil Tickrule','Retain Vigor','Retain Vigil','Feint','Silver Draw','Silver Vigor','Resonance','Temporary Resonance',
-                'Bell','Bell Boost','Ringing Per Turn','Free Threshold','Temporary Resonance Next Turn','Temporary Resonance in 2 Turns','Temporary Resonance in 3 Turns','Bell Block','Bell Weak','Bell Vulnerable',
-                'Buff Loss Block','Take Per Skill Played Combat','Shock Next Turn','Shock in 2 Turns','Dice Advantage','Caffeine','20 Damage Weak','20 Damage Vulnerable','20 Damage Frail','Weak Boost',
-                'Vulnerable Boost','Duplicate Cycle 3 1','Duplicate Cycle 3 2','Duplicate Cycle 3 3',`Turn Transform`,'Temporary Focus','Pristine Draw','Skill Temporary Dexterity','Double Damage Cycle 3 1','Double Damage Cycle 3 2',
-                'Double Damage Cycle 3 3','Random Quickdraw Gain Per Turn','Skill to Defense Draw Skill','Coffee Draw','Skill to Attack Draw Skill','Coffee Splash','Caffeine Tolerance','Pristine Reduction Free Attack','Tile Temporary Strength','Take 2/3 Damage',
-                'Collision Damage','Plant Draw','Retain Temporary Strength','Retain Temporary Dexterity','Fatigue Splash Bleed','Vigor Next Turn','Single Attack No Block','Burn Trigger All Per Turn','Power Claw Up','Dual Discus Per Turn',
-                'Discus Boost','Discus Temporary Strength','Discus Temporary Dexterity','Discus Pure','Discus Flip Top','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Splash Attach Vulnerable','Free Skill Discover Per Turn','Common Colorless Discover Per Turn',
-                'Dark Matter Block','Self Shock Claw Up','Random Exhaust Discard','Block Splash','Temporary Dexterity Cycle 3 1','Temporary Dexterity Cycle 3 2','Temporary Dexterity Cycle 3 3','0 Cost Temporary Strength','Charge Consume Temporary Strength','Silver Temporary Strength',
-                'Splash Block','Attack Intent Energy','Attack Intent (R)','Attack Intent Block','Overdose Energy','Overdose (N)','Overdose (K)','Overdose (E)','Overdose Strength','Fragile Skill Cost Down',
-                'Fragile Defense Cost Down','Random Attack Cost Less Per Turn','Random Defense Cost Less Per Turn','Random Movement Cost Less Per Turn','Random Skill Cost Less Per Turn','Temporary Dexterity Convert','Split Card Block','X Cost Strength','Tile Exhaust','Status Exhaust',
-                'Scry Block','Overdose (W)','Overdose (B)','Overdose (G)','Overdose (R)','Attack Intent (N)','Attack Intent (W)','Attack Intent (B)','Attack Intent (K)','Attack Intent (G)',
-                'Attack Intent (E)','10 Draw Energy','10 Draw Random Mana','3 Lowroll Strength','3 Highroll Strength','3 Lowroll Dexterity','3 Highroll Dexterity','3 Lowroll Draw','3 Highroll Draw','3 Lowroll Energy',
-                '3 Highroll Energy','3 Lowroll (N)','3 Highroll (N)','3 Lowroll (W)','3 Highroll (W)','3 Lowroll (B)','3 Highroll (B)','3 Lowroll (K)','3 Highroll (K)','3 Lowroll (G)',
-                '3 Highroll (G)','3 Lowroll (R)','3 Highroll (R)','3 Lowroll (E)','3 Highroll (E)','3 Lowroll Block','3 Highroll Block','10% = 50%','Highroll Lowroll','Coffee Temporary Strength',
-                'Coffee Temporary Dexterity','Currency Block','Currency Mult','Evoke Same Tick','Glass Orb Per Turn','Strike Double','Defend Double','Skill Play Vigor','Power Play Vigor','Splash Vulnerable Per Turn',
-                'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
-                'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
-                'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff',
-            ],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
-            behavior:[
-                0,2,1,1,2,0,0,0,1,1,//1
-                1,0,0,2,0,0,1,2,2,0,//2
-                2,0,0,0,1,1,2,0,1,2,//3
-                0,1,1,1,0,0,0,2,1,2,//4
-                2,2,0,0,0,0,0,2,0,0,//5
-                0,1,0,1,0,2,2,1,2,2,//6
-                1,0,2,0,2,0,0,1,0,0,//7
-                0,0,2,2,0,2,0,2,0,1,//8
-                0,2,2,2,0,0,0,0,2,2,//9
-                0,0,1,1,1,0,0,1,2,0,//10
-                0,0,2,0,0,0,2,0,0,0,//11
-                0,0,0,0,0,0,0,1,0,0,//12
-                2,1,0,0,2,0,0,0,2,0,//13
-                1,1,1,0,0,0,0,1,0,0,//14
-                0,0,0,0,0,1,2,2,2,1,//15
-                0,0,0,0,0,2,0,0,0,0,//16
-                0,0,0,1,2,0,0,1,0,1,//17
-                1,0,1,0,2,0,2,2,0,2,//18
-                2,2,2,0,2,2,0,0,0,2,//19
-                0,0,0,0,0,0,1,0,1,0,//20
-                0,0,0,0,1,2,2,2,1,2,//21
-                1,0,2,0,0,0,0,1,0,0,//22
-                2,0,0,0,0,0,0,0,1,2,//23
-                1,2,2,1,0,2,0,2,0,0,//24
-                1,0,1,1,2,2,2,0,2,0,//25
-                0,0,0,0,0,0,0,0,0,2,//26
-                1,1,2,1,0,2,0,0,2,2,//27
-                2,0,2,0,0,0,1,2,1,0,//28
-                0,2,2,2,0,2,0,2,0,1,//29
-                0,0,0,0,0,0,0,1,0,1,//30
-                0,0,2,2,0,1,6,0,0,1,//31
-                1,0,0,0,0,0,0,0,2,1,//32
-                0,1,0,0,0,0,0,0,0,1,//33
-                0,0,0,2,2,0,0,0,0,2,//34
-                0,0,0,2,2,0,2,0,2,2,//35
-                2,2,0,0,2,0,2,1,0,0,//36
-                2,0,0,0,1,0,0,0,2,2,//37
-                2,2,2,2,1,1,0,2,0,1,//38
-                0,1,0,0,0,0,2,2,0,0,//39
-                2,0,0,0,2,2,0,2,0,1,//40
-                0,1,0,0,0,1,1,1,0,0,//41
-                1,0,1,0,1,0,0,0,0,0,//42
-                0,0,0,0,0,1,1,0,2,2,//43
-                0,0,0,0,0,0,0,0,0,0,//44
-                0,0,0,0,0,0,0,0,0,0,//45
-                0,0,0,1,0,0,0,0,0,0,//46
-                0,1,2,2,0,2,2,0,2,0,//47
-                0,0,0,0,0,0,0,2,1,0,//48
-                0,0,0,2,0,2,0,2,0,0,//49
-                0,2,0,0,0,0,0,2,2,0,//50
-                0,2,2,2,2,2,2,2,2,0,//51
-                0,0,0,0,0,0,0,0,2,0,//52
-                1,0,0,2,2,2,2,2,2,2,//53
-                2,2,2,2,2,2,2,0,0,0,//54
-                0,0,0,0,0,0,2,1,0,2,//55
-                0,2,0,0,0,2,2,2,2,0,//56
-                0,2,0,0,0,0,2,2,2,2,//57
-                2,2,2,2,2,2,2,2,2,2,//58
-                0,2,2,2,0,0,0,0,0,0,//59
-                0,0,0,0,0,0,0,0,2,0,//60
-                0,0,0,0,2,0,0,2,0,0,//61
-                0,2,0,0,2,2,0,0,0,2,//62
-                0,0,0,0,0,0,0,0,0,0,//63
-                0,0,0,0,0,0,0,0,0,0,//64
-                0,0,0,0,1,0,0,0,0,0,//65
-                0,0,1,0,2,0,1,2,0,0,//66
-                0,0,0,6,1,0,0,0,1,1,//67
-                0,0,0,0,0,0,0,1,0,0,//68
-                0,0,0,0,2,0,0,0,0,0,//69
-                0,0,0,0,2,0,0,0,0,0,//70
-                0,0,0,0,0,0,0,0,0,0,//71
-                1,0,0,0,0,0,0,0,0,0,//72
-                0,0,2,0,0,0,0,0,0,0,//73
-                0,0,0,0,2,1,0,0,2,2,//74
-                1,0,2,0,0,0,1,0,0,0,//75
-                0,1,0,0,2,2,2,2,2,1,//76
-                0,0,2,1,0,0,2,0,1,0,//77
-                1,2,2,2,2,0,0,0,0,1,//78
-                0,0,0,0,0,0,0,0,0,0,//79
-                0,2,0,0,1,0,0,0,0,0,//80
-                0,0,0,0,0,0,1,0,0,0,//81
-                2,2,2,2,2,2,1,0,0,0,//82
-                0,0,0,0,0,0,0,0,2,0,//83
-                0,1,1,0,0,0,0,0,0,2,//84
-                0,0,0,0,2,2,2,0,0,0,//85
-                0,0,2,2,1,0,0,0,0,0,//86
-                0,2,2,2,0,2,0,0,2,2,//87
-                2,0,0,0,0,0,0,0,0,1,//88
-                0,0,1,1,0,2,0,0,0,0,//89
-                0,0,0,0,0,0,0,0,0,0,//90
-                0,0,1,0,2,2,2,0,0,0,//91
-                0,0,0,0,0,0,0,0,0,0,//92
-                0,0,0,0,0,0,0,0,0,0,//93
-                0,0,0,0,0,0,0,0,0,0,//94
-                0,0,0,0,0,0,0,0,0,0,//95
-                0,0,0,0,0,0,0,0,0,0,//96
-                0,0,0,0,0,0,0,1,1,0,//97
-                0,0,0,0,0,1,1,0,0,0,//98
-                0,0,0,0,1,1,0,0,0,0,//99
-                0,0,0,0,0,0,0,2,0,0,//100
-                0,0,0,0,
-            ],
-            class:[
-                0,2,0,0,2,1,0,0,1,1,//1
-                1,0,0,0,0,0,1,0,0,0,//2
-                1,0,2,4,0,0,0,2,3,1,//3
-                0,1,1,0,0,2,0,1,2,2,//4
-                0,2,3,0,2,2,1,0,1,1,//5
-                0,0,3,0,2,0,0,0,0,0,//6
-                2,2,1,1,2,0,2,3,2,2,//7
-                2,2,2,2,2,0,2,1,0,3,//8
-                3,2,0,0,2,3,1,2,0,0,//9
-                2,2,2,2,2,0,1,0,0,0,//10
-                0,1,2,0,2,2,2,2,0,2,//11
-                1,2,2,2,2,2,2,3,2,1,//12
-                2,1,2,1,0,2,2,2,1,2,//13
-                2,2,2,2,1,2,2,0,0,0,//14
-                2,2,2,3,2,2,0,2,3,3,//15
-                2,2,2,0,0,2,2,2,3,0,//16
-                0,2,2,0,2,1,2,1,0,0,//17
-                2,1,0,0,2,1,2,2,1,1,//18
-                1,1,0,0,0,0,0,0,2,2,//19
-                2,1,2,2,1,0,3,1,1,3,//20
-                2,0,2,0,1,0,2,0,1,0,//21
-                2,1,1,0,2,1,0,0,2,0,//22
-                1,1,2,2,1,2,2,3,3,2,//23
-                2,0,2,2,1,2,0,2,0,0,//24
-                1,0,0,0,3,3,3,3,1,2,//25
-                1,2,2,2,2,2,2,2,2,1,//26
-                2,2,2,2,1,1,2,0,0,0,//27
-                0,1,0,1,2,2,0,0,1,2,//28
-                2,2,0,0,0,2,0,0,2,2,//29
-                2,2,2,1,0,2,3,2,2,2,//30
-                1,0,1,1,2,2,2,2,2,2,//31
-                2,2,3,2,2,2,2,2,0,0,//32
-                2,1,2,2,2,2,2,2,2,2,//33
-                2,2,2,2,2,2,4,2,2,3,//34
-                2,2,2,2,2,2,2,2,0,2,//35
-                2,2,0,0,2,2,2,1,0,0,//36
-                2,2,2,0,3,2,2,2,2,2,//37
-                0,0,0,0,2,2,2,0,3,2,//38
-                2,2,2,2,2,2,2,2,3,0,//39
-                2,2,2,2,2,2,2,2,2,2,//40
-                2,2,2,2,2,2,2,2,2,2,//41
-                2,2,2,2,2,2,2,2,2,2,//42
-                2,2,2,2,2,2,2,2,1,3,//43
-                2,2,0,0,0,2,2,2,2,2,//44
-                2,2,2,2,2,2,2,2,2,2,//45
-                2,2,2,0,2,2,2,2,2,2,//46
-                0,1,1,0,2,3,3,2,0,2,//47
-                0,0,0,2,0,2,2,0,2,2,//48
-                2,2,2,0,2,0,3,3,2,2,//49
-                2,1,2,2,2,2,2,2,2,2,//50
-                2,2,2,2,2,2,2,2,2,2,//51
-                2,2,2,2,2,2,2,2,2,2,//52
-                2,0,2,2,2,2,2,2,2,2,//53
-                2,2,2,2,2,2,2,2,2,2,//54
-                2,2,2,2,2,2,1,2,2,2,//55
-                2,2,2,2,0,2,2,2,2,2,//56
-                2,2,2,2,2,2,2,2,2,2,//57
-                2,2,2,2,2,2,2,2,2,2,//58
-                2,2,2,0,2,2,2,2,2,2,//59
-                2,2,2,2,2,2,2,2,2,2,//60
-                2,2,3,2,0,2,2,2,2,2,//61
-                3,2,2,2,2,2,3,2,2,2,//62
-                2,2,2,2,2,2,2,2,2,2,//63
-                2,2,2,2,2,2,2,2,2,2,//64
-                2,2,2,2,2,2,2,2,2,2,//65
-                2,2,2,2,2,2,2,1,2,2,//66
-                1,2,2,0,2,2,2,2,2,2,//67
-                2,2,2,2,2,2,0,0,2,2,//68
-                2,2,2,2,2,2,2,2,2,2,//69
-                2,2,2,2,2,2,2,3,2,2,//70
-                2,2,2,2,2,2,0,1,1,2,//71
-                2,2,2,2,2,2,2,2,2,2,//72
-                2,2,2,2,0,2,2,2,2,2,//73
-                2,2,2,2,2,1,2,2,2,2,//74
-                2,2,2,2,2,2,2,2,2,0,//75
-                0,1,2,2,2,2,2,2,2,2,//76
-                2,1,3,3,3,2,2,2,2,2,//77
-                3,2,2,2,2,2,2,2,2,2,//78
-                2,2,2,2,2,2,2,2,2,2,//79
-                2,2,2,2,2,2,2,2,2,2,//80
-                2,2,3,2,2,2,3,2,2,2,//81
-                0,0,2,0,0,0,2,2,2,2,//82
-                2,2,2,2,2,2,2,0,2,2,//83
-                2,2,2,2,2,2,2,2,2,2,//84
-                2,2,2,2,2,2,2,2,2,2,//85
-                2,3,1,1,2,1,2,2,2,2,//86
-                2,2,2,2,2,2,2,2,0,0,//87
-                0,2,2,2,2,2,2,2,2,0,//88
-                2,2,2,2,2,0,0,2,2,2,//89
-                2,2,2,2,2,2,2,2,2,2,//90
-                2,2,2,2,0,0,0,2,2,2,//91
-                2,2,2,2,2,2,2,2,2,2,//92
-                2,2,2,2,2,2,2,2,2,2,//93
-                2,2,2,2,2,2,2,2,2,2,//94
-                2,2,2,2,2,2,2,2,2,2,//95
-                2,2,2,2,2,2,2,2,2,2,//96
-                2,2,2,2,2,2,2,2,2,2,//97
-                2,2,2,2,2,2,2,0,0,0,//98
-                0,2,0,0,2,2,2,2,2,2,//99
-                2,2,2,2,2,2,1,1,2,2,//100
-                2,2,2,1,
-            ]}
-        /*
-        0-none
-        1-decrement
-        2-remove
-        3-early decrement, player
-        4-early decrement, enemy
-        5-early decrement, general
-        6-half decrement
-        */
-        //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad, 4-disband
+            main:[],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
+            name:constants.status.name,
+            behavior:constants.status.behavior,
+            class:constants.status.class,
+        }
         this.turnStatus=[0,0,0,0,0,0]
         //dodges,taken,life lost,heal,highrolls,lowrolls
         this.resetTempStatus()
@@ -4620,6 +4635,15 @@ class combatant{
                         if(this.status.main[983]>0){
                             userCombatant.statusEffect('Temporary Speed Up',-this.status.main[983])
                         }
+                        if(this.status.main[1006]>0){
+                            userCombatant.statusEffect('Burn',this.status.main[1006])
+                        }
+                        if(this.status.main[1007]>0){
+                            userCombatant.statusEffect('Freeze',this.status.main[1007])
+                        }
+                        if(this.status.main[1008]>0){
+                            userCombatant.statusEffect('Shock',this.status.main[1008])
+                        }
                         if(this.status.main[50]>0){
                             this.addBlock(this.status.main[50])
                             this.status.main[50]=0
@@ -5513,6 +5537,9 @@ class combatant{
             return true
         }
         return false
+    }
+    canSpendCharge(value){
+        return this.status.main[595]>0||this.charge>=value
     }
     check10(){
         return this.status.main[967]>0?floor(random(0,2))==0:
@@ -6726,7 +6753,9 @@ class combatant{
                     case 1000: if(this.stance==1){this.miniStatus('Temporary Strength',this.status.main[this.status.ticker[a]])} break
                     case 1001: if(this.stance==4){this.miniStatus('Temporary Dexterity',this.status.main[this.status.ticker[a]])} break
                     case 1003: this.miniStatus('Counter Management Beam Once',this.status.main[this.status.ticker[a]]); break
-                    
+                    case 1009: this.statusEffect('Conditioning',this.status.main[this.status.ticker[a]]);this.status.next[findList('Conditioning Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
+                    case 1010: this.miniStatus('Conditioning Cycle 3 1',this.status.main[this.status.ticker[a]]); break
+                    case 1011: this.miniStatus('Conditioning Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])

@@ -64819,13 +64819,13 @@ types.card=[
             ],
         },
     },{
-        name:`You're\nFreezing`,rarity:1,list:18,
+        name:`You're\nFreezing`,rarity:-1,list:-8,
         levels:[
             {effect:[12,2],attack:10462,cost:2,target:[2,1,2],spec:[0],class:1},
             {effect:[16,3],attack:10462,cost:2,target:[2,1,2],spec:[0],class:1},
             {effect:[18,4],attack:10462,cost:2,target:[2,1,2],spec:[0],class:1},
         ],mtg:{
-            rarity:1,list:18,color:[1,4],
+            rarity:-1,list:-8,color:[1,4],
             levels:[
                 {effect:[20,2],attack:10462,cost:[1,1,4,4],target:[2,1,2],spec:[0],class:1},
                 {effect:[28,3],attack:10462,cost:[1,4,-1,-1],target:[2,1,2],spec:[0],class:1},

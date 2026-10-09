@@ -460,7 +460,8 @@ end you turn a couple times to let it take damage.`,
                 this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Sakura, the Creation, has gimmicks that are harmful and helpful.
-Namely, they are Bleed, Armament, Intent Manipulation.`,
+Namely, they are Bleed, Dodge, Intent Manipulation.`,
+//Namely, they are Bleed, Armament, Intent Manipulation.`,
 `Bleed is a status effect that can be applied. It does damage each turn.
 After dealing damage, bleed decrements by 1. This means that bleed is not infinite.
 Still, bleed can be maintained by applying more bleed, which can be done in various ways.`,
@@ -469,11 +470,17 @@ Typically, enemies with block cannot get bleed, so remove their block first.
 Otherwise, simply spamming is a good way to stack bleed.`,
 `Afterward, playing a bleed build involves surviving while the bleed chips away.
 The more bleed, the faster the enemy dies, and the less time you have to survive.`,
-`The armament system is fairly complex. At the start of combat, you are armed.
+`Dodge is a defense measure that can be a supplement to your block.
+One stack of Dodge completely negates one enemy attack of any size.
+However, enemies that hit multiple times in one attack will get around this.`,
+`Dodge is very useful against enemies that hit very hard, but has
+a lot of weaknesses against multihits. It also lacks some reliability, as you
+lose 1 Dodge at the start of your turn, making it hard to buid lots of Dodge.`,
+/*`The armament system is fairly complex. At the start of combat, you are armed.
 Cards may require armament, but they have powerful effects.`,
 `Cards may be labeled with Rearm or Disarm to indicate if they change armament.
 When you Disarm, an armament point is created somewhere. Moving there Rearms you.
-Many powerful cards involve Disarming, so it is recommended to find a way to Rearm.`,
+Many powerful cards involve Disarming, so it is recommended to find a way to Rearm.`,*/
 `Sakura is able to manipulate enemies to attack her.
 While this may not seem like a benefit, you can make sure
 they cannot use other abilities.`,
@@ -1019,10 +1026,11 @@ and can gain intangible, Sanae can uniquely use these.`,
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
-                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Shinmyoumaru, the Inchling, is designed around calculated aggression.
-Her gimmicks include: Basic Cards, Lock On, Dodge, and Wish Cards.`,
+Her gimmicks include: Basic Cards, Lock On, and Wish Cards.`,
+//Her gimmicks include: Basic Cards, Lock On, Dodge, and Wish Cards.`,
 `While all characters receive the cards Strike, Defend, and Step as
 starter cards, they are usually not the greatest later into the game.
 However, you can still make use of these as Shinmyoumaru.`,
@@ -1034,12 +1042,6 @@ they take 10% more damage, and the stacks degarde by 1 each turn.`,
 `While it can take some time, stacking lots of Lock On on a
 targetted enemy can be extremely effective in terms of damage multiplier,
 but you must be careful to not let the stacks reduce back down to 0.`,
-`Dodge is a defense measure that can be a supplement to your block.
-One stack of Dodge completely negates one enemy attack of any size.
-However, enemies that hit multiple times in one attack will get around this.`,
-`Dodge is very useful against enemies that hit very hard, but has
-a lot of weaknesses against multihits. It also lacks some reliability, as you
-lose 1 Dodge at the start of your turn, making it hard to buid lots of Dodge.`,
 `Wish Cards are effective, and activate every turn, but are expensive.
 Wish Cards cost Wish Power, a resource to manage (you start with 3 each combat).`,
 `The Wish Card will spend Wish Power every turn it is active after
@@ -1759,13 +1761,22 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Scratch',types.card),0,3)
                         this.battle.cardManagers[0].hand.add(findName('Gush of\nBlood',types.card),0,3)
                     break
-                    case 4:
+                    /*case 4:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Cut',types.card),0,3)
                     break
                     case 5:
                         this.battle.cardManagers[0].hand.add(findName('Throw\nScythe',types.card),0,3)
                         this.battle.cardManagers[0].hand.add(findName('Gather',types.card),0,3)
+                    break*/
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:2,y:1},findName('AttackDummy',types.combatant),-30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Dodge',types.card),0,17)
                     break
                     case 6:
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].addAttack(1,[1])
@@ -2243,6 +2254,7 @@ while staying aware of when they can feed a quick combo.`,
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,17)
                         this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,17)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,17)
                     break
                     case 2:
                         this.battle.combatantManager.resetCombatants()
@@ -2265,15 +2277,6 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].reserve.add(findName('Extending\nSword',types.card),0,17)
                     break
                     case 5:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:2,y:1},findName('AttackDummy',types.combatant),-30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Dodge',types.card),0,17)
-                    break
-                    case 7:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
