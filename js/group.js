@@ -2680,6 +2680,206 @@ class group{
                                     }
                                 }
                             break
+                            case 10567:
+                                //there's no leader before sun yat-set yet
+                                if(args[0]!=7470){
+                                    this.add(findName('Chiang\nKai-shek',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 10568:
+                                if(args[0]==7470){
+                                    this.add(findName('Sun\nYat-sen',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Mao\nZedong',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
+                                    }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 10569:
+                                if(args[0]==7470){
+                                    this.add(findName('Chiang\nKai-shek',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Hua\nGuofeng',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
+                                    }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 10570:
+                                if(!this.cards[a].limit.includes(args[1])){
+                                    this.cards[a].effect[2]++
+                                    this.cards[a].limit.push(args[1])
+                                }
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Mao\nZedong',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Deng\nXiaoping',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 10571:
+                                if(args[1]<=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Hua\nGuofeng',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Jiang\nZemin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 10572:
+                                if(args[0]==7470){
+                                    this.add(findName('Deng\nXioaping',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Hu\nJintao',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
+                                    }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 10573:
+                                if(args[0]==7470){
+                                    this.add(findName('Jiang\nZemin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Xi\nJinping',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
+                                    }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
+                                }
+                            break
+                            case 10574:
+                                //xi jinping has no successor
+                                if(args[0]==7470){
+                                    this.add(findName('Hu\nJintao',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
                         }
                     }
                     if(changed){
@@ -4799,6 +4999,9 @@ class group{
         if(possible){
             if(this.cards[index].class!=14){
                 this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[[7241,10040]])
+                if(!this.cards[index].getBasic(-1)&&this.cards.some((card,index2)=>card.name==this.cards[index].name&&index!=index2)){
+                    this.battle.cardManagers[this.combatant.id].trueAllGroupEffectArgs(65,[10573])
+                }
             }
             this.cards[index].callRemoveEffect()
             this.allEffectArgs(55,[`callAnotherRemovedEffect`,[this.cards[index]]])
@@ -4991,6 +5194,14 @@ class group{
                         }
                         userCombatant.status.main[findList('Cycle Skill',userCombatant.status.name)]--
                     }
+                }
+                if(
+                    card.getBasic(1)&&userCombatant.getStatus('Free Strike')>0||
+                    card.getBasic(2)&&userCombatant.getStatus('Free Defend')>0||
+                    card.getBasic(3)&&userCombatant.getStatus('Free Step')>0
+                ){
+                    effectiveCost=0
+                    calculatoryCost=0
                 }
                 if(calculatoryCost!=0&&card.colorless()&&card.rarity!=2&&userCombatant.getStatus('Temporary Free Non-Rare Colorless')>0){
                     userCombatant.status.main[findList('Temporary Free Non-Rare Colorless',userCombatant.status.name)]--

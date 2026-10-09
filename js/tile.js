@@ -349,6 +349,9 @@ class tile{
                 }
                 this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10+a*7,[10]))
                 this.fire[a]=0
+                if(this.combatant.id>=0&&this.combatant.id<this.battle.players){
+                    this.battle.cardManagers[this.combatant.id].trueAllGroupEffectArgs(65,[10572])
+                }
             }
         }
     }

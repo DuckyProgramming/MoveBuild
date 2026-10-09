@@ -980,6 +980,14 @@ class card{
             case -159:
                 this.battle.loseCurrency(floor(userCombatant.block),this.player)
             break
+            case -160:
+                userCombatant.loseHealth(this.effect[0])
+            break
+            case -161:
+                if(userCombatant.status.misc[1]==0){
+                    userCombatant.loseHealth(this.effect[0])
+                }
+            break
             case 187:
                 userCombatant.takeDamage(this.effect[1],-1)
             break
@@ -1412,6 +1420,10 @@ class card{
             break
             case 10290:
                 this.battle.cardManagers[this.player].drawAbstract(this.effect[2],0,0,[4])
+            break
+            case 10504:
+                userCombatant.statusEffect('Buffer',this.effect[0])
+                this.exhaust=true
             break
         }
     }
@@ -1857,7 +1869,7 @@ class card{
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
-            case 9523: case 9524: case 9525: case 9785:
+            case 9523: case 9524: case 9525: case 9785: case 10505:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -1875,6 +1887,10 @@ class card{
             break
             case 7920:
                 userCombatant.gainMaxHP(this.effect[0])
+            break
+            case 10501:
+                this.battle.overlayManager.overlays[3][this.player].active=true
+                this.battle.overlayManager.overlays[3][this.player].activate([this.level,1,12])
             break
         }
     }
@@ -2251,6 +2267,48 @@ class card{
             break
             case 10330:
                 this.battle.addCurrency(this.effect[0]*this.battle.cardManagers[this.player].deck.numberAbstract(3,[82]),this.player)
+            break
+            case 10567:
+                userCombatant.statusEffect('Frail',this.effect[0])
+                this.battle.loseCurrency(types.card[findName('Chiang\nKai-shek',types.card)].levels[0].effect[0],this.player)
+            break
+            case 10568:
+                this.battle.loseCurrency(this.effect[0],this.player)
+            break
+            case 10569:
+                this.battle.combatantManager.allEffect('Communized',[48,this.effect[0]])
+            break
+            case 10570:
+                this.battle.combatantManager.allEffect('Communized',[48,types.card[findName('Mao\nZedong',types.card)].levels[0].effect[0]])
+                this.battle.cardManagers[this.player].hand.exhaust(this.effect[0])
+            break
+            case 10571:
+                this.battle.combatantManager.allEffect('Communized',[48,types.card[findName('Mao\nZedong',types.card)].levels[0].effect[0]])
+                this.battle.cardManagers[this.player].hand.exhaust(types.card[findName('Hua\nGuofeng',types.card)].levels[0].effect[0])
+                this.battle.addCurrency(this.effect[0],this.player)
+            break
+            case 10572:
+                this.battle.combatantManager.allEffect('Communized',[48,types.card[findName('Mao\nZedong',types.card)].levels[0].effect[0]])
+                this.battle.cardManagers[this.player].hand.exhaust(types.card[findName('Hua\nGuofeng',types.card)].levels[0].effect[0])
+                this.battle.addCurrency(types.card[findName('Deng\nXiaoping',types.card)].levels[0].this.effect[0],this.player)
+                this.battle.itemManager.addRandomItem(this.player)
+            break
+            case 10573:
+                this.battle.combatantManager.allEffect('Communized',[48,types.card[findName('Mao\nZedong',types.card)].levels[0].effect[0]])
+                this.battle.cardManagers[this.player].hand.exhaust(types.card[findName('Hua\nGuofeng',types.card)].levels[0].effect[0])
+                this.battle.addCurrency(types.card[findName('Deng\nXiaoping',types.card)].levels[0].this.effect[0],this.player)
+                this.battle.itemManager.addRandomItem(this.player)
+                this.battle.overlayManager.overlays[8][this.player].active=true
+                this.battle.overlayManager.overlays[8][this.player].activate()
+            break
+            case 10574:
+                this.battle.combatantManager.allEffect('Communized',[48,types.card[findName('Mao\nZedong',types.card)].levels[0].effect[0]])
+                this.battle.cardManagers[this.player].hand.exhaust(types.card[findName('Hua\nGuofeng',types.card)].levels[0].effect[0])
+                this.battle.addCurrency(types.card[findName('Deng\nXiaoping',types.card)].levels[0].this.effect[0],this.player)
+                this.battle.itemManager.addRandomItem(this.player)
+                this.battle.overlayManager.overlays[8][this.player].active=true
+                this.battle.overlayManager.overlays[8][this.player].activate()
+                this.battle.cardManagers[this.player].hand.selfCall(6,[54,[],1,[6,1,1]])
             break
         }
     }
@@ -2829,7 +2887,7 @@ class card{
             case 2547:
                 this.effect[0]=this.effect[1]
             break
-            case 5313:
+            case 5313: case 10479:
                 this.costDown(0,[1])
             break
         }
@@ -4271,6 +4329,10 @@ class card{
             break
             case 9329:
                 userCombatant.statusEffect('Temporary Strength',this.effect[0]*this.battle.cardManagers[this.player].hand.lastTurnPlayed[0])
+            break
+            case 10506:
+                userCombatant.statusEffect('Dodge',this.effect[0])
+                userCombatant.statusEffect('Temporary Strength',this.effect[1])
             break
         }
     }

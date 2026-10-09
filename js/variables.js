@@ -315,6 +315,7 @@ types={
         {name:'Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry goin' up`},
         {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:231,effect:[2]}],description:`Big brain augmentation`},
         {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:232,effect:[3]}],description:`Get ripped`},
+        {name:'Dexterizer',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:232,effect:[3]}],description:`Not skipping leg day`},
         {name:'Explosive Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:208,effect:[25]}],description:`Sentry but exploding`},
         {name:'Multiturret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:233,effect:[20]}],description:`Bullet spammer`},
         {name:'Barbed Pillar',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},

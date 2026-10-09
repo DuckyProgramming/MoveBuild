@@ -2620,8 +2620,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,2,4,6)
             layer.triangle(-4,-1,4,-1,0,-7)
             layer.noStroke()
-            layer.fill(200,255,255,fade)
-            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
         break
         case 289:
             layer.strokeWeight(1)
@@ -10789,6 +10793,51 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(-0.75,0,1,8)
             layer.rect(0.75,0,1,8)
             layer.quad(0,-4.5,-1.5,-6,0,-7.5,1.5,-6)
+        break
+        case 1012:
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,6,6,3.6,3.6,0)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
+            layer.fill(60,fade)
+            layer.rect(0,0,6,2)
+            layer.rect(0,-2.5,4,2)
+            layer.rect(0,2.5,4,2)
+        break
+        case 1013:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
+            layer.fill(60,fade)
+            layer.rect(0,0,6,2)
+            layer.rect(0,-2.5,4,2)
+            layer.rect(0,2.5,4,2)
+        break
+        case 1014:
+            layer.fill(75,150,75,fade)
+            layer.rect(0,2,4,6)
+            layer.triangle(-4,-1,4,-1,0,-7)
+            layer.noStroke()
+            if(variants.mtg){
+                displayMtgManaSymbol(layer,0,0,0,0,0.3,fade,-1,[])
+            }else{
+                layer.fill(200,255,255,fade)
+                layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+            }
+            layer.fill(60,fade)
+            layer.rect(0,0,6,2)
+            layer.rect(0,-2.5,4,2)
+            layer.rect(0,2.5,4,2)
         break
     }
     //mark s

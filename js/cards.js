@@ -65927,15 +65927,15 @@ types.card=[
     {
         name:'Red\nSky',rarity:1,list:24,
         levels:[
-            {effect:[4,4,4],attack:10552,cost:1,target:[0],spec:[1],class:11},
-            {effect:[6,6,6],attack:10552,cost:1,target:[0],spec:[1],class:11},
-            {effect:[8,8,8],attack:10552,cost:1,target:[0],spec:[1],class:11},
+            {effect:[4,4,4],attack:10552,cost:1,target:[2,1,3],spec:[1],class:11},
+            {effect:[6,6,6],attack:10552,cost:1,target:[2,1,3],spec:[1],class:11},
+            {effect:[8,8,8],attack:10552,cost:1,target:[2,1,3],spec:[1],class:11},
         ],mtg:{
             rarity:1,list:24,color:[3,5],
             levels:[
-                {effect:[3,3,3],attack:10552,cost:[15],target:[0],spec:[1],class:11},
-                {effect:[5,5,5],attack:10552,cost:[15],target:[0],spec:[1],class:11},
-                {effect:[7,7,7],attack:10552,cost:[15],target:[0],spec:[1],class:11},
+                {effect:[3,3,3],attack:10552,cost:[15],target:[2,1,3],spec:[1],class:11},
+                {effect:[5,5,5],attack:10552,cost:[15],target:[2,1,3],spec:[1],class:11},
+                {effect:[7,7,7],attack:10552,cost:[15],target:[2,1,3],spec:[1],class:11},
             ],
         },
     },{
@@ -66199,15 +66199,15 @@ types.card=[
     },{
         name:'Hua\nGuofeng',rarity:-3,list:24,
         levels:[
-            {effect:[4,4,0],attack:10570,cost:0,target:[0],spec:[41,80,81],class:14},
-            {effect:[4,4,0],attack:10570,cost:0,target:[0],spec:[41,80,81],class:14},
-            {effect:[4,4,0],attack:10570,cost:0,target:[0],spec:[41,80,81],class:14},
+            {effect:[4,4,0],attack:10570,cost:0,target:[0],spec:[41,80,81],limit:[],class:14},
+            {effect:[4,4,0],attack:10570,cost:0,target:[0],spec:[41,80,81],limit:[],class:14},
+            {effect:[4,4,0],attack:10570,cost:0,target:[0],spec:[41,80,81],limit:[],class:14},
         ],mtg:{
             rarity:-3,list:24,color:[0],
             levels:[
-                {effect:[4,4,0],attack:10570,cost:[],target:[0],spec:[41,80,81],class:14},
-                {effect:[4,4,0],attack:10570,cost:[],target:[0],spec:[41,80,81],class:14},
-                {effect:[4,4,0],attack:10570,cost:[],target:[0],spec:[41,80,81],class:14},
+                {effect:[4,4,0],attack:10570,cost:[],target:[0],spec:[41,80,81],limit:[],class:14},
+                {effect:[4,4,0],attack:10570,cost:[],target:[0],spec:[41,80,81],limit:[],class:14},
+                {effect:[4,4,0],attack:10570,cost:[],target:[0],spec:[41,80,81],limit:[],class:14},
             ],
         },
     },{

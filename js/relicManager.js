@@ -1956,6 +1956,9 @@ class relicManager{
                     if(this.battle.modded(224)){
                         this.getPlayer(a).loseMaxHP(1)
                     }
+                    if(args[0]==1){
+                        this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[10567])
+                    }
                 }
             break
             case 2://start of player turn [turn,player,played]

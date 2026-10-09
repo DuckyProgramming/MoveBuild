@@ -2752,14 +2752,21 @@ combatant.prototype.setupGraphics=function(direction){
             this.goal={anim:{direction:this.anim.direction}}
             this.color={in:[120,120,120],out:[100,100,100],light:[100,200,255],glow:[255,255,255]}
         break
-        case 'Strengthener':
+        case 'Strengthener': case 'Dexterizer':
             this.anim={direction:direction,light:1}
             this.fades={body:1,light:1}
             this.trigger={display:{body:true,light:true}}
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={in:[120,120,120],out:[100,100,100],light:[255,100,100]}
+            switch(this.type){
+                case 'Strengthener':
+                    this.color={in:[120,120,120],out:[100,100,100],light:[255,100,100]}
+                break
+                case 'Dexterizer':
+                    this.color={in:[120,120,120],out:[100,100,100],light:[100,255,255]}
+                break
+            }
         break
         case 'Barbed Pillar':
             this.anim={direction:direction}

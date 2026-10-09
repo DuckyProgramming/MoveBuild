@@ -1,13 +1,17 @@
-CS 131 [AIRI]
+CS 131/132 [AIRI]
 
 script, test, and deploy this set
 
-CS 132 [?]
+CS 133 [RANDOS]
+
+CS 134 [VINCENT]
 
 minor vincent purge
 reorganize the items
 https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
 make sure his tutorial is not ruined
+
+CS 135 [?]
 
 tooltips for dictionary
 
@@ -32,10 +36,13 @@ play meri
 minor meri purge
 make sure her tutorial is not ruined
 
+rename wish power
+
 bombing card for dukelis
 split perseids
 [you're shocked, disbanded]
 [sacridice]
+build again and copypaste should create an exhausting blueprint
 absolute field - add 13 block, if target intends to attack retain block this turn
 reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
 maid in heaven - gain 1 energy for each unique class of card in hand

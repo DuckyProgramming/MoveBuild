@@ -101,7 +101,7 @@ constants.status={
         'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
         'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
-        'Conditioning Cycle 3 2','Conditioning Cycle 3 3',
+        'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -205,7 +205,7 @@ constants.status={
         0,0,0,0,1,1,0,0,0,0,//99
         0,0,0,0,0,0,0,2,0,0,//100
         0,0,0,0,0,0,2,2,2,2,//101
-        2,2,
+        2,2,1,1,1,
     ],
     /*
     0-none
@@ -318,7 +318,7 @@ constants.status={
         0,2,0,0,2,2,2,2,2,2,//99
         2,2,2,2,2,2,1,1,2,2,//100
         2,2,2,1,2,1,0,0,0,0,//101
-        0,0,
+        0,0,0,0,0,
     ]
     /*
     0-good
@@ -450,7 +450,7 @@ class combatant{
         this.dodges=[]
         this.communizers=[]
         this.status={
-            main:[],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0],
+            main:[],next:[],display:[],active:[],position:[],size:[],sign:[],misc:[0,0],
             name:constants.status.name,
             behavior:constants.status.behavior,
             class:constants.status.class,
@@ -556,6 +556,7 @@ class combatant{
         this.caffeine=0
 
         this.turnStatus=[0,0,0,0,0,0]
+        this.status.misc=[0,0]
     }
     resetInfo(){
         this.constants()
@@ -2078,7 +2079,7 @@ class combatant{
             //this is two different chunks which both share absolutely no subparts
             case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
             case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall':
-            case 'Compactor': case 'Discounter': case 'Sticky Pillar':
+            case 'Compactor': case 'Discounter': case 'Sticky Pillar': case 'Dexterizer':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -5909,6 +5910,9 @@ class combatant{
                         this.status.main[1005]--
                         mult*=2
                     }
+                    if(this.id>=0&&this.id<this.battle.players){
+                        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[10570,this.battle.encounter.name])
+                    }
                 }
                 if(
                     (this.status.class[status]==0||this.status.class[status]==2)&&effectiveValue>0||
@@ -6284,6 +6288,7 @@ class combatant{
     }
     heal(amount){
         this.turnStatus[3]+=amount
+        this.status.misc[1]+=amount
         this.midHeal=true
         if(!this.battle.relicManager.hasRelic(163,this.id)&&amount>0&&this.life>0&&this.status.main[735]<=0){
             let gain=amount
@@ -6387,6 +6392,7 @@ class combatant{
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[4727])
                 this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[[7242,10041],amount])
+                this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[[10571],this.life])
                 this.battle.cardManagers[this.id].hand.allEffectArgs(55,['callHealthLossEffect',[amount]])
             }
             if(this.status.main[655]>0){
@@ -7055,7 +7061,7 @@ class combatant{
             case 'Infested Prism': case 'Zenith Eye A': case 'Zenith Eye B': case 'Zenith Eye C': case 'Zenith Eye D': case 'Zenith Eye E': case 'Zenith Eye F':
             //these are two separate groups with extremely basic animations
             case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor':
-            case 'Discounter':
+            case 'Discounter': case 'Dexterizer':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
@@ -7912,7 +7918,8 @@ class combatant{
                     break
                 }
             break
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor':
+            case 'Discounter': case 'Dexterizer':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate
@@ -8667,6 +8674,11 @@ class combatant{
                                     this.battle.overlayManager.overlays[25][a].activate([1,[{type:8,value:[]}]])
                                 }
                             }
+                        }
+                    break
+                    case 'Smith':
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[10569])
                         }
                     break
                 }

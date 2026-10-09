@@ -432,11 +432,17 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
     harm(combatant,amount){
         if(!this.battle.relicManager.hasRelic(259,this.player)){
             combatant.safeDamage(amount)
+            this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10568])
         }
+    }
+    harmBypass(combatant,amount){
+        combatant.safeDamage(amount*(this.battle.relicManager.hasRelic(259,this.player)?0.5:1))
+        this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10568])
     }
     harmMax(combatant,amount){
         if(!this.battle.relicManager.hasRelic(259,this.player)){
             combatant.loseMaxHP(amount)
+            this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10568])
         }
     }
     selfCall(type,a){
@@ -702,13 +708,13 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             if(userCombatant.life<=(this.battle.relicManager.hasRelic(259,this.player)?4:8)){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(this.battle.relicManager.hasRelic(259,this.player)?4:8)
+                                this.harmBypass(userCombatant,8)
                             }
                         }else if(this.page==0&&a==2){
                             if(userCombatant.life<=(this.battle.relicManager.hasRelic(259,this.player)?12:24)){
                                 tempPage=-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(this.battle.relicManager.hasRelic(259,this.player)?12:24)
+                                this.harmBypass(userCombatant,24)
                             }
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(45,this.player)
@@ -1566,7 +1572,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     case 123:
                         if(this.page==0&&a==0){
                             this.selection=[floor(random(2,5)),floor(random(0,8))]
-                            this.pages[1].optionDesc[0]=`Lose ${this.selection[0]} Health${this.battle.relicManager.hasRelic(259,this.player)?` (Non-Bypassable)`:``}, ${[
+                            this.pages[1].optionDesc[0]=`Lose ${this.selection[0]} Health${this.battle.relicManager.hasRelic(259,this.player)?` (Halved by 10 Foot Pole)`:``}, ${[
                                 `Gain 5 Currency`,
                                 `Gain 10 Currency`,
                                 `Gain 25 Currency`,
@@ -1580,7 +1586,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             if(userCombatant.life<=0){
                                 tempPage=this.page-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(this.selection[0])
+                                this.harmBypass(userCombatant,this.selection[0])
                                 switch(this.selection[1]){
                                     case 0:
                                         this.battle.addCurrency(5,this.player)
@@ -2133,7 +2139,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
                         }else if(this.page==3&&a==0){
-                            userCombatant.loseHealth(10)
+                            this.harm(userCombatant,10)
                         }
                     break
                     case 179:
@@ -2273,7 +2279,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             if(userCombatant.life<=5){
                                 tempPage=this.page-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(5)
+                                this.harm(userCombatant,5)
                                 if(floor(random(0,2))==0){
                                     tempPage+=9-this.pages[this.page].link[a]
                                 }
@@ -2296,7 +2302,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             if(userCombatant.life<=5){
                                 tempPage=this.page-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(5)
+                                this.harm(userCombatant,5)
                                 if(floor(random(0,3))==0){
                                     tempPage+=2
                                 }else if(floor(random(0,2))==0){
@@ -2336,7 +2342,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             if(userCombatant.life<=5){
                                 tempPage=this.page-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(5)
+                                this.harm(userCombatant,5)
                                 if(floor(random(0,2))==0){
                                     tempPage+=9-this.pages[this.page].link[a]
                                 }
@@ -2359,7 +2365,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             if(userCombatant.life<=5){
                                 tempPage=this.page-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(5)
+                                this.harm(userCombatant,5)
                                 if(floor(random(0,3))==0){
                                     tempPage+=2
                                 }else if(floor(random(0,2))==0){
@@ -2395,7 +2401,7 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             if(userCombatant.life<=10){
                                 tempPage=this.page-this.pages[this.page].link[a]
                             }else{
-                                userCombatant.loseHealth(10)
+                                this.harm(userCombatant,10)
                                 if(floor(random(0,2))==0){
                                     tempPage+=12
                                 }

@@ -13172,7 +13172,7 @@ combatant.prototype.display=function(){
                     this.layer.rect(0,-8,40,16)
                 }
             break
-            case 'Strengthener':
+            case 'Strengthener': case 'Dexterizer':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
