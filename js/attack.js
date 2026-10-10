@@ -319,9 +319,9 @@ class attack{
             case 10214: case 10215: case 10216: case 10217: case 10218: case 10224: case 10225: case 10226: case 10227: case 10229: case 10230: case 10234: case 10236: case 10240: case 10241: case 10242: case 10244: case 10253: case 10254: case 10255:
             case 10259: case 10260: case 10261: case 10264: case 10265: case 10267: case 10268: case 10270: case 10271: case 10272: case 10273: case 10275: case 10277: case 10278: case 10281: case 10287: case 10288: case 10289: case 10293: case 10296:
             case 10297: case 10300: case 10302: case 10308: case 10309: case 10312: case 10313: case 10314: case 10316: case 10318: case 10319: case 10320: case 10322: case 10324: case 10331: case 10336: case 10337: case 10344: case 10353: case 10354:
-            case 10357: case 10358: case 10362: case 10365: case 10366: case 10370: case 10372: case 10373: case 10375: case 10377: case 10382: case 10389: case 10390: case 10392: case 10393: case 10394: case 10407: case 10409: case 10410: case 10411:
-            case 10423: case 10431: case 10432: case 10436: case 10439: case 10449: case 10450: case 10460: case 10461: case 10462: case 10464: case 10465: case 10467: case 10471: case 10474: case 10478: case 10480: case 10481: case 10487: case 10492:
-            case 10498: case 10500: case 10509: case 10510: case 10516: case 10518: case 10521: case 10529: case 10531: case 10532: case 10533: case 10539: case 10550: case 10551: case 10552: case 10556: case 10559: case 10560: case 10566:
+            case 10357: case 10358: case 10362: case 10365: case 10366: case 10370: case 10372: case 10373: case 10375: case 10377: case 10382: case 10389: case 10390: case 10392: case 10393: case 10394: case 10399: case 10407: case 10409: case 10410:
+            case 10411: case 10423: case 10431: case 10432: case 10436: case 10439: case 10449: case 10450: case 10460: case 10461: case 10462: case 10464: case 10465: case 10467: case 10471: case 10474: case 10478: case 10480: case 10481: case 10487:
+            case 10492: case 10498: case 10500: case 10509: case 10510: case 10516: case 10518: case 10521: case 10529: case 10531: case 10532: case 10533: case 10539: case 10550: case 10551: case 10552: case 10556: case 10559: case 10560: case 10566:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 

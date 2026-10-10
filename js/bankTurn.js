@@ -12,7 +12,7 @@ turn.prototype.update=function(){
                 case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                 case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
                 case 420: case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459:
-                case 463: case 465: case 475: case 477: case 489: case 493: case 495:
+                case 463: case 465: case 475: case 477: case 489: case 493: case 495: case 503:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -414,7 +414,7 @@ turn.prototype.update=function(){
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
                 case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449: case 468:
-                case 470: case 476: case 490: case 500:
+                case 470: case 476: case 490: case 500: case 502:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true

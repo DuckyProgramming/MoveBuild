@@ -494,6 +494,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             this.battle.addCurrency(200,this.player)
                         }else if(this.page==2&&a==0){
                             this.harm(userCombatant,30)
+                            this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10572])
                         }
                     break
                     case 6:
@@ -847,6 +848,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             this.battle.addCurrency(45,this.player)
                         }else if(this.page==2&&a==0){
                             this.harm(userCombatant,25)
+                            this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10572])
                         }
                     break
                     case 43:
@@ -1975,6 +1977,7 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                             this.battle.addCurrency(500,this.player)
                         }else if(this.page==2&&a==0){
                             this.harm(userCombatant,10)
+                            this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10572])
                         }else if(this.page==3&&a==0){
                             this.battle.addCurrency(100,this.player)
                         }else if(this.page==4&&a==0){

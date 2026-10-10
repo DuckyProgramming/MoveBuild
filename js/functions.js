@@ -1337,6 +1337,8 @@ function intentDescription(attack,user,info){
 			case 499: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6`
 			case 500: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\n3 Tiles Wide\nRange 1-2`
 			case 501: return `Builder and Allied Constructs\nGain ${info?attack.effect[0]:`?`}\nTemporary Dexterity`
+			case 502: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nGain ${info?attack.effect[1]:`?`} Armor\nRange 1-1`
+			case 503: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Armor\nRange 1-6`
 
 			//mark desc
 			/*

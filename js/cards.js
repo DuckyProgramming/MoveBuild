@@ -2610,15 +2610,15 @@ types.card=[
     },{
         name:'Deng\nXiaoping',rarity:-3,list:24,
         levels:[
-            {effect:[10,1],attack:10571,cost:0,target:[0],spec:[41,80,81],class:14},
-            {effect:[10,1],attack:10571,cost:0,target:[0],spec:[41,80,81],class:14},
-            {effect:[10,1],attack:10571,cost:0,target:[0],spec:[41,80,81],class:14},
+            {effect:[10,5],attack:10571,cost:0,target:[0],spec:[41,80,81],class:14},
+            {effect:[10,5],attack:10571,cost:0,target:[0],spec:[41,80,81],class:14},
+            {effect:[10,5],attack:10571,cost:0,target:[0],spec:[41,80,81],class:14},
         ],mtg:{
             rarity:-3,list:24,color:[0],
             levels:[
-                {effect:[10,1],attack:10571,cost:[],target:[0],spec:[41,80,81],class:14},
-                {effect:[10,1],attack:10571,cost:[],target:[0],spec:[41,80,81],class:14},
-                {effect:[10,1],attack:10571,cost:[],target:[0],spec:[41,80,81],class:14},
+                {effect:[10,5],attack:10571,cost:[],target:[0],spec:[41,80,81],class:14},
+                {effect:[10,5],attack:10571,cost:[],target:[0],spec:[41,80,81],class:14},
+                {effect:[10,5],attack:10571,cost:[],target:[0],spec:[41,80,81],class:14},
             ],
         },
     },{

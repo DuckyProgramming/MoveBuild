@@ -121,7 +121,7 @@ types={
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[2,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
         {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,2]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
-        {name:'Riot Police',life:67,behavior:0,spec:[9],move:{type:0,speed:1},attack:[{type:150,effect:[6,4]},{type:9,effect:[16]}],description:`Responds to everything except riots`},
+        {name:'Riot Police',life:67,behavior:0,spec:[9],move:{type:0,speed:1},attack:[{type:150,effect:[6,3]},{type:9,effect:[16]}],description:`Responds to everything except riots`},
         {name:'Reichswehr',life:43,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:151,effect:[6,1]},{type:477,effect:[2]},{type:12,effect:[14]}],description:`No historical context`},
         {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:153,effect:[2]},{type:79,effect:[5]},{type:6,effect:[6]},{type:1,effect:[7]}],description:`Would rather not do anything`},
         {name:'Fungling',life:15,behavior:5,spec:[11],move:{type:1,speed:1},attack:[{type:4,effect:[5]},{type:154,effect:[6,1]}],description:`Doesn't do a whole lot`},
@@ -160,7 +160,7 @@ types={
         {name:'Regen Balloon',life:39,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:290,effect:[8,3]}],description:`Honestly I can't explain this one`},
         {name:'Precision',life:8,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[4,1]},{type:38,effect:[6]}],description:`It works the first time at least`},
         {name:'Relic',life:108,behavior:0,spec:[0,18],move:{type:0,speed:1},attack:[{type:275,effect:[14]},{type:276,effect:[12]},{type:277,effect:[16]}],description:`Why do enemies award you now?`},
-        {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
+        {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:502,effect:[14,2]},{type:503,effect:[17,2]},{type:405,effect:[24,2]}],description:`Just you wait...`},
         {name:'Anomaly',life:93,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[5,1]},{type:2,effect:[6]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunar Servant in never spawning`},
@@ -869,6 +869,11 @@ types={
         {name:'6 Tile Pentuple Strike',class:1},
         {name:'2 Tile 3 Spread Strike / Frail',class:1},//500
         {name:'Builder and Construct Temporary Dexterize',class:2},
+        
+        {name:'3 Spread Strike / Armor',class:1},
+        //278
+        {name:'6 Tile Strike / Armor',class:1},
+        //279
 
         //mark attack
     ],relic:[
