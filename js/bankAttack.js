@@ -2055,7 +2055,7 @@ attack.prototype.update=function(){
         case 9699: case 9700: case 9703: case 9725: case 9786: case 9796: case 9816: case 9825: case 9837: case 9852:
         case 9853: case 9861: case 9922: case 9923: case 9944: case 10036: case 10106: case 10117: case 10133: case 10144:
         case 10150: case 10163: case 10170: case 10171: case 10202: case 10227: case 10229: case 10230: case 10318: case 10319:
-        case 10320: case 10366: case 10371: case 10373: case 10375: case 10382: case 10389: case 10390: case 10392: case 10393:
+        case 10320: case 10366: case 10370: case 10373: case 10375: case 10382: case 10389: case 10390: case 10392: case 10393:
         case 10399: case 10400: case 10411: case 10449: case 10450: case 10460: case 10461: case 10480: case 10498: case 10500:
         case 10554: case 10563:
             //mark 8
@@ -2423,7 +2423,7 @@ attack.prototype.update=function(){
                         case 10292:
                             this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],this.targetTile.tilePosition,[3,this.userCombatant.id],[0,2],false,0)
                         break
-                        case 10031:
+                        case 10447:
                             this.battle.combatantManager.clearTileTrue(this.targetTile)
                             this.targetTile.clearTypes()
                         break
@@ -15760,7 +15760,7 @@ attack.prototype.update=function(){
         case 10423:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
-                if(this.userManager.hand.numberAbstract(6,1,[70])==0){
+                if(this.userManager.hand.deAbstract(6,1,[70])==0){
                     this.remove=true
                 }
             }

@@ -35,7 +35,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=58
+        this.listKey=59
         this.listInput=[
             [0,4],
             [1,8],
@@ -89,6 +89,7 @@ class group{
             [53,64],
             [56,65],
             [57,66],
+            [58,67],
         ]
 
         this.reset()
@@ -3530,8 +3531,8 @@ class group{
         userCombatant.activateDraw()
         this.battle.combatantManager.drawCardFront(card.class,card)
         this.battle.relicManager.activate(19,[card,this.player])
-        if(this.compactSpecial&&!this.cards[a].spec.includes(34)){
-            this.cards[a].spec.push(34)
+        if(this.compactSpecial&&!card.spec.includes(34)){
+            card.spec.push(34)
         }
         if(card.getBasicMultiple([1,2])){
             if(this.basicChange[0]>0){
@@ -4997,15 +4998,16 @@ class group{
     remove(index){
         let possible=!this.cards[index].spec.includes(7)&&!(this.battle.initialized&&this.battle.modded(97))
         if(possible){
-            if(this.cards[index].class!=14){
-                this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[[7241,10040]])
-                if(!this.cards[index].getBasic(-1)&&this.cards.some((card,index2)=>card.name==this.cards[index].name&&index!=index2)){
-                    this.battle.cardManagers[this.combatant.id].trueAllGroupEffectArgs(65,[10573])
-                }
-            }
+            let card=this.cards[index]
             this.cards[index].callRemoveEffect()
             this.allEffectArgs(55,[`callAnotherRemovedEffect`,[this.cards[index]]])
             this.send(this.battle.cardManagers[this.player].remove.cards,index,index+1,0)
+            if(card.class!=14){
+                this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[[7241,10040]])
+                if(!card.getBasic(-1)&&this.cards.some((card,index2)=>card.name==card.name&&index!=index2)){
+                    this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10573])
+                }
+            }
         }
         return possible
     }
@@ -5196,9 +5198,9 @@ class group{
                     }
                 }
                 if(
-                    card.getBasic(1)&&userCombatant.getStatus('Free Strike')>0||
-                    card.getBasic(2)&&userCombatant.getStatus('Free Defend')>0||
-                    card.getBasic(3)&&userCombatant.getStatus('Free Step')>0
+                    card.getBasic(1)&&userCombatant.getStatus('Free Strike Time')>0||
+                    card.getBasic(2)&&userCombatant.getStatus('Free Defend Time')>0||
+                    card.getBasic(3)&&userCombatant.getStatus('Free Step Time')>0
                 ){
                     effectiveCost=0
                     calculatoryCost=0
@@ -5424,7 +5426,7 @@ class group{
         switch(scene){
             case 'battle':
                 let anim=[
-                    max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],
+                    max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44],this.anim[58]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],
                     this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],
                     this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),
                     this.anim[37],this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],
@@ -5774,9 +5776,17 @@ class group{
                             this.cards[a].vanish=true
                         }
                         for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
-                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
-                                this.battle.cardManagers[this.player].deck.cards[b].limit--
-                                if(this.battle.cardManagers[this.player].deck.cards[b].limit<=0&&this.battle.cardManagers[this.player].deck.cards[b].spec.includes(15)||this.battle.cardManagers[this.player].deck.cards[b].limit[0]<=0&&this.battle.cardManagers[this.player].deck.cards[b].spec.includes(38)){
+                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id
+                            ){
+                                if(this.cards[a].spec.includes(15)){
+                                    this.battle.cardManagers[this.player].deck.cards[b].limit--
+                                }else if(this.cards[a].spec.includes(38)){
+                                    this.battle.cardManagers[this.player].deck.cards[b].limit[0]--
+                                }
+                                if(
+                                    this.battle.cardManagers[this.player].deck.cards[b].limit<=0&&this.battle.cardManagers[this.player].deck.cards[b].spec.includes(15)||
+                                    this.battle.cardManagers[this.player].deck.cards[b].limit[0]<=0&&this.battle.cardManagers[this.player].deck.cards[b].spec.includes(38)
+                                ){
                                     this.battle.cardManagers[this.player].deck.cards[b].callVanishEffect()
                                     this.battle.cardManagers[this.player].deck.cards.splice(b,1)
                                     b--
@@ -6887,6 +6897,13 @@ class group{
                     }
                 }
             break
+            case 67:
+                this.cards[a].deSize=true
+                this.cards[a].exhaust=true
+                if(this.status[58]>0){
+                    this.status[58]--
+                }
+            break
         }
     }
     generalUpgrade(card){
@@ -7125,12 +7142,12 @@ class group{
                                 this.cards[a].additionalSpec.push(89)
                             }else if(this.cards[a].discardEffect.includes(21)){
                                 let hold=this.cards[a].discardEffect
-                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific('Operational\nDefend')
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific(this.cards[a],'Operational\nDefend')
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(21),1)
                             }else if(this.cards[a].discardEffect.includes(22)){
                                 let hold=this.cards[a].discardEffect
-                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific('Operational\nStrike')
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific(this.cards[a],'Operational\nStrike')
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(22),1)
                             }

@@ -1806,6 +1806,14 @@ class turn{
                     case 491:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                     break
+                    case 501:
+                        if(this.userCombatant.builder==this.battle.turn.main){
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Dexterity',this.effect[0])
+                        }else{
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Dexterity Next Turn',this.effect[0])
+                        }
+                        this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Temporary Dexterity',this.effect[0]])
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                         switch(this.type){

@@ -1,7 +1,3 @@
-CS 131/132 [AIRI]
-
-script, test, and deploy this set
-
 CS 133 [RANDOS]
 
 CS 134 [VINCENT]
@@ -40,6 +36,8 @@ rename wish power
 
 bombing card for dukelis
 split perseids
+split mint beam
+split unleash
 [you're shocked, disbanded]
 [sacridice]
 build again and copypaste should create an exhausting blueprint

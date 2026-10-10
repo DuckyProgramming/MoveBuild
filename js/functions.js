@@ -1336,6 +1336,7 @@ function intentDescription(attack,user,info){
 			case 498: return `Create ${info?attack.effect[0]:`?`} Bolt${pl(attack.effect[0])}\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block to All Enemies`
 			case 499: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6`
 			case 500: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\n3 Tiles Wide\nRange 1-2`
+			case 501: return `Builder and Allied Constructs\nGain ${info?attack.effect[0]:`?`}\nTemporary Dexterity`
 
 			//mark desc
 			/*
@@ -1475,7 +1476,7 @@ function copyCard(base){
 		base.layer,base.battle,base.player,base.position.x,base.position.y,
 		base.type,base.level,base.color,base.id,base.cost,
 		base.additionalSpec,base.name,base.list,base.effect,base.attack,
-		base.target,base.spec,base.cardClass,base.limit,base.falsed,
+		base.target,base.spec,base.cardClass,typeof base.limit=='object'?copyArray(base.limit):base.limit,base.falsed,
 		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
 		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
 		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
@@ -1487,7 +1488,7 @@ function copyCardNew(base){
 		base.layer,base.battle,base.player,1200,500,
 		base.type,base.level,base.color,game.id,base.cost,
 		base.additionalSpec,base.name,base.list,base.effect,base.attack,
-		base.target,base.spec,base.cardClass,base.limit,base.falsed,
+		base.target,base.spec,base.cardClass,typeof base.limit=='object'?copyArray(base.limit):base.limit,base.falsed,
 		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
 		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
 		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
@@ -1499,7 +1500,7 @@ function copyCardNewAbstract(base,type,args){
 		base.layer,base.battle,base.player,1200,500,
 		base.type,base.level,base.color,game.id,base.cost,
 		base.additionalSpec,base.name,base.list,base.effect,base.attack,
-		base.target,base.spec,base.cardClass,base.limit,base.falsed,
+		base.target,base.spec,base.cardClass,typeof base.limit=='object'?copyArray(base.limit):base.limit,base.falsed,
 		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
 		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
 		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve

@@ -3544,7 +3544,8 @@ class battle{
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
                         (
                             this.cardManagers[a].hand.status[0]<0||this.cardManagers[a].hand.status[1]<0||this.cardManagers[a].hand.status[8]<0||this.cardManagers[a].hand.status[10]>0||this.cardManagers[a].hand.status[27]>0||
-                            this.cardManagers[a].hand.status[28]<0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38][0]>0||this.cardManagers[a].hand.status[43]>0
+                            this.cardManagers[a].hand.status[28]<0||this.cardManagers[a].hand.status[31]>0||this.cardManagers[a].hand.status[34]>0||this.cardManagers[a].hand.status[38][0]>0||this.cardManagers[a].hand.status[43]>0||
+                            this.cardManagers[a].hand.status[58]>0
                         ),0,1,5)
                     this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:106,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.cyclicDraw||variants.blackjack),1,1.5,5)
                 }

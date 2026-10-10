@@ -8625,6 +8625,9 @@ class combatant{
                 this.dead=true
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()
+                if(this.battle.turn.main<this.battle.players){
+                    this.battle.cardManagers[this.battle.turn.main].hand.allEffectArgs(55,['callAlternateDeathEffect',[]])
+                }
                 if(this.status.main[80]>0){
                     this.battle.combatantManager.areaAbstract(0,[this.base.life*this.status.main[80],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
                 }
@@ -8663,6 +8666,9 @@ class combatant{
                 this.deTarget()
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()
+                if(this.battle.turn.main<this.battle.players){
+                    this.battle.cardManagers[this.battle.turn.main].hand.allEffectArgs(55,['callAlternateDeathEffect',[]])
+                }
                 switch(this.name){
                     case 'Medic':
                         for(let a=0,la=this.battle.players;a<la;a++){

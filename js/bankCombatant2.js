@@ -2759,7 +2759,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
-            switch(this.type){
+            switch(this.name){
                 case 'Strengthener':
                     this.color={in:[120,120,120],out:[100,100,100],light:[255,100,100]}
                 break
