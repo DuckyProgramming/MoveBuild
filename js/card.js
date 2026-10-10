@@ -2149,29 +2149,39 @@ class card{
                 this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
             break
             case 7237:
-                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                for(let a=0,la=types.card[findName('Lenin',types.card)].levels[0].effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
                 userCombatant.addBlock(this.effect[0])
             break
             case 7238:
-                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                for(let a=0,la=types.card[findName('Lenin',types.card)].levels[0].effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
                 userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
                 this.battle.cardManagers[this.player].draw(this.effect[0])
             break
             case 7239:
-                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                for(let a=0,la=types.card[findName('Lenin',types.card)].levels[0].effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
                 userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
                 this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
                 userCombatant.statusEffect('Vigor',this.effect[0])
             break
             case 7240:
-                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                for(let a=0,la=types.card[findName('Lenin',types.card)].levels[0].effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
                 userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
                 this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
                 userCombatant.statusEffect('Vigor',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])
                 userCombatant.heal(this.effect[0])
             break
             case 7241:
-                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                for(let a=0,la=types.card[findName('Lenin',types.card)].levels[0].effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
                 userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
                 this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
                 userCombatant.statusEffect('Vigor',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])
@@ -2179,7 +2189,9 @@ class card{
                 this.battle.combatantManager.randomEnemyEffect(23,['Weak',this.effect[0]])
             break
             case 7242:
-                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                for(let a=0,la=types.card[findName('Lenin',types.card)].levels[0].effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
                 userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
                 this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
                 userCombatant.statusEffect('Vigor',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])
@@ -2188,7 +2200,9 @@ class card{
                 userCombatant.statusEffect('Control',this.effect[0])
             break
             case 7243: case 7407:
-                this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                for(let a=0,la=types.card[findName('Lenin',types.card)].levels[0].effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
                 userCombatant.addBlock(types.card[findName('Stalin',types.card)].levels[0].effect[0])
                 this.battle.cardManagers[this.player].draw(types.card[findName('Malenkov',types.card)].levels[0].effect[0])
                 userCombatant.statusEffect('Vigor',types.card[findName('Khrushchev',types.card)].levels[0].effect[0])

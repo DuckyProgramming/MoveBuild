@@ -2340,6 +2340,7 @@ function outListing(){
 		current.collectionManager.totals.list[constants.playerNumber+11][0]+
 		current.collectionManager.totals.list[constants.playerNumber+12][0]+
 		current.collectionManager.totals.list[constants.playerNumber+13][0]
+	let char=manager.listing.allPlayerCard[3].length+manager.listing.card[0][3].length
 	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
 	let colorChanges=0
 	for(let a=0,la=constants.playerNumber;a<la;a++){
@@ -2384,9 +2385,11 @@ function outListing(){
 	]*/
 	let arbitrary=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)+unlisted.reduce((acc,num)=>acc+num,0)
 	let goal=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)
+	let charGoal=160*(constants.playerNumber+1)
 	console.log(`
 (${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
 (${actual-goal}) Listed Cards: ${actual}/${goal}
+(${char-charGoal}) Character Cards: ${char}/${charGoal}
 
 ${box}
 (${manager.listing.card[constants.playerNumber+1][3].length-listed[0]}) Status: ${manager.listing.card[constants.playerNumber+1][3].length}

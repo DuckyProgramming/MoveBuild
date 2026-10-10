@@ -3946,9 +3946,9 @@ class combatant{
                 if(this.stance==1){
                     damage*=this.status.main[478]>0?3:2
                 }
-                /*if(this.stance==4){
+                if(this.stance==4){
                     damage*=0.5
-                }*/
+                }
                 if(this.status.main[321]>0){
                     damage=ceil(damage/5)*5
                 }
@@ -4712,7 +4712,7 @@ class combatant{
                     }
                 }
             }
-            if(this.spec.includes(6)&&this.life<=this.threshold){
+            if(this.spec.includes(6)&&this.life>0&&this.life<=this.threshold){
                 this.threshold-=25
                 this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
             }
@@ -4788,9 +4788,9 @@ class combatant{
             if(this.status.main[652]>0&&this.stance==1){
                 block*=2
             }
-            if(this.stance==4){
+            /*if(this.stance==4){
                 block*=2
-            }
+            }*/
             block=round(block*10)/10
             if(this.status.main[70]>0){
                 this.combo=min(this.combo+this.status.main[70],max(this.comboCap,this.combo))
@@ -5609,29 +5609,33 @@ class combatant{
         return this.status.main[295]>0?1:energy%2
     }
     enterStance(stance){
-        this.leaveStance(this.stance)
-        if(this.id<this.battle.players){
-            this.battle.cardManagers[this.id].hand.allEffect(110)
-            this.battle.cardManagers[this.id].discard.allEffect(28)
-            this.battle.cardManagers[this.id].reserve.allEffect(28)
-        }
-        this.stance=stance
-        switch(stance){
-            case 3:
-                this.battle.cardManagers[this.id].hand.add(findName('Stride',types.card),0,0)
-            break
-            case 5:
-                this.battle.addSpecificEnergy(variants.mtg?5:3,this.id,6)
-            break
-        }
-        if(this.status.main[126]>0){
-            this.addBlock(this.status.main[126])
-        }
-        if(this.status.main[127]>0&&this.id>=0&&this.id<this.battle.players){
-            this.battle.cardManagers[this.id].draw(this.status.main[127])
-        }
-        if(this.status.main[510]>0){
-            this.statusEffect('Temporary Strength',this.status.main[510])
+        //you can't change from a stance to itself
+        //this was a fairly recent change, but otherwise you could just enter calm over and over again
+        if(this.stance!=stance){
+            this.leaveStance(this.stance)
+            if(this.id<this.battle.players){
+                this.battle.cardManagers[this.id].hand.allEffect(110)
+                this.battle.cardManagers[this.id].discard.allEffect(28)
+                this.battle.cardManagers[this.id].reserve.allEffect(28)
+            }
+            this.stance=stance
+            switch(this.stance){
+                case 3:
+                    this.battle.cardManagers[this.id].hand.add(findName('Stride',types.card),0,0)
+                break
+                case 5:
+                    this.battle.addSpecificEnergy(variants.mtg?5:3,this.id,6)
+                break
+            }
+            if(this.status.main[126]>0){
+                this.addBlock(this.status.main[126])
+            }
+            if(this.status.main[127]>0&&this.id>=0&&this.id<this.battle.players){
+                this.battle.cardManagers[this.id].draw(this.status.main[127])
+            }
+            if(this.status.main[510]>0){
+                this.statusEffect('Temporary Strength',this.status.main[510])
+            }
         }
     }
     leaveStance(stance){

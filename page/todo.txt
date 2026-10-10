@@ -1,46 +1,41 @@
-CS 133 [RANDOS]
+CS 133 [SHIRU/SETSUNA]
+CS 134 [EDGAR/RANDOS]
 
-CS 134 [VINCENT]
+CS 135 [VINCENT]
 
 minor vincent purge
 reorganize the items
 https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
 make sure his tutorial is not ruined
 
-CS 135 [?]
+CS 136 [?]
 
 tooltips for dictionary
 
-test setsuna
-clunky cards
-purge?
-make sure her tutorial is not ruined
+test new setsuna
 
-test edgar
-purge?
-make sure his tutorial is not ruined
+test new shiru
 
-test discardless shiru
-purge?
-make sure her tutorial is not ruined
+edgar -
+a full rework is not necessary
+but some cards are a bit weak i guess
+and don't ruin the tutorial
 
 test prehex x2 runs
 purge?
 make sure his tutorial is not ruined
 
 play meri
-minor meri purge
+make sure her tutorial is not ruined
+
+play menessa
 make sure her tutorial is not ruined
 
 rename wish power
 
 bombing card for dukelis
-split perseids
-split mint beam
-split unleash
-[you're shocked, disbanded]
-[sacridice]
-build again and copypaste should create an exhausting blueprint
+
+trench war
 absolute field - add 13 block, if target intends to attack retain block this turn
 reading comprehension - discover a card, it costs 0, 2 cost, costs 1 less when a defense is played
 maid in heaven - gain 1 energy for each unique class of card in hand

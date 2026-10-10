@@ -7849,8 +7849,8 @@ Unaffected by focus.`,
 `Stance. Add a Stride to Hand when entered, but you cannot attack.`,
         },{name:'Sturdy',mtg:0,desc:
 //`Stance. Deal 60% damage and take 40% damage.`,
-//`Stance. Deal 50% damage and take 50% damage.`,
-`Stance. Deal 50% damage and add double block.`,
+`Stance. Deal 50% damage and take 50% damage.`,
+//`Stance. Deal 50% damage and add double block.`,
         },{name:'Mantra',mtg:0,desc:
 //`Gained through cards. When you gain 8 Mantra, enter Divinity.`,
 `Gained through cards. When you gain 12 Mantra, enter Divinity.`,

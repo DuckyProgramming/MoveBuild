@@ -3310,11 +3310,13 @@ class battle{
                                 }
                             //}
                         })
+                        let q=(num)=>{return num==-5?-10:num}
                         for(let a=0,la=graphics.test==1?15:11;a<la;a++){
                             let barWidth=600/la
                             //let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
                             let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Subcard','Event','Reserve','Developer','Disband','Basic','Pack','Misc']
-                            set[a].sort((a,b)=>a.list-b.list)
+                            set[a].sort((a,b)=>q(b.list[0])-q(a.list[0]))
+                            //set[a].sort((a,b)=>a.list-b.list)
                             //set[a]=set[a].filter(group=>group.list[1]!=constants.playerNumber+12)
                             //let prop=set[0][a]/(set[0][a]+set[1][a])
                             let pos=this.layer.height-margin

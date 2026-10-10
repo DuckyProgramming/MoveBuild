@@ -1595,6 +1595,8 @@ attack.prototype.update=function(){
                     if(this.type==5057){
                         this.userCombatant.goal.anim.direction+=18
                     }
+                }else if(this.type==5057&&this.timer==30){
+                    this.userCombatant.goal.anim.direction-=180
                 }
                 if(this.timer<=8){
                     this.userCombatant.moveTile(this.direction,this.distance/30)

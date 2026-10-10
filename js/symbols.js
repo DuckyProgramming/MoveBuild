@@ -16903,7 +16903,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         break
         case 13:
             layer.fill(75,150,75,fade)
-            layer.rect(0,2,4,6)
+            //layer.rect(0,2,4,6)
+            layer.rect(0,1.75,4,6.5)
             layer.triangle(-4,-1,4,-1,0,-7)
         break
         case 14:
