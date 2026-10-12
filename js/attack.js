@@ -5126,15 +5126,15 @@ class attack{
                                     this.userManager.hand.add(findName('Sniper',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
-                                case 'Gangster Machinegunner': case 'Coffee Commander': case 'Gangster Machinegunner Informant': case 'Pinstripe':
+                                case 'Gangster Machinegunner': case 'Coffee Commander': case 'Gangster Machinegunner Informant': case 'Pinstripe': case 'Ollie':
                                     this.userManager.hand.add(findName('Triple\nTap',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
-                                case 'Jet': case 'Tech Support': case 'Adrian Kane':
+                                case 'Jet': case 'Tech Support': case 'Adrian Kane': case 'Rocket Launcher Robot':
                                     this.userManager.hand.add(findName('Reserve\nRocket',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
-                                case 'Management Shotgunner': case 'Prison Guard Gunner':
+                                case 'Management Shotgunner': case 'Prison Guard Gunner': case 'Shotgun Robot':
                                     this.userManager.hand.add(findName('Shotgun',types.card),0,this.color)
                                     this.userCombatant.ammo+=this.effect[1]
                                 break
@@ -21493,6 +21493,7 @@ class attack{
                             this.battle.addEnergy(this.effect[2],this.player)
                             this.userManager.draw(this.effect[3])
                         }
+                        this.userManager.trueAllGroupEffectArgs(65,[10572])
                     break
                     case 10013:
                         this.userCombatant.loseHealth(this.effect[0])
@@ -21500,6 +21501,7 @@ class attack{
                             this.battle.addSpecificEnergy(3,this.player,6)
                             this.userManager.draw(this.effect[2])
                         }
+                        this.userManager.trueAllGroupEffectArgs(65,[10572])
                     break
                     case 10014:
                         this.userCombatant.loseHealth(this.effect[0])
@@ -21507,6 +21509,7 @@ class attack{
                             this.battle.addSpecificEnergy(4,this.player,6)
                             this.userManager.draw(this.effect[2])
                         }
+                        this.userManager.trueAllGroupEffectArgs(65,[10572])
                     break
                     case 10038:
                         this.userManager.randomEffect(2,85,[])

@@ -1363,6 +1363,7 @@ class combatantManager{
         this.id++
         this.sort()
         this.reorder()
+        return this.combatants[this.combatants.length-1]
     }
     addCombatantAbstract(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion,spec){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
@@ -1378,6 +1379,7 @@ class combatantManager{
         this.id++
         this.sort()
         this.reorder()
+        return this.combatants[this.combatants.length-1]
     }
     addCombatantConstruct(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion,builder){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
@@ -1401,6 +1403,7 @@ class combatantManager{
         this.id++
         this.sort()
         this.reorder()
+        return this.combatants[this.combatants.length-1]
     }
     constructAlive(team){
         for(let a=0,la=this.combatants.length;a<la;a++){

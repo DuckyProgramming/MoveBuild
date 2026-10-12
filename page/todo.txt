@@ -1,3 +1,6 @@
+goodbye quickDraw
+symbols for the +5
+
 CS 133 [SHIRU/SETSUNA]
 CS 134 [EDGAR/RANDOS]
 
@@ -52,6 +55,10 @@ benben, biwa tsukumogami:
     +1 - draw a movement
     -3 - gain 3 strength if you are above 50% health, otherwise gain 3 dexterity
     -5 - apotheosis
+andrew
+    heal 1
+    transform your hand
+    teleport
 cycle of rebirth - exhaust a random card in hand, then exhume
 
 burn documents - remove all block from target, if target has burn draw 2 cards
@@ -62,7 +69,6 @@ googolplex - when you play a power, discover a power(copying STS eh with the def
 classic gamble - double or nothing any amount of money, chances cannot be edited (still counts as highroll or lowroll) (rename to something else like daily double or moist tomato?)
 more communizing
 
-remold - double upgrade a card permanently, remove a card permanently, lose 20 max hp
 split ddos - new ddos applies shock in all directions
 pulchritude - heal 1 health, every 3rd time played: deal 7 damage to a random enemy, add 7 block(ehh cards that only work 1/3 or 1/2 of the time are dubious in this game consistency is key)
 brass tacks - target takes 4 damage per turn, redraw your hand
@@ -84,11 +90,6 @@ locked medkit - blemished steel but it full heals you instead
 cultural creator - deal 4 damage to any enemy, gain 2 knowledge if you already have knowledge
 daybreak - [evening], draw a card if in elemental form
 demeaning gaze - apply 2 vulnerable, if target intends to attack, gain 1 knowledge
-split semester, it gives block actually
-split timeline terror to create lost days - retains, extends your elemental form by a turn if in elemental form
-split devour history, new devour history - remove 2 fatigues, gain 2 history
-elemental knowledge - based on elemental power
-split moonshift to give 2 vision on play
 spli stroll - now gives [light the way] and exhausts a card
 maybe rework all cards that say "drawn 2+ times" as this keyword just doesn't sound good
 

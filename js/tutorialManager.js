@@ -134,7 +134,7 @@ They may be an event, which vary by quality.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
-                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Cards will often have attributes attached to them.
 You may have seen some of them already (such as Fatigue).`,
@@ -152,9 +152,9 @@ End your turn now, it should stay in your hand.`,
 As in, each battle, you can play it immediately.`,
 `Ethereal cards are exhausted if they remain in your hand when your turn ends.
 End your turn, the card should disappear, and not appear in your discard pile.`,
-`Quickdraw cards, when played, draw 1 additional card.
+/*`Quickdraw cards, when played, draw 1 additional card.
 Drawing cards usually have this effect in their card text,
-so Quickdraw is used only as an attribute added by upgrade.`,
+so Quickdraw is used only as an attribute added by upgrade.`,*/
 `Unplayable cards can't be played from your hand.
 Sometimes, they have passive effects, other times, they do nothing.`,
 `Unplayable cards aren't the same as cards known as "bricks",
@@ -1493,15 +1493,15 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Strike But\nEthereal',types.card),0,0)
                     break
-                    case 7:
+                    /*case 7:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Strike But\nQuickdraw',types.card),0,0)
-                    break
-                    case 8:
+                    break*/
+                    case 7:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Placeholder\nUnplayable',types.card),0,0)
                     break
-                    case 9:
+                    case 8:
                         this.battle.cardManagers[0].allEffect(2,2)
                         for(let a=0,la=6;a<la;a++){
                             this.battle.cardManagers[0].hand.add(findName('-h Brick',types.card),0,0)

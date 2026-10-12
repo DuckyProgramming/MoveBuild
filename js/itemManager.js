@@ -660,6 +660,9 @@ class itemManager{
             case 119:
                 this.battle.cardManagers[player].hand.selfCall(6,[3595,[30*effectiveness,5],1,[2,1,3]])
             break
+            case 120:
+                this.battle.cardManagers[player].hand.selfCall(6,[5692,[25*effectiveness,5],1,[2,1,3]])
+            break
 
             //mark p
 

@@ -2024,7 +2024,7 @@ function sortNumbersUnique(numbers){
 	return sortNumbers(numbers).filter(function(object,index,array){return index==0||object!=array[index-1]})
 }
 function prime(value){
-	if(value==1){
+	if(value<=1){
 		return false
 	}
 	for(let a=2,la=sqrt(value);a<la;a++){
@@ -2179,6 +2179,10 @@ function elemental(){
 }
 function wish(value){
 	current.combatantManager.combatants[0].wish+=value
+}
+function histogram(histogram){
+	stage.scene='histogram'
+	graphics.test=histogram
 }
 function followup(){
 	quickAddFull('Overflowing',1,0,0)
@@ -2769,6 +2773,30 @@ function outRepeats(){
 				console.log(types.card[a].name)
 			}
 		}
+	}
+}
+function outSpecific(spec){
+	let totals=[[],[],[],0]
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list!=-8&&types.card[a].list!=-9){
+			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+				if(types.card[a].levels[b].spec.includes(spec)){
+					totals[3]++
+					totals[b].push(types.card[a].name)
+				}
+			}
+			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+				if(types.card[a].mtg.levels[b].spec.includes(spec)){
+					totals[3]++
+					totals[b].push(types.card[a].name)
+				}
+			}
+		}
+	}
+	if(totals[0].length==0&&totals[1].length==0){
+		print(totals[2])
+	}else{
+		print(totals)
 	}
 }
 function outOffColor(){

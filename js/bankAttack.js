@@ -14574,6 +14574,9 @@ attack.prototype.update=function(){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetTile.position.x,this.targetTile.position.y,10,[10]))
                     this.battle.combatantManager.areaAbstract(0,[this.effect[0],this.user,0],this.targetTile.tilePosition,[0],[0,1],false,0)
                 }
+                if(this.battle.combatantManager.getArea(-1,this.targetTile.tilePosition,1).includes(this.userCombatant)){
+                    this.userManager.trueAllGroupEffectArgs(65,[10572])
+                }
                 switch(this.type){
                     case 9039:
                         for(let a=0,la=this.effect[1];a<la;a++){

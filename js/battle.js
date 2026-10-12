@@ -690,12 +690,12 @@ class battle{
     addCombatant(position,type,team,direction,minion){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
+        return this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
     }
     addCombatantAbstract(position,type,team,direction,minion,spec){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        this.combatantManager.addCombatantAbstract(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion,spec)
+        return this.combatantManager.addCombatantAbstract(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion,spec)
     }
     positionCombatant(combatant,position){
         if(position.x==-1){
@@ -774,7 +774,8 @@ class battle{
     }
     sendReinforce(){
         for(let a=0,la=this.reinforce.front.length;a<la;a++){
-            if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].occupied==0){
+            let tile=this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)]
+            if(tile.occupied==0){
                 let effectiveName=this.reinforce.front[a].name
                 if(effectiveName=='-h Traitor'){
                     let summon=this.combatantManager.getRandomNonexistingPlayer()
@@ -782,25 +783,27 @@ class battle{
                         effectiveName=types.combatant[summon].name
                     }
                 }
-                this.addCombatant(this.reinforce.front[a].position,findName(effectiveName,types.combatant),0,1,this.reinforce.front[a].minion)
+                let combatant=this.addCombatant(this.reinforce.front[a].position,findName(effectiveName,types.combatant),0,1,this.reinforce.front[a].minion)
                 this.tileManager.activate()
-                this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
+                tile.reinforce=false
+                this.activateTile(1,combatant.id)
                 this.reinforce.front.splice(a,1)
                 a--
                 la--
             }else{
-                this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
+                tile.reinforce=false
                 let empty=this.tileManager.getEmptyTiles()
                 if(empty.length>0){
-                    let tile=empty[floor(random(0,empty.length))]
-                    this.reinforce.front[a].position={x:this.tileManager.tiles[tile].tilePosition.x,y:this.tileManager.tiles[tile].tilePosition.y}
-                    this.tileManager.tiles[tile].reinforce=true
+                    let tilePick=empty[floor(random(0,empty.length))]
+                    this.reinforce.front[a].position={x:this.tileManager.tiles[tilePick].tilePosition.x,y:this.tileManager.tiles[tilePick].tilePosition.y}
+                    this.tileManager.tiles[tilePick].reinforce=true
                 }
             }
         }
         if(variants.assault){
             for(let a=0,la=this.reinforce.assault.front.length;a<la;a++){
-                if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.front[a].position.x,this.reinforce.assault.front[a].position.y)].occupied==0){
+                let tile=this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.front[a].position.x,this.reinforce.assault.front[a].position.y)]
+                if(tile.occupied==0){
                     let effectiveName=this.reinforce.assault.front[a].name
                     if(effectiveName=='-h Traitor'){
                         let summon=this.combatantManager.getRandomNonexistingPlayer()
@@ -808,20 +811,21 @@ class battle{
                             effectiveName=types.combatant[summon].name
                         }
                     }
-                    this.addCombatant(this.reinforce.assault.front[a].position,findName(effectiveName,types.combatant),0,1,this.reinforce.assault.front[a].minion)
+                    let combatant=this.addCombatant(this.reinforce.assault.front[a].position,findName(effectiveName,types.combatant),0,1,this.reinforce.assault.front[a].minion)
                     this.counter.enemy++
                     this.tileManager.activate()
-                    this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.front[a].position.x,this.reinforce.assault.front[a].position.y)].reinforce=false
+                    this.activateTile(1,combatant.id)
+                    tile.reinforce=false
                     this.reinforce.assault.front.splice(a,1)
                     a--
                     la--
                 }else{
-                    this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.assault.front[a].position.x,this.reinforce.assault.front[a].position.y)].reinforce=false
+                    tile.reinforce=false
                     let empty=this.tileManager.getEmptyTiles()
                     if(empty.length>0){
-                        let tile=empty[floor(random(0,empty.length))]
-                        this.reinforce.assault.front[a].position={x:this.tileManager.tiles[tile].tilePosition.x,y:this.tileManager.tiles[tile].tilePosition.y}
-                        this.tileManager.tiles[tile].reinforce=true
+                        let tilePick=empty[floor(random(0,empty.length))]
+                        this.reinforce.assault.front[a].position={x:this.tileManager.tiles[tilePick].tilePosition.x,y:this.tileManager.tiles[tilePick].tilePosition.y}
+                        this.tileManager.tiles[tilePick].reinforce=true
                     }
                 }
             }
@@ -3284,37 +3288,47 @@ class battle{
                 this.layer.background(200)
                 let margin=50
                 let thick=3
+                let set
+                let total
+                let overTotal
+                let overPos
+                let names3=['Colorless','Status','Curse','Partner','Arcana','Spectral','Subcard','Event','Reserve','Developer','Disband','Basic','Pack','Misc']
+                let q=(num)=>{return num==constants.playerNumber+10?100:num}
                 switch(graphics.test){
                     case 0: case 1:
                         this.layer.noStroke()
                         //let set=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
-                        let set=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-                        let total=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        set=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+                        total=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         types.card.forEach(card=>{
                             //card.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
                             //card.mtg.levels.forEach(level=>set[card.list==-8?1:0][floor(level.attack/1000)]++)
                             //if(card.list!=-8){
+                            card.levels.forEach(level=>{
                                 let series=[
-                                    floor((card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/1000),
-                                    card.levels[0].class.length==2?card.levels[0].class[0]:card.levels[0].class,
+                                    //floor((card.levels[0].attack.length==2?max(card.levels[0].attack[0],card.levels[0].attack[1]):card.levels[0].attack)/1000),
+                                    floor((level.attack.length==2?max(level.attack[0],level.attack[1]):level.attack)/1000),
+                                    level.class.length==2?level.class[0]:level.class,
                                 ][graphics.test]
                                 let res=this.collectionManager.overListing(card)
                                 //if(series>=0&&card.levels[0].attack<5000){
                                 if(series>=0){
-                                    total[series]++
+                                    total[series]+=1/3
+                                    if(set[series]==undefined){
+                                        print(card)
+                                    }
                                     if(set[series].some(chunk=>chunk.list[1]==res[1])){
-                                        set[series].filter(chunk=>chunk.list[1]==res[1])[0].num++
+                                        set[series].filter(chunk=>chunk.list[1]==res[1])[0].num+=1/3
                                     }else{
-                                        set[series].push({list:res,num:1})
+                                        set[series].push({list:res,num:1/3})
                                     }
                                 }
+                            })
                             //}
                         })
-                        let q=(num)=>{return num==-5?-10:num}
                         for(let a=0,la=graphics.test==1?15:11;a<la;a++){
                             let barWidth=600/la
-                            //let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
-                            let names2=['Colorless','Status','Curse','Partner','Arcana','Spectral','Subcard','Event','Reserve','Developer','Disband','Basic','Pack','Misc']
+                            //let names3=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
                             set[a].sort((a,b)=>q(b.list[0])-q(a.list[0]))
                             //set[a].sort((a,b)=>a.list-b.list)
                             //set[a]=set[a].filter(group=>group.list[1]!=constants.playerNumber+12)
@@ -3348,7 +3362,7 @@ class battle{
                                 }
                                 this.layer.fill(set[a][b].list[1]==constants.playerNumber+9?240:0)
                                 this.layer.textSize(min(10,prop*500))
-                                this.layer.text(`${set[a][b].list[1]>=constants.playerNumber?names2[set[a][b].list[1]-constants.playerNumber]:types.combatant[set[a][b].list[1]+1].name}`,margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5)
+                                this.layer.text(`${set[a][b].list[1]>=constants.playerNumber?names3[set[a][b].list[1]-constants.playerNumber]:types.combatant[set[a][b].list[1]+1].name}`,margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5)
                                 pos-=(this.layer.height-margin*2)*prop
                             }
                             /*this.layer.fill(margin)
@@ -3360,7 +3374,7 @@ class battle{
                             this.layer.textSize(graphics.test==0?20:barWidth/name.length+5)
                             this.layer.text(name,margin+(this.layer.width-margin*2)*(a+0.5)/la,this.layer.height-margin+25)
                             this.layer.textSize(20)
-                            this.layer.text(total[a],margin+(this.layer.width-margin*2)*(a+0.5)/la,margin-25)
+                            this.layer.text(round(total[a]),margin+(this.layer.width-margin*2)*(a+0.5)/la,margin-25)
                             /*this.layer.textSize(15)
                             this.layer.text(`${floor(set[1][a]/6)}/${floor(set[0][a]/6+set[1][a]/6)}`,margin+(this.layer.width-margin*2)*(a+0.5)/la,80)*/
                         }
@@ -3428,6 +3442,166 @@ class battle{
                         }
                         for(let a=0,la=ceil(maximum[1]/10);a<la;a++){
                             this.layer.text(`${a*10}`,margin-20,this.layer.height-margin-(this.layer.height-margin*2)*a*10/maximum[1])
+                        }
+                    break
+                    case 4: case 5: case 6:
+                        /*
+                        4-all
+                        5-no disband
+                        6-only character
+                        */
+                        this.layer.noStroke()
+                        set=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+                        total=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        overTotal=0
+                        types.card.forEach(card=>{
+                            if(
+                                graphics.test==4||
+                                graphics.test==5&&card.list!=-8&&card.list!=-10||
+                                graphics.test==6&&card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber
+                                //graphics.test==6&&card.list!=-8&&card.list!=-10&&!(card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber)
+                            ){
+                                card.levels.forEach(level=>{
+                                    let series=floor((level.attack.length==2?max(level.attack[0],level.attack[1]):level.attack)/1000)
+                                    let res=this.collectionManager.overListing(card)
+                                    if(series>=0){
+                                        overTotal++
+                                        total[series]++
+                                        if(set[series]==undefined){
+                                            print(card)
+                                        }
+                                        if(set[series].some(chunk=>chunk.list[1]==res[1])){
+                                            set[series].filter(chunk=>chunk.list[1]==res[1])[0].num++
+                                        }else{
+                                            set[series].push({list:res,num:1})
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                        overPos=margin
+                        for(let a=0,la=11;a<la;a++){
+                            set[a].sort((a,b)=>q(b.list[1])-q(a.list[1]))
+                            let overProp=total[a]/overTotal*(this.layer.width-margin*2)
+                            let pos=margin
+                            for(let b=0,lb=set[a].length;b<lb;b++){
+                                let prop=set[a][b].num/total[a]*(this.layer.height-margin*2)
+                                let x=overPos+overProp*0.5
+                                let y=pos+prop*0.5
+                                this.layer.fill(...(
+                                    /*set[a][b].list[1]==constants.playerNumber+1?[125,125,125]:
+                                    set[a][b].list[1]==constants.playerNumber+2?[75,75,75]:
+                                    set[a][b].list[1]==constants.playerNumber+3?[255,150,150]:
+                                    set[a][b].list[1]==constants.playerNumber+4?[160,160,140]:
+                                    set[a][b].list[1]==constants.playerNumber+5?[125,145,180]:
+                                    set[a][b].list[1]==constants.playerNumber+7?[220,220,220]:*/
+                                    playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1)
+                                ))
+                                this.layer.rect(x,y,overProp+0.5,prop+0.5)
+                                /*if(set[a][b].list[1]==constants.playerNumber+9){
+                                    this.layer.fill(255,255,50)
+                                    this.layer.rect(x-overProp*0.4,y,2,prop)
+                                    this.layer.rect(x+overProp*0.4,y,2,prop)
+                                }*/
+                                //displayPlayerSymbol(this.layer,x,y,set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1,0,min(overProp*15,prop*10),1)
+                                pos+=prop
+                            }
+                            overPos+=overProp
+                        }
+                        overPos=margin
+                        for(let a=0,la=11;a<la;a++){
+                            let overProp=total[a]/overTotal*(this.layer.width-margin*2)
+                            let pos=margin
+                            for(let b=0,lb=set[a].length;b<lb;b++){
+                                let prop=set[a][b].num/total[a]*(this.layer.height-margin*2)
+                                let x=overPos+overProp*0.5
+                                let y=pos+prop*0.5
+                                if(playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1).some(a=>a!=120)){
+                                    displayPlayerSymbol(this.layer,x,y,set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1,0,min(overProp/50,prop/50),1)
+                                }else{
+                                    this.layer.fill(set[a][b].list[1]==constants.playerNumber+9?240:0)
+                                    this.layer.textSize(min(10,prop))
+                                    this.layer.text(`${set[a][b].list[1]>=constants.playerNumber?names3[set[a][b].list[1]-constants.playerNumber]:types.combatant[set[a][b].list[1]+1].name}`,x,pos-prop*0.5+min(10,prop)*0.15)
+                                }
+                                pos+=prop
+                            }
+                            overPos+=overProp
+                        }
+                    break
+                    case 7: case 8: case 9:
+                        this.layer.noStroke()
+                        set=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+                        total=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        overTotal=0
+                        types.card.forEach(card=>{
+                            if(
+                                graphics.test==7||
+                                graphics.test==8&&card.list!=-8&&card.list!=-10||
+                                graphics.test==9&&card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber
+                            ){
+                                card.levels.forEach(level=>{
+                                    let series=floor((level.attack.length==2?max(level.attack[0],level.attack[1]):level.attack)/1000)
+                                    let res=this.collectionManager.overListing(card)
+                                    if(series>=0){
+                                        if(series>0){
+                                            overTotal++
+                                        }
+                                        total[series]++
+                                        if(set[series]==undefined){
+                                            print(card)
+                                        }
+                                        if(set[series].some(chunk=>chunk.list[1]==res[1])){
+                                            set[series].filter(chunk=>chunk.list[1]==res[1])[0].num++
+                                        }else{
+                                            set[series].push({list:res,num:1})
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                        for(let a=0,la=set.length;a<la;a++){
+                            for(let b=0,lb=constants.playerNumber+14;b<lb;b++){
+                                if(!set[a].some(chunk=>chunk.list[1]==b)){
+                                    set[a].push({list:[0,b],num:0})
+                                }
+                            }
+                            set[a].sort((a,b)=>q(b.list[1])-q(a.list[1]))
+                        }
+                        let overHold=[]
+                        overPos=margin
+                        for(let a=0,la=10;a<la;a++){
+                            let overProp=(total[a]+total[a+1])*0.5/overTotal*(this.layer.width-margin*2)
+                            let pos=[margin,margin]
+                            for(let b=0,lb=set[a].length;b<lb;b++){
+                                let prop=[
+                                    set[a][b].num/total[a]*(this.layer.height-margin*2),
+                                    set[a+1][b].num/total[a+1]*(this.layer.height-margin*2)
+                                ]
+                                this.layer.fill(...playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1))
+                                this.layer.quad(overPos-0.5,pos[0]+prop[0],overPos-0.5,pos[0],overPos+overProp,pos[1],overPos+overProp,pos[1]+prop[1])
+                                pos[0]+=prop[0]
+                                pos[1]+=prop[1]
+                            }
+                            overPos+=overProp
+                            overHold.push(overPos)
+                        }
+                        for(let a=0,la=constants.playerNumber+14;a<la;a++){
+                            let maximal=[0,0]
+                            for(let b=1,lb=10;b<lb;b++){
+                                if(set[b][a].num/total[b]>maximal[0]){
+                                    maximal[0]=set[b][a].num/total[b]
+                                    maximal[1]=b
+                                }
+                            }
+                            if(maximal[0]>0){
+                                let loc=margin
+                                for(let b=0,lb=a;b<lb;b++){
+                                    loc+=set[maximal[1]][b].num/total[maximal[1]]*(this.layer.height-margin*2)
+                                }
+                                let list=set[maximal[1]][a].list[1]
+                                loc+=set[maximal[1]][a].num/total[maximal[1]]*(this.layer.height-margin*2)*0.5
+                                displayPlayerSymbol(this.layer,overHold[maximal[1]-1],loc,list==constants.playerNumber?0:list+1,0,maximal[0]*8,1,false)
+                            }
                         }
                     break
                 }

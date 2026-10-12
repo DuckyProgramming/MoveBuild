@@ -302,10 +302,13 @@ types={
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
         {name:'Zenith',life:111,behavior:0,spec:[0,2],move:{type:0,speed:0},attack:[{type:462,effect:[6,1]},{type:10,effect:[10]},{type:478,effect:[6,1]}],description:`All that's made can surely break`},
 
-        {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
         {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
-        {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
         {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
+        
+        //{name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:405,effect:[24,2]}],description:`Just you wait...`},
+        //{name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -1593,7 +1596,7 @@ types={
         {name:'Hologram Projector',internal:'2 Intangible',id:45,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Intangible'},
         {name:'Large Smoke Bomb',internal:'End Combat',id:46,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'End a Non-Boss\nCombat'},
         {name:'Mirror Dome',internal:'10 Confused Draw',id:47,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Draw 10 Cards,\nBecome Confused'},
-        {name:'Shield Field',internal:'2 Buffer',id:48,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Buffer'},
+        {name:'Shield Field',internal:'2 Buffer',id:48,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Buffer'},
         {name:'Bottled Fairy',internal:'Revive',id:49,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'When You Die, Heal 10 HP\nRemoves Self Afterward'},
 
         {name:'Particle Storm',internal:'6 Random Damage 10 Times',id:50,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 6 Damage to a\nRandom Enemy 10 Times'},
@@ -1655,7 +1658,7 @@ types={
         {name:'Bottled Cement',internal:'Remove Block/25 Damage',id:101,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Remove All Block of Target\nDeal 25 Damage\nRange 1-3'},
         {name:'Bottled Hope',internal:'Draw to 5',id:102,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Draw to 5 Cards'},
         {name:'Flag of Labor',internal:'Draw 5 Commons',id:103,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Draw 5 Common Cards'},
-        {name:'Flag of Means',internal:'Draw 5 Uncommons',id:104,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Draw 5 Uncommon Cards'},
+        {name:'Flag of Means',internal:'Draw 5 Uncommons',id:104,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Draw 5 Uncommon Cards'},
         {name:'Caffeine',internal:'5 Mana',id:105,rarity:0,list:0,menu:false,temp:false,mtg:2,description:'Gain (W) (B) (K) (G) (R)'},
         {name:'Contained Boundary',internal:'3 Mana/5 Cards/Lose 3 Health',id:106,rarity:1,list:0,menu:false,temp:false,mtg:2,description:'Gain (E) (E) (E), Draw 5 Cards,\nLose 3 Health'},
         {name:'Jeweled Branch',internal:'5 Retained Mana',id:107,rarity:2,list:0,menu:false,temp:false,mtg:2,description:'Gain (E) (E) (E) (E) (E), Retain Unspent\nMana For the Next 5 Turns'},
@@ -1673,6 +1676,8 @@ types={
         {name:'Round Camera',internal:'Copy Card',id:117,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Make 3 Copies of\na Card in Hand'},
         {name:'Party Bottle',internal:'2 Strength/2 Dexterity',id:118,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Strength and 2 Dexterity'},
         {name:'Boss Buster',internal:'Boss Splash Damage',id:119,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 30 Splash Damage\nDeals 5x More to Bosses\nRange 1-3'},
+
+        {name:'Cheese Can',internal:'Terminate',id:120,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'If Target Has Less Than 25% Health, It Dies\nRange 1-3'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},
@@ -4031,6 +4036,17 @@ types={
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Holed 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -5524,8 +5540,30 @@ types={
             ],ally:[
             ],
         },{
-            level:['Killzone 7'],class:2,world:1,
+            level:['Holed 7'],class:2,world:1,
             name:'Gangmaster',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Gangmaster'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Gangster',turn:1},
+                {position:{x:0,y:1},name:'Gangster',turn:1},
+                {position:{x:2,y:0},name:'Gangster Gunner',turn:5},
+                {position:{x:0,y:2},name:'Gangster Gunner',turn:5},
+                {position:{x:1,y:0},name:'Slippery Gangster',turn:9},
+                {position:{x:0,y:2},name:'Slippery Gangster',turn:9},
+                {position:{x:2,y:0},name:'Gangster Assassin',turn:13},
+                {position:{x:0,y:2},name:'Gangster Assassin',turn:13},
+                {position:{x:1,y:0},name:'Gangster Machinegunner',turn:17},
+                {position:{x:0,y:1},name:'Gangster Machinegunner',turn:17},
+                {position:{x:2,y:0},name:'Batter',turn:21},
+                {position:{x:0,y:2},name:'Batter',turn:21},
+            ],ally:[
+            ],
+        },{
+            level:['Killzone 7'],class:2,world:1,
+            name:'Gangmaster Legacy',
             player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Gangmaster'},

@@ -905,6 +905,13 @@ class item{
                     displaySymbol(this.layer,0,0,67,0,1,this.fade)
                     displaySymbol(this.layer,0,0,35,0,0.3,this.fade)
                 break
+                case 'Terminate':
+                    displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,22,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('<25%',-8,0)
+                break
 
                 //mark b
 
