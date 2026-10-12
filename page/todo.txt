@@ -1,5 +1,4 @@
 goodbye quickDraw
-symbols for the +5
 
 CS 133 [SHIRU/SETSUNA]
 CS 134 [EDGAR/RANDOS]

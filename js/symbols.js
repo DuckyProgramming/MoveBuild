@@ -11441,21 +11441,31 @@ function playerSymbolColor(type){
             return [240,135,150]
         case 26:
             return [255,219,129]
-        case 33:
+        case 27:
+            return [125,125,125]
+        case 28:
+            return [75,75,75]
+        case 29:
+            return [255,150,150]
+        case 30:
+            return [160,160,140]
+        case 31:
+            return [125,145,180]
+        case 32:
             return [200,180,180]
-        case 34:
+        case 33:
             return [160,100,140]
-        case 35:
+        case 34:
             return [140,180,160]
-        case 36:
+        case 35:
             return [0,0,0]
-        case 37:
+        case 36:
             return [50,60,70]
-        case 38:
+        case 37:
             return [180,180,180]
-        case 39:
+        case 38:
             return [120,60,70]
-        case 40:
+        case 39:
             return [60,80,100]
         default:
             return [120,120,120]
@@ -12284,14 +12294,76 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.quad(16,0,15,-4,14,0,15,4)
             layer.quad(19,0,15,-1,11,0,15,1)
         break
-        case 33:
+        case 27:
+            layer.noFill()
+            layer.stroke(255,fade)
+            layer.strokeWeight(2)
+            layer.ellipse(0,0,36,18)
+            layer.stroke(125,125,125,fade)
+            layer.strokeWeight(3)
+            layer.strokeJoin(ROUND)
+            layer.fill(125,125,125,fade)
+            regStar(layer,-4,-9,5,5,5,1.5,1.5,-21)
+            regStar(layer,-10,6.5,5,5,5,1.5,1.5,12)
+            regStar(layer,17.25,2,5,5,5,1.5,1.5,-6)
+            layer.noStroke()
+            layer.fill(255,fade)
+            regStar(layer,-4,-9,5,5,5,1.5,1.5,-21)
+            regStar(layer,-10,6.5,5,5,5,1.5,1.5,12)
+            regStar(layer,17.25,2,5,5,5,1.5,1.5,-6)
+            layer.strokeJoin(MITER)
+        break
+        case 28:
+            layer.ellipse(0,0,20)
+            hexagon(layer,-10.5,-18,-13.5,-18,-16.5,0,-13.5,18,-10.5,18,-7.5,0)
+            hexagon(layer,10.5,-18,13.5,-18,16.5,0,13.5,18,10.5,18,7.5,0)
+        break
+        case 29:
+            layer.rect(-9,-4.5,23,5)
+            layer.rect(-9,-4.5,5,23)
+            layer.rect(9,4.5,23,5)
+            layer.rect(9,4.5,5,23)
+        break
+        case 30:
+            layer.ellipse(0,0,11)
+            for(let a=0,la=8;a<la;a++){
+                layer.rotate(180/la)
+                layer.ellipse(0,10.5,3)
+                layer.rotate(180/la)
+                layer.ellipse(0,5,3)
+                layer.ellipse(0,15,3)
+            }
+            layer.stroke(255,fade)
+            layer.noFill()
+            layer.strokeWeight(3)
+            layer.ellipse(0,0,33)
+        break
+        case 31:
+            layer.beginShape()
+            layer.vertex(9,8)
+            layer.vertex(6,8)
+            layer.vertex(6,12)
+            layer.vertex(16.5,12)
+            layer.vertex(16.5,8)
+            layer.vertex(13.5,8)
+            layer.vertex(0,-20)
+            layer.vertex(-13.5,8)
+            layer.vertex(-16.5,8)
+            layer.vertex(-16.5,12)
+            layer.vertex(-6,12)
+            layer.vertex(-6,8)
+            layer.vertex(-9,8)
+            layer.vertex(0,-11.5)
+            layer.endShape()
+        break
+        case 32:
             layer.rotate(-5)
             layer.rect(0,0,24,32,4)
             layer.fill(200,180,180)
             layer.rotate(10)
             layer.rect(0,0,16,64/3,8/3)
         break
-        case 34:
+        case 33:
             /*layer.stroke(255,fade)
             layer.noFill()
             layer.strokeWeight(1)
@@ -12304,12 +12376,12 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.fill(255)
             layer.quad(-10,-14,-2,-14,10,-2,2,-2)
             layer.quad(-16,-14,-16,-6,-12,-2,-4,-2)
-            layer.quad(16,-4,14,-10,12,-14,4,-14)
+            layer.quad(16,-2,16,-10,12,-14,4,-14)
             layer.quad(-10,2,-2,2,10,14,2,14)
             layer.quad(-16,2,-16,10,-12,14,-4,14)
             layer.quad(16,14,16,6,12,2,4,2)
         break
-        case 35:
+        case 34:
             layer.noFill()
             layer.stroke(255,fade)
             layer.strokeWeight(2)
@@ -12323,7 +12395,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             regPoly(layer,-8,-2,7,10,10,5)
             regPoly(layer,14,3.5,7,5,5,35)
         break
-        case 36:
+        case 35:
             /*layer.stroke(255,fade)
             layer.strokeWeight(4)
             layer.line(-10,-15,-10,15)
@@ -12352,26 +12424,26 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.endShape()
             layer.ellipse(0,0,15)
         break
-        case 37:
+        case 36:
             /*layer.fill(0,fade)
             layer.ellipse(0,0,50)
             layer.fill(255,fade)*/
             //this is disband, so its empty
         break
-        case 38:
+        case 37:
             layer.rect(0,0,12,4)
             layer.rect(0,-6,24,4)
             layer.rect(0,6,24,4)
             layer.rect(0,-12,12,4)
             layer.rect(0,12,12,4)
         break
-        case 39:
+        case 38:
             layer.rect(-5,3,12,16,2)
             layer.rect(5,-3,12,16,2)
             layer.rect(-15,-3,12,16,2)
             layer.rect(15,3,12,16,2)
         break
-        case 40:
+        case 39:
             layer.rect(-10,-10,12,12)
             layer.ellipse(10,-10,14,14)
             regTriangle(layer,-10,10,8,8,60)

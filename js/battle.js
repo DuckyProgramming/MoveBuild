@@ -3352,7 +3352,7 @@ class battle{
                                     set[a][b].list[1]==constants.playerNumber+11?[180,180,180]:
                                     //set[a][b].list[1]==constants.playerNumber+12?[160,160,160]:
                                     set[a][b].list[1]==constants.playerNumber+13?[160,160,160]:
-                                    playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1)
+                                    playerSymbolColor(set[a][b].list[1]>constants.playerNumber?set[a][b].list[1]:set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1)
                                 ))
                                 this.layer.rect(margin+(this.layer.width-margin*2)*(a+0.5)/la,pos-(this.layer.height-margin*2)*prop*0.5,barWidth*(graphics.test==1?1:total[a]/1000),(this.layer.height-margin*2)*prop)
                                 if(set[a][b].list[1]==constants.playerNumber+9){
@@ -3444,7 +3444,7 @@ class battle{
                             this.layer.text(`${a*10}`,margin-20,this.layer.height-margin-(this.layer.height-margin*2)*a*10/maximum[1])
                         }
                     break
-                    case 4: case 5: case 6:
+                    case 4: case 5: case 6: case 7:
                         /*
                         4-all
                         5-no disband
@@ -3458,8 +3458,8 @@ class battle{
                             if(
                                 graphics.test==4||
                                 graphics.test==5&&card.list!=-8&&card.list!=-10||
-                                graphics.test==6&&card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber
-                                //graphics.test==6&&card.list!=-8&&card.list!=-10&&!(card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber)
+                                graphics.test==6&&card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber||
+                                graphics.test==7&&card.list!=-8&&card.list!=-10&&!(card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber)
                             ){
                                 card.levels.forEach(level=>{
                                     let series=floor((level.attack.length==2?max(level.attack[0],level.attack[1]):level.attack)/1000)
@@ -3488,22 +3488,14 @@ class battle{
                                 let prop=set[a][b].num/total[a]*(this.layer.height-margin*2)
                                 let x=overPos+overProp*0.5
                                 let y=pos+prop*0.5
-                                this.layer.fill(...(
-                                    /*set[a][b].list[1]==constants.playerNumber+1?[125,125,125]:
-                                    set[a][b].list[1]==constants.playerNumber+2?[75,75,75]:
-                                    set[a][b].list[1]==constants.playerNumber+3?[255,150,150]:
-                                    set[a][b].list[1]==constants.playerNumber+4?[160,160,140]:
-                                    set[a][b].list[1]==constants.playerNumber+5?[125,145,180]:
-                                    set[a][b].list[1]==constants.playerNumber+7?[220,220,220]:*/
-                                    playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1)
-                                ))
+                                this.layer.fill(...playerSymbolColor(set[a][b].list[1]>constants.playerNumber?set[a][b].list[1]:set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1))
                                 this.layer.rect(x,y,overProp+0.5,prop+0.5)
                                 /*if(set[a][b].list[1]==constants.playerNumber+9){
                                     this.layer.fill(255,255,50)
                                     this.layer.rect(x-overProp*0.4,y,2,prop)
                                     this.layer.rect(x+overProp*0.4,y,2,prop)
                                 }*/
-                                //displayPlayerSymbol(this.layer,x,y,set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1,0,min(overProp*15,prop*10),1)
+                                //displayPlayerSymbol(this.layer,x,y,set[a][b].list[1]>constants.playerNumber?set[a][b].list[1]:set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1,0,min(overProp*15,prop*10),1)
                                 pos+=prop
                             }
                             overPos+=overProp
@@ -3516,28 +3508,28 @@ class battle{
                                 let prop=set[a][b].num/total[a]*(this.layer.height-margin*2)
                                 let x=overPos+overProp*0.5
                                 let y=pos+prop*0.5
-                                if(playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1).some(a=>a!=120)){
-                                    displayPlayerSymbol(this.layer,x,y,set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1,0,min(overProp/50,prop/50),1)
+                                if(playerSymbolColor(set[a][b].list[1]>constants.playerNumber?set[a][b].list[1]:set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1).some(a=>a!=120)){
+                                    displayPlayerSymbol(this.layer,x,y,set[a][b].list[1]>constants.playerNumber?set[a][b].list[1]:set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1,0,min(overProp/50,prop/50),1)
                                 }else{
                                     this.layer.fill(set[a][b].list[1]==constants.playerNumber+9?240:0)
                                     this.layer.textSize(min(10,prop))
-                                    this.layer.text(`${set[a][b].list[1]>=constants.playerNumber?names3[set[a][b].list[1]-constants.playerNumber]:types.combatant[set[a][b].list[1]+1].name}`,x,pos-prop*0.5+min(10,prop)*0.15)
+                                    this.layer.text(`${set[a][b].list[1]>=constants.playerNumber?names3[set[a][b].list[1]-constants.playerNumber]:types.combatant[set[a][b].list[1]+1].name}`,x,pos+prop*0.5+min(10,prop)*0.15)
                                 }
                                 pos+=prop
                             }
                             overPos+=overProp
                         }
                     break
-                    case 7: case 8: case 9:
+                    case 8: case 9: case 10:
                         this.layer.noStroke()
                         set=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
                         total=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         overTotal=0
                         types.card.forEach(card=>{
                             if(
-                                graphics.test==7||
-                                graphics.test==8&&card.list!=-8&&card.list!=-10||
-                                graphics.test==9&&card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber
+                                graphics.test==8||
+                                graphics.test==9&&card.list!=-8&&card.list!=-10||
+                                graphics.test==10&&card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber
                             ){
                                 card.levels.forEach(level=>{
                                     let series=floor((level.attack.length==2?max(level.attack[0],level.attack[1]):level.attack)/1000)
@@ -3577,7 +3569,7 @@ class battle{
                                     set[a][b].num/total[a]*(this.layer.height-margin*2),
                                     set[a+1][b].num/total[a+1]*(this.layer.height-margin*2)
                                 ]
-                                this.layer.fill(...playerSymbolColor(set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1))
+                                this.layer.fill(...playerSymbolColor(set[a][b].list[1]>constants.playerNumber?set[a][b].list[1]:set[a][b].list[1]==constants.playerNumber?0:set[a][b].list[1]+1))
                                 this.layer.quad(overPos-0.5,pos[0]+prop[0],overPos-0.5,pos[0],overPos+overProp,pos[1],overPos+overProp,pos[1]+prop[1])
                                 pos[0]+=prop[0]
                                 pos[1]+=prop[1]
@@ -3600,7 +3592,7 @@ class battle{
                                 }
                                 let list=set[maximal[1]][a].list[1]
                                 loc+=set[maximal[1]][a].num/total[maximal[1]]*(this.layer.height-margin*2)*0.5
-                                displayPlayerSymbol(this.layer,overHold[maximal[1]-1],loc,list==constants.playerNumber?0:list+1,0,maximal[0]*8,1,false)
+                                displayPlayerSymbol(this.layer,overHold[maximal[1]-1],loc,list>constants.playerNumber?list:list==constants.playerNumber?0:list+1,0,maximal[0]*8,1,false)
                             }
                         }
                     break
