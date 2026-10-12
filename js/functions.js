@@ -3724,7 +3724,7 @@ function checkExists(start,end){
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
 		9661,//invalid silverswivel
-		83,84,85,86,9974,//items
+		83,84,85,86,3595,9974,10352,//items
 	]
 	let total=0
 	for(let a=start,la=end;a<la;a++){

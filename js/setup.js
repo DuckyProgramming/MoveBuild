@@ -44,7 +44,7 @@ function setup(){
             //game.animRate=4
 
             /*stage.scene='histogram'
-            graphics.test=6*/
+            graphics.test=4*/
 
             /*current.packManagers[0].packs[0].take()
             current.packManagers[0].packs[1].take()

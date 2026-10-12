@@ -26,6 +26,7 @@ and don't ruin the tutorial
 test prehex x2 runs
 purge?
 make sure his tutorial is not ruined
+afterward, destroy his quickdraw
 
 play meri
 make sure her tutorial is not ruined

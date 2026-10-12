@@ -101,7 +101,7 @@ constants.status={
         'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
         'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
-        'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time',
+        'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -205,7 +205,7 @@ constants.status={
         0,0,0,0,1,1,0,0,0,0,//99
         0,0,0,0,0,0,0,2,0,0,//100
         0,0,2,0,0,0,2,2,2,2,//101
-        2,2,1,1,1,
+        2,2,1,1,1,0,0,
     ],
     /*
     0-none
@@ -318,7 +318,7 @@ constants.status={
         0,2,0,0,2,2,2,2,2,2,//99
         2,2,2,2,2,2,1,1,2,2,//100
         2,2,2,1,2,1,0,0,0,0,//101
-        0,0,0,0,0,
+        0,0,0,0,0,2,1,
     ]
     /*
     0-good
@@ -881,8 +881,14 @@ class combatant{
             case 'Spike Pillar':
                 this.statusEffect('Counter All Combat',8)
             break
+            case 'Spike Pillar+':
+                this.statusEffect('Counter All Combat',12)
+            break
             case 'Barbed Pillar':
                 this.statusEffect('Counter Bleed All Combat',4)
+            break
+            case 'Barbed Pillar+':
+                this.statusEffect('Counter Bleed All Combat',6)
             break
             /*case 'Glitch':
                 this.statusEffect('End Move',floor(random(1,3)))
@@ -893,6 +899,15 @@ class combatant{
             break
             case 'Mirror Shield':
                 this.statusEffect('Reflect',1)
+            break
+            case 'Mirror Shield+':
+                this.statusEffect('Reflect',2)
+            break
+            case 'Metal Box+':
+                this.statusEffect('Hold Metal',1)
+            break
+            case 'Teleporter Start+': case 'Teleporter End+':
+                this.statusEffect('Block on Death',6)
             break
             case 'L':
                 this.statusEffect('Numeric Explode on Death',6)
@@ -945,7 +960,10 @@ class combatant{
                 this.statusEffect('Armor',diffUnfair?10:6)
             break
             case 'Exploding Wall':
-                this.statusEffect('Numeric Explode on Death',20)
+                this.statusEffect('Numeric Explode on Death',24)
+            break
+            case 'Exploding Wall+':
+                this.statusEffect('Numeric Explode on Death',32)
             break
             case 'Sick Duck':
                 this.statusEffect('Weak on Kill',diffUnfair?4:2)
@@ -1039,6 +1057,10 @@ class combatant{
                 this.statusEffect('Mortal',diffUnfair?15:20)
             break
             case 'Sticky Pillar':
+                this.statusEffect('Counter Temporary Speed Down All Combat',1)
+            break
+            case 'Sticky Pillar+':
+                this.statusEffect('Counter All Combat',4)
                 this.statusEffect('Counter Temporary Speed Down All Combat',1)
             break
             case 'Management Drone':
@@ -2081,6 +2103,9 @@ class combatant{
             case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
             case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Exploding Wall': case 'Shieldzone': case 'Swap Wall': case 'Swarm Wall':
             case 'Compactor': case 'Discounter': case 'Sticky Pillar': case 'Dexterizer':
+            case 'Wall+': case 'Spike Pillar+': case 'Projector+': case 'Readout+': case 'Strengthener+': case 'Barbed Pillar+': case 'Gun Rack+': case 'Metal Box+': case 'Upgrader+': case 'Transformer+':
+            case 'Doubler+': case 'Exhauster+': case 'Teleporter Start+': case 'Teleporter End+': case 'Antizone+': case 'Mirror Shield+': case 'Exploding Wall+': case 'Shieldzone+': case 'Swap Wall+': case 'Swarm Wall+':
+            case 'Compactor+': case 'Discounter_': case 'Sticky Pillar+': case 'Dexterizer+':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -7072,10 +7097,13 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            
+            //again, two entire sets with minimal animation
             case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start':
             case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret': case 'Shieldzone':
             case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall': case 'Sticky Pillar':
+            case 'Wall+': case 'Spike Pillar+': case 'Turret+': case 'Explosive Turret+': case 'Multiturret+': case 'Repulse Turret+': case 'Machine Gun+': case 'Barbed Pillar+': case 'Miniturret+': case 'Teleporter Start+':
+            case 'Teleporter End+': case 'Antizone+': case 'Mirror Shield+': case 'Armored Turret+': case 'Shotgun+': case 'Exploding Wall+': case 'Swarm Turret+': case 'Megaturret+': case 'Motor Turret+': case 'Shieldzone+':
+            case 'Swap Wall+': case 'Scaling Turret+': case 'Swarm Wall+': case 'Sticky Pillar+':
                 switch(type){
                     case 19:
                         this.animSet.loop=0
@@ -7951,10 +7979,13 @@ class combatant{
                 }
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            
+            //again, two sets with no animation
             case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret':
             case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': case 'Exploding Wall': case 'Swarm Turret': case 'Megaturret': case 'Motor Turret':
             case 'Shieldzone': case 'Swap Wall': case 'Scaling Turret': case 'Swarm Wall': case 'Sticky Pillar':
+            case 'Wall+': case 'Spike Pillar+': case 'Turret+': case 'Readout+': case 'Explosive Turret+': case 'Multiturret+': case 'Barbed Pillar+': case 'Repulse Turret+': case 'Machine Gun+': case 'Miniturret+':
+            case 'Teleporter Start+': case 'Teleporter End+': case 'Antizone+': case 'Mirror Shield+': case 'Armored Turret+': case 'Shotgun+': case 'Exploding Wall+': case 'Swarm Turret+': case 'Megaturret+': case 'Motor Turret+':
+            case 'Shieldzone+': case 'Swap Wall+': case 'Scaling Turret+': case 'Swarm Wall+': case 'Sticky Pillar+':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate
@@ -8761,6 +8792,12 @@ class combatant{
                             this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[7236])
                         }
                     }
+                }
+                if(this.status.main[1015]>0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].metal+=this.status.main[1015]
+                }
+                if(this.status.main[1016]>0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].addBlock(this.status.main[1016])
                 }
                 this.battle.combatantManager.dead()
                 for(let a=0,la=this.battle.players;a<la;a++){
