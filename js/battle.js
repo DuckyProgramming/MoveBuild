@@ -1113,7 +1113,8 @@ class battle{
             reverses+=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].getStatus('Turn Reversal')>0?1:0
         }
         if(reverses%2==1){
-            this.turn.total=max(0,this.turn.total*2-value)
+            //this.turn.total=max(0,this.turn.total*2-value)
+            this.turn.total=this.turn.total*2-value
         }else{
             this.turn.total=value
         }

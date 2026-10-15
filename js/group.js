@@ -1460,7 +1460,7 @@ class group{
                     this.cards[a].discardEffectBuffered.push(0)
                 break
                 case 28:
-                    if(this.cards[a].attack==736||this.cards[a].attack==10284){
+                    if(this.cards[a].attack==736||this.cards[a].attack==10284||this.cards[a].attack==10637){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                         a--
                         la--
@@ -2881,6 +2881,34 @@ class group{
                                     }
                                 }
                             break
+                            case 10692:
+                                this.cards[a].effect[2]++
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Nicholas\nII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Stalin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
                         }
                     }
                     if(changed){
@@ -3019,7 +3047,7 @@ class group{
                         &&!(effect==11&&this.cards[b].spec.includes(10))
                         &&!((effect==13||effect==50||effect==56||effect==74)&&this.cards[b].attack==5612)
                         &&!((effect==15||effect==20)&&(this.cards[b].effect.length==0||this.cards[b].class==3&&this.cards[b].effect==1))
-                        &&!(effect==16&&args[1]!=undefined&&this.cards[b].name==args[1])
+                        &&!((effect==16||effect==61)&&args[1]!=undefined&&this.cards[b].name==args[1])
                         &&!(effect==17&&(this.cards[b].attack==-66||this.cards[b].attack==1115||this.cards[b].deSize))
                         &&!(effect==18&&this.cards[b].class==3)
                         &&!(effect==19&&this.cards[b].spec.includes(1))
@@ -3860,7 +3888,7 @@ class group{
                     this.sendAmounts[sendId]+=userCombatant.getStatus('Drawn Shiv Draw')
                 }
             break
-            case 933: case 4010: case 4290: case 4291: case 10405:
+            case 933: case 4010: case 4290: case 4291: case 10405: case 10575:
                 if(variants.mtg){
                     this.battle.addSpecificEnergy(card.effect[0],this.player,6)
                 }else{
@@ -3924,7 +3952,7 @@ class group{
                 userCombatant.balance+=card.effect[0]
             break
             case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536: case 6823: case 7509:
-            case 7909: case 7996: case 8701:
+            case 7909: case 7996: case 8701: case 10613: case 10614:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -4077,7 +4105,7 @@ class group{
             case 4566: case 4567: case 4568:
                 this.battle.addSpecificEnergy(card.attack-4564,this.player,4)
             break
-            case 4655: case 4656: case 4657: case 10406:
+            case 4655: case 4656: case 4657: case 10406: case 10576:
                 this.battle.addSpecificEnergy(1,this.player,6)
             break
             case 4746: case 6431:
@@ -4241,6 +4269,13 @@ class group{
             case 10231: case 10232: case 10233:
                 this.battle.addSpecificEnergy(card.attack-10229,this.player,4)
                 this.sendAmounts[sendId]+=card.effect[0]
+            break
+            case 10635:
+                userCombatant.enterStance(5)
+            break
+            case 10636:
+                userCombatant.enterStance(5)
+                userCombatant.addBlock(card.effect[0])
             break
 
         }
@@ -5288,7 +5323,7 @@ class group{
                             case 4663: case 6946: case 10368:
                                 amplifyCost=[2]
                             break
-                            case 4672: case 4866:
+                            case 4672: case 4866: case 10664:
                                 amplifyCost=[-1,-1]
                             break
                             case 4801:
@@ -7252,7 +7287,8 @@ class group{
                                 this.cards[a].attack==10203||this.cards[a].attack==10204||
                                 (
                                     this.cards[a].attack==3371||this.cards[a].attack==5887||this.cards[a].attack==5888||this.cards[a].attack==5889||this.cards[a].attack==5890||
-                                    this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680||this.cards[a].attack==6852||this.cards[a].attack==8724&&this.battle.attackManager.lastPlayed[0].class==11
+                                    this.cards[a].attack==6434||this.cards[a].attack==6673||this.cards[a].attack==6680||this.cards[a].attack==6852||this.cards[a].attack==8724&&this.battle.attackManager.lastPlayed[0].class==11||
+                                    this.cards[a].attack==10684
                                 )&&!this.cards[a].usable||
                                 this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                             )&&!this.cards[a].exhaust

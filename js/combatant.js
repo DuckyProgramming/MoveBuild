@@ -101,7 +101,7 @@ constants.status={
         'Splash Weak Per Turn','Status Block','Counter Shock All Combat','Counter Temporary Speed Down All Combat','Faith Temporary Buff','Caffeine Temporary Buff','Kanako Energy','Suwako Energy','Kanako (E)','Suwako (E)',
         'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
-        'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death',
+        'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death','Discard Next Turn','Sturdy Next Turn','Double Sturdy Damage',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -205,7 +205,7 @@ constants.status={
         0,0,0,0,1,1,0,0,0,0,//99
         0,0,0,0,0,0,0,2,0,0,//100
         0,0,2,0,0,0,2,2,2,2,//101
-        2,2,1,1,1,0,0,
+        2,2,1,1,1,0,0,2,1,1,//102
     ],
     /*
     0-none
@@ -318,7 +318,7 @@ constants.status={
         0,2,0,0,2,2,2,2,2,2,//99
         2,2,2,2,2,2,1,1,2,2,//100
         2,2,2,1,2,1,0,0,0,0,//101
-        0,0,0,0,0,2,1,
+        0,0,0,0,0,2,1,2,2,2,//102
     ]
     /*
     0-good
@@ -3795,7 +3795,7 @@ class combatant{
                 if(userCombatant.stance==1){
                     damage*=userCombatant.status.main[478]>0?3:2
                 }
-                if(userCombatant.stance==4){
+                if(userCombatant.stance==4&&this.status.main[1019]<=0){
                     damage*=0.5
                 }
                 if(userCombatant.stance==5){
@@ -6536,7 +6536,8 @@ class combatant{
                         if(this.combo>0&&this.status.main[this.status.ticker[a]]<0){this.comboConsmed()};this.combo=constrain(this.combo+this.status.main[this.status.ticker[a]],0,this.comboCap); break
                     case 81: this.miniStatus('Energy Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 83: this.miniStatus('Double Damage Turn',this.status.main[this.status.ticker[a]]); break
-                    case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[this.status.ticker[a]])}; break
+                    case 85: case 1017:
+                        if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[this.status.ticker[a]])}; break
                     case 86: if(this.battle.modded(260)&&this.team==0){this.heal(this.status.main[this.status.ticker[a]])}else{this.loseHealth(this.status.main[this.status.ticker[a]])} break
                     case 88: this.miniStatus('Intangible',this.status.main[this.status.ticker[a]]); break
                     case 89: this.miniStatus('Block Next Turn',this.status.main[this.status.ticker[a]]); break
@@ -6794,6 +6795,7 @@ class combatant{
                     case 1009: this.statusEffect('Conditioning',this.status.main[this.status.ticker[a]]);this.status.next[findList('Conditioning Cycle 3 3',this.status.name)]+=this.status.main[this.status.ticker[a]]; break
                     case 1010: this.miniStatus('Conditioning Cycle 3 1',this.status.main[this.status.ticker[a]]); break
                     case 1011: this.miniStatus('Conditioning Cycle 3 2',this.status.main[this.status.ticker[a]]); break
+                    case 1018: this.enterStance(4); break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])
@@ -8789,7 +8791,7 @@ class combatant{
                     for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
                         if(this.communizers.includes(a)){
                             this.battle.cardManagers[a].deck.add(findName('Worker',types.card),0,0,0)
-                            this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[7236])
+                            this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[7236,10692])
                         }
                     }
                 }

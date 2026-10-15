@@ -2237,7 +2237,8 @@ class turn{
                         this.battle.combatantManager.allEffect(12,[this.effect[0]])
                     break
                     case 174:
-                        this.userCombatant.statusEffect('Take Half Damage',this.effect[0])
+                        //this.userCombatant.statusEffect('Take Half Damage',this.effect[0])
+                        this.userCombatant.statusEffectNext('Take Half Damage',this.effect[0])
                     break
                     case 177:
                         this.userCombatant.statusEffect('Invisible',this.effect[0])

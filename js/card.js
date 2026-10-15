@@ -1146,6 +1146,9 @@ class card{
                 userCombatant.addBlock(this.effect[1])
                 userCombatant.statusEffect('Block Next Turn',this.effect[1])
             break
+            case 10672:
+                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+            break
         }
         return 0
     }
@@ -1223,7 +1226,7 @@ class card{
                 this.battle.cardManagers[this.player].draw(this.effect[0])
                 this.battle.cardManagers[this.player].hand.add(findName('Myopia',types.card),0,0)
             break
-            case 2154:
+            case 2154: case 10600:
                 userCombatant.addBlock(this.effect[1])
             break
             case 2198:
@@ -1359,7 +1362,7 @@ class card{
             case 4931:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
             break
-            case 5107:
+            case 5107: case 10603:
                 this.battle.itemManager.addRandomItem(this.player)
                 this.exhaust=true
             break
@@ -1423,6 +1426,38 @@ class card{
             break
             case 10504:
                 userCombatant.statusEffect('Buffer',this.effect[0])
+                this.exhaust=true
+            break
+            case 10604:
+                this.battle.itemManager.addRandomItem(this.player)
+                this.userManager.draw(this.effect[0])
+                this.exhaust=true
+            break
+            case 10605:
+                userCombatant.statusEffect('Extra Turn',1)
+                this.userManager.draw(this.effect[0])
+                this.exhaust=true
+            break
+            case 10606:
+                userCombatant.heal(this.effect[0])
+                this.exhaust=true
+            break
+            case 10608: case 10610:
+                userCombatant.statusEffect('Temporary Strength Next Turn',this.effect[1])
+                userCombatant.statusEffect('Temporary Draw',this.effect[2])
+            break
+            case 10617:
+                this.battle.cardManagers[this.player].hand.exhaust(this.effect[1])
+            break
+            case 10618:
+                this.battle.combatantManager.allEffect(48,['Mortal',this.effect[2]])
+            break
+            case 10631:
+                this.battle.addEnergy(this.effect[0],this.player)
+                this.exhaust=true
+            break
+            case 10632:
+                this.battle.addSpecificEnergy(this.effect[0],this.player,6)
                 this.exhaust=true
             break
         }
@@ -1800,6 +1835,17 @@ class card{
             break
             case 10405:
                 this.battle.combatantManager.lowestEffect(0,[this.effect[1],userCombatant.id])
+            break
+            case 10575:
+                this.battle.combatantManager.allEffect(43,[this.effect[1],this.player])
+            break
+            case 10576:
+                this.battle.combatantManager.allEffect(43,[this.effect[0],this.player])
+            break
+            case 10616:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                }
             break
 
         }
@@ -2323,6 +2369,11 @@ class card{
                 this.battle.overlayManager.overlays[8][this.player].active=true
                 this.battle.overlayManager.overlays[8][this.player].activate()
                 this.battle.cardManagers[this.player].hand.selfCall(6,[54,[],1,[6,1,1]])
+            break
+            case 10692:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
+                }
             break
         }
     }
@@ -2982,7 +3033,7 @@ class card{
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
             case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078: case 9644: case 9645:
-            case 9894: case 10108: case 10169:
+            case 9894: case 10108: case 10169: case 10619:
                 this.costDown(2,[1])
             break
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788: case 2283: case 2471:
@@ -3966,6 +4017,10 @@ class card{
             case 9909:
                 userCombatant.statusEffect('Weak Next Turn',this.effect[1])
             break
+            case 10607: case 10609:
+                userCombatant.statusEffect('Temporary Strength Next Turn',this.effect[1])
+                userCombatant.statusEffect('Temporary Draw',this.effect[2])
+            break
         }
     }
     anotherEtherealed(id){
@@ -3991,7 +4046,7 @@ class card{
                     userCombatant.loseHealth(this.effect[0])
                 }
             break
-            case 757: case 1753:
+            case 757: case 1753: case 10681:
                 this.costDown(0,[1])
             break
             case 775: case 776: case 1868: case 6875: case 7897: case 7898:
@@ -4028,7 +4083,7 @@ class card{
                 this.effect[1]+=this.effect[3]
                 this.effect[2]+=this.effect[3]
             break
-            case 5969: case 8580:
+            case 5969: case 8580: case 10631: case 10632:
                 this.effect[0]+=this.effect[1]
             break
             case 6932:

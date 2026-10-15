@@ -2778,7 +2778,7 @@ function outRepeats(){
 function outSpecific(spec){
 	let totals=[[],[],[],0]
 	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list!=-8&&types.card[a].list!=-9){
+		if(types.card[a].list!=-8&&types.card[a].list!=-10){
 			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
 				if(types.card[a].levels[b].spec.includes(spec)){
 					totals[3]++
@@ -3681,7 +3681,8 @@ function checkExists(start,end){
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
 		1017,1281,2186,2187,2664,2776,2837,3214,3333,3368,
-		4063,4066,4067,4550,4554,4812,5014,7411,7412,//invalid push
+		4063,4066,4067,4550,4554,4812,5014,7411,7412,8549,
+		8550,//invalid push
 		62,//invalid enlighten
 		116,665,4180,4181,//invalid false surrender
 		188,440,1239,1255,1841,2813,3201,3488,3579,//damage taken up/down

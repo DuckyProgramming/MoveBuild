@@ -19,7 +19,7 @@ class particle{
                 this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
             break
             case 1: case 4: case 7: case 32: case 35: case 49: case 50: case 89: case 105: case 113:
-            case 131:
+            case 131: case 293:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=8
@@ -3180,6 +3180,7 @@ class particle{
                 case 176:
                     this.layer.rotate(this.direction)
                     this.layer.stroke(200,255,255,this.fade*0.5)
+                    this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.strokeJoin(ROUND)
                     for(let a=0,la=2;a<la;a++){
@@ -4725,7 +4726,23 @@ class particle{
                     this.layer.fill(95+this.dark*160,95+this.dark*150,105+this.dark*120,this.fade)
                     this.layer.ellipse(0,0,150)
                 break
-                
+                case 293:
+                    this.layer.rotate(this.time*12)
+                    this.layer.stroke(200,255,255,this.fade*0.5)
+                    this.layer.strokeWeight(1)
+                    this.layer.noFill()
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.arc(15,0,30,30,-180,-75)
+                        this.layer.rotate(360/la)
+                    }
+                    this.layer.noStroke()
+                    this.layer.fill(40,130,255,this.fade*0.25)
+                    regStar(this.layer,0,0,5,20,20,8,8,-this.time*12)
+                    this.layer.fill(220,this.fade*0.5)
+                    regStar(this.layer,0,0,5,16,16,5,5,-this.time*12)
+                    this.layer.fill(160,this.fade*0.5)
+                    regStar(this.layer,0,0,5,16,16,2,2,-this.time*12)
+                break
 
             }
             //mark p
@@ -4754,7 +4771,7 @@ class particle{
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
             case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89: case 98: case 105:
-            case 111: case 113: case 131: case 160: case 201: case 267:
+            case 111: case 113: case 131: case 160: case 201: case 267: case 293:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2,0,1,5)

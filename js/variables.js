@@ -5596,7 +5596,7 @@ types={
             ],ally:[
             ],
         },{
-            level:['Killzone 7'],class:2,world:1,
+            level:['Killzone 7'],class:0,world:-1,
             name:'Gangmaster Legacy',
             player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
             enemy:[
