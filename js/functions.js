@@ -697,7 +697,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage*=user.status.main[478]>0?3:2
 				bonus*=user.status.main[478]>0?3:2
 			}
-			if(user.stance==4){
+			if(user.stance==4&&user.status.main[1019]<=0){
 				damage*=0.5
 				bonus*=0.5
 			}

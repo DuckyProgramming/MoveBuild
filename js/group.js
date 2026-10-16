@@ -119,7 +119,7 @@ class group{
         })
     }
     initialCards(type,player){
-        let level=variants.cursed?1:0
+        let level=2//variants.cursed?1:0
         let activeList=variants.mtg?types.deck.mtg:types.deck.start
         let edge=game.ascend>=20||game.diff>=16?1:0
         switch(type){
@@ -1121,6 +1121,23 @@ class group{
             }
         }
         return costs.length
+    }
+    classNumber(){
+        let classes=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].spec.includes(12)){
+                for(let b=0,lb=this.cards[a].class.length;b<lb;b++){
+                    if(!classes.includes(this.cards[a].class[b])){
+                        classes.push(this.cards[a].class[b])
+                    }
+                }
+            }else{
+                if(!classes.includes(this.cards[a].class)){
+                    classes.push(this.cards[a].class)
+                }
+            }
+        }
+        return classes.length
     }
     uniqueNumber(){
         let types=[]
@@ -2299,8 +2316,14 @@ class group{
                 break
                 case 56:
                     if(args[0].includes(this.cards[a].class)){
-                        this.cards[a].deSize=true
-                        this.cards[a].exhaust=true
+                        if(this.id==2){
+                            this.cards[a].deSize=true
+                            this.cards[a].exhaust=true
+                        }else{
+                            this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
+                            a--
+                            la--
+                        }
                     }
                 break
                 case 57:
@@ -2813,7 +2836,7 @@ class group{
                                     }
                                 }
                             break
-                            case 10572:
+                            case 10572: case 10762:
                                 if(args[0]==7470){
                                     this.add(findName('Deng\nXioaping',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                 }else{
@@ -2907,6 +2930,59 @@ class group{
                                         this.cards.splice(a,1)
                                         a--
                                     }
+                                }
+                            break
+                            case 10763:
+                                this.cards[a].effect[1]+=round(args[1]*10)/10
+                                if(this.cards[a].effect[1]>=this.cards[a].effect[0]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Jiang\nZemin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Xi\nJinping',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 10765:
+                                if(args[0]==7470){
+                                    this.add(findName('Hua\nGuofeng',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
+                                    this.add(findName('Jiang\nZemin',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
+                                    }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
                                 }
                             break
                         }
@@ -3094,6 +3170,7 @@ class group{
                         &&!(effect==82&&(this.cards[b].getCost(1)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(55)||this.cards[b].spec.includes(59)||this.cards[b].spec.includes(60)||this.cards[b].class!=args[1]))
                         &&!(effect==85&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=7))
                         &&!(effect==86&&this.cards[b].class!=args[1]&&args[1]!=0)
+                        &&!(effect==87&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=2))
                     ){
                         list.push(b)
                     }
@@ -3110,7 +3187,7 @@ class group{
                     case 0: case 17: case 57: case 58:
                         this.cards[index].deSize=true
                     break
-                    case 1: case 35: case 63: case 82:
+                    case 1: case 35: case 63: case 82: case 87:
                         this.cards[index].costDown(0,[args[0]])
                     break
                     case 2: case 36: case 38: case 77: case 83:
@@ -3515,6 +3592,7 @@ class group{
                         this.cards.splice(0,0,this.cards[index])
                         this.cards.splice(index,1)
                         return
+                    //87 taken
                     //mark random
                 }
                 if(massed&&this.id!=0&&
@@ -4560,6 +4638,12 @@ class group{
                             args[1].addBlock(args[2])
                         }
                     break
+                    case 28:
+                        list[list.length-1].setCost(0,[0])
+                        if(!list[list.length-1].spec.includes(args[0])){
+                            list[list.length-1].spec.push(args[0])
+                        }
+                    break
                 }
             }
         }
@@ -5042,6 +5126,9 @@ class group{
                 if(!card.getBasic(-1)&&this.cards.some((card,index2)=>card.name==card.name&&index!=index2)){
                     this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[10573])
                 }
+            }
+            if(card.spec.includes(82)){
+                this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[[10765]])
             }
         }
         return possible

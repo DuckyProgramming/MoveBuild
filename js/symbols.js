@@ -10878,7 +10878,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,6.5,-1,9.5,1,9.5)
         break
         case 1019:
-            layer.stroke(255,50,50,fade)
+            layer.stroke(150,75,0,fade)
             layer.strokeWeight(1)
             layer.line(-4,-4,4,4)
             layer.line(-4,4,4,-4)
@@ -10886,10 +10886,60 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.line(4,4,4,-4)
             layer.line(-4,-4,0,-4)
             layer.line(4,4,0,4)
-            layer.fill(150,175,200,fade)
+            layer.fill(255,50,50,fade)
             layer.noStroke()
             layer.ellipse(-2.25,0,3)
             layer.ellipse(2.25,0,3)
+        break
+        case 1020:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.fill(255,255,50,fade)
+            layer.quad(-3,-1,-1,-3,3,1,1,3)
+        break
+        case 1021:
+            layer.fill(255,125,0,fade)
+            layer.rect(-1.5,-1.5,7,7)
+            layer.triangle(-5.5,0,-5.5,-3,-8,-1.5)
+            layer.fill(255,255,0,fade)
+            layer.rect(0,0,7,7)
+            layer.fill(125,255,0,fade)
+            layer.rect(1.5,1.5,7,7)
+            layer.stroke(0,fade)
+            layer.strokeWeight(0.6)
+            layer.noFill()
+            layer.ellipse(0,0,8)
+            layer.line(-3,-1,-1,1)
+            layer.line(-3,1,-1,-1)
+            layer.line(3,-1,1,1)
+            layer.line(3,1,1,-1)
+        break
+        case 1022:
+            layer.stroke(150,90,0,fade)
+            layer.strokeWeight(1.6)
+            regPoly(layer,-2.4,0,6,3.2,3.2,0)
+            regPoly(layer,2.8,0,5,3.2,3.2,90)
+            layer.noStroke()
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+        break
+        case 1023:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(150,0,0,fade)
+            regStar(layer,0,0,8,5,5,3,3,0)
+            layer.fill(60,fade)
+            layer.rect(0,0,4,1.2)
+            layer.rect(0,-2,7,1.2)
+            layer.rect(0,2,7,1.2)
+            layer.rect(0,-4,4,1.2)
+            layer.rect(0,4,4,1.2)
         break
     }
     //mark s

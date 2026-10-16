@@ -1708,6 +1708,11 @@ class battle{
                 }
             }
         }
+        if(card.getBasic(2)){
+            if(userCombatant.getStatus('Defend Splash')>0){
+                this.combatantManager.areaAbstract(0,[userCombatant.getStatus('Defend Splash'),userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+            }
+        }
         if(userCombatant.getStatus('Card Delay Exhaust')>0){
             this.cardManagers[player].hand.exhaust(userCombatant.getStatus('Card Delay Exhaust'))
             userCombatant.status.main[findList('Card Delay Exhaust',userCombatant.status.name)]=0

@@ -1673,6 +1673,12 @@ class combatantManager{
                             this.combatants[values[1]].addBlock(this.combatants[values[1]].getStatus('Splash Block'))
                         }
                     break
+                    case 16:
+                        if(this.combatants[a].getStatus(values[0])>0){
+                            this.combatants[a].takeDamage(values[2],values[3])
+                        }
+                        this.combatants[a].statusEffect(values[0],values[1])
+                    break
                 }
                 if(
                     output==0||

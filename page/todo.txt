@@ -14,13 +14,8 @@ CS 137 [?]
 tooltips for dictionary
 
 test new setsuna
-
 test new shiru
-
-edgar -
-a full rework is not necessary
-but some cards are a bit weak i guess
-and don't ruin the tutorial
+test new edgar
 
 test prehex x2 runs
 purge?
@@ -35,6 +30,9 @@ make sure her tutorial is not ruined
 
 rename wish power
 
+split combat violence
+split tomato juice to remove fatigues
+split obtainment?, hand of greed (this card isn't real actually), etc
 transfusion - block, gain 1 strength if you lost health this turn
 better days - when you lose hp, heal up to 1 of it back
 nanomachines - gain 1 buffer, add a random temporary item

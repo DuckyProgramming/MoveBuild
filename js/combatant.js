@@ -102,6 +102,7 @@ constants.status={
         'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
         'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death','Discard Next Turn','Sturdy Next Turn','Double Sturdy Damage',
+        'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -206,6 +207,7 @@ constants.status={
         0,0,0,0,0,0,0,2,0,0,//100
         0,0,2,0,0,0,2,2,2,2,//101
         2,2,1,1,1,0,0,2,1,1,//102
+        0,0,0,0,
     ],
     /*
     0-none
@@ -319,12 +321,14 @@ constants.status={
         2,2,2,2,2,2,1,1,2,2,//100
         2,2,2,1,2,1,0,0,0,0,//101
         0,0,0,0,0,2,1,2,2,2,//102
+        2,3,2,2,
     ]
     /*
     0-good
     1-bad
     2-nonclassified good
-    3-nonclassified bad, 4-disband
+    3-nonclassified bad,
+    4-disband
     */
 }
 class disabledCombatant{
@@ -3795,7 +3799,7 @@ class combatant{
                 if(userCombatant.stance==1){
                     damage*=userCombatant.status.main[478]>0?3:2
                 }
-                if(userCombatant.stance==4&&this.status.main[1019]<=0){
+                if(userCombatant.stance==4&&userCombatant.status.main[1019]<=0){
                     damage*=0.5
                 }
                 if(userCombatant.stance==5){
@@ -6343,6 +6347,7 @@ class combatant{
             if(this.id<this.battle.players){
                 this.battle.cardManagers[this.id].discard.allEffectArgs(24,[3198,4727])
                 this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[3198,4727])
+                this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[[10763],min(gain,this.base.life-this.life)])
             }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
@@ -6416,6 +6421,9 @@ class combatant{
             }
             if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
                 this.battle.combatantManager.areaAbstract(0,[this.status.main[438],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1020]>0){
+                this.addBlock(this.status.main[1020])
             }
             if(this.id<this.battle.players){
                 this.battle.relicManager.activate(20,[amount,this.id])
@@ -8628,6 +8636,9 @@ class combatant{
                 if(this.status.main[934]>0){
                     this.battle.addSpecificEnergy(this.status.main[934],this.id,5)
                 }
+                if(this.status.main[1022]>0){
+                    this.statusEffect('Double Damage',this.status.main[1022])
+                }
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
@@ -8791,7 +8802,7 @@ class combatant{
                     for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
                         if(this.communizers.includes(a)){
                             this.battle.cardManagers[a].deck.add(findName('Worker',types.card),0,0,0)
-                            this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[7236,10692])
+                            this.battle.cardManagers[a].trueAllGroupEffectArgs(65,[[7236,10692]])
                         }
                     }
                 }
@@ -8800,6 +8811,9 @@ class combatant{
                 }
                 if(this.status.main[1016]>0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].addBlock(this.status.main[1016])
+                }
+                if(this.status.main[1021]>0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].statusEffect('Buffer',this.status.main[1021])
                 }
                 this.battle.combatantManager.dead()
                 for(let a=0,la=this.battle.players;a<la;a++){
