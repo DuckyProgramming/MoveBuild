@@ -12933,22 +12933,57 @@ combatant.prototype.display=function(){
                 }
             break
             case 'Wall': case 'Exploding Wall': case 'Swap Wall': case 'Swarm Wall':
+            case 'Wall+': case 'Exploding Wall+': case 'Swap Wall+': case 'Swarm Wall+':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
                     this.layer.strokeWeight(4)
-                    this.layer.quad(-20,0,20,0,16,-40,-16,-40)
-                    this.layer.line(-20,0,16,-40)
-                    this.layer.line(20,0,-16,-40)
+                    switch(this.name){
+                        case 'Swarm Wall': case 'Swarm Wall+':
+                            hexagon(this.layer,-20,0,20,0,16.5,-35,10,-40,-10,-40,-16.5,-35)
+                            this.layer.line(-20,0,13.3,-37)
+                            this.layer.line(20,0,-13.3,-37)
+                        break
+                        default:
+                            this.layer.quad(-20,0,20,0,16,-40,-16,-40)
+                            this.layer.line(-20,0,16,-40)
+                            this.layer.line(20,0,-16,-40)
+                        break
+                    }
                     switch(this.name){
                         case 'Exploding Wall':
                             this.layer.noStroke()
-                            this.layer.fill(this.flashColor(this.color.bomb[0])[0],this.flashColor(this.color.bomb[0])[1],this.flashColor(this.color.bomb[0])[2],this.fade*this.fades.body)
-                            this.layer.quad(-6,-20,0,-26,6,-20,0,-14)
-                            this.layer.fill(this.flashColor(this.color.bomb[1])[0],this.flashColor(this.color.bomb[1])[1],this.flashColor(this.color.bomb[1])[2],this.fade*this.fades.body)
-                            this.layer.quad(-4,-20,0,-24,4,-20,0,-16)
+                            this.layer.fill(...this.flashColor(this.color.bomb[0]),this.fade*this.fades.body)
+                            //this.layer.quad(-6,-20,0,-26,6,-20,0,-14)
+                            this.layer.quad(-6,-22,0,-28,6,-22,0,-16)
+                            this.layer.fill(...this.flashColor(this.color.bomb[1]),this.fade*this.fades.body)
+                            //this.layer.quad(-4,-20,0,-24,4,-20,0,-16)
+                            this.layer.quad(-4,-22,0,-26,4,-22,0,-18)
+                        break
+                        case 'Exploding Wall+':
+                            this.layer.noStroke()
+                            this.layer.fill(...this.flashColor(this.color.bomb[0]),this.fade*this.fades.body)
+                            this.layer.quad(-12,-22,-7,-27,-2,-22,-7,-17)
+                            this.layer.quad(12,-22,7,-27,2,-22,7,-17)
+                            this.layer.fill(...this.flashColor(this.color.bomb[1]),this.fade*this.fades.body)
+                            this.layer.quad(-10,-22,-7,-25,-4,-22,-7,-19)
+                            this.layer.quad(10,-22,7,-25,4,-22,7,-19)
+                            this.layer.fill(...this.flashColor(this.color.bomb[0]),this.fade*this.fades.body)
+                            this.layer.quad(-6,-22,0,-28,6,-22,0,-16)
+                            this.layer.fill(...this.flashColor(this.color.bomb[1]),this.fade*this.fades.body)
+                            this.layer.quad(-4,-22,0,-26,4,-22,0,-18)
                         break
                         case 'Swap Wall':
+                            this.layer.strokeWeight(2)
+                            this.layer.ellipse(0,-22,12)
+                            this.layer.ellipse(0,-22,6)
+                        break
+                        case 'Wall+': case 'Swarm Wall+':
+                            //this.layer.quad(-18.5,-15,18.5,-15,17.5,-25,-17.5,-25)
+                            this.layer.quad(-18.3,-17,18.3,-17,17.3,-27,-17.3,-27)
+                        break
+                        case 'Swap Wall+':
+                            this.layer.quad(-18.3,-17,18.3,-17,17.3,-27,-17.3,-27)
                             this.layer.strokeWeight(2)
                             this.layer.ellipse(0,-22,12)
                             this.layer.ellipse(0,-22,6)
@@ -12957,26 +12992,44 @@ combatant.prototype.display=function(){
                 }
             break
             case 'Spike Pillar':
+            case 'Spike Pillar+':
                 if(this.trigger.display.body){
-                    this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                    this.layer.fill(...this.flashColor(this.color.out),this.fade*this.fades.body)
                     for(let a=0,la=15;a<la;a++){
                         if(lcos(a*96+this.anim.direction+this.time)<=0){
                             this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
                             this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-47+a*3,lsin(a*96+this.anim.direction+this.time)*4,-43+a*3,lsin(a*96+this.anim.direction+this.time)*16,-45+a*3)
+                            switch(this.name){
+                                case 'Spike Pillar+':
+                                    this.layer.fill(...this.flashColor(this.color.cap),this.fade*this.fades.body)
+                                    this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*10,-46+a*3,lsin(a*96+this.anim.direction+this.time)*10,-44+a*3,lsin(a*96+this.anim.direction+this.time)*16,-45+a*3)
+                                    this.layer.fill(...this.flashColor(this.color.out),this.fade*this.fades.body)
+                                    this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*10,-45+a*3,lcos(a*96+this.anim.direction+this.time)*2,2)
+                                break
+                            }
                         }
                     }
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.rect(0,-24,8,48,2)
-                    this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                    this.layer.fill(...this.flashColor(this.color.out),this.fade*this.fades.body)
                     for(let a=0,la=15;a<la;a++){
                         if(lcos(a*96+this.anim.direction+this.time)>0){
                             this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
                             this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-47+a*3,lsin(a*96+this.anim.direction+this.time)*4,-43+a*3,lsin(a*96+this.anim.direction+this.time)*16,-45+a*3)
+                            switch(this.name){
+                                case 'Spike Pillar+':
+                                    this.layer.fill(...this.flashColor(this.color.cap),this.fade*this.fades.body)
+                                    this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*10,-45+a*3,lcos(a*96+this.anim.direction+this.time)*2,2)
+                                    this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*10,-46+a*3,lsin(a*96+this.anim.direction+this.time)*10,-44+a*3,lsin(a*96+this.anim.direction+this.time)*16,-45+a*3)
+                                    this.layer.fill(...this.flashColor(this.color.out),this.fade*this.fades.body)
+                                break
+                            }
                         }
                     }
                 }
             break
             case 'Projector': case 'Shieldzone':
+            case 'Projector+': case 'Shieldzone+':
                 if(this.trigger.display.light){
                     this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light*0.1*this.anim.light)
                     for(let a=0,la=10;a<la;a++){
@@ -12988,40 +13041,75 @@ combatant.prototype.display=function(){
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
                     this.layer.strokeWeight(4)
                     this.layer.quad(-20,0,20,0,16,-16,-16,-16)
+                    switch(this.name){
+                        case 'Projector+': case 'Shieldzone+':
+                            this.layer.fill(...this.flashColor(this.color.light),this.fade*this.fades.light*this.anim.light)
+                            this.layer.strokeWeight(2)
+                            this.layer.ellipse(0,-8,5)
+                            this.layer.ellipse(-8,-8,5)
+                            this.layer.ellipse(8,-8,5)
+                        break
+                    }
                 }
             break
             case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret': case 'Shotgun': case 'Megaturret': case 'Motor Turret': case 'Scaling Turret':
+            case 'Turret+': case 'Explosive Turret+': case 'Multiturret+': case 'Repulse Turret+': case 'Machine Gun+': case 'Armored Turret+': case 'Shotgun+': case 'Megaturret+': case 'Motor Turret+': case 'Scaling Turret+':
                 if(this.trigger.display.base){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
-                    this.layer.strokeWeight(5)
-                    for(let a=0,la=4;a<la;a++){
-                        if(lcos(this.anim.direction+a*90)>0){
-                            this.layer.rect(15*lsin(this.anim.direction+a*90),-5,30*lcos(this.anim.direction+a*90),10)
-                        }
+                    switch(this.name){
+                        case 'Motor Turret': case 'Motor Turret+':
+                            this.layer.strokeWeight(3)
+                            for(let a=0,la=2;a<la;a++){
+                                if(lcos(this.anim.direction+90+a*180)<=0){
+                                    this.layer.ellipse(15*lsin(this.anim.direction+90+a*180)-10*lcos(this.anim.direction+90+a*180),-5,10*lcos(this.anim.direction+90+a*180),12)
+                                    this.layer.ellipse(15*lsin(this.anim.direction+90+a*180)+10*lcos(this.anim.direction+90+a*180),-5,10*lcos(this.anim.direction+90+a*180),12)
+                                }
+                            }
+                            for(let a=0,la=2;a<la;a++){
+                                if(lcos(this.anim.direction+90+a*180)>0){
+                                    this.layer.ellipse(15*lsin(this.anim.direction+90+a*180)-10*lcos(this.anim.direction+90+a*180),-5,10*lcos(this.anim.direction+90+a*180),12)
+                                    this.layer.ellipse(15*lsin(this.anim.direction+90+a*180)+10*lcos(this.anim.direction+90+a*180),-5,10*lcos(this.anim.direction+90+a*180),12)
+                                }
+                            }
+                        break
+                        default:
+                            this.layer.strokeWeight(5)
+                            for(let a=0,la=4;a<la;a++){
+                                if(lcos(this.anim.direction+a*90)>0){
+                                    this.layer.rect(15*lsin(this.anim.direction+a*90),-5,30*lcos(this.anim.direction+a*90),10)
+                                }
+                            }
+                        break
                     }
                     if(lcos(this.anim.direction)<=0.05){
-                        if(this.name=='Shotgun'){
-                            this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
-                            this.layer.rect(30*lsin(this.anim.direction),-25,20-5*lcos(this.anim.direction),25)
-                        }else if(this.name=='Machine Gun'){
-                            this.layer.strokeWeight(1.5)
-                            this.layer.rect(35*lsin(this.anim.direction),-35,30-10*lcos(this.anim.direction),3)
-                            this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-30,35-15*lcos(this.anim.direction),3)
-                            this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,35-15*lcos(this.anim.direction),3)
-                            this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-20,35-15*lcos(this.anim.direction),3)
-                            this.layer.rect(35*lsin(this.anim.direction),-15,30-10*lcos(this.anim.direction),3)
-                        }else if(this.name=='Repulse Turret'){
-                            this.layer.ellipse(30*lsin(this.anim.direction),-25,30*lcos(this.anim.direction),30)
-                            this.layer.strokeJoin(ROUND)
-                            this.layer.quad(20*lsin(this.anim.direction),-35,20*lsin(this.anim.direction),-15,30*lsin(this.anim.direction),-10,30*lsin(this.anim.direction),-40)
-                            this.layer.strokeJoin(MITER)
-                        }else if(this.name=='Multiturret'){
-                            this.layer.rect(30*lsin(this.anim.direction),-35,20-5*lcos(this.anim.direction),6)
-                            this.layer.rect(30*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,25-10*lcos(this.anim.direction),6)
-                            this.layer.rect(30*lsin(this.anim.direction),-15,20-5*lcos(this.anim.direction),6)
-                        }else{
-                            this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                        switch(this.name){
+                            case 'Shotgun': case 'Shotgun+':
+                                this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                                this.layer.rect(30*lsin(this.anim.direction),-25,20-5*lcos(this.anim.direction),25)
+                            break
+                            case 'Machine Gun': case 'Machine Gun+':
+                                this.layer.strokeWeight(1.5)
+                                this.layer.rect(35*lsin(this.anim.direction),-35,30-10*lcos(this.anim.direction),3)
+                                this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-30,35-15*lcos(this.anim.direction),3)
+                                this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,35-15*lcos(this.anim.direction),3)
+                                this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-20,35-15*lcos(this.anim.direction),3)
+                                this.layer.rect(35*lsin(this.anim.direction),-15,30-10*lcos(this.anim.direction),3)
+                            break
+                            case 'Repulse Turret': case 'Repulse Turret+':
+                                this.layer.ellipse(30*lsin(this.anim.direction),-25,30*lcos(this.anim.direction),30)
+                                this.layer.strokeJoin(ROUND)
+                                this.layer.quad(20*lsin(this.anim.direction),-35,20*lsin(this.anim.direction),-15,30*lsin(this.anim.direction),-10,30*lsin(this.anim.direction),-40)
+                                this.layer.strokeJoin(MITER)
+                            break
+                            case 'Multiturret': case 'Multiturret+':
+                                this.layer.rect(30*lsin(this.anim.direction),-35,20-5*lcos(this.anim.direction),6)
+                                this.layer.rect(30*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,25-10*lcos(this.anim.direction),6)
+                                this.layer.rect(30*lsin(this.anim.direction),-15,20-5*lcos(this.anim.direction),6)
+                            break
+                            default:
+                                this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                            break
                         }
                     }
                 }
@@ -13034,44 +13122,96 @@ combatant.prototype.display=function(){
                             this.layer.rect(20*lsin(this.anim.direction+a*90),-25,40*lcos(this.anim.direction+a*90),40)
                         }
                     }
-                    if(this.name=='Scaling Turret'){
-                        this.layer.noStroke()
-                        this.layer.fill(this.flashColor(this.color.body.diamond)[0],this.flashColor(this.color.body.diamond)[1],this.flashColor(this.color.body.diamond)[2],this.fade*this.fades.body)
-                        for(let a=0,la=4;a<la;a++){
-                            if(lcos(this.anim.direction+a*90)>0){
-                                this.layer.quad(
-                                    20*lsin(this.anim.direction+a*90)-15*lcos(this.anim.direction+a*90),-25,
-                                    20*lsin(this.anim.direction+a*90),-40,
-                                    20*lsin(this.anim.direction+a*90)+15*lcos(this.anim.direction+a*90),-25,
-                                    20*lsin(this.anim.direction+a*90),-10
-                                )
+                    switch(this.name){
+                        case 'Scaling Turret': case 'Scaling Turret+':
+                            this.layer.noStroke()
+                            this.layer.fill(this.flashColor(this.color.body.diamond)[0],this.flashColor(this.color.body.diamond)[1],this.flashColor(this.color.body.diamond)[2],this.fade*this.fades.body)
+                            for(let a=0,la=4;a<la;a++){
+                                if(lcos(this.anim.direction+a*90)>0){
+                                    this.layer.quad(
+                                        20*lsin(this.anim.direction+a*90)-15*lcos(this.anim.direction+a*90),-25,
+                                        20*lsin(this.anim.direction+a*90),-40,
+                                        20*lsin(this.anim.direction+a*90)+15*lcos(this.anim.direction+a*90),-25,
+                                        20*lsin(this.anim.direction+a*90),-10
+                                    )
+                                }
                             }
-                        }
-                        this.layer.stroke(this.flashColor(this.color.body.out)[0],this.flashColor(this.color.body.out)[1],this.flashColor(this.color.body.out)[2],this.fade*this.fades.body)
-                        this.layer.strokeWeight(5)
-                        this.layer.noFill()
-                        for(let a=0,la=4;a<la;a++){
-                            if(lcos(this.anim.direction+a*90)>0){
-                                this.layer.rect(20*lsin(this.anim.direction+a*90),-25,40*lcos(this.anim.direction+a*90),40)
+                            this.layer.stroke(this.flashColor(this.color.body.out)[0],this.flashColor(this.color.body.out)[1],this.flashColor(this.color.body.out)[2],this.fade*this.fades.body)
+                            this.layer.strokeWeight(5)
+                            this.layer.noFill()
+                            for(let a=0,la=4;a<la;a++){
+                                if(lcos(this.anim.direction+a*90)>0){
+                                    this.layer.rect(20*lsin(this.anim.direction+a*90),-25,40*lcos(this.anim.direction+a*90),40)
+                                }
                             }
-                        }
+                        break
                     }
                 }
                 if(this.trigger.display.dot){
                     this.layer.fill(this.flashColor(this.color.dot.in)[0],this.flashColor(this.color.dot.in)[1],this.flashColor(this.color.dot.in)[2],this.fade*this.fades.dot)
-                    this.layer.stroke(this.flashColor(this.color.dot.out)[0],this.flashColor(this.color.dot.out)[1],this.flashColor(this.color.dot.out)[2],this.fade*this.fades.body)
-                    this.layer.strokeWeight(5)
+                    //this.layer.stroke(this.flashColor(this.color.dot.out)[0],this.flashColor(this.color.dot.out)[1],this.flashColor(this.color.dot.out)[2],this.fade*this.fades.body)
+                    //this.layer.strokeWeight(5)
                     this.layer.noStroke()
                     for(let a=0,la=2;a<la;a++){
                         if(lcos(this.anim.direction-90+a*180)>0){
-                            if(this.name=='Explosive Turret'){
-                                regStar(this.layer,20*lsin(this.anim.direction-90+a*180),-25,8,12*lcos(this.anim.direction-90+a*180),12,6*lcos(this.anim.direction-90+a*180),6,0)
-                            }else if(this.name=='Armored Turret'){
-                                this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-25,12*lcos(this.anim.direction-90+a*180),12)
-                                this.layer.rect(20*lsin(this.anim.direction-90+a*180)-12*lcos(this.anim.direction-90+a*180),-25,6*lcos(this.anim.direction-90+a*180),30)
-                                this.layer.rect(20*lsin(this.anim.direction-90+a*180)+12*lcos(this.anim.direction-90+a*180),-25,6*lcos(this.anim.direction-90+a*180),30)
-                            }else{
-                                this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-25,20*lcos(this.anim.direction-90+a*180),20)
+                            switch(this.name){
+                                case 'Explosive Turret':
+                                    regStar(this.layer,20*lsin(this.anim.direction-90+a*180),-25,8,12*lcos(this.anim.direction-90+a*180),12,6*lcos(this.anim.direction-90+a*180),6,0)
+                                break
+                                case 'Armored Turret':
+                                    this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-25,12*lcos(this.anim.direction-90+a*180),12)
+                                    this.layer.rect(20*lsin(this.anim.direction-90+a*180)-12*lcos(this.anim.direction-90+a*180),-25,6*lcos(this.anim.direction-90+a*180),30)
+                                    this.layer.rect(20*lsin(this.anim.direction-90+a*180)+12*lcos(this.anim.direction-90+a*180),-25,6*lcos(this.anim.direction-90+a*180),30)
+                                break
+                                case 'Turret+': case 'Multiturret+': case 'Machine Gun+': case 'Repulse Turret+': case 'Shotgun+': case 'Megaturret+': case 'Scaling Turret+': case 'Motor Turret+':
+                                    this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-25,20*lcos(this.anim.direction-90+a*180),20)
+                                    this.layer.fill(...this.flashColor(this.color.dot.out),this.fade*this.fades.body)
+                                    this.layer.quad(
+                                        20*lsin(this.anim.direction-90+a*180)-9*lcos(this.anim.direction-90+a*180),-30,
+                                        20*lsin(this.anim.direction-90+a*180)-5*lcos(this.anim.direction-90+a*180),-34,
+                                        20*lsin(this.anim.direction-90+a*180)+9*lcos(this.anim.direction-90+a*180),-20,
+                                        20*lsin(this.anim.direction-90+a*180)+5*lcos(this.anim.direction-90+a*180),-16,
+                                    )
+                                break
+                                case 'Explosive Turret+':
+                                    regStar(this.layer,20*lsin(this.anim.direction-90+a*180),-25,8,12*lcos(this.anim.direction-90+a*180),12,6*lcos(this.anim.direction-90+a*180),6,0)
+                                    this.layer.fill(...this.flashColor(this.color.dot.out),this.fade*this.fades.body)
+                                    this.layer.quad(
+                                        20*lsin(this.anim.direction-90+a*180)-10*lcos(this.anim.direction-90+a*180),-35,
+                                        20*lsin(this.anim.direction-90+a*180)-3*lcos(this.anim.direction-90+a*180),-22,
+                                        20*lsin(this.anim.direction-90+a*180)+10*lcos(this.anim.direction-90+a*180),-15,
+                                        20*lsin(this.anim.direction-90+a*180)+3*lcos(this.anim.direction-90+a*180),-28,
+                                    )
+                                break
+                                case 'Armored Turret+':
+                                    this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-25,12*lcos(this.anim.direction-90+a*180),12)
+                                    this.layer.rect(20*lsin(this.anim.direction-90+a*180)-12*lcos(this.anim.direction-90+a*180),-25,6*lcos(this.anim.direction-90+a*180),30)
+                                    this.layer.rect(20*lsin(this.anim.direction-90+a*180)+12*lcos(this.anim.direction-90+a*180),-25,6*lcos(this.anim.direction-90+a*180),30)
+                                    this.layer.fill(...this.flashColor(this.color.dot.out),this.fade*this.fades.body)
+                                    this.layer.quad(
+                                        20*lsin(this.anim.direction-90+a*180)-5.4*lcos(this.anim.direction-90+a*180),-28,
+                                        20*lsin(this.anim.direction-90+a*180)-3*lcos(this.anim.direction-90+a*180),-30.4,
+                                        20*lsin(this.anim.direction-90+a*180)+5.4*lcos(this.anim.direction-90+a*180),-22,
+                                        20*lsin(this.anim.direction-90+a*180)+3*lcos(this.anim.direction-90+a*180),-19.6,
+                                    )
+                                    pentagon(this.layer,
+                                        20*lsin(this.anim.direction-90+a*180)-15*lcos(this.anim.direction-90+a*180),-40,
+                                        20*lsin(this.anim.direction-90+a*180)-15*lcos(this.anim.direction-90+a*180),-37.5,
+                                        20*lsin(this.anim.direction-90+a*180)-9*lcos(this.anim.direction-90+a*180),-31.5,
+                                        20*lsin(this.anim.direction-90+a*180)-9*lcos(this.anim.direction-90+a*180),-36.5,
+                                        20*lsin(this.anim.direction-90+a*180)-12.5*lcos(this.anim.direction-90+a*180),-40,
+                                    )
+                                    pentagon(this.layer,
+                                        20*lsin(this.anim.direction-90+a*180)+15*lcos(this.anim.direction-90+a*180),-10,
+                                        20*lsin(this.anim.direction-90+a*180)+15*lcos(this.anim.direction-90+a*180),-12.5,
+                                        20*lsin(this.anim.direction-90+a*180)+9*lcos(this.anim.direction-90+a*180),-18.5,
+                                        20*lsin(this.anim.direction-90+a*180)+9*lcos(this.anim.direction-90+a*180),-13.5,
+                                        20*lsin(this.anim.direction-90+a*180)+12.5*lcos(this.anim.direction-90+a*180),-10,
+                                    )
+                                break
+                                default:
+                                    this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-25,20*lcos(this.anim.direction-90+a*180),20)
+                                break
                             }
                         }
                     }
@@ -13080,31 +13220,38 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
                     this.layer.strokeWeight(5)
-                    if(this.name=='Shotgun'){
-                        this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
-                        this.layer.rect(30*lsin(this.anim.direction),-25,20-5*lcos(this.anim.direction),25)
-                    }else if(this.name=='Machine Gun'){
-                        this.layer.strokeWeight(1.5)
-                        this.layer.rect(35*lsin(this.anim.direction),-35,30-10*lcos(this.anim.direction),3)
-                        this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-30,35-15*lcos(this.anim.direction),3)
-                        this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,35-15*lcos(this.anim.direction),3)
-                        this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-20,35-15*lcos(this.anim.direction),3)
-                        this.layer.rect(35*lsin(this.anim.direction),-15,30-10*lcos(this.anim.direction),3)
-                    }else if(this.name=='Repulse Turret'){
-                        this.layer.strokeJoin(ROUND)
-                        this.layer.quad(20*lsin(this.anim.direction),-35,20*lsin(this.anim.direction),-15,30*lsin(this.anim.direction),-10,30*lsin(this.anim.direction),-40)
-                        this.layer.strokeJoin(MITER)
-                        this.layer.ellipse(30*lsin(this.anim.direction),-25,30*lcos(this.anim.direction),30)
-                    }else if(this.name=='Multiturret'){
-                        this.layer.rect(30*lsin(this.anim.direction),-35,20-5*lcos(this.anim.direction),6)
-                        this.layer.rect(30*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,25-10*lcos(this.anim.direction),6)
-                        this.layer.rect(30*lsin(this.anim.direction),-15,20-5*lcos(this.anim.direction),6)
-                    }else{
-                        this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                    switch(this.name){
+                        case 'Shotgun': case 'Shotgun+':
+                            this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                            this.layer.rect(30*lsin(this.anim.direction),-25,20-5*lcos(this.anim.direction),25)
+                        break
+                        case 'Machine Gun': case 'Machine Gun+':
+                            this.layer.strokeWeight(1.5)
+                            this.layer.rect(35*lsin(this.anim.direction),-35,30-10*lcos(this.anim.direction),3)
+                            this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-30,35-15*lcos(this.anim.direction),3)
+                            this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,35-15*lcos(this.anim.direction),3)
+                            this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-20,35-15*lcos(this.anim.direction),3)
+                            this.layer.rect(35*lsin(this.anim.direction),-15,30-10*lcos(this.anim.direction),3)
+                        break
+                        case 'Repulse Turret': case 'Repulse Turret+':
+                            this.layer.strokeJoin(ROUND)
+                            this.layer.quad(20*lsin(this.anim.direction),-35,20*lsin(this.anim.direction),-15,30*lsin(this.anim.direction),-10,30*lsin(this.anim.direction),-40)
+                            this.layer.strokeJoin(MITER)
+                            this.layer.ellipse(30*lsin(this.anim.direction),-25,30*lcos(this.anim.direction),30)
+                        break
+                        case 'Multiturret': case 'Multiturret+':
+                            this.layer.rect(30*lsin(this.anim.direction),-35,20-5*lcos(this.anim.direction),6)
+                            this.layer.rect(30*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,25-10*lcos(this.anim.direction),6)
+                            this.layer.rect(30*lsin(this.anim.direction),-15,20-5*lcos(this.anim.direction),6)
+                        break
+                        default:
+                            this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                        break
                     }
                 }
             break
             case 'Miniturret': case 'Swarm Turret':
+            case 'Miniturret+': case 'Swarm Turret+':
                 if(this.trigger.display.base){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
@@ -13115,10 +13262,15 @@ combatant.prototype.display=function(){
                         }
                     }
                     if(lcos(this.anim.direction)<=0.05){
-                        if(this.name=='Swarm Turret'){
-                            this.layer.rect(25*lsin(this.anim.direction),-15,20-10*lcos(this.anim.direction),10)
-                        }else{
-                            this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                        switch(this.name){
+                            case 'Swarm Turret':
+                                //this.layer.rect(25*lsin(this.anim.direction),-15,20-10*lcos(this.anim.direction),10)
+                                this.layer.rect(24*lsin(this.anim.direction),-15,16-8*lcos(this.anim.direction),10)
+                            break
+                            default:
+                                //this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                                this.layer.rect(28*lsin(this.anim.direction),-15,24-12*lcos(this.anim.direction),10)
+                            break
                         }
                     }
                 }
@@ -13140,6 +13292,17 @@ combatant.prototype.display=function(){
                     for(let a=0,la=2;a<la;a++){
                         if(lcos(this.anim.direction-90+a*180)>0){
                             this.layer.ellipse(15*lsin(this.anim.direction-90+a*180),-15,12*lcos(this.anim.direction-90+a*180),12)
+                            switch(this.name){
+                                case 'Miniturret+': case 'Swarm Turret+':
+                                    this.layer.fill(...this.flashColor(this.color.dot.out),this.fade*this.fades.body)
+                                    this.layer.quad(
+                                        15*lsin(this.anim.direction-90+a*180)-5.4*lcos(this.anim.direction-90+a*180),-18,
+                                        15*lsin(this.anim.direction-90+a*180)-3*lcos(this.anim.direction-90+a*180),-20.4,
+                                        15*lsin(this.anim.direction-90+a*180)+5.4*lcos(this.anim.direction-90+a*180),-12,
+                                        15*lsin(this.anim.direction-90+a*180)+3*lcos(this.anim.direction-90+a*180),-9.6,
+                                    )
+                                break
+                            }
                         }
                     }
                 }
@@ -13147,32 +13310,48 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
                     this.layer.strokeWeight(5)
-                    if(this.name=='Swarm Turret'){
-                        this.layer.rect(25*lsin(this.anim.direction),-15,20-10*lcos(this.anim.direction),10)
-                    }else{
-                        this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                    switch(this.name){
+                        case 'Swarm Turret':
+                            //this.layer.rect(25*lsin(this.anim.direction),-15,20-10*lcos(this.anim.direction),10)
+                            this.layer.rect(24*lsin(this.anim.direction),-15,16-8*lcos(this.anim.direction),10)
+                        break
+                        default:
+                            //this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                            this.layer.rect(28*lsin(this.anim.direction),-15,24-12*lcos(this.anim.direction),10)
+                        break
                     }
                 }
             break
             case 'Readout':
+            case 'Readout+':
                 if(this.trigger.display.light){
-                    this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light*0.5*this.anim.light)
+                    this.layer.fill(...this.flashColor(this.color.light),this.fade*this.fades.light*0.5*this.anim.light)
                     this.layer.rect(0,-35,40,70)
                 }
                 if(this.trigger.display.glow){
-                    this.layer.fill(this.flashColor(this.color.glow)[0],this.flashColor(this.color.glow)[1],this.flashColor(this.color.glow)[2],this.fade*this.fades.glow*0.5*this.anim.glow)
+                    this.layer.fill(...this.flashColor(this.color.glow),this.fade*this.fades.glow*0.5*this.anim.glow)
                     this.layer.rect(0,-60,32,8)
                     this.layer.rect(0,-44,32,8)
                     this.layer.rect(0,-28,32,8)
                 }
                 if(this.trigger.display.body){
-                    this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
-                    this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                    this.layer.fill(...this.flashColor(this.color.in),this.fade*this.fades.body)
+                    this.layer.stroke(...this.flashColor(this.color.out),this.fade*this.fades.body)
                     this.layer.strokeWeight(4)
                     this.layer.rect(0,-8,40,16)
+                    switch(this.name){
+                        case 'Readout+':
+                            this.layer.fill(...this.flashColor(this.color.light),this.fade*this.fades.light*this.anim.light)
+                            this.layer.strokeWeight(2)
+                            this.layer.ellipse(0,-8,5)
+                            this.layer.ellipse(-8,-8,5)
+                            this.layer.ellipse(8,-8,5)
+                        break
+                    }
                 }
             break
             case 'Strengthener': case 'Dexterizer':
+            case 'Strengthener+': case 'Dexterizer+':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
@@ -13183,13 +13362,24 @@ combatant.prototype.display=function(){
                     let color=[this.color.light[0],this.color.light[1]+this.anim.light*100,this.color.light[2]]
                     this.layer.fill(this.flashColor(color)[0],this.flashColor(color)[1],this.flashColor(color)[2],this.fade*this.fades.light)
                     this.layer.noStroke()
-                    this.layer.rect(-15,-32,5,48)
-                    this.layer.rect(-5,-32,5,48)
-                    this.layer.rect(5,-32,5,48)
-                    this.layer.rect(15,-32,5,48)
+                    switch(this.name){
+                        case 'Strengthener+': case 'Dexterizer+':
+                            for(let a=0,la=4;a<la;a++){
+                                this.layer.quad(-17.5+a*10,-56,-12.5+a*10,-56,-12.5+a*10,-32-a%2*4,-17.5+a*10,-36+a%2*4)
+                                this.layer.quad(-17.5+a*10,-8,-12.5+a*10,-8,-12.5+a*10,-28-a%2*4,-17.5+a*10,-32+a%2*4)
+                            }
+                        break
+                        default:
+                            this.layer.rect(-15,-32,5,48)
+                            this.layer.rect(-5,-32,5,48)
+                            this.layer.rect(5,-32,5,48)
+                            this.layer.rect(15,-32,5,48)
+                        break
+                    }
                 }
             break
             case 'Barbed Pillar':
+            case 'Barbed Pillar+':    
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
                     for(let a=0,la=15;a<la;a++){
@@ -13198,6 +13388,16 @@ combatant.prototype.display=function(){
                             this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*4,-44+a*3,lcos(a*96+this.anim.direction+this.time)*2,2)
                             this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-47+a*3,lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lsin(a*96+this.anim.direction+this.time)*14,-46+a*3)
                             this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lsin(a*96+this.anim.direction+this.time)*4,-43+a*3,lsin(a*96+this.anim.direction+this.time)*14,-44+a*3)
+                            switch(this.name){
+                                case 'Barbed Pillar+':
+                                    this.layer.fill(...this.flashColor(this.color.cap),this.fade*this.fades.body)
+                                    this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*9,-46.5+a*3,lsin(a*96+this.anim.direction+this.time)*9,-45.5+a*3,lsin(a*96+this.anim.direction+this.time)*14,-46+a*3)
+                                    this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*9,-44.5+a*3,lsin(a*96+this.anim.direction+this.time)*9,-43.5+a*3,lsin(a*96+this.anim.direction+this.time)*14,-44+a*3)
+                                    this.layer.fill(...this.flashColor(this.color.out),this.fade*this.fades.body)
+                                    this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*9,-46+a*3,lcos(a*96+this.anim.direction+this.time),1)
+                                    this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*9,-44+a*3,lcos(a*96+this.anim.direction+this.time),1)
+                                break
+                            }
                         }
                     }
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
@@ -13209,16 +13409,32 @@ combatant.prototype.display=function(){
                             this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*4,-44+a*3,lcos(a*96+this.anim.direction+this.time)*2,2)
                             this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-47+a*3,lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lsin(a*96+this.anim.direction+this.time)*14,-46+a*3)
                             this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lsin(a*96+this.anim.direction+this.time)*4,-43+a*3,lsin(a*96+this.anim.direction+this.time)*14,-44+a*3)
+                            switch(this.name){
+                                case 'Barbed Pillar+':
+                                    this.layer.fill(...this.flashColor(this.color.cap),this.fade*this.fades.body)
+                                    this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*9,-46+a*3,lcos(a*96+this.anim.direction+this.time),1)
+                                    this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*9,-44+a*3,lcos(a*96+this.anim.direction+this.time),1)
+                                    this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*9,-46.5+a*3,lsin(a*96+this.anim.direction+this.time)*9,-45.5+a*3,lsin(a*96+this.anim.direction+this.time)*14,-46+a*3)
+                                    this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*9,-44.5+a*3,lsin(a*96+this.anim.direction+this.time)*9,-43.5+a*3,lsin(a*96+this.anim.direction+this.time)*14,-44+a*3)
+                                    this.layer.fill(...this.flashColor(this.color.out),this.fade*this.fades.body)
+                                break
+                            }
                         }
                     }
                 }
             break
             case 'Gun Rack':
+            case 'Gun Rack+':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
                     this.layer.strokeWeight(4)
                     this.layer.rect(0,-24,40,48)
+                    switch(this.name){
+                        case 'Gun Rack+':
+                            this.layer.quad(20,-36,20,-28,-20,-12,-20,-20)
+                        break
+                    }
                 }
                 if(this.trigger.display.gun){
                     this.layer.fill(this.flashColor(this.color.gun)[0],this.flashColor(this.color.gun)[1],this.flashColor(this.color.gun)[2],this.fade*this.fades.gun*(2-this.anim.light))
@@ -13231,6 +13447,7 @@ combatant.prototype.display=function(){
                 }
             break
             case 'Metal Box':
+            case 'Metal Box+':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.metal)[0],this.flashColor(this.color.metal)[1],this.flashColor(this.color.metal)[2],this.fade*this.fades.metal*(2-this.anim.light))
                     this.layer.noStroke()
@@ -13238,12 +13455,18 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
                     this.layer.strokeWeight(4)
-                    this.layer.quad(-20,0,20,0,20,-25,-20,-25)
+                    this.layer.rect(0,-12.5,40,25)
                     this.layer.line(-20,0,20,-25)
                     this.layer.line(20,0,-20,-25)
+                    switch(this.name){
+                        case 'Metal Box+':
+                            this.layer.rect(0,-12.5,40,8)
+                        break
+                    }
                 }
             break
             case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor': case 'Discounter':
+            case 'Upgrader+': case 'Transformer+': case 'Doubler+': case 'Exhauster+': case 'Compactor+': case 'Discounter+':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
@@ -13252,21 +13475,50 @@ combatant.prototype.display=function(){
                     this.layer.rect(0,-65,25,10)
                     this.layer.rect(0,-10,25,20)
                     this.layer.rect(0,-40,40,40)
-                    this.layer.fill(this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1))[0],this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1))[1],this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1))[2],this.fade*this.fades.body)
-                    this.layer.stroke(this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1))[0],this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1))[1],this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1))[2],this.fade*this.fades.body)
+                    this.layer.fill(...this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1)),this.fade*this.fades.body)
+                    this.layer.stroke(...this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1)),this.fade*this.fades.body)
                     this.layer.ellipse(0,-40,20,20)
+                    switch(this.name){
+                        case 'Upgrader+': case 'Transformer+': case 'Doubler+': case 'Exhauster+': case 'Compactor+': case 'Discounter+':
+                            this.layer.noFill()
+                            this.layer.stroke(...this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1)),this.fade*this.fades.body)
+                            this.layer.strokeWeight(3)
+                            this.layer.arc(0,-40,30,30,-75,-15)
+                            this.layer.arc(0,-40,30,30,115,165)
+                            this.layer.stroke(...this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1)),this.fade*this.fades.body)
+                            this.layer.strokeWeight(1)
+                            this.layer.arc(0,-40,30,30,-75,-15)
+                            this.layer.arc(0,-40,30,30,115,165)
+                        break
+                    }
                 }
             break
             case 'Teleporter Start': case 'Teleporter End':
+            case 'Teleporter Start+': case 'Teleporter End+':
                 if(this.trigger.display.body){
-                    this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.body*0.1)
-                    for(let a=0,la=10;a<la;a++){
-                        this.layer.quad(-20,-5,20,-5,25+a,-10-a,-25-a,-10-a)
+                    switch(this.name){
+                        case 'Teleporter Start+': case 'Teleporter End+':
+                            this.layer.fill(...this.flashColor(this.color.light),this.fade*this.fades.body*0.1)
+                            for(let a=0,la=10;a<la;a++){
+                                this.layer.quad(-20,-5,-8,-5,-10-a*0.4,-10-a,-25-a,-10-a)
+                                this.layer.quad(20,-5,8,-5,10+a*0.4,-10-a,25+a,-10-a)
+                            }
+                            this.layer.fill(...this.flashColor(this.color.shield),this.fade*this.fades.body*0.1)
+                            for(let a=0,la=10;a<la;a++){
+                                this.layer.quad(-8,-5,8,-5,10+a*0.4,-10-a,-10-a*0.4,-10-a)
+                            }
+                        break
+                        default:
+                            this.layer.fill(...this.flashColor(this.color.light),this.fade*this.fades.body*0.1)
+                            for(let a=0,la=10;a<la;a++){
+                                this.layer.quad(-20,-5,20,-5,25+a,-10-a,-25-a,-10-a)
+                            }
+                        break
                     }
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
                     this.layer.strokeWeight(4)
-                    this.layer.quad(-15,0,15,0,25,-5,-25,-5)   
+                    this.layer.quad(-15,0,15,0,25,-5,-25,-5)
                 }
             break
             case 'Antizone':
@@ -13289,6 +13541,7 @@ combatant.prototype.display=function(){
                 }
             break
             case 'Mirror Shield':
+            case 'Mirror Shield+':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                     this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
@@ -13301,6 +13554,11 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(0,-48,40,40)
                     this.layer.line(-10*constants.sqrt2,-48-10*constants.sqrt2,10*constants.sqrt2,-48+10*constants.sqrt2)
                     this.layer.line(-10*constants.sqrt2,-48+10*constants.sqrt2,10*constants.sqrt2,-48-10*constants.sqrt2)
+                    switch(this.name){
+                        case 'Mirror Shield+':
+                            this.layer.ellipse(0,-48,20)
+                        break
+                    }
                 }
             break
             case '💀':
@@ -14557,6 +14815,7 @@ combatant.prototype.display=function(){
                 }
             break
             case 'Sticky Pillar':
+            case 'Sticky Pillar+':
                 if(this.trigger.display.body){
                     this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
                     for(let a=0,la=15;a<la;a++){
@@ -14572,6 +14831,13 @@ combatant.prototype.display=function(){
                         if(lcos(a*96+this.anim.direction+this.time)>0){
                             this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*8,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
                             this.layer.rect(lsin(a*96+this.anim.direction+this.time)*6,-45+a*3,lsin(a*96+this.anim.direction+this.time)*4,2)
+                            switch(this.name){
+                                case 'Sticky Pillar+':
+                                    this.layer.fill(...this.flashColor(this.color.cap),this.fade*this.fades.body)
+                                    this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*8,-45+a*3,lcos(a*96+this.anim.direction+this.time)*2,2)
+                                    this.layer.fill(...this.flashColor(this.color.out),this.fade*this.fades.body)
+                                break
+                            }
                         }
                     }
                 }

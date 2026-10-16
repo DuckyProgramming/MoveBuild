@@ -346,6 +346,7 @@ types={
         {name:'Swap Wall',life:30,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not the first mover`},
         {name:'Scaling Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[15]}],description:`Sentry growin' up`},
         {name:'Swarm Wall',life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Primal wall nut`},
+        {name:'Gun Rack',life:24,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:234,effect:[1]}],description:`Take aim`},
 
         {name:'Wall+',life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Spike Pillar+',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
@@ -381,6 +382,7 @@ types={
         {name:'Swap Wall+',life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not the first mover`},
         {name:'Scaling Turret+',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[18]}],description:`Sentry growin' up`},
         {name:'Swarm Wall+',life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Primal wall nut`},
+        {name:'Gun Rack+',life:24,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:504,effect:[1]}],description:`Take aim`},
         
         {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
@@ -906,11 +908,9 @@ types={
         {name:'6 Tile Pentuple Strike',class:1},
         {name:'2 Tile 3 Spread Strike / Frail',class:1},//500
         {name:'Builder and Construct Temporary Dexterize',class:2},
-        
         {name:'3 Spread Strike / Armor',class:1},
-        //278
         {name:'6 Tile Strike / Armor',class:1},
-        //279
+        {name:'Builder Gun+',class:4},
 
         //mark attack
     ],relic:[

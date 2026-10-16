@@ -1818,6 +1818,13 @@ class turn{
                         }
                         this.battle.combatantManager.allConstructEffect(this.userCombatant.builder,0,['Temporary Dexterity',this.effect[0]])
                     break
+                    case 504:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            for(let b=0,lb=this.battle.cardManagers.length;b<lb;b++){
+                                this.battle.cardManagers[b].hand.add(findName('Revolver',types.card),1,0)
+                            }
+                        }
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                         switch(this.type){

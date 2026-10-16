@@ -981,7 +981,7 @@ class combatant{
             case 'Puffball': case 'Mini Puffball':
                 this.statusEffect('Buffer',diffUnfair?4:2)
             break
-            case 'Brawler': case 'Scaling Turret':
+            case 'Brawler': case 'Scaling Turret': case 'Scaling Turret+':
                 this.statusEffect('Strength Per Turn',1)
             break
             case 'Mailman':
@@ -2097,6 +2097,8 @@ class combatant{
             break
             case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Armored Turret': case 'Shotgun': case 'Swarm Turret': case 'Megaturret':
             case 'Motor Turret': case 'Scaling Turret':
+            case 'Turret+': case 'Explosive Turret+': case 'Multiturret+': case 'Repulse Turret+': case 'Machine Gun+': case 'Miniturret+': case 'Armored Turret+': case 'Shotgun+': case 'Swarm Turret+': case 'Megaturret+':
+            case 'Motor Turret+': case 'Scaling Turret+':
                 this.graphics={arms:[{bottom:{x:lsin(this.anim.direction)*40,y:-25}},{bottom:{x:lsin(this.anim.direction)*40,y:-25}}]}
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine': case 'Keystone': case 'Spirit of Wealth': case 'Spirit of Elegance':
@@ -2109,7 +2111,7 @@ class combatant{
             case 'Compactor': case 'Discounter': case 'Sticky Pillar': case 'Dexterizer':
             case 'Wall+': case 'Spike Pillar+': case 'Projector+': case 'Readout+': case 'Strengthener+': case 'Barbed Pillar+': case 'Gun Rack+': case 'Metal Box+': case 'Upgrader+': case 'Transformer+':
             case 'Doubler+': case 'Exhauster+': case 'Teleporter Start+': case 'Teleporter End+': case 'Antizone+': case 'Mirror Shield+': case 'Exploding Wall+': case 'Shieldzone+': case 'Swap Wall+': case 'Swarm Wall+':
-            case 'Compactor+': case 'Discounter_': case 'Sticky Pillar+': case 'Dexterizer+':
+            case 'Compactor+': case 'Discounter+': case 'Sticky Pillar+': case 'Dexterizer+':
             break
             default:
                 for(let g=0;g<2;g++){
@@ -5143,12 +5145,12 @@ class combatant{
             this.battle.cardManagers[this.id].hand.allEffectArgs(51,[type])
             switch(type){
                 case 0:
-                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935,8425])
-                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935,8425])
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[5935,8425,10861])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[5935,8425,10861])
                 break
                 case 1:
-                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6209,8424])
-                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6209,8424])
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[6209,8424,10860])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[6209,8424,10860])
                 break
             }
         }
@@ -7104,6 +7106,8 @@ class combatant{
             //these are two separate groups with extremely basic animations
             case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor':
             case 'Discounter': case 'Dexterizer':
+            case 'Projector+': case 'Readout+': case 'Strengthener+': case 'Gun Rack+': case 'Metal Box+': case 'Upgrader+': case 'Transformer+': case 'Doubler+': case 'Exhauster+': case 'Compactor+':
+            case 'Discounter+': case 'Dexterizer+':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
@@ -7965,6 +7969,8 @@ class combatant{
             break
             case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Compactor':
             case 'Discounter': case 'Dexterizer':
+            case 'Projector+': case 'Readout+': case 'Strengthener+': case 'Gun Rack+': case 'Metal Box+': case 'Upgrader+': case 'Transformer+': case 'Doubler+': case 'Exhauster+': case 'Compactor+':
+            case 'Discounter+': case 'Dexterizer+':
                 switch(type){
                     case 19:
                         this.animSet.loop+=rate

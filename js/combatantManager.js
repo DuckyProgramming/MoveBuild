@@ -426,9 +426,9 @@ class combatantManager{
                 this.combatants[a].life>0&&
                 !((this.combatants[a].spec.includes(9)||this.battle.modded(86)&&this.battle.turn.total<=2)&&abs(this.combatants[a].goal.anim.direction-atan2(this.combatants[this.battle.attackManager.player].relativePosition.x-this.combatants[a].relativePosition.x,this.combatants[this.battle.attackManager.player].relativePosition.y-this.combatants[a].relativePosition.y))<30)&&
                 (
-                    this.combatants[a].name==this.battle.attackManager.targetInfo[3]||
-                    this.combatants[a].name==this.battle.attackManager.targetInfo[4]||
-                    this.combatants[a].name==this.battle.attackManager.targetInfo[5]
+                    this.battle.attackManager.targetInfo[3].includes(this.combatants[a].name)||
+                    this.battle.attackManager.targetInfo[4].includes(this.combatants[a].name)||
+                    this.battle.attackManager.targetInfo[5].includes(this.combatants[a].name)
                 )&&(
                     legalTargetCombatant(0,
                         this.battle.attackManager.targetInfo[1],
@@ -438,7 +438,7 @@ class combatantManager{
                         this.battle.tileManager.tiles
                     )||
                     this.battle.attackManager.targetInfo[0]==36||
-                    this.combatants[a].name==this.battle.attackManager.targetInfo[4]
+                    this.battle.attackManager.targetInfo[4].includes(this.combatants[a].name)
                 )
             ){
                 this.subTarget(a)

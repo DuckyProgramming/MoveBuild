@@ -11083,84 +11083,46 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10820: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
         case 10821: string+=`Hold ${effect[0]} Iron Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
         case 10822: string+=`Hold ${effect[0]} Energy Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-
         case 10823: string+=`Build a Wall+`; break
-        //585
         case 10824: string+=`Build a Spike Pillar+`; break
         case 10825: string+=`Build a Projector+`; break
         case 10826: string+=`Build a Turret+`; break
-        //620-622
-
         case 10827: string+=`Build a Readout+`; break
         case 10828: string+=`Build a Strengthener+`; break
-        //623-624
         case 10829: string+=`Build an Explosive Turret+`; break
         case 10830: string+=`Build a Multiturret+`; break
-        //626-627
         case 10831: string+=`Build a Repulse Turret+`; break
         case 10832: string+=`Build a Machine Gun+`; break
-        //630-631
-
         case 10833: string+=`Build a Miniturret`; break
-        //685
         case 10834: string+=`Build a Shotgun`; break
-        //2880
         case 10835: string+=`Build a Metal Box`; break
-        //686
         case 10836: string+=`Build a Teleporter Start`; break
         case 10837: string+=`Build a Teleporter End`; break
-        //700-701
         case 10838: string+=`Build an Armored Turret`; break
-        //1346
-
         case 10839: string+=`Build an Exploding Wall+`; break
-        //5037
         case 10840: string+=`Build an Upgrader+`; break
-        //687
         case 10841: string+=`Build a Doubler+`; break
-        //695
         case 10842: string+=`Build an Exhauster+`; break
-        //696
         case 10843: string+=`Build a Swarm Turret+`; break
-        //7067
         case 10844: string+=`Build a Swarm Wall+`; break
-        //8259
-
         case 10845: string+=`Build a Megaturret+`; break
         case 10846: string+=`Build a Motor Turret+`; break
         case 10847: string+=`Build a Shieldzone+`; break
         case 10848: string+=`Build a Swap Wall+`; break
         case 10849: string+=`Build a Scaling Turret+`; break
         case 10850: string+=`Build a Turret\nAnywhere+`; break
-        //7647-7652
-        
         case 10851: string+=`Build a Wall\nAnywhere+`; break
-        //7653
         case 10852: string+=`Build a Discounter+`; break
-        //8573
         case 10853: string+=`Build a Sticky Pillar+`; break
-        //10150
         case 10854: string+=`Build a Dexterizer+`; break
-        //10554
         case 10855: string+=`Build a Gun Rack+`; break
-        //629
         case 10856: string+=`Build a Transformer+`; break
-        //688
-
         case 10857: string+=`Build a Compactor+`; break
-        //8572
         case 10858: string+=`Build a Barbed Pillar+`; break
-        //628
         case 10859: string+=`Build a Mirror Shield+`; break
-        //1232
-
-        //mark p
-
         case 10860: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nReturn When You\nEvoke a Shield Orb`; break
         case 10861: string+=`Hold ${effect[0]} Shield Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}\nReturn When You\nEvoke a Basic Orb`; break
-        //8424-8425
         case 10862: string+=`Hold ${effect[0]} Dual Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-        //5198
 
         case 10863: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nExhaust ${effect[1]} Card${pl(effect[1])}\nIf You Have No Energy,\nGain ${effect[2]} Energy`; break
         //1229
@@ -11291,6 +11253,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10925: string+=`Bomb 7 Tiles\nin a Circle\nFor ${effect[0]} Damage\nAssign ${effect[1]}:\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
         //3477
 
+        //mark p
         //mark q
         
         /*

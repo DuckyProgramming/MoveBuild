@@ -420,7 +420,11 @@ class attack{
             case 10257: case 10269: case 10292: case 10299: case 10304: case 10305: case 10306: case 10307: case 10321: case 10369:
             case 10371: case 10387: case 10414: case 10415: case 10426: case 10447: case 10483: case 10519: case 10534: case 10554:
             case 10562: case 10563: case 10565: case 10595: case 10596: case 10666: case 10695: case 10700: case 10701: case 10747:
-            case 10782: case 10785: case 10786: case 10790: case 10791: case 10804: case 10808: case 10810:
+            case 10782: case 10785: case 10786: case 10790: case 10791: case 10804: case 10808: case 10810: case 10823: case 10824:
+            case 10825: case 10826: case 10827: case 10828: case 10829: case 10830: case 10831: case 10832: case 10833: case 10834:
+            case 10835: case 10836: case 10837: case 10838: case 10839: case 10840: case 10841: case 10842: case 10843: case 10844:
+            case 10845: case 10846: case 10847: case 10848: case 10849: case 10850: case 10851: case 10852: case 10853: case 10854:
+            case 10855: case 10856: case 10857: case 10858: case 10859:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -34275,6 +34279,219 @@ class attack{
                         this.targetTile.addType(19)
                         this.userManager.draw(this.effect[0])
                     break
+                    case 10823:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10824:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Spike Pillar+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10825:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Projector+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10826:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10827:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Readout+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10828:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Strengthener+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10829:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Explosive Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10830:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Multiturret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10831:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Repulse Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10832:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Machine Gun+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10833:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Miniturret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10834:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Shotgun+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10835:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Metal Box+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10836:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Teleporter Start+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        this.userManager.hand.add(findName('Use\nConstruct',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10837:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Teleporter End+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        this.userManager.hand.add(findName('Use\nConstruct',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10838:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Armored Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10839:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Exploding Wall+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10840:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Upgrader+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10841:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Doubler+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10842:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Exhauster+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10843:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Swarm Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10844:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Swarm Wall+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10845:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Megaturret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10846:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Motor Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10847:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Shieldzone+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10848:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Swap Wall+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        this.userManager.hand.add(findName('Use\nConstruct',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10849:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Scaling Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10852:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Discounter+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10853:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Sticky Pillar+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10854:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Dexterizer+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10855:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Gun Rack+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10856:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Transformer+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10857:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Compactor+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10858:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Barbed Pillar+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10859:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Mirror Shield+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -41728,6 +41945,36 @@ class attack{
                     case 10822:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userCombatant.holdOrb(3)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 10850:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Turret+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10851:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall+',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
+                    break
+                    case 10860:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 10861:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(1)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 10862:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(13)
                         }
                         this.userManager.draw(this.effect[1])
                     break

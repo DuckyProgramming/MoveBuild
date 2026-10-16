@@ -7917,8 +7917,8 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==75){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&
-                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==36||this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[4])&&
-                    (this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[3]||this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[4]||this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[5])&&
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==36||this.battle.attackManager.targetInfo[4].includes(this.battle.combatantManager.combatants[a].name))&&
+                    (this.battle.attackManager.targetInfo[3].includes(this.battle.combatantManager.combatants[a].name)||this.battle.attackManager.targetInfo[4].includes(this.battle.combatantManager.combatants[a].name)||this.battle.attackManager.targetInfo[5].includes(this.battle.combatantManager.combatants[a].name))&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<constants.targetRadius){
                     this.selfCall(3,a)
                 }
@@ -8386,6 +8386,18 @@ class group{
                         this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.battle.tileManager.tiles[a].tilePosition.x+(this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x)/max(abs(this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x),abs(this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)),this.battle.tileManager.tiles[a].tilePosition.y+(this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)/max(abs(this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x),abs(this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y)))].occupied!=0
                     )){
                     this.selfCall(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==75){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(this.battle.combatantManager.combatants[a].life>0&&
+                        (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==36||this.battle.attackManager.targetInfo[4].includes(this.battle.combatantManager.combatants[a].name))&&
+                        (this.battle.attackManager.targetInfo[3].includes(this.battle.combatantManager.combatants[a].name)||this.battle.attackManager.targetInfo[4].includes(this.battle.combatantManager.combatants[a].name)||this.battle.attackManager.targetInfo[5].includes(this.battle.combatantManager.combatants[a].name))&&
+                        this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
+                        this.selfCall(3,a)
+                    }
                 }
             }
         }

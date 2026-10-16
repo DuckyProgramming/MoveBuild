@@ -2080,7 +2080,10 @@ attack.prototype.update=function(){
         case 10320: case 10366: case 10370: case 10373: case 10375: case 10382: case 10389: case 10390: case 10392: case 10393:
         case 10399: case 10400: case 10411: case 10449: case 10450: case 10460: case 10461: case 10480: case 10498: case 10500:
         case 10554: case 10563: case 10585: case 10586: case 10587: case 10588: case 10707: case 10732: case 10733: case 10734:
-        case 10745: case 10770: case 10804:
+        case 10745: case 10770: case 10804: case 10823: case 10824: case 10825: case 10826: case 10827: case 10828: case 10829:
+        case 10830: case 10831: case 10832: case 10833: case 10834: case 10835: case 10836: case 10837: case 10838: case 10839:
+        case 10840: case 10841: case 10842: case 10843: case 10844: case 10845: case 10846: case 10847: case 10848: case 10849:
+        case 10852: case 10853: case 10854: case 10855: case 10856: case 10857: case 10858: case 10859:
             //mark 8
             if(
                 this.type==1162&&this.energy<3||
@@ -5022,7 +5025,8 @@ attack.prototype.update=function(){
         case 10080: case 10081: case 10130: case 10131: case 10188: case 10205: case 10211: case 10212: case 10218: case 10245:
         case 10267: case 10281: case 10286: case 10314: case 10331: case 10439: case 10465: case 10484: case 10485: case 10486:
         case 10490: case 10555: case 10706: case 10741: case 10772: case 10792: case 10793: case 10794: case 10811: case 10813:
-        case 10814: case 10815: case 10816: case 10817: case 10818: case 10819: case 10820: case 10821: case 10822:
+        case 10814: case 10815: case 10816: case 10817: case 10818: case 10819: case 10820: case 10821: case 10822: case 10850:
+        case 10851: case 10860: case 10861: case 10862:
             //mark 12
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
@@ -15536,7 +15540,7 @@ attack.prototype.update=function(){
                         this.remove=true
                     }
                 break
-                case 'Swap Wall':
+                case 'Swap Wall': case 'Swap Wall+':
                     if(this.timer==1){
                         this.userCombatant.startAnimation(0)
                         if(this.targetClass==2){
@@ -15567,6 +15571,45 @@ attack.prototype.update=function(){
                                 this.userManager.draw(this.effect[0])
                             break
                         }
+                        this.remove=true
+                    }
+                break
+                case 'Teleporter Start+':
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(17)
+                    }
+                    this.userCombatant.runAnimation(1/30,17)
+                    if(this.timer==15){
+                        this.battle.cardManagers[this.player].hand.selfCall(6,[54,[],1,[6,1,1]])
+                        this.userCombatant.addBlock(floor(this.targetCombatant.life))
+                        this.targetCombatant.life=0
+                        switch(this.type){
+                            case 10761:
+                                this.userManager.draw(this.effect[0])
+                            break
+                        }
+                    }else if(this.timer>=30){
+                        this.remove=true
+                    }
+                break
+                case 'Teleporter End+':
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(19)
+                    }
+                    this.userCombatant.runAnimation(1/20,19)
+                    if(this.timer==10){
+                        this.userCombatant.addBlock(floor(this.targetCombatant.life))
+                        this.targetCombatant.life=0
+                        this.userCombatant.moveTile(this.direction,this.distance)
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                        this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
+                        this.battle.activate(1,this.userCombatant.id)
+                        switch(this.type){
+                            case 10761:
+                                this.userManager.draw(this.effect[0])
+                            break
+                        }
+                    }else if(this.timer>=20){
                         this.remove=true
                     }
                 break
