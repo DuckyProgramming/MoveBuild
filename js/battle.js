@@ -1441,7 +1441,9 @@ class battle{
                     this.cardManagers[player].hand.randomEffect(0,[])
                 break
                 case 8:
-                    this.cardManagers[player].addRandomAbstract(2,0,0,0,7,[],[3,[1]])
+                    //this.cardManagers[player].addRandomAbstract(2,0,0,0,7,[],[3,[1]])
+                    this.overlayManager.overlays[10][player].active=true
+                    this.overlayManager.overlays[10][player].activate([card.level,[0,3],57,[],[]])
                 break
                 case 9:
                     this.addCurrency(25,player)

@@ -11185,6 +11185,64 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10923: string+=`Gain ${effect[0]} Control\nRemove a Random\nDebuff From Self`; break
         case 10924: string+=`Target Takes ${effect[0]}\nDamage Per Card\nPlayed This Turn and\nCannot Gain Block\nFor ${effect[1]} Turn${pl(effect[1])}`; break
         case 10925: string+=`Bomb 7 Tiles\nin a Circle\nFor ${effect[0]} Damage\nAssign ${effect[1]}:\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
+        case 10926: string+=`Deal Double\nDamage in Sturdy\nFor ${effect[0]} Turn${pl(effect[0])}`; break
+        case 10927: string+=`Gain ${effect[0]} Mantra\nGain ${effect[1]} Armor`; break
+        case 10928: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nShuffle ${effect[1]} Insight${pl(effect[1])}\nInto Draw Pile`; break
+        case 10929: string+=`Gain ${effect[0]} Mantra\nShuffle ${effect[1]} Insight${pl(effect[1])}\nInto Draw Pile`; break
+        case 10930: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nShuffle ${effect[1]} Insight${pl(effect[1])}\nInto Draw Pile`; break
+        case 10931: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nShuffle ${effect[1]} Insight${pl(effect[1])}\nInto Draw Pile`; break
+        case 10932: string+=`Gain ${effect[0]} Random\nTemporary Item${pl(effect[0])}\nShuffle ${effect[1]} Dazed${pl(effect[1])}\ninto Draw Pile`; break
+        case 10933: string+=`Shuffle ${effect[0]} Vitalit${effect[0]!=1?`ies`:`y`}\ninto Draw Pile`; break
+        case 10934: string+=`Gain ${effect[0]} Base\nEnergy This Combat\nElemental Form:\nShuffle ${effect[1]} Vitalit${effect[1]!=1?`ies`:`y`}\ninto Draw Pile\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 10935: string+=`Gain (G) at the\nStart of Your Turn\nElemental Form:\nShuffle ${effect[0]} Vitalit${effect[0]!=1?`ies`:`y`}\ninto Draw Pile\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 10936: string+=`Gain ${effect[0]} Strength\nShuffle ${effect[1]} Refracted\nSunlight${pl(effect[1])} into Draw Pile`; break
+        case 10937: string+=`Deal and Take\nThird Damage in Sturdy\n(Instead of Half)`; break
+        case 10938: string+=`+1: Retain the Next\n${effect[0]!=1?effect[0]:``} Card${pl(effect[0])} Once\n-2: Shuffle ${effect[1]} Vital${effect[1]!=1?`ies`:`y`}\nof Equivalent Level\ninto Draw Pile\n-5: Heal ${this.calculateEffect(effect[2],4)} Health\nat the End of Combat`; break
+            case -1091: string+=`-2: Shuffle ${effect[1]} Vital${effect[1]!=1?`ies`:`y`}\nof Equivalent Level\ninto Draw Pile`; break
+            case -1092: string+=`-5: Heal ${this.calculateEffect(effect[2],4)} Health\nat the End of Combat`; break
+        case 10939: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Incremented,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 10940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze to\nEvery Other Enemy`; break
+        case 10941: string+=`Apply ${effect[0]} Freeze\nto All Enemies\nAdd ${effect[1]} Miracle${pl(effect[1])} to\nthe Top of Draw Pile\n${effect[1]!=1?`They Gain`:`It Gains`} Replenish`; break
+        case 10942: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nIncreases by ${effect[1]}\nWhen Retained\nDecreases by ${effect[2]}\nWhen Incremented`; break
+        case 10943: string+=`Gain ${effect[0]} Resonance\nLose ${effect[1]} Energy\nPer Turn`; break
+        case 10944: string+=`Gain ${effect[0]} Resonance\nRemove ${effect[1]} Random Base\nMana This Cmobat`; break
+        case 10945: string+=`Gain ${effect[0]} Focus\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 10946: string+=`Gain ${effect[0]} Resonance\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 10947: string+=`Add ${effect[0]} Safet${effect[0]!=1?`ies`:`y`}\nto Hand\nEvery Turn`; break
+        case 10948: string+=`Add ${effect[0]} Smite${pl(effect[0])} and\n${effect[1]} Safet${effect[1]!=1?`ies`:`y`} to Hand\nEvery Turn`; break
+        case 10949: string+=`Add to Hand:\nShiv\nTile\nDark Matter`; break
+        case 10950: string+=`Add to Hand:\nShiv\nTile\nDark Matter\nUpgrade 1 at Random`; break
+        case 10951: string+=`Add to Hand:\nShiv\nTile\nDark Matter\nUpgrade 2 at Random`; break
+        case 10952: string+=`All Hits Taken\n${effect[0]!=1?`Next ${effect[0]} Turns`:`This Turn`}\nHeal You and\nAdd Block Instead`; break
+        case 10953: string+=`Gain ${effect[0]} Intangible\nRetain Your Block\nFor ${effect[1]} Turn${pl(effect[1])}`; break
+        case 10954: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nAdd ${effect[1]} Random Common\nCard${pl(effect[1])} With Random\nEditions to Deck`; break
+        case 10955: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nAdd ${effect[1]} Random Uncommon\nCard${pl(effect[1])} With Random\nEditions to Deck`; break
+        case 10956: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nAdd ${effect[1]} Random Rare\nCard${pl(effect[1])} With Random\nEditions to Deck`; break
+        case 10957: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nMake a Card Polychrome\nPermanently`; break
+        case 10958: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nMake a Card Negative\nPermanently`; break
+        case 10959: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nMake a Card Erratic\nPermanently`; break
+        case 10960: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose an Attack\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 10961: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Defense\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 10962: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Movement\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 10963: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Power\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 10964: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Skill\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 10965: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Condition\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 10966: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nDuplicate a Card\nPermanently`; break
+        case 10967: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nRemove a Card\nPermanently`; break
+        case 10968: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nTransform a Card\nPermanently`; break
+        case 10969: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nDeluxe Upgrade a Card\nPermanently`; break
+        case 10970: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nMake a Card Cost 1\nLess Permanently`; break
+        case 10971: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nEdition a Card\nPermanently`; break
+        case 10972: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nReturn a Removed\nCard to Deck`; break
+        case 10973: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nGain an Item Slot\nGain ${effect[1]} Random\nRare Item${pl(effect[1])}`; break
+        case 10974: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Add ${effect[1]} Random\nMix${effect[1]!=1?`es`:``} to Hand`; break
+        case 10975: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n50%: Add ${effect[1]} Random\nMix${effect[1]!=1?`es`:``} to Hand`; break
+        case 10976: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n50%: Add ${effect[1]} Random\nMix${effect[1]!=1?`es`:``} to Hand`; break
+        case 10977: string+=`Gain ${effect[0]} Energy\n50%: Add ${effect[1]} Random\nMix${effect[1]!=1?`es`:``} to Hand`; break
+        case 10978: string+=`Gain (E)\n50%: Add ${effect[0]} Random\nMix${effect[0]!=1?`es`:``} to Hand`; break
+        case 10979: string+=`Gain (E) (E)\n50%: Add ${effect[0]} Random\nMix${effect[0]!=1?`es`:``} to Hand`; break
+        case 10980: string+=`Gain (E) (E) (E)\n50%: Add ${effect[0]} Random\nMix${effect[0]!=1?`es`:``} to Hand`; break
+        case 10981: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nRemove ${effect[1]} Random\nCard${pl(effect[1])} in Deck`; break
 
         //mark p
         //mark q

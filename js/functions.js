@@ -698,8 +698,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus*=user.status.main[478]>0?3:2
 			}
 			if(user.stance==4&&user.status.main[1019]<=0){
-				damage*=0.5
-				bonus*=0.5
+				damage*=user.status.main[1026]>0?1/3:0.5
+				bonus*=user.status.main[1026]>0?1/3:0.5
 			}
 			if(user.stance==5){
 				damage*=3
@@ -1340,6 +1340,7 @@ function intentDescription(attack,user,info){
 			case 502: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nGain ${info?attack.effect[1]:`?`} Armor\nRange 1-1`
 			case 503: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Armor\nRange 1-6`
 			case 504: return `Builder Adds ${info?attack.effect[0]:`?`}\nUpgraded Revolver${pl(attack.effect[0])} to Hand`
+			case 505: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-3`
 
 			//mark desc
 			/*

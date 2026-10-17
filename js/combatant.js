@@ -102,7 +102,7 @@ constants.status={
         'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
         'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death','Discard Next Turn','Sturdy Next Turn','Double Sturdy Damage',
-        'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down',
+        'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -207,7 +207,7 @@ constants.status={
         0,0,0,0,0,0,0,2,0,0,//100
         0,0,2,0,0,0,2,2,2,2,//101
         2,2,1,1,1,0,0,2,1,1,//102
-        0,0,0,0,0,0,
+        0,0,0,0,0,0,1,0,
     ],
     /*
     0-none
@@ -321,7 +321,7 @@ constants.status={
         2,2,2,2,2,2,1,1,2,2,//100
         2,2,2,1,2,1,0,0,0,0,//101
         0,0,0,0,0,2,1,2,2,2,//102
-        2,3,2,2,2,2,
+        2,3,2,2,2,2,2,2,
     ]
     /*
     0-good
@@ -444,7 +444,8 @@ class combatant{
             flash:[0,0,0,0],upFlash:[false,false,false,false],
             balance:0,
             orb:0,orbSpec:[],
-            stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0,0,0],
+            //stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0,0,0],
+            stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0],
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
             faith:[0,0,0,0,0],
@@ -582,7 +583,8 @@ class combatant{
             bounce:0,bounceSize:1,bouncePush:0,
             size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],
             flash:[0,0,0,0],upFlash:[false,false,false,false],
-            stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0,0,0],
+            //stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0,0,0],
+            stance:[0,0,0,0,0,0,0],mantra:[0,0,0,0,0,0,0,0,0,0],
             elemental:0,
             inspiration:[0,0,0,0,0],fugue:0,
             faith:[0,0,0,0,0],
@@ -658,7 +660,7 @@ class combatant{
         if(this.battle.encounter.class==1&&this.battle.nodeManager.harmElite>0){
             this.life*=1-this.battle.nodeManager.harmElite
         }
-        if((this.spec.includes(2)||this.spec.includes(12))&&this.battle.nodeManager.harmBoss>0){
+        if(this.battle.encounter.class==2&&this.battle.nodeManager.harmBoss>0){
             this.life*=1-this.battle.nodeManager.harmBoss
         }
         if(this.spec.includes(5)){
@@ -1178,7 +1180,8 @@ class combatant{
                         this.statusEffect('Armor',3)
                     break
                     case 'Slime': case 'Spike Slime': case 'Slimoid':
-                        this.subAttackTypeSwitch([[2,22,22,[1,2]]])
+                        //this.subAttackTypeSwitch([[2,22,22,[1,2]]])
+                        this.subAttackTypeSwitch([[2,22,32,[]]])
                     break
                     case 'Cartel':
                         this.subAttackTypeSwitch([[2,24,24,[1,2]]])
@@ -1210,7 +1213,8 @@ class combatant{
                         this.subAttackTypeSwitch([[0,4,10,[]]])
                     break
                     case 'Big Slime': case 'Big Spike Slime': case 'Big Slimoid':
-                        this.subAttackTypeSwitch([[2,32,32,[1,2]]])
+                        //this.subAttackTypeSwitch([[2,32,32,[1,2]]])
+                        this.subAttackTypeSwitch([[2,32,32,[]]])
                     break
                     case 'Moss Creature': case 'Deployer':
                         this.statusEffect('Armor',5)
@@ -1453,10 +1457,11 @@ class combatant{
                         this.move.speed++
                     break
                     case 'Vengeful':
-                        this.removeAttack(210)
-                        this.removeAttack(214)
+                        /*this.removeAttack(210)
+                        this.removeAttack(214)*/
                         this.spec.push(1)
                         this.spec.splice(this.spec.indexOf(0),1)
+                        this.subAttackTypeSwitch([[2,3,212,[]]])
                     break
                     case 'Coffee Commander':
                         this.spec.push(7)
@@ -2180,6 +2185,7 @@ class combatant{
                 ]
             case 71: case 73: case 79: case 99: case 143: case 172: case 175: case 312: case 319: case 322:
             case 339: case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465:
+            case 505:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2959,7 +2965,7 @@ class combatant{
                             }
                         break
                         case 71: case 73: case 79: case 99: case 143: case 172: case 312: case 319: case 322: case 339:
-                        case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465:
+                        case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465: case 505:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3195,7 +3201,7 @@ class combatant{
                         this.targetTile[0].indescriptTarget(this.activated?2:1)
                     break
                     case 71: case 73: case 79: case 99: case 143: case 172: case 312: case 339: case 348: case 367:
-                    case 385: case 389: case 390: case 397: case 447: case 453: case 465:
+                    case 385: case 389: case 390: case 397: case 447: case 453: case 465: case 505:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -3802,7 +3808,7 @@ class combatant{
                     damage*=userCombatant.status.main[478]>0?3:2
                 }
                 if(userCombatant.stance==4&&userCombatant.status.main[1019]<=0){
-                    damage*=0.5
+                    damage*=userCombatant.status.main[1026]>0?1/3:0.5
                 }
                 if(userCombatant.stance==5){
                     damage*=3
@@ -3978,7 +3984,7 @@ class combatant{
                     damage*=this.status.main[478]>0?3:2
                 }
                 if(this.stance==4){
-                    damage*=0.5
+                    damage*=this.status.main[1026]>0?1/3:0.5
                 }
                 if(this.status.main[321]>0){
                     damage=ceil(damage/5)*5
@@ -4043,9 +4049,15 @@ class combatant{
                 }
                 if(this.status.main[169]>0){
                     this.heal(damage)
+                    if(this.status.main[172]>0){
+                        this.statusEffect('Block Next Turn',damage)
+                    }
                 }else if(this.status.main[153]>0){
                     this.status.main[153]--
                     this.heal(damage)
+                    if(this.status.main[172]>0){
+                        this.statusEffect('Block Next Turn',damage)
+                    }
                 }else if(this.status.main[172]>0){
                     this.statusEffect('Block Next Turn',damage)
                 }else if(this.status.main[174]>0){
@@ -6806,6 +6818,7 @@ class combatant{
                     case 1010: this.miniStatus('Conditioning Cycle 3 1',this.status.main[this.status.ticker[a]]); break
                     case 1011: this.miniStatus('Conditioning Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     case 1018: this.enterStance(4); break
+                    case 1027: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Safety',types.card),0,0)}} break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])
@@ -8546,7 +8559,9 @@ class combatant{
         this.updatePassive()
         this.tilePosition.x=round(this.tilePosition.x)
         this.tilePosition.y=round(this.tilePosition.y)
-        if(this.life<=0&&this.status.main[137]>0){
+        if(this.life>0&&this.life<0.1){
+            this.life=0
+        }else if(this.life<=0&&this.status.main[137]>0){
             this.life=1
             this.battle.updateTargetting()
         }
@@ -8572,8 +8587,9 @@ class combatant{
             for(let a=0,la=this.infoAnim.ringing.length;a<la;a++){
                 this.infoAnim.ringing[a]=smoothAnim(this.infoAnim.ringing[a],this.ringing>a,0,1,5)
             }
-            if(this.mantra>=12&&this.infoAnim.mantra[9]>=1){
-                this.mantra-=12
+            //if(this.mantra>=12&&this.infoAnim.mantra[9]>=1){
+            if(this.mantra>=10&&this.infoAnim.mantra[9]>=1){
+                this.mantra-=10
                 this.enterStance(5)
             }
             if(this.vision>=12){

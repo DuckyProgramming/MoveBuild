@@ -523,6 +523,12 @@ class group{
         this.cards.splice(0,0,this.cards[this.cards.length-2])
         this.cards.splice(this.cards.length-2,2)
     }
+    slideTopArg(x){
+        for(let a=0,la=x;a<la;a++){
+            this.cards.splice(0,0,this.cards[this.cards.length-1-a])
+        }
+        this.cards.splice(this.cards.length-x,x)
+    }
     slideSpecific(index){
         this.cards.splice(0,0,this.cards[index])
         this.cards.splice(index+1,1)
@@ -1089,7 +1095,7 @@ class group{
                 type==26&&args[0].includes(this.cards[a].class)&&args[1]!=this.cards[a].id||
                 type==27&&this.cards[a].name.includes(args[0])&&this.cards[a].class==args[1]||
                 type==28&&this.cards[a].getCost(4)||
-                type==29&this.cards[a].getBasic(args[0])
+                type==29&&this.cards[a].getBasic(args[0])
             ){
                 total++
             }

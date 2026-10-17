@@ -1,22 +1,15 @@
-CS 136 [VINCENT]
+CS 137 [FIXES]
 
-minor vincent purge
-reorganize the items
-https://steamcommunity.com/sharedfiles/filedetails/?id=3780726901
+CS 138 [VINCENT]
+
+vincent rework
 make sure his tutorial is not ruined
 
-CS 137 [?]
-
-tooltips for dictionary
-
-test new setsuna
-test new shiru
-test new edgar
+CS 139 [?]
 
 test prehex x2 runs
 purge?
 make sure his tutorial is not ruined
-afterward, destroy his quickdraw
 
 play meri
 make sure her tutorial is not ruined
@@ -24,10 +17,53 @@ make sure her tutorial is not ruined
 play menessa
 make sure her tutorial is not ruined
 
-split combat violence
 split tomato juice to remove fatigues
 split double helix
 split obtainment?, hand of greed (this card isn't real actually), etc
+split edge of reason
+split brilliance
+split judgement, terminate, take out the trash
+split microburst
+split greater good
+split tractate
+split sabotage
+split annual sword into just annual that's not an attack
+split springtime vacation
+split multiplex
+posture doesn't redo
+split rising wave
+rotate weatherball
+split scrap thought to give 1 mantra
+split run and gun
+silver shield suffering
+split rotor
+split camellia
+split kaleidoscope
+split redeploy
+split combo starter
+split laugh track
+split frozen dust
+split aura
+
+carbon (4 damage), hydrogen, quartz (?), iron (6 block), nitrogen (remove 1 fatigue), zinc ()
+carbon = graphite ()
+graphite = diamond ()
+iron = iron sword?
+diamond = diamond sword?
+quartz = glass (4 bleed)
+zinc + carbon = battery (1 energy)
+carbon + hydrogen = plastic (draw 2)
+iron + hydrogen = steel (12 block for 2 turns)
+nitrogen + hydrogen = ammonium (splash damage)
+ammonium + carbon = explosive powder (a bomb)
+explosive powder + glass = shrapnel
+explosive powder + battery = prismatic bomb
+quartz + prismatic bomb = drone
+iron = storage (retain a card)
+glass = item slot
+
+[first amendment]
+[extreme divinity]
 ally health pack / resurrection?
 transfusion - block, gain 1 strength if you lost health this turn
 better days - when you lose hp, heal up to 1 of it back
@@ -117,8 +153,23 @@ summarize - gain 1 strength per enemy that will attack
 multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
 fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
 error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust(tad rare to get it off but powerful effect)
+embercleave - next attack deals double damage, costs 1 less when an attack is played
+split blood of asura
+
+slice of present - damage, lock on if target will defend
+binding blade - damage and lock on in all directions
 split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
+incoming pain - damage, increases by 8 if target is debuffed (rage strike)
+wheel of pain - apply lock on, duplicate next card played
+ever-seeing - spikify but lock on
+preta - apply 2 mortal, 2 lock on, 2 weak
+needle aura - strength, increased per wish you have active
+conventional truth - put a card from discard into hand, prime
 split clockwork
+
+prime positioning - move, gain 2 temp strength per pulse in hand
+military reorganization - draw an attack, it costs 1
+inevitable - apply mortal, target cannot heal
 
 hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
 adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
@@ -133,6 +184,10 @@ mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
 grammar check
+
+tooltips for dictionary
+
+shiru graphics fix
 
 [slio9]
 

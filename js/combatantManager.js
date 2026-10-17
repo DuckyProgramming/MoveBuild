@@ -1214,6 +1214,13 @@ class combatantManager{
                             }
                         }
                     break
+                    case 68:
+                        if(this.combatants[a].id!=args[0]){
+                            for(let b=0,lb=floor((args.length-1)/2);b<lb;b++){
+                                this.combatants[a].statusEffect(args[b*2+1],args[b*2+2])
+                            }
+                        }
+                    break
                 }
             }
         }

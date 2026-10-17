@@ -25,6 +25,7 @@ class cardManager{
         this.drops=0
         this.interval=0
         this.greenDiff=0
+        this.spectral=0
         this.carry=[0,0,0,0,0]
         this.bufferedTurn=0
         this.pack=[]

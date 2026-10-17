@@ -34,6 +34,9 @@ function setup(){
         stage.scene='battle'
         current.setupBattle(types.encounter[1])
 
+            /*stage.scene='histogram'
+            graphics.test=4*/
+
             /*quickNode(4)
             money(1000)*/
 
@@ -42,9 +45,6 @@ function setup(){
             //fight('-h Rewriter')
 
             //game.animRate=4
-
-            /*stage.scene='histogram'
-            graphics.test=11*/
 
             /*current.packManagers[0].packs[0].take()
             current.packManagers[0].packs[1].take()

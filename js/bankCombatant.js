@@ -3445,7 +3445,7 @@ combatant.prototype.display=function(){
                             this.layer.translate(lsin(this.anim.direction+this.spin.hair.pin[g])*14,-83.75)
                             this.layer.rotate(lsin(this.anim.direction+this.spin.hair.pin[g])*-30)
                             this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin[g])*0.95+0.05,1)
-                            this.layer.noStroke()
+                            /*this.layer.noStroke()
                             this.layer.fill(this.color.hair.pin[1][0],this.color.hair.pin[1][1],this.color.hair.pin[1][2],this.fades.hair.pin)
                             this.layer.triangle(-1.5,0,1.5,0,0,3)
                             this.layer.fill(this.color.hair.pin[0][0],this.color.hair.pin[0][1],this.color.hair.pin[0][2],this.fades.hair.pin)
@@ -3462,6 +3462,30 @@ combatant.prototype.display=function(){
                             this.layer.ellipse(0,-1.5,2.25,2.25)
                             for(let a=0,la=9;a<la;a++){
                                 this.layer.ellipse(lsin(a*40+20),-1.5+lcos(a*40+20),0.5,0.5)
+                            }*/
+                            this.layer.noStroke()
+                            this.layer.fill(...this.flashColor(this.color.hair.pin[1]),this.fades.hair.pin)
+                            this.layer.triangle(-2,-1,2,-1,0,3)
+                            this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[1],-25,[1,1,1])),this.fades.hair.pin)
+                            this.layer.quad(1,1,1.25,0.5,-1.75,-0.5,-1.5,0)
+                            this.layer.quad(-1,1,-1.25,0.5,1.75,-0.5,1.5,0)
+                            this.layer.fill(...this.flashColor(this.color.hair.pin[0]),this.fades.hair.pin)
+                            this.layer.arc(0,-1,6,6,-180,0)
+                            this.layer.ellipse(0,-1,6,1.2)
+                            for(let a=0,la=5;a<la;a++){
+                                this.layer.ellipse(lcos(a*40+10)*2.5,-1-lsin(a*40+10)*2.5,1.6)
+                            }
+                            this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[0],25,[1,1,1])),this.fades.hair.pin)
+                            this.layer.arc(0,-1,4.5,4.5,-180,0)
+                            this.layer.ellipse(0,-1,4.5,0.9)
+                            for(let a=0,la=5;a<la;a++){
+                                this.layer.ellipse(lcos(a*40+10)*1.875,-1-lsin(a*40+10)*1.875,1.2)
+                            }
+                            this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[0],50,[1,1,1])),this.fades.hair.pin)
+                            this.layer.arc(0,-1,3,3,-180,0)
+                            this.layer.ellipse(0,-1,3,0.6)
+                            for(let a=0,la=5;a<la;a++){
+                                this.layer.ellipse(lcos(a*40+10)*1.25,-1-lsin(a*40+10)*1.25,0.8)
                             }
                             this.layer.pop()
                         }
@@ -3929,7 +3953,7 @@ combatant.prototype.display=function(){
                             this.layer.translate(lsin(this.anim.direction+this.spin.hair.pin[g])*14,-78)
                             this.layer.rotate(lsin(this.anim.direction+this.spin.hair.pin[g])*-5)
                             this.layer.scale(lcos(this.anim.direction+this.spin.hair.pin[g])*0.95+0.05,1)
-                            this.layer.noStroke()
+                            /*this.layer.noStroke()
                             this.layer.fill(this.color.hair.pin[1][0],this.color.hair.pin[1][1],this.color.hair.pin[1][2],this.fades.hair.pin)
                             this.layer.triangle(-1.5,0,1.5,0,0,3)
                             this.layer.fill(this.color.hair.pin[0][0],this.color.hair.pin[0][1],this.color.hair.pin[0][2],this.fades.hair.pin)
@@ -3946,6 +3970,30 @@ combatant.prototype.display=function(){
                             this.layer.ellipse(0,-1.5,2.25,2.25)
                             for(let a=0,la=9;a<la;a++){
                                 this.layer.ellipse(lsin(a*40+20),-1.5+lcos(a*40+20),0.5,0.5)
+                            }*/
+                            this.layer.noStroke()
+                            this.layer.fill(...this.flashColor(this.color.hair.pin[1]),this.fades.hair.pin)
+                            this.layer.triangle(-2,-1,2,-1,0,3)
+                            this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[1],-25,[1,1,1])),this.fades.hair.pin)
+                            this.layer.quad(1,1,1.25,0.5,-1.75,-0.5,-1.5,0)
+                            this.layer.quad(-1,1,-1.25,0.5,1.75,-0.5,1.5,0)
+                            this.layer.fill(...this.flashColor(this.color.hair.pin[0]),this.fades.hair.pin)
+                            this.layer.arc(0,-1,6,6,-180,0)
+                            this.layer.ellipse(0,-1,6,1.2)
+                            for(let a=0,la=5;a<la;a++){
+                                this.layer.ellipse(lcos(a*40+10)*2.5,-1-lsin(a*40+10)*2.5,1.6)
+                            }
+                            this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[0],25,[1,1,1])),this.fades.hair.pin)
+                            this.layer.arc(0,-1,4.5,4.5,-180,0)
+                            this.layer.ellipse(0,-1,4.5,0.9)
+                            for(let a=0,la=5;a<la;a++){
+                                this.layer.ellipse(lcos(a*40+10)*1.875,-1-lsin(a*40+10)*1.875,1.2)
+                            }
+                            this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[0],50,[1,1,1])),this.fades.hair.pin)
+                            this.layer.arc(0,-1,3,3,-180,0)
+                            this.layer.ellipse(0,-1,3,0.6)
+                            for(let a=0,la=5;a<la;a++){
+                                this.layer.ellipse(lcos(a*40+10)*1.25,-1-lsin(a*40+10)*1.25,0.8)
                             }
                             this.layer.pop()
                         }

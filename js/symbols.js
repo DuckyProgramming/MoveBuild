@@ -10962,13 +10962,41 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noFill()
             layer.stroke(255,fade)
             layer.strokeWeight(1)
-            layer.line(-5,-3,0,-6)
-            layer.line(5,-3,0,-6)
-			layer.arc(0,-3,10,16,0,180)
+            layer.line(-4.5,-3,0,-5.5)
+            layer.line(4.5,-3,0,-5.5)
+			layer.arc(0,-3,9,15,0,180)
             layer.noStroke()
             layer.fill(200,255,255,fade)
             layer.quad(-3.2,0,0,-4,3.2,0,0,4)
         break
+        case 1026:
+            layer.stroke(150,75,0,fade)
+            layer.strokeWeight(1)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
+            layer.fill(200,0,0,fade)
+            layer.noStroke()
+            layer.ellipse(0,0,3)
+            layer.ellipse(-4.5,0,3)
+            layer.ellipse(4.5,0,3)
+        break
+        case 1027:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noFill()
+            layer.stroke(255,fade)
+            layer.strokeWeight(1)
+            layer.line(-4.5,-3,0,-5.5)
+            layer.line(4.5,-3,0,-5.5)
+			layer.arc(0,-3,9,15,0,180)
+        break
+
     }
     //mark s
     layer.pop()
@@ -17095,6 +17123,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.rect(0,0,1.5,6)
             layer.rect(0,0,6,1.5)
         break
+        case 505:
+            layer.fill(0,255,100,fade)
+            layer.ellipse(0,0,8)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
+            layer.rect(-7,0,1,6)
+        break
 
     }
     //mark i
@@ -17129,6 +17165,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 429: case 431: case 432: case 440: case 445: case 446: case 447: case 449: case 450: case 451:
             case 452: case 457: case 458: case 463: case 464: case 466: case 467: case 471: case 472: case 473:
             case 477: case 485: case 486: case 489: case 491: case 492: case 495: case 497: case 501: case 504:
+            case 505:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 69: case 97: case 99: case 103: case 133:

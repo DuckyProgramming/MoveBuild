@@ -2042,6 +2042,9 @@ class overlay{
                                 case 9949:
                                     this.cards[a].attack=[-1090,-1013][a]
                                 break
+                                case 10938:
+                                    this.cards[a].attack=[-1091,-1092][a]
+                                break
                             }
                         }
                     break
@@ -2741,6 +2744,16 @@ class overlay{
                                     this.battle.cardManagers[this.player].hand.add(findName('Protocol',types.card),0,0)
                                 }
                                 this.battle.cardManagers[this.player].draw(args[0].effect[2])
+                            break
+                            case -1091:
+                                this.card.costDown(0,[2])
+                                for(let a=0,la=args[0].effect[1];a<la;a++){
+                                    this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
+                                }
+                            break
+                            case -1092:
+                                this.card.costDown(0,[5])
+                                userCombatant.statusEffect('End of Combat Heal',args[0].effect[2])
                             break
                         }
                     break

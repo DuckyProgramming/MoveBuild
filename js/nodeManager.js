@@ -202,10 +202,10 @@ class nodeManager{
                 for(let a=0,la=game.diff>=1?3:2;a<la;a++){
                     possibilities.push(1)
                 }
-                for(let a=0,la=3;a<la;a++){
+                for(let a=0,la=this.world!=1?6:3;a<la;a++){
                     possibilities.push(3)
                 }
-                for(let a=0,la=2;a<la;a++){
+                for(let a=0,la=this.world!=1?3:2;a<la;a++){
                     possibilities.push(4)
                 }
                 for(let a=0,la=7;a<la;a++){
@@ -218,10 +218,10 @@ class nodeManager{
                 for(let a=0,la=game.diff>=1?7:5;a<la;a++){
                     possibilities.push(1)
                 }
-                for(let a=0,la=6;a<la;a++){
+                for(let a=0,la=this.world!=1?9:6;a<la;a++){
                     possibilities.push(3)
                 }
-                for(let a=0,la=4;a<la;a++){
+                for(let a=0,la=this.world!=1?5:4;a<la;a++){
                     possibilities.push(4)
                 }
                 for(let a=0,la=16;a<la;a++){
@@ -234,7 +234,8 @@ class nodeManager{
             this.unknownPossibilities=game.ascend>=15||game.diff>=13?[0,0,floor(random(0,2)),1,1,3,3,4,5,5,5,5,5,5,5,5]:[0,0,0,0,1,3,3,4,5,5,5,5,5,5,5,5]
             //let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
             //let length=(this.world>=2?20:21)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
-            let length=(this.world==1?21:20)-(variants.shortmap?8:0)-(variants.shortermap?13:0)
+            //let length=(this.world==1?21:20)-(variants.shortmap?8:0)-(variants.shortermap?13:0)
+            let length=21-(variants.shortmap?8:0)-(variants.shortermap?13:0)
             //21 for the first 2 worlds and 20 for the third, note that slay the spire has 15, 14, and 13 respectively (it was previously 22/21)
             //because of this, as of 9/24/26, the 20,21,20,4 reform will be implemented
             //after all the reofrms, the number of elites ranges from 6-14 and the number of regular enemies from 30-34

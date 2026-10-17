@@ -11,7 +11,7 @@ types={
         {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`Student at the Konaian First\nUniversity, so depressed by her\nstudies that she fell into a trance\nand awakened a lost magical source.\nQuit school immediately after that.`},
         {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:`The 153rd CEO of High Value Metrics,\ndeposed by the board's chairman\nafter Management disagreements.\nNow out to reclaim his company,\nand arming fellow rebels on the way.`},
         {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:410,effect:[15]},{type:128,effect:[7,1,'Invoice']}],description:`Gambler from a foreign planet,\ndeeply in debt to a Management officer.\nEscaped to Konai to scrape together\nsome cash to pay it off, but got\ncaught up in the rebellion instead.`},
-        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:470,effect:[20,3]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`One of the last survivors from the\nHinokizuka commune dispersed by Management\nforces. Adopted by a rebel operative\nand inducted into the organization,\nshe hopes to prove her capabilities.`},
+        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:470,effect:[20,3]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`One of the last survivors from the Hinokizuka\ncommune dispersed by Management\nforces. Adopted by a rebel operative\nand inducted into the organization,\nshe hopes to prove her capabilities.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:72,behavior:0,spec:[0,19],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`Prototype bot passed over for\nproduction in favor of higher-performance\nmodels and discarded, found by\nDonakho and repaired for a new fight.\nReady for revenge over the other bots.`},
         {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`The last of a near-extinct species,\nspending his last days in a state\nof sorrow over his people's fate.\nOut to attack the dominant power\njust to leave some kind of legacy behind.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Tenured professor with the Konaian\nFirst University, gave up on work after\nreceiving terrible paychecks to\ncook product instead. After being\ncaught, he quickly escaped to the rebels.`},
@@ -141,7 +141,7 @@ types={
         {name:'Avant Guard',life:390,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:223,effect:[16]},{type:224,effect:[16]},{type:72,effect:[8,2]}],description:`Behind you!`},
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[8]},{type:9,effect:[6]},{type:21,effect:[]}],description:`Pretty bad`},
         {name:'Thornvine',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[1]},{type:229,effect:[2]}],description:`Back and worse`},
-        {name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
+        {name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:3,effect:[7]},{type:213,effect:[6]}],description:`Remember last time?`},
         {name:'Coffee Commander',life:268,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:164,effect:[8,1,'Electrocuted']},{type:163,effect:[5,1]},{type:129,effect:[4]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[2]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
@@ -216,7 +216,7 @@ types={
         {name:'Mini Puffball',life:1,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[4]},{type:4,effect:[8]}],description:`Apparently fluffy`},
         {name:'Inkblot',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:31,effect:[6]},{type:29,effect:[9]},{type:21,effect:[]}],description:`Not really his fault`},
         {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:152,effect:[999]}],description:`He had one job`},
-        {name:'Globe Head',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:493,effect:[7,2]},{type:30,effect:[5,10]}],description:`Don't want to be around him`},
+        {name:'Globe Head',life:48,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:493,effect:[7,2]},{type:30,effect:[5,10]}],description:`Don't want to be around him`},
         {name:'Infested Prism',life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[11]},{type:378,effect:[10,10]},{type:492,effect:[2]}],description:`What's going on in there`},
         {name:'Crow',life:13,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:31,effect:[4]}],description:`An IQ too high?`},
         {name:'Smoker',life:73,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:396,effect:[7,7]},{type:54,effect:[4,1,'Dazed']}],description:`Don't do this`},
@@ -234,7 +234,7 @@ types={
         {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
         {name:'Glazer',life:60,behavior:1,spec:[23],move:{type:2,speed:2},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
         {name:'Glazer Clone',life:60,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
-        {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[4]},{type:77,effect:[6]},{type:367,effect:[9]},{type:380,effect:[12]}],description:`PVZ Fusion looking`},
+        {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[4]},{type:77,effect:[6]},{type:367,effect:[8]},{type:380,effect:[10]}],description:`PVZ Fusion looking`},
         {name:'Volt King',life:162,behavior:6,spec:[0],move:{type:0,speed:2},attack:[{type:497,effect:[6]},{type:59,effect:[10]},{type:45,effect:[6]},{type:53,effect:[10,1,'Electrocuted']},{type:5,effect:[1,'Electrocuted']}],description:`One with nothing`},
         {name:'Big Bush Thing',life:36,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:28,effect:[10]},{type:110,effect:[5,5]},{type:111,effect:[4]}],description:`Preparing his child for greatness`},
 
@@ -309,6 +309,7 @@ types={
         
         //{name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:405,effect:[24,2]}],description:`Just you wait...`},
         //{name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        //{name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -911,6 +912,7 @@ types={
         {name:'3 Spread Strike / Armor',class:1},
         {name:'6 Tile Strike / Armor',class:1},
         {name:'Builder Gun+',class:4},
+        {name:'3 Tile Statusing Strike',class:1},//32,505
 
         //mark attack
     ],relic:[
@@ -973,7 +975,7 @@ types={
         {name:'Chaff Strip',internal:'Unplayed Card Block',id:51,rarity:1,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nAdd 1 Block Per Unplayed Card'},
         {name:'Pocket of Knives',internal:'Shivs',id:52,rarity:-1,list:0,mtg:0,world:[0,3],description:'Add 4 Shivs at the\nStart of Combat'},
         {name:'Salted Pepper',internal:'Healing Boost',id:53,rarity:2,list:0,mtg:0,world:[0,3],description:'All Healing is\n50% More Effective'},
-        {name:'Psuedograph',internal:'No Card Draw',id:54,rarity:2,list:0,mtg:0,world:[0,3],description:'If You Have No Cards in\nYour Hand, Draw 1 Card'},
+        {name:'Pseudograph',internal:'No Card Draw',id:54,rarity:2,list:0,mtg:0,world:[0,3],description:'If You Have No Cards in\nYour Hand, Draw 1 Card'},
         {name:'Origami Paper',internal:'Damage Decrease',id:55,rarity:2,list:0,mtg:0,world:[0,3],description:'Reduce All Damage\nTaken Above 1 By 1'},
         {name:'Picture Frame',internal:'Damage Threshold',id:56,rarity:2,list:0,mtg:0,world:[0,3],description:'If You Take 5 or Less\nDamage, Reduce it to 1'},
         {name:'Leaf Ball',internal:'Starting Armor',id:57,rarity:1,list:0,mtg:0,world:[0,3],description:'Gain 6 Armor at the\nStart of Combat'},
@@ -5486,6 +5488,29 @@ types={
         },{
             level:['Sliced 6'],class:1,world:0,
             name:'Boss1',
+            player:{position:[[{x:3,y:4}],[{x:3,y:5},{x:4,y:5}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Boss1'},
+                {position:{x:0,y:2},name:'Normal1'},
+                {position:{x:4,y:2},name:'Normal1'},
+                {position:{x:1,y:4},name:'Normal1'},
+                {position:{x:5,y:4},name:'Normal1'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:3,y:5},name:'Normal1',turn:3},
+                {position:{x:4,y:5},name:'Normal1',turn:3},
+                {position:{x:0,y:1},name:'Normal1',turn:8},
+                {position:{x:3,y:1},name:'Normal1',turn:8},
+                {position:{x:0,y:2},name:'Normal1',turn:8},
+                {position:{x:4,y:2},name:'Normal1',turn:8},
+                {position:{x:1,y:4},name:'Normal1',turn:8},
+                {position:{x:5,y:4},name:'Normal1',turn:8},
+                {position:{x:1,y:0},name:'Normal1',turn:9},
+            ],ally:[
+            ],
+        },{
+            level:['Sliced 6'],class:0,world:-1,
+            name:'Legacy Boss1',
             player:{position:[[{x:3,y:4}],[{x:3,y:5},{x:4,y:5}]]},
             enemy:[
                 {position:{x:1,y:0},name:'Boss1'},
