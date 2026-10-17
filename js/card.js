@@ -1942,7 +1942,7 @@ class card{
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
-            case 9523: case 9524: case 9525: case 9785: case 10505:
+            case 9523: case 9524: case 9525: case 9785: case 10505: case 10918:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -3422,7 +3422,7 @@ class card{
                         this.exhaust=true
                     }
                 break
-                case 52: case 220: case 594: case 1508: case 3914: case 7530: case 7531: case 8268:
+                case 52: case 220: case 594: case 1508: case 3914: case 7530: case 7531: case 8268: case 10872:
                     this.deSize=true
                 break
                 case 56:
@@ -3435,7 +3435,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 415: case 5933: case 10252:
+                case 415: case 5933: case 10252: case 10900:
                     if(cardClass==2){
                         this.costDown(0,[1])
                     }
@@ -6880,6 +6880,12 @@ class card{
             }
             if(userCombatant.getStatus('Power Cost Up')>0&&(type==2?args[0]:this.class)==4){
                 costChange+=userCombatant.getStatus('Power Cost Up')
+            }
+            if(userCombatant.getStatus('Smite Cost Down')>0&&this.name=='Smite'){
+                costChange-=userCombatant.getStatus('Smite Cost Down')
+            }
+            if(userCombatant.getStatus('Safety Cost Down')>0&&this.name=='Safety'){
+                costChange-=userCombatant.getStatus('Safety Cost Down')
             }
         }
         if(costChange!=0){

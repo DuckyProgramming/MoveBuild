@@ -996,8 +996,6 @@ class battle{
                 this.loseEnergy(-this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[this.turn.main]=0
-            this.cardManagers[this.turn.main].discard.allEffectArgs(44,[5050,5051,5163,6511,9416,10285])
-            this.cardManagers[this.turn.main].reserve.allEffectArgs(44,[5050,5051,5163,6511,9416,10285])
             extra=true
         }else{
             if(this.players==2){

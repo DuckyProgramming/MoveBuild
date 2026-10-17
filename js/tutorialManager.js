@@ -1043,10 +1043,10 @@ they take 10% more damage, and the stacks degarde by 1 each turn.`,
 targetted enemy can be extremely effective in terms of damage multiplier,
 but you must be careful to not let the stacks reduce back down to 0.`,
 `Wish Cards are effective, and activate every turn, but are expensive.
-Wish Cards cost Wish Power, a resource to manage (you start with 3 each combat).`,
-`The Wish Card will spend Wish Power every turn it is active after
+Wish Cards cost Influence, a resource to manage (you start with 3 each combat).`,
+`The Wish Card will spend Influence every turn it is active after
 you play it, and you can play it again to disable it.`,
-`If you do not have enough Wish Power to activate its effect
+`If you do not have enough Influence to activate its effect
 at the start of your turn, the wish will remove itself. Remember, they only
 take effect at the start of each of your turns, not when you play them.`,
 `END OF TUTORIAL`,

@@ -8105,6 +8105,12 @@ After adding both, also add a Miracle.`,
 `When drawn, duplicates once when played.`,
         },{name:'Population',mtg:0,desc:
 `The number of workers in your deck.`,
+        },{name:'Wish',mtg:0,desc:
+`Cards that consume Influence each turn to activate their abilities.
+Playing them the first time activates them. Play them again to deactivate them.
+Deactivate themselves automatically if not enough Influence is available.`,
+        },{name:'Influence',mtg:0,desc:
+`Resource gained through cards. Used to play Wishes.`,
         },
         //mark dict
     ],diff:[

@@ -119,7 +119,7 @@ class group{
         })
     }
     initialCards(type,player){
-        let level=2//variants.cursed?1:0
+        let level=variants.cursed?1:0
         let activeList=variants.mtg?types.deck.mtg:types.deck.start
         let edge=game.ascend>=20||game.diff>=16?1:0
         switch(type){
@@ -2260,7 +2260,7 @@ class group{
                 break
                 case 44:
                     if(args.includes(this.cards[a].attack)){
-                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163||this.cards[a].attack==6511?4:1)
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163||this.cards[a].attack==6511||this.cards[a].attack==10917?4:1)
                         a--
                         la--
                     }
@@ -4354,6 +4354,10 @@ class group{
             case 10636:
                 userCombatant.enterStance(5)
                 userCombatant.addBlock(card.effect[0])
+            break
+            case 10883:
+                this.battle.addSpecificEnergy(1,this.player,6)
+                this.battle.addSpecificEnergy(1,this.player,0)
             break
 
         }
