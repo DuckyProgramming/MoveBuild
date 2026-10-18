@@ -2238,6 +2238,9 @@ function event(name){
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)
 }
+function st(name){
+	player(0).statusEffect(name,1)
+}
 function upgrade(){
 	current.cardManagers[current.turn.main].allEffect(2,4)
 }

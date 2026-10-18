@@ -1965,6 +1965,9 @@ class card{
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,1,12])
             break
+            case 11077:
+                userCombatant.heal(userCombatant.base.life-userCombatant.life)
+            break
         }
     }
     callPullEffect(){
@@ -3325,6 +3328,16 @@ class card{
                 }else{
                     this.cost=this.cost.map(a=>this.color[0])
                     this.base.cost=this.base.cost.map(a=>this.color[0])
+                }
+            break
+            case 11057:
+                if(this.battle.turn.total==0){
+                    this.costUp(2,[1])
+                }
+            break
+            case 11095:
+                if(userCombatant.getStatus('Vigor')>0){
+                    this.effect[0]+=this.effect[1]
                 }
             break
         }

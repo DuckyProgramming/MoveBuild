@@ -103,7 +103,7 @@ constants.status={
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
         'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death','Discard Next Turn','Sturdy Next Turn','Double Sturdy Damage',
         'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
-        'Take Credit Vigor','Power Dexterity',
+        'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -209,7 +209,7 @@ constants.status={
         0,0,2,0,0,0,2,2,2,2,//101
         2,2,1,1,1,0,0,2,1,1,//102
         0,0,0,0,0,0,1,0,0,1,//103
-        0,0,
+        0,0,0,0,0,0,0,
     ],
     /*
     0-none
@@ -324,7 +324,7 @@ constants.status={
         2,2,2,1,2,1,0,0,0,0,//101
         0,0,0,0,0,2,1,2,2,2,//102
         2,3,2,2,2,2,2,2,2,2,//103
-        2,2,
+        2,2,2,2,2,2,2,
     ]
     /*
     0-good
@@ -2854,6 +2854,8 @@ class combatant{
             if(this.status.main[696]>0){
                 this.battle.combatantManager.allEffect(48,['Poison',this.status.main[696]])
             }
+            this.battle.cardManagers[this.id].discard.allEffectArgs(44,[11090])
+            this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[11090])
         }
     }
     playCard(){
@@ -5676,7 +5678,7 @@ class combatant{
                     this.battle.cardManagers[this.id].hand.add(findName('Stride',types.card),0,0)
                 break
                 case 5:
-                    this.battle.addSpecificEnergy(variants.mtg?5:3,this.id,6)
+                    this.battle.addSpecificEnergy((variants.mtg?5:3)+this.status.main[1034],this.id,6)
                 break
             }
             if(this.status.main[126]>0){
@@ -5693,7 +5695,7 @@ class combatant{
     leaveStance(stance){
         switch(stance){
             case 2:
-                this.battle.addSpecificEnergy(variants.mtg?3:2+this.status.main[678],this.id,6)
+                this.battle.addSpecificEnergy((variants.mtg?3:2)+this.status.main[678],this.id,6)
                 if(this.status.main[745]>0){
                     this.statusEffect('Temporary Strength',this.status.main[745])
                 }
@@ -6035,6 +6037,9 @@ class combatant{
                     if(this.id<this.battle.players&&this.status.main[801]>0){
                         this.battle.cardManagers[this.id].draw(this.status.main[801])
                     }
+                    if(this.id<this.battle.players&&this.status.main[1035]>0){
+                        this.battle.cardManagers[this.id].hand.exhaust(this.status.main[1035])
+                    }
                 }
                 if(effectiveValue>0){
                     switch(this.status.name[status]){
@@ -6106,6 +6111,9 @@ class combatant{
                                 }
                                 if(userCombatant.getStatus('Lock On Poison')>0){
                                     this.statusEffect('Poison',userCombatant.getStatus('Lock On Poison'))
+                                }
+                                if(userCombatant.getStatus('Lock On Mortal')>0){
+                                    this.statusEffect('Mortal',userCombatant.getStatus('Lock On Mortal'))
                                 }
                             }
                         break
@@ -8645,6 +8653,8 @@ class combatant{
                 this.faith-=6
                 this.battle.overlayManager.overlays[193][this.id].active=true
                 this.battle.overlayManager.overlays[193][this.id].activate([0])
+                this.battle.cardManagers[this.id].discard.allEffectArgs(44,[11089])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[11089])
             }
             if(this.favor>=6){
                 this.favor-=6

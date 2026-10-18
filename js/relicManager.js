@@ -308,6 +308,16 @@ class relicManager{
             }
         }
     }
+    loseFirstRelic(player){
+        for(let a=0,la=this.relics.length;a<la;a++){
+            if(this.relics[a].player==player&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].type!=0){
+                this.active[this.relics[a].type][0]-=1
+                this.active[this.relics[a].type][player+1]-=1
+                this.lose(this.relics[a].type,player)
+                a=la
+            }
+        }
+    }
     getRandomRelic(player,amount){
         let list=[]
         let result=[]

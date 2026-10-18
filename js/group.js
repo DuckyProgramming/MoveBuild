@@ -3178,6 +3178,7 @@ class group{
                         &&!(effect==85&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=7))
                         &&!(effect==86&&this.cards[b].class!=args[1]&&args[1]!=0)
                         &&!(effect==87&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=2))
+                        &&!(effect==88&&this.cards[b].class!=args[0])
                     ){
                         list.push(b)
                     }
@@ -3599,7 +3600,9 @@ class group{
                         this.cards.splice(0,0,this.cards[index])
                         this.cards.splice(index,1)
                         return
-                    //87 taken
+                    case 88:
+                        this.generalExhaust(index)
+                    break
                     //mark random
                 }
                 if(massed&&this.id!=0&&

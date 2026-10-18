@@ -4576,7 +4576,7 @@ combatant.prototype.display=function(){
                     this.layer.fill(...this.flashColor(this.color.dress.shawl),this.fade*this.fades.dress.main)
                     //this.layer.arc(0,-46,18,21,-180,0)
                     //this.layer.arc(0,-48,18,16.5,-180,0)
-                    this.layer.bezier(-9,-48,-5,-59.5,5,-59.5,9,-48)
+                    this.layer.bezier(-9,-48,-5,-59.25,5,-59.25,9,-48)
                     this.layer.arc(0,-48,18,4,0,180)
                     for(let a=0,la=20;a<la;a++){
                         /*if(lcos(a/la*360+this.anim.direction)>0){
@@ -4633,7 +4633,8 @@ combatant.prototype.display=function(){
                             this.layer.pop()
                         }
                     }
-                    this.layer.arc(0,-56,8,4,10,170)
+                    //this.layer.arc(0,-56,8,4,10,170)
+                    this.layer.arc(0,-55.75,8,3.5,8,172)
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-55.75,5,2)

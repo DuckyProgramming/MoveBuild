@@ -38,7 +38,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,7,[])],//food
                     [new overlay(this.layer,this.battle,0,2,[17,1])],//deluxe upgrade card, no return
                     [new overlay(this.layer,this.battle,0,2,[18])],//bring in draw card, upgrade, no return
-                    [new overlay(this.layer,this.battle,0,2,[19])],//bring in discard card to draw, no return,30
+                    [new overlay(this.layer,this.battle,0,2,[19,0])],//bring in discard card to draw, no return,30
                     [new overlay(this.layer,this.battle,0,2,[20,0])],//bring in first number draw card as free, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,2])],//remove card, obliterative
                     [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, get block, no return
@@ -202,6 +202,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[127])],//bring in draw card as foil, no return
                     [new overlay(this.layer,this.battle,0,2,[128,0,1,20])],//bring in discard card with spec
                     [new overlay(this.layer,this.battle,0,17,[2,2])],//dual card choice, prayer
+                    [new overlay(this.layer,this.battle,0,2,[19,1])],//bring in discard card to draw, no return
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

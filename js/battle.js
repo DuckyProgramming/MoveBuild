@@ -1656,6 +1656,9 @@ class battle{
         if(userCombatant.getStatus('Play Limit Combat')>0&&this.cardManagers[player].hand.turnPlayed[0]>=userCombatant.getStatus('Play Limit Combat')){
             this.cardManagers[player].allEffect(2,2)
         }
+        if(card.spec.includes(20)&&userCombatant.getStatus('Claw Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('Claw Draw'))
+        }
         if(card.spec.includes(35)&&userCombatant.getStatus('Countdown Chain')>0){
             this.cardManagers[player].hand.randomEffect(26,[userCombatant.getStatus('Countdown Chain')])
         }
@@ -1805,6 +1808,11 @@ class battle{
             case 'Pristine':
                 if(userCombatant.getStatus('Pristine Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Pristine Draw'))
+                }
+            break
+            case 'Smite': case 'Safety': case 'Insight':
+                if(userCombatant.getStatus('Creation Block')>0){
+                    userCombatant.addBlock(userCombatant.getStatus('Creation Block'))
                 }
             break
         }
@@ -3303,6 +3311,7 @@ class battle{
                 let overPos
                 let names3=['Colorless','Status','Curse','Partner','Arcana','Spectral','Subcard','Event','Reserve','Developer','Disband','Basic','Pack','Misc']
                 let q=(num)=>{return num==constants.playerNumber+10?100:num}
+                let seriesTotal=12
                 switch(graphics.test){
                     case 0: case 1:
                         this.layer.noStroke()
@@ -3335,7 +3344,7 @@ class battle{
                             })
                             //}
                         })
-                        for(let a=0,la=graphics.test==1?15:11;a<la;a++){
+                        for(let a=0,la=graphics.test==1?15:seriesTotal;a<la;a++){
                             let barWidth=600/la
                             //let names3=['Colorless','Status','Curse','Partner','Arcana','Spectral','Junkyard','Subcard','Event','Developer','Disband','Basic','Pack','Misc']
                             set[a].sort((a,b)=>q(b.list[0])-q(a.list[0]))
@@ -3489,7 +3498,7 @@ class battle{
                             }
                         })
                         overPos=margin
-                        for(let a=0,la=11;a<la;a++){
+                        for(let a=0,la=seriesTotal;a<la;a++){
                             set[a].sort((a,b)=>q(b.list[1])-q(a.list[1]))
                             let overProp=total[a]/overTotal*(this.layer.width-margin*2)
                             let pos=margin
@@ -3544,9 +3553,7 @@ class battle{
                                     let series=floor((level.attack.length==2?max(level.attack[0],level.attack[1]):level.attack)/1000)
                                     let res=this.collectionManager.overListing(card)
                                     if(series>=0){
-                                        if(series>0){
-                                            overTotal++
-                                        }
+                                        overTotal+=(series==0||series==seriesTotal-1?0.5:1)
                                         total[series]++
                                         if(set[series]==undefined){
                                             print(card)
@@ -3570,7 +3577,7 @@ class battle{
                         }
                         let overHold=[]
                         overPos=margin
-                        for(let a=0,la=10;a<la;a++){
+                        for(let a=0,la=seriesTotal-1;a<la;a++){
                             let overProp=(total[a]+total[a+1])*0.5/overTotal*(this.layer.width-margin*2)
                             let pos=[margin,margin]
                             for(let b=0,lb=set[a].length;b<lb;b++){
@@ -3588,7 +3595,7 @@ class battle{
                         }
                         for(let a=0,la=constants.playerNumber+14;a<la;a++){
                             let maximal=[0,0]
-                            for(let b=1,lb=10;b<lb;b++){
+                            for(let b=1,lb=seriesTotal-1;b<lb;b++){
                                 if(set[b][a].num/total[b]>maximal[0]){
                                     maximal[0]=set[b][a].num/total[b]
                                     maximal[1]=b

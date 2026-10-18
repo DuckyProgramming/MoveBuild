@@ -1551,6 +1551,13 @@ class combatantManager{
     }
     areaAbstract(effect,values,tilePosition,targetter,range,diagonal,output){
         let total=0
+        switch(effect){
+            case 0: case 18:
+                if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Block')>0){
+                    this.combatants[values[1]].addBlock(this.combatants[values[1]].getStatus('Splash Block'))
+                }
+            break
+        }
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=diagonal?distTargetDiagonalCombatant(0,{tilePosition:tilePosition},this.combatants[a]):distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
             if(this.combatants[a].life>0&&(
@@ -1585,9 +1592,6 @@ class combatantManager{
                         }
                         if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Attach Vulnerable')>0){
                             this.combatants[a].statusEffect('Vulnerable',this.combatants[values[1]].getStatus('Splash Attach Vulnerable'))
-                        }
-                        if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Block')>0){
-                            this.combatants[values[1]].addBlock(this.combatants[values[1]].getStatus('Splash Block'))
                         }
                     break
                     case 1:
@@ -1703,6 +1707,28 @@ class combatantManager{
                             this.combatants[a].takeDamage(values[2],values[3])
                         }
                         this.combatants[a].statusEffect(values[0],values[1])
+                    break
+                    case 17:
+                        if(this.combatants[a].getStatus(values[0])>0){
+                            total++
+                        }
+                        this.combatants[a].statusEffect(values[0],values[1])
+                    break
+                    case 18:
+                        if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Boost')>0){
+                            this.combatants[a].takeDamage(values[0]+this.combatants[values[1]].getStatus('Splash Boost'),values[1],values[2])
+                        }else{
+                            this.combatants[a].takeDamage(...values)
+                        }
+                        if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Attach Poison')>0){
+                            this.combatants[a].statusEffect('Poison',this.combatants[values[1]].getStatus('Splash Attach Poison'))
+                        }
+                        if(values[1]>=0&&values[1]<this.combatants.length&&this.combatants[values[1]].getStatus('Splash Attach Vulnerable')>0){
+                            this.combatants[a].statusEffect('Vulnerable',this.combatants[values[1]].getStatus('Splash Attach Vulnerable'))
+                        }
+                        if(this.combatants[a].life<=0){
+                            total++
+                        }
                     break
                 }
                 if(

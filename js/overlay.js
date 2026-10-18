@@ -3355,7 +3355,7 @@ class overlay{
                     case 97: this.title='View Exhaust Pile'; break
                     case 99: this.title='Shuffle Any Number of Cards From Discard Pile Into Draw Pile'; break
                     case 100: this.title='Upgrade a Card From Draw Pile'; break
-                    case 102: this.title='Put a Card From Discard Pile in Hand, Retain it Untisl Played, and Make it Cost 0'; break
+                    case 102: this.title='Put a Card From Discard Pile in Hand, Retain it Until Played, and Make it Cost 0'; break
                     case 103: this.title='Make a Card From Draw Pile Free and Replenish'; break
                     case 104: this.title='Discard a Card From Draw Pile'; break
                     case 106: this.title='Make a Card Quickdiscard'; break
@@ -5249,7 +5249,7 @@ class overlay{
                                             la--
                                         break
                                         case 19:
-                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,this.args[1]==1?15:11)
                                             a--
                                             la--
                                         break
@@ -6921,7 +6921,7 @@ class overlay{
                                             la--
                                         break
                                         case 19:
-                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,this.args[1]==1?15:11)
                                             a--
                                             la--
                                         break

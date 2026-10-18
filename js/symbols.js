@@ -11042,6 +11042,65 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             regStar(layer,0,0,4,5,5,2,2,0)
         break
+        case 1032:
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noFill()
+            layer.stroke(255,fade)
+            layer.strokeWeight(1)
+            layer.quad(0,-3,-3,0,0,3,3,0)
+        break
+        case 1033:
+            for(let a=0,la=4;a<la;a++){
+                layer.fill(a*50,0,a*50,fade)
+                regStar(layer,0,0,8,7.5-a*1.25,7.5-a*1.25,4.5-a*0.75,4.5-a*0.75,0)
+            }
+            layer.stroke(225,75,25,fade)
+            layer.strokeWeight(1.5)
+            layer.point(0,0)
+            layer.ellipse(0,0,6,6)
+            layer.line(0,-3,0,-5)
+            layer.line(-3,0,-5,0)
+            layer.line(0,3,0,5)
+            layer.line(3,0,5,0)
+        break
+        case 1034:
+            layer.stroke(255,200,255,fade)
+            layer.strokeWeight(1)
+            layer.line(-4,-4,4,4)
+            layer.line(-4,4,4,-4)
+            layer.line(-4,-4,-4,4)
+            layer.line(4,4,4,-4)
+            layer.line(-4,-4,0,-4)
+            layer.line(4,4,0,4)
+            layer.fill(255,200,255,fade)
+            layer.quad(-2,0,0,-2,2,0,0,2)
+        break
+        case 1035:
+            layer.fill(200,25,25,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noFill()
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(0.5)
+            layer.ellipse(0,0,8)
+            layer.line(-2*constants.sqrt2,2*constants.sqrt2,2*constants.sqrt2,-2*constants.sqrt2)
+        break
+        case 1036:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(180,0,0,fade)
+            layer.quad(0,5,-0.8,0,0,-5,0.8,0)
+            layer.quad(-1,5,-2,0.4,-4,-4,-3,0.6)
+            layer.quad(1,5,2,0.4,4,-4,3,0.6)
+        break
 
     }
     //mark s

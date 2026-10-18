@@ -1,9 +1,11 @@
-CS 138 [VINCENT]
+CS 139 [VINCENT]
 
 vincent rework
 make sure his tutorial is not ruined
 
-CS 139 [?]
+a way to look at the cards from a character in order (oracleOrder arg)
+
+CS 140 [?]
 
 test prehex x2 runs
 purge?
@@ -32,44 +34,21 @@ quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
-split ddos - new ddos applies shock in all directions
-pulchritude - heal 1 health, every 3rd time played: deal 7 damage to a random enemy, add 7 block(ehh cards that only work 1/3 or 1/2 of the time are dubious in this game consistency is key)
-brass tacks - target takes 4 damage per turn, redraw your hand
-key ring - add 5 block 2 times, every 3 times played gain 2 energy
-wing flail - remove all block from target, 2 damage 3 times, retain(quite good espially late game)
-crossing boundaries - recall for 1 cost BUT set caffeine to your limit(once again maybe a rename to pushing boundaries)
-rebalancer - unupgrade a random upgraded card, upgrade a card permanently
-pillars of creation - when you create a card add 2 block
-
-condemnation - deal damage, then trigger [choreograph] for 1 card(idk what [choreograph] is so cant comment)
-foreshadow - end your turn, make 1 copy of a card next turn [use next build fix status](see above about unknown mechanics)
-predict - guess the type of the top card in deck, if correct draw it and it costs 0
-debug - add 9 block, exhaust a random curse in your draw pile
-tiny blade - 0 cost 1 damage and 1 lock on in all directions
-creative writing - when you are debuffed, draw a card
-aleph - lose your first relic, gain a relic, vanishing 1
-locked medkit - blemished steel but it full heals you instead
-
-cultural creator - deal 4 damage to any enemy, gain 2 knowledge if you already have knowledge
-daybreak - [evening], draw a card if in elemental form
-demeaning gaze - apply 2 vulnerable, if target intends to attack, gain 1 knowledge
-spli stroll - now gives [light the way] and exhausts a card
 maybe rework all cards that say "drawn 2+ times" as this keyword just doesn't sound good
 
-headhunt - 5 damage to all enemies, if fatal gain 25 block
-call of the grave - exhume a card, get wisp
-tumbleweed - counter all this combat, and apply 999 frail to a random enemy (tumble)
-cloak of moonlight - add 12 block per pristine in hand
-quantum speed - add 3 block, if played first put a card from discard pile into hand
-event fragment - 4 damage, return on colorless card
-morning mist - 5 block, 0 cost, put a card in discard on top of draw pile
-try again - add 9 block, gain 3 vigor per attack in hand
-unhurried - [havoc], gain faith
-[attack counterpart of the above]
+split arsenal to retain the drawn gun but only 1
+split attachments, call it puppet government or something
+split elegy it sucks
+split secret charm it sucks
+split planned path by making a version that draws a skill
+split advisor to have better wording (debut)
+split steel edge, it doesn't fit menessa
+split debug, bad wording
+split pillar of creation
+split crossing boundaries to take from draw
+split clock fork into clockwork
 
-electric soda - gain 1 energy, gain 3 regeneration, trigger all enemies' shock, exhaust
 light buster - deal 10 damage, 3 range, evoke first orb, add its evoke effect to this card this combat
-kill drive - when you play a claw, draw a card
 final battle - gain 5 mortal, deal double damage for the rest of this combat
 master of fear - apply 999 vulnerable to all enemies
 high moment - gain 10 temporary strength, lose 3 health
@@ -89,31 +68,21 @@ embercleave - next attack deals double damage, costs 1 less when an attack is pl
 slice of present - damage, lock on if target will defend
 binding blade - damage and lock on in all directions
 split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
-incoming pain - damage, increases by 8 if target is debuffed (rage strike)
 wheel of pain - apply lock on, duplicate next card played
 ever-seeing - spikify but lock on
 preta - apply 2 mortal, 2 lock on, 2 weak
 needle aura - strength, increased per wish you have active
 conventional truth - put a card from discard into hand, prime
 
-split clockwork
-split blood of asura
-[more communizing]
-[trench war]
-[first amendment]
-[extreme divinity]
-
 prime positioning - move, gain 2 temp strength per pulse in hand
 military reorganization - draw an attack, it costs 1
-inevitable - apply mortal, target cannot heal
-
 hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
 adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
 rollin' - gain 12 vigil, gain 1 energy next turn
+
 dive down - target takes 12 damage and gains 2 weak in 2 turns
 weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
 flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
-a decade here - take another turn, all enemies gain 10 block
 rewire - exhaust a card, if it is an attack, draw 3 cards
 mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
 
@@ -126,12 +95,6 @@ tooltips for dictionary
 [slio9]
 
 GIMMICK BANK
-
-trace - like orbs, but you can't evoke them
-instead, after you get 3 an effect is triggered
-better effects if 2 or 3 are the same one
-also an effect for 3 unique ones
-[apparently this is the ufos from touhou ufo, not sure if this is coincidence]
 
 [character - the censor]
 decree - make a plan for your turn
