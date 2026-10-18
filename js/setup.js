@@ -14,7 +14,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[0]
+        current.menu.combatant=[11]
         current.menu.deck=[-1]
 
             //variants.mtg=true
@@ -60,7 +60,7 @@ function setup(){
             //current.create()
 
             /*stage.scene='graphic'
-            graphics.test=-9
+            graphics.test=-1
             graphics.staticBackground.clear()
 
             current.player=current.menu.combatant
@@ -73,10 +73,10 @@ function setup(){
             /*transition.trigger=true
             transition.scene='bossstash'*/
             
-            //player(0).size=5
-            //player(0).offset.position.y+=300
+            /*player(0).size=5
+            player(0).offset.position.y+=300
+            game.infoOff=true*/
             //player(0).goal.anim.direction+=180
-            //game.infoOff=true
 
             /*transition.trigger=true
             transition.scene='event'

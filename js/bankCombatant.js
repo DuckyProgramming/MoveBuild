@@ -4309,10 +4309,24 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.inside),this.fade*this.fades.dress.main)
                     for(let a=0,la=16;a<la;a++){
-                        if(lcos((a+0.5)/la*360+this.anim.direction)>0){
-                            let lpos=lcos(a/la*360+this.anim.direction)<=0?(lsin(a/la*360+this.anim.direction)<0?-1:1):lsin(a/la*360+this.anim.direction)
-                            let rpos=lcos((a+1)/la*360+this.anim.direction)<=0?(lsin((a+1)/la*360+this.anim.direction)<0?-1:1):lsin((a+1)/la*360+this.anim.direction)
-                            this.layer.arc(12*(lpos*0.5+rpos*0.5),-27,12*abs(lpos-rpos),4,0,180)
+                        //if(lcos((a+0.5)/la*360+this.anim.direction)>0){
+                        if(lcos((a-0.5)/la*360+this.anim.direction)<0||lcos((a+0.5)/la*360+this.anim.direction)<0){
+                            /*let lpos=lcos(a/la*360+this.anim.direction)<=0?(lsin(a/la*360+this.anim.direction)<0?-1:1):lsin(a/la*360+this.anim.direction)
+                            let rpos=lcos((a+1)/la*360+this.anim.direction)<=0?(lsin((a+1)/la*360+this.anim.direction)<0?-1:1):lsin((a+1)/la*360+this.anim.direction)*/
+                            //this.layer.arc(12*(lpos*0.5+rpos*0.5),-27,12*abs(lpos-rpos),4,0,180)
+                            let lloc={
+                                x:lsin(constrain(((a-0.5)/la*360+this.anim.direction+720)%360,90,270))*12,
+                                y:-30-3*lcos(constrain(((a-0.5)/la*360+this.anim.direction+720)%360,90,270))
+                            }
+                            let rloc={
+                                x:lsin(constrain(((a+0.5)/la*360+this.anim.direction+720)%360,90,270))*12,
+                                y:-30-3*lcos(constrain(((a+0.5)/la*360+this.anim.direction+720)%360,90,270))
+                            }
+                            this.layer.push()
+                            this.layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+                            this.layer.rotate(-47*lsin(a/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,dist(lloc.x,lloc.y,rloc.x,rloc.y),4)
+                            this.layer.pop()
                         }
                     }
                 }
@@ -4454,21 +4468,38 @@ combatant.prototype.display=function(){
                         }
                     }*/
                     this.layer.fill(...this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main)
-                    this.layer.arc(0,-35,11,42,-180,0)
-                    this.layer.quad(-5.5,-36,5.5,-36,12,-27,-12,-27)
+                    //this.layer.arc(0,-35,11,42,-180,0)
+                    this.layer.arc(0,-35,10.8,42,-180,0)
+                    //this.layer.quad(-5.5,-36,5.5,-36,12,-27,-12,-27)
+                    this.layer.quad(-5.4,-36,5.4,-36,12,-30,-12,-30)
+                    this.layer.arc(0,-30,24,6,0,180)
                     for(let a=0,la=16;a<la;a++){
-                        if(lcos(a/la*360+this.anim.direction)>0){
+                        //if(lcos(a/la*360+this.anim.direction)>0){
+                        if(lcos((a-0.5)/la*360+this.anim.direction)>0||lcos((a+0.5)/la*360+this.anim.direction)>0){
                             //this.layer.arc(11.7*lsin(a/la*360+this.anim.direction),-27.25,5*lcos(a/la*360+this.anim.direction),4,0,180)
-                            let lpos=lcos((a-0.5)/la*360+this.anim.direction)<=0?(lsin((a-0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a-0.5)/la*360+this.anim.direction)
-                            let rpos=lcos((a+0.5)/la*360+this.anim.direction)<=0?(lsin((a+0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a+0.5)/la*360+this.anim.direction)
-                            this.layer.arc(12*(lpos*0.5+rpos*0.5),-27,12*abs(lpos-rpos),4,0,180)
+                            /*let lpos=lcos((a-0.5)/la*360+this.anim.direction)<=0?(lsin((a-0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a-0.5)/la*360+this.anim.direction)
+                            let rpos=lcos((a+0.5)/la*360+this.anim.direction)<=0?(lsin((a+0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a+0.5)/la*360+this.anim.direction)*/
+                            //this.layer.arc(12*(lpos*0.5+rpos*0.5),-27,12*abs(lpos-rpos),4,0,180)
+                            let lloc={
+                                x:lsin(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*12,
+                                y:-30+3*lcos(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            let rloc={
+                                x:lsin(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*12,
+                                y:-30+3*lcos(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            this.layer.push()
+                            this.layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+                            this.layer.rotate(-47*lsin(a/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,dist(lloc.x,lloc.y,rloc.x,rloc.y),4)
+                            this.layer.pop()
                         }
                     }
                     this.layer.stroke(...this.flashColor(this.color.dress.highlight),this.fade*this.fades.dress.main)
                     this.layer.strokeWeight(0.25)
                     this.layer.noFill()
                     for(let a=0,la=16;a<la;a++){
-                        if(lcos(a/la*360+this.anim.direction)>0){
+                        /*if(lcos(a/la*360+this.anim.direction)>0){
                             //this.layer.arc(10.8*lsin(a/la*360+this.anim.direction),-28.5,4.5*lcos(a/la*360+this.anim.direction),2,10,170)
                             let lpos=lcos((a-0.5)/la*360+this.anim.direction)<=0?(lsin((a-0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a-0.5)/la*360+this.anim.direction)
                             let rpos=lcos((a+0.5)/la*360+this.anim.direction)<=0?(lsin((a+0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a+0.5)/la*360+this.anim.direction)
@@ -4479,6 +4510,21 @@ combatant.prototype.display=function(){
                                 11*(lpos*0.25+rpos*0.75),-27,
                                 11*rpos,-28.5
                             )
+                        }*/
+                        if(lcos((a-0.5)/la*360+this.anim.direction)>0||lcos((a+0.5)/la*360+this.anim.direction)>0){
+                            let lloc={
+                                x:lsin(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*10.9,
+                                y:-31+2.4*lcos(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            let rloc={
+                                x:lsin(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*10.9,
+                                y:-31+2.4*lcos(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            this.layer.push()
+                            this.layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+                            this.layer.rotate(constrain(-atan2(lloc.x-rloc.x,lloc.y-rloc.y)-90,-47,47))
+                            this.layer.arc(0,0,dist(lloc.x,lloc.y,rloc.x,rloc.y),2,0,180)
+                            this.layer.pop()
                         }
                     }
                     this.layer.stroke(...this.flashColor(this.color.dress.border),this.fade*this.fades.dress.main)
@@ -4528,20 +4574,38 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.dress.main){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.dress.shawl),this.fade*this.fades.dress.main)
-                    this.layer.arc(0,-46,18,21,-180,0)
+                    //this.layer.arc(0,-46,18,21,-180,0)
+                    //this.layer.arc(0,-48,18,16.5,-180,0)
+                    this.layer.bezier(-9,-48,-5,-59.5,5,-59.5,9,-48)
+                    this.layer.arc(0,-48,18,4,0,180)
                     for(let a=0,la=20;a<la;a++){
-                        if(lcos(a/la*360+this.anim.direction)>0){
+                        /*if(lcos(a/la*360+this.anim.direction)>0){
                             //this.layer.arc(8.9*lsin(a/la*360+this.anim.direction),-46.25,3*lcos(a/la*360+this.anim.direction),2,0,180)
                             let lpos=lcos((a-0.5)/la*360+this.anim.direction)<=0?(lsin((a-0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a-0.5)/la*360+this.anim.direction)
                             let rpos=lcos((a+0.5)/la*360+this.anim.direction)<=0?(lsin((a+0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a+0.5)/la*360+this.anim.direction)
                             this.layer.arc(9*(lpos*0.5+rpos*0.5),-46,9*abs(lpos-rpos),2,0,180)
+                        }*/
+                        if(lcos((a-0.5)/la*360+this.anim.direction)>0||lcos((a+0.5)/la*360+this.anim.direction)>0){
+                            let lloc={
+                                x:lsin(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*8.85,
+                                y:-48+2*lcos(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            let rloc={
+                                x:lsin(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*8.85,
+                                y:-48+2*lcos(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            this.layer.push()
+                            this.layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+                            this.layer.rotate(-12*lsin(a/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,dist(lloc.x,lloc.y,rloc.x,rloc.y),2)
+                            this.layer.pop()
                         }
                     }
                     this.layer.stroke(...this.flashColor(this.color.dress.highlight),this.fade*this.fades.dress.main)
                     this.layer.strokeWeight(0.25)
                     this.layer.noFill()
                     for(let a=0,la=20;a<la;a++){
-                        if(lcos(a/la*360+this.anim.direction)>0){
+                        /*if(lcos(a/la*360+this.anim.direction)>0){
                             //this.layer.arc(8.75*lsin(a/la*360+this.anim.direction),-48,3*lcos(a/la*360+this.anim.direction),2,10,170)
                             let lpos=lcos((a-0.5)/la*360+this.anim.direction)<=0?(lsin((a-0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a-0.5)/la*360+this.anim.direction)
                             let rpos=lcos((a+0.5)/la*360+this.anim.direction)<=0?(lsin((a+0.5)/la*360+this.anim.direction)<0?-1:1):lsin((a+0.5)/la*360+this.anim.direction)
@@ -4552,6 +4616,21 @@ combatant.prototype.display=function(){
                                 8.8*(lpos*0.25+rpos*0.75),-47,
                                 8.8*rpos,-48
                             )
+                        }*/
+                        if(lcos((a-0.5)/la*360+this.anim.direction)>0||lcos((a+0.5)/la*360+this.anim.direction)>0){
+                            let lloc={
+                                x:lsin(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*8.4,
+                                y:-49.5+2*lcos(constrain(((a-0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            let rloc={
+                                x:lsin(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))*8.4,
+                                y:-49.5+2*lcos(constrain(((a+0.5)/la*360+this.anim.direction+900)%360-180,-90,90))
+                            }
+                            this.layer.push()
+                            this.layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+                            this.layer.rotate(constrain(-atan2(lloc.x-rloc.x,lloc.y-rloc.y)-90,-18,18))
+                            this.layer.arc(0,0,dist(lloc.x,lloc.y,rloc.x,rloc.y),2,0,180)
+                            this.layer.pop()
                         }
                     }
                     this.layer.arc(0,-56,8,4,10,170)

@@ -123,8 +123,6 @@ grammar check
 
 tooltips for dictionary
 
-shiru graphics fix
-
 [slio9]
 
 GIMMICK BANK
