@@ -102,7 +102,8 @@ constants.status={
         'Kanako Strength','Suwako Dexterity','Faith Per Turn','3 Lowroll Luck Guarantee','3 Highroll Luck Guarantee Fail','Intangible Faith','Single Attack Poison','Take Per Card Drawn','Discard Damage Random','Ally Block',
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
         'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death','Discard Next Turn','Sturdy Next Turn','Double Sturdy Damage',
-        'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn',
+        'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
+        'Take Credit Vigor','Power Dexterity',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -207,7 +208,8 @@ constants.status={
         0,0,0,0,0,0,0,2,0,0,//100
         0,0,2,0,0,0,2,2,2,2,//101
         2,2,1,1,1,0,0,2,1,1,//102
-        0,0,0,0,0,0,1,0,
+        0,0,0,0,0,0,1,0,0,1,//103
+        0,0,
     ],
     /*
     0-none
@@ -321,7 +323,8 @@ constants.status={
         2,2,2,2,2,2,1,1,2,2,//100
         2,2,2,1,2,1,0,0,0,0,//101
         0,0,0,0,0,2,1,2,2,2,//102
-        2,3,2,2,2,2,2,2,
+        2,3,2,2,2,2,2,2,2,2,//103
+        2,2,
     ]
     /*
     0-good
@@ -463,8 +466,8 @@ class combatant{
         this.turnStatus=[0,0,0,0,0,0]
         //dodges,taken,life lost,heal,highrolls,lowrolls
         this.resetTempStatus()
-        this.interiorStatus=[0,0,0]
-        //repeat extra turn 1,has done damage,total faith
+        this.interiorStatus=[0,0,0,0]
+        //repeat extra turn 1,has done damage,total faith,total mantra
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
             this.status.next.push(0)
@@ -567,7 +570,7 @@ class combatant{
         this.constants()
         this.resetAnim()
         this.resetTempStatus()
-        this.interiorStatus=[0,0,0]
+        this.interiorStatus=[0,0,0,0]
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
             this.status.next[a]=0
@@ -4058,6 +4061,12 @@ class combatant{
                     if(this.status.main[172]>0){
                         this.statusEffect('Block Next Turn',damage)
                     }
+                }else if(this.status.main[1030]>0){
+                    this.status.main[1030]--
+                    this.statusEffect('Vigor',damage)
+                    if(this.status.main[172]>0){
+                        this.statusEffect('Block Next Turn',damage)
+                    }
                 }else if(this.status.main[172]>0){
                     this.statusEffect('Block Next Turn',damage)
                 }else if(this.status.main[174]>0){
@@ -5824,7 +5833,14 @@ class combatant{
             return result
         }else{
             if(this.battle.cardManagers[this.id].hand.numberAbstract(3,[82])>=value){
-                this.battle.cardManagers[this.id].hand.deAbstract(6,value,[82])
+                if(this.status.main[1029]>0){
+                    let set=this.battle.cardManagers[this.id].hand.cards.filter(a=>a.spec.includes(82))
+                    if(set.length>0){
+                        set[0].deSize=true
+                    }
+                }else{
+                    this.battle.cardManagers[this.id].hand.deAbstract(6,value,[82])
+                }
                 if(this.status.main[777]>0){
                     this.battle.cardManagers[this.id].exhaust.sendAbstract(this.battle.cardManagers[this.id].hand.cards,this.status.main[777],10,0,[82])
                 }
@@ -5853,6 +5869,10 @@ class combatant{
     gainFaith(value){
         this.faith+=value
         this.interiorStatus[2]+=value
+    }
+    gainMantra(value){
+        this.mantra+=value
+        this.interiorStatus[3]+=value
     }
     bell(mult){
         this.statusEffect('Bell',1)
@@ -6262,11 +6282,14 @@ class combatant{
         }
     }
     removeAllStatuses(classes){
+        let total=0
         for(let a=0,la=this.status.class.length;a<la;a++){
             if(classes.length==0||classes.includes(this.status.class[a])&&this.status.main[a]>0||!classes.includes(this.status.class[a])&&this.status.main[a]<0){
                 this.status.main[a]=0
+                total++
             }
         }
+        return total
     }
     multiplyStatusClass(multiplier,classes){
         for(let a=0,la=this.status.class.length;a<la;a++){
@@ -6412,6 +6435,9 @@ class combatant{
             this.status.main[21]--
             this.infoAnim.upFlash[2]=true
         }else{
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1028]>0){
+                amount=max(0,amount-this.status.main[1028])
+            }
             this.turnStatus[2]+=amount
             this.life-=amount
             if(this.status.main[301]>0){
@@ -6573,7 +6599,7 @@ class combatant{
                     case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
                     case 128: this.loseHealth(this.status.main[this.status.ticker[a]]); break
                     case 129: case 229:
-                        this.mantra+=this.status.main[this.status.ticker[a]]; break
+                        this.gainMantra(this.status.main[this.status.ticker[a]]); break
                     case 130: case 235:
                         if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
                     case 131: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}}; break
@@ -8686,7 +8712,7 @@ class combatant{
                                 this.battle.result.defeat=true
                             }
                         }
-                    }else{
+                    }else if(this.animSet.loop<1){
                         this.runAnimation(1/15,7)
                     }
                 }

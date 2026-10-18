@@ -699,8 +699,8 @@ class battle{
     }
     positionCombatant(combatant,position){
         if(position.x==-1){
-            combatant.position={x:-100,y:-100}
-            combatant.relativePosition={x:-100,y:-100}
+            combatant.position={x:this.layer.width/2,y:-100}
+            combatant.relativePosition={x:this.layer.width/2,y:-100}
             combatant.anim.direction=30
         }else{
             combatant.position={x:this.tileManager.getTilePosition(position.x,position.y).x,y:this.tileManager.getTilePosition(position.x,position.y).y}
@@ -1017,7 +1017,7 @@ class battle{
             this.combatantManager.enableCombatants()
         }else if(!noDraw){
             combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
-            if(combatant.life<=0&&this.turn.main<this.players){
+            if((combatant.life<=0||combatant.dead)&&this.turn.main<this.players){
                 this.endTurn()
             }else if(combatant.getStatus('Distracted')>0){
                 combatant.statusEffect('Distracted',-1)
@@ -1123,7 +1123,7 @@ class battle{
         combatant.tick()
         if(this.tutorialManager.active){
             this.cardManagers[this.turn.main].allEffect(2,103)
-        }else if(combatant.life>0){
+        }else if(combatant.life>0&&!combatant.dead){
             if(this.turn.total<=1+this.relicManager.active[448][this.turn.main+1]){
                 if(!variants.initiative){
                     let level=this.relicManager.hasRelic(587,this.turn.main)?1:0
@@ -1219,7 +1219,7 @@ class battle{
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.lastTurnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         this.loadReinforce()
-        if(combatant.life<=0&&this.turn.main<this.players){
+        if((combatant.life<=0||combatant.dead)&&this.turn.main<this.players){
             this.endTurn()
         }else if(combatant.getStatus('Distracted')>0){
             combatant.statusEffect('Distracted',-1)
@@ -1524,6 +1524,9 @@ class battle{
                 }
                 if(userCombatant.getStatus('Power Strength')>0){
                     userCombatant.statusEffect('Strength',userCombatant.getStatus('Power Strength'))
+                }
+                if(userCombatant.getStatus('Power Dexterity')>0){
+                    userCombatant.statusEffect('Dexterity',userCombatant.getStatus('Power Dexterity'))
                 }
                 if(userCombatant.getStatus('Power Claw Up')>0){
                     userCombatant.statusEffect('Claw Up',userCombatant.getStatus('Power Claw Up'))

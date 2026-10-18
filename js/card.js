@@ -1942,7 +1942,7 @@ class card{
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
-            case 9523: case 9524: case 9525: case 9785: case 10505: case 10918:
+            case 9523: case 9524: case 9525: case 9785: case 10505: case 10918: case 11003:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -3184,7 +3184,7 @@ class card{
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
             case 4628: case 4629: case 4630: case 4631: case 4632: case 5164: case 5543: case 5544: case 6243: case 6262:
             case 6263: case 6264: case 7189: case 7190: case 7345: case 7740: case 8313: case 8314: case 8315: case 8354:
-            case 8355: case 8987: case 9949: case 10938:
+            case 8355: case 8987: case 9949: case 10938: case 11028: case 11029: case 11030:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -4359,6 +4359,15 @@ class card{
                 break
                 case 8315:
                     this.battle.tileManager.fireRandom(0,this.effect[0])
+                break
+                case 11028:
+                    this.battle.cardManagers[this.player].drawAbstract(this.effect[0],0,0,[3])
+                break
+                case 11029:
+                    userCombatant.heal(this.effect[0])
+                break
+                case 11030:
+                    this.battle.cardManagers[this.player].hand.exhaustViable(this.effect[0])
                 break
 
             }

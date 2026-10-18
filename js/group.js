@@ -35,7 +35,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=59
+        this.listKey=60
         this.listInput=[
             [0,4],
             [1,8],
@@ -90,6 +90,7 @@ class group{
             [56,65],
             [57,66],
             [58,67],
+            [59,68],
         ]
 
         this.reset()
@@ -1483,7 +1484,7 @@ class group{
                     this.cards[a].discardEffectBuffered.push(0)
                 break
                 case 28:
-                    if(this.cards[a].attack==736||this.cards[a].attack==10284||this.cards[a].attack==10637){
+                    if(this.cards[a].attack==736||this.cards[a].attack==10284||this.cards[a].attack==10637||this.cards[a].attack==10984){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                         a--
                         la--
@@ -5558,7 +5559,7 @@ class group{
         switch(scene){
             case 'battle':
                 let anim=[
-                    max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44],this.anim[58]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],
+                    max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44],this.anim[58],this.anim[59]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],
                     this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],
                     this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),
                     this.anim[37],this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],
@@ -7034,6 +7035,16 @@ class group{
                 this.cards[a].exhaust=true
                 if(this.status[58]>0){
                     this.status[58]--
+                }
+            break
+            case 68:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    this.battle.cardManagers[this.player].draw(max(0,this.cards[a].getCost(0))*(this.status[59]-1))
+                    if(this.status[59]>0){
+                        this.status[59]=0
+                    }
                 }
             break
         }

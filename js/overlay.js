@@ -2045,6 +2045,15 @@ class overlay{
                                 case 10938:
                                     this.cards[a].attack=[-1091,-1092][a]
                                 break
+                                case 11028:
+                                    this.cards[a].attack=[-1093,-1094][a]
+                                break
+                                case 11029:
+                                    this.cards[a].attack=[-1095,-1096][a]
+                                break
+                                case 11030:
+                                    this.cards[a].attack=[-1097,-1098][a]
+                                break
                             }
                         }
                     break
@@ -2754,6 +2763,44 @@ class overlay{
                             case -1092:
                                 this.card.costDown(0,[5])
                                 userCombatant.statusEffect('End of Combat Heal',args[0].effect[2])
+                            break
+                            case -1093:
+                                this.card.costDown(0,[3])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[31,[],11,[0]])
+                            break
+                            case -1094:
+                                this.card.costDown(0,[5])
+                                this.battle.cardManagers[this.player].drawAbstract(args[0].effect[1],0,2,[3])
+                            break
+                            case -1095:
+                                this.card.costDown(0,[2])
+                                this.battle.cardManagers[this.player].allEffect(2,35)
+                            break
+                            case -1096:
+                                this.card.costDown(0,[3])
+                                this.battle.cardManagers[this.player].hand.selfCall(6,[988,[],3,[0]])
+                            break
+                            case -1097:
+                                this.card.costDown(0,[7])
+                                if(userCombatant.luckCheck()||!userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                                    //userCombatant.setMaxHP(userCombatant.base.life*2)
+                                    userCombatant.gainMaxHP(userCombatant.base.life)
+                                    userCombatant.highRoll()
+                                }else{
+                                    //userCombatant.setMaxHP(userCombatant.base.life/2)
+                                    userCombatant.loseMaxHP(userCombatant.base.life/2)
+                                    userCombatant.lowRoll()
+                                }
+                            break
+                            case -1098:
+                                if(userCombatant.luckCheck()||!userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                                    userCombatant.statusEffect('Strength',(variants.mtg?this.card.cost[0]:this.card.cost)*args[0].effect[1])
+                                    userCombatant.highRoll()
+                                }else{
+                                    userCombatant.statusEffect('Weak',(variants.mtg?this.card.cost[0]:this.card.cost)*args[0].effect[2])
+                                    userCombatant.lowRoll()
+                                }
+                                this.card.setCost(0,[0])
                             break
                         }
                     break

@@ -1,5 +1,3 @@
-CS 137 [FIXES]
-
 CS 138 [VINCENT]
 
 vincent rework
@@ -17,34 +15,6 @@ make sure her tutorial is not ruined
 play menessa
 make sure her tutorial is not ruined
 
-split tomato juice to remove fatigues
-split double helix
-split obtainment?, hand of greed (this card isn't real actually), etc
-split edge of reason
-split brilliance
-split judgement, terminate, take out the trash
-split microburst
-split greater good
-split tractate
-split sabotage
-split annual sword into just annual that's not an attack
-split springtime vacation
-split multiplex
-posture doesn't redo
-split rising wave
-rotate weatherball
-split scrap thought to give 1 mantra
-split run and gun
-silver shield suffering
-split rotor
-split camellia
-split kaleidoscope
-split redeploy
-split combo starter
-split laugh track
-split frozen dust
-split aura
-
 carbon (4 damage), hydrogen, quartz (?), iron (6 block), nitrogen (remove 1 fatigue), zinc ()
 carbon = graphite ()
 graphite = diamond ()
@@ -61,45 +31,6 @@ explosive powder + battery = prismatic bomb
 quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
-
-[first amendment]
-[extreme divinity]
-ally health pack / resurrection?
-transfusion - block, gain 1 strength if you lost health this turn
-better days - when you lose hp, heal up to 1 of it back
-nanomachines - gain 1 buffer, add a random temporary item
-hard labor - all assigned workers are discarded instead of exhausted
-strike the earth - deal 4 damage, retain a card until played (7597)
-
-port priority - deal 8 damage, deal 4 damage to the first enemy in acting order
-scapegoat - gain 1 intangible, gain vigor equal to damage taken this turn(quite strong)
-mechanical rot - apply mortal and armor
-extremist - deal 8 damage, gain 2 strength if you have the most or least health of anybody
-handyduck - upgrade 2 cards OR exhaust 2 cards, retain
-reductive - if target has more health than you, apply vulnerable equal to how many times greater their health is than yours
-benben, biwa tsukumogami:
-    +1 - draw a movement
-    -3 - gain 3 strength if you are above 50% health, otherwise gain 3 dexterity
-    -5 - apotheosis
-andrew
-    heal 1
-    transform your hand
-    teleport
-jimmy, lord of gambling
-    +1 - exhaust a random card draw a card
-    -5 - double or half your health
-    -X - gain x strength or gain x weak
-cycle of rebirth - exhaust a random card in hand, then exhume
-
-burn documents - remove all block from target, if target has burn draw 2 cards
-antitrust laws (dev) - remove all buffs of target, gain 10 currency for each one(maybe delete copies)
-special order - draw 2 cards, gain 1 energy per status card drawn
-crime of the century - if played during an elite combat, gain a relic and leave combat
-googolplex - when you play a power, discover a power(copying STS eh with the defect powers build)
-classic gamble - double or nothing any amount of money, chances cannot be edited (still counts as highroll or lowroll) (rename to something else like daily double or moist tomato?)
-maid in heaven - gain 1 energy for each unique class of card in hand
-trench war
-more communizing
 
 split ddos - new ddos applies shock in all directions
 pulchritude - heal 1 health, every 3rd time played: deal 7 damage to a random enemy, add 7 block(ehh cards that only work 1/3 or 1/2 of the time are dubious in this game consistency is key)
@@ -154,7 +85,6 @@ multithread - if you have played 1 skill this turn, gain 1 energy, both increase
 fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
 error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust(tad rare to get it off but powerful effect)
 embercleave - next attack deals double damage, costs 1 less when an attack is played
-split blood of asura
 
 slice of present - damage, lock on if target will defend
 binding blade - damage and lock on in all directions
@@ -165,7 +95,13 @@ ever-seeing - spikify but lock on
 preta - apply 2 mortal, 2 lock on, 2 weak
 needle aura - strength, increased per wish you have active
 conventional truth - put a card from discard into hand, prime
+
 split clockwork
+split blood of asura
+[more communizing]
+[trench war]
+[first amendment]
+[extreme divinity]
 
 prime positioning - move, gain 2 temp strength per pulse in hand
 military reorganization - draw an attack, it costs 1

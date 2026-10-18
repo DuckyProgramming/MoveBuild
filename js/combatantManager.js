@@ -475,6 +475,22 @@ class combatantManager{
         }
         this.battle.updateTargetting()
     }
+    firstEffect(effect,args){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            list=list.sort((a,b)=>this.combatants[a].order-this.combatants[b].order)
+            switch(effect){
+                case 0:
+                    this.combatants[list[0]].takeDamage(args[0],args[1])
+                break
+            }
+        }
+    }
     randomEnemyEffect(effect,args){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -902,7 +918,9 @@ class combatantManager{
                 type==3&&this.combatants[a].construct&&this.combatants[a].life>0||
                 type==4&&this.combatants[a].intent>=0&&this.combatants[a].attack.length>0&&types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==args[0]||
                 type==5&&this.combatants[a].construct&&this.combatants[a].team==args[0]&&this.combatants[a].name==args[1]&&this.combatants[a].life>0||
-                type==6&&this.combatants[a].team==0&&this.combatants[a].life>0&&this.combatants[a].getStatus(args[0])>0
+                type==6&&this.combatants[a].team==0&&this.combatants[a].life>0&&this.combatants[a].getStatus(args[0])>0||
+                type==7&&this.combatants[a].team==0&&this.combatants[a].life>args[0]||
+                type==8&&this.combatants[a].team==0&&this.combatants[a].life>0&&this.combatants[a].life<args[0]
             ){
                 total++
             }
