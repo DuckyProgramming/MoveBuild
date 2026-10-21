@@ -846,7 +846,10 @@ class group{
     selfLevel(type,level){
         if(this.battle.initialized&&this.battle.combatantManager.combatants.length>this.player){
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            if(userCombatant.status.main[161]>0){
+            if(userCombatant.status.main[1039]>0&&types.card[type].rarity==-6&&types.card[type].list==0){
+                userCombatant.addBlock(userCombatant.status.main[1039])
+            }
+            if(userCombatant.status.main[161]>0&&types.card[type].rarity==-6&&types.card[type].list==0){
                 return min(level+userCombatant.status.main[161],types.card[type].levels.length-1)
             }else{
                 return level
@@ -4040,7 +4043,7 @@ class group{
                 userCombatant.balance+=card.effect[0]
             break
             case 1745: case 1943: case 2096: case 2128: case 2200: case 2465: case 6535: case 6536: case 6823: case 7509:
-            case 7909: case 7996: case 8701: case 10613: case 10614:
+            case 7909: case 7996: case 8701: case 10613: case 10614: case 11125:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
@@ -4369,6 +4372,13 @@ class group{
                 this.battle.addSpecificEnergy(1,this.player,6)
                 this.battle.addSpecificEnergy(1,this.player,0)
             break
+            case 11107:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Miracle',types.card),0,0)
+                }
+                card.deSizeDrop=true
+                card.exhaust=true
+            break
 
         }
         card.drawMark=false
@@ -4657,6 +4667,10 @@ class group{
                         if(!list[list.length-1].spec.includes(args[0])){
                             list[list.length-1].spec.push(args[0])
                         }
+                    break
+                    case 29:
+                        list[list.length-1]=upgradeCard(list[list.length-1])
+                        this.generalUpgrade(list[list.length-1])
                     break
                 }
             }
@@ -6675,6 +6689,12 @@ class group{
                 }
                 if(a.spec.includes(86)&&userCombatant.getStatus('Wheel Boost')>0){
                     this.battle.attackManager.effect[0]+=userCombatant.getStatus('Wheel Boost')
+                }
+                if(a.name=='Divination'&&userCombatant.getStatus('Divination Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Divination Boost')
+                }
+                if(a.name=='Riptide'&&userCombatant.getStatus('Riptide Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Riptide Boost')
                 }
             break
             case 35:

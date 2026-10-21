@@ -839,20 +839,32 @@ class card{
         if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             this.cancelDesc=false
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),this.spec.includes(82),this.spec.includes(86)])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[
+                this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),
+                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Riptide',
+            ])
         }else{
             this.cancelDesc=false
-            return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false,false,false,false,false,false,false,false,false,false])
+            return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[
+                false,false,false,false,false,false,false,false,false,false,
+                false,false,false,false,
+            ])
         }
     }
     calculateEffectAlly(effect,type){
         if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
             this.cancelDesc=false
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),this.spec.includes(82),this.spec.includes(86)])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[
+                this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),
+                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Riptide',
+            ])
         }else{
             this.cancelDesc=false
-            return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false,false,false,false,false,false,false,false,false,false])
+            return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[
+                false,false,false,false,false,false,false,false,false,false,
+                false,false,false,false,
+            ])
         }
     }
     diceEffect(effect,number,variant,value){
@@ -1148,6 +1160,11 @@ class card{
             break
             case 10672:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+            break
+            case 11108:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Miracle',types.card),0,0)
+                }
             break
         }
         return 0
@@ -3340,6 +3357,11 @@ class card{
                     this.effect[0]+=this.effect[1]
                 }
             break
+            case 11122: case 11123:
+                if(this.battle.turn.total==0){
+                    this.costDown(2,[1])
+                }
+            break
         }
         if(this.spec.includes(88)){
             this.spec.splice(this.spec.indexOf(88),1)
@@ -4213,6 +4235,9 @@ class card{
             break
             case 10275:
                 this.costUp(0,[1])
+            break
+            case 11101:
+                userCombatant.loseHealth(this.effect[2])
             break
         }
         if(this.spec.includes(55)){
@@ -6510,7 +6535,7 @@ class card{
                                 this.desc=this.desc.toLowerCase()
                             }
                             this.layer.textSize(
-                                name=='Charred\nLizard'||name=='Flame of\nNirvana'||name=='First\nQuarter'||name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nLaunch'||name=='Hakurei\nTalisman'||name=='Hakurei\nAmulet'||name=='Shizuha, Symbol\nof Loneliness'||name=='Ran,\nScheming Fox'||name==`Flandre,\nDevil's Sister`||name=='Hina, Ward\nof Misfortune'||name=='Diamond\nRing'||name=='Clay\nRing'||name=='Shimmering\nPath'||name=='Carbon\nRing'||name=='Open\nWindow'||
+                                name=='Charred\nLizard'||name=='Flame of\nNirvana'||name=='First\nQuarter'||name=='Foehn'||name=='Yukari, Boundary\nof Fantasy'||name=='Keystone\nLaunch'||name=='Hakurei\nTalisman'||name=='Hakurei\nAmulet'||name=='Shizuha, Symbol\nof Loneliness'||name=='Ran,\nScheming Fox'||name==`Flandre,\nDevil's Sister`||name=='Hina, Ward\nof Misfortune'||name=='Diamond\nRing'||name=='Clay\nRing'||name=='Shimmering\nSociety'||name=='Carbon\nRing'||name=='Open\nWindow'||
                                 !spec.includes(12)&&getIndicesOf(this.desc,'\n',true)>=8?6:7.5
                             )
                             if(spec.includes(12)){

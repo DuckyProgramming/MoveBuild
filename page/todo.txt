@@ -1,11 +1,11 @@
-CS 139 [VINCENT]
+CS 140 [VINCENT]
 
 vincent rework
 make sure his tutorial is not ruined
 
 a way to look at the cards from a character in order (oracleOrder arg)
 
-CS 140 [?]
+CS 141 [?]
 
 test prehex x2 runs
 purge?
@@ -36,30 +36,10 @@ glass = item slot
 
 maybe rework all cards that say "drawn 2+ times" as this keyword just doesn't sound good
 
-split arsenal to retain the drawn gun but only 1
-split attachments, call it puppet government or something
-split elegy it sucks
-split secret charm it sucks
-split planned path by making a version that draws a skill
-split advisor to have better wording (debut)
-split steel edge, it doesn't fit menessa
-split debug, bad wording
-split pillar of creation
-split crossing boundaries to take from draw
-split clock fork into clockwork
+split verdant dash
+split 11140,11141
 
-light buster - deal 10 damage, 3 range, evoke first orb, add its evoke effect to this card this combat
-final battle - gain 5 mortal, deal double damage for the rest of this combat
-master of fear - apply 999 vulnerable to all enemies
-high moment - gain 10 temporary strength, lose 3 health
-toxic rampart - poison for every 8? health you have
-homely hermit - draw 2 cards, they cost 0, divinity: gain 1 energy
-cards that increase effect of divination and riptide
-
-donate down - pick an attack, it counts as a strike (replace basic blessing)
-pale flame - deal 4 damage, gain 1 wisdom, exhaust a card
 beloved from above - 1 cost, retain, gain 2 faith, draw a card it costs 1 less
-summarize - gain 1 strength per enemy that will attack
 multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
 fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
 error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust(tad rare to get it off but powerful effect)
@@ -74,17 +54,17 @@ preta - apply 2 mortal, 2 lock on, 2 weak
 needle aura - strength, increased per wish you have active
 conventional truth - put a card from discard into hand, prime
 
-prime positioning - move, gain 2 temp strength per pulse in hand
 military reorganization - draw an attack, it costs 1
 hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
 adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
-rollin' - gain 12 vigil, gain 1 energy next turn
 
-dive down - target takes 12 damage and gains 2 weak in 2 turns
 weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
 flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
 rewire - exhaust a card, if it is an attack, draw 3 cards
 mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
+light buster - deal 10 damage, 3 range, evoke first orb, add its evoke effect to this card this combat
+donate down - pick an attack, it counts as a strike (replace basic blessing)
+pale flame - deal 4 damage, gain 1 wisdom, exhaust a card
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror

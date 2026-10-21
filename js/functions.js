@@ -569,6 +569,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[11]&&user.status.main[890]>0){
 				bonus+=user.status.main[890]
 			}
+			if(variant&&args[13]&&user.status.main[1041]>0){
+				bonus+=user.status.main[1041]
+			}
 			if(user.status.main[12]!=0&&type!=22){
 				bonus+=user.status.main[12]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
@@ -835,6 +838,13 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				range+=user.status.main[411]
 			}
 			return range==effect?`${effect}`:`${effect}(${range})`
+		case 23:
+			let num=effect
+			let bonus23=0
+			if(variant&&args[12]&&user.status.main[1040]>0){
+				bonus23+=user.status.main[1040]
+			}
+			return bonus23!=0?`${num} (${num+bonus23})`:num
 	}
 }
 function calculateIntent(effect,user,type){

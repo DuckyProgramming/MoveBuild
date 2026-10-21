@@ -357,7 +357,11 @@ class purchase{
                         this.layer.noStroke()
                         switch(this.args[0]){
                             case 0:
-                                this.layer.fill(types.color.card[this.battle.player[this.player]].active)
+                                if(this.battle.player[this.player]==3){
+                                    this.layer.fill(mergeColor(types.color.card[this.battle.player[this.player]].active,[255,255,255],0.5))
+                                }else{
+                                    this.layer.fill(types.color.card[this.battle.player[this.player]].active)
+                                }
                             break
                             case 1: case 4:
                                 this.layer.fill(types.color.card[0].active)

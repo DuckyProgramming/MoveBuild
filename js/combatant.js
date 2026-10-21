@@ -103,7 +103,8 @@ constants.status={
         'Wrath Temporary Strength','Sturdy Temporary Dexterity','Counter Management Beam Once','Counter Management Beam Once Per Turn','Free Power','Double Debuff','Counter Burn All','Counter Freeze All','Counter Shock All','Conditioning Cycle 3 1',
         'Conditioning Cycle 3 2','Conditioning Cycle 3 3','Free Strike Time','Free Defend Time','Free Step Time','Metal Return','Block on Death','Discard Next Turn','Sturdy Next Turn','Double Sturdy Damage',
         'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
-        'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw',
+        'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
+        'Divination Boost','Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -209,7 +210,8 @@ constants.status={
         0,0,2,0,0,0,2,2,2,2,//101
         2,2,1,1,1,0,0,2,1,1,//102
         0,0,0,0,0,0,1,0,0,1,//103
-        0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,2,2,0,//104
+        0,0,2,2,2,2,2,2,2,2,//105
     ],
     /*
     0-none
@@ -324,7 +326,8 @@ constants.status={
         2,2,2,1,2,1,0,0,0,0,//101
         0,0,0,0,0,2,1,2,2,2,//102
         2,3,2,2,2,2,2,2,2,2,//103
-        2,2,2,2,2,2,2,
+        2,2,2,2,2,2,2,0,0,2,//104
+        2,2,1,1,1,1,1,1,1,1,//105
     ]
     /*
     0-good
@@ -6853,6 +6856,16 @@ class combatant{
                     case 1011: this.miniStatus('Conditioning Cycle 3 2',this.status.main[this.status.ticker[a]]); break
                     case 1018: this.enterStance(4); break
                     case 1027: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Safety',types.card),0,0)}} break
+                    case 1037: this.miniStatus('Temporary Dexterity Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 1038: this.miniStatus('Temporary Dexterity in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 1042: this.miniStatus('Weak Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 1043: this.miniStatus('Weak in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 1044: this.miniStatus('Vulnerable Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 1045: this.miniStatus('Vulnerable in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 1046: this.miniStatus('Frail Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 1047: this.miniStatus('Frail in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 1048: this.miniStatus('Take Damage in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 1049: this.miniStatus('Lose Health in 2 Turns',this.status.main[this.status.ticker[a]]); break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])
