@@ -1254,13 +1254,14 @@ the keyword is used on other characters' cards as well.`,*/
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
-                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Decratite, the Disciple, works around playing cards for free.
-His gimmicks include: Recovery, Prime, Cycle, Follow-Up`,
-`Recovery allows you to take a card from your discard pile,
+His gimmicks include: Prime, Cycle, Follow-Up`,
+//His gimmicks include: Recovery, Prime, Cycle, Follow-Up`,
+/*`Recovery allows you to take a card from your discard pile,
 put it in your hand, and make it free. To balance this,
-Recovery can only be done up to a certain cost of card.`,
+Recovery can only be done up to a certain cost of card.`,*/
 `Prime causes all cards in your hand that contain
 the word "Pulse" in their name to cost 1 less.
 This can be repeated until they cost 0.`,
@@ -2468,19 +2469,19 @@ while staying aware of when they can feed a quick combo.`,
             break
             case 30:
                 switch(this.page){
-                    case 1:
+                    /*case 1:
                         this.battle.cardManagers[0].hand.add(findName('Risen',types.card),0,23)
                         this.battle.drop(0,findName('Strike',types.card),0,23)
-                    break
-                    case 2:
-                        this.battle.combatantManager.resetCombatants()
+                    break*/
+                    case 1:
+                        /*this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)*/
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Waning\nPulse',types.card),0,23)
                         this.battle.cardManagers[0].hand.add(findName('Circular\nFluctuation',types.card),0,23)
                     break
-                    case 3:
+                    case 2:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
@@ -2489,15 +2490,18 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName(`Heaven's\nHalo`,types.card),0,23)
                         this.battle.cardManagers[0].hand.add(findName('Circular\nFluctuation',types.card),0,23)
                     break
-                    case 4:
+                    case 3:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Initiate',types.card),0,23)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,23)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,23)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,23)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,23)
                     break
-                    case 5:
+                    case 4:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)

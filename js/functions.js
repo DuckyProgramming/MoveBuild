@@ -1493,7 +1493,8 @@ function copyCard(base){
 		base.target,base.spec,base.cardClass,typeof base.limit=='object'?copyArray(base.limit):base.limit,base.falsed,
 		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
 		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
-		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve,
+		base.rewinding
 	)
 }
 function copyCardNew(base){
@@ -1505,7 +1506,8 @@ function copyCardNew(base){
 		base.target,base.spec,base.cardClass,typeof base.limit=='object'?copyArray(base.limit):base.limit,base.falsed,
 		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
 		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
-		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve,
+		base.rewinding
 	)
 }
 function copyCardNewAbstract(base,type,args){
@@ -1517,7 +1519,8 @@ function copyCardNewAbstract(base,type,args){
 		base.target,base.spec,base.cardClass,typeof base.limit=='object'?copyArray(base.limit):base.limit,base.falsed,
 		base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,
 		base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
-		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+		base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve,
+		base.rewinding
 	)
 	switch(type){
 		case 0:
@@ -1541,7 +1544,8 @@ function upgradeCard(base,nonlimiting=false){
 			undefined,undefined,undefined,undefined,base.falsed,
 			base.retain2,base.colorful,base.edition,undefined,base.drawn,
 			base.fuel,base.edited.cost,false,base.nonCalc,base.costDownTrigger,
-			base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+			base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve,
+			base.rewinding
 		)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
@@ -1560,7 +1564,8 @@ function unupgradeCard(base,nonlimiting=false){
 			undefined,undefined,undefined,undefined,base.falsed,
 			base.retain2,base.colorful,base.edition,undefined,base.drawn,
 			base.fuel,base.edited.cost,false,base.nonCalc,base.costDownTrigger,
-			base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+			base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve,
+			base.rewinding
 		)
 		if(base.attack==1352||nonlimiting){
 			result.limit=base.limit
@@ -3045,6 +3050,7 @@ function attackTest(type,target,startpoint,endpoint){
 							current.attackManager.fuel=0
 							current.attackManager.debut=false
 							current.attackManager.evolve=0
+							current.attackManager.rewinding=false
 							current.attackManager.cost=types.card[a].mtg.levels[b].cost
 							current.attackManager.execute()
 						}
@@ -3081,6 +3087,7 @@ function attackTest(type,target,startpoint,endpoint){
 							current.attackManager.fuel=0
 							current.attackManager.debut=false
 							current.attackManager.evolve=0
+							current.attackManager.rewinding=false
 							current.attackManager.cost=types.card[a].levels[b].cost
 							current.attackManager.execute()
 						}
@@ -3117,10 +3124,13 @@ function oracleCut(start,end){
 		cardData.display()
 	}
 }
-function oracleOrder(){
+function oracleOrder(list=-1){
 	current.overlayManager.overlays[35][0].active=true
     current.overlayManager.overlays[35][0].activate([0,-99])
 	let z=(card)=>{return typeof card.attack=='object'?max(card.attack[0],card.attack[1]):card.attack}
+	if(list!=-1){
+		current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>list==current.collectionManager.overListing(types.card[card.type])[0])
+	}
 	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.sort((a,b)=>z(a)-z(b))
     current.overlayManager.overlays[35][0].activate([-99])
 	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){

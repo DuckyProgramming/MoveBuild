@@ -35,7 +35,7 @@ function setup(){
         current.setupBattle(types.encounter[1])
 
             /*stage.scene='histogram'
-            graphics.test=8*/
+            graphics.test=4*/
 
             /*quickNode(4)
             money(1000)*/

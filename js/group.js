@@ -114,7 +114,8 @@ class group{
                     base.target,base.spec,base.cardClass,base.limit,undefined,
                     false,base.colorful,base.edition,base.base.cost,base.drawn,
                     base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
-                    base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+                    base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve,
+                    base.rewinding
                 ))
             }
         })
@@ -470,8 +471,10 @@ class group{
                     break
                     case 4:
                         for(let a=0,la=args[ticker].length;a<la;a++){
-                            this.cards[this.cards.length-1].spec.push(args[ticker][a])
-                            this.cards[this.cards.length-1].additionalSpec.push(args[ticker][a])
+                            if(!(args[ticker][a]==4&&this.cards[this.cards.length-1].spec.includes(2))){
+                                this.cards[this.cards.length-1].spec.push(args[ticker][a])
+                                this.cards[this.cards.length-1].additionalSpec.push(args[ticker][a])
+                            }
                         }
                         ticker++
                     break
@@ -1060,7 +1063,7 @@ class group{
     totalCost(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].usable&&this.cards[a].getCostt(0)>0){
+            if(this.cards[a].usable&&this.cards[a].getCost(0)>0){
                 total+=this.cards[a].getCost(0)
             }
         }
@@ -3734,7 +3737,7 @@ class group{
             case -12:
                 this.drawEffects.push([0,7,[card.effect[0]]])
             break
-            case -15: case -19:
+            case -15: case -19: case -162:
                 userCombatant.statusEffect('Cannot Move',card.effect[0])
             break
             case -16:
@@ -5556,6 +5559,7 @@ class group{
                 this.battle.attackManager.fuel=-1
                 this.battle.attackManager.debut=false
                 this.battle.attackManager.evolve=-1
+                this.battle.attackManager.rewinding=false
                 this.battle.attackManager.fugue=this.battle.combatantManager.combatants[this.battle.attackManager.user].fugue
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
@@ -6632,6 +6636,7 @@ class group{
                 this.battle.attackManager.fuel=a.fuel
                 this.battle.attackManager.debut=a.debut
                 this.battle.attackManager.evolve=a.evolve
+                this.battle.attackManager.rewinding=a.rewinding
                 this.battle.attackManager.fugue=userCombatant.fugue
                 this.battle.attackManager.cost=a.cost
                 if(

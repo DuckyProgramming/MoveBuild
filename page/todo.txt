@@ -3,8 +3,6 @@ CS 140 [VINCENT]
 vincent rework
 make sure his tutorial is not ruined
 
-a way to look at the cards from a character in order (oracleOrder arg)
-
 CS 141 [?]
 
 test prehex x2 runs
@@ -34,29 +32,14 @@ quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
-maybe rework all cards that say "drawn 2+ times" as this keyword just doesn't sound good
+disable a wish -> activate a wish
+split white dew again...
 
-split verdant dash
-split 11140,11141
-
-beloved from above - 1 cost, retain, gain 2 faith, draw a card it costs 1 less
-multithread - if you have played 1 skill this turn, gain 1 energy, both increase by 1
-fullerite shield - gain 10 block, increases by 3 when a 1-cost card is played
 error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust(tad rare to get it off but powerful effect)
-embercleave - next attack deals double damage, costs 1 less when an attack is played
-
-slice of present - damage, lock on if target will defend
-binding blade - damage and lock on in all directions
-split dumpster dive - it now unexhausts 2 random cards but they cost 1 more
-wheel of pain - apply lock on, duplicate next card played
-ever-seeing - spikify but lock on
-preta - apply 2 mortal, 2 lock on, 2 weak
-needle aura - strength, increased per wish you have active
-conventional truth - put a card from discard into hand, prime
-
 military reorganization - draw an attack, it costs 1
 hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
 adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
+[more wish]
 
 weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
 flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust

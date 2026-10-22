@@ -105,6 +105,7 @@ constants.status={
         'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
+        'Prime Next Turn','Attack Lock On Combat',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -212,6 +213,7 @@ constants.status={
         0,0,0,0,0,0,1,0,0,1,//103
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
+        2,0,
     ],
     /*
     0-none
@@ -268,7 +270,7 @@ constants.status={
         2,2,2,2,2,2,2,2,1,3,//43
         2,2,0,0,0,2,2,2,2,2,//44
         2,2,2,2,2,2,2,2,2,2,//45
-        2,2,2,0,2,2,2,2,2,2,//46
+        2,2,2,2,2,2,2,2,2,2,//46
         0,1,1,0,2,3,3,2,0,2,//47
         0,0,0,2,0,2,2,0,2,2,//48
         2,2,2,0,2,0,3,3,2,2,//49
@@ -328,6 +330,7 @@ constants.status={
         2,3,2,2,2,2,2,2,2,2,//103
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
+        2,2,
     ]
     /*
     0-good
@@ -2871,39 +2874,43 @@ class combatant{
         }
     }
     playCardFront(cardClass,card){
-        if(this.status.main[77]>0){
-            this.takeDamage(this.status.main[77],-1)
-        }
-        if(this.status.main[96]>0){
-            this.takeDamage(this.status.main[96],-1)
-        }
-        if(this.status.main[293]>0&&cardClass==4){
-            this.takeDamage(this.status.main[293],-1)
-        }
-        if(this.status.main[562]>0&&cardClass==4){
-            this.statusEffect('Strength',this.status.main[562])
-        }
-        if(this.status.main[977]>0&&cardClass==11){
-            this.statusEffect('Vigor',this.status.main[977])
-        }
-        if(this.status.main[978]>0&&cardClass==4){
-            this.statusEffect('Vigor',this.status.main[978])
-        }
-        if(this.status.main[851]>0&&cardClass==11){
-            this.takeDamage(this.status.main[851],-1)
-        }
-        if((this.name=='Eternal Judge'||this.name=='-h Eternal Judge')&&this.battle.turn.main<this.battle.players){
-            if(this.sins.includes(4)){
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].takeDamage(1)
+        if(this.life>0){
+            if(this.status.main[77]>0){
+                this.takeDamage(this.status.main[77],-1)
             }
-            if(this.sins.includes(8)&&this.battle.cardManagers[this.battle.turn.main].hand.turnPlayed[0]>=5){
-                this.battle.cardManagers[this.battle.turn.main].allEffect(2,2)
+            if(this.status.main[96]>0){
+                this.takeDamage(this.status.main[96],-1)
+            }
+            if(this.status.main[293]>0&&cardClass==4){
+                this.takeDamage(this.status.main[293],-1)
+            }
+            if(this.status.main[562]>0&&cardClass==4){
+                this.statusEffect('Strength',this.status.main[562])
+            }
+            if(this.status.main[977]>0&&cardClass==11){
+                this.statusEffect('Vigor',this.status.main[977])
+            }
+            if(this.status.main[978]>0&&cardClass==4){
+                this.statusEffect('Vigor',this.status.main[978])
+            }
+            if(this.status.main[851]>0&&cardClass==11){
+                this.takeDamage(this.status.main[851],-1)
+            }
+            if((this.name=='Eternal Judge'||this.name=='-h Eternal Judge')&&this.battle.turn.main<this.battle.players){
+                if(this.sins.includes(4)){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].takeDamage(1)
+                }
+                if(this.sins.includes(8)&&this.battle.cardManagers[this.battle.turn.main].hand.turnPlayed[0]>=5){
+                    this.battle.cardManagers[this.battle.turn.main].allEffect(2,2)
+                }
             }
         }
     }
     drawCardFront(cardClass,card){
-        if(this.status.main[997]>0){
-            this.takeDamage(this.status.main[997],-1)
+        if(this.life>0){
+            if(this.status.main[997]>0){
+                this.takeDamage(this.status.main[997],-1)
+            }
         }
     }
     autoAim(){
@@ -4256,6 +4263,9 @@ class combatant{
                     }
                     if(userCombatant.status.main[858]>0&&damage>=20){
                         this.statusEffect('Frail',userCombatant.status.main[858])
+                    }
+                    if(userCombatant.status.main[1051]>0){
+                        this.statusEffect('Lock On',userCombatant.status.main[1051])
                     }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
@@ -6866,6 +6876,7 @@ class combatant{
                     case 1047: this.miniStatus('Frail in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 1048: this.miniStatus('Take Damage in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 1049: this.miniStatus('Lose Health in 2 Turns',this.status.main[this.status.ticker[a]]); break
+                    case 1050: this.prime(this.status.main[this.status.ticker[a]]); break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])

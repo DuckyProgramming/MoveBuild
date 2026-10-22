@@ -31,6 +31,7 @@ class attackManager{
         this.fugue=0
         this.debut=false
         this.evolve=0
+        this.rewinding=false
 
         this.targetDistance=0
         this.lastPlayed=[]
@@ -58,9 +59,9 @@ class attackManager{
             !(variants.cursed&&floor(random(0,5))==0)&&
             !(this.battle.relicManager.hasRelic(288,this.player)&&floor(random(0,20))<this.battle.relicManager.active[288][a+1])
         ){
-            this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.mtgEnergy,this.target,this.targetDistance,this.targetClass,this.combo,{replay:0},this.amplify,this.relPos,this.limit,this.id,this.edition,this.drawn,this.fuel,this.cost,this.fugue,this.debut,this.evolve))
+            this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.mtgEnergy,this.target,this.targetDistance,this.targetClass,this.combo,{replay:0},this.amplify,this.relPos,this.limit,this.id,this.edition,this.drawn,this.fuel,this.cost,this.fugue,this.debut,this.evolve,this.rewinding))
             if(options.replay){
-                this.battle.replayManager.list.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.mtgEnergy,copyArray(this.target),this.targetDistance,this.targetClass,this.combo,{replay:1,direction:this.attacks[this.attacks.length-1].userCombatant.goal.anim.direction},this.amplify,this.relPos,this.limit,this.id,this.edition,this.drawn,this.fuel,this.cost,this.fugue,this.debut,this.evolve))
+                this.battle.replayManager.list.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.mtgEnergy,copyArray(this.target),this.targetDistance,this.targetClass,this.combo,{replay:1,direction:this.attacks[this.attacks.length-1].userCombatant.goal.anim.direction},this.amplify,this.relPos,this.limit,this.id,this.edition,this.drawn,this.fuel,this.cost,this.fugue,this.debut,this.evolve,thsi.rewinding))
             }
             this.battle.turnManager.loads=0
             this.lastPlayed=copyArrayCard(this.battle.cardManagers[this.player].hand.lastPlayed)

@@ -348,7 +348,7 @@ class overlay{
                         case 0: case 7:
                             list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                             let effectiveRarity=variants.commoners&&floor(random(0,3))!=0?0:args[1]
-                            let effectiveOptions=this.options+this.battle.relicManager.active[172][this.player+1]+this.battle.relicManager.active[458][this.player+1]+this.battle.relicManager.active[503][this.player+1]
+                            let effectiveOptions=this.options+this.battle.relicManager.active[172][this.player+1]+this.battle.relicManager.active[458][this.player+1]+this.battle.relicManager.active[504][this.player+1]//this.battle.relicManager.active[503][this.player+1]
                             let list2=[]
                             if(this.args[0]==0){
                                 list2=copyArray(this.battle.cardManagers[this.player].listing.dev)
@@ -441,8 +441,10 @@ class overlay{
                                     }
                                 }
                             }
-                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(503,this.player)){
-                                for(let a=0,la=this.battle.relicManager.active[503][this.player+1];a<la;a++){
+                            /*if(this.args[0]==0&&this.battle.relicManager.hasRelic(503,this.player)){
+                                for(let a=0,la=this.battle.relicManager.active[503][this.player+1];a<la;a++){*/
+                            if(this.args[0]==0&&this.battle.relicManager.hasRelic(504,this.player)){
+                                for(let a=0,la=this.battle.relicManager.active[504][this.player+1];a<la;a++){
                                     list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[1][0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
                                     if(list[args[1]].length>0){
                                         let index=floor(random(0,list[args[1]].length))
@@ -5361,10 +5363,11 @@ class overlay{
                                                 this.battle.cardManagers[this.player].hand.cards[this.battle.cardManagers[this.player].hand.cards.length-1].callRecoverEffect()
                                             }
                                             a--
-                                            la--
+                                            //la--
                                             if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Draw')>0){
                                                 this.battle.cardManagers[this.player].draw(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Recover Draw'))
                                             }
+                                            la=this.battle.cardManagers[this.player].discard.cards.length
                                         break
                                     }
                                     this.active=!complete

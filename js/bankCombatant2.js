@@ -7661,7 +7661,7 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
                 this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
             }else if(this.name=='Decratite'){
                 for(let c=0,lc=8;c<lc;c++){
-                    this.layer.stroke(...upColor(...this.color.eye.back,50,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c]),this.fade*this.fades.eye[key])
+                    this.layer.stroke(...upColor(this.color.eye.back,50,[[1,1,1],[2,1,2],[1,1,2],[1,2,1],[2,2,1],[2,1.5,1],[2,1,1],[1.5,2,2]][c]),this.fade*this.fades.eye[key])
                     this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)*(1-c/lc*0.5))
                     if(this.anim.eye[key]==0){
                         this.layer.point(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)

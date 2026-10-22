@@ -6,7 +6,8 @@ class card{
         target,spec,cardClass,limit,falsed,
         retain2=false,colorful=false,edition,baseCost,drawn,
         fuel,editedCost,editedCostComplete,nonCalc,costDownTrigger,
-        costUpTrigger,baseCostDownTrigger,baseCostUpTrigger,debut,evolve
+        costUpTrigger,baseCostDownTrigger,baseCostUpTrigger,debut,evolve,
+        rewinding
     ){
         this.layer=layer
         this.battle=battle
@@ -170,6 +171,8 @@ class card{
             this.debut=this.debut==undefined?true:this.debut
             this.evolve=evolve
             this.evolve=this.evolve==undefined?0:this.evolve
+            this.rewinding=rewinding
+            this.rewinding=this.debut==undefined?false:this.rewinding
             this.nonCalc=nonCalc
             this.nonCalc=this.nonCalc==undefined?false:this.nonCalc
             this.costDownTrigger=costDownTrigger
@@ -345,6 +348,7 @@ class card{
             baseCostUpTrigger:this.baseCostUpTrigger,
             debut:this.debut,
             evolve:this.evolve,
+            rewinding:this.rewinding,
         }
         return composite
     }
@@ -656,6 +660,10 @@ class card{
                 break
                 case 7289:
                     this.battle.cardManagers[this.player].draw(this.effect[1])
+                break
+                case 11161:
+                    this.battle.combatantManager.randomEnemyEffect(3,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+                    this.battle.cardManagers[this.player].draw(this.effect[2])
                 break
             }
         }
@@ -1671,10 +1679,15 @@ class card{
                 this.battle.addSpecificEnergy(this.effect[0],this.player,6)
                 this.battle.cardManagers[this.player].draw(this.effect[1])
             break
+            case 11192:
+                this.battle.addSpecificEnergy(2,this.player,6)
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+            break
         }
         if(userCombatant.getStatus('Rewind Cost Down')>0&&this.getCost(0)>0){
             this.costDown(0,[userCombatant.getStatus('Rewind Cost Down')])
         }
+        this.rewinding=true
         return false
     }
     callExhaustEffect(){
@@ -1690,6 +1703,9 @@ class card{
             break
             case -102:
                 this.battle.cardManagers[this.player].hand.add(this.type,this.level,this.color,this.edition)
+            break
+            case -162:
+                userCombatant.deStatus('Cannot Move',this.effect[0])
             break
             case 202:
                 userCombatant.combo+=this.effect[1]
@@ -3362,6 +3378,15 @@ class card{
                     this.costDown(2,[1])
                 }
             break
+            case 11173:
+                if(this.getCost(0)==0){
+                    this.effect[0]+=this.effect[1]
+                }
+            break
+            case 11196: case 11197: case 11198: case 11199:
+                this.effect[0]+=this.effect[2]
+                this.effect[1]+=this.effect[2]
+            break
         }
         if(this.spec.includes(88)){
             this.spec.splice(this.spec.indexOf(88),1)
@@ -3382,6 +3407,7 @@ class card{
         this.retain=false
         this.retain2=false
         this.debut=false
+        this.rewinding=false
     }
     anotherPlayed(card,cardClass){
         if(this.usable){
@@ -3468,7 +3494,7 @@ class card{
                         this.costUp(0,[1])
                     }
                 break
-                case 414: case 416:
+                case 414: case 416: case 11200:
                     if(cardClass==1){
                         this.costDown(0,[1])
                     }
@@ -3759,7 +3785,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5319: case 9481: case 9482:
+                case 5319: case 9481: case 9482: case 11165:
                     if(card.getCost(0)==0){
                         this.costDown(0,[1])
                     }
@@ -3976,6 +4002,11 @@ class card{
                 break
                 case 10789:
                     this.effect=[this.effect[1],this.effect[0]]
+                break
+                case 11212:
+                    if(card.getCost(0)==1){
+                        this.effect[0]+=this.effect[1]
+                    }
                 break
                 
             }
