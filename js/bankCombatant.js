@@ -8540,13 +8540,24 @@ combatant.prototype.display=function(){
                                     [-0.4,7],
                                     [0,7],*/
 
-                                    [-2.4,0.25],
+                                    /*[-2.4,0.25],
                                     [-2.4,0.75],
                                     [-2.35,1.5],
                                     [-2.3,2.25],
                                     [-2.25,4],
                                     [-1.6,5.5],
                                     [-1.1,6.25],
+                                    [-0.8,6.75],
+                                    [-0.4,7],
+                                    [0,7],*/
+
+                                    [-2.4,0.25],
+                                    [-2.4,0.75],
+                                    [-2.35,1.5],
+                                    [-2.3,2.25],
+                                    [-2.15,4],
+                                    [-1.6,5.5],
+                                    [-1.05,6.25],
                                     [-0.8,6.75],
                                     [-0.4,7],
                                     [0,7],
@@ -8662,11 +8673,19 @@ combatant.prototype.display=function(){
                                     [-0.3,4.65+expand],
                                     [0,4.65+expand],*/
 
-                                    [-2.1,0],
+                                    /*[-2.1,0],
                                     [-2.125,0.75],
                                     [-2.125,1.375],
                                     [-2.125,2],
                                     [-2.125,2.75],
+                                    [-1.75,3.55+expand],
+                                    [-1.25,4.15+expand],
+                                    [-0.8,4.6+expand],
+                                    [-0.3,4.65+expand],
+                                    [0,4.65+expand],*/
+
+                                    [-2.1,0],
+                                    [-2.1,2.75],
                                     [-1.75,3.55+expand],
                                     [-1.25,4.15+expand],
                                     [-0.8,4.6+expand],
@@ -8784,11 +8803,19 @@ combatant.prototype.display=function(){
                                     [-0.3,4.5+expand],
                                     [0,4.5+expand],*/
 
-                                    [-2,0],
+                                    /*[-2,0],
                                     [-2.025,0.75],
                                     [-2.025,1.375],
                                     [-2.025,2],
                                     [-2,2.75],
+                                    [-1.65,3.5+expand],
+                                    [-1.2,4+expand],
+                                    [-0.8,4.45+expand],
+                                    [-0.3,4.5+expand],
+                                    [0,4.5+expand],*/
+
+                                    [-2,0],
+                                    [-2,2.5],
                                     [-1.65,3.5+expand],
                                     [-1.2,4+expand],
                                     [-0.8,4.45+expand],
@@ -8874,14 +8901,22 @@ combatant.prototype.display=function(){
                         }
                     }*/
                     this.layer.fill(...this.flashColor(this.color.dress.over),this.fade*this.fades.dress.main)
-                    for(let a=0,la=25;a<la;a++){
+                    //for(let a=0,la=25;a<la;a++){
+                    //for(let a=0,la=30;a<la;a++){
+                    for(let a=0,la=20;a<la;a++){
                         if(lcos(a/la*360+this.anim.direction)>0){
                             let dist=19+lcos(a/la*360*5)
-                            this.layer.quad(
+                            /*this.layer.quad(
                                 6.5*lsin(a/la*360+this.anim.direction),-48+2*lcos(a/la*360+this.anim.direction),
                                 (6.5+dist*0.3)*lsin((a-0.15)/la*360+this.anim.direction),-48+dist*10/11+4*lcos((a-0.15)/la*360+this.anim.direction),
                                 (6.5+dist/3)*lsin(a/la*360+this.anim.direction),-48+dist+4*lcos(a/la*360+this.anim.direction),
                                 (6.5+dist*0.3)*lsin((a+0.15)/la*360+this.anim.direction),-48+dist*10/11+4*lcos((a+0.15)/la*360+this.anim.direction)
+                            )*/
+                            this.layer.quad(
+                                6.5*lsin(a/la*360+this.anim.direction),-48+1.8*lcos(a/la*360+this.anim.direction),
+                                (6.5+dist*0.3)*lsin((a-0.15)/la*360+this.anim.direction),-48+dist*0.9+3.6*lcos((a-0.15)/la*360+this.anim.direction),
+                                (6.5+dist/3)*lsin(a/la*360+this.anim.direction),-48+dist+3.6*lcos(a/la*360+this.anim.direction),
+                                (6.5+dist*0.3)*lsin((a+0.15)/la*360+this.anim.direction),-48+dist*0.9+3.6*lcos((a+0.15)/la*360+this.anim.direction)
                             )
                         }
                     }
@@ -8915,7 +8950,8 @@ combatant.prototype.display=function(){
                             this.minorDisplay(5,g)
                         }
                         this.layer.strokeCap(SQUARE)
-                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms*0.25)
+                        //this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms*0.25)
+                        this.layer.stroke(...this.flashColor(this.color.skin.arms),this.fade*this.fades.skin.arms*0.5)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         this.layer.strokeCap(ROUND)

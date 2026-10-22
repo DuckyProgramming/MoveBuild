@@ -3266,6 +3266,7 @@ class battle{
                         model.position.y=this.layer.height+450
                         model.time++
                         model.size=10
+                        model.anim.direction=30
                         model.display()
                         this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                         noLoop()

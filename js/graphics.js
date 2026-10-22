@@ -3421,8 +3421,8 @@ function generateSprite(layer,type,direction){
 
 			layer2.fill(...data.color.jacket.detail)
 			for(let a=0,la=18;a<la;a++){
-				let ls=lsin((a+0.5)/la*360+direction)
-				let lc=lcos((a+0.5)/la*360+direction)
+				let ls=lsin(rdir)
+				let lc=lcos(rdir)
 				if(a>=2&&a<16&&lc>0){
 					layer2.rect(7.25*ls,2.5+lc,lc*0.4,2)
 					layer2.triangle(
@@ -3653,23 +3653,165 @@ function generateSprite(layer,type,direction){
 			layer.arc(0,0,44,44,-180,0)
 		break
 		case 81:
-			controlSpin(data.parts.dress,direction,1)
-			displayTrianglesFrontMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.main,data.color.dress.main,1,0.4,18)
+			layer.fill(data.color.dress.main)
+			let flow81=1
+			for(let a=0.5,la=30;a<la;a++){
+				let mdir=a/la*360+direction
+				let ldir=(a-0.5)/la*360+direction
+				let rdir=(a+0.5)/la*360+direction
+				if(lcos(mdir)>0){
+					let lpiv=1+flow81*lcos((ldir-direction)*5)
+					let rpiv=1+flow81*lcos((rdir-direction)*5)
+					let lloc={
+						x:lsin(constrain((ldir+900)%360-180,-90,90))*(12.3+lpiv/3),
+						y:18+lpiv+3.6*lcos(constrain((ldir+900)%360-180,-90,90))
+					}
+					let rloc={
+						x:lsin(constrain((rdir+900)%360-180,-90,90))*(12.3+rpiv/3),
+						y:18+rpiv+3.6*lcos(constrain((rdir+900)%360-180,-90,90))
+					}
+					layer.push()
+					layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+					//layer.rotate((atan2(rloc.x-lloc.x,rloc.y-lloc.y)-90)*18.4/90)//atan2(1/3)
+					//layer.rotate(constrain(-atan2(rloc.x-lloc.x,rloc.y-lloc.y),-108,-72))
+					let mpiv=constrain(lcos(mdir)*1.2-0.1,0,1)
+					layer.rotate(map(
+						mpiv,
+						0,1,
+						-18.4*lsin(mdir),
+						(90-atan2(rloc.x-lloc.x,rloc.y-lloc.y)))
+					)
+					layer.ellipse(0,0,sqrt((lloc.x-rloc.x)**2+sqrt(lcos(mdir))*((lloc.y-rloc.y)**2)),3)
+					//print(dist(lloc.x,lloc.y,rloc.x,rloc.y),'a')
+					layer.pop()
+				}
+			}
+			controlSpin(data.parts.dress.main,direction,1)
+			//displayTrianglesFrontMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.main,data.color.dress.main,1,0.4,18)
 			layer.erase(0.5)
 			layer.rect(0,15,30,30)
 			layer.noErase()
 			displayTrianglesFrontMerge3D(layer,data.parts.dress.main,direction,18,24.6,0.2,1/3,data.color.dress.main,data.color.dress.main,1,0.4,18)
 			layer.quad(-6.3,0,6.3,0,12.3,18,-12.3,18)
 			layer.arc(0,18,24.6,7.2,0,180)
+			/*layer.fill(0)
+			layer.noStroke()*/
+			for(let a=0,la=30;a<la;a++){
+				let mdir=a/la*360+direction
+				let ldir=(a-0.5)/la*360+direction
+				let rdir=(a+0.5)/la*360+direction
+				if(lcos(mdir)>0){
+					let lpiv=1+flow81*lcos((ldir-direction)*5)
+					let rpiv=1+flow81*lcos((rdir-direction)*5)
+					let lloc={
+						x:lsin(constrain((ldir+900)%360-180,-90,90))*(12.3+lpiv/3),
+						y:18+lpiv+3.6*lcos(constrain((ldir+900)%360-180,-90,90))
+					}
+					let rloc={
+						x:lsin(constrain((rdir+900)%360-180,-90,90))*(12.3+rpiv/3),
+						y:18+rpiv+3.6*lcos(constrain((rdir+900)%360-180,-90,90))
+					}
+					layer.push()
+					layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+					//layer.rotate((atan2(rloc.x-lloc.x,rloc.y-lloc.y)-90)*18.4/90)//atan2(1/3)
+					//layer.rotate(constrain(-atan2(rloc.x-lloc.x,rloc.y-lloc.y),-108,-72))
+					let mpiv=constrain(lcos(mdir)*1.2-0.1,0,1)
+					layer.rotate(map(
+						mpiv,
+						0,1,
+						-18.4*lsin(mdir),
+						(90-atan2(rloc.x-lloc.x,rloc.y-lloc.y)))
+					)
+					layer.ellipse(0,0,sqrt((lloc.x-rloc.x)**2+sqrt(lcos(mdir))*((lloc.y-rloc.y)**2)),3)
+					//print(dist(lloc.x,lloc.y,rloc.x,rloc.y),'a')
+					layer.pop()
+				}
+			}
+			layer.erase(1)
+			layer.stroke(0)
+			layer.strokeWeight(1)
+			layer.line(-6.9,0,-13.9,21)
+			layer.line(6.9,0,13.9,21)
 		break
 		case 82:
-			displayTrianglesBackMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.back,data.color.dress.back,1,-0.4,18)
+			layer.fill(data.color.dress.back)
+			let flow82=1
+			for(let a=0.5,la=20;a<la;a++){
+				let mdir=a/la*360+direction
+				let ldir=(a-0.5)/la*360+direction
+				let rdir=(a+0.5)/la*360+direction
+				if(lcos(mdir)<0){
+					let lpiv=1+flow82*lcos((ldir-direction)*5)
+					let rpiv=1+flow82*lcos((rdir-direction)*5)
+					let lloc={
+						x:lsin(constrain((ldir+720)%360,90,270))*(12.3+lpiv/3),
+						y:18+lpiv-3.6*lcos(constrain((ldir+720)%360,90,270))
+					}
+					let rloc={
+						x:lsin(constrain((rdir+720)%360,90,270))*(12.3+rpiv/3),
+						y:18+rpiv-3.6*lcos(constrain((rdir+720)%360,90,270))
+					}
+					layer.push()
+					layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+					//layer.rotate((atan2(rloc.x-lloc.x,rloc.y-lloc.y)-90)*18.4/90)//atan2(1/3)
+					//layer.rotate(constrain(-atan2(rloc.x-lloc.x,rloc.y-lloc.y),-108,-72))
+					let mpiv=constrain(-lcos(mdir)*1.2-0.1,0,1)
+					layer.rotate(map(
+						mpiv,
+						0,1,
+						-18.4*lsin(mdir),
+						(90+atan2(rloc.x-lloc.x,rloc.y-lloc.y)))
+					)
+					layer.ellipse(0,0,sqrt((lloc.x-rloc.x)**2+sqrt(-lcos(mdir))*((lloc.y-rloc.y)**2)),3)
+					//print(dist(lloc.x,lloc.y,rloc.x,rloc.y),'b')
+					layer.pop()
+				}
+			}
+			//displayTrianglesBackMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.back,data.color.dress.back,1,-0.4,18)
 			layer.erase(0.5)
 			layer.rect(0,15,30,30)
 			layer.noErase()
 			displayTrianglesBackMerge3D(layer,data.parts.dress.main,direction,18,24.6,0.2,1/3,data.color.dress.back,data.color.dress.back,1,-0.4,18)
 			layer.quad(-6.3,0,6.3,0,12.3,18,-12.3,18)
 			layer.arc(0,18,24.6,7.2,0,180)
+			/*layer.fill(0)
+			layer.noStroke()*/
+			for(let a=0,la=20;a<la;a++){
+				let mdir=a/la*360+direction
+				let ldir=(a-0.5)/la*360+direction
+				let rdir=(a+0.5)/la*360+direction
+				if(lcos(mdir)<0){
+					let lpiv=1+flow82*lcos((ldir-direction)*5)
+					let rpiv=1+flow82*lcos((rdir-direction)*5)
+					let lloc={
+						x:lsin(constrain((ldir+720)%360,90,270))*(12.3+lpiv/3),
+						y:18+lpiv-3.6*lcos(constrain((ldir+720)%360,90,270))
+					}
+					let rloc={
+						x:lsin(constrain((rdir+720)%360,90,270))*(12.3+rpiv/3),
+						y:18+rpiv-3.6*lcos(constrain((rdir+720)%360,90,270))
+					}
+					layer.push()
+					layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+					//layer.rotate((atan2(rloc.x-lloc.x,rloc.y-lloc.y)-90)*18.4/90)//atan2(1/3)
+					//layer.rotate(constrain(-atan2(rloc.x-lloc.x,rloc.y-lloc.y),-108,-72))
+					let mpiv=constrain(-lcos(mdir)*1.2-0.1,0,1)
+					layer.rotate(map(
+						mpiv,
+						0,1,
+						-18.4*lsin(mdir),
+						(90+atan2(rloc.x-lloc.x,rloc.y-lloc.y)))
+					)
+					layer.ellipse(0,0,sqrt((lloc.x-rloc.x)**2+sqrt(-lcos(mdir))*((lloc.y-rloc.y)**2)),3)
+					//print(dist(lloc.x,lloc.y,rloc.x,rloc.y),'b')
+					layer.pop()
+				}
+			}
+			layer.erase(1)
+			layer.stroke(0)
+			layer.strokeWeight(1)
+			layer.line(-6.9,0,-13.9,21)
+			layer.line(6.9,0,13.9,21)
 		break
 		
 	}
@@ -5594,23 +5736,30 @@ function setupCombatantGraphics(type){
 				}
 			}
 
-			data.parts.dress={inside:[],main:[]}
+			//data.parts.dress={inside:[],main:[]}
+			data.parts.dress={main:[]}
 
 			let flow=1
 			for(let a=0,la=360;a<la;a++){
 				let dir=[a/la*360,(a+1)/la*360,(a-0.5)/la*360,(a+0.5)/la*360]
-				let q=5
-				data.parts.dress.inside.push(
+				//let q=5
+				//let q=6
+				/*let h=1.2
+				let piv=[
+					sqrt(1-abs(q-a%(2*q))**2/q/q)*h,
+					sqrt(1-abs(q-(a+1)%(2*q))**2/q/q)*h,
+				]*/
+				/*data.parts.dress.inside.push(
 					{
 						spin:[dir[2],dir[3],dir[0]],
-						y:[0,0,2+flow*lcos(dir[0]*5)+sqrt(1-abs(q-a%(2*q))**2/q/q)],
+						y:[0,0,2+flow*lcos(dir[0]*5)+piv[0]],
 						set:0,
 					},{
 						spin:[dir[0],dir[1],dir[2]],
-						y:[2+flow*lcos(dir[0]*5)+sqrt(1-abs(q-a%(2*q))**2/q/q),2+flow*lcos(dir[1]*5)+sqrt(1-abs(q-(a+1)%(2*q))**2/q/q),0],
+						y:[2+flow*lcos(dir[0]*5)+piv[0],2+flow*lcos(dir[1]*5)+piv[1],0],
 						set:1,
 					},
-				)
+				)*/
 				data.parts.dress.main.push(
 					{
 						spin:[dir[2],dir[3],dir[0]],
@@ -8306,7 +8455,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				break
 				case 'Menessa':
 					p1.anim.mouth.x-=0.25
-					p1.anim.mouth.y-=0.25
+					//p1.anim.mouth.y-=0.25
 					p1.position.y-=2.5
 					p1.anim.legs=[
 						{top:12,bottom:12,length:{top:16.75,bottom:16.75}},
