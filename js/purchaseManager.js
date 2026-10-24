@@ -354,15 +354,7 @@ class purchaseManager{
                 }
                 for(let a=0,la=this.battle.players;a<la;a++){
                     if(this.free[a]>0){
-                        for(let b=0,lb=this.free[a];b<lb;b++){
-                            list=[]
-                            for(let c=0,lc=this.purchases.length;c<lc;c++){
-                                if((this.purchases[c].player==a||this.purchases[c].player==-1)&&this.purchases[c].cost[a]>0){
-                                    list.push(c)
-                                }
-                            }
-                            this.purchases[list[floor(random(list.length))]].cost[a]=0
-                        }
+                        this.freeify(a,this.free[a])
                     }
                     this.free[a]=0
                 }
@@ -515,6 +507,17 @@ class purchaseManager{
         }
         if(this.battle.modded(229)){
             this.purchases=this.purchases.filter(purchase=>floor(random(0,2))==0)
+        }
+    }
+    freeify(player,quantity){
+        for(let a=0,la=quantity;a<la;a++){
+            let list=[]
+            for(let b=0,lb=this.purchases.length;b<lb;b++){
+                if((this.purchases[b].player==player||this.purchases[b].player==-1)&&this.purchases[b].cost[player]>0){
+                    list.push(b)
+                }
+            }
+            this.purchases[randin(list)].cost[player]=0
         }
     }
     reroll(){

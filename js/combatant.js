@@ -105,7 +105,7 @@ constants.status={
         'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
-        'Prime Next Turn','Attack Lock On Combat',
+        'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -213,7 +213,7 @@ constants.status={
         0,0,0,0,0,0,1,0,0,1,//103
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
-        2,0,
+        2,0,1,0,0,
     ],
     /*
     0-none
@@ -330,7 +330,7 @@ constants.status={
         2,3,2,2,2,2,2,2,2,2,//103
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
-        2,2,
+        2,2,1,2,2,
     ]
     /*
     0-good
@@ -934,8 +934,9 @@ class combatant{
                 this.statusEffect('Regeneration',diffUnfair?9:5)
             break
             case 'Precision':
-                this.statusEffect('Dodge',1)
-                this.statusEffect('Lasting Counter Once',diffUnfair?8:4)
+                //this.statusEffect('Dodge',1)
+                //this.statusEffect('Lasting Counter Once',diffUnfair?8:4)
+                this.statusEffect('Lasting Counter Once',6)
             break
             case 'Legacy':
                 //this.statusEffect('Decrementing Armor',diffUnfair?20:10)
@@ -1081,6 +1082,9 @@ class combatant{
             case 'Management Drone':
                 this.statusEffect('Counter Management Beam Once Per Turn',6)
                 this.statusEffect('Counter Management Beam Once',6)
+            break
+            case 'Vengeful Speed':
+                this.statusEffect('Fragile Stun',1)
             break
         }
         //mark b
@@ -1721,6 +1725,9 @@ class combatant{
                     case 'Big Bush Thing':
                         this.spec.push(0)
                         this.subAttackTypeSwitch([[1,28,500,[1]],[2,110,110,[2]]])
+                    break
+                    case 'Precision':
+                        this.statusEffect('Dodge',1)
                     break
 
                     //mark 31
@@ -3128,14 +3135,14 @@ class combatant{
                     }
                 }
             }
-            if(this.spec.includes(7)&&type==1&&(this.battle.turn.main<this.battle.players||this.construct)&&targetted&&!this.aggressor&&this.getStatus('Stun')<=0){
+            if(this.spec.includes(7)&&type==1&&(this.battle.turn.main<this.battle.players||this.construct)&&targetted&&!this.aggressor&&!this.getStun()){
                 this.battle.turnManager.loadEnemyAttackRepeatBack(this.id)
                 this.aggressor=true
             }else{
-                if(this.spec.includes(0)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
+                if(this.spec.includes(0)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&!this.getStun()&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
                     this.battle.turnManager.loadEnemyRotate(this.id,id)
                 }
-                if(this.spec.includes(1)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
+                if(this.spec.includes(1)&&id<this.battle.players&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&!this.getStun()&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
                     this.battle.turnManager.loadEnemyMoveBack(this.id)
                     this.battle.turnManager.loadEnemyRotateBack(this.id,id)
                 }
@@ -3153,7 +3160,7 @@ class combatant{
         if(this.intent<=0){
             this.intent=0
         }
-        if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0&&this.status.main[374]<=0){
+        if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0&&this.status.main[374]<=0&&this.status.main[1052]<=0){
             if(this.attack[this.intent].type==78){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(legalTargetCombatant(2,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].name==this.name&&distTargetCombatant(0,this,this.battle.combatantManager.combatants[a])>1&&this.battle.combatantManager.combatants[a].life>0){
@@ -4028,6 +4035,10 @@ class combatant{
             if(this.status.main[353]>0){
                 this.status.main[353]=0
             }
+            if(this.status.main[1052]>0){
+                this.status.main[1052]=0
+                this.markTarget()
+            }
             if(this.status.main[14]>0){
                 this.status.main[14]--
                 if(this.status.main[14]<=0&&this.name=='The Looker'){
@@ -4312,7 +4323,7 @@ class combatant{
                         userCombatant.heal(damage)
                     }
                     if(this.life>0){
-                        if(this.status.main[32]<=0){
+                        if(this.status.main[32]<=0&&this.status.main[1052]<=0){
                             if(this.battle.turnManager.turns.length==0){
                                 if(this.status.main[1]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
@@ -5040,6 +5051,9 @@ class combatant{
                     this.comboConsumed()
                 }
             }
+            if(this.status.main[1053]>0){
+                this.battle.cardManagers[this.id].drawAbstract(this.status.main[1053],10,0,[82])
+            }
             if(this.battle.modded(197)&&this.battle.turn.main!=this.id){
                 this.takeDamage(6,-1)
             }
@@ -5611,6 +5625,13 @@ class combatant{
     }
     canSpendCharge(value){
         return this.status.main[595]>0||this.charge>=value
+    }
+    doubleInvoke(){
+        if(this.status.main[1054]>0){
+            this.status.main[1054]--
+            return true
+        }
+        return false
     }
     check10(){
         return this.status.main[967]>0?floor(random(0,2))==0:
@@ -6268,6 +6289,9 @@ class combatant{
     }
     getStatus(name){
         return this.status.main[findList(name,this.status.name)]
+    }
+    getStun(){
+        return this.status.main[32]>0||this.status.main[1052]>0
     }
     randomStatusInstant(effect,classes){
         let list=[]

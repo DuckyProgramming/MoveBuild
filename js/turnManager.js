@@ -113,7 +113,7 @@ class turnManager{
         this.loads=0
         if(this.battle.modded(125)){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(floor(random(0,4))==0&&this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
+                if(floor(random(0,4))==0&&this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
                     for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Fragile Speed Up')+
                     (variants.speedcard&&(this.battle.combatantManager.combatants[a].move.type==0||this.battle.combatantManager.combatants[a].move.type==1||this.battle.combatantManager.combatants[a].move.type==2||this.battle.combatantManager.combatants[a].move.type==4)?1:0);b<lb;b++){
                         this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
@@ -123,7 +123,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].intent>=0&&(
+            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].intent>=0&&(
                 this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
                 this.battle.combatantManager.combatants[a].name=='Strengthener'
             )){
@@ -133,7 +133,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].intent>=0&&(
+            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].intent>=0&&(
                 this.battle.combatantManager.combatants[a].support&&!this.battle.combatantManager.combatants[a].moved||
                 this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
                 this.battle.combatantManager.combatants[a].name!='Strengthener'
@@ -144,7 +144,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
+            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved&&!this.battle.combatantManager.combatants[a].getStun()){
                 for(let b=0,lb=1+this.battle.combatantManager.combatants[a].getStatus('Extra Turn')+(this.battle.modded(6)&&floor(random(0,4))==0?1:0)+(this.battle.modded(26)&&types.attack[this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type].name.includes('Gun')?1:0)+(this.battle.modded(52)&&types.attack[this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type].name.includes('Summon')?1:0)+(this.battle.modded(116)&&this.battle.combatantManager.combatants[a].life<=this.battle.combatantManager.combatants[a].base.life/2?1:0);b<lb;b++){
                     if(this.battle.combatantManager.combatants[a].getStatus('Silence')>0){
                         let damageMax=1
@@ -176,7 +176,7 @@ class turnManager{
     loadEnemyTurnsMove(){
         this.battle.combatantManager.setTargets()
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
+            if(this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
                 for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Fragile Speed Up')+
                 (variants.speedcard&&(this.battle.combatantManager.combatants[a].move.type==0||this.battle.combatantManager.combatants[a].move.type==1||this.battle.combatantManager.combatants[a].move.type==2||this.battle.combatantManager.combatants[a].move.type==4)?1:0);b<lb;b++){
                     this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
@@ -184,7 +184,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team>0&&(this.battle.combatantManager.combatants[a].construct||this.battle.combatantManager.combatants[a].support)&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
+            if(this.battle.combatantManager.combatants[a].team>0&&(this.battle.combatantManager.combatants[a].construct||this.battle.combatantManager.combatants[a].support)&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
                 for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Fragile Speed Up')+
                 (variants.speedcard&&(this.battle.combatantManager.combatants[a].move.type==0||this.battle.combatantManager.combatants[a].move.type==1||this.battle.combatantManager.combatants[a].move.type==2||this.battle.combatantManager.combatants[a].move.type==4)?1:0);b<lb;b++){
                     this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
@@ -192,7 +192,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0&&this.battle.combatantManager.combatants[a].getStatus('End Move')>0){
+            if(this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0&&this.battle.combatantManager.combatants[a].getStatus('End Move')>0){
                 for(let b=0,lb=this.battle.combatantManager.combatants[a].getStatus('End Move')+
                 (variants.speedcard&&(this.battle.combatantManager.combatants[a].move.type==0||this.battle.combatantManager.combatants[a].move.type==1||this.battle.combatantManager.combatants[a].move.type==2||this.battle.combatantManager.combatants[a].move.type==4)?1:0);b<lb;b++){
                     this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
@@ -200,12 +200,12 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('Rotate Lock')<=0){
+            if(this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].getStatus('Rotate Lock')<=0){
                 this.turns.push(new turn(2,this.battle,0,0,a))
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if((this.battle.combatantManager.combatants[a].spec.includes(17)||(this.battle.combatantManager.combatants[a].construct||this.battle.combatantManager.combatants[a].support)&&(this.battle.combatantManager.combatants[a].attack.length>1||this.battle.combatantManager.combatants[a].attack[0].type!=21))&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
+            if((this.battle.combatantManager.combatants[a].spec.includes(17)||(this.battle.combatantManager.combatants[a].construct||this.battle.combatantManager.combatants[a].support)&&(this.battle.combatantManager.combatants[a].attack.length>1||this.battle.combatantManager.combatants[a].attack[0].type!=21))&&!this.battle.combatantManager.combatants[a].getStun()){
                 this.turns.push(new turn(this.battle.combatantManager.combatants[a].spec.includes(17)?5:2,this.battle,0,0,a))
             }
         }
@@ -218,7 +218,7 @@ class turnManager{
     loadEnemyPoint(point){
         this.auxiliary=true
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
+            if(this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].getStun()){
                 for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Fragile Speed Up');b<lb;b++){
                     this.turns.push(new turn(1,this.battle,0,this.battle.combatantManager.combatants[a].move.speed,a))
                     this.turns[this.turns.length-1].setTarget=point

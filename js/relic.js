@@ -4460,6 +4460,9 @@ class relic{
                 case 'Bowler':
                     displaySymbol(this.layer,0,0,183,0,1,this.fade)
                 break
+                case 'Duochrome':
+                    displaySymbol(this.layer,0,0,184,0,1.2,this.fade)
+                break
 
                 //mark p
             }

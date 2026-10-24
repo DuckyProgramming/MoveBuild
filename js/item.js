@@ -912,6 +912,15 @@ class item{
                     this.layer.textSize(6)
                     this.layer.text('<25%',-8,0)
                 break
+                case '3 Free Purchases':
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,1,0,0.5,this.fade)
+                    displaySymbol(this.layer,-9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',-9,0)
+                    this.layer.text('3',8,0)
+                break
 
                 //mark b
 

@@ -1,19 +1,9 @@
-CS 140 [VINCENT]
+CS 142 [PREHEX / VINCENT]
 
 vincent rework
 make sure his tutorial is not ruined
 
-CS 141 [?]
-
-test prehex x2 runs
-purge?
-make sure his tutorial is not ruined
-
-play meri
-make sure her tutorial is not ruined
-
-play menessa
-make sure her tutorial is not ruined
+CS 143 [?]
 
 carbon (4 damage), hydrogen, quartz (?), iron (6 block), nitrogen (remove 1 fatigue), zinc ()
 carbon = graphite ()
@@ -32,22 +22,11 @@ quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
-disable a wish -> activate a wish
-split white dew again...
+big prehex reworks
+purge first!
+make sure his tutorial is not ruined
 
-error handling - damage, if target intends to not attack OR defend, apply 1 stun, exhaust(tad rare to get it off but powerful effect)
-military reorganization - draw an attack, it costs 1
-hold the line [quest] - -1: add 10 or more block, play: deal 7 damage to a random enemy and gain 2 energy(nice synergy with cookie)
-adaptive slap - if target has strength, gain 1 strength, then deal 4 damage 2 times
-[more wish]
-
-weed cutter - 2 cost, 9 damage, draw 1 card, [irrelevance] for 1 turn
-flatten film - 9 damage to a random enemy, gain 2 regen if you have a foil card in hand, exhaust
-rewire - exhaust a card, if it is an attack, draw 3 cards
-mipa - 0 cost, add 3 block, apply 1 weak to the highest health enemy
-light buster - deal 10 damage, 3 range, evoke first orb, add its evoke effect to this card this combat
-donate down - pick an attack, it counts as a strike (replace basic blessing)
-pale flame - deal 4 damage, gain 1 wisdom, exhaust a card
++8 wish?
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
@@ -56,14 +35,5 @@ grammar check
 tooltips for dictionary
 
 [slio9]
-
-GIMMICK BANK
-
-[character - the censor]
-decree - make a plan for your turn
-add classes to your decree (e.g. attack, defend)
-if you follow your decree on your turn, gain 1 energy and draw a card for each one
-otherwise, discard it and it loops around your deck
-classless cards DONT cause your decree to fail
 
 

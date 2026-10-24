@@ -915,7 +915,17 @@ class itemManager{
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].name!='Mundane Dust'&&this.items[a][b].type>=2&&this.up[a]){
-                            this.battle.addCurrency((types.item[this.items[a][b].type].id==85?50:10)*(this.battle.relicManager.hasRelic(585,a)?5:1),a)
+                            switch(types.item[this.items[a][b].type].id){
+                                case 85:
+                                    this.battle.addCurrency(50*(this.battle.relicManager.hasRelic(585,a)?5:1),a)
+                                break
+                                case 121:
+                                    this.battle.purchaseManager.freeify(a,3)
+                                break
+                                default:
+                                    this.battle.addCurrency(10*(this.battle.relicManager.hasRelic(585,a)?5:1),a)
+                                break
+                            }
                             this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()

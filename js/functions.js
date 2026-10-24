@@ -3124,6 +3124,16 @@ function oracleCut(start,end){
 		cardData.display()
 	}
 }
+function oracleClass(cardClass){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.class==cardClass)
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
 function oracleOrder(list=-1){
 	current.overlayManager.overlays[35][0].active=true
     current.overlayManager.overlays[35][0].activate([0,-99])
@@ -3178,7 +3188,7 @@ function generalizedSearch2(test,type){
 	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-		if(cardData.desc.includes(test)){
+		if(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t))){
 			set.push(cardData.name)
 		}
 	}
@@ -3740,6 +3750,7 @@ function checkExists(start,end){
 		3357,//invalid black keys
 		3551,//invalid artifice
 		3589,3590,3591,3678,3755,3756,3757,3764,3765,3882,
+		3615,4249,//invalid steamblast
 		3943,4190,//invalid mtg mergers
 		3662,//invalid recycling
 		4298,//invalid shooting echo

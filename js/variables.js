@@ -1242,7 +1242,7 @@ types={
         {name:'Massive Donut',internal:'Random Double Upgrade',id:294,rarity:4,list:0,mtg:1,world:[2,3],description:'When Taken, Deluxe Upgrade\n10 Random Upgraded Cards'},
         {name:'Ring of Suffering',internal:'3 Attack Strength/3 Defense Dexterity',id:295,rarity:4,list:0,mtg:1,world:[0,3],description:'Every 3 Attacks Played, Gain 1 Strength\nEvery 3 Defenses Played, Gain 1 Dexterity'},
         {name:'Truffle',internal:'Energy Bump',id:296,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Energy After Playing 3 Cards,\nTriggers Once Per Turn'},
-        {name:'Centrosome',internal:'Trioerratic',id:297,rarity:4,list:0,mtg:1,world:[2,3],description:'When Taken, Make a Card Erratic\nand Duplicate it 2 Times'},
+        {name:'Antisome',internal:'Trioerratic',id:297,rarity:-1,list:0,mtg:1,world:[2,3],description:'When Taken, Make a Card Erratic\nand Duplicate it 2 Times'},
         {name:'Stopwatch',internal:'6 Turn Turn',id:298,rarity:4,list:0,mtg:1,world:[0,3],description:'Every 6 Turns,\nTake Another Turn'},
         {name:'Assembly Line',internal:'Duplicate Per Turn',id:299,rarity:4,list:0,mtg:1,world:[2,3],description:'The First Card Played\nEach Turn is Duplicated'},
 
@@ -1361,7 +1361,7 @@ types={
         {name:'Telescope',internal:'Blue Mana/Astrology',id:402,rarity:4,list:0,mtg:-1,world:[0,3],description:'Add (B) to Base Mana,\nAdd 2 Astrologies on Turn 1',manaColor:3},
         {name:'Icy Scale',internal:'Blue Mana/Power Mana',id:403,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (B) to Base Mana,\nWhen You Play a Power, Gain (B)',manaColor:3},
         {name:'Capillary Cup',internal:'Blue Mana/Stride',id:404,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (B) to Base Mana,\nAdd a Stride to Hand Each Turn\nif You Draw No Movement Cards',manaColor:3},
-        {name:'Rejector 3000',internal:'Black Mana/Remove 2',id:405,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (K) to Base Mana,\nWhen Taken, Remove 2 Cards',manaColor:2},
+        {name:'Rejector 100',internal:'Black Mana/Remove 2',id:405,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (K) to Base Mana,\nWhen Taken, Remove 2 Cards',manaColor:2},
         {name:'Coffee Filter',internal:'Black Mana/Better Rest Heal',id:406,rarity:4,list:0,mtg:2,world:[0,2],description:'Add (K) to Base Mana,\nHeal to Full When Resting',manaColor:2},
         {name:'Lævateinn',internal:'Black Mana/Vulnerable',id:407,rarity:4,list:0,mtg:-1,world:[0,3],description:'Add (K) to Base Mana,\nVulnerable Enemies Take\nDouble Damage Instead',manaColor:2},
         {name:'Asphalt Block',internal:'Black Mana/Triple Damage',id:408,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (K) to Base Mana,\nThe First Attack Each Combat\nDeals Triple Damage',manaColor:2},
@@ -1477,7 +1477,7 @@ types={
         {name:`Prince Rupert's Drop`,internal:'Safe Energy',id:508,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nUntil You Lose Health Each Combat'},
         {name:'600-Cell',internal:'Free Innate',id:509,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken,\nMake a Card Innate and Free'},
 
-        {name:'Transformer 5000',internal:'Transform 10',id:510,rarity:4,list:0,mtg:1,world:[0,2],description:'When Taken, Transform 10 Cards'},
+        {name:'Transformer 500',internal:'Transform 10',id:510,rarity:4,list:0,mtg:1,world:[0,2],description:'When Taken, Transform 10 Cards'},
         {name:'Replicating Cake',internal:'Random Boss Relic/10 Max HP',id:511,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken, Gain a Random Boss Relic\nand Gain 10 Max HP'},
         {name:'Draft Card',internal:'Draw Up/Draft 10',id:512,rarity:-1,list:0,mtg:1,world:[0,2],description:'Draw 1 More Card Per Turn\nWhen Taken, Receive 10 Card Rewards'},
         {name:'Capstone',internal:'Leftmost Energy',id:513,rarity:4,list:0,mtg:1,world:[0,3],description:'Each Turn, Gain 1 Energy if\nYou Play the Leftmost Card First'},
@@ -1572,11 +1572,14 @@ types={
         {name:'Stringent Amulet',internal:'Item Draw',id:594,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nDraw 2 Cards'},
         {name:'Bat Wing',internal:'Item Strength',id:595,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 1 Strength'},
         {name:'Fingernail',internal:'Item Dexterity',id:596,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 1 Dexterity'},
-        {name:'Swan Beak',internal:'Item Energy',id:597,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
-        {name:'Swan Beak',internal:'Item Mana',id:598,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},
+        {name:'Centrosomal Entity',internal:'Triochrome',id:597,rarity:-1,list:0,mtg:1,world:[2,3],description:'When Taken, Make a Card Polychrome\nand Duplicate it 2 Times'},
+        {name:'Centrosome',internal:'Duochrome',id:598,rarity:4,list:0,mtg:1,world:[2,3],description:'When Taken, Make a Card Polychrome\nand Duplicate it'},
         {name:'Reptile Trinket',internal:'Item Temporary Strength',id:599,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 3 Temporary Strength'},
 
         {name:'Bloodstained Bowler Hat',internal:'Bowler',id:600,rarity:-1,list:0,mtg:0,world:[0,3],description:`Don't Forget Him`},
+
+        /*{name:'Swan Beak',internal:'Item Energy',id:597,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
+        {name:'Swan Beak',internal:'Item Mana',id:598,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},*/
 
         //mark mtg mark r
     ],item:[
@@ -1663,7 +1666,7 @@ types={
         {name:'Binary Die',internal:'Double or Nothing',id:73,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Randomly Duplicate a Card\nor Destroy it Permanently'},
         {name:'Replacement Papers',internal:'Edition',id:74,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Edition a Card'},
         {name:'Full Medkit',internal:'Heal All',id:75,rarity:1,list:0,menu:true,temp:false,mtg:0,description:'Heal All Health'},
-        {name:'Surprise Coupon',internal:'3 Free Items',id:76,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Make 3 Things Free\nat the Next Shop'},
+        {name:'Advance Coupon',internal:'3 Free Items',id:76,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Make 3 Things Free\nat the Next Shop'},
         {name:'Starter Pack',internal:'Basic Cards',id:77,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Add 1 Strike, Defend,\nand Step to Hand'},
         {name:'Equilibrium System',internal:'Retain Hand',id:78,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Retain Your Hand This Turn'},
         {name:'Unfinished Potion',internal:'Nothings',id:79,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 1-11 of Nothings to Hand'},
@@ -1714,6 +1717,8 @@ types={
         {name:'Boss Buster',internal:'Boss Splash Damage',id:119,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Deal 30 Splash Damage\nDeals 5x More to Bosses\nRange 1-3'},
 
         {name:'Cheese Can',internal:'Terminate',id:120,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'If Target Has Less Than 25% Health, It Dies\nRange 1-3'},
+        {name:'Surprise Coupon',internal:'3 Free Purchases',id:121,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'When Sold, Make 3\nRandom Purchases Free'},
+        //76
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},

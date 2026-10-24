@@ -1975,7 +1975,7 @@ class card{
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
-            case 9523: case 9524: case 9525: case 9785: case 10505: case 10918: case 11003:
+            case 9523: case 9524: case 9525: case 9785: case 10505: case 10918: case 11003: case 11259: case 11302:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -3233,7 +3233,8 @@ class card{
             break
             case 3827: case 3828: case 3829: case 3830: case 3831: case 3832: case 3833: case 3834: case 3835: case 3836:
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
-            case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442: case 9329:
+            case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442: case 9329: case 11305:
+            case 11306: case 11307: case 11308: case 11309: case 11310: case 11311: case 11312:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -3386,6 +3387,11 @@ class card{
             case 11196: case 11197: case 11198: case 11199:
                 this.effect[0]+=this.effect[2]
                 this.effect[1]+=this.effect[2]
+            break
+            case 11242:
+                if(userCombatant.getStatus('Vigil')>0){
+                    this.effect[0]+=this.effect[1]
+                }
             break
         }
         if(this.spec.includes(88)){
@@ -3750,7 +3756,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5308: case 5309: case 5310: case 9466: case 9467: case 9468: case 9469:
+                case 5308: case 5309: case 5310: case 9466: case 9467: case 9468: case 9469: case 11298:
                     if(card.edition!=0){
                         this.costDown(0,[1])
                     }
@@ -3854,7 +3860,7 @@ class card{
                         this.costDown(0,[1])
                     }
                 break
-                case 5593: case 5594:
+                case 5593: case 5594: case 11299: case 11300:
                     if(cardClass==4){
                         this.costDown(0,[1])
                     }
@@ -4006,6 +4012,36 @@ class card{
                 case 11212:
                     if(card.getCost(0)==1){
                         this.effect[0]+=this.effect[1]
+                    }
+                break
+                case 11217:
+                    if(cardClass==12&&!card.spec.includes(60)){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 11218: case 11219: case 11304:
+                    if(card.class==12&&!card.spec.includes(60)){
+                        this.setCost(2,[0])
+                    }
+                break
+                case 11290:
+                    if(card.name=='Fatigue'){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 11291: case 11292: case 11293: case 11294: case 11295:
+                    if(this.battle.cardManagers[this.player].hand.turnPlayed[3]==this.effect[0]){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 11296:
+                    if(card.getBasic(1)){
+                        this.costDown(0,[1])
+                    }
+                break
+                case 11297:
+                    if(card.getBasic(2)){
+                        this.costDown(0,[1])
                     }
                 break
                 
@@ -4558,6 +4594,34 @@ class card{
             case 10506:
                 userCombatant.statusEffect('Dodge',this.effect[0])
                 userCombatant.statusEffect('Temporary Strength',this.effect[1])
+            break
+            case 11305:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,5,[2])
+            break
+            case 11306:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,13,[2])
+            break
+            case 11307:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,7,[2])
+            break
+            case 11308:
+                userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[1],0,0,[2])
+            break
+            case 11309:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].randomEffect(2,89,[0,this.id])
+                }
+            break
+            case 11310:
+                this.battle.addEnergy(this.effect[0],this.player)
+            break
+            case 11311:
+                this.battle.addSpecificEnergy(2,this.player,6)
+            break
+            case 11312:
+                this.battle.combatantManager.allEffect(47,[])
+                this.battle.combatantManager.allEffect(48,['Vulnerable',this.effect[0]])
             break
         }
     }

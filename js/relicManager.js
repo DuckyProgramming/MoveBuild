@@ -719,16 +719,16 @@ class relicManager{
                 this.battle.purchaseManager.costChange(player,6,0.5)
             break
             case 302:
-                this.battle.purchaseManager.costChange(player,15,0.5)
+                this.battle.purchaseManager.costChange(player,14,0.5)
             break
             case 303:
-                this.battle.purchaseManager.costChange(player,16,0.5)
+                this.battle.purchaseManager.costChange(player,15,0.5)
             break
             case 304:
-                this.battle.purchaseManager.costChange(player,17,0.5)
+                this.battle.purchaseManager.costChange(player,16,0.5)
             break
             case 305:
-                this.battle.purchaseManager.costChange(player,18,0.5)
+                this.battle.purchaseManager.costChange(player,17,0.5)
             break
             case 312:
                 this.battle.cardManagers[player].randomEffect(0,2,[11])
@@ -936,6 +936,14 @@ class relicManager{
             break
             case 584:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(2)
+            break
+            case 597:
+                this.battle.overlayManager.overlays[78][player].active=true
+                this.battle.overlayManager.overlays[78][player].activate()
+            break
+            case 598:
+                this.battle.overlayManager.overlays[195][player].active=true
+                this.battle.overlayManager.overlays[195][player].activate()
             break
 
             //mark a
@@ -1231,7 +1239,7 @@ class relicManager{
                 }
             break
             case 297:
-                this.battle.cardManagers[player].deck.unTriochrome()
+                this.battle.cardManagers[player].deck.unTrioEdition(6)
             break
             case 300:
                 this.battle.purchaseManager.costChange(player,5,2)
@@ -1395,6 +1403,12 @@ class relicManager{
             break
             case 586:
                 this.battle.cardManagers[player].deck.copySelf(this.battle.cardManagers[player].deck.cards.length-1)
+            break
+            case 507:
+                this.battle.cardManagers[player].deck.unTrioEdition(4)
+            break
+            case 598:
+                this.battle.cardManagers[player].deck.unDuoEdition(4)
             break
 
         }
@@ -3443,12 +3457,12 @@ class relicManager{
                 if(this.active[596][args[1]+1]>0){
                     this.getPlayer(args[1]).statusEffect('Dexterity',this.active[596][args[1]+1])
                 }
-                if(this.active[597][args[1]+1]>0){
+                /*if(this.active[597][args[1]+1]>0){
                     this.battle.addSpecificEnergy(this.active[597][args[1]+1],args[1],6)
                 }
                 if(this.active[598][args[1]+1]>0){
                     this.battle.addSpecificEnergy(2*this.active[598][args[1]+1],args[1],6)
-                }
+                }*/
                 if(this.active[599][args[1]+1]>0){
                     this.getPlayer(args[1]).statusEffect('Temporary Strength',3*this.active[599][args[1]+1])
                 }

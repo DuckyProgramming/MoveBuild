@@ -35,7 +35,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=60
+        this.listKey=61
         this.listInput=[
             [0,4],
             [1,8],
@@ -91,6 +91,7 @@ class group{
             [57,66],
             [58,67],
             [59,68],
+            [60,69],
         ]
 
         this.reset()
@@ -784,6 +785,11 @@ class group{
     }
     duplicateSelectSkillFree(amount){
         this.status[53]+=amount
+        this.generalSelfStatus()
+    }
+    exhaustAttackDraw(amount,marker){
+        this.status[60]+=amount
+        this.statusMarker[0]=marker
         this.generalSelfStatus()
     }
     generalStatus(status,amount){
@@ -3108,12 +3114,33 @@ class group{
                         this.cards[a].exhaust=true
                     }
                 break
+                case 83:
+                    if(this.cards[a].getBasic(1)){
+                        this.cards[a].costDown(0,[args[0]])
+                    }
+                break
+                case 84:
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.cards[a].rarity==args[0]){
+                        total++
+                    }
+                break
+                case 85:
+                    if(args[0].includes(this.cards[a].class)){
+                        this.cards[a].deSize=true
+                        this.cards[a].discardEffect.push(0)
+                    }
+                break
                 //mark allargs
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==58||effect==59||effect==66||effect==71){
+        }else if(
+            effect==10||effect==12||effect==18||effect==19||effect==32||effect==43||effect==49||effect==58||effect==59||effect==66||
+            effect==71||effect==84
+        ){
             return total
         }
     }
@@ -3185,6 +3212,7 @@ class group{
                         &&!(effect==86&&this.cards[b].class!=args[1]&&args[1]!=0)
                         &&!(effect==87&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=2))
                         &&!(effect==88&&this.cards[b].class!=args[0])
+                        &&!(effect==89&&(this.cards[b].level>=2||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)||this.cards[b].id==args[1]))
                     ){
                         list.push(b)
                     }
@@ -3608,6 +3636,10 @@ class group{
                         return
                     case 88:
                         this.generalExhaust(index)
+                    break
+                    case 89:
+                        this.cards[index].deSize=true
+                        this.cards[index].discardEffect.push(0)
                     break
                     //mark random
                 }
@@ -4675,6 +4707,9 @@ class group{
                         list[list.length-1]=upgradeCard(list[list.length-1])
                         this.generalUpgrade(list[list.length-1])
                     break
+                    case 30:
+                        list[list.length-1].setCost(0,[1])
+                    break
                 }
             }
         }
@@ -5234,13 +5269,12 @@ class group{
             }
         }
     }
-    unTriochrome(){
-        this.unDuplicate()
+    unDuoEdition(edition){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].name==this.lastDuplicate[this.lastDuplicate.length-1]){
                 this.cards.splice(a,1)
                 for(let b=0,lb=this.cards.length;b<lb;b++){
-                    if(this.cards[b].name==this.lastDuplicate[this.lastDuplicate.length-1]&&this.cards[b].edition==4){
+                    if(this.cards[b].name==this.lastDuplicate[this.lastDuplicate.length-1]&&this.cards[b].edition==edition){
                         this.cards[b].edition=0
                     }
                 }
@@ -5248,6 +5282,11 @@ class group{
                 a=la
             }
         }
+    }
+    unTrioEdition(edition){
+        this.unDuplicate()
+        //this.unDuplicate()
+        this.unDuoEdition(edition)
     }
     unInnate(cardClass){
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -5580,7 +5619,7 @@ class group{
         switch(scene){
             case 'battle':
                 let anim=[
-                    max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44],this.anim[58],this.anim[59]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],
+                    max(this.anim[0],this.anim[43]),max(this.anim[1],this.anim[13],this.anim[29],this.anim[30],this.anim[44],this.anim[58],this.anim[59],this.anim[60]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],
                     this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],
                     this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),
                     this.anim[37],this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],
@@ -7072,6 +7111,18 @@ class group{
                     this.battle.cardManagers[this.player].draw(max(0,this.cards[a].getCost(0))*(this.status[59]-1))
                     if(this.status[59]>0){
                         this.status[59]=0
+                    }
+                }
+            break
+            case 69:
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.cards[a].class==1){
+                        this.battle.cardManagers[this.player].draw(this.statusMarker[0])
+                    }
+                    if(this.status[60]>0){
+                        this.status[60]=0
                     }
                 }
             break
