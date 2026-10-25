@@ -332,7 +332,7 @@ class attack{
             case 11048: case 11052: case 11057: case 11058: case 11059: case 11060: case 11061: case 11065: case 11082: case 11083: case 11089: case 11090: case 11091: case 11093: case 11095: case 11101: case 11105: case 11112: case 11113: case 11122:
             case 11125: case 11131: case 11133: case 11140: case 11141: case 11147: case 11148: case 11156: case 11160: case 11161: case 11177: case 11179: case 11183: case 11189: case 11201: case 11204: case 11205: case 11209: case 11217: case 11223:
             case 11226: case 11233: case 11234: case 11235: case 11238: case 11240: case 11241: case 11243: case 11254: case 11255: case 11256: case 11257: case 11260: case 11261: case 11264: case 11265: case 11266: case 11272: case 11273: case 11290:
-            case 11297: case 11301: case 11304:
+            case 11297: case 11301: case 11304: case 11314: case 11320: case 11322: case 11328: case 11329: case 11330: case 11333:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -433,7 +433,7 @@ class attack{
             case 10845: case 10846: case 10847: case 10848: case 10849: case 10850: case 10851: case 10852: case 10853: case 10854:
             case 10855: case 10856: case 10857: case 10858: case 10859: case 10925: case 11047: case 11071: case 11072: case 11084:
             case 11096: case 11126: case 11151: case 11152: case 11172: case 11175: case 11176: case 11186: case 11187: case 11207:
-            case 11208: case 11224: case 11225: case 11291:
+            case 11208: case 11224: case 11225: case 11291: case 11332:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -8892,6 +8892,29 @@ class attack{
                             this.userManager.draw(this.handSize)
                         }
                     break
+                    case 11320:
+                        this.userCombatant.addBlock(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(5)
+                        }
+                        for(let a=0,la=this.effect[3];a<la;a++){
+                            this.userCombatant.holdOrb(15)
+                        }
+                    break
+                    case 11322:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(4)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 11330:
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -16486,6 +16509,11 @@ class attack{
                             this.battle.addSpecificEnergy(1,this.player,2)
                         }
                     break
+                    case 11332:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
 
                 }
                 //mark 3
@@ -23129,6 +23157,37 @@ class attack{
                         this.userCombatant.statusEffect('Buffer',this.effect[0])
                         this.userManager.drawAbstract(this.effect[1],20,0,[3])
                     break
+                    case 11331:
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(3)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
+                    case 11339:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            if(this.lastPlayed[2].name!=''){
+                                let card11339=copyCardNew(this.lastPlayed[2])
+                                card11339.setCost(2,[0])
+                                if(!card11339.spec.includes(1)){
+                                    card11339.spec.push(1)
+                                    card11339.additionalSpec.push(1)
+                                }
+                                this.userManager.hand.cards.push(card11339)
+                            }
+                        }
+                    break
+                    case 11340:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            if(this.lastPlayed[4].name!=''){
+                                let card11340=copyCardNew(this.lastPlayed[4])
+                                card11340.setCost(2,[0])
+                                this.userManager.hand.cards.push(card11340)
+                            }
+                        }
+                    break
 
                 }
                 //mark 4
@@ -29573,6 +29632,39 @@ class attack{
                         this.userManager.draw(this.effect[0],1)
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                    break
+                    case 11316:
+                        this.userManager.hand.duplicate(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 11317:
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(1)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 11318:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 11319:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 11324:
+                        this.battle.overlayManager.overlays[8][this.player].active=true
+                        this.battle.overlayManager.overlays[8][this.player].activate()
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(16)
                         }
                     break
 
@@ -39652,7 +39744,7 @@ class attack{
                     case 481:
                         this.battle.tileManager.customActivate(5,[this.effect[0]])
                     break
-                    case 490: case 5935: case 7897: case 8424:
+                    case 490: case 5935: case 7897: case 8424: case 11321:
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userCombatant.holdOrb(0)
                         }
@@ -43804,6 +43896,76 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect(['Burn','Shock'][this.userCombatant.energyParity(this.mtgEnergy.length)],this.effect[1+this.userCombatant.energyParity(this.mtgEnergy.length)])
                     break
+                    case 11314:
+                        this.userCombatant.statusEffect('Iron Orb Per Turn',this.effect[0])
+                    break
+                    case 11315:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(5)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(15)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userCombatant.holdOrb(16)
+                        }
+                        for(let a=0,la=this.effect[3];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 11325:
+                        this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[0]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                    break
+                    case 11326:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                        this.userCombatant.statusEffect('Glass Orb Boost',this.effect[1])
+                    break
+                    case 11327:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(12)
+                        }
+                        this.userCombatant.tickOrbs(12)
+                    break
+                    case 11328:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[1]])
+                    break
+                    case 11329:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                        this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[1]])
+                    break
+                    case 11334:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                        this.userCombatant.statusEffect('Energy in 2 Turns',this.effect[1])
+                    break
+                    case 11335:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                        this.userCombatant.statusEffect('(N) Next Turn',1)
+                        this.userCombatant.statusEffect('(N) in 2 Turns',1)
+                    break
+                    case 11336:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                        this.userCombatant.statusEffect('(E) in 2 Turns',1)
+                    break
+                    case 11338:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userCombatant.holdOrb(3)
+                        }
+                        this.userCombatant.statusEffect('Energy Orb Draw',this.effect[1])
+                    break
 
                 }
                 //mark 12
@@ -43869,7 +44031,7 @@ class attack{
                         }
                         this.userCombatant.addBarrier(this.effect[0])
                     break
-                    case 5520: case 6297: case 7694: case 7874: case 9203: case 9445: case 9491: case 11275:
+                    case 5520: case 6297: case 7694: case 7874: case 9203: case 9445: case 9491: case 11275: case 11323: case 11337:
                         this.battle.combatantManager.areaAbstract(0,[this.effect[0]*this.energy,this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 5600:
@@ -44399,6 +44561,16 @@ class attack{
                     case 11275:
                         if(this.lastPlayed[0].class==11){
                             this.userManager.drawAbstract(this.effect[1],10,0,[84])
+                        }
+                    break
+                    case 11323:
+                        for(let a=0,la=this.effect[1]*this.energy;a<la;a++){
+                            this.userCombatant.holdOrb(14)
+                        }
+                    break
+                    case 11337:
+                        for(let a=0,la=this.effect[1]*this.energy;a<la;a++){
+                            this.userCombatant.holdOrb(3)
                         }
                     break
 

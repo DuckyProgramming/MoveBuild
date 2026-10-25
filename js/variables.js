@@ -120,7 +120,7 @@ types={
         {name:'Destructor Bot',life:81,behavior:0,spec:[19],move:{type:0,speed:3},attack:[{type:136,effect:[32]}],description:`Has no regard for its nonexistent life`},
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[2,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
-        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,2]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
+        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,3]},{type:149,effect:[3,2]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
         {name:'Riot Police',life:67,behavior:0,spec:[9],move:{type:0,speed:1},attack:[{type:150,effect:[6,3]},{type:9,effect:[16]}],description:`Responds to everything except riots`},
         {name:'Reichswehr',life:43,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:151,effect:[6,1]},{type:477,effect:[2]},{type:12,effect:[14]}],description:`No historical context`},
         {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:153,effect:[2]},{type:79,effect:[5]},{type:6,effect:[6]},{type:1,effect:[7]}],description:`Would rather not do anything`},
@@ -230,7 +230,7 @@ types={
         {name:'Defective Robot B',life:65,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:20,effect:[4]}],description:`Badly written microcode`},
         {name:'Defective Robot C',life:66,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:10,effect:[4]}],description:`Badly planned architecture`},
         {name:'Rusted Robot',life:81,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:27,effect:[5,2]},{type:488,effect:[2,2]},{type:10,effect:[3]}],description:`Produced far too long ago`},
-        {name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[3]}],description:`We've been expecting you`},
+        {name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[2]}],description:`We've been expecting you`},
         {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
         {name:'Glazer',life:60,behavior:1,spec:[23],move:{type:2,speed:2},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
         {name:'Glazer Clone',life:60,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
@@ -274,7 +274,7 @@ types={
         {name:'Zenith Eye E',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:483,effect:[8,2]}],description:`surely`},
         {name:'Zenith Eye F',life:37,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:484,effect:[8,2]}],description:`break`},
         
-        {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
+        {name:'General Duckion',life:175,behavior:11,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:10,effect:[10]},{type:465,effect:[10,10]},{type:40,effect:[3]}],description:`Duck leader`},
         {name:'Slime Boss',life:90,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:403,effect:[11]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[12]},{type:55,effect:[2]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
@@ -308,6 +308,7 @@ types={
         {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
         
         //{name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:405,effect:[24,2]}],description:`Just you wait...`},
+        //{name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
         //{name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         //{name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
         
@@ -1740,6 +1741,10 @@ types={
         {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Energy, Draw 1',id:1017,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal 9 Damage to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
         {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Mana, Draw 1',id:1018,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal 9 Damage to a Random Enemy,\nGain (E), Draw 1 Card'},
         {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
+
+        /*{name:'Carbon',internal:'4 Damage',id:1020,rarity:4,list:0,menu:false,temp:true,mtg:0,description:''},
+        {name:'Graphite',internal:'10 Damage',id:1021,rarity:4,list:0,menu:false,temp:true,mtg:0,description:''},
+        {name:'Diamond',internal:'25 Damage',id:1022,rarity:4,list:0,menu:false,temp:true,mtg:0,description:''},*/
 
         //mark i
     ],color:{
@@ -7897,8 +7902,10 @@ Does not spend the orb.`,
         },{name:'Explosive Orb',mtg:0,desc:
 `On evoke, deals 16 splash damage.
 If evoked on yourself, take 4 damage. Otherwise, cannot harm yourself.`,
-        },{name:'Iron Orb',mtg:1,desc:
+        },/*{name:'Iron Orb',mtg:1,desc:
 `On evoke, deals 6 damage. The amount of damage increases by 3 every turn.`,
+        },*/{name:'Iron Orb',mtg:1,desc:
+`On evoke, deals 9 damage. The amount of damage increases by 6 every turn.`,
         },{name:'Electric Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
         },{name:'Dust Orb',mtg:0,desc:
@@ -7925,8 +7932,11 @@ Unaffected by focus.`,
         },{name:'Poison Orb',mtg:0,desc:
 `On evoke, applies 5 Poison.
 Unaffected by focus.`,
-        },{name:'Glass Orb',mtg:0,desc:
+        },/*{name:'Glass Orb',mtg:0,desc:
 `On evoke, deals 4 damage.`,
+        },*/{name:'Glass Orb',mtg:0,desc:
+`On evoke, deals 24 damage. When ticked, the amount of damage increases by 4.
+However, the damage also decrease by 8 each turn.`,
         },{name:'Dual Orb',mtg:0,desc:
 `On evoke, deals 15 damage on an enemy or adds 20 block on an ally or yourself.`,
         },{name:'Holding',mtg:0,desc:

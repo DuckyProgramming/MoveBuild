@@ -3421,8 +3421,8 @@ function generateSprite(layer,type,direction){
 
 			layer2.fill(...data.color.jacket.detail)
 			for(let a=0,la=18;a<la;a++){
-				let ls=lsin(rdir)
-				let lc=lcos(rdir)
+				let ls=lsin((a+0.5)/la*360+direction)
+				let lc=lcos((a+0.5)/la*360+direction)
 				if(a>=2&&a<16&&lc>0){
 					layer2.rect(7.25*ls,2.5+lc,lc*0.4,2)
 					layer2.triangle(

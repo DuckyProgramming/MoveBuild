@@ -1975,7 +1975,7 @@ class card{
             case 3606: case 3607: case 3608: case 3609: case 3610: case 3611: case 3612: case 4205: case 5146: case 5418:
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
-            case 9523: case 9524: case 9525: case 9785: case 10505: case 10918: case 11003: case 11259: case 11302:
+            case 9523: case 9524: case 9525: case 9785: case 10505: case 10918: case 11003: case 11259: case 11302: case 11321:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -2217,7 +2217,7 @@ class card{
                     this.battle.cardManagers[this.player].draw(this.effect[2])
                     this.deSize=true
                 break
-                case 5960: case 5961: case 7864: case 7865:
+                case 5960: case 5961: case 7864: case 7865: case 11322:
                     this.costDown(0,[1])
                 break
             }

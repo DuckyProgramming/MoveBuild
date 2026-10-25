@@ -105,7 +105,7 @@ constants.status={
         'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
-        'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation',
+        'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -213,7 +213,7 @@ constants.status={
         0,0,0,0,0,0,1,0,0,1,//103
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
-        2,0,1,0,0,
+        2,0,1,0,0,0,0,0,
     ],
     /*
     0-none
@@ -330,7 +330,7 @@ constants.status={
         2,3,2,2,2,2,2,2,2,2,//103
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
-        2,2,1,2,2,
+        2,2,1,2,2,2,2,2,
     ]
     /*
     0-good
@@ -5113,6 +5113,7 @@ class combatant{
         this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8608,count[5]])
         this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8609,count[16]])
         this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[8610,count.filter(value=>value>0).length])
+        this.battle.cardManagers[this.id].trueAllGroupEffectArgs(65,[11313,count[13]])
     }
     clearOrbs(){
         for(let a=0,la=this.orbs.length;a<la;a++){
@@ -5155,8 +5156,16 @@ class combatant{
                 if(this.orbs[a]==-1){
                     success=true
                     this.orbs[a]=type
-                    if(type==16){
+                    /*if(type==16){
                         this.orbDetail[a]=6
+                    }*/
+                    switch(type){
+                        case 12:
+                            this.orbDetail[a]=24
+                        break
+                        case 16:
+                            this.orbDetail[a]=0
+                        break
                     }
                     if(this.status.main[752]>0){
                         this.tickOrb(a)
@@ -5228,8 +5237,13 @@ class combatant{
                 }
             break
             case 3:
-                if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.addSpecificEnergy(variants.mtg?3:2,target>=this.battle.players?this.id:target,6)
+                //if(target<this.battle.players||this.id<this.battle.players){
+                if(target<this.battle.players){
+                    //this.battle.addSpecificEnergy(variants.mtg?3:2,target>=this.battle.players?this.id:target,6)
+                    this.battle.addSpecificEnergy(variants.mtg?3:2,target,6)
+                    if(this.status.main[1057]>0){
+                        this.battle.cardManagers[target].draw(this.status.main[1057])
+                    }
                 }
             break
             case 4:
@@ -5246,8 +5260,10 @@ class combatant{
                 this.battle.combatantManager.combatants[target].orbTake(round(8*multi*playerMulti),-1)
             break
             case 6:
-                if(target<this.battle.players||this.id<this.battle.players){
-                    this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(2)
+                //if(target<this.battle.players||this.id<this.battle.players){
+                if(target<this.battle.players){
+                    //this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(2)
+                    this.battle.cardManagers[target].draw(2)
                 }
                 if(this.status.main[647]>0&&!this.orbs.includes(4)){
                     for(let a=0,la=this.status.main[647];a<la;a++){
@@ -5273,10 +5289,11 @@ class combatant{
             case 11:
                 this.battle.combatantManager.combatants[target].statusEffect('Poison',5)
             break
-            case 12:
-                if(target!=this.id){
+            case 12: case 16:
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti),-1)
+                /*if(target!=this.id){
                     this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
-                }
+                }*/
             break
             case 13:
                 if((this.battle.combatantManager.combatants[target].team>0?1:0)!=(this.team>0?1:0)){
@@ -5286,14 +5303,15 @@ class combatant{
                 }
             break
             case 14:
-                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(12*multi))
+                //this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(12*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(16*multi))
             break
             case 15:
                 this.battle.combatantManager.combatants[target].addBlock(round(12*multi))
             break
-            case 16:
+            /*case 16:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti),-1)
-            break
+            break*/
             case 17:
                 this.battle.combatantManager.combatants[target].orbTake(round(36*multi*playerMulti),-1)
                 if(this.id<this.battle.players){
@@ -5342,7 +5360,12 @@ class combatant{
                 }
             break
             case 3:
-                this.battle.addSpecificEnergy(variants.mtg?2:1,target>=this.battle.players?this.id:target,6)
+                if(target<this.battle.players){
+                    this.battle.addSpecificEnergy(variants.mtg?2:1,target,6)
+                }
+                /*if(target<this.battle.players||this.id<this.battle.players){
+                    this.battle.addSpecificEnergy(variants.mtg?2:1,target>=this.battle.players?this.id:target,6)
+                }*/
             break
             case 4:
                 if(this.battle.combatantManager.combatants[target].id!=this.id){
@@ -5353,7 +5376,10 @@ class combatant{
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
             break
             case 6:
-                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(1)
+                if(target<this.battle.players){
+                    this.battle.cardManagers[target].draw(1)
+                }
+                //this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(1)
             break
             case 7:
                 this.battle.combatantManager.combatants[target].statusEffect('Burn',2)
@@ -5373,10 +5399,11 @@ class combatant{
             case 11:
                 this.battle.combatantManager.combatants[target].statusEffect('Poison',2)
             break
-            case 12:
-                if(target!=this.id){
+            case 12: case 16:
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti/2),-1)
+                /*if(target!=this.id){
                     this.battle.combatantManager.combatants[target].orbTake(round(2*multi*playerMulti),-1)
-                }
+                }*/
             break
             case 13:
                 if((this.battle.combatantManager.combatants[target].team>0?1:0)!=(this.team>0?1:0)){
@@ -5386,14 +5413,15 @@ class combatant{
                 }
             break
             case 14:
-                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(6*multi))
+                //this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(6*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Counter All',round(8*multi))
             break
             case 15:
                 this.battle.combatantManager.combatants[target].addBlock(round(6*multi))
             break
-            case 16:
+            /*case 16:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti/2),-1)
-            break
+            break*/
             case 17:
                 this.battle.combatantManager.combatants[target].orbTake(round(18*multi*playerMulti),-1)
                 if(this.id<this.battle.players){
@@ -6901,6 +6929,7 @@ class combatant{
                     case 1048: this.miniStatus('Take Damage in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 1049: this.miniStatus('Lose Health in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 1050: this.prime(this.status.main[this.status.ticker[a]]); break
+                    case 1055: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(16)} break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])
@@ -6957,6 +6986,7 @@ class combatant{
                 this.tickOrbs(-1)
             }
         }
+        this.preTickOrbs(-1)
         if(this.stance>0&&this.id<this.battle.players){
             switch(this.stance){
                 case 5:
@@ -7028,6 +7058,13 @@ class combatant{
             }
         }
     }
+    preTickOrbs(type){
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]==type||type==-1){
+                this.preTickOrb(a)
+            }
+        }
+    }
     tickOrb(a){
         let multi=1
         let totalFocus=this.status.main[111]+this.status.main[865]
@@ -7044,14 +7081,26 @@ class combatant{
                     this.battle.combatantManager.randomEnemyEffect(0,[round((4+this.status.main[593])*multi)])
                 }
             break
-            case 14:
-                this.statusEffect('Counter All',round(6*multi))
+            case 12:
+                //this.orbDetail[a]=max(0,this.orbDetail[a]-4)
+                this.orbDetail[a]+=4+this.status.main[1056]
             break
+            /*case 14:
+                this.statusEffect('Counter All',round(6*multi))
+            break*/
             case 15:
                 this.addBlock(round((6+this.status.main[705])*multi))
             break
             case 16:
-                this.orbDetail[a]+=3+this.status.main[823]
+                //this.orbDetail[a]+=3+this.status.main[823]
+                this.orbDetail[a]+=6+this.status.main[823]
+            break
+        }
+    }
+    preTickOrb(a){
+        switch(this.orbs[a]){
+            case 12:
+                this.orbDetail[a]=max(0,this.orbDetail[a]-8)
             break
         }
     }

@@ -1,9 +1,9 @@
-CS 142 [PREHEX / VINCENT]
+CS 143 [PREHEX / VINCENT]
 
 vincent rework
 make sure his tutorial is not ruined
 
-CS 143 [?]
+CS 144 [?]
 
 carbon (4 damage), hydrogen, quartz (?), iron (6 block), nitrogen (remove 1 fatigue), zinc ()
 carbon = graphite ()
@@ -26,7 +26,34 @@ big prehex reworks
 purge first!
 make sure his tutorial is not ruined
 
-+8 wish?
+test airi
+test sanae
+test menessa
+test dd610
+
++8 wishes
+
+rusty strike - 6 damage, 1 weak, turn number back 1
+temporal loop - make 1 copy of a card, echo
+alternator - draw a card per card you played last turn
+tick tock - 4 damage 2 times, increases by 1 when turn number decreases
+time bomb - grenade + change turn number
+detect flaws - apply 1 vulnerable, gain 1 strength if target will attack
+hyperactive - 7 damage, if you have caffeine gain 1 energy and draw a card
+rocket jump - teleport, deal 8 splash damage around where you LEFT
+rampant evolution - transform a card, evolve your hand
+controlled evolution - exhaust a card, evolve your hand
+crowbar - damage, center of hand: draw and upgrade a card
+expendable asset - deal 11 damage, retain, when retained lose 1 currency
+comedy - gain 1 pity, gain 2 weak, apply 2 weak in all directions
+scream - apply 1 stun, end your turn, exhaust
+sneaky worker - gain 5 currency per enemy, add a pristine
+nuclear hell - gain 1 radiation whenever you play a card
+blade of garbage - add a smite to hand, remove 2 fatigues (and a safety counterpart)
+trash compacting - when you play a fatigue, add compound
+gumdrop - heal 1, retain block for 2 turns
+[split onion throw]
+[oreo waffle]
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror

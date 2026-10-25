@@ -3659,7 +3659,7 @@ function antiOrb(orb){
 		case 0: return 1
 		case 1: return 0
 		case 2: return 2
-		case 3: return 12
+		case 3: return 14
 		case 4: return 6
 		case 5: return 15
 		case 6: return 4
@@ -3668,11 +3668,11 @@ function antiOrb(orb){
 		case 9: return 10
 		case 10: return 9
 		case 11: return 18
-		case 12: return 3
+		case 12: return 16
 		case 13: return 13
-		case 14: return 16
+		case 14: return 3
 		case 15: return 5
-		case 16: return 14
+		case 16: return 12
 		case 17: return 19
 		case 18: return 11
 		case 19: return 17
@@ -3817,6 +3817,15 @@ function checkPast(){
 				}
 			}
 		})
+	}
+}
+function outCharIcon(start,end){
+	graphics.minor=[]
+	for(let a=0,la=end-start;a<la;a++){
+		graphics.minor.push(createGraphics(100,100))
+		setupLayer(graphics.minor[graphics.minor.length-1])
+		displayPlayerSymbol(graphics.minor[graphics.minor.length-1],50,50,start+a,0,2,1)
+		save(graphics.minor[graphics.minor.length-1])
 	}
 }
 /*chambers=[`B`,``,``,``,``,``]

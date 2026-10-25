@@ -2685,7 +2685,7 @@ class group{
                                     }
                                 }
                             break
-                            case 8606: case 8607: case 8608: case 8609: case 8610: case 8620:
+                            case 8606: case 8607: case 8608: case 8609: case 8610: case 8620: case 11313:
                                 if(args[1]>=this.cards[a].effect[0]){
                                     let name=''
                                     switch(this.cards[a].attack){
@@ -2698,7 +2698,7 @@ class group{
                                         case 8608:
                                             name='Citrinitas'
                                         break
-                                        case 8609:
+                                        case 8609: case 11313:
                                             name='Rubedo'
                                         break
                                         case 8610:

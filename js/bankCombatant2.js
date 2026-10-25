@@ -1130,7 +1130,8 @@ combatant.prototype.setupGraphics=function(direction){
 
             for(let a=0,la=13;a<la;a++){
                 this.dress.main.push({spin:[-180+a/la*360,-120+a/la*360,-150+a/la*360],y:[0,0,20]})
-                this.dress.main.push({spin:[-153+a/la*360,-138+a/la*360,-150+a/la*360],y:[16,16,20]})
+                //this.dress.main.push({spin:[-153+a/la*360,-138+a/la*360,-150+a/la*360],y:[16,16,20]})
+                this.dress.main.push({spin:[-150+a/la*360,-141+a/la*360,-150+a/la*360],y:[16,16,20]})
             }
 
             this.braid=[]
@@ -5537,15 +5538,35 @@ combatant.prototype.minorDisplay=function(type,key){
                             this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85,
                             this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85
                         )
-                        this.layer.line(
+                        /*this.layer.line(
                             this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
                             this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
                             this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+a/la*5.4)*sin(dir[0]+90),
                             this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+a/la*5.4)*cos(dir[0]+90)
-                        )
-                        this.layer.line(
+                        )*/
+                        /*this.layer.line(
                             this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
                             this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+(a+1)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+(a+1)/la*5.4)*cos(dir[0]+90)
+                        )*/
+                        this.layer.bezier(
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.4)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.4)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.13+this.graphics.arms[key].bottom.x*0.87+(-2.7+(a+0.2)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.13+this.graphics.arms[key].bottom.y*0.87+(-2.7+(a+0.2)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+a/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+a/la*5.4)*cos(dir[0]+90)
+                        )
+                        this.layer.bezier(
+                            this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.6)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.6)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.17+this.graphics.arms[key].bottom.x*0.83+(-2.7+(a+0.8)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.17+this.graphics.arms[key].bottom.y*0.83+(-2.7+(a+0.8)/la*5.4)*cos(dir[0]+90),
                             this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+(a+1)/la*5.4)*sin(dir[0]+90),
                             this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+(a+1)/la*5.4)*cos(dir[0]+90)
                         )
@@ -5598,7 +5619,7 @@ combatant.prototype.minorDisplay=function(type,key){
                             this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85,
                             this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85
                         )
-                        this.layer.line(
+                        /*this.layer.line(
                             this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
                             this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
                             this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+a/la*5.4)*sin(dir[0]+90),
@@ -5607,6 +5628,26 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
                             this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+(a+1)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+(a+1)/la*5.4)*cos(dir[0]+90)
+                        )*/
+                        this.layer.bezier(
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.12+this.graphics.arms[key].bottom.x*0.88+(-2.7+(a+0.4)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.12+this.graphics.arms[key].bottom.y*0.88+(-2.7+(a+0.4)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.13+this.graphics.arms[key].bottom.x*0.87+(-2.7+(a+0.2)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.13+this.graphics.arms[key].bottom.y*0.87+(-2.7+(a+0.2)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+a/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+a/la*5.4)*cos(dir[0]+90)
+                        )
+                        this.layer.bezier(
+                            this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.5)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.5)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.18+this.graphics.arms[key].bottom.x*0.82+(-2.7+(a+0.6)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.18+this.graphics.arms[key].bottom.y*0.82+(-2.7+(a+0.6)/la*5.4)*cos(dir[0]+90),
+                            this.graphics.arms[key].middle.x*0.17+this.graphics.arms[key].bottom.x*0.83+(-2.7+(a+0.8)/la*5.4)*sin(dir[0]+90),
+                            this.graphics.arms[key].middle.y*0.17+this.graphics.arms[key].bottom.y*0.83+(-2.7+(a+0.8)/la*5.4)*cos(dir[0]+90),
                             this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+(-2.7+(a+1)/la*5.4)*sin(dir[0]+90),
                             this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+(-2.7+(a+1)/la*5.4)*cos(dir[0]+90)
                         )

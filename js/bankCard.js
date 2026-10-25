@@ -11582,6 +11582,34 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11308: string+=`Gain ${effect[0]} Temporary\nDexterity\nDraw ${effect[1]} Defense${pl(effect[1])}`; break
         case 11309: string+=`Upgrade ${effect[0]} Random\nOther Card${pl(effect[0])}`; break
         case 11312: string+=`Remove All Block\nof All Enemies\nApply ${effect[0]} Vulnerable\nto All Enemies`; break
+        case 11313: string+=`Succession:\nHave ${effect[0]} Orb Slot${pl(effect[0])},\nAll Filled With\nDual Orbs`; break
+        case 11314: string+=`Hold ${effect[0]} Iron Orb${pl(effect[0])}\nEvery Turn`; break
+        case 11315: string+=`Hold ${effect[0]} Electric Orb${pl(effect[0])}\nHold ${effect[1]} Dust Orb${pl(effect[1])}\nHold ${effect[2]} Iron Orb${pl(effect[2])}\nHold ${effect[3]} Glass Orb${pl(effect[3])}`; break
+        case 11316: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Card${pl(effect[0])}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated\nHold ${effect[1]} Glass Orb${pl(effect[1])}`; break
+        case 11317: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nHold ${effect[1]} Shield Orb${pl(effect[1])}\nHold ${effect[2]} Glass Orb${pl(effect[2])}`; break
+        case 11318: string+=`Hold ${effect[0]} Glass Orb${pl(effect[0])}`; break
+        case 11319: string+=`Hold ${effect[0]} Glass Orb${pl(effect[0])}\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 11320: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nHold ${effect[2]} Electric Orb${pl(effect[2])}\nHold ${effect[3]} Dust Orb${pl(effect[3])}`; break
+        case 11321: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 11322: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Dark Orb${pl(effect[1])}\nHold ${effect[2]} Glass Orb${pl(effect[2])}\nCosts 1 Less\nWhen You Evoke an Orb`; break
+        case 11323: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nin All Directions\nHold ${effect[1]!=1?effect[1]:``}X Crystal Orbs`; break
+        case 11324: string+=`Put a Card in Draw\nPile in Your Hand\nHold ${effect[0]} Iron Orb${pl(effect[0])}`; break
+        case 11325: string+=`Apply ${effect[0]} Vulnerable\nin All Directions\nHold ${effect[1]} Glass Orb${pl(effect[1])}`; break
+        case 11326: string+=`Hold ${effect[0]} Glass Orb${pl(effect[0])}\nGlass Orbs Grow\nby ${effect[1]} More When Ticked`; break
+        case 11327: string+=`Hold ${effect[0]} Glass Orb${pl(effect[0])}\nTick All Glass Orbs`; break
+        case 11328: string+=`Apply ${effect[0]} Weak\nEvoke First Orb ${effect[1]} Time${pl(effect[1])}`; break
+        case 11329: string+=`Apply ${effect[0]} Vulnerable\nEvoke First Orb ${effect[1]} Time${pl(effect[1])}`; break
+        case 11330: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak\nHold ${effect[2]} Crystal Orb${pl(effect[2])}`; break
+        case 11331: string+=`Take Another Turn\nHold ${effect[0]} Energy Orb${pl(effect[0])}\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+        case 11332: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nHold ${effect[1]} Crystal Orb${pl(effect[1])}`; break
+        case 11333: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nHeal ${this.calculateEffect(effect[1],4)} Health\nHold ${effect[2]} Crystal Orb${pl(effect[2])}`; break
+        case 11334: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}\nGain ${effect[1]} Energy\nNext 2 Turns`; break
+        case 11335: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}\nGain (N) Next 2 Turns`; break
+        case 11336: string+=`Hold ${effect[0]} Crystal Orb${pl(effect[0])}\nGain (E) Next 2 Turns`; break
+        case 11337: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nin All Directions\nHold ${effect[1]!=1?effect[1]:``}X Energy Orbs`; break
+        case 11338: string+=`Hold ${effect[0]} Energy Orb${pl(effect[0])}\nWhen You Evoke\nan Energy Orb,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 11339: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of\nthe Last Defense\nPlayed to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0 and Exhaust${effect[0]!=1?``:`s`}`; break
+        case 11340: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of\nthe Last Power\nPlayed to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
 
         //mark p
         //mark q
