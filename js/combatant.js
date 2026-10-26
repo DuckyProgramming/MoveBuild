@@ -105,7 +105,7 @@ constants.status={
         'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
-        'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw',
+        'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -213,7 +213,7 @@ constants.status={
         0,0,0,0,0,0,1,0,0,1,//103
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
-        2,0,1,0,0,0,0,0,
+        2,0,1,0,0,0,0,0,0,
     ],
     /*
     0-none
@@ -330,7 +330,7 @@ constants.status={
         2,3,2,2,2,2,2,2,2,2,//103
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
-        2,2,1,2,2,2,2,2,
+        2,2,1,2,2,2,2,2,2,
     ]
     /*
     0-good
@@ -1025,7 +1025,8 @@ class combatant{
                 this.statusEffect('Revive',diffUnfair?2:1)
             break
             case 'Graphite Block':
-                this.statusEffect('Armor',diffUnfair?16:8)
+                //this.statusEffect('Armor',diffUnfair?16:8)
+                this.statusEffect('Armor',diffUnfair?12:8)
                 this.statusEffect('Armor Per Turn',1)
             break
             case 'Spirit of Elegance':
@@ -1270,7 +1271,7 @@ class combatant{
                         this.spec.push(7)
                         this.removeAttack(4)
                     break
-                    case 'Management Robot': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Management Robot Commander': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Experimental Robot': case 'Rusted Robot': case 'Defective Robot A': case 'Defective Robot B':
+                    case 'Management Robot': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Robot Commander': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Experimental Robot': case 'Rusted Robot': case 'Defective Robot A': case 'Defective Robot B':
                         this.spec.push(7)
                     break
                     case 'Management Soldier':
@@ -6930,6 +6931,7 @@ class combatant{
                     case 1049: this.miniStatus('Lose Health in 2 Turns',this.status.main[this.status.ticker[a]]); break
                     case 1050: this.prime(this.status.main[this.status.ticker[a]]); break
                     case 1055: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(16)} break
+                    case 1058: this.miniStatus('Claw Up',this.status.main[this.status.ticker[a]]); break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])

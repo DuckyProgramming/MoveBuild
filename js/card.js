@@ -1707,6 +1707,19 @@ class card{
             case -162:
                 userCombatant.deStatus('Cannot Move',this.effect[0])
             break
+            case -163:
+                if(this.battle.combatantManager.allEffect(67,['Mailshield',1])>0&&!this.battle.relicManager.hasRelic(574,this.player)){
+                    this.battle.relicManager.addRelic(574,this.player)
+                }
+            break
+            case -164:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Fatigue',types.card),0,constants.playerNumber+1)
+                }
+            break
+            case -166:
+                this.battle.cardManagers[this.player].allEffect(2,2)
+            break
             case 202:
                 userCombatant.combo+=this.effect[1]
             break
@@ -3049,6 +3062,9 @@ class card{
             case -158:
                 this.battle.loseCurrency(this.effect[0],this.player)
             break
+            case -165:
+                this.battle.cardManagers[this.player].allEffect(2,22)
+            break
             case 1275:
                 this.battle.addCurrency(this.effect[0],this.player)
             break
@@ -4060,6 +4076,7 @@ class card{
         }
     }
     anotherAmplified(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
             case 862: case 4299:
                 if(this.getCost(0)>0){
@@ -4068,6 +4085,9 @@ class card{
             break
             case 3805:
                 this.effect[0]+=this.effect[1]
+            break
+            case 11404:
+                userCombatant.statusEffect('Strength',this.effect[1])
             break
         }
     }
@@ -4164,7 +4184,7 @@ class card{
             case 6548:
                 userCombatant.statusEffect('Strength',this.effect[1])
             break
-            case 7035:
+            case 7035: case 11375:
                 this.battle.addCurrency(this.effect[1],this.player)
             break
             case 7080:
@@ -4255,7 +4275,7 @@ class card{
                 this.effect[1]+=this.effect[3]
                 this.effect[2]+=this.effect[3]
             break
-            case 5969: case 8580: case 10631: case 10632: case 10942:
+            case 5969: case 8580: case 10631: case 10632: case 10942: case 11341: case 11342:
                 this.effect[0]+=this.effect[1]
             break
             case 6932:

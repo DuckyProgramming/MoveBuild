@@ -11578,6 +11578,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.rect(0,0,4.5,6,1)
         break
+        case 1058:
+            layer.fill(180,0,0,fade)
+            layer.quad(0,5,-0.8,0,0,-5,0.8,0)
+            layer.quad(-1,5,-2,0.4,-4,-4,-3,0.6)
+            layer.quad(1,5,2,0.4,4,-4,3,0.6)
+            layer.fill(80,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
 
     }
     //mark s

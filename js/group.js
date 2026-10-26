@@ -4293,14 +4293,14 @@ class group{
             case 5942:
                 userCombatant.statusEffect('Focus',card.effect[0])
             break
-            case 5971: case 7302: case 7709:
+            case 5971: case 7302: case 7709: case 11357:
                 if(variants.mtg){
                     this.battle.addSpecificEnergy(card.effect[1],this.player,6)
                 }else{
                     this.battle.addEnergy(card.effect[1],this.player)
                 }
             break
-            case 5972: case 7303: case 7710:
+            case 5972: case 7303: case 7710: case 11358:
                 this.battle.addSpecificEnergy(1,this.player,6)
             break
             case 6375: case 6376: case 6412: case 6413:
@@ -5461,7 +5461,8 @@ class group{
                         let amplifyCost=[]
                         switch(this.battle.attackManager.type){
                             case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646: case 4892: case 4937: case 4938:
-                            case 4939: case 10358: case 10359: case 10369: case 10361: case 10398: case 10456: case 10457: case 10458:
+                            case 4939: case 10358: case 10359: case 10369: case 10361: case 10398: case 10456: case 10457: case 10458: case 11344:
+                            case 11354:
                                 amplifyCost=[1]
                             break
                             case 4637: case 10400:
@@ -5474,10 +5475,10 @@ class group{
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
-                            case 10061:
+                            case 10061: case 11347: case 11352: case 11358: case 11365: case 11366:
                                 amplifyCost=[6]
                             break
-                            case 4663: case 6946: case 10368:
+                            case 4663: case 6946: case 10368: case 11370:
                                 amplifyCost=[2]
                             break
                             case 4672: case 4866: case 10664:
@@ -5498,7 +5499,7 @@ class group{
                             case 4869:
                                 amplifyCost=[1,1,1]
                             break
-                            case 8321:
+                            case 8321: case 11342:
                                 amplifyCost=[3]
                             break
                             default:

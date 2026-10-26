@@ -1,9 +1,15 @@
-CS 143 [PREHEX / VINCENT]
+CS 144 [PREHEX / VINCENT]
+
+big prehex reworks
+make sure his tutorial is not ruined
 
 vincent rework
 make sure his tutorial is not ruined
 
-CS 144 [?]
+test airi
+make sure her tutorial is not ruined
+
+CS 145 [AIRI / SANAE]
 
 carbon (4 damage), hydrogen, quartz (?), iron (6 block), nitrogen (remove 1 fatigue), zinc ()
 carbon = graphite ()
@@ -22,17 +28,22 @@ quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
-big prehex reworks
-purge first!
-make sure his tutorial is not ruined
+sanae sucks
+riptide scales with block now
 
-test airi
-test sanae
-test menessa
-test dd610
+past unknowns should say what they were
+
+backtick should only give you relics you don't have
+
+tooltips for dictionary
 
 +8 wishes
 
+a ton of fresh prehex cards
+more ways to turn back time
+
+[movement for edgar]
+[movement for edgar]
 rusty strike - 6 damage, 1 weak, turn number back 1
 temporal loop - make 1 copy of a card, echo
 alternator - draw a card per card you played last turn
@@ -40,7 +51,7 @@ tick tock - 4 damage 2 times, increases by 1 when turn number decreases
 time bomb - grenade + change turn number
 detect flaws - apply 1 vulnerable, gain 1 strength if target will attack
 hyperactive - 7 damage, if you have caffeine gain 1 energy and draw a card
-rocket jump - teleport, deal 8 splash damage around where you LEFT
+rocket jump - teleport, deal 8 splash damage around where you LEFT (teleburst)
 rampant evolution - transform a card, evolve your hand
 controlled evolution - exhaust a card, evolve your hand
 crowbar - damage, center of hand: draw and upgrade a card
@@ -52,14 +63,16 @@ nuclear hell - gain 1 radiation whenever you play a card
 blade of garbage - add a smite to hand, remove 2 fatigues (and a safety counterpart)
 trash compacting - when you play a fatigue, add compound
 gumdrop - heal 1, retain block for 2 turns
+refracting knife - damage, all shivs in hand gain damage equal to damage dealt
+spammer - enter depression, gain 1 pity
+[return of continuum]
+[southern cross but a movement]
 [split onion throw]
 [oreo waffle]
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
 grammar check
-
-tooltips for dictionary
 
 [slio9]
 

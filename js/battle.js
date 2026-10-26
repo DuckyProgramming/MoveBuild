@@ -3779,7 +3779,7 @@ class battle{
                         this.combatantManager.clearBlockCombatants()
                         this.combatantManager.clearStatusCombatants()
                         if(this.encounter.class==2){
-                            if(this.nodeManager.world==3){
+                            if(this.nodeManager.world==3||this.nodeManager.world==4){
                                 transition.scene='victory'
                                 this.setupStats()
                             }else{

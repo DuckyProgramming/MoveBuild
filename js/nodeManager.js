@@ -14,7 +14,8 @@ class nodeManager{
         this.saveClass=-1
         this.harmElite=0
         this.harmBoss=0
-        this.mimic=floor(random(0,3))
+        //this.mimic=floor(random(0,3))
+        this.mimic=floor(random(1,3))
         this.endless=0
         
         this.unknownPossibilities=[]

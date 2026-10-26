@@ -14,7 +14,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[5]
+        current.menu.combatant=[8]
         current.menu.deck=[-1]
 
             //variants.mtg=true

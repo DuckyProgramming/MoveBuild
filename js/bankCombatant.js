@@ -11937,7 +11937,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-3,-30,0,-33,3,-30,0,-27)
                 }
             break
-            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Rammer Robot': case 'Experimental Robot': case 'Experimental Robot': case 'Defective Robot A': case 'Defective Robot B': case 'Defective Robot C': case 'Rusted Robot': case 'Warning Robot':
+            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Robot Commander': case 'Lockdown': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Rammer Robot': case 'Experimental Robot': case 'Experimental Robot': case 'Defective Robot A': case 'Defective Robot B': case 'Defective Robot C': case 'Rusted Robot': case 'Warning Robot':
                 if(this.name=='Rammer Robot'&&this.trigger.display.hex){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.hex[0]),this.fade*this.fades.hex)
@@ -12087,7 +12087,7 @@ combatant.prototype.display=function(){
                     }
                     this.layer.arc(0,-90,6,6,-180,0)
                 }
-                if(this.name=='Management Robot Commander'&&this.trigger.display.badge&&lcos(this.anim.direction)>0){
+                if(this.name=='Robot Commander'&&this.trigger.display.badge&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.badge[0])[0],this.flashColor(this.color.badge[0])[1],this.flashColor(this.color.badge[0])[2],this.fade*this.fades.badge)
                     this.layer.ellipse(lsin(this.anim.direction)*7.5+lcos(this.anim.direction)*3,-54,5*lcos(this.anim.direction),5)

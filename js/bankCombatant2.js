@@ -2269,7 +2269,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.goal={anim:{direction:this.anim.direction}}
         break
-        case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Management Robot Commander': case 'Lockdown': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Rammer Robot': case 'Experimental Robot': case 'Defective Robot A': case 'Defective Robot B': case 'Defective Robot C': case 'Rusted Robot': case 'Warning Robot':
+        case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot': case 'Robot Commander': case 'Lockdown': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Rammer Robot': case 'Experimental Robot': case 'Defective Robot A': case 'Defective Robot B': case 'Defective Robot C': case 'Rusted Robot': case 'Warning Robot':
             this.anim={direction:direction,head:direction,eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
@@ -2311,7 +2311,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.light=1
                     this.trigger.display.light=true
                 break
-                case 'Management Robot Commander':
+                case 'Robot Commander':
                     this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
                     this.color.badge=[[50,200,200],[75,225,225]]
                     this.fades.badge=1
