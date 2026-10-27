@@ -1990,7 +1990,7 @@ class overlay{
                                 case 4632:
                                     this.cards[a].attack=[-1052,-1061][a]
                                 break
-                                case 5164:
+                                case 5164: case 11489:
                                     this.cards[a].attack=[-1062,-1063][a]
                                 break
                                 case 5543:

@@ -1418,7 +1418,7 @@ types={
         {name:'Lilial',internal:'6 Defense Mana',id:453,rarity:0,list:0,mtg:2,world:[0,3],description:'Every 6 Defenses Played,\nGain (E)'},
         {name:'Sea Salt Ice Cream',internal:'Double Common Relic',id:454,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Gain 2 Copies\nof a Random Common Relic'},
         {name:'Pocket Mushroom',internal:'Lasting Counter Once',id:455,rarity:0,list:0,mtg:0,world:[0,3],description:'Counter the First Attack\nEach Combat For 12 Damage'},
-        {name:'Curious Eye',internal:'Starting Pull',id:456,rarity:2,list:0,mtg:0,world:[0,3],description:'On Turn 1,\nPut a Card in Your\nDraw Pile in Your Hand'},
+        {name:'Curious Eye',internal:'Starting Search',id:456,rarity:2,list:0,mtg:0,world:[0,3],description:'On Turn 1,\nPut a Card in Your\nDraw Pile in Your Hand'},
         {name:'Peanut Butter',internal:'Safe Heal',id:457,rarity:0,list:0,mtg:0,world:[0,2],description:`If You Didn't Lose Health,\nHeal 4 Health at the End of Combat`},
         {name:'Quality Disguise',internal:'Offcolor Choice',id:458,rarity:2,list:0,mtg:0,world:[0,2],description:'You Get a Card Option From Another Color\nChoose Color When Taken'},
         {name:'Backtick',internal:'Any Character Card',id:459,rarity:2,list:0,mtg:0,world:[0,3],description:'When Taken, Choose Any Card\nFrom Your Color to Add to Deck'},

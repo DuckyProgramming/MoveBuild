@@ -3370,7 +3370,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('12',0,0)
                 break
-                case 'Starting Pull':
+                case 'Starting Search':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,5,0,0.4,this.fade)
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)

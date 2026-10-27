@@ -1,13 +1,14 @@
-CS 144 [PREHEX / VINCENT]
+CS 145 [PREHEX / VINCENT]
 
 big prehex reworks
 
 vincent rework
 
-CS 145 [?]
+CS 146 [?]
 
 test airi
 test chip
+test sanae
 
 test shinmy (after fixes)
 test prehex (after fixes)
@@ -29,8 +30,6 @@ quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
-sanae sucks
-
 past unknowns should say what they were
 
 backtick should only give you relics you don't have
@@ -46,6 +45,12 @@ new sagume symbol
 a ton of fresh prehex cards
 more ways to turn back time
 more evolve
+
+riptide boost -> riptide block
+
+fix death note
+[kill yourself / teammate]
+[-h rewriter]
 
 dynamic move but its a defense now (and still gives combo)
 alternator - draw a card per card you played last turn [3255]
@@ -68,6 +73,8 @@ refracting knife - damage, all shivs in hand gain damage equal to damage dealt
 guardian angel - temporal guard with an additional effect (thematic)
 royal gamble - virtous circle but for influence
 [swiss cheese]
+
+split spirit siphon
 
 deckbuild LEGACY [40]
 

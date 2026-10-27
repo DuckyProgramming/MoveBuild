@@ -572,6 +572,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[13]&&user.status.main[1041]>0){
 				bonus+=user.status.main[1041]
 			}
+			if(variant&&args[14]&&user.status.main[1060]>0){
+				damage+=user.status.main[1060]
+			}
 			if(user.status.main[12]!=0&&type!=22){
 				bonus+=user.status.main[12]*max(1+user.status.main[838]*0.1+user.status.main[839]*0.1,0.2)
 			}
@@ -2384,13 +2387,13 @@ function outListing(){
 		64,//curse
 		40,//partnership
 		32,//tarot
-		24,//spectral
+		20,//spectral
 		40,//subcard
 		24,//event
 		160,//reserve
 		160,//developer
 		12,//basic
-		32,//pack
+		28,//pack
 		36,//misc
 	]
 	let unlisted=[
@@ -2782,6 +2785,24 @@ function outReuse(){
 					b=lb
 				}
 			}
+		}
+	}
+}
+function outReuse2(){
+	let set=types.card.filter(card=>!card.levels[0].spec.includes(12)).sort((a,b)=>{
+		if(a.levels[0].attack==b.levels[0].attack){
+			return a.levels[0].effect[0]-b.levels[0].effect[0]
+		}
+		return a.levels[0].attack-b.levels[0].attack
+	})
+	for(let a=0,la=set.length-1;a<la;a++){
+		if(
+			set[a].levels[0].attack==set[a+1].levels[0].attack&&
+			set[a].levels[0].effect[0]==set[a+1].levels[0].effect[0]&&
+			set[a].levels[0].spec.every(spec=>set[a+1].levels[0].spec.includes(spec))&&
+			set[a+1].levels[0].spec.every(spec=>set[a].levels[0].spec.includes(spec))
+		){
+			print(set[a].name,set[a+1].name)
 		}
 	}
 }

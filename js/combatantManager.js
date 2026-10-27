@@ -1240,6 +1240,10 @@ class combatantManager{
                             }
                         }
                     break
+                    case 69:
+                        this.combatants[a].takeDamage(args[0],args[1],2)
+                        this.combatants[a].statusEffect('Burn',args[2])
+                    break
                 }
             }
         }

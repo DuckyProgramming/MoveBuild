@@ -1466,8 +1466,11 @@ class battle{
                 if(userCombatant.getStatus('Must Attack or Take Damage')>0){
                     userCombatant.status.main[findList('Must Attack or Take Damage',userCombatant.status.name)]=0
                 }
-                if(userCombatant.getStatus('Attack Draw')>0){
-                    this.cardManagers[player].draw(userCombatant.getStatus('Attack Draw'))
+                if(userCombatant.getStatus('Attack Discover Attack')>0){
+                    this.battle.overlayManager.overlays[10][this.player].active=true
+                    for(let a=0,la=userCombatant.getStatus('Attack Discover Attack');a<la;a++){
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,1]]])
+                    }
                 }
                 if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Attack Energy')>0){
                     this.addEnergy(userCombatant.getStatus('2+ Cost Attack Energy'),player)

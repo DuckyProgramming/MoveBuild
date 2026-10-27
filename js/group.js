@@ -509,6 +509,10 @@ class group{
                     case 13:
                         this.cards[this.cards.length-1].setCost(2,[2])
                     break
+                    case 14:
+                        this.cards[this.cards.length-1].deSizeDrop=true
+                        this.cards[this.cards.length-1].exhaust=true
+                    break
                 }
             }
         }
@@ -849,6 +853,10 @@ class group{
         }
         if(userCombatant.getStatus('Shuffle (E)')>0){
             this.battle.addSpecificEnergy(userCombatant.getStatus('Shuffle (E)'),this.player,6)
+        }
+        if(userCombatant.getStatus('Shuffle Draw Search')>0){
+            this.battle.overlayManager.overlays[8][this.player].active=true
+            this.battle.overlayManager.overlays[8][this.player].activate()
         }
         this.battle.relicManager.activate(16,[this.id,this.player])
     }
@@ -2279,7 +2287,7 @@ class group{
                 break
                 case 44:
                     if(args.includes(this.cards[a].attack)){
-                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163||this.cards[a].attack==6511||this.cards[a].attack==10917?4:1)
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,this.cards[a].attack==5163||this.cards[a].attack==6511||this.cards[a].attack==10917||this.cards[a].attack==11448?4:1)
                         a--
                         la--
                     }
@@ -3213,6 +3221,9 @@ class group{
                         &&!(effect==87&&(this.cards[b].getCost(0)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].class!=2))
                         &&!(effect==88&&this.cards[b].class!=args[0])
                         &&!(effect==89&&(this.cards[b].level>=2||this.cards[b].class!=args[0]&&args[0]!=0||this.cards[b].spec.includes(37)||this.cards[b].id==args[1]))
+                        &&!(effect==90&&(this.cards[b].class!=args[0]||this.cards[b].getCost(1)<=0||this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41)||this.cards[b].spec.includes(55)||this.cards[b].spec.includes(59)||this.cards[b].spec.includes(60)))
+                        &&!(effect==91&&this.cards[b].edition!=0)
+                        &&!(effect==92&&this.cards[b].class!=args[1])
                     ){
                         list.push(b)
                     }
@@ -3243,7 +3254,7 @@ class group{
                     case 4: case 65:
                         this.copySelf(index)
                     break
-                    case 5: case 62: case 72: case 75: case 80: case 85:
+                    case 5: case 62: case 72: case 75: case 80: case 85: case 90:
                         this.cards[index].setCost(0,[0])
                     break
                     case 6:
@@ -3414,7 +3425,7 @@ class group{
                         this.cards[index].additionalSpec.push(15)
                         this.cards[index].limit=args[0]
                     break
-                    case 30:
+                    case 30: case 91:
                         this.cards[index].edition=args[0]
                     break
                     case 31:
@@ -3640,6 +3651,19 @@ class group{
                     case 89:
                         this.cards[index].deSize=true
                         this.cards[index].discardEffect.push(0)
+                    break
+                    case 92:
+                        if(massed&&this.id!=0){
+                            userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            for(let a=0,la=1+userCombatant.getStatus('Mass Pull Boost');a<la;a++){
+                                this.cards[index].callPullEffect()
+                            }
+                            this.battle.cardManagers[this.player].reserve.parseDrawEffects(this.battle.cardManagers[this.player].hand)
+                            if(userCombatant.getStatus('Mass Pull Damage Random')>0){
+                                this.battle.combatantManager.randomEnemyEffect(3,[userCombatant.getStatus('Mass Pull Damage Random'),userCombatant.id])
+                            }
+                        }
+                        this.send(args[0],index,index+1,4)
                     break
                     //mark random
                 }
@@ -4218,7 +4242,7 @@ class group{
             case 4038:
                 userCombatant.statusEffect('Armor',card.effect[1])
             break
-            case 4133:
+            case 4133: case 11491:
                 this.battle.combatantManager.allEffect(48,['Lock On',card.effect[0]])
             break
             case 4183:
@@ -4413,6 +4437,9 @@ class group{
                 }
                 card.deSizeDrop=true
                 card.exhaust=true
+            break
+            case 11487:
+                card.effect[0]=max(0,card.effect[0]-card.effect[1])
             break
 
         }
@@ -5475,7 +5502,7 @@ class group{
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
-                            case 10061: case 11347: case 11352: case 11358: case 11365: case 11366:
+                            case 10061: case 11347: case 11352: case 11358: case 11365: case 11366: case 11485:
                                 amplifyCost=[6]
                             break
                             case 4663: case 6946: case 10368: case 11370:
@@ -5582,7 +5609,7 @@ class group{
                 this.battle.attackManager.player=this.player
 
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+this.battle.getXBoost(this.player)
+                this.battle.attackManager.energy=this.battle.getEnergy(this.player)
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
@@ -6403,7 +6430,7 @@ class group{
             break
             case 5:
                 this.battle.attackManager.user=this.battle.attackManager.targetInfo[0]==74?this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player):this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+this.battle.getXBoost(this.player)
+                this.battle.attackManager.energy=this.battle.getEnergy(this.player)
                 this.selfCall(60)
                 this.battle.attackManager.combo=this.battle.combatantManager.combatants[this.battle.attackManager.user].combo
                 this.battle.attackManager.fugue=this.battle.combatantManager.combatants[this.battle.attackManager.user].fugue
@@ -6737,6 +6764,9 @@ class group{
                 }
                 if(a.name=='Divination'&&userCombatant.getStatus('Divination Boost')>0){
                     this.battle.attackManager.effect[0]+=userCombatant.getStatus('Divination Boost')
+                }
+                if(a.name=='Old Riptide'&&userCombatant.getStatus('Old Riptide Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Old Riptide Boost')
                 }
                 if(a.name=='Riptide'&&userCombatant.getStatus('Riptide Boost')>0){
                     this.battle.attackManager.effect[0]+=userCombatant.getStatus('Riptide Boost')
@@ -7373,6 +7403,16 @@ class group{
                                 this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific(this.cards[a],'Operational\nStrike')
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(22),1)
+                            }else if(this.cards[a].discardEffect.includes(23)){
+                                let hold=this.cards[a].discardEffect
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific(this.cards[a],'Operational\nContact')
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(23),1)
+                            }else if(this.cards[a].discardEffect.includes(24)){
+                                let hold=this.cards[a].discardEffect
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCardSpecific(this.cards[a],'Operational\nAccess')
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(24),1)
                             }
                             if(this.cards[a].discardEffect.includes(1)){
                                 this.cards[a].discardEffect=[]

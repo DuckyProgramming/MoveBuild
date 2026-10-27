@@ -105,7 +105,8 @@ constants.status={
         'Self Health Loss Block','Buffer on Death','Overdose Double Damage','Defend Splash','Smite Cost Down','Safety Cost Down','Triple Sturdy','Safety Per Turn','Self Health Loss Refund','Assign Safe',
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Old Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
-        'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn',
+        'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn','Double Buff',
+        'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -213,7 +214,8 @@ constants.status={
         0,0,0,0,0,0,1,0,0,1,//103
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
-        2,0,1,0,0,0,0,0,0,
+        2,0,1,0,0,0,0,0,0,0,//106
+        0,1,0,2,2,0,
     ],
     /*
     0-none
@@ -330,7 +332,8 @@ constants.status={
         2,3,2,2,2,2,2,2,2,2,//103
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
-        2,2,1,2,2,2,2,2,2,
+        2,2,1,2,2,2,2,2,2,2,//106
+        2,2,2,0,0,2,
     ]
     /*
     0-good
@@ -6056,6 +6059,10 @@ class combatant{
                     if(this.team==0&&this.battle.modded(36)){
                         mult*=2
                     }
+                    if(this.status.main[1059]>0){
+                        this.status.main[1059]--
+                        mult*=2
+                    }
                 }
                 if(status==11&&this.battle.relicManager.hasRelic(580)){
                     mult*=0
@@ -6932,6 +6939,9 @@ class combatant{
                     case 1050: this.prime(this.status.main[this.status.ticker[a]]); break
                     case 1055: for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.holdOrb(16)} break
                     case 1058: this.miniStatus('Claw Up',this.status.main[this.status.ticker[a]]); break
+                    case 1062: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rebound(this.status.main[this.status.ticker[a]])}; break
+                    case 1063: this.miniStatus('Single Splash Damage',this.status.main[this.status.ticker[a]]); break
+                    case 1064: this.miniStatus('Single Splash Damage Next Turn',this.status.main[this.status.ticker[a]]); break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])
