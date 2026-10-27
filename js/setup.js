@@ -14,7 +14,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[8]
+        current.menu.combatant=[0]
         current.menu.deck=[-1]
 
             //variants.mtg=true
@@ -35,7 +35,7 @@ function setup(){
         current.setupBattle(types.encounter[1])
 
             /*stage.scene='histogram'
-            graphics.test=4*/
+            graphics.test=8*/
 
             /*quickNode(4)
             money(1000)*/

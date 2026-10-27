@@ -2390,7 +2390,7 @@ function outListing(){
 		160,//reserve
 		160,//developer
 		12,//basic
-		24,//pack
+		32,//pack
 		36,//misc
 	]
 	let unlisted=[

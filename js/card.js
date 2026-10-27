@@ -849,7 +849,7 @@ class card{
             this.cancelDesc=false
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[
                 this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),
-                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Riptide',
+                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Old\nRiptide',
             ])
         }else{
             this.cancelDesc=false
@@ -865,7 +865,7 @@ class card{
             this.cancelDesc=false
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[
                 this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),
-                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Riptide',
+                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Old\nRiptide',
             ])
         }else{
             this.cancelDesc=false

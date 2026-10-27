@@ -7906,7 +7906,7 @@ If evoked on yourself, take 4 damage. Otherwise, cannot harm yourself.`,
 `On evoke, deals 6 damage. The amount of damage increases by 3 every turn.`,
         },*/{name:'Iron Orb',mtg:1,desc:
 `On evoke, deals 9 damage. The amount of damage increases by 6 every turn.`,
-        },{name:'Electric Orb',mtg:0,desc:
+        },{name:'Lightning Orb',mtg:0,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
         },{name:'Dust Orb',mtg:0,desc:
 `On evoke, adds 12 block. Also adds 6 block every turn.`,

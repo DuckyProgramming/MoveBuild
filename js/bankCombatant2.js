@@ -2261,7 +2261,7 @@ combatant.prototype.setupGraphics=function(direction){
             this.animSet={loop:0,flip:0}
             this.goal={anim:{direction:this.anim.direction}}
         break
-        case 'Bronze Orb C': case 'Bronze Orb A':
+        case 'Bronze Orb A': case 'Bronze Orb B':
             this.anim={direction:direction}
             this.color={gear:[80,50,10],main:[[120,90,50],[180,150,130]],diamond:[[200,150,100],[250,200,150]]}
             this.fades={gear:1,main:1,diamond:1}

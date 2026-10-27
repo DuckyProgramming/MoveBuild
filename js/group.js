@@ -3173,7 +3173,7 @@ class group{
                         &&!((effect==26||effect==27)&&!(this.cards[b].spec.includes(35)&&this.cards[b].getCost(0)>0))
                         &&!((effect==18||effect==29)&&(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(30)||this.cards[b].spec.includes(36)||this.cards[b].spec.includes(38)||this.cards[b].limit!=[]))
                         &&!(effect==29&&(this.cards[b].limit!=[]||this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)))
-                        &&!(effect==30&&this.cards[b].edition!=0)
+                        &&!(effect==30&&this.cards[b].edition==args[0])
                         &&!(effect==31&&this.cards[b].edition!=args[0])
                         &&!(effect==32&&!(this.cards[b].name==args[1]&&this.cards[b].cost>0))
                         &&!(effect==34&&(this.cards[b].retain||this.cards[b].retain2|this.cards[b].spec.includes(2)||this.cards[b].spec.includes(29)))

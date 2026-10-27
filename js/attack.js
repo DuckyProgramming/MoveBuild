@@ -44074,7 +44074,7 @@ class attack{
                         this.userCombatant.statusEffect('Divination Boost',this.effect[0])
                     break
                     case 11137:
-                        this.userCombatant.statusEffect('Riptide Boost',this.effect[0])
+                        this.userCombatant.statusEffect('Old Riptide Boost',this.effect[0])
                     break
                     case 11168:
                         for(let a=0,la=this.effect[0];a<la;a++){

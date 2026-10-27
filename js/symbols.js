@@ -11364,6 +11364,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-3,3,3,3)
+            layer.fill(100,fade)
+            layer.ellipse(0,0,4)
         break
         case 1042:
             layer.fill(255,50,50,fade)

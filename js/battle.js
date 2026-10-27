@@ -3520,7 +3520,7 @@ class battle{
                             overPos+=overProp
                         }
                         overPos=margin
-                        for(let a=0,la=11;a<la;a++){
+                        for(let a=0,la=seriesTotal;a<la;a++){
                             let overProp=total[a]/overTotal*(this.layer.width-margin*2)
                             let pos=margin
                             for(let b=0,lb=set[a].length;b<lb;b++){

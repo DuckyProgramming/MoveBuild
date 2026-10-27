@@ -11900,7 +11900,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Bronze Orb C': case 'Bronze Orb A':
+            case 'Bronze Orb A': case 'Bronze Orb B':
                 if(this.trigger.display.gear){
                     this.layer.translate(0,-30)
                     this.layer.rotate(game.timer*3)
@@ -11918,11 +11918,11 @@ combatant.prototype.display=function(){
                         this.layer.fill(this.flashColor(mergeColor(this.color.main[0],this.color.main[1],a/la))[0],this.flashColor(mergeColor(this.color.main[0],this.color.main[1],a/la))[1],this.flashColor(mergeColor(this.color.main[0],this.color.main[1],a/la))[2],this.fade*this.fades.main)
                         this.layer.ellipse(0,-30,18-a*2)
                         switch(this.name){
-                            case 'Bronze Orb C':
+                            case 'Bronze Orb A':
                                 this.layer.triangle(-3,-42,3,-42,0,-56+a*2)
                                 this.layer.triangle(-3,-18,3,-18,0,-4-a*2)
                             break
-                            case 'Bronze Orb A':
+                            case 'Bronze Orb B':
                                 this.layer.triangle(-12,-33,-12,-27,-26+a*2,-30)
                                 this.layer.triangle(12,-33,12,-27,26-a*2,-30)
                             break
