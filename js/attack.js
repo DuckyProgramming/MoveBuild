@@ -338,7 +338,7 @@ class attack{
             case 11226: case 11233: case 11234: case 11235: case 11238: case 11240: case 11241: case 11243: case 11254: case 11255: case 11256: case 11257: case 11260: case 11261: case 11264: case 11265: case 11266: case 11272: case 11273: case 11290:
             case 11297: case 11301: case 11304: case 11314: case 11320: case 11322: case 11328: case 11329: case 11330: case 11333: case 11345: case 11348: case 11351: case 11352: case 11355: case 11356: case 11359: case 11362: case 11363: case 11371:
             case 11372: case 11379: case 11393: case 11395: case 11400: case 11401: case 11402: case 11403: case 11404: case 11409: case 11412: case 11413: case 11418: case 11429: case 11430: case 11433: case 11435: case 11440: case 11441: case 11444:
-            case 11446: case 11449: case 11459: case 11468: case 11475: case 11479: case 11483: case 11492: case 11493: case 11506: case 11507: case 11511:
+            case 11446: case 11449: case 11459: case 11468: case 11475: case 11479: case 11483: case 11492: case 11493: case 11506: case 11507: case 11511: case 11528: case 11529:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -8997,6 +8997,10 @@ class attack{
                             this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
+                    case 11528:
+                        this.targetCombatant.statusEffect('Bruise',this.effect[1]*this.combo)
+                        this.userManager.hand.exhaust(this.effect[2])
+                    break
 
                 }
                 //mark 1s
@@ -13617,6 +13621,13 @@ class attack{
                     break
                     case 11510:
                         this.userCombatant.statusEffect('Temporary Damage Taken Up',this.effect[1])
+                    break
+                    case 11526:
+                        this.userCombatant.statusEffect('Counter 2 Times',this.effect[1])
+                    break
+                    case 11531:
+                        this.userCombatant.statusEffect('Retain Block',this.effect[1])
+                        this.userCombatant.loseHealth(this.effect[2])
                     break
 
                 }
@@ -23556,6 +23567,31 @@ class attack{
                         this.battle.addSpecificEnergy(2,this.player,6)
                         this.userManager.draw(this.effect[0])
                         this.userCombatant.charge+=this.effect[1]
+                    break
+                    case 11522:
+                        this.userCombatant.statusEffect('Charge Next Turn',this.effect[0])
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                    break
+                    case 11523:
+                        this.userCombatant.statusEffect('Charge Next Turn',this.effect[0])
+                        this.userCombatant.statusEffect('(G) Next Turn',2)
+                    break
+                    case 11524:
+                        this.userCombatant.statusEffect('Charge Next Turn',this.effect[0])
+                        this.userCombatant.statusEffect('(E) Next Turn',1)
+                        this.userCombatant.statusEffect('(G) Next Turn',1)
+                    break
+                    case 11525:
+                        this.userCombatant.statusEffect('Charge Next Turn',this.effect[0])
+                        this.userCombatant.statusEffect('(E) Next Turn',2)
+                    break
+                    case 11527:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('No Block',this.effect[1])
+                    break
+                    case 11530:
+                        this.userCombatant.statusEffect('Armor',this.effect[0])
+                        this.userManager.hand.exhaustViable(this.effect[1])
                     break
 
                 }

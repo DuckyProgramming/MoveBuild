@@ -19,6 +19,7 @@ class nodeManager{
         this.endless=0
         
         this.unknownPossibilities=[]
+        this.read=[]
 
         this.initialListing()
     }
@@ -107,7 +108,7 @@ class nodeManager{
     }
     revealAll(types){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            if(types.includes(this.nodes[a].type)){
+            if(types==undefined||types.includes(this.nodes[a].type)){
                 this.nodes[a].readable=true
             }
         }
@@ -337,6 +338,10 @@ class nodeManager{
         this.nodes.forEach(node=>node.scroll+=scroll-this.scroll)
         this.scroll=scroll
     }
+    emptyRead(){
+        this.read.forEach(node=>node.readable=true)
+        this.read=[]
+    }
     enterNode(type,y,chain,args){
         if(type!=5){
             this.battle.relicManager.activate(7,[type])
@@ -462,6 +467,9 @@ class nodeManager{
                         this.battle.relicManager.activate(7,[type])
                         transition.scene='event'
                         this.battle.setupEvent()
+                        if(this.battle.players==1){
+                            this.read.forEach(node=>node.combat=this.battle.eventManagers[0].event)
+                        }
                     }else{
                         this.enterNode(args[1],y,true,args)
                     }
@@ -561,6 +569,7 @@ class nodeManager{
                     }
                     if(!this.nodes[a].complete){
                         this.nodes[a].complete=true
+                        this.read.push(this.nodes[a])
                         transition.trigger=true
                         this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false,[this.nodes[a].combat,this.nodes[a].reality])
                     }
@@ -608,6 +617,7 @@ class nodeManager{
                     }
                     if(!this.nodes[a].complete){
                         this.nodes[a].complete=true
+                        this.read.push(this.nodes[a])
                         transition.trigger=true
                         this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false,[this.nodes[a].combat,this.nodes[a].reality])
                     }

@@ -397,6 +397,9 @@ class battle{
             case 'rest':
                 this.optionManagers.forEach(optionManager=>optionManager.removeAfter())
             break
+            case 'map':
+                this.nodeManager.emptyRead()
+            break
         }
         switch(post){
             case 'map': case 'rest': case 'shop': case 'event': case 'stash': case 'bossStash':
@@ -1467,9 +1470,9 @@ class battle{
                     userCombatant.status.main[findList('Must Attack or Take Damage',userCombatant.status.name)]=0
                 }
                 if(userCombatant.getStatus('Attack Discover Attack')>0){
-                    this.battle.overlayManager.overlays[10][this.player].active=true
+                    this.overlayManager.overlays[10][player].active=true
                     for(let a=0,la=userCombatant.getStatus('Attack Discover Attack');a<la;a++){
-                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,1]]])
+                        this.overlayManager.overlays[10][player].activate([0,[0,3],57,[],[[1,1]]])
                     }
                 }
                 if(effectiveCost>=2&&userCombatant.getStatus('2+ Cost Attack Energy')>0){
@@ -1885,14 +1888,19 @@ class battle{
         }
     }
     displayCurrency(){
-        this.layer.stroke(0)
-        this.layer.strokeWeight(0.4)
+        this.layer.noStroke()
+        if(options.moneyOutline){
+            this.layer.stroke(0)
+            this.layer.strokeWeight(0.4)
+        }
         this.layer.fill(240,240,220)
         this.layer.ellipse(20,16,16)
         if(this.currency.money.length>1){
             this.layer.ellipse(this.layer.width-20,16,16)
         }
-        this.layer.noStroke()
+        if(options.moneyOutline){
+            this.layer.noStroke()
+        }
         this.layer.fill(220,220,200)
         this.layer.ellipse(20,16,10)
         if(this.currency.money.length>1){
@@ -1908,14 +1916,18 @@ class battle{
             this.layer.triangle(this.layer.width-19,19,this.layer.width-21,19,this.layer.width-20,23)
         }
         this.layer.fill(230,230,210)
-        this.layer.stroke(0)
-        this.layer.strokeWeight(1)
+        if(options.moneyOutline){
+            this.layer.stroke(0)
+            this.layer.strokeWeight(1)
+        }
         this.layer.textSize(16)
         this.layer.textAlign(LEFT,CENTER)
-        this.layer.text(this.currency.money[0],30,18)
+        //this.layer.text(this.currency.money[0],30,18)
+        this.layer.text(this.currency.money[0],30,17.5)
         if(this.currency.money.length>1){
             this.layer.textAlign(RIGHT,CENTER)
-            this.layer.text(this.currency.money[1],this.layer.width-30,18)
+            //this.layer.text(this.currency.money[1],this.layer.width-30,18)
+            this.layer.text(this.currency.money[1],this.layer.width-30,17.5)
         }
         this.layer.textAlign(CENTER,CENTER)
     }

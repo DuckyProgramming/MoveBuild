@@ -83,6 +83,7 @@ class overlay{
             case 22:
                 this.page=0
                 this.battle.relicManager.allRelics.forEach(relic=>relic.fade=0)
+                this.got=0
             break
             case 25:
                 this.spin=0
@@ -2099,6 +2100,9 @@ class overlay{
                     break
                 }
             break
+            case 22:
+                this.got=0
+            break
             case 25:
                 this.spin=random(0,360)
                 this.speed=random(10,12)
@@ -2940,6 +2944,11 @@ class overlay{
             break
             case 28:
                 this.battle.relicManager.detail[493][this.player].push(args[0])
+                for(let a=0,la=this.battle.player.length;a<la;a++){
+                    if(this.battle.player[a]==args[0]){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].life=0
+                    }
+                }
             break
         }
     }
@@ -3969,7 +3978,7 @@ class overlay{
                 regTriangle(this.layer,this.layer.width/2+212.5,this.layer.height/2,15,15,-30)
                 this.layer.textSize(20)
                 this.layer.text('Close',this.layer.width/2,this.layer.height/2+180)
-                this.battle.relicManager.display('all',[this.args[1],this.page])
+                this.battle.relicManager.display('all',[this.args[1],this.args[2],this.player,this.got])
             break
             case 23:
                 this.layer.fill(160,this.fade*0.8)
@@ -4450,7 +4459,7 @@ class overlay{
                     this.card.size=constrain(smoothAnim(this.card.size,this.active,0,this.fade,5),0,this.fade)
                 break
                 case 22:
-                    this.battle.relicManager.update('all',[this.active,this.page,this.args[1]])
+                    this.battle.relicManager.update('all',[this.active,this.page,this.args[1],this.args[2],this.player,this.got])
                 break
                 case 25:
                     this.speed-=0.025
@@ -6177,15 +6186,18 @@ class overlay{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215,y:this.layer.height/2},width:40,height:40})&&this.page>0){
                         this.page--
-                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+215,y:this.layer.height/2},width:40,height:40})&&
-                    this.page<ceil((finalTotal-1)/30)-1){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+215,y:this.layer.height/2},width:40,height:40})&&this.page<ceil((finalTotal-1)/30)-1){
                         this.page++
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+180},width:120,height:40})){
                         this.active=false
                     }else{
                         switch(this.args[0]){
                             case 1:
-                                this.active=!this.battle.relicManager.onClick('all',[this.args[1],this.page,this.player])
+                                let got=this.battle.relicManager.onClick('all',[this.page,this.args[1],this.args[2],this.player])
+                                if(got>=1){
+                                    this.active=false
+                                    this.got=got
+                                }
                             break
                         }
                     }
@@ -7902,6 +7914,7 @@ class overlay{
                         for(let a=0,la=types.combatant.length;a<la;a++){
                             if(
                                 types.combatant[a].name.replace('\n',' ').toLowerCase().includes(this.text.toLowerCase())&&
+                                types.combatant[a].name.substring(0,3)!='-h '&&
                                 this.suggestions.length<9
                             ){
                                 this.suggestions.push(a)
@@ -7914,6 +7927,7 @@ class overlay{
                             for(let a=0,la=types.combatant.length;a<la;a++){
                                 if(
                                     types.combatant[a].name.replace('\n',' ').toLowerCase().includes(this.text.toLowerCase())&&
+                                    types.combatant[a].name.substring(0,3)!='-h '&&
                                     this.suggestions.length<9
                                 ){
                                     this.suggestions.push(a)

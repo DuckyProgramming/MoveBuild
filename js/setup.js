@@ -14,8 +14,8 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[0]
-        current.menu.deck=[-1]
+        current.menu.combatant=[0,1]
+        current.menu.deck=[-1,-1]
 
             //variants.mtg=true
 
@@ -35,10 +35,10 @@ function setup(){
         current.setupBattle(types.encounter[1])
 
             /*stage.scene='histogram'
-            graphics.test=8*/
+            graphics.test=4*/
 
-            /*quickNode(4)
-            money(1000)*/
+            /*money(1000)
+            quickNode(4)*/
 
             //event('Friendly Duck')
 

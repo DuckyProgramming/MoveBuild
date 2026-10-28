@@ -6674,18 +6674,20 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
-            layer.rect(0,-0.5,4.5,6,1)
+            //layer.rect(0,-0.5,4.5,6,1)
+            layer.rect(0,0,4.5,6,1)
         break
         case 673:
-            layer.stroke(150,0,200,fade)
-            layer.strokeWeight(0.5)
-            regPoly(layer,0,0,6,4,4,30)
-            layer.line(-10/3,-2/3*constants.sqrt3,10/3,-2/3*constants.sqrt3)
-            layer.line(-10/3,2/3*constants.sqrt3,10/3,2/3*constants.sqrt3)
+            layer.stroke(150,175,200,fade)
+            layer.strokeWeight(1)
+			layer.line(-5,-3,0,-6)
+            layer.line(5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
-            layer.rect(0,-0.5,4.5,6,1)
+            //layer.rect(0,-0.5,4.5,6,1)
+            layer.rect(0,0,4.5,6,1)
         break
         case 674:
             layer.stroke(255,fade)
@@ -11686,6 +11688,15 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             regStar(layer,0,0,8,2.5,2.5,1.25,1.25,0)
         break
+        case 1066:
+            layer.fill(150,0,0,fade)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
 
     }
     //mark s
@@ -12999,15 +13010,62 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.triangle(3,0,5,0,4,-4.5)
         break
         case 21:
+            let nodes=[
+				[-17.5,-5],
+				[-32.5,-12.5],
+				[-42.5,-25],
+				[-47.5,-40]
+			]
+            layer.translate(12,5)
+            layer.scale(0.45)
+            layer.stroke(255,fade)
+            layer.strokeWeight(5)
+            for(let a=0,la=nodes.length-1;a<la;a++){
+                layer.line(nodes[a][0],nodes[a][1],nodes[a+1][0],nodes[a+1][1])
+            }
+            layer.noStroke()
+            layer.fill(255,fade)
+            for(let a=0,la=nodes.length-1;a<la;a++){
+                for(let b=0,lb=3;b<lb;b++){
+                    layer.push()
+                    layer.translate(map((b+0.8)/lb,0,1,nodes[a][0],nodes[a+1][0]),map((b+0.8)/lb,0,1,nodes[a][1],nodes[a+1][1]))
+                    layer.rotate(atan2(nodes[a][1]-nodes[a+1][1],nodes[a][0]-nodes[a+1][0])+(b-1)*5)
+                    layer.scale(1+(a*0.3+b*0.225+0.1)%0.4+a*0.1)
+                    layer.beginShape()
+                    layer.vertex(-0.5,0)
+                    layer.bezierVertex(
+                        -3,10,
+                        -1.5,12.5,
+                        0,15,
+                    )
+                    layer.bezierVertex(
+                        1.5,12.5,
+                        3,10,
+                        0.5,0,
+                    )
+                    layer.endShape()
+                    layer.pop()
+                }
+            }
+            layer.fill(240,200,180,fade)
+            layer.ellipse(0,0,42)
+            layer.fill(255)
             layer.ellipse(0,0,36)
-            layer.stroke(240,200,180,fade)
+            layer.fill(240,200,180,fade)
+            layer.arc(0,-9.75,22.5,22.5,90,270)
+            layer.arc(0,9.75,22.5,22.5,-90,90)
+            layer.ellipse(0,0,3)
+            layer.fill(255,fade)
+            layer.ellipse(0,-9.75,16.5,16.5)
+            layer.ellipse(0,9.75,16.5,16.5)
+            /*layer.stroke(240,200,180,fade)
             layer.strokeWeight(3)
             layer.noFill()
-            /*layer.arc(0,-9.5,19,19,90,270)
-            layer.arc(0,9.5,19,19,-90,90)*/
+            //layer.arc(0,-9.5,19,19,90,270)
+            //layer.arc(0,9.5,19,19,-90,90)
             layer.arc(0,-9.75,19.5,19.5,90,270)
             layer.arc(0,9.75,19.5,19.5,-90,90)
-            layer.noStroke()
+            layer.noStroke()*/
             layer.fill(240,200,180,fade)
             layer.rect(0,-9.2,6,6)
             layer.quad(0,-9.2-3*constants.sqrt2,-3*constants.sqrt2,-9.5,0,-9.5+3*constants.sqrt2,3*constants.sqrt2,-9.5)

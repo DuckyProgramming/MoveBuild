@@ -821,12 +821,16 @@ class itemManager{
                 }
                 this.layer.noStroke()
                 this.layer.fill(230,230,210)
+                if(options.moneyOutline){
+                    this.layer.stroke(0)
+                    this.layer.strokeWeight(1)
+                }
                 this.layer.textSize(12)
                 this.layer.textAlign(LEFT,CENTER)
-                this.layer.text(`Sell For ${this.battle.relicManager.hasRelic(585,0)?50:10}`,10,36)
+                this.layer.text(`Sell For ${this.battle.relicManager.hasRelic(585,0)?50:10}:`,10,36)
                 if(this.battle.players==2){
                     this.layer.textAlign(RIGHT,CENTER)
-                    this.layer.text(`Sell For ${this.battle.relicManager.hasRelic(585,1)?50:10}`,890,36)
+                    this.layer.text(`Sell For ${this.battle.relicManager.hasRelic(585,1)?50:10}:`,890,36)
                 }
                 this.layer.textAlign(CENTER,CENTER)
             break

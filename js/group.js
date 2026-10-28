@@ -241,14 +241,16 @@ class group{
                 }
             break
         }
-        if(game.ascend>=10){
-            this.add(findName(`Ascender's\nBane`,types.card),0,constants.playerNumber+2)
-        }
-        if(game.ascend>=25||game.diff>=6){
-            this.add(findName('Pride',types.card),0,constants.playerNumber+2)
-        }
-        if(game.diff>=19){
-            this.add(findName('Ignominy',types.card),0,constants.playerNumber+2)
+        if(!game.dev&&options.devGen){
+            if(game.ascend>=10){
+                this.add(findName(`Ascender's\nBane`,types.card),0,constants.playerNumber+2)
+            }
+            if(game.ascend>=25||game.diff>=6){
+                this.add(findName('Pride',types.card),0,constants.playerNumber+2)
+            }
+            if(game.diff>=19){
+                this.add(findName('Ignominy',types.card),0,constants.playerNumber+2)
+            }
         }
         /*for(let a=0,la=8;a<la;a++){
             this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],floor(random(0,1.5)),types.deck.start[player][0][2])

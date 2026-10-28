@@ -106,7 +106,7 @@ constants.status={
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Old Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
         'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn','Double Buff',
-        'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack',
+        'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -215,7 +215,7 @@ constants.status={
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
         2,0,1,0,0,0,0,0,0,0,//106
-        0,1,0,2,2,0,
+        0,1,0,2,2,0,2,
     ],
     /*
     0-none
@@ -333,7 +333,7 @@ constants.status={
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
         2,2,1,2,2,2,2,2,2,2,//106
-        2,2,2,0,0,2,
+        2,2,2,0,0,2,0,
     ]
     /*
     0-good
@@ -679,15 +679,6 @@ class combatant{
             let tile=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
             if(tile>=0){
                 this.battle.tileManager.tiles[tile].addType(6)
-            }
-        }
-        if(this.battle.relicManager.hasRelic(493,-1)){
-            for(let a=0,la=this.battle.relicManager.detail[493].length;a<la;a++){
-                for(let b=0,lb=this.battle.relicManager.detail[493][a].length;b<lb;b++){
-                    if(this.battle.relicManager.detail[493][a][b]==this.type){
-                        this.loseHealth(500)
-                    }
-                }
             }
         }
         if(this.team==0){
@@ -1616,10 +1607,11 @@ class combatant{
                         this.statusEffect('Power Play Strength',1)
                     break
                     case 'Eternal Judge': case '-h Eternal Judge':
-                        let sin=floor(random(0,7))
+                        /*let sin=floor(random(0,7))
                         this.sins.push(sin)
                         this.infoAnim.sins.push(0)
-                        this.addSin(sin)
+                        this.addSin(sin)*/
+                        this.subAttackTypeSwitch([[2,102,359,[]]])
                     break
                     case 'Spirit of Wealth': case 'Spirit of Elegance':
                         this.addBlock(26)
@@ -1700,6 +1692,7 @@ class combatant{
                     break
                     case 'Vengeful Speed':
                         this.subAttackTypeSwitch([[2,11,499,[1.5]]])
+                        //this.subAttackTypeSwitch([[2,11,499,[1.25]]])
                         this.removeAttack(77)
                     break
                     case 'Glazer': case 'Glazer Clone':
@@ -1787,6 +1780,15 @@ class combatant{
         }
         if(this.spec.includes(6)){
             this.threshold=this.life-25
+        }
+        if(this.battle.relicManager.hasRelic(493,-1)){
+            for(let a=0,la=this.battle.relicManager.detail[493].length;a<la;a++){
+                for(let b=0,lb=this.battle.relicManager.detail[493][a].length;b<lb;b++){
+                    if(this.battle.relicManager.detail[493][a][b]==this.type||this.name.substring(0,3)=='-h '&&this.battle.relicManager.detail[493][a][b]==findName(this.name.substring(3),types.combatant)){
+                        this.loseHealth(500)
+                    }
+                }
+            }
         }
     }
     alwaysBuff(){
@@ -4521,6 +4523,12 @@ class combatant{
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,115,[this.status.main[1002]],this.id,false))
                                     this.status.main[1002]=0
                                 }
+                                if(this.status.main[1066]>0&&distance>=0&&distance<=1){
+                                    this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                    this.battle.turnManager.auxiliary=true
+                                    this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[1066]],this.id,false))
+                                }
                             }else{
                                 if(this.status.main[1]>0&&distance>=0&&distance<=1){
                                     this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -4684,6 +4692,11 @@ class combatant{
                                     this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                     this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[1002]],this.id,false))
                                     this.status.main[1002]=0
+                                }
+                                if(this.status.main[1066]>0&&distance>=0&&distance<=1){
+                                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                    this.battle.turnManager.turns[1].target=[user]
+                                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,31,[this.status.main[1066]],this.id,false))
                                 }
                             }
                         }

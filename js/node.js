@@ -42,7 +42,8 @@ class node{
     typeConstruct(){
         let index
         let list
-        this.combat=0
+        //this.combat=0
+        this.combat=-1
         switch(this.type){
             case 0:
                 this.reality=this.type
@@ -305,14 +306,18 @@ class node{
                     this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,48,14,3)
                     if(this.battle.relicManager.hasRelic(98,-1)||this.readable){
-                        let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:['','','','Rest','Shop','Event'][this.reality]
+                        let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:
+                            this.combat!=-1&&this.reality==5?types.event[this.combat].name:
+                            ['','','','Rest','Shop','Event'][this.reality]
                         if(readable&&term.length>15){
                             this.layer.rect(0,24.5,readable?term.length*4.2+13.5:30.5,15,3)
                             this.layer.fill(...color,this.fade*cap)
                             this.layer.textSize(9)
                             this.layer.text(readable?term:'Unknown',0,25)
                         }else{
-                            let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:['','','','Rest','Shop','Event'][this.reality]
+                            let term=this.reality>=0&&this.reality<=2?types.encounter[this.combat].name:
+                                this.combat!=-1&&this.reality==5?types.event[this.combat].name:
+                                ['','','','Rest','Shop','Event'][this.reality]
                             this.layer.rect(0,24.5,readable?term.length*5.6+18:42,16,3)
                             this.layer.fill(...color,this.fade*cap)
                             this.layer.textSize(12)

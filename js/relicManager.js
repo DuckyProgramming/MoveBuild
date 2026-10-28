@@ -1392,6 +1392,9 @@ class relicManager{
                     }
                 }
             break
+            case 531:
+                this.battle.purchaseManager.rerollRareReverse()
+            break
             case 563:
                 this.battle.cardManagers[player].deck.unArbitrary(-1,4)
             break
@@ -3531,7 +3534,7 @@ class relicManager{
             case 'all':
                 position=0
                 for(let a=0,la=this.allRelics.length;a<la;a++){
-                    if(args[0].includes(this.allRelics[a].rarity)){
+                    if(args[0].includes(this.allRelics[a].rarity)&&(args[1]==1||this.active[this.allRelics[a].type][args[2]+1]<=0||args[3]==this.allRelics[a].type)){
                         this.allRelics[a].display(la-1,1,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60},false)
                         position++
                         if(position>=30){
@@ -3592,7 +3595,7 @@ class relicManager{
                 position=0
                 index=0
                 for(let a=0,la=this.allRelics.length;a<la;a++){
-                    if(args[2].includes(this.allRelics[a].rarity)){
+                    if(args[2].includes(this.allRelics[a].rarity)&&(args[3]==1||this.active[this.allRelics[a].type][args[4]+1]<=0||args[5]==this.allRelics[a].type)){
                         if(index>=args[1]*30&&index<args[1]*30+30){
                             this.allRelics[a].update(args[0],this.overTotal[this.allRelics[a].player],inputs,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60})
                             position++
@@ -3675,12 +3678,12 @@ class relicManager{
                 position=0
                 index=0
                 for(let a=0,la=this.allRelics.length;a<la;a++){
-                    if(args[0].includes(this.allRelics[a].rarity)&&this.allRelics[a].type!=0){
-                        if(index>=args[1]*30&&index<args[1]*30+30){
+                    if(args[1].includes(this.allRelics[a].rarity)&&(args[2]==1||this.active[this.allRelics[a].type][args[3]+1]<=0)){
+                        if(index>=args[0]*30&&index<args[0]*30+30){
                             if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20){
-                                this.addRelic(this.allRelics[a].type,args[2])
-                                this.detail[468][args[2]]=this.allRelics[a].type
-                                return true
+                                this.addRelic(this.allRelics[a].type,args[3])
+                                this.detail[468][args[3]]=this.allRelics[a].type
+                                return this.allRelics[a].type
                             }
                             position++
                         }

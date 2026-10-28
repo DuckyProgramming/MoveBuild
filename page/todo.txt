@@ -1,15 +1,13 @@
 CS 145 [PREHEX / VINCENT]
 
-big prehex reworks
-
+prehex rework
 vincent rework
 
 CS 146 [?]
 
-test airi
-test chip
 test sanae
 
+test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
 
@@ -30,15 +28,9 @@ quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
-past unknowns should say what they were
-
-backtick should only give you relics you don't have
-
 tooltips for dictionary
 
 recheck every tutorial
-
-new sagume symbol
 
 +8 wishes
 
@@ -47,11 +39,12 @@ more ways to turn back time
 more evolve
 
 riptide boost -> riptide block
+split spirit siphon
+give a version of floating illusion to sakura (dodging it)
+split pregame so lira can have it (and chip gets idk)
+prismic bead is stupid
 
-fix death note
-[kill yourself / teammate]
-[-h rewriter]
-
+split payout to exhaust
 dynamic move but its a defense now (and still gives combo)
 alternator - draw a card per card you played last turn [3255]
 tick tock - 4 damage 2 times, increases by 1 when turn number decreases
@@ -72,18 +65,12 @@ gumdrop - heal 1, retain block for 2 turns
 refracting knife - damage, all shivs in hand gain damage equal to damage dealt
 guardian angel - temporal guard with an additional effect (thematic)
 royal gamble - virtous circle but for influence
+return of [biding] - [biden] but draw an equal number of cards, rare, rename old biding
+identify yourself - apply 2 vulnerable if used on an enemy, otherwise gain 2 strength
 [swiss cheese]
-
-split spirit siphon
 
 deckbuild LEGACY [40]
 
-face smash - head smash but discard 3 cards
-commit - 3 strength, cannot add block for 1 turns (static situation sort of)
-double counter (even though fend off exists)
-curving back kick (custom animation) - 2 cost, 9 damage, push 1 tile, draw a movement
-
-wheel kick - 15 damage, draw 2, push 1 tile
 wave of the hand - when you add block, apply 1 weak to all enemies [9231]
 contrary - apply 2 anti-control
 dreams of speed - gain 1 energy next turn, take another turn, [dream]
@@ -103,7 +90,6 @@ flux - draw a card, add 2 block per orb [4995]
 overaccelerate - draw 3 cards, lose 1 focus
 compact - lose an orb slot
 
-iron body but it retains block for 1 turn [legit card]
 sunshade - parasol but 6 bleed 1 vulnerable instead of pushing
 consuming slice but draw 1 less every turns
 foliage - gain 2 metallicize per turn

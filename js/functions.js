@@ -2180,7 +2180,9 @@ function manager(index){
 	return current.cardManagers[index]
 }
 function money(value){
-	current.addCurrency(value,0)
+	for(let a=0,la=current.players;a<la;a++){
+		current.addCurrency(value,a)
+	}
 }
 function combo(value){
 	current.combatantManager.combatants[0].combo+=value
@@ -3868,4 +3870,7 @@ function firstDisband(){
 		}
 	})
 	print(minimal)
+}
+function outCardNames(){
+	saveStrings(types.card.map(card=>card.name.replaceAll('\n',' ')),'cards')}
 }*/

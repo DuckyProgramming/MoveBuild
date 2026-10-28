@@ -92,7 +92,7 @@ types={
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[4]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:1,speed:1},attack:[{type:98,effect:[7]}],description:`Helping the prisoners for some reason`},
-        {name:'Lightspeed',life:65,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[10]}],description:`He be fast`},
+        {name:'Lightspeed',life:65,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[5]},{type:100,effect:[8]}],description:`He be fast`},
         {name:'Swordmaster',life:90,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:29,effect:[12]},{type:79,effect:[14]},{type:103,effect:[6,2]},{type:21,effect:[]}],description:`Mastered something`},
         {name:'Gas Man',life:84,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
         {name:'Gremlin',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:32,effect:[5,1,'Dazed']},{type:21,effect:[]},{type:9,effect:[10]}],description:`Repetitive`},
@@ -234,7 +234,7 @@ types={
         {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
         {name:'Glazer',life:60,behavior:1,spec:[23],move:{type:2,speed:2},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
         {name:'Glazer Clone',life:60,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
-        {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[4]},{type:77,effect:[6]},{type:367,effect:[8]},{type:380,effect:[10]}],description:`PVZ Fusion looking`},
+        {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[3]},{type:77,effect:[4]},{type:367,effect:[6]},{type:380,effect:[8]}],description:`PVZ Fusion looking`},
         {name:'Volt King',life:162,behavior:6,spec:[0],move:{type:0,speed:2},attack:[{type:497,effect:[6]},{type:59,effect:[10]},{type:45,effect:[6]},{type:53,effect:[10,1,'Electrocuted']},{type:5,effect:[1,'Electrocuted']}],description:`One with nothing`},
         {name:'Big Bush Thing',life:36,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:28,effect:[10]},{type:110,effect:[5,5]},{type:111,effect:[4]}],description:`Preparing his child for greatness`},
 
@@ -303,9 +303,11 @@ types={
         {name:'Zenith',life:111,behavior:0,spec:[0,2],move:{type:0,speed:0},attack:[{type:462,effect:[6,1]},{type:10,effect:[10]},{type:478,effect:[6,1]}],description:`All that's made can surely break`},
 
         {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
-        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
+        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:102,effect:[66]}],description:`Fine... I'll do it myself`},
         {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
-        {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
+        {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:102,effect:[66]}],description:`Fine... I'll do it myself`},
+        //{name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
+        //{name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
         
         //{name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:405,effect:[24,2]}],description:`Just you wait...`},
         //{name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
@@ -1667,7 +1669,7 @@ types={
         {name:'Binary Die',internal:'Double or Nothing',id:73,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Randomly Duplicate a Card\nor Destroy it Permanently'},
         {name:'Replacement Papers',internal:'Edition',id:74,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Edition a Card'},
         {name:'Full Medkit',internal:'Heal All',id:75,rarity:1,list:0,menu:true,temp:false,mtg:0,description:'Heal All Health'},
-        {name:'Advance Coupon',internal:'3 Free Items',id:76,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'Make 3 Things Free\nat the Next Shop'},
+        {name:'Advance Coupon',internal:'3 Free Items',id:76,rarity:-1,list:0,menu:true,temp:false,mtg:0,description:'Make 3 Things Free\nat the Next Shop'},
         {name:'Starter Pack',internal:'Basic Cards',id:77,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Add 1 Strike, Defend,\nand Step to Hand'},
         {name:'Equilibrium System',internal:'Retain Hand',id:78,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Retain Your Hand This Turn'},
         {name:'Unfinished Potion',internal:'Nothings',id:79,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 1-11 of Nothings to Hand'},
@@ -8573,6 +8575,7 @@ options={
     id:false,//shows the id of cards in the corner
     attack:false,//shows the attack id of cards in the corner
     massDrop:true,//shows the player that cards were pulled
+    moneyOutline:false,//draws outlines around money
 
     oldDuplicate:false,//duplicate cards by copying them, rather than reusing them, DEPRECATED
     oldUnbuild:false,//multiple copies of unbuild, 1 per construct, DEPRECATED

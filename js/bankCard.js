@@ -9574,8 +9574,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9284: case 9357:
             string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nPut the Top${effect[1]!=1?` ${effect[1]}`:``}\nCard${pl(effect[1])} in Discard Pile\nin Your Hand\nAdd ${effect[2]} Dual Discus${effect[2]!=1?`es`:``} of\nEquivalent Level to Hand`; break
         case 9285: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card${pl(effect[1])}\nIf a Card With\nMass Was Pulled,\nDeal Damage Again`; break
-        case 9286: string+=`If You Have\nHighrolled This Turn,\nNext Luck-Based Card\nis Guaranteed`; break
-        case 9287: string+=`If You Have\nHighrolled This Turn,\nNext Luck-Based Card\nis Guaranteed\nand Draw ${effect[0]} Card${pl(effect[0])}`; break
+        case 9286: string+=`If You Have Highrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[4]>0?`Yes`:`No`})`:``},\nNext Luck-Based Card\nis Guaranteed`; break
+        case 9287: string+=`If You Have Highrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[4]>0?`Yes`:`No`})`:``},\nNext Luck-Based Card\nis Guaranteed\nand Draw ${effect[0]} Card${pl(effect[0])}`; break
         case 9288: string+=`Discover an Attack\nIt Costs 0\nDiscover an Defense\nIt Costs 0\nAdd ${effect[0]} Dark Matter${pl(effect[0])}\nto Hand`; break
         case 9289: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nClaw Up ${effect[1]}\nCosts 1 Less\nWhen You Take Damage`; break
         case 9290: string+=`Move Until Obstructed\nMax Range of ${effect[0]} Tile${pl(effect[0])}`; break
@@ -10073,10 +10073,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9789: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Add ${this.calculateEffect(effect[1],1)} Block\n50%: Gain ${effect[2]} Vigor`; break
         case 9790: string+=`Move ${effect[0]} Tile${pl(effect[0])}\n50%: Deal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
         case 9791: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n10%: Counter ${effect[1]} All`; break
-        case 9792: string+=`If You Have\nLowrolled This Turn,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-        case 9793: string+=`If You Have\nLowrolled This Turn,\nGain (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-        case 9794: string+=`If You Have\nLowrolled This Turn,\nGain (W) (W) (W)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-        case 9795: string+=`If You Have\nLowrolled This Turn,\nGain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 9792: string+=`If You Have Lowrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[5]>0?`Yes`:`No`})`:``},\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 9793: string+=`If You Have Lowrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[5]>0?`Yes`:`No`})`:``},\nGain (N) (N) (N)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 9794: string+=`If You Have Lowrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[5]>0?`Yes`:`No`})`:``},\nGain (W) (W) (W)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 9795: string+=`If You Have Lowrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[5]>0?`Yes`:`No`})`:``},\nGain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}`; break
         case 9796: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n10%: Apply ${effect[1]} Weak\nApply ${effect[2]} Vulnerable`; break
         case 9797: string+=`Push 1 Tile\nGain ${effect[0]} Currency`; break
         case 9798: string+=`Upgrade ${effect[0]} Card${pl(effect[0])}\n50%: Gain ${effect[1]} Energy`; break
@@ -10090,7 +10090,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9806: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain (E) Next 3 Turns`; break
         case 9807: string+=`Gain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Frail`; break
         case 9808: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain ${effect[1]} Weak`; break
-        case 9809: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have\nLowrolled This Turn,\nGain ${effect[1]} Strength`; break
+        case 9809: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Lowrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[5]>0?`Yes`:`No`})`:``},\nGain ${effect[1]} Strength`; break
         case 9810: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} 2 Cost Card${pl(effect[1])}`; break
         case 9811: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} 2 Cost Card${pl(effect[1])}`; break
         case 9812: string+=`50%: Gain ${effect[0]}\nTemporary Strength\nGain ${effect[1]}\nTemporary Dexterity`; break
@@ -11789,12 +11789,22 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11513: string+=`Discover an Attack\nWhen an Attack is Played`; break
         case 11514: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nMove to Any\nEmpty Tile`; break
         case 11515: string+=`Gain ${effect[0]} Charge\nDraw ${effect[1]} Card${pl(effect[1])}\nDraw ${effect[2]} More Card${pl(effect[2])}\nNext Turn`; break
-        case 11516: string+=`Gain ${effect[0]} Charge\nand ${effect[1]} Energy\nNext Turn`; break
-        case 11517: string+=`Gain ${effect[0]} Charge\nand (G) (G) Next Turn`; break
-        case 11518: string+=`Gain ${effect[0]} Charge\nand (E) (G) Next Turn`; break
-        case 11519: string+=`Gain ${effect[0]} Charge\nand (E) (E) Next Turn`; break
+        case 11516: string+=`Gain ${effect[0]} Charge\nGain ${effect[1]} Energy\nNext Turn`; break
+        case 11517: string+=`Gain ${effect[0]} Charge\nGain (G) (G) Next Turn`; break
+        case 11518: string+=`Gain ${effect[0]} Charge\nGain (E) (G) Next Turn`; break
+        case 11519: string+=`Gain ${effect[0]} Charge\nGain (E) (E) Next Turn`; break
         case 11520: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${pl(effect[1])}\nGain ${effect[2]} Charge`; break
         case 11521: string+=`Gain (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Charge`; break
+        case 11522: string+=`Gain ${effect[0]} Charge\nand ${effect[1]} Energy\nNext Turn`; break
+        case 11523: string+=`Gain ${effect[0]} Charge\nand (G) (G) Next Turn`; break
+        case 11524: string+=`Gain ${effect[0]} Charge\nand (E) (G) Next Turn`; break
+        case 11525: string+=`Gain ${effect[0]} Charge\nand (E) (E) Next Turn`; break
+        case 11526: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} 2 Times`; break
+        case 11527: string+=`Gain ${effect[0]} Strength\nYou Cannot Add Block\nFor ${effect[1]} Turn${pl(effect[1])}`; break
+        case 11528: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]!=1?effect[1]:``}X Bruise\nWhere X = Combo\nExhaust ${effect[2]} Card${pl(effect[2])}`; break
+        case 11529: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nPush 1 Tile`; break
+        case 11530: string+=`Gain ${effect[0]} Armor\nExhaust ${effect[1]} Card${pl(effect[1])}\nDraw an Equal\nNumber of Cards`; break
+        case 11531: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Block\nFor ${effect[1]} Turn${pl(effect[1])}\nLose ${effect[2]} Health`; break
 
         //mark p
         //mark q
