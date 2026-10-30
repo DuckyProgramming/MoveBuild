@@ -4382,6 +4382,9 @@ class card{
             case 11101:
                 userCombatant.loseHealth(this.effect[2])
             break
+            case 11540:
+                this.effect[0]+=this.effect[3]
+            break
         }
         if(this.spec.includes(55)){
             switch(this.attack){

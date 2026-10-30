@@ -88,7 +88,7 @@ types={
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
         {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:2,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Stuck']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
         {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:28,effect:[9]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
-        {name:'Management Custodian',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
+        {name:'Management Custodian',life:60,behavior:25,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[4]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:1,speed:1},attack:[{type:98,effect:[7]}],description:`Helping the prisoners for some reason`},
@@ -226,9 +226,9 @@ types={
         {name:'Bean Counter',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:368,effect:[6,1]},{type:329,effect:[11,1]},{type:21,effect:[]}],description:`Racking up those numbers`},
         {name:'Flanker',life:31,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:489,effect:[7]},{type:495,effect:[5]},{type:254,effect:[5,1]}],description:`Just turn around`},
         {name:'Ollie',life:43,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:129,effect:[4]},{type:496,effect:[10,7]},{type:12,effect:[13]}],description:`He's trying his best`},
-        {name:'Defective Robot A',life:64,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]}],description:`Badly produced soldier`},
-        {name:'Defective Robot B',life:65,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:20,effect:[4]}],description:`Badly written microcode`},
-        {name:'Defective Robot C',life:66,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:10,effect:[4]}],description:`Badly planned architecture`},
+        {name:'Defective Robot A',life:64,behavior:22,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Badly produced soldier`},
+        {name:'Defective Robot B',life:65,behavior:23,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Badly written microcode`},
+        {name:'Defective Robot C',life:66,behavior:24,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Badly planned architecture`},
         {name:'Rusted Robot',life:81,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:27,effect:[5,2]},{type:488,effect:[2,2]},{type:10,effect:[3]}],description:`Produced far too long ago`},
         {name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[2]}],description:`We've been expecting you`},
         {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
@@ -313,6 +313,10 @@ types={
         //{name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:40,effect:[3]},{type:39,effect:[2,'Duckforce']},{type:41,effect:[6]},{type:465,effect:[10,10]},{type:42,effect:[6]}],description:`Duck leader`},
         //{name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         //{name:'Vengeful',life:70,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[9]},{type:210,effect:[1]}],description:`Remember last time?`},
+        //{name:'Defective Robot A',life:64,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]}],description:`Badly produced soldier`},
+        //{name:'Defective Robot B',life:65,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:20,effect:[4]}],description:`Badly written microcode`},
+        //{name:'Defective Robot C',life:66,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:10,effect:[4]}],description:`Badly planned architecture`},
+        //{name:'Management Custodian',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -4313,6 +4317,23 @@ types={
         },{
             level:['Trapperzoid 5'],class:0,world:0,
             name:'Crow',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Crow'},
+                {position:{x:3,y:2},name:'Crow'},
+            ],reinforce:[
+                {position:{x:1,y:3},name:'Crow',turn:2},
+                {position:{x:5,y:3},name:'Crow',turn:2},
+            ],assaultReinforce:[
+                {position:{x:1,y:0},name:'Crow',turn:4},
+                {position:{x:2,y:0},name:'Crow',turn:4},
+                {position:{x:1,y:1},name:'Crow',turn:6},
+                {position:{x:3,y:1},name:'Crow',turn:6},
+            ],ally:[
+            ],
+        },{
+            level:['Trapperzoid 5'],class:0,world:-1,
+            name:'Leagcy Crow',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:4,y:3}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Crow'},

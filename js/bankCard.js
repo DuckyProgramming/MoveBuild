@@ -11812,6 +11812,15 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11536: string+=`When Exhausted,\nAdd ${this.calculateEffect(effect[0],1)} Block\nand Counter ${effect[1]} Once`; break
         case 11537: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${this.calculateEffect(effect[1],1)} Block Next Turn\nWhen Played or When\nDiscarded by Scry`; break
         case 11538: string+=`Gain ${effect[0]} Dodge\nAdd ${effect[1]} Miracle${pl(effect[1])}\nto Hand`; break
+        case 11539: string+=`Gain ${effect[0]} Dexterity\nApply ${effect[1]} Frail`; break
+        case 11540: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Weak\nGain ${effect[2]} Vulnerable\nWhen Retained,\nIncreases by ${effect[3]}`; break
+        case 11541: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nRemove ${effect[1]} Fatigue${pl(effect[1])}\nCycle: Skill`; break
+        case 11542: string+=`Exhaust All Status Cards\nin Discard Pile\nShuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Energy`; break
+        case 11543: string+=`Exhaust All Status Cards\nin Discard Pile\nShuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain ${effect[1]} Energy\nPut a Card in Draw\nPile in Your Hand`; break
+        case 11544: string+=`Exhaust All Status Cards\nin Discard Pile\nShuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain (E) (E) (E)`; break
+        case 11545: string+=`Exhaust All Status Cards\nin Discard Pile\nShuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain (E) (E) (E)\nPut a Card in Draw\nPile in Your Hand`; break
+        case 11546: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Movement${pl(effect[1])}\nand Retain ${effect[1]!=1?`Them`:`it`}\nUntil Played`; break
+        case 11547: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Defense${pl(effect[1])}\nand Retain ${effect[1]!=1?`Them`:`it`}\nUntil Played`; break
 
         //mark p
         //mark q

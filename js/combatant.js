@@ -2756,6 +2756,18 @@ class combatant{
                             this.intent=(this.turnsAlive-1)%this.attack.length
                             this.move.type=this.turnsAlive%5>=3?9:0
                         break
+                        case 22:
+                            this.intent=0
+                        break
+                        case 23:
+                            this.intent=1
+                        break
+                        case 24:
+                            this.intent=2
+                        break
+                        case 25:
+                            this.intent=this.battle.counter.enemy-this.battle.counter.killed==1?0:floor(random(1,this.attack.length))
+                        break
                     }
                     this.convertIntent()
                 }
