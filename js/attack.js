@@ -307,38 +307,38 @@ class attack{
             case 9153: case 9154: case 9172: case 9173: case 9174: case 9175: case 9181: case 9182: case 9183: case 9184: case 9196: case 9198: case 9199: case 9208: case 9209: case 9211: case 9212: case 9215: case 9222: case 9228:
             case 9229: case 9230: case 9232: case 9233: case 9234: case 9235: case 9236: case 9237: case 9239: case 9240: case 9241: case 9242: case 9243: case 9244: case 9245: case 9246: case 9249: case 9265: case 9266: case 9268:
             case 9272: case 9273: case 9275: case 9281: case 9284: case 9289: case 9293: case 9294: case 9297: case 9298: case 9307: case 9308: case 9309: case 9322: case 9326: case 9327: case 9334: case 9337: case 9345: case 9355:
-            case 9356: case 9357: case 9358: case 9360: case 9363: case 9364: case 9383: case 9384: case 9385: case 9391: case 9393: case 9399: case 9403: case 9408: case 9409: case 9410: case 9411: case 9148: case 9421: case 9422:
-            case 9418: case 9441: case 9442: case 9443: case 9444: case 9447: case 9457: case 9458: case 9459: case 9460: case 9463: case 9464: case 9489: case 9490: case 9497: case 9499: case 9500: case 9504: case 9508: case 9512:
-            case 9513: case 9514: case 9515: case 9516: case 9522: case 9526: case 9528: case 9539: case 9540: case 9541: case 9542: case 9545: case 9546: case 9548: case 9549: case 9555: case 9556: case 9558: case 9559: case 9570:
-            case 9571: case 9573: case 9575: case 9585: case 9586: case 9587: case 9589: case 9590: case 9591: case 9602: case 9607: case 9611: case 9613: case 9614: case 9619: case 9621: case 9622: case 9623: case 9628: case 9630:
-            case 9631: case 9632: case 9634: case 9635: case 9636: case 9637: case 9641: case 9643: case 9644: case 9646: case 9647: case 9648: case 9649: case 9651: case 9654: case 9657: case 9659: case 9660: case 9661: case 9662:
-            case 9663: case 9665: case 9674: case 9675: case 9676: case 9677: case 9678: case 9679: case 9680: case 9685: case 9688: case 9689: case 9695: case 9697: case 9698: case 9699: case 9700: case 9703: case 9705: case 9706:
-            case 9710: case 9716: case 9717: case 9718: case 9725: case 9729: case 9731: case 9732: case 9735: case 9736: case 9737: case 9744: case 9745: case 9746: case 9750: case 9751: case 9769: case 9770: case 9772: case 9773:
-            case 9774: case 9775: case 9780: case 9784: case 9786: case 9789: case 9796: case 9797: case 9809: case 9810: case 9814: case 9816: case 9822: case 9823: case 9825: case 9826: case 9827: case 9828: case 9835: case 9836:
-            case 9837: case 9838: case 9839: case 9842: case 9845: case 9846: case 9847: case 9848: case 9849: case 9850: case 9851: case 9852: case 9853: case 9854: case 9858: case 9861: case 9866: case 9867: case 9869: case 9879:
-            case 9885: case 9886: case 9887: case 9888: case 9889: case 9890: case 9891: case 9892: case 9894: case 9907: case 9913: case 9922: case 9923: case 9924: case 9925: case 9944: case 9945: case 9950: case 9954: case 9957:
-            case 9960: case 9963: case 9966: case 9979: case 9984: case 9990: case 9991: case 10002: case 10004: case 10005: case 10007: case 10015: case 10021: case 10022: case 10028: case 10029: case 10030: case 10035: case 10036: case 10037:
-            case 10047: case 10048: case 10049: case 10050: case 10051: case 10062: case 10065: case 10073: case 10078: case 10079: case 10082: case 10106: case 10108: case 10112: case 10113: case 10117: case 10120: case 10121: case 10128: case 10130:
-            case 10132: case 10133: case 10144: case 10145: case 10147: case 10148: case 10151: case 10152: case 10154: case 10155: case 10156: case 10157: case 10158: case 10163: case 10165: case 10168: case 10169: case 10170: case 10171: case 10174:
-            case 10179: case 10180: case 10181: case 10182: case 10183: case 10187: case 10189: case 10190: case 10191: case 10192: case 10195: case 10196: case 10197: case 10199: case 10202: case 10203: case 10204: case 10205: case 10206: case 10213:
-            case 10214: case 10215: case 10216: case 10217: case 10218: case 10224: case 10225: case 10226: case 10227: case 10229: case 10230: case 10234: case 10236: case 10240: case 10241: case 10242: case 10244: case 10253: case 10254: case 10255:
-            case 10259: case 10260: case 10261: case 10264: case 10265: case 10267: case 10268: case 10270: case 10271: case 10272: case 10273: case 10275: case 10277: case 10278: case 10281: case 10287: case 10288: case 10289: case 10293: case 10296:
-            case 10297: case 10300: case 10302: case 10308: case 10309: case 10312: case 10313: case 10314: case 10316: case 10318: case 10319: case 10320: case 10322: case 10324: case 10331: case 10336: case 10337: case 10344: case 10353: case 10354:
-            case 10357: case 10358: case 10362: case 10365: case 10366: case 10370: case 10372: case 10373: case 10375: case 10377: case 10382: case 10389: case 10390: case 10392: case 10393: case 10394: case 10399: case 10407: case 10409: case 10410:
-            case 10411: case 10423: case 10431: case 10432: case 10436: case 10439: case 10449: case 10450: case 10460: case 10461: case 10462: case 10464: case 10465: case 10467: case 10471: case 10474: case 10478: case 10480: case 10481: case 10487:
-            case 10492: case 10498: case 10500: case 10509: case 10510: case 10516: case 10518: case 10521: case 10529: case 10531: case 10532: case 10533: case 10539: case 10550: case 10551: case 10552: case 10556: case 10559: case 10560: case 10566:
-            case 10577: case 10578: case 10583: case 10584: case 10585: case 10586: case 10587: case 10588: case 10589: case 10590: case 10597: case 10611: case 10612: case 10613: case 10614: case 10620: case 10621: case 10622: case 10623: case 10624:
-            case 10625: case 10628: case 10630: case 10633: case 10637: case 10638: case 10639: case 10652: case 10653: case 10662: case 10663: case 10664: case 10672: case 10678: case 10679: case 10684: case 10690: case 10691: case 10694: case 10697:
-            case 10705: case 10707: case 10721: case 10723: case 10724: case 10725: case 10727: case 10728: case 10729: case 10730: case 10731: case 10732: case 10733: case 10734: case 10735: case 10736: case 10739: case 10745: case 10748: case 10750:
-            case 10758: case 10761: case 10770: case 10775: case 10776: case 10777: case 10778: case 10780: case 10784: case 10789: case 10796: case 10802: case 10807: case 10809: case 10813: case 10814: case 10815: case 10816: case 10817: case 10864:
-            case 10873: case 10887: case 10888: case 10889: case 10890: case 10891: case 10892: case 10899: case 10913: case 10914: case 10915: case 10916: case 10924: case 10930: case 10939: case 10940: case 10942: case 10974: case 10983: case 10985:
-            case 10986: case 10988: case 10989: case 10990: case 10991: case 10992: case 11002: case 11009: case 11010: case 11011: case 11012: case 11013: case 11014: case 11021: case 11022: case 11024: case 11025: case 11026: case 11031: case 11032:
-            case 11048: case 11052: case 11057: case 11058: case 11059: case 11060: case 11061: case 11065: case 11082: case 11083: case 11089: case 11090: case 11091: case 11093: case 11095: case 11101: case 11105: case 11112: case 11113: case 11122:
-            case 11125: case 11131: case 11133: case 11140: case 11141: case 11147: case 11148: case 11156: case 11160: case 11161: case 11177: case 11179: case 11183: case 11189: case 11201: case 11204: case 11205: case 11209: case 11217: case 11223:
-            case 11226: case 11233: case 11234: case 11235: case 11238: case 11240: case 11241: case 11243: case 11254: case 11255: case 11256: case 11257: case 11260: case 11261: case 11264: case 11265: case 11266: case 11272: case 11273: case 11290:
-            case 11297: case 11301: case 11304: case 11314: case 11320: case 11322: case 11328: case 11329: case 11330: case 11333: case 11345: case 11348: case 11351: case 11352: case 11355: case 11356: case 11359: case 11362: case 11363: case 11371:
-            case 11372: case 11379: case 11393: case 11395: case 11400: case 11401: case 11402: case 11403: case 11404: case 11409: case 11412: case 11413: case 11418: case 11429: case 11430: case 11433: case 11435: case 11440: case 11441: case 11444:
-            case 11446: case 11449: case 11459: case 11468: case 11475: case 11479: case 11483: case 11492: case 11493: case 11506: case 11507: case 11511: case 11528: case 11529:
+            case 9356: case 9357: case 9358: case 9360: case 9363: case 9364: case 9384: case 9385: case 9391: case 9393: case 9399: case 9403: case 9408: case 9409: case 9410: case 9411: case 9148: case 9421: case 9422: case 9418:
+            case 9441: case 9442: case 9443: case 9444: case 9447: case 9457: case 9458: case 9459: case 9460: case 9463: case 9464: case 9489: case 9490: case 9497: case 9499: case 9500: case 9504: case 9508: case 9512: case 9513:
+            case 9514: case 9515: case 9516: case 9522: case 9526: case 9528: case 9539: case 9540: case 9541: case 9542: case 9545: case 9546: case 9548: case 9549: case 9555: case 9556: case 9558: case 9559: case 9570: case 9571:
+            case 9573: case 9575: case 9585: case 9586: case 9587: case 9589: case 9590: case 9591: case 9602: case 9607: case 9611: case 9613: case 9614: case 9619: case 9621: case 9622: case 9623: case 9628: case 9630: case 9631:
+            case 9632: case 9634: case 9635: case 9636: case 9637: case 9641: case 9643: case 9644: case 9646: case 9647: case 9648: case 9649: case 9651: case 9654: case 9657: case 9659: case 9660: case 9661: case 9662: case 9663:
+            case 9665: case 9674: case 9675: case 9676: case 9677: case 9678: case 9679: case 9680: case 9685: case 9688: case 9689: case 9695: case 9697: case 9698: case 9699: case 9700: case 9703: case 9705: case 9706: case 9710:
+            case 9716: case 9717: case 9718: case 9725: case 9729: case 9731: case 9732: case 9735: case 9736: case 9737: case 9744: case 9745: case 9746: case 9750: case 9751: case 9769: case 9770: case 9772: case 9773: case 9774:
+            case 9775: case 9780: case 9784: case 9786: case 9789: case 9796: case 9797: case 9809: case 9810: case 9814: case 9816: case 9822: case 9823: case 9825: case 9826: case 9827: case 9828: case 9835: case 9836: case 9837:
+            case 9838: case 9839: case 9842: case 9845: case 9846: case 9847: case 9848: case 9849: case 9850: case 9851: case 9852: case 9853: case 9854: case 9858: case 9861: case 9866: case 9867: case 9869: case 9879: case 9885:
+            case 9886: case 9887: case 9888: case 9889: case 9890: case 9891: case 9892: case 9894: case 9907: case 9913: case 9922: case 9923: case 9924: case 9925: case 9944: case 9945: case 9950: case 9954: case 9957: case 9960:
+            case 9963: case 9966: case 9979: case 9984: case 9990: case 9991: case 10002: case 10004: case 10005: case 10007: case 10015: case 10021: case 10022: case 10028: case 10029: case 10030: case 10035: case 10036: case 10037: case 10047:
+            case 10048: case 10049: case 10050: case 10051: case 10062: case 10065: case 10073: case 10078: case 10079: case 10082: case 10106: case 10108: case 10112: case 10113: case 10117: case 10120: case 10121: case 10128: case 10130: case 10132:
+            case 10133: case 10144: case 10145: case 10147: case 10148: case 10151: case 10152: case 10154: case 10155: case 10156: case 10157: case 10158: case 10163: case 10165: case 10168: case 10169: case 10170: case 10171: case 10174: case 10179:
+            case 10180: case 10181: case 10182: case 10183: case 10187: case 10189: case 10190: case 10191: case 10192: case 10195: case 10196: case 10197: case 10199: case 10202: case 10203: case 10204: case 10205: case 10206: case 10213: case 10214:
+            case 10215: case 10216: case 10217: case 10218: case 10224: case 10225: case 10226: case 10227: case 10229: case 10230: case 10234: case 10236: case 10240: case 10241: case 10242: case 10244: case 10253: case 10254: case 10255: case 10259:
+            case 10260: case 10261: case 10264: case 10265: case 10267: case 10268: case 10270: case 10271: case 10272: case 10273: case 10275: case 10277: case 10278: case 10281: case 10287: case 10288: case 10289: case 10293: case 10296: case 10297:
+            case 10300: case 10302: case 10308: case 10309: case 10312: case 10313: case 10314: case 10316: case 10318: case 10319: case 10320: case 10322: case 10324: case 10331: case 10336: case 10337: case 10344: case 10353: case 10354: case 10357:
+            case 10358: case 10362: case 10365: case 10366: case 10370: case 10372: case 10373: case 10375: case 10377: case 10382: case 10389: case 10390: case 10392: case 10393: case 10394: case 10399: case 10407: case 10409: case 10410: case 10411:
+            case 10423: case 10431: case 10432: case 10436: case 10439: case 10449: case 10450: case 10460: case 10461: case 10462: case 10464: case 10465: case 10467: case 10471: case 10474: case 10478: case 10480: case 10481: case 10487: case 10492:
+            case 10498: case 10500: case 10509: case 10510: case 10516: case 10518: case 10521: case 10529: case 10531: case 10532: case 10533: case 10539: case 10550: case 10551: case 10552: case 10556: case 10559: case 10560: case 10566: case 10577:
+            case 10578: case 10583: case 10584: case 10585: case 10586: case 10587: case 10588: case 10589: case 10590: case 10597: case 10611: case 10612: case 10613: case 10614: case 10620: case 10621: case 10622: case 10623: case 10624: case 10625:
+            case 10628: case 10630: case 10633: case 10637: case 10638: case 10639: case 10652: case 10653: case 10662: case 10663: case 10664: case 10672: case 10678: case 10679: case 10684: case 10690: case 10691: case 10694: case 10697: case 10705:
+            case 10707: case 10721: case 10723: case 10724: case 10725: case 10727: case 10728: case 10729: case 10730: case 10731: case 10732: case 10733: case 10734: case 10735: case 10736: case 10739: case 10745: case 10748: case 10750: case 10758:
+            case 10761: case 10770: case 10775: case 10776: case 10777: case 10778: case 10780: case 10784: case 10789: case 10796: case 10802: case 10807: case 10809: case 10813: case 10814: case 10815: case 10816: case 10817: case 10864: case 10873:
+            case 10887: case 10888: case 10889: case 10890: case 10891: case 10892: case 10899: case 10913: case 10914: case 10915: case 10916: case 10924: case 10930: case 10939: case 10940: case 10942: case 10974: case 10983: case 10985: case 10986:
+            case 10988: case 10989: case 10990: case 10991: case 10992: case 11002: case 11009: case 11010: case 11011: case 11012: case 11013: case 11014: case 11021: case 11022: case 11024: case 11025: case 11026: case 11031: case 11032: case 11048:
+            case 11052: case 11057: case 11058: case 11059: case 11060: case 11061: case 11065: case 11082: case 11083: case 11089: case 11090: case 11091: case 11093: case 11095: case 11101: case 11105: case 11112: case 11113: case 11122: case 11125:
+            case 11131: case 11133: case 11140: case 11141: case 11147: case 11148: case 11156: case 11160: case 11161: case 11177: case 11179: case 11183: case 11189: case 11201: case 11204: case 11205: case 11209: case 11217: case 11223: case 11226:
+            case 11233: case 11234: case 11235: case 11238: case 11240: case 11241: case 11243: case 11254: case 11255: case 11256: case 11257: case 11260: case 11261: case 11264: case 11265: case 11266: case 11272: case 11273: case 11290: case 11297:
+            case 11301: case 11304: case 11314: case 11320: case 11322: case 11328: case 11329: case 11330: case 11333: case 11345: case 11348: case 11351: case 11352: case 11355: case 11356: case 11359: case 11362: case 11363: case 11371: case 11372:
+            case 11379: case 11393: case 11395: case 11400: case 11401: case 11402: case 11403: case 11404: case 11409: case 11412: case 11413: case 11418: case 11429: case 11430: case 11433: case 11435: case 11440: case 11441: case 11444: case 11446:
+            case 11449: case 11459: case 11468: case 11475: case 11479: case 11483: case 11492: case 11493: case 11506: case 11507: case 11511: case 11528: case 11529: case 11535:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -9932,7 +9932,7 @@ class attack{
                     case 261:
                         this.userManager.draw(this.effect[1],6)
                     break
-                    case 262: case 7750:
+                    case 262: case 7750: case 11537:
                         this.userCombatant.statusEffect('Block Next Turn',this.effect[1])
                     break
                     case 281:
@@ -30228,6 +30228,13 @@ class attack{
                     case 11513:
                         this.userCombatant.statusEffect('Attack Discover Attack',1)
                     break
+                    case 11533:
+                        this.userCombatant.statusEffect('Single Damage Block Convert',this.effect[0])
+                    break
+                    case 11534:
+                        this.userCombatant.statusEffect('Single Damage Block Convert',this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                    break
 
                 }
                 //mark 5
@@ -32543,6 +32550,12 @@ class attack{
                     break
                     case 11476:
                         this.userCombatant.statusEffect('Intangible',this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                    break
+                    case 11538:
+                        this.userCombatant.statusEffect('Dodge',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Miracle',types.card),0,0)
                         }

@@ -340,6 +340,13 @@ class nodeManager{
     }
     emptyRead(){
         this.read.forEach(node=>node.readable=true)
+        switch(transition.scene){
+            case 'event':
+                if(this.battle.players==1){
+                    this.read.forEach(node=>node.combat=this.battle.eventManagers[0].event)
+                }
+            break
+        }
         this.read=[]
     }
     enterNode(type,y,chain,args){
@@ -467,9 +474,6 @@ class nodeManager{
                         this.battle.relicManager.activate(7,[type])
                         transition.scene='event'
                         this.battle.setupEvent()
-                        if(this.battle.players==1){
-                            this.read.forEach(node=>node.combat=this.battle.eventManagers[0].event)
-                        }
                     }else{
                         this.enterNode(args[1],y,true,args)
                     }

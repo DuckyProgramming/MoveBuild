@@ -241,7 +241,7 @@ class group{
                 }
             break
         }
-        if(!game.dev&&options.devGen){
+        if(!(game.dev&&options.devGen)){
             if(game.ascend>=10){
                 this.add(findName(`Ascender's\nBane`,types.card),0,constants.playerNumber+2)
             }

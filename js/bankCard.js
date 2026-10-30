@@ -11805,6 +11805,13 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11529: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nPush 1 Tile`; break
         case 11530: string+=`Gain ${effect[0]} Armor\nExhaust ${effect[1]} Card${pl(effect[1])}\nDraw an Equal\nNumber of Cards`; break
         case 11531: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Block\nFor ${effect[1]} Turn${pl(effect[1])}\nLose ${effect[2]} Health`; break
+        case 11532: string+=`Add ${effect[0]} Divine Wind${pl(effect[0])}\nto Hand${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?`\nCurrent Invocation: ${this.battle.overlayManager.overlays[193][this.player].polarity[0]}${this.battle.overlayManager.overlays[193][this.player].polarity[0]==this.battle.overlayManager.overlays[193][this.player].polarity[1]-1?`\n(Add 1 Miracle)`:``}`:``}`; break
+        case 11533: string+=`The Next ${effect[0]!=1?`${effect[0]} `:``}Time${pl(effect[0])}\nYou Deal Damage\nAdd${effect[0]==1?`s`:``} Equivalent Block`; break
+        case 11534: string+=`The Next ${effect[0]!=1?`${effect[0]} `:``}Time${pl(effect[0])}\nYou Deal Damage\nAdd${effect[0]==1?`s`:``} Equivalent Block\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 11535: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Your Block\nPull 1 Tile if Possible\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 11536: string+=`When Exhausted,\nAdd ${this.calculateEffect(effect[0],1)} Block\nand Counter ${effect[1]} Once`; break
+        case 11537: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${this.calculateEffect(effect[1],1)} Block Next Turn\nWhen Played or When\nDiscarded by Scry`; break
+        case 11538: string+=`Gain ${effect[0]} Dodge\nAdd ${effect[1]} Miracle${pl(effect[1])}\nto Hand`; break
 
         //mark p
         //mark q

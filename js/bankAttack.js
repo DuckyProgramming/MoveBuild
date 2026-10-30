@@ -302,7 +302,7 @@ attack.prototype.update=function(){
         case 10669: case 10679: case 10680: case 10681: case 10683: case 10703: case 10717: case 10742: case 10753: case 10755: case 10781: case 10797: case 10798: case 10899: case 10928: case 10975: case 11005: case 11006: case 11019:
         case 11033: case 11046: case 11049: case 11070: case 11087: case 11088: case 11092: case 11119: case 11149: case 11150: case 11161: case 11165: case 11171: case 11184: case 11190: case 11212: case 11222: case 11229: case 11242:
         case 11247: case 11267: case 11268: case 11269: case 11270: case 11274: case 11279: case 11282: case 11350: case 11369: case 11370: case 11380: case 11392: case 11396: case 11410: case 11415: case 11419: case 11431: case 11432:
-        case 11434: case 11439: case 11442: case 11451: case 11460: case 11469: case 11480: case 11486: case 11488: case 11496: case 11497: case 11504: case 11510: case 11526: case 11531:
+        case 11434: case 11439: case 11442: case 11451: case 11460: case 11469: case 11480: case 11486: case 11488: case 11496: case 11497: case 11504: case 11510: case 11526: case 11531: case 11537:
             //mark 2
             if(
                 this.timer==1&&(
@@ -2008,6 +2008,7 @@ attack.prototype.update=function(){
         case 6503: case 6652: case 6712: case 6713: case 6718: case 6719: case 6727: case 6728: case 6729: case 6735:
         case 6739: case 6741: case 6830: case 6895: case 7593: case 8319: case 8364: case 8381: case 8458: case 8517:
         case 8849: case 8850: case 8856: case 8882: case 9385: case 9663: case 9907: case 10474: case 11459: case 11476:
+        case 11538:
             //mark 13
             if(
                 (this.type==1649||this.type==1740)&&this.userCombatant.energyParity(this.energy)!=this.limit%2||
@@ -15709,7 +15710,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 9975: case 9976: case 10097: case 10098:
+        case 9975: case 9976: case 10097: case 10098: case 11532:
             if(this.timer==1){
                 this.userCombatant.startAnimation(10)
                 this.procedure[0]=this.userCombatant.doubleInvoke()?2:1
@@ -15772,6 +15773,20 @@ attack.prototype.update=function(){
                             }
                             if(this.userCombatant.getStatus('Suwako Dexterity')){
                                 this.userCombatant.statusEffect('Dexterity',this.userCombatant.getStatus('Suwako Dexterity'))
+                            }
+                        break
+                        case 11532:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userManager.hand.add(findName('Divine\nWind',types.card),this.level,0)
+                            }
+                            if(this.userCombatant.getStatus('Kanako Energy')){
+                                this.battle.addEnergy(this.userCombatant.getStatus('Kanako Energy'),this.player)
+                            }
+                            if(this.userCombatant.getStatus('Kanako (E)')){
+                                this.battle.addSpecificEnergy(this.userCombatant.getStatus('Kanako (E)'),this.player,6)
+                            }
+                            if(this.userCombatant.getStatus('Kanako Strength')){
+                                this.userCombatant.statusEffect('Strength',this.userCombatant.getStatus('Kanako Strength'))
                             }
                         break
                     }
@@ -15920,7 +15935,7 @@ attack.prototype.update=function(){
                 break
             }
         break
-        case 10001:
+        case 10001: case 11533: case 11534:
             if(variants.nobasicanim){
                 this.selfCall(4)
                 this.remove=true
@@ -15937,7 +15952,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 10002: case 11412:
+        case 10002: case 11412: case 11535:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
                 this.offset=[(this.targetCombatant.tilePosition.x-this.userCombatant.tilePosition.x)/this.targetDistance,(this.targetCombatant.tilePosition.y-this.userCombatant.tilePosition.y)/this.targetDistance]
@@ -15955,6 +15970,10 @@ attack.prototype.update=function(){
                     break
                     case 11412:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.block,this.user)
+                    break
+                    case 11535:
+                        this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.block,this.user)
+                        this.userManager.draw(this.effect[1])
                     break
                 }
             }

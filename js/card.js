@@ -1186,6 +1186,10 @@ class card{
                     this.battle.cardManagers[this.player].hand.add(findName('Miracle',types.card),0,0)
                 }
             break
+            case 11537:
+                userCombatant.addBlock(this.effect[0])
+                userCombatant.statusEffect('Block Next Turn',this.effect[1])
+            break
         }
         return 0
     }
@@ -1886,8 +1890,8 @@ class card{
             case 9141:
                 userCombatant.addBlock(this.effect[0])
                 userCombatant.statusEffect('Block Next Turn',this.effect[0])
-                userCombatant.statusEffect('Counter Once',this.effect[0])
-                userCombatant.statusEffect('Counter Once Next Turn',this.effect[0])
+                userCombatant.statusEffect('Counter Once',this.effect[1])
+                userCombatant.statusEffect('Counter Once Next Turn',this.effect[1])
             break
             case 9210:
                 userCombatant.addBarrier(this.effect[0])
@@ -1934,6 +1938,10 @@ class card{
             break
             case 11491:
                 this.battle.combatantManager.allEffect(48,['Lock On',this.effect[0]])
+            break
+            case 11536:
+                userCombatant.addBlock(this.effect[0])
+                userCombatant.statusEffect('Counter Once',this.effect[1])
             break
 
         }

@@ -5264,9 +5264,9 @@ class combatant{
                 }
             break
             case 4:
-                if(this.battle.combatantManager.combatants[target].id!=this.id){
-                    this.battle.combatantManager.combatants[target].statusEffect('Mortal',round(2*multi))
-                }
+                //if(this.battle.combatantManager.combatants[target].id!=this.id){
+                this.battle.combatantManager.combatants[target].statusEffect('Mortal',round(2*multi))
+                //}
                 if(this.status.main[646]>0&&!this.orbs.includes(6)){
                     for(let a=0,la=this.status.main[646];a<la;a++){
                         this.holdOrb(6)
@@ -5385,9 +5385,9 @@ class combatant{
                 }*/
             break
             case 4:
-                if(this.battle.combatantManager.combatants[target].id!=this.id){
-                    this.battle.combatantManager.combatants[target].statusEffect('Mortal',round(multi))
-                }
+                //if(this.battle.combatantManager.combatants[target].id!=this.id){
+                this.battle.combatantManager.combatants[target].statusEffect('Mortal',round(multi))
+                //}
             break
             case 5:
                 this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)

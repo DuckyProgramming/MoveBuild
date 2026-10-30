@@ -5,8 +5,6 @@ vincent rework
 
 CS 146 [?]
 
-test sanae
-
 test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
@@ -32,7 +30,14 @@ tooltips for dictionary
 
 recheck every tutorial
 
+sagume still goofy
+wing wraps around the yin-yang
+
+change skin colors for major playable characters
+https://docs.google.com/document/d/1YX8U_SYH5lfNsQ4-Ak2TJW5jEc2FcAhFT6BGIgu6LO8/edit?tab=t.0
+
 +8 wishes
++4 evoke
 
 a ton of fresh prehex cards
 more ways to turn back time
@@ -43,6 +48,10 @@ split spirit siphon
 give a version of floating illusion to sakura (dodging it)
 split pregame so lira can have it (and chip gets idk)
 prismic bead is stupid
+
+nerf faith cards slightly
+the day the sea split should exhaust all fatigues like breath does
+wave calling / wind calling feel weak
 
 split payout to exhaust
 dynamic move but its a defense now (and still gives combo)

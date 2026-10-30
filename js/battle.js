@@ -1130,7 +1130,7 @@ class battle{
             if(this.turn.total<=1+this.relicManager.active[448][this.turn.main+1]){
                 if(!variants.initiative){
                     let level=this.relicManager.hasRelic(587,this.turn.main)?1:0
-                    for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
+                    for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
                         if(this.modded(257)){
                             this.cardManagers[this.turn.main].hand.add(findName('Fatigue',types.card),level,constants.playerNumber+1)
                         }else{
@@ -1889,7 +1889,7 @@ class battle{
     }
     displayCurrency(){
         this.layer.noStroke()
-        if(options.moneyOutline){
+        if(options.moneyOutline||stage.scene==`event`){
             this.layer.stroke(0)
             this.layer.strokeWeight(0.4)
         }
@@ -1898,7 +1898,7 @@ class battle{
         if(this.currency.money.length>1){
             this.layer.ellipse(this.layer.width-20,16,16)
         }
-        if(options.moneyOutline){
+        if(options.moneyOutline||stage.scene==`event`){
             this.layer.noStroke()
         }
         this.layer.fill(220,220,200)
@@ -1916,7 +1916,7 @@ class battle{
             this.layer.triangle(this.layer.width-19,19,this.layer.width-21,19,this.layer.width-20,23)
         }
         this.layer.fill(230,230,210)
-        if(options.moneyOutline){
+        if(options.moneyOutline||stage.scene==`event`){
             this.layer.stroke(0)
             this.layer.strokeWeight(1)
         }
