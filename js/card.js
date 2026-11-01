@@ -2675,6 +2675,9 @@ class card{
             case 8558:
                 this.battle.cardManagers[this.player].deck.addAbstract(findName('Worker',types.card),0,0,0,[4],[[62]])
             break
+            case 11553:
+                this.battle.addCurrency(this.effect[1],this.player)
+            break
             
         }
     }
@@ -4384,6 +4387,11 @@ class card{
             break
             case 11540:
                 this.effect[0]+=this.effect[3]
+            break
+            case 11574:
+                if(userCombatant.turnStatus[5]>0){
+                    userCombatant.addBlock(this.effect[1])
+                }
             break
         }
         if(this.spec.includes(55)){

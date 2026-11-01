@@ -959,7 +959,6 @@ class battle{
     }
     endTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
-        combatant.endTurn()
         this.turn.endReady=false
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
         if(combatant.getStatus('Retain Hand')>0){
@@ -975,6 +974,7 @@ class battle{
         if(variants.hungry){
             combatant.loseHealth(2)
         }
+        combatant.endTurn()
         let extra=false
         let noDraw=false
         if((combatant.getStatus('Extra Drawless Turn')>0||combatant.getStatus('Extra Turn')>0||combatant.getStatus('Extra Turn Play Limit Per Turn')>0&&combatant.interiorStatus[0]==0)&&combatant.getStatus('No Extra Turns')<=0){
@@ -1503,6 +1503,9 @@ class battle{
                 }
             break
             case 3:
+                if(userCombatant.getStatus('Movement Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Movement Draw'))
+                }
                 if(userCombatant.getStatus('Double Damage Without Movement')>0){
                     userCombatant.statusEffect('Double Damage Without Movement',-1)
                 }

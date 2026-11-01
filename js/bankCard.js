@@ -293,7 +293,8 @@ card.prototype.description=function(attack,effect,spec,target){
             string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health`; break
         case 78: string+=`A Random Card in\nHand Costs 0`; break
         case 79: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Ouroboros With\n+${effect[1]} Damage to Discard`; break
-        case 80: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Frail`; break
+        case 80: case 11572:
+            string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Frail`; break
         case 81: string+=`Apply ${effect[0]} Poison`; break
         case 82: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nMay Target Any Tile\nWithin Range ${target[1]}-${target[2]}`; break
         case 83: case 1196:
@@ -11158,7 +11159,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10885: string+=`Make ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of the\nCards to the\nLeft and Right`; break
         case 10886: string+=`Set Your Vigor\nand Vigil to the\nHigher of the Two\nDraw ${effect[0]} Card${pl(effect[0])}`; break
         case 10887: string+=`Pull Target Until Adjacent\nTarget Will Face User\nDraw ${effect[0]} Card${pl(effect[0])}`; break
-        case 10888: string+=`Pull Target Until Adjacent\nTarget Will Face User`; break
+        case 10888: string+=`Pull Target Until Adjacent\nTarget Will Face Away`; break
         case 10889: string+=`Pull Target Until Adjacent\nTarget Will Face Away\nDraw ${effect[0]} Card${pl(effect[0])}`; break
         case 10890: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of an\nAlive Construct's\nBlueprint to Hand\n${effect[0]!=1?`They Gain`:`It Gains`} Exhaust`; break
         case 10891: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of an\nAlive Construct's\nBlueprint to Hand\n${effect[0]!=1?`They Gain`:`It Gains`} Exhaust\nand Costs 0`; break
@@ -11821,6 +11822,32 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11545: string+=`Exhaust All Status Cards\nin Discard Pile\nShuffle Discard Pile And\nHand Into Draw Pile\nShuffle Draw Pile\nDraw ${effect[0]} Card${pl(effect[0])}\nGain (E) (E) (E)\nPut a Card in Draw\nPile in Your Hand`; break
         case 11546: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Movement${pl(effect[1])}\nand Retain ${effect[1]!=1?`Them`:`it`}\nUntil Played`; break
         case 11547: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Defense${pl(effect[1])}\nand Retain ${effect[1]!=1?`Them`:`it`}\nUntil Played`; break
+        case 11548: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Your Health is Full,\nGain ${effect[1]} Energy and\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 11549: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Your Health is Full,\nGain (E) and\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 11550: string+=`If Target Will Attack,\nApply ${effect[0]} Vulnerable`; break
+        case 11551: string+=`Gain ${effect[0]} Combo\nTake ${effect[1]} Damage\nIf You Do Not\nAttack This Turn`; break
+        case 11552: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Armor\nPer Item You Have`; break
+        case 11553: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Removed,\nGain ${effect[1]} Currency`; break
+        case 11554: string+=`Gain a Common Relic\nLose ${effect[0]} Currency`; break
+        case 11555: string+=`Draw Cards Equal\nto the Number\nPlayed Last Turn`; break
+        case 11556: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nApply ${effect[1]} Shock to Targets\nMay Target Any Tile\nWithin Range ${target[1]}-${target[2]}`; break
+        case 11557: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nDecrease Turn Number by ${effect[1]}\nMay Target Any Tile\nWithin Range ${target[1]}-${target[2]}`; break
+        case 11558: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Armor\nAdvance`; break
+        case 11559: string+=`Hold ${effect[0]} Basic Orb${pl(effect[0])}\nFor Every Enemy`; break
+        case 11560: string+=`Hold ${effect[0]} Dual Orb${pl(effect[0])}\nFor Every Enemy`; break
+        case 11561: string+=`Apply ${effect[0]} Vulnerable\nGain ${effect[1]} Vulnerable\nPush 1 Tile`; break
+        case 11562: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext Construct Built\nLoses 50% HP`; break
+        case 11563: string+=`All Skills in Hand\nCost ${effect[0]} Less Temporarily\n${variants.mtg?`Basic Attack`:`Strike`}s Deal Double\nDamage This Turn\n${variants.mtg?`Basic Defense`:`Defend`}s Add Double\nBlock This Turn`; break
+        case 11564: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nWhen a Movement\nis Played`; break
+        case 11565: string+=`Draw ${effect[0]} Defense${pl(effect[0])}\nEvery Turn`; break
+        case 11566: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Faith`; break
+        case 11567: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Conditioning`; break
+        case 11568: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Energy and\nDraw ${effect[2]} Card${pl(effect[2])}\nIf Used on a Plant Tile`; break
+        case 11569: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain (G) (G) and\nDraw ${effect[1]} Card${pl(effect[1])}\nIf Used on a Plant Tile`; break
+        case 11570: string+=`Create 1 Plant Tile\nNext Attack is Free`; break
+        case 11571: string+=`Lose ${effect[0]} Orb Slot${pl(effect[0])}`; break
+        case 11573: string+=`Add ${effect[0]} Block\nto Construct\nAdds ${effect[1]} More\nPer Other Construct`; break
+        case 11574: string+=`Gain ${effect[0]} Currency\nWhen Retained,\nIf You Have Lowrolled\nThis Turn${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[5]>0?`Yes`:`No`})`:``},\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
 
         //mark p
         //mark q

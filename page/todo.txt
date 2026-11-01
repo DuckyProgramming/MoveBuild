@@ -1,9 +1,11 @@
-CS 145 [PREHEX / VINCENT]
+CS 146 [PREHEX / VINCENT]
+
+carbon
 
 prehex rework
 vincent rework
 
-CS 146 [?]
+CS 147 [?]
 
 test vincent (after fixes)
 test shinmy (after fixes)
@@ -32,12 +34,18 @@ recheck every tutorial
 
 tax evasion? (when you lose currency lose 1 less)
 blue pepper - get 3 ? if you have 3 empty spots???
-tedium - you can no longer get rare cards
+tedium capsule - next card reward is common
 anchor - damage, block if you have adjacent empty tile spots
 fine wine - heal 2 and gain 2 temporary strength, both increase by 1 after a boss is defeated
 readd pothole (now as speed bump)?
 rich friend [replace loanshark] - heal 1 health at the start of combat, when removed, gain 400 currnecy
-split collateral, it now says - if you lowrolled this turn, add block, retain (so pulp)
+bag of cards - add 1 block per skipped card reward this run
+[chili powder]
+[zaroff's contract]
+block cogs
+
+recycling - gain a reroll every turn??? [maybe use this to replace TEST 271]
+apparently divine wind is worthless
 
 new bar event option - take a shot - lose 50 currency, chance to remove a card
 layoffs - remove randomly picked card 1, remove randomly picked card 2, or both of them
@@ -54,13 +62,7 @@ a ton of fresh prehex cards
 more ways to turn back time
 more evolve
 
-split congratulates to trophy
-split payout to exhaust
-dynamic move but its a defense now (and still gives combo)
-alternator - draw a card per card you played last turn [3255]
 tick tock - 4 damage 2 times, increases by 1 when turn number decreases
-time bomb - grenade + change turn number
-detect flaws - apply 1 vulnerable, gain 1 strength if target will attack
 hyperactive - 7 damage, if you have caffeine gain 1 energy and draw a card
 rampant evolution - transform a card, evolve your hand
 controlled evolution - exhaust a card, evolve your hand
@@ -91,25 +93,10 @@ quickswap - when you change stance, 2 splash damage
 empty out - exit stance (nothing else)
 
 rip and tear - 7 damage to a random adjacent enemy 2 times
-basic web - 1 shield orb per enemy
-shield web - 1 shield orb per enemy [this already exists dummy]
-dual ignition - same thing but for dual orbs
 separate weaknesses - 2 vulnerable, 2 node
 other's mistakes - poison jet but light orb
-quickscope - 3 damage, apply 1 frail
 flux - draw a card, add 2 block per orb [4995]
-overaccelerate - draw 3 cards, lose 1 focus
-compact - lose an orb slot
 
-sunshade - parasol but 6 bleed 1 vulnerable instead of pushing
-consuming slice but draw 1 less every turns
-foliage - gain 2 metallicize per turn
-incapacitate - if target will attack, reduce damage by 999
-shattering kick - push, vulnerable to target and vulnerable to self
-
-foundations - add block to construct, if it is full health adds double block
-skimping - add 13 block, 0 cost, next construct loses health [cheap out]
-spiked plates - barbed wire but counter once
 timeout - add 7 block, draw a card, if it's an attack apply 2 weak to all enemies
 
 check that on mtg mode energy is never mentioned

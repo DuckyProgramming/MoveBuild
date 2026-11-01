@@ -106,7 +106,7 @@ constants.status={
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Old Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
         'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn','Double Buff',
-        'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times',
+        'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -215,7 +215,7 @@ constants.status={
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
         2,0,1,0,0,0,0,0,0,0,//106
-        0,1,0,2,2,0,2,
+        0,1,0,2,2,0,2,0,0,
     ],
     /*
     0-none
@@ -333,7 +333,7 @@ constants.status={
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
         2,2,1,2,2,2,2,2,2,2,//106
-        2,2,2,0,0,2,0,
+        2,2,2,0,0,2,0,2,2,
     ]
     /*
     0-good
@@ -5224,6 +5224,14 @@ class combatant{
             this.infoAnim.orbSpec[this.infoAnim.orbSpec.length-1].push(0)
         }
     }
+    loseOrb(){
+        if(this.orbs.length>0){
+            this.orbs.splice(this.orbs.length-1,1)
+            this.orbDetail.splice(this.orbDetail.length-1,1)
+            this.orbPos.splice(this.orbPos.length-1,1)
+            this.infoAnim.orbSpec.splice(this.infoAnim.orbSpec.length-1,1)
+        }
+    }
     holdOrb(type){
         if(this.orbs.length>0){
             this.totalOrb++
@@ -7016,6 +7024,7 @@ class combatant{
                     case 1062: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rebound(this.status.main[this.status.ticker[a]])}; break
                     case 1063: this.miniStatus('Single Splash Damage',this.status.main[this.status.ticker[a]]); break
                     case 1064: this.miniStatus('Single Splash Damage Next Turn',this.status.main[this.status.ticker[a]]); break
+                    case 1068: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[2]+=this.status.main[this.status.ticker[a]]} break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])
