@@ -1916,7 +1916,7 @@ class combatant{
     calculateParts(){
         this.anim.head=this.anim.direction
         switch(this.name){
-            case 'Lira': case 'Sakura': case 'Setsuna': case 'Ume':
+            case 'Lira': case 'Setsuna': case 'Ume':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -1952,6 +1952,52 @@ class combatant{
 
                     this.graphics.arms[g].topStack.x=(this.parts.arms[g].top.x+(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/2)*lsin(this.spin.arms[g].top+this.anim.direction),
                     this.graphics.arms[g].topStack.y=this.parts.arms[g].top.y-(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/4
+                    this.graphics.arms[g].middleStack.x=(this.parts.arms[g].middle.x+(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/2)*lsin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].middleStack.y=this.parts.arms[g].middle.y
+                    this.graphics.arms[g].bottomStack.x=(this.parts.arms[g].bottom.x+(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/2)*lsin(this.spin.arms[g].bottom+this.anim.direction),
+                    this.graphics.arms[g].bottomStack.y=this.parts.arms[g].bottom.y
+                }
+                this.sprites.spin=round(((this.anim.direction%360)+360)%360)
+                this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
+                this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
+            break
+            case 'Sakura':
+                for(let g=0;g<2;g++){
+                    this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
+                    this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
+                    this.parts.legs[g].bottom.x=this.parts.legs[g].middle.x+lsin(this.anim.legs[g].bottom)*this.anim.legs[g].length.bottom
+                    this.parts.legs[g].bottom.y=this.parts.legs[g].middle.y+lcos(this.anim.legs[g].bottom)*this.anim.legs[g].length.bottom
+                    this.parts.legs[g].sandal.front.x=this.parts.legs[g].middle.x+lsin(this.anim.legs[g].bottom)*this.anim.legs[g].length.sandal.front
+                    this.parts.legs[g].sandal.front.y=this.parts.legs[g].middle.y+lcos(this.anim.legs[g].bottom)*this.anim.legs[g].length.sandal.front
+                    this.parts.legs[g].sandal.back.x=this.parts.legs[g].middle.x+lsin(this.anim.legs[g].bottom)*this.anim.legs[g].length.sandal.back
+                    this.parts.legs[g].sandal.back.y=this.parts.legs[g].middle.y+lcos(this.anim.legs[g].bottom)*this.anim.legs[g].length.sandal.back
+
+                    this.graphics.legs[g].top.x=this.parts.legs[g].top.x*lsin(this.spin.legs[g].top+this.anim.direction),
+                    this.graphics.legs[g].top.y=this.parts.legs[g].top.y
+                    this.graphics.legs[g].middle.x=this.parts.legs[g].middle.x*lsin(this.spin.legs[g].top+this.anim.direction),
+                    this.graphics.legs[g].middle.y=this.parts.legs[g].middle.y
+                    this.graphics.legs[g].bottom.x=this.parts.legs[g].bottom.x*lsin(this.spin.legs[g].bottom+this.anim.direction),
+                    this.graphics.legs[g].bottom.y=this.parts.legs[g].bottom.y
+                    this.graphics.legs[g].sandal.front.x=this.parts.legs[g].sandal.front.x*lsin(this.spin.legs[g].bottom+this.anim.direction),
+                    this.graphics.legs[g].sandal.front.y=this.parts.legs[g].sandal.front.y
+                    this.graphics.legs[g].sandal.back.x=this.parts.legs[g].sandal.back.x*lsin(this.spin.legs[g].bottom+this.anim.direction),
+                    this.graphics.legs[g].sandal.back.y=this.parts.legs[g].sandal.back.y
+
+                    this.parts.arms[g].middle.x=this.parts.arms[g].top.x+lsin(this.anim.arms[g].top)*this.anim.arms[g].length.top
+                    this.parts.arms[g].middle.y=this.parts.arms[g].top.y+lcos(this.anim.arms[g].top)*this.anim.arms[g].length.top
+                    this.parts.arms[g].bottom.x=this.parts.arms[g].middle.x+lsin(this.anim.arms[g].bottom)*this.anim.arms[g].length.bottom
+                    this.parts.arms[g].bottom.y=this.parts.arms[g].middle.y+lcos(this.anim.arms[g].bottom)*this.anim.arms[g].length.bottom
+
+                    this.graphics.arms[g].top.x=this.parts.arms[g].top.x*lsin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].top.y=this.parts.arms[g].top.y
+                    this.graphics.arms[g].middle.x=this.parts.arms[g].middle.x*lsin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
+                    this.graphics.arms[g].bottom.x=this.parts.arms[g].bottom.x*lsin(this.spin.arms[g].bottom+this.anim.direction),
+                    this.graphics.arms[g].bottom.y=this.parts.arms[g].bottom.y
+
+                    this.graphics.arms[g].topStack.x=(this.parts.arms[g].top.x+(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/2)*lsin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].topStack.y=this.parts.arms[g].top.y
+                    //this is the only difference lol
                     this.graphics.arms[g].middleStack.x=(this.parts.arms[g].middle.x+(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/2)*lsin(this.spin.arms[g].top+this.anim.direction),
                     this.graphics.arms[g].middleStack.y=this.parts.arms[g].middle.y
                     this.graphics.arms[g].bottomStack.x=(this.parts.arms[g].bottom.x+(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/2)*lsin(this.spin.arms[g].bottom+this.anim.direction),
@@ -4787,10 +4833,10 @@ class combatant{
                 if(this.status.main[358]>0){
                     this.heal(this.status.main[358])
                 }
-                if((this.spec.includes(13)||this.battle.relicManager.hasRelic(492,-1)&&(this.spec.includes(14)||this.spec.includes(15)||this.spec.includes(16)||this.spec.includes(21)||this.spec.includes(22)))&&this.life<=0&&user>=0&&user<this.battle.players){
+                if((this.spec.includes(13)||this.spec.includes(24)||this.battle.relicManager.hasRelic(492,-1)&&(this.spec.includes(14)||this.spec.includes(15)||this.spec.includes(16)||this.spec.includes(21)||this.spec.includes(22)||this.spec.includes(25)))&&this.life<=0&&user>=0&&user<this.battle.players){
                     let prefered=floor(random(0,this.battle.overlayManager.overlays[0].length))
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        let reward=this.spec.includes(16)?[{type:0,value:[5]}]:[]
+                        let reward=this.spec.includes(16)||this.spec.includes(24)?[{type:0,value:[5]}]:[]
                         if(this.battle.relicManager.hasRelic(492,user)){
                             if(this.spec.includes(13)){
                                 reward.push({type:4,value:[10]})
@@ -4801,7 +4847,7 @@ class combatant{
                             if(this.spec.includes(15)&&a==prefered){
                                 reward.push({type:6,value:[1]})
                             }
-                            if(this.spec.includes(16)){
+                            if(this.spec.includes(16)||this.spec.includes(24)){
                                 reward.push({type:0,value:[25]})
                             }
                             if(this.spec.includes(21)){
@@ -4810,6 +4856,9 @@ class combatant{
                             }
                             if(this.spec.includes(22)){
                                 reward.push({type:0,value:[100]})
+                            }
+                            if(this.spec.includes(25)){
+                                reward.push({type:0,value:[50]})
                             }
                         }
                         if(reward.length>0){
@@ -8621,7 +8670,6 @@ class combatant{
                                 case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+a*10); break
                                 case 15: this.layer.text('On Survival, Move Freely',40,305+a*10); break
                                 case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*10); break
-                                //case 16: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
                                 case 19: this.layer.text('Robot',40,305+a*10); break
@@ -8629,6 +8677,8 @@ class combatant{
                                 case 21: this.layer.text('On Survival, Heal 15 HP\nand Gain 250 Currency',40,305+a*10); break
                                 case 22: this.layer.text('On Survival, Gain 100 Currency',40,305+a*10); break
                                 case 23: this.layer.text('Creates a Copy of Self Each Turn',40,305+a*10); break
+                                case 24: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
+                                case 25: this.layer.text('On Survival, Gain 50 Currency',40,305+a*10); break
 
                             }
                         }

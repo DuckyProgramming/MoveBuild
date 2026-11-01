@@ -48,7 +48,8 @@ class purchaseManager{
                 this.purchases=[]
                 if(this.battle.tutorialManager.active){
                     sale=floor(random(0,game.diff>=7?9:10))
-                    antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                    //antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                    antisale=game.diff>=22?randin(range(0,10).filter(a=>a!=sale)):-1
                     group=this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,0,1,1,2]:[0,0,0,0,0,0,1,1,1,1,2,2]
                     cost=this.generalizedListing(0)
                     for(let a=0,la=group.length;a<la;a++){
@@ -95,7 +96,8 @@ class purchaseManager{
                 }else if(this.battle.players==1){
                     if(this.battle.currency.money[0]>=100){
                         sale=floor(random(0,game.diff>=7?9:10))
-                        antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                        //antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                        antisale=game.diff>=22?randin(range(0,10).filter(a=>a!=sale)):-1
                         list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):variants.mtg?copyArrayStack(this.battle.cardManagers[0].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[constants.playerNumber+1])):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                         group=game.diff>=7?
                             (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,1,2]:[0,0,0,0,0,1,1,1,1,2]):
@@ -211,7 +213,8 @@ class purchaseManager{
                     if(this.battle.currency.money[0]>=100&&this.battle.currency.money[1]>=100){
                         for(let a=0,la=this.battle.players;a<la;a++){
                             sale=floor(random(0,8))
-                            antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                            //antisale=game.diff>=22?randin([...range(0,10),9].filter(a=>a!=sale)):-1
+                            antisale=game.diff>=22?randin(range(0,10).filter(a=>a!=sale)):-1
                             list=variants.mtg?copyArrayStack(this.battle.cardManagers[a].listing.mtg[0]):variants.junk?quadroArray(copyArray(this.battle.cardManagers[a].listing.junk[constants.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[a].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                             group=game.diff>=7?
                                 (this.battle.modded(153)?[0,0,0,0,0,0,0,0,0,0]:variants.commoners?[0,0,0,0,0,0,0,0,1,2]:[0,0,0,0,0,1,1,1,1,2]):

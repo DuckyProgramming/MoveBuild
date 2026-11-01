@@ -43807,15 +43807,15 @@ types.card=[
     },{
         name:'Collection\nHolder',rarity:1,list:19,
         levels:[
-            {effect:[12,2],attack:11222,cost:2,target:[0],spec:[],class:0},
-            {effect:[12,4],attack:11222,cost:2,target:[0],spec:[],class:0},
-            {effect:[12,6],attack:11222,cost:2,target:[0],spec:[],class:0},
+            {effect:[12,2],attack:11222,cost:2,target:[0],spec:[],class:2},
+            {effect:[12,4],attack:11222,cost:2,target:[0],spec:[],class:2},
+            {effect:[12,6],attack:11222,cost:2,target:[0],spec:[],class:2},
         ],mtg:{
             rarity:1,list:19,color:[3],
             levels:[
-                {effect:[16,2],attack:11222,cost:[3,3,-1],target:[0],spec:[],class:0},
-                {effect:[16,4],attack:11222,cost:[3,3,-1],target:[0],spec:[],class:0},
-                {effect:[16,4],attack:11222,cost:[3,-1],target:[0],spec:[],class:0},
+                {effect:[16,2],attack:11222,cost:[3,3,-1],target:[0],spec:[],class:2},
+                {effect:[16,4],attack:11222,cost:[3,3,-1],target:[0],spec:[],class:2},
+                {effect:[16,4],attack:11222,cost:[3,-1],target:[0],spec:[],class:2},
             ],
         },
     },{

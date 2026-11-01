@@ -404,7 +404,7 @@ types={
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
         {name:'Navigator',life:20,behavior:0,spec:[15],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Where we droppin' boys`},
-        {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
+        {name:'Rich Kid',life:20,behavior:0,spec:[25],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
         {name:'Rebel Negotiator',life:20,behavior:0,spec:[21],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Comes in peace?`},
         
         {name:'NumberDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},

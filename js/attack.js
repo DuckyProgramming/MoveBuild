@@ -40103,7 +40103,7 @@ class attack{
                         }
                     break
                     case 10933:
-                        for(let a=0,la=this.effect[1];a<la;a++){
+                        for(let a=0,la=this.effect[0];a<la;a++){
                             this.battle.dropDrawShuffle(this.player,findName('Vitality',types.card),0,0)
                         }
                     break

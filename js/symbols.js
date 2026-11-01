@@ -12357,6 +12357,8 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
     layer.translate(x,y)
     layer.rotate(direction)
     layer.scale(size)
+    /*layer.fill(0,fade)
+    layer.ellipse(0,0,60)*/
     layer.fill(...playerSymbolColor(type),fade)
     if(center){
         layer.ellipse(0,0,50)
@@ -13083,7 +13085,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
 				[-17.5,-5],
 				[-32.5,-12.5],
 				[-42.5,-25],
-				[-47.5,-40]
+				[-45,-42.5]
 			]
             layer.translate(12,5)
             layer.scale(0.45)
@@ -13098,10 +13100,12 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
                 for(let b=0,lb=3;b<lb;b++){
                     layer.push()
                     layer.translate(map((b+0.8)/lb,0,1,nodes[a][0],nodes[a+1][0]),map((b+0.8)/lb,0,1,nodes[a][1],nodes[a+1][1]))
-                    layer.rotate(atan2(nodes[a][1]-nodes[a+1][1],nodes[a][0]-nodes[a+1][0])+(b-1)*5)
-                    layer.scale(1+(a*0.3+b*0.225+0.1)%0.4+a*0.1)
+                    //layer.rotate(atan2(nodes[a][1]-nodes[a+1][1],nodes[a][0]-nodes[a+1][0])+(b-1)*5)
+                    layer.rotate(atan2(nodes[a][1]-nodes[a+1][1],nodes[a][0]-nodes[a+1][0])+(b-1)*(6+a*2))
+                    //layer.scale(1+(a*0.3+b*0.225+0.1)%0.4+a*0.1)
+                    layer.scale(1+(a*0.3+b*0.225+0.1)%0.4+a*0.05)
                     layer.beginShape()
-                    layer.vertex(-0.5,0)
+                    /*layer.vertex(-0.5,0)
                     layer.bezierVertex(
                         -3,10,
                         -1.5,12.5,
@@ -13110,7 +13114,18 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
                     layer.bezierVertex(
                         1.5,12.5,
                         3,10,
-                        0.5,0,
+                        1.5,0,
+                    )*/
+                    layer.vertex(-0.8,0)
+                    layer.bezierVertex(
+                        -4,10,
+                        -1.6,12.5,
+                        0,15,
+                    )
+                    layer.bezierVertex(
+                        1.6,12.5,
+                        4,10,
+                        0.8,0,
                     )
                     layer.endShape()
                     layer.pop()

@@ -2633,24 +2633,24 @@ function generateSprite(layer,type,direction){
 			displayTrianglesFront(layer,data.parts.hair.main,direction,0,35,1,0.1,data.color.hair.front,1)
 			layer.arc(0,0,35,34,-180,0)
 			layer.line(-17.5,0,17.5,0)
-			/*layer.strokeWeight(0.75)
+			layer.strokeWeight(0.75)
 			for(let g=0,lg=data.parts.hair.strand.length;g<lg;g++){
 				if(lcos(data.parts.hair.strand[g]+direction)>0){
 					layer.line(lsin(data.parts.hair.strand[g]+direction)*15.5,0,lsin(data.parts.hair.strand[g]+direction)*14,18)
 				}
-			}*/
+			}
 			layer.strokeWeight(0.5)
 			layer.noFill()
 			layer.arc(lcos(direction+data.parts.hair.top)*-5,-10,16*lcos(direction+data.parts.hair.top),12,-180,0)
 		break
 		case 11:
 			displayTrianglesBack(layer,data.parts.hair.main,direction,0,35,1,0.1,data.color.hair.back,1)
-			/*layer.strokeWeight(0.75)
+			layer.strokeWeight(0.75)
 			for(let g=0,lg=data.parts.hair.strand.length;g<lg;g++){
 				if(lcos(data.parts.hair.strand[g]+direction)<=0){
 					layer.line(lsin(data.parts.hair.strand[g]+direction)*15.5,0,lsin(data.parts.hair.strand[g]+direction)*14,18)
 				}
-			}*/
+			}
 			displayTrianglesBack(layer,data.parts.hair.inside,direction,0,33,1,0.1,data.color.hair.insideBack,1)
 		break
 		case 12:
@@ -3653,15 +3653,44 @@ function generateSprite(layer,type,direction){
 			layer.arc(0,0,44,44,-180,0)
 		break
 		case 81:
+			controlSpin(data.parts.dress.main,direction,1)
+			displayTrianglesFrontMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.main,data.color.dress.main,1,0.4,18)
+			layer.erase(0.5)
+			layer.rect(0,15,30,30)
+			layer.noErase()
+			displayTrianglesFrontMerge3D(layer,data.parts.dress.main,direction,18,24.6,0.2,1/3,data.color.dress.main,data.color.dress.main,1,0.4,18)
+			layer.quad(-6.3,0,6.3,0,12.3,18,-12.3,18)
+			layer.arc(0,18,24.6,7.2,0,180)
+			layer.erase(1)
+			layer.stroke(0)
+			layer.strokeWeight(1)
+			layer.line(-6.9,0,-13.9,21)
+			layer.line(6.9,0,13.9,21)
+		break
+		case 82:
+			displayTrianglesBackMerge3D(layer,data.parts.dress.inside,direction,18,24.6,0.1,1/3,data.color.dress.back,data.color.dress.back,1,-0.4,18)
+			layer.erase(0.5)
+			layer.rect(0,15,30,30)
+			layer.noErase()
+			displayTrianglesBackMerge3D(layer,data.parts.dress.main,direction,18,24.6,0.2,1/3,data.color.dress.back,data.color.dress.back,1,-0.4,18)
+			layer.quad(-6.3,0,6.3,0,12.3,18,-12.3,18)
+			layer.arc(0,18,24.6,7.2,0,180)
+			layer.erase(1)
+			layer.stroke(0)
+			layer.strokeWeight(1)
+			layer.line(-6.9,0,-13.9,21)
+			layer.line(6.9,0,13.9,21)
+		break
+		case 83:
 			layer.fill(data.color.dress.main)
-			let flow81=1
+			let flow83=1
 			for(let a=0.5,la=30;a<la;a++){
 				let mdir=a/la*360+direction
 				let ldir=(a-0.5)/la*360+direction
 				let rdir=(a+0.5)/la*360+direction
 				if(lcos(mdir)>0){
-					let lpiv=1+flow81*lcos((ldir-direction)*5)
-					let rpiv=1+flow81*lcos((rdir-direction)*5)
+					let lpiv=1+flow83*lcos((ldir-direction)*5)
+					let rpiv=1+flow83*lcos((rdir-direction)*5)
 					let lloc={
 						x:lsin(constrain((ldir+900)%360-180,-90,90))*(12.3+lpiv/3),
 						y:18+lpiv+3.6*lcos(constrain((ldir+900)%360-180,-90,90))
@@ -3701,8 +3730,8 @@ function generateSprite(layer,type,direction){
 				let ldir=(a-0.5)/la*360+direction
 				let rdir=(a+0.5)/la*360+direction
 				if(lcos(mdir)>0){
-					let lpiv=1+flow81*lcos((ldir-direction)*5)
-					let rpiv=1+flow81*lcos((rdir-direction)*5)
+					let lpiv=1+flow83*lcos((ldir-direction)*5)
+					let rpiv=1+flow83*lcos((rdir-direction)*5)
 					let lloc={
 						x:lsin(constrain((ldir+900)%360-180,-90,90))*(12.3+lpiv/3),
 						y:18+lpiv+3.6*lcos(constrain((ldir+900)%360-180,-90,90))
@@ -3733,16 +3762,16 @@ function generateSprite(layer,type,direction){
 			layer.line(-6.9,0,-13.9,21)
 			layer.line(6.9,0,13.9,21)
 		break
-		case 82:
+		case 84:
 			layer.fill(data.color.dress.back)
-			let flow82=1
+			let flow84=1
 			for(let a=0.5,la=20;a<la;a++){
 				let mdir=a/la*360+direction
 				let ldir=(a-0.5)/la*360+direction
 				let rdir=(a+0.5)/la*360+direction
 				if(lcos(mdir)<0){
-					let lpiv=1+flow82*lcos((ldir-direction)*5)
-					let rpiv=1+flow82*lcos((rdir-direction)*5)
+					let lpiv=1+flow84*lcos((ldir-direction)*5)
+					let rpiv=1+flow84*lcos((rdir-direction)*5)
 					let lloc={
 						x:lsin(constrain((ldir+720)%360,90,270))*(12.3+lpiv/3),
 						y:18+lpiv-3.6*lcos(constrain((ldir+720)%360,90,270))
@@ -3781,8 +3810,8 @@ function generateSprite(layer,type,direction){
 				let ldir=(a-0.5)/la*360+direction
 				let rdir=(a+0.5)/la*360+direction
 				if(lcos(mdir)<0){
-					let lpiv=1+flow82*lcos((ldir-direction)*5)
-					let rpiv=1+flow82*lcos((rdir-direction)*5)
+					let lpiv=1+flow84*lcos((ldir-direction)*5)
+					let rpiv=1+flow84*lcos((rdir-direction)*5)
 					let lloc={
 						x:lsin(constrain((ldir+720)%360,90,270))*(12.3+lpiv/3),
 						y:18+lpiv-3.6*lcos(constrain((ldir+720)%360,90,270))
@@ -3813,6 +3842,173 @@ function generateSprite(layer,type,direction){
 			layer.line(-6.9,0,-13.9,21)
 			layer.line(6.9,0,13.9,21)
 		break
+		case 85:
+			controlSpin(data.parts.kimono.outside,direction,0)
+			controlSpin(data.parts.kimono.outsideTop,direction,0)
+			displayTrianglesFront(layer,data.parts.kimono.outside,direction,27,18,0.5,0.2,data.color.kimono.outside.end,1)
+			for(let g=0;g<36;g++){
+				layer.fill(mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,g/36))
+				layer.stroke(mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,g/36))
+				layer.quad(-5-g/9,9+g/2,5+g/9,9+g/2,5+(g+1)/9,9.5+g/2,-5-(g+1)/9,9.5+g/2)
+			}
+			displayTrianglesFront(layer,data.parts.kimono.outsideTop,direction,9,10,0.25,0.2,data.color.kimono.outside.start,1)
+			controlSpin(data.parts.kimono.fringe,direction,0)
+			displayTrianglesFront(layer,data.parts.kimono.fringe,direction,24,17,0.3,0.2,data.color.kimono.fringe,1)
+			displayTrianglesFront(layer,data.parts.kimono.outsideFringe,direction,24,17,0.15,0.2,data.color.kimono.outsideFringe,1)
+		break
+		case 86:
+			displayTrianglesBack(layer,data.parts.kimono.outside,direction,27,18,0.5,0.2,data.color.kimono.outsideBack.end,1)
+			displayTrianglesBack(layer,data.parts.kimono.outsideTop,direction,9,10,0.25,0.2,data.color.kimono.outsideBack.start,1)
+			displayTrianglesBack(layer,data.parts.kimono.fringe,direction,24,17,0.3,0.2,data.color.kimono.fringeBack,1)
+			displayTrianglesFront(layer,data.parts.kimono.outsideFringe,direction,24,17,0.15,0.2,data.color.kimono.outsideFringeBack,1)
+		break
+		case 87:
+			controlSpin(data.parts.kimono.outsideDamage,direction,0)
+			controlSpin(data.parts.kimono.outsideAnti,direction,0)
+			controlSpin(data.parts.kimono.outsideTopAnti,direction,0)
+			displayTrianglesFront(layer,data.parts.kimono.outsideDamage,direction,27,18,0.5,0.2,data.color.kimono.outside.end,1)
+			for(let g=0;g<36;g++){
+				layer.fill(mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,g/36))
+				layer.stroke(mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,g/36))
+				layer.quad(-5-g/9,9+g/2,5+g/9,9+g/2,5+(g+1)/9,9.5+g/2,-5-(g+1)/9,9.5+g/2)
+			}
+			displayTrianglesFront(layer,data.parts.kimono.outsideAnti,direction,31,20,0.5,0.2,-1,1)
+			displayTrianglesFront(layer,data.parts.kimono.outsideTopAnti,direction,7,9.5,0.25,0.2,-1,1)
+			controlSpin(data.parts.kimono.fringeDamage,direction,0)
+			displayTrianglesFront(layer,data.parts.kimono.fringeDamage,direction,24,18,0.3,0.2,data.color.kimono.fringe,1)
+			displayTrianglesFront(layer,data.parts.kimono.outsideFringeDamage,direction,24,18,0.15,0.2,data.color.kimono.outsideFringe,1)
+		break
+		case 88:
+			displayTrianglesBack(layer,data.parts.kimono.outsideDamage,direction,27,18,0.5,0.2,data.color.kimono.outsideBack.end,1)
+			for(let g=0;g<36;g++){
+				layer.fill(mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,g/36))
+				layer.stroke(mergeColor(data.color.kimono.outside.start,data.color.kimono.outside.end,g/36))
+				layer.quad(-5-g/9,9+g/2,5+g/9,9+g/2,5+(g+1)/9,9.5+g/2,-5-(g+1)/9,9.5+g/2)
+			}
+			displayTrianglesBack(layer,data.parts.kimono.outsideAnti,direction,31,20,0.5,0.2,-1,1)
+			displayTrianglesBack(layer,data.parts.kimono.outsideTopAnti,direction,7,9.5,0.25,0.2,-1,1)
+			displayTrianglesBack(layer,data.parts.kimono.fringeDamage,direction,24,18,0.3,0.2,data.color.kimono.fringeBack,1)
+			displayTrianglesFront(layer,data.parts.kimono.outsideFringeDamage,direction,24,18,0.15,0.2,data.color.kimono.outsideFringeBack,1)
+		break
+		case 89:
+			controlSpin(data.parts.hair.inside,direction,0)
+			controlSpin(data.parts.hair.main,direction,0)
+			controlSpin(data.parts.hair.reverseInside,direction,0)
+			controlSpin(data.parts.hair.reverse,direction,0)
+
+			displayTrianglesFrontMerge(layer,data.parts.hair.inside,direction,0,33,0.5,0.1,data.color.hair.insideFront,data.color.hair.insideFront,1)
+			layer.arc(0,0,33,32,-180,0)
+			layer.line(-16.5,0,16.5,0)
+			displayTrianglesFrontMerge(layer,data.parts.hair.reverseInside,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			
+			overlayer=createGraphics(200,300)
+			setupLayer(overlayer)
+			overlayer.translate(100,100)
+			overlayer.scale(5)
+			displayTrianglesFrontMerge(overlayer,data.parts.hair.main,direction,0,34,0.5,0.1,data.color.hair.front,data.color.hair.front,1)
+			overlayer.arc(0,0,34,33,-180,0)
+			overlayer.line(-17,0,17,0)
+			displayTrianglesFrontMerge(overlayer,data.parts.hair.reverse,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			layer.image(overlayer,-20,-20,40,60)
+			
+			layer.fill(data.color.hair.front)
+			layer.stroke(data.color.hair.front)
+			layer.strokeWeight(0.5)
+			layer.arc(lcos(direction+data.parts.hair.top)*-5,-10,15*lcos(direction+data.parts.hair.top),10,-180,0)
+		break
+		case 90:
+			overlayer=createGraphics(200,300)
+			setupLayer(overlayer)
+			overlayer.translate(100,100)
+			overlayer.scale(5)
+			displayTrianglesBackMerge(overlayer,data.parts.hair.inside,direction,0,33,0.5,0.1,data.color.hair.insideBack,data.color.hair.insideBack,1)
+			overlayer.arc(0,0,33,32,-180,0)
+			overlayer.line(-16.5,0,16.5,0)
+			displayTrianglesBackMerge(overlayer,data.parts.hair.reverseInside,direction,0.5,33.5,0.1,0.15,-1,-1,1)
+			
+			displayTrianglesBackMerge(layer,data.parts.hair.main,direction,0,34,0.5,0.1,data.color.hair.back,data.color.hair.back,1)
+			layer.arc(0,0,34,33,-180,0)
+			layer.line(-17,0,17,0)
+			displayTrianglesBackMerge(layer,data.parts.hair.reverse,direction,0,34.5,0.1,0.15,-1,-1,1)
+			layer.image(overlayer,-20,-20,40,60)
+		break
+		case 91:
+			let width91=abs(lsin(direction*6)*0.57-lsin(direction*6+135)*0.57)+3.2
+			if(lcos(direction-15)<=0){
+				layer.noFill()
+				layer.stroke(172,21,30)
+				layer.strokeWeight(0.3)
+				layer.push()
+				layer.translate(lsin(direction*6)*0.3+lsin(direction*6+135)*0.3+lsin(direction-15)*width91/2,27.5)
+				let scaling=lcos(direction-15)
+				layer.line(0,0,-0.3*scaling,2.25)
+				layer.line(0,0,0.3*scaling,2.25)
+				layer.bezier(0,0,-2.25*scaling,0.75,-0.75*scaling,2.25,0,0)
+				layer.bezier(0,0,2.25*scaling,0.75,0.75*scaling,2.25,0,0)
+				layer.pop()
+			}
+			for(let a=0,la=data.parts.tail.length;a<la;a++){
+				controlSpin(data.parts.tail[a][0],direction,0)
+				controlSpin(data.parts.tail[a][1],direction,0)
+				layer.translate(sin(direction*6+a*135)*0.6,0)
+				/*displayTrianglesFrontMerge(layer,data.parts.tail[a][0],direction,30-a*5,3.2+min(a,3),1,0.4*(0.8+min(a,3)*0.25),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,a/la),lcos(direction+data.spin.tail)*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(a+1)/la),lcos(direction+data.spin.tail)*20,[1,1,1]),1),
+				displayTrianglesFrontMerge(layer,data.parts.tail[a][1],direction,30-a*5,3.2+min(a,3),1,-0.4*(0.8+min(a,3)*0.25),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,a/la),lcos(direction+data.spin.tail)*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(a+1)/la),lcos(direction+data.spin.tail)*20,[1,1,1]),1)*/
+				displayTrianglesFrontMerge(layer,data.parts.tail[a][0],direction,30-a*5,3.2+min(a,3)*0.8,1,0.4*(0.8+min(a,3)*0.2),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,a/la),lcos(direction+data.spin.tail)*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(a+1)/la),lcos(direction+data.spin.tail)*20,[1,1,1]),1),
+				displayTrianglesFrontMerge(layer,data.parts.tail[a][1],direction,30-a*5,3.2+min(a,3)*0.8,1,-0.4*(0.8+min(a,3)*0.2),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,a/la),lcos(direction+data.spin.tail)*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(a+1)/la),lcos(direction+data.spin.tail)*20,[1,1,1]),1)
+				layer.translate(sin(direction*6+a*135)*-0.6,0)
+			}
+			layer.noFill()
+			layer.stroke(172,21,30)
+			layer.strokeWeight(0.3)
+			layer.line(lsin(direction*6)*0.3+lsin(direction*6+135)*0.3-width91/2,27.5,lsin(direction*6)*0.3+lsin(direction*6+135)*0.3+width91/2,27.5)
+			if(lcos(direction-15)>0){
+				layer.push()
+				layer.translate(lsin(direction*6)*0.3+lsin(direction*6+135)*0.3+lsin(direction-15)*width91/2,27.5)
+				let scaling=lcos(direction-15)
+				layer.line(0,0,-0.3*scaling,2.25)
+				layer.line(0,0,0.3*scaling,2.25)
+				layer.bezier(0,0,-2.25*scaling,0.75,-0.75*scaling,2.25,0,0)
+				layer.bezier(0,0,2.25*scaling,0.75,0.75*scaling,2.25,0,0)
+				layer.pop()
+			}
+		break
+		case 92:
+			controlSpin(data.parts.kimono.main,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.main,direction+48,20,9,0.5,0.15,data.color.kimono.main.start,data.color.kimono.main.end,1)
+			layer.erase()
+			layer.fill(0)
+			layer.rect(0,layer.height*0.825/5,layer.width/5,layer.height*0.35/5)
+			data.sprites.temp=createGraphics(200,330)
+			setupLayer(data.sprites.temp)
+			data.sprites.temp.translate(100,0)
+			data.sprites.temp.scale(5,2)
+			displayTrianglesFrontMerge(data.sprites.temp,data.parts.kimono.main,direction,87,3,0.5,0.36,data.color.kimono.main.start,data.color.kimono.main.end,1)
+			data.sprites.temp.erase()
+			data.sprites.temp.rect(0,52,40,104)
+			layer.image(data.sprites.temp,-layer.width/10,0,layer.width/5,layer.height/5)
+		break
+		case 93:
+			displayTrianglesBackMerge(layer,data.parts.kimono.main,direction+48,20,9,0.5,0.15,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
+			layer.erase()
+			layer.fill(0)
+			layer.rect(0,layer.height*0.825/5,layer.width/5,layer.height*0.35/5)
+			data.sprites.temp=createGraphics(200,330)
+			setupLayer(data.sprites.temp)
+			data.sprites.temp.translate(100,0)
+			data.sprites.temp.scale(5,2)
+			displayTrianglesBackMerge(data.sprites.temp,data.parts.kimono.main,direction,87,3,0.5,0.36,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
+			data.sprites.temp.erase()
+			data.sprites.temp.rect(0,52,40,104)
+			layer.image(data.sprites.temp,-layer.width/10,0,layer.width/5,layer.height/5)
+		break
 		
 	}
 	//mark s
@@ -3820,6 +4016,7 @@ function generateSprite(layer,type,direction){
 function setupCombatantGraphics(type){
 	let data
 	/*
+	mark combatant
 	0 Lira
 	1 Sakura
 	2 Certes
@@ -4100,19 +4297,50 @@ function setupCombatantGraphics(type){
 
 			data=graphics.combatant[graphics.combatant.length-1]
 
-			data.parts.hair={
+			/*data.parts.hair={
 				main:[
                     {spin:[5,60,20],height:2},{spin:[-80,-10,-25],height:4},{spin:[-110,-40,-75],height:8},{spin:[-110,-25,-45],height:6},{spin:[0,90,60],height:3},{spin:[25,105,55],height:7},
                     {spin:[-160,-100,-125],height:14},{spin:[-160,-70,-105],height:10},{spin:[-15,5,-5],height:1},{spin:[150,-120,-180],height:21},{spin:[120,-120,-180],height:23},{spin:[160,-120,-160],height:17},
                     {spin:[120,-160,155],height:21},{spin:[60,130,90],height:4},{spin:[75,180,110],height:11},{spin:[105,-140,130],height:16},{spin:[40,110,80],height:6},{spin:[-120,-70,-90],height:9}
                 ],inside:[
                 ],strand:[-66,66],top:15
+			}*/
+			data.parts.hair={
+				main:[
+					{spin:[40,84,52],y:[0,0,2]},
+					{spin:[-100,-44,-56],y:[0,0,4]},
+					{spin:[-124,-68,-96],y:[0,0,8]},
+					{spin:[-124,-56,-72],y:[0,0,6]},
+					{spin:[36,108,84],y:[0,0,3]},
+					{spin:[56,120,80],y:[0,0,7]},
+					{spin:[-164,-116,-136],y:[0,0,14]},
+					{spin:[-164,-92,-120],y:[0,0,10]},
+					{spin:[-48,-32,-40],y:[0,0,1]},
+					{spin:[156,-132,-180],y:[0,0,21]},
+					{spin:[132,-132,-180],y:[0,0,23]},
+					{spin:[164,-132,-164],y:[0,0,17]},
+					{spin:[132,-164,160],y:[0,0,21]},
+					{spin:[84,140,108],y:[0,0,4]},
+					{spin:[96,180,124],y:[0,0,11]},
+					{spin:[120,-148,140],y:[0,0,16]},
+					{spin:[68,124,100],y:[0,0,6]},
+					{spin:[-132,-92,-108],y:[0,0,9]},
+				],inside:[],reverse:[
+					{spin:[-36,-12,-27],y:[0,0,-3]},
+					{spin:[3,36,21],y:[0,0,-2.25]},
+					{spin:[-21,18,-6],y:[0,0,-4]},
+				],reverseInside:[],strand:[-66,66],top:15
 			}
 			
 			data.sprites.genAmount=360/data.sprites.detail
 			
-			for(let g=0;g<16;g++){
-				data.parts.hair.inside.push({spin:[-data.parts.hair.main[g].spin[1],-data.parts.hair.main[g].spin[0],-data.parts.hair.main[g].spin[2]],height:data.parts.hair.main[g].height*0.75})
+			//for(let g=0;g<16;g++){
+			for(let g=0;g<data.parts.hair.main.length;g++){
+				//data.parts.hair.inside.push({spin:[-data.parts.hair.main[g].spin[1],-data.parts.hair.main[g].spin[0],-data.parts.hair.main[g].spin[2]],height:data.parts.hair.main[g].height*0.75})
+				data.parts.hair.inside.push({spin:[-data.parts.hair.main[g].spin[1],-data.parts.hair.main[g].spin[0],-data.parts.hair.main[g].spin[2]],y:[0,0,data.parts.hair.main[g].y[2]*0.75]})
+			}
+			for(let g=0;g<data.parts.hair.reverse.length;g++){
+				data.parts.hair.reverseInside.push({spin:[-data.parts.hair.reverse[g].spin[1],-data.parts.hair.reverse[g].spin[0],-data.parts.hair.reverse[g].spin[2]],y:[0,0,data.parts.hair.reverse[g].y[2]*0.75]})
 			}
 			for(let g=0;g<5;g++){
 				data.parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,16+g*5]})
@@ -4148,13 +4376,21 @@ function setupCombatantGraphics(type){
 				data.parts.kimono.outsideTop.push({spin:[-195+g*40,-165+g*40,-180+g*40],height:-1.5})
 				data.parts.kimono.outsideTop.push({spin:[-172+g*40,-148+g*40,-160+g*40],height:-0.75})
 			}
-			for(let g=0;g<30;g++){
+			/*for(let g=0;g<30;g++){
 				data.parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:-2})
 				data.parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:2})
 			}
 			for(let g=0;g<30;g++){
 				data.parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:-1.5})
 				data.parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:1.5})
+			}*/
+			for(let g=0;g<30;g++){
+				data.parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:-4})
+				data.parts.kimono.fringe.push({spin:[-186+g*12,-174+g*12,-180+g*12],height:4})
+			}
+			for(let g=0;g<30;g++){
+				data.parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:-3})
+				data.parts.kimono.outsideFringe.push({spin:[-180+g*12,-168+g*12,-174+g*12],height:3})
 			}
 			for(let g=0;g<6;g++){
 				data.parts.tail.push([[],[]])
@@ -4202,13 +4438,21 @@ function setupCombatantGraphics(type){
 					data.parts.kimono.outsideDamage.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3-(g*4)**1.5%4})
 					data.parts.kimono.outsideDamage.push({spin:[-187+g*24,-173+g*24,-180+g*24],height:1.5-(g*4+2)**1.5%4})
 				}
-				for(let g=0;g<30;g++){
+				/*for(let g=0;g<30;g++){
 					data.parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:-2+(g*3)**1.5%1.5})
 					data.parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:2-(g*3+2)**1.5%1.5})
 				}
 				for(let g=0;g<30;g++){
 					data.parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:-1.5+(g*2.5)**1.5%1.25})
 					data.parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:1.5-(g*2.5+1.5)**1.5%1.25})
+				}*/
+				for(let g=0;g<30;g++){
+					data.parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:-4+(g*3)**1.5%3})
+					data.parts.kimono.fringeDamage.push({spin:[-186+g*12+(g*3)**1.75%5,-174+g*12-(g*3)**1.75%5,-180+g*12],height:4-(g*3+2)**1.5%3})
+				}
+				for(let g=0;g<30;g++){
+					data.parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:-3+(g*2.5)**1.5%2.5})
+					data.parts.kimono.outsideFringeDamage.push({spin:[-180+g*12+(g*2.25+1)**1.75%6,-168+g*12-(g*2.25*1)**1.75%6,-174+g*12],height:3-(g*2.5+1.5)**1.5%2.5})
 				}
 				for(let g=0;g<15;g++){
 					data.parts.kimono.shadowDamage.push({spin:[-177+g*24,-159+g*24,-168+g*24],height:3-(g*4)**1.5%4})
@@ -4237,28 +4481,34 @@ function setupCombatantGraphics(type){
 				setupLayer(data.sprites.hair.front[g])
 				data.sprites.hair.front[g].translate(100,100)
 				data.sprites.hair.front[g].scale(5)
-				generateSprite(data.sprites.hair.front[g],10,g*data.sprites.detail)
+				//generateSprite(data.sprites.hair.front[g],10,g*data.sprites.detail)
+				generateSprite(data.sprites.hair.front[g],89,g*data.sprites.detail)
 				//console.log('Generated S-HF-'+(g+1))
 				data.sprites.hair.back.push(createGraphics(200,300))
 				setupLayer(data.sprites.hair.back[g])
 				data.sprites.hair.back[g].translate(100,100)
 				data.sprites.hair.back[g].scale(5)
-				generateSprite(data.sprites.hair.back[g],11,g*data.sprites.detail)
+				//generateSprite(data.sprites.hair.back[g],11,g*data.sprites.detail)
+				generateSprite(data.sprites.hair.back[g],90,g*data.sprites.detail)
 				//console.log('Generated S-HB-'+(g+1))
 			}
 			data.sprites.kimono.main={front:[],back:[]}
 			for(let g=0;g<data.sprites.genAmount;g++){
 				data.sprites.kimono.main.front.push(createGraphics(200,330))
+				//data.sprites.kimono.main.front.push(createGraphics(200,330))
 				setupLayer(data.sprites.kimono.main.front[g])
 				data.sprites.kimono.main.front[g].translate(100,0)
 				data.sprites.kimono.main.front[g].scale(5)
-				generateSprite(data.sprites.kimono.main.front[g],12,g*data.sprites.detail)
+				//generateSprite(data.sprites.kimono.main.front[g],12,g*data.sprites.detail)
+				generateSprite(data.sprites.kimono.main.front[g],92,g*data.sprites.detail)
 				//console.log('Generated S-KMF-'+(g+1))
 				data.sprites.kimono.main.back.push(createGraphics(200,330))
+				//data.sprites.kimono.main.back.push(createGraphics(200,330))
 				setupLayer(data.sprites.kimono.main.back[g])
 				data.sprites.kimono.main.back[g].translate(100,0)
 				data.sprites.kimono.main.back[g].scale(5)
-				generateSprite(data.sprites.kimono.main.back[g],13,g*data.sprites.detail)
+				//generateSprite(data.sprites.kimono.main.back[g],13,g*data.sprites.detail)
+				generateSprite(data.sprites.kimono.main.back[g],93,g*data.sprites.detail)
 				//console.log('Generated S-KMB-'+(g+1))
 			}
 			data.sprites.kimono.outside={front:[],back:[]}
@@ -4267,16 +4517,20 @@ function setupCombatantGraphics(type){
 				setupLayer(data.sprites.kimono.outside.front[g])
 				data.sprites.kimono.outside.front[g].translate(75,0)
 				data.sprites.kimono.outside.front[g].scale(5)
-				generateSprite(data.sprites.kimono.outside.front[g],14,g)
+				//generateSprite(data.sprites.kimono.outside.front[g],14,g)
+				//generateSprite(data.sprites.kimono.outside.front[g],85,g)
+				generateSprite(data.sprites.kimono.outside.front[g],85,g*data.sprites.detail)
 				//console.log('Generated S-KOF-'+(g+1))
 				data.sprites.kimono.outside.back.push(createGraphics(150,200))
 				setupLayer(data.sprites.kimono.outside.back[g])
 				data.sprites.kimono.outside.back[g].translate(75,0)
 				data.sprites.kimono.outside.back[g].scale(5)
-				generateSprite(data.sprites.kimono.outside.back[g],15,g)
+				//generateSprite(data.sprites.kimono.outside.back[g],15,g)
+				//generateSprite(data.sprites.kimono.outside.back[g],86,g)
+				generateSprite(data.sprites.kimono.outside.back[g],86,g*data.sprites.detail)
 				//console.log('Generated S-KOB-'+(g+1))
 			}
-			data.sprites.kimono.fringe={front:[],back:[]}
+			/*data.sprites.kimono.fringe={front:[],back:[]}
 			for(let g=0;g<12;g++){
 				data.sprites.kimono.fringe.front.push(createGraphics(150,50))
 				setupLayer(data.sprites.kimono.fringe.front[g])
@@ -4290,14 +4544,15 @@ function setupCombatantGraphics(type){
 				data.sprites.kimono.fringe.back[g].scale(5)
 				generateSprite(data.sprites.kimono.fringe.back[g],17,g)
 				//console.log('Generated S-KFB-'+(g+1))
-			}
+			}*/
 			data.sprites.hair.tail=[]
 			for(let g=0;g<data.sprites.genAmount;g++){
 				data.sprites.hair.tail.push(createGraphics(120,300))
 				setupLayer(data.sprites.hair.tail[g])
 				data.sprites.hair.tail[g].translate(60,0)
 				data.sprites.hair.tail[g].scale(5)
-				generateSprite(data.sprites.hair.tail[g],18,g*data.sprites.detail)
+				//generateSprite(data.sprites.hair.tail[g],18,g*data.sprites.detail)
+				generateSprite(data.sprites.hair.tail[g],91,g*data.sprites.detail)
 				//console.log('Generated S-HT-'+(g+1))
 			}
 			data.sprites.under.dress={front:[],back:[]}
@@ -4328,12 +4583,14 @@ function setupCombatantGraphics(type){
 				data.sprites.kimono.mainDamage={front:[],back:[]}
 				for(let g=0;g<data.sprites.genAmount;g++){
 					data.sprites.kimono.mainDamage.front.push(createGraphics(200,330))
+					//data.sprites.kimono.mainDamage.front.push(createGraphics(200,330))
 					setupLayer(data.sprites.kimono.mainDamage.front[g])
 					data.sprites.kimono.mainDamage.front[g].translate(100,0)
 					data.sprites.kimono.mainDamage.front[g].scale(5)
 					generateSprite(data.sprites.kimono.mainDamage.front[g],22,g*data.sprites.detail)
 					//console.log('Generated S-DMF-'+(g+1))
 					data.sprites.kimono.mainDamage.back.push(createGraphics(200,330))
+					//data.sprites.kimono.mainDamage.back.push(createGraphics(200,330))
 					setupLayer(data.sprites.kimono.mainDamage.back[g])
 					data.sprites.kimono.mainDamage.back[g].translate(100,0)
 					data.sprites.kimono.mainDamage.back[g].scale(5)
@@ -4346,16 +4603,18 @@ function setupCombatantGraphics(type){
 					setupLayer(data.sprites.kimono.outsideDamage.front[g])
 					data.sprites.kimono.outsideDamage.front[g].translate(75,0)
 					data.sprites.kimono.outsideDamage.front[g].scale(5)
-					generateSprite(data.sprites.kimono.outsideDamage.front[g],24,g)
+					//generateSprite(data.sprites.kimono.outsideDamage.front[g],24,g)
+					generateSprite(data.sprites.kimono.outsideDamage.front[g],87,g)
 					//console.log('Generated S-DOF-'+(g+1))
 					data.sprites.kimono.outsideDamage.back.push(createGraphics(150,200))
 					setupLayer(data.sprites.kimono.outsideDamage.back[g])
 					data.sprites.kimono.outsideDamage.back[g].translate(75,0)
 					data.sprites.kimono.outsideDamage.back[g].scale(5)
-					generateSprite(data.sprites.kimono.outsideDamage.back[g],25,g)
+					//generateSprite(data.sprites.kimono.outsideDamage.back[g],25,g)
+					generateSprite(data.sprites.kimono.outsideDamage.back[g],88,g)
 					//console.log('Generated S-DOB-'+(g+1))
 				}
-				data.sprites.kimono.fringeDamage={front:[],back:[]}
+				/*data.sprites.kimono.fringeDamage={front:[],back:[]}
 				for(let g=0;g<12;g++){
 					data.sprites.kimono.fringeDamage.front.push(createGraphics(150,50))
 					setupLayer(data.sprites.kimono.fringeDamage.front[g])
@@ -4369,7 +4628,7 @@ function setupCombatantGraphics(type){
 					data.sprites.kimono.fringeDamage.back[g].scale(5)
 					generateSprite(data.sprites.kimono.fringeDamage.back[g],27,g)
 					//console.log('Generated S-DFB-'+(g+1))
-				}
+				}*/
 				data.sprites.kimono.shadowDamage=[]
 				for(let g=0;g<24;g++){
 					data.sprites.kimono.shadowDamage.push(createGraphics(150,50))
@@ -4420,8 +4679,12 @@ function setupCombatantGraphics(type){
 				main:[
 					{spin:[165,195,180],height:72},
                     {spin:[135,225,180],height:36},
-					{spin:[-135,0,-90],height:4},
-					{spin:[0,135,90],height:4},
+					/*{spin:[-135,0,-90],height:4},
+					{spin:[0,135,90],height:4},*/
+					{spin:[-60,0,-39],height:1},
+					{spin:[0,60,39],height:1},
+					{spin:[-135,-45,-99],height:4},
+					{spin:[45,135,99],height:4},
 					{spin:[-165,-75,-120],height:8},
 					{spin:[75,165,120],height:8},
 					{spin:[-180,-105,-150],height:16},
@@ -5825,13 +6088,15 @@ function setupCombatantGraphics(type){
 				setupLayer(data.sprites.dress.front[g])
 				data.sprites.dress.front[g].translate(75,0)
 				data.sprites.dress.front[g].scale(5)
-				generateSprite(data.sprites.dress.front[g],81,g*data.sprites.detail)
+				generateSprite(data.sprites.dress.front[g],83,g*data.sprites.detail)
+				//generateSprite(data.sprites.dress.front[g],81,g*data.sprites.detail)
 				//console.log('Generated S-UDF-'+(g+1))
 				data.sprites.dress.back.push(createGraphics(150,150))
 				setupLayer(data.sprites.dress.back[g])
 				data.sprites.dress.back[g].translate(75,0)
 				data.sprites.dress.back[g].scale(5)
-				generateSprite(data.sprites.dress.back[g],82,g*data.sprites.detail)
+				generateSprite(data.sprites.dress.back[g],84,g*data.sprites.detail)
+				//generateSprite(data.sprites.dress.back[g],82,g*data.sprites.detail)
 				//console.log('Generated S-UDB-'+(g+1))
 			}
 			/*let endTime=performance.now()

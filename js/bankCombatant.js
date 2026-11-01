@@ -1347,42 +1347,91 @@ combatant.prototype.display=function(){
                     this.layer.image(graphics.combatant[1].sprites.hair.tail[this.sprites.spinDetailHead],lsin(this.spin.tail+this.anim.direction)*14.5-10*this.fade,-50-25*this.fade,20*this.fade,50*this.fade)
                 }
                 if(this.trigger.display.necklace.back){
+                    //let width=5.4
+                    let width=6
+                    let piv=9.5
                     this.layer.noFill()
-                    this.layer.stroke(this.color.necklace[0],this.color.necklace[1],this.color.necklace[2],this.fade*this.fades.necklace.back)
-                    this.layer.strokeWeight(0.4)
+                    //this.layer.stroke(this.color.necklace[0],this.color.necklace[1],this.color.necklace[2],this.fade*this.fades.necklace.back)
+                    this.layer.stroke(...mergeColor(this.color.necklace,this.color.kimono.string,0.5),this.fade*this.fades.necklace.back)
+                    //this.layer.strokeWeight(0.4)
+                    this.layer.strokeWeight(0.3)
                     if(lcos(this.spin.necklace[0]+this.anim.direction)<=0){
-                        this.layer.arc(0,-59,6,3,atan2(lsin(90-this.spin.necklace[0]-this.anim.direction),lcos(90-this.spin.necklace[0]-this.anim.direction)*2),0)
+                        //this.layer.arc(0,-59,6,3,atan2(lsin(90-this.spin.necklace[0]-this.anim.direction),lcos(90-this.spin.necklace[0]-this.anim.direction)*2),0)
+                        this.layer.arc(0,-59,width,3,atan2(lsin(90-this.spin.necklace[0]-this.anim.direction),lcos(90-this.spin.necklace[0]-this.anim.direction)*2),0)
                     }
                     if(lcos(this.spin.necklace[1]+this.anim.direction)<=0){
-                        this.layer.arc(0,-59,6,3,-180,atan2(lsin(90-this.spin.necklace[1]-this.anim.direction),lcos(90-this.spin.necklace[1]-this.anim.direction)*2))
+                        //this.layer.arc(0,-59,6,3,-180,atan2(lsin(90-this.spin.necklace[1]-this.anim.direction),lcos(90-this.spin.necklace[1]-this.anim.direction)*2))
+                        this.layer.arc(0,-59,width,3,-180,atan2(lsin(90-this.spin.necklace[1]-this.anim.direction),lcos(90-this.spin.necklace[1]-this.anim.direction)*2))
                     }
                     if(lcos(this.spin.necklace[0]+this.anim.direction)>0&&lcos(this.spin.necklace[1]+this.anim.direction)>0){
-                        this.layer.arc(0,-59,6,3,-180,0)
+                        //this.layer.arc(0,-59,6,3,-180,0)
+                        this.layer.arc(0,-59,width,3,-180,0)
                     }
                     if(lcos(this.spin.necklaceBow.center+this.anim.direction)>0){
                         this.layer.line(lsin(this.spin.necklaceBow.center+this.anim.direction)*3,this.parts.necklaceBow+1.5*sqrt(1-lsin(this.spin.necklaceBow.center+this.anim.direction)*lsin(this.spin.necklaceBow.center+this.anim.direction)),
-                        lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*lsin(this.spin.necklaceBow.end[0]+this.anim.direction)))
+                            lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*lsin(this.spin.necklaceBow.end[0]+this.anim.direction)))
                         this.layer.line(lsin(this.spin.necklaceBow.center+this.anim.direction)*3,this.parts.necklaceBow+1.5*sqrt(1-lsin(this.spin.necklaceBow.center+this.anim.direction)*lsin(this.spin.necklaceBow.center+this.anim.direction)),
-                        lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*lsin(this.spin.necklaceBow.end[1]+this.anim.direction)))
+                            lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*lsin(this.spin.necklaceBow.end[1]+this.anim.direction)))
                         this.layer.ellipse(lsin(this.spin.necklaceBow.loop[0]+this.anim.direction)*3.2,this.parts.necklaceBow+0.5+1.5*sqrt(1-lsin(this.spin.necklaceBow.loop[0]+this.anim.direction)*lsin(this.spin.necklaceBow.loop[0]+this.anim.direction)),
-                        lcos(this.spin.necklaceBow.loop[0]+this.anim.direction)*1.2,1.2)
+                            lcos(this.spin.necklaceBow.loop[0]+this.anim.direction)*1.5,1.2)
                         this.layer.ellipse(lsin(this.spin.necklaceBow.loop[1]+this.anim.direction)*3.2,this.parts.necklaceBow+0.5+1.5*sqrt(1-lsin(this.spin.necklaceBow.loop[1]+this.anim.direction)*lsin(this.spin.necklaceBow.loop[1]+this.anim.direction)),
-                        lcos(this.spin.necklaceBow.loop[1]+this.anim.direction)*1.2,1.2)
+                            lcos(this.spin.necklaceBow.loop[1]+this.anim.direction)*1.5,1.2)
                     }
                     if(!(this.spin.necklace[0]+this.anim.direction>-130&&this.spin.necklace[0]+this.anim.direction<65)){
-                        if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25<lsin(this.spin.necklace[0]+this.anim.direction)*3){
-                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-180,-90)
+                        //if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25<lsin(this.spin.necklace[0]+this.anim.direction)*3){
+                        if(lsin(this.spin.necklace[2]+this.anim.direction)*piv<lsin(this.spin.necklace[0]+this.anim.direction)*width){
+                            //this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-180,-90)
+                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[0]+this.anim.direction)*width,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-180,-90)
                         }else{
-                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-90,0)
+                            //this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-90,0)
+                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[0]+this.anim.direction)*width,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-90,0)
                         }
                     }
                     if(!(this.spin.necklace[1]+this.anim.direction<130&&this.spin.necklace[1]+this.anim.direction>-65)){
-                        if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25>lsin(this.spin.necklace[1]+this.anim.direction)*3){
-                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-90,0)
+                        //if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25>lsin(this.spin.necklace[1]+this.anim.direction)*3){
+                        if(lsin(this.spin.necklace[2]+this.anim.direction)*piv>lsin(this.spin.necklace[1]+this.anim.direction)*width){
+                            //this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-90,0)
+                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[1]+this.anim.direction)*width,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-90,0)
                         }else{
-                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-180,-90)
+                            //this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-180,-90)
+                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[1]+this.anim.direction)*width,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-180,-90)
                         }
                     }
+                }
+                if(this.trigger.display.wrap.bow&&lcos(this.spin.wrap.bow+this.anim.direction)<=0){
+                    this.layer.strokeJoin(ROUND)
+                    this.layer.strokeWeight(0.4)
+                    this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.bow)
+                    this.layer.stroke(this.color.wrap.out[0],this.color.wrap.out[1],this.color.wrap.out[2],this.fade*this.fades.wrap.bow)
+                    this.calc.int=[this.parts.kimono.main+(this.parts.wrap.bow-this.parts.kimono.main)*this.fades.kimono.main.front.y]
+                    if(this.trigger.display.extra.damage){
+                        this.layer.beginShape()
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0])
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*9.1*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+3.6)
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+1.8)
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.2*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-1.8)
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.9*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-3.6)
+                        this.layer.endShape(CLOSE)
+                        this.layer.beginShape()
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0])
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*9.1*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+3.6)
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.8*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+1.8)
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.2*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-1.8)
+                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.9*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-3.6)
+                        this.layer.endShape(CLOSE)
+                    }else{
+                        this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
+                        this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
+                    }
+                    /*this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)*/
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.7*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.7*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.3*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.3*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
+                    this.layer.strokeJoin(MITER)
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.6&&g==0){
@@ -1397,7 +1446,7 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
-                    if(this.trigger.display.wrap.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                    /*if(this.trigger.display.wrap.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                         this.layer.strokeJoin(ROUND)
                         this.layer.strokeWeight(0.4)
                         this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.bow)
@@ -1414,11 +1463,42 @@ combatant.prototype.display=function(){
                         if(!((this.anim.direction*(g*2-1)+this.spin.arms[g].lock<-50||this.anim.direction*(g*2-1)+this.spin.arms[g].lock>50)&&(lcos(this.spin.wrap.center+this.anim.direction)<0||lcos(90*(g*2-1)+this.anim.direction)>=0))){
                             this.layer.triangle(this.calc.int[0],this.calc.int[1],this.calc.int[2],this.calc.int[3],lsin(this.spin.wrap.center+this.anim.direction)*-6.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
                         }
-                    }
+                    }*/
                     if(this.trigger.display.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.6){
                         this.layer.noStroke()
+                        let dir=[
+                            atan2(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x,this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y),
+                            atan2(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x,this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)
+                        ]
+                        dir.push((dir[0]+dir[1])/2)
+                        if(abs(dir[0]-dir[1])>180){
+                            dir[2]+=180
+                        }
+                        //let cross=abs(lsin(dir[0])*lsin(dir[1])+lcos(dir[0])*lcos(dir[1]))
                         for(let h=0,lh=6;h<lh;h++){
+                            let key=1-h/lh*0.6
                             this.layer.fill(mergeColor(this.color.sleeve.back,this.color.sleeve.front,h/lh),this.fade*this.fades.sleeve)
+                            this.layer.quad(
+                                this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15-lcos(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15+lsin(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15+lcos(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15-lsin(dir[0])*2.2*key,
+                                this.graphics.arms[g].middle.x+lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y-lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.x-lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y+lsin(dir[2])*2.6*key,
+                            )
+                            this.layer.quad(
+                                this.graphics.arms[g].middle.x+lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y-lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.x-lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y+lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].bottom.x*0.75+this.graphics.arms[g].middle.x*0.25-lcos(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.y*0.75+this.graphics.arms[g].middle.y*0.25+lsin(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.x*0.75+this.graphics.arms[g].middle.x*0.25+lcos(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.y*0.75+this.graphics.arms[g].middle.y*0.25-lsin(dir[1])*4.2*key,
+                            )
+                            /*this.layer.fill(mergeColor(this.color.sleeve.back,this.color.sleeve.front,h/lh),this.fade*this.fades.sleeve)
                             if(this.trigger.display.extra.damage){
                                 this.layer.beginShape()
                                 this.layer.vertex(this.graphics.arms[g].top.x+(this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y)*(0.18-0.18*h/lh)*(g*2-1)-(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x)*(0.125+(0.175+g*0.05)*h/lh),
@@ -1481,54 +1561,29 @@ combatant.prototype.display=function(){
                                     this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(lcos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)/4,
                                     this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(lcos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)/4
                                 )
-                            }
+                            }*/
                         }
                     }
                 }
-                if(this.trigger.display.wrap.bow&&lcos(this.spin.wrap.bow+this.anim.direction)<=0){
-                    this.layer.strokeJoin(ROUND)
-                    this.layer.strokeWeight(0.4)
-                    this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.bow)
-                    this.layer.stroke(this.color.wrap.out[0],this.color.wrap.out[1],this.color.wrap.out[2],this.fade*this.fades.wrap.bow)
-                    this.calc.int=[this.parts.kimono.main+(this.parts.wrap.bow-this.parts.kimono.main)*this.fades.kimono.main.front.y]
-                    if(this.trigger.display.extra.damage){
-                        this.layer.beginShape()
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0])
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*9.1*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+3.6)
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+1.8)
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.2*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-1.8)
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.9*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-3.6)
-                        this.layer.endShape(CLOSE)
-                        this.layer.beginShape()
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0])
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*9.1*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+3.6)
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.8*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+1.8)
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*8.2*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-1.8)
-                        this.layer.vertex(lsin(this.spin.wrap.bow+this.anim.direction)*7.9*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-3.6)
-                        this.layer.endShape(CLOSE)
-                    }else{
-                        this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
-                        this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
-                    }
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
-                    this.layer.strokeJoin(MITER)
-                }
-                if(this.trigger.display.kimono.fringe.back){
+                /*if(this.trigger.display.kimono.fringe.back){
                     this.layer.image(graphics.combatant[1].sprites.kimono.fringe.back[this.sprites.spin%12],-15*this.fade*this.fades.kimono.fringe.back.x,this.parts.kimono.fringe-5*this.fade*this.fades.kimono.fringe.back.y,30*this.fade*this.fades.kimono.fringe.back.x,10*this.fade*this.fades.kimono.fringe.back.y)
-                }
+                }*/
                 if(this.trigger.display.wrap.bar&&lcos(this.spin.wrap.bar+this.anim.direction)<=0){
                     this.layer.strokeJoin(ROUND)
                     this.layer.strokeWeight(0.4)
                     this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.bar)
                     this.layer.stroke(this.color.wrap.out[0],this.color.wrap.out[1],this.color.wrap.out[2],this.fade*this.fades.wrap.bar)
-                    this.layer.quad(
+                    /*this.layer.quad(
                         lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
                         lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
                         lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*9.2*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y,
                         lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*9.2*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y
+                    )*/
+                    this.layer.quad(
+                        lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
+                        lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
+                        lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*9.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y,
+                        lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*9.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y
                     )
                     this.layer.strokeJoin(MITER)
                 }
@@ -1543,9 +1598,11 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.kimono.outside.back){
                     if(this.trigger.display.extra.damage){
-                        this.layer.image(graphics.combatant[1].sprites.kimono.outsideDamage.back[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.back.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.back.x,40*this.fade*this.fades.kimono.outside.back.y)
+                        //this.layer.image(graphics.combatant[1].sprites.kimono.outsideDamage.back[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.back.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.back.x,40*this.fade*this.fades.kimono.outside.back.y)
+                        this.layer.image(graphics.combatant[1].sprites.kimono.outsideDamage.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.outside.back.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.back.x,40*this.fade*this.fades.kimono.outside.back.y)
                     }else{
-                        this.layer.image(graphics.combatant[1].sprites.kimono.outside.back[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.back.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.back.x,40*this.fade*this.fades.kimono.outside.back.y)
+                        //this.layer.image(graphics.combatant[1].sprites.kimono.outside.back[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.back.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.back.x,40*this.fade*this.fades.kimono.outside.back.y)
+                        this.layer.image(graphics.combatant[1].sprites.kimono.outside.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.outside.back.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.back.x,40*this.fade*this.fades.kimono.outside.back.y)
                     }
                 }
                 if(this.trigger.display.kimono.main.back){
@@ -1649,7 +1706,8 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
-                    if(this.trigger.display.wrap.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                    //if(this.trigger.display.wrap.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.1){
+                    /*if(this.trigger.display.wrap.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
                         this.layer.strokeJoin(ROUND)
                         this.layer.strokeWeight(0.4)
                         this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.sleeve)
@@ -1666,11 +1724,43 @@ combatant.prototype.display=function(){
                         if(!((this.anim.direction*(g*2-1)+this.spin.arms[g].lock<-50||this.anim.direction*(g*2-1)+this.spin.arms[g].lock>50)&&(lcos(this.spin.wrap.center+this.anim.direction)<0||lcos(90*(g*2-1)+this.anim.direction)>=0))){
                             this.layer.triangle(this.calc.int[0],this.calc.int[1],this.calc.int[2],this.calc.int[3],lsin(this.spin.wrap.center+this.anim.direction)*-6.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
                         }
-                    }
+                    }*/
+                    //if(this.trigger.display.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.1&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6){
                     if(this.trigger.display.sleeve&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6){
                         this.layer.noStroke()
+                        let dir=[
+                            atan2(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x,this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y),
+                            atan2(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x,this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)
+                        ]
+                        dir.push((dir[0]+dir[1])/2)
+                        if(abs(dir[0]-dir[1])>180){
+                            dir[2]+=180
+                        }
+                        //let cross=abs(lsin(dir[0])*lsin(dir[1])+lcos(dir[0])*lcos(dir[1]))
                         for(let h=0,lh=6;h<lh;h++){
+                            let key=1-h/lh*0.6
                             this.layer.fill(mergeColor(this.color.sleeve.back,this.color.sleeve.front,h/lh),this.fade*this.fades.sleeve)
+                            this.layer.quad(
+                                this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15-lcos(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15+lsin(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15+lcos(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15-lsin(dir[0])*2.2*key,
+                                this.graphics.arms[g].middle.x+lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y-lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.x-lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y+lsin(dir[2])*2.6*key,
+                            )
+                            this.layer.quad(
+                                this.graphics.arms[g].middle.x+lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y-lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.x-lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y+lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].bottom.x*0.75+this.graphics.arms[g].middle.x*0.25-lcos(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.y*0.75+this.graphics.arms[g].middle.y*0.25+lsin(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.x*0.75+this.graphics.arms[g].middle.x*0.25+lcos(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.y*0.75+this.graphics.arms[g].middle.y*0.25-lsin(dir[1])*4.2*key,
+                            )
+                            /*this.layer.fill(mergeColor(this.color.sleeve.back,this.color.sleeve.front,h/lh),this.fade*this.fades.sleeve)
                             if(this.trigger.display.extra.damage){
                                 this.layer.beginShape()
                                 this.layer.vertex(this.graphics.arms[g].top.x+(this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y)*(0.18-0.18*h/lh)*(g*2-1)-(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x)*(0.125+(0.175+g*0.05)*h/lh),
@@ -1733,7 +1823,7 @@ combatant.prototype.display=function(){
                                     this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.09*h/lh)*(g*2-1)*sign(lcos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)/4,
                                     this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.09*h/lh)*(g*2-1)*sign(lcos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)/4
                                 )
-                            }
+                            }*/
                         }
                     }
                     for(let h=0;h<2;h++){
@@ -1849,13 +1939,100 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.sleeveDecoration){
                     this.layer.noStroke()
+                    let dir=[
+                        [
+                            atan2(this.graphics.arms[0].top.x-this.graphics.arms[0].middle.x,this.graphics.arms[0].top.y-this.graphics.arms[0].middle.y),
+                            atan2(this.graphics.arms[0].middle.x-this.graphics.arms[0].bottom.x,this.graphics.arms[0].middle.y-this.graphics.arms[0].bottom.y)
+                        ],[
+                            atan2(this.graphics.arms[1].top.x-this.graphics.arms[1].middle.x,this.graphics.arms[1].top.y-this.graphics.arms[1].middle.y),
+                            atan2(this.graphics.arms[1].middle.x-this.graphics.arms[1].bottom.x,this.graphics.arms[1].middle.y-this.graphics.arms[1].bottom.y)
+                        ],
+                    ]
+                    for(let a=0,la=2;a<la;a++){
+                        dir[a].push((dir[a][0]+dir[a][1])/2)
+                        if(abs(dir[a][0]-dir[a][1])>180){
+                            dir[a][2]+=180
+                        }
+                    }
+                    let piv=[
+                        [
+                            [
+                                atan2(
+                                    (this.graphics.arms[0].top.x*0.85+this.graphics.arms[0].middle.x*0.15-lcos(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.x-lcos(dir[0][2])*2.6),
+                                    (this.graphics.arms[0].top.y*0.85+this.graphics.arms[0].middle.y*0.15+lsin(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.y+lsin(dir[0][2])*2.6),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[0].top.x*0.85+this.graphics.arms[0].middle.x*0.15+lcos(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.x+lcos(dir[0][2])*2.6),
+                                    (this.graphics.arms[0].top.y*0.85+this.graphics.arms[0].middle.y*0.15-lsin(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.y-lsin(dir[0][2])*2.6),
+                                ),
+                            ],[
+                                atan2(
+                                    (this.graphics.arms[0].middle.x-lcos(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.x*0.75+this.graphics.arms[0].middle.x*0.25-lcos(dir[0][1])*4.2),
+                                    (this.graphics.arms[0].middle.y+lsin(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.y*0.75+this.graphics.arms[0].middle.y*0.25+lsin(dir[0][1])*4.2),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[0].middle.x+lcos(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.x*0.75+this.graphics.arms[0].middle.x*0.25+lcos(dir[0][1])*4.2),
+                                    (this.graphics.arms[0].middle.y-lsin(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.y*0.75+this.graphics.arms[0].middle.y*0.25-lsin(dir[0][1])*4.2),
+                                ),
+                            ],
+                        ],[
+                            [
+                                atan2(
+                                    (this.graphics.arms[1].top.x*0.85+this.graphics.arms[1].middle.x*0.15-lcos(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.x-lcos(dir[1][2])*2.6),
+                                    (this.graphics.arms[1].top.y*0.85+this.graphics.arms[1].middle.y*0.15+lsin(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.y+lsin(dir[1][2])*2.6),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[1].top.x*0.85+this.graphics.arms[1].middle.x*0.15+lcos(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.x+lcos(dir[1][2])*2.6),
+                                    (this.graphics.arms[1].top.y*0.85+this.graphics.arms[1].middle.y*0.15-lsin(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.y-lsin(dir[1][2])*2.6),
+                                ),
+                            ],[
+                                atan2(
+                                    (this.graphics.arms[1].middle.x-lcos(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.x*0.75+this.graphics.arms[1].middle.x*0.25-lcos(dir[1][1])*4.2),
+                                    (this.graphics.arms[1].middle.y+lsin(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.y*0.75+this.graphics.arms[1].middle.y*0.25+lsin(dir[1][1])*4.2),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[1].middle.x+lcos(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.x*0.75+this.graphics.arms[1].middle.x*0.25+lcos(dir[1][1])*4.2),
+                                    (this.graphics.arms[1].middle.y-lsin(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.y*0.75+this.graphics.arms[1].middle.y*0.25-lsin(dir[1][1])*4.2),
+                                ),
+                            ],
+                        ],
+                    ]
+                    for(let a=0,la=2;a<la;a++){
+                        for(let b=0,lb=2;b<lb;b++){
+                            if(abs(piv[a][b][0]-piv[a][b][1])>180){
+                                if(piv[a][b][1]>piv[a][b][0]){
+                                    piv[a][b][1]-=360
+                                }else{
+                                    piv[a][b][1]+=360
+                                }
+                            }
+                        }
+                    }
                     for(let g=0,lg=this.spin.sleeve.decoration.length;g<lg;g++){
-                        if(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)<=-0.3&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
+                        //if(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)<=-0.3&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
+                        if(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0&&lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)<=-0.3&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
                             h=this.spin.sleeve.decoration[g].part
                             this.layer.push()
+                            let key=lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)
                             if(this.spin.sleeve.decoration[g].length>1){
                                 this.layer.translate(
-                                    lerp(
+                                    /*lerp(
                                         this.graphics.arms[h].middle.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction),
                                         this.graphics.arms[h].bottom.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)/4,
                                         this.spin.sleeve.decoration[g].length-1
@@ -1864,15 +2041,46 @@ combatant.prototype.display=function(){
                                         this.graphics.arms[h].middle.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction),
                                         this.graphics.arms[h].bottom.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)/4,
                                         this.spin.sleeve.decoration[g].length-1
-                                    ))
-                                this.layer.rotate(-atan2(
+                                    ))*/
+                                    lerp(
+                                        this.graphics.arms[h].middle.x-lcos(dir[h][2])*2.6*key,
+                                        this.graphics.arms[h].bottom.x*0.75+this.graphics.arms[h].middle.x*0.25-lcos(dir[h][1])*4.2*key,
+                                        this.spin.sleeve.decoration[g].length-1
+                                    ),lerp(
+                                        this.graphics.arms[h].middle.y+lsin(dir[h][2])*2.6*key,
+                                        this.graphics.arms[h].bottom.y*0.75+this.graphics.arms[h].middle.y*0.25+lsin(dir[h][1])*4.2*key,
+                                        this.spin.sleeve.decoration[g].length-1
+                                    )
+                                )
+                                /*this.layer.rotate(-atan2(
                                     ((this.graphics.arms[h].middle.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction))-
                                     (this.graphics.arms[h].bottom.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)/4)),
                                     ((this.graphics.arms[h].middle.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction))-
                                     (this.graphics.arms[h].bottom.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)/4))
+                                ))*/
+                                this.layer.rotate(-lerp(
+                                    piv[h][1][0],
+                                    piv[h][1][1],
+                                    this.spin.sleeve.decoration[g].length-1,
                                 ))
                             }else{
+                                let key2=lerp(
+                                    -(lsin(this.spin.arms[h].top+this.anim.direction)<0?2.2:constrain(-4.8*lcos(this.spin.arms[h].top+this.anim.direction)-2.88,-0.8,2.2)),
+                                    lsin(this.spin.arms[h].top+this.anim.direction)>0?2.2:constrain(-4.8*lcos(this.spin.arms[h].top+this.anim.direction)-2.88,-0.8,2.2),
+                                    key*0.5+0.5
+                                )
                                 this.layer.translate(
+                                    lerp(
+                                        this.graphics.arms[h].top.x*0.85+this.graphics.arms[h].middle.x*0.15-lcos(dir[h][0])*key2,
+                                        this.graphics.arms[h].middle.x-lcos(dir[h][2])*2.6*key,
+                                        this.spin.sleeve.decoration[g].length
+                                    ),lerp(
+                                        this.graphics.arms[h].top.y*0.85+this.graphics.arms[h].middle.y*0.15+lsin(dir[h][0])*key2,
+                                        this.graphics.arms[h].middle.y+lsin(dir[h][2])*2.6*key,
+                                        this.spin.sleeve.decoration[g].length
+                                    )
+                                )
+                                /*this.layer.translate(
                                     lerp(
                                         this.graphics.arms[h].top.x-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)*0.12*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)-(this.graphics.arms[h].top.x-this.graphics.arms[h].middle.x)/8,
                                         this.graphics.arms[h].middle.x-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)*0.15*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction),
@@ -1888,9 +2096,16 @@ combatant.prototype.display=function(){
                                     (this.graphics.arms[h].middle.x-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)*0.15*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction))),
                                     ((this.graphics.arms[h].top.y+(this.graphics.arms[h].top.x-this.graphics.arms[h].middle.x)*0.12*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)/8)-
                                     (this.graphics.arms[h].middle.y+(this.graphics.arms[h].top.x-this.graphics.arms[h].middle.x)*0.15*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)))
+                                ))*/
+                                this.layer.rotate(-lerp(
+                                    piv[h][0][0],
+                                    piv[h][0][1],
+                                    this.spin.sleeve.decoration[g].length,
                                 ))
                             }
-                            this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)*1.1-0.1,1)
+                            //this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)*1.1-0.1,1)
+                            //this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction),1)
+                            this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)*0.8,0.8)
                             this.layer.rotate(this.spin.sleeve.decoration[g].rotate)
                             this.layer.fill(this.color.sleeve.decoration[this.spin.sleeve.decoration[g].type],this.fade)
                             this.layer.beginShape()
@@ -2136,40 +2351,54 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(lsin(this.spin.under.under.button[1]+this.anim.direction)*5.75,-49.5,lcos(this.spin.under.under.button[1]+this.anim.direction)*0.25+1,1.25)
                 }
                 if(this.trigger.display.necklace.front){
+                    //let width=5.4
+                    let width=6
+                    let piv=9.5
                     this.layer.noFill()
-                    this.layer.stroke(this.color.necklace[0],this.color.necklace[1],this.color.necklace[2],this.fade*this.fades.necklace.front)
-                    this.layer.strokeWeight(0.4)
+                    //this.layer.stroke(this.color.necklace[0],this.color.necklace[1],this.color.necklace[2],this.fade*this.fades.necklace.front)
+                    this.layer.stroke(...mergeColor(this.color.necklace,this.color.kimono.string,0.5),this.fade*this.fades.necklace.front)
+                    //this.layer.strokeWeight(0.4)
+                    this.layer.strokeWeight(0.3)
                     if(lcos(this.spin.necklace[0]+this.anim.direction)>0){
-                        this.layer.arc(0,-59,6,3,atan2(lsin(90-this.spin.necklace[0]-this.anim.direction),lcos(90-this.spin.necklace[0]-this.anim.direction)*2),180)
+                        //this.layer.arc(0,-59,6,3,atan2(lsin(90-this.spin.necklace[0]-this.anim.direction),lcos(90-this.spin.necklace[0]-this.anim.direction)*2),180)
+                        this.layer.arc(0,-59,width,3,atan2(lsin(90-this.spin.necklace[0]-this.anim.direction),lcos(90-this.spin.necklace[0]-this.anim.direction)*2),180)
                     }
                     if(lcos(this.spin.necklace[1]+this.anim.direction)>0){
-                        this.layer.arc(0,-59,6,3,0,atan2(lsin(90-this.spin.necklace[1]-this.anim.direction),lcos(90-this.spin.necklace[1]-this.anim.direction)*2))
+                        //this.layer.arc(0,-59,6,3,0,atan2(lsin(90-this.spin.necklace[1]-this.anim.direction),lcos(90-this.spin.necklace[1]-this.anim.direction)*2))
+                        this.layer.arc(0,-59,width,3,0,atan2(lsin(90-this.spin.necklace[1]-this.anim.direction),lcos(90-this.spin.necklace[1]-this.anim.direction)*2))
                     }
                     if(lcos(this.spin.necklace[0]+this.anim.direction)<=0&&lcos(this.spin.necklace[1]+this.anim.direction)<=0){
-                        this.layer.arc(0,-59,6,3,0,180)
+                        //this.layer.arc(0,-59,6,3,0,180)
+                        this.layer.arc(0,-59,width,3,0,180)
                     }
                     if(lcos(this.spin.necklaceBow.center+this.anim.direction)>0){
                         this.layer.line(lsin(this.spin.necklaceBow.center+this.anim.direction)*3,this.parts.necklaceBow+1.5*sqrt(1-lsin(this.spin.necklaceBow.center+this.anim.direction)*lsin(this.spin.necklaceBow.center+this.anim.direction)),
-                        lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*lsin(this.spin.necklaceBow.end[0]+this.anim.direction)))
+                            lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[0]+this.anim.direction)*lsin(this.spin.necklaceBow.end[0]+this.anim.direction)))
                         this.layer.line(lsin(this.spin.necklaceBow.center+this.anim.direction)*3,this.parts.necklaceBow+1.5*sqrt(1-lsin(this.spin.necklaceBow.center+this.anim.direction)*lsin(this.spin.necklaceBow.center+this.anim.direction)),
-                        lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*lsin(this.spin.necklaceBow.end[1]+this.anim.direction)))
+                            lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*3.5,this.parts.necklaceBow+2+1.5*sqrt(1-lsin(this.spin.necklaceBow.end[1]+this.anim.direction)*lsin(this.spin.necklaceBow.end[1]+this.anim.direction)))
                         this.layer.ellipse(lsin(this.spin.necklaceBow.loop[0]+this.anim.direction)*3.2,this.parts.necklaceBow+0.5+1.5*sqrt(1-lsin(this.spin.necklaceBow.loop[0]+this.anim.direction)*lsin(this.spin.necklaceBow.loop[0]+this.anim.direction)),
-                        lcos(this.spin.necklaceBow.loop[0]+this.anim.direction)*1.2,1.2)
+                            lcos(this.spin.necklaceBow.loop[0]+this.anim.direction)*1.5,1.2)
                         this.layer.ellipse(lsin(this.spin.necklaceBow.loop[1]+this.anim.direction)*3.2,this.parts.necklaceBow+0.5+1.5*sqrt(1-lsin(this.spin.necklaceBow.loop[1]+this.anim.direction)*lsin(this.spin.necklaceBow.loop[1]+this.anim.direction)),
-                        lcos(this.spin.necklaceBow.loop[1]+this.anim.direction)*1.2,1.2)
+                            lcos(this.spin.necklaceBow.loop[1]+this.anim.direction)*1.5,1.2)
                     }
                     if(this.spin.necklace[0]+this.anim.direction>-130&&this.spin.necklace[0]+this.anim.direction<65){
-                        if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25<lsin(this.spin.necklace[0]+this.anim.direction)*3){
-                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-180,-90)
+                        //if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25<lsin(this.spin.necklace[0]+this.anim.direction)*3){
+                        if(lsin(this.spin.necklace[2]+this.anim.direction)*piv<lsin(this.spin.necklace[0]+this.anim.direction)*width){
+                            //this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-180,-90)
+                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[0]+this.anim.direction)*width,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-180,-90)
                         }else{
-                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-90,0)
+                            //this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[0]+this.anim.direction)*6,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-90,0)
+                            this.layer.arc(lsin(this.spin.necklace[0]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[0]+this.anim.direction)*width,10-lcos(this.spin.necklace[0]+this.anim.direction)*3,-90,0)
                         }
                     }
                     if(this.spin.necklace[1]+this.anim.direction<130&&this.spin.necklace[1]+this.anim.direction>-65){
-                        if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25>lsin(this.spin.necklace[1]+this.anim.direction)*3){
-                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-90,0)
+                        //if(lsin(this.spin.necklace[2]+this.anim.direction)*5.25>lsin(this.spin.necklace[1]+this.anim.direction)*3){
+                        if(lsin(this.spin.necklace[2]+this.anim.direction)*piv>lsin(this.spin.necklace[1]+this.anim.direction)*width){
+                            //this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-90,0)
+                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[1]+this.anim.direction)*width,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-90,0)
                         }else{
-                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-180,-90)
+                            //this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*3,-54,lsin(this.spin.necklace[2]+this.anim.direction)*10.5-lsin(this.spin.necklace[1]+this.anim.direction)*6,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-180,-90)
+                            this.layer.arc(lsin(this.spin.necklace[1]+this.anim.direction)*width/2,-54,lsin(this.spin.necklace[2]+this.anim.direction)*piv-lsin(this.spin.necklace[1]+this.anim.direction)*width,10-lcos(this.spin.necklace[1]+this.anim.direction)*3,-180,-90)
                         }
                     }
                 }
@@ -2262,9 +2491,11 @@ combatant.prototype.display=function(){
                 }
                 if(this.trigger.display.kimono.outside.front){
                     if(this.trigger.display.extra.damage){
-                        this.layer.image(graphics.combatant[1].sprites.kimono.outsideDamage.front[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.front.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.front.x,40*this.fade*this.fades.kimono.outside.front.y)
+                        //this.layer.image(graphics.combatant[1].sprites.kimono.outsideDamage.front[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.front.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.front.x,40*this.fade*this.fades.kimono.outside.front.y)
+                        this.layer.image(graphics.combatant[1].sprites.kimono.outsideDamage.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.outside.front.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.front.x,40*this.fade*this.fades.kimono.outside.front.y)
                     }else{
-                        this.layer.image(graphics.combatant[1].sprites.kimono.outside.front[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.front.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.front.x,40*this.fade*this.fades.kimono.outside.front.y)
+                        //this.layer.image(graphics.combatant[1].sprites.kimono.outside.front[this.sprites.spin%24],-15*this.fade*this.fades.kimono.outside.front.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.front.x,40*this.fade*this.fades.kimono.outside.front.y)
+                        this.layer.image(graphics.combatant[1].sprites.kimono.outside.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.outside.front.x,this.parts.kimono.outside,30*this.fade*this.fades.kimono.outside.front.x,40*this.fade*this.fades.kimono.outside.front.y)
                     }
                 }
                 if(this.trigger.display.kimono.string&&!this.trigger.display.extra.damage){
@@ -2281,12 +2512,36 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(0.4)
                     this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.round)
                     this.layer.stroke(this.color.wrap.out[0],this.color.wrap.out[1],this.color.wrap.out[2],this.fade*this.fades.wrap.round)
-                    this.layer.quad(-7*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y,7*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y,7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,-7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y)
-                    this.layer.quad(-7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,7.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,-7.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y)
-                    this.layer.strokeWeight(0.6)
-                    this.layer.stroke(this.color.wrap.center[0],this.color.wrap.center[1],this.color.wrap.center[2],this.fade*this.fades.wrap.round)
-                    this.layer.line(7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,-7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y)
+                    /*this.layer.quad(-7*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y,7*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y,7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,-7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y)
+                    this.layer.quad(-7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,7.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,-7.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y)*/
+                    this.layer.quad(
+                        -6.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y,
+                        6.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y,
+                        7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,
+                        -7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y
+                    )
+                    this.layer.quad(
+                        -7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,
+                        7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,
+                        7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
+                        -7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y
+                    )
+                    /*this.layer.strokeWeight(0.6)
+                    this.layer.stroke(this.color.wrap.center[0],this.color.wrap.center[1],this.color.wrap.center[2],this.fade*this.fades.wrap.round)*/
+                    //this.layer.line(7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,-7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y)
+                    /*this.layer.line(
+                        7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y,
+                        -7.3*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18*this.fades.kimono.outside.front.y
+                    )*/
                     this.layer.strokeJoin(MITER)
+                    this.layer.fill(...this.color.wrap.center,this.fade*this.fades.wrap.round)
+                    this.layer.noStroke()
+                    this.layer.quad(
+                        -7.425*this.fades.kimono.outside.front.x,this.parts.kimono.outside+17.7*this.fades.kimono.outside.front.y,
+                        7.425*this.fades.kimono.outside.front.x,this.parts.kimono.outside+17.7*this.fades.kimono.outside.front.y,
+                        7.575*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18.3*this.fades.kimono.outside.front.y,
+                        -7.575*this.fades.kimono.outside.front.x,this.parts.kimono.outside+18.3*this.fades.kimono.outside.front.y
+                    )
                 }
                 if(this.trigger.display.wrap.bar&&lcos(this.spin.wrap.bar+this.anim.direction)>0){
                     this.layer.strokeJoin(ROUND)
@@ -2294,28 +2549,39 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.bar)
                     this.layer.stroke(this.color.wrap.out[0],this.color.wrap.out[1],this.color.wrap.out[2],this.fade*this.fades.wrap.bar)
                     if(this.trigger.display.extra.damage){
-                        this.layer.triangle(
+                        /*this.layer.triangle(
                             lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
                             lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
                             lsin(this.spin.wrap.bar+this.anim.direction)*9.2*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y,
+                        )*/
+                        this.layer.triangle(
+                            lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
+                            lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
+                            lsin(this.spin.wrap.bar+this.anim.direction)*9.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y,
                         )
                     }else{
-                        this.layer.quad(
+                        /*this.layer.quad(
                             lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
                             lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
                             lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*9.2*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y,
                             lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*9.2*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y
+                        )*/
+                        this.layer.quad(
+                            lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
+                            lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*7.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+20*this.fades.kimono.outside.front.y,
+                            lsin(this.spin.wrap.bar+this.parts.wrap.bar+this.anim.direction)*9.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y,
+                            lsin(this.spin.wrap.bar-this.parts.wrap.bar+this.anim.direction)*9.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+29*this.fades.kimono.outside.front.y
                         )
                     }
                     this.layer.strokeJoin(MITER)
                 }
-                if(this.trigger.display.kimono.fringe.front){
+                /*if(this.trigger.display.kimono.fringe.front){
                     if(this.trigger.display.extra.damage){
                         this.layer.image(graphics.combatant[1].sprites.kimono.fringeDamage.front[this.sprites.spin%12],-15*this.fade*this.fades.kimono.fringe.front.x,this.parts.kimono.fringe-10*this.fade*this.fades.kimono.fringe.front.y,30*this.fade*this.fades.kimono.fringe.front.x,20*this.fade*this.fades.kimono.fringe.front.y)
                     }else{
                         this.layer.image(graphics.combatant[1].sprites.kimono.fringe.front[this.sprites.spin%12],-15*this.fade*this.fades.kimono.fringe.front.x,this.parts.kimono.fringe-10*this.fade*this.fades.kimono.fringe.front.y,30*this.fade*this.fades.kimono.fringe.front.x,20*this.fade*this.fades.kimono.fringe.front.y)
                     }
-                }
+                }*/
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==0){
                         this.minorDisplay(0,g)
@@ -2355,17 +2621,22 @@ combatant.prototype.display=function(){
                         this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
                         this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
                     }
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    /*this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
                     this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
                     this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)*/
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.7*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.7*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.3*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.3*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
                     this.layer.strokeJoin(MITER)
                 }
                 if(this.trigger.display.kimono.bow){
                     this.layer.noFill()
                     this.layer.stroke(this.color.kimono.bow[0],this.color.kimono.bow[1],this.color.kimono.bow[2],this.fade*this.fades.kimono.bow)
                     this.layer.strokeWeight(0.25)
-                    if(this.trigger.display.extra.damage){
+                    let piv=5.4
+                    /*if(this.trigger.display.extra.damage){
                         if(lcos(this.spin.bow.center/2+this.spin.bow.loop[0]/2+this.anim.direction)>0){
                             this.layer.arc(
                                 lsin(this.spin.bow.center+this.anim.direction)*2.875*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x+lsin(this.spin.bow.loop[0]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*2.875*this.fades.kimono.outside.front.x*this.anim.kimono.bow.position.x,
@@ -2382,37 +2653,57 @@ combatant.prototype.display=function(){
                                 1*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y,0,180
                             )
                         }
-                    }else{
+                    }else{*/
                         if(lcos(this.spin.bow.center/2+this.spin.bow.loop[0]/2+this.anim.direction)>0){
-                            this.layer.ellipse(
+                            /*this.layer.ellipse(
                                 lsin(this.spin.bow.center+this.anim.direction)*2.875*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x+lsin(this.spin.bow.loop[0]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*2.875*this.fades.kimono.outside.front.x*this.anim.kimono.bow.position.x,
                                 this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
                                 (lsin(this.spin.bow.center+this.anim.direction)*5.5*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x-lsin(this.spin.bow.loop[0]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*5.5*this.fades.kimono.outside.front.x*this.anim.kimono.bow.position.x),
                                 1*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y
+                            )*/
+                            this.layer.bezier(
+                                lsin(this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
+                                lsin(this.spin.bow.loop[0]*2-this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y+0.5*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y,
+                                lsin(this.spin.bow.loop[0]*0.5+this.spin.bow.center*0.5+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y+2*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y,
+                                lsin(this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
                             )
                         }
                         if(lcos(this.spin.bow.center/2+this.spin.bow.loop[1]/2+this.anim.direction)>0){
-                            this.layer.ellipse(
+                            /*this.layer.ellipse(
                                 lsin(this.spin.bow.center+this.anim.direction)*2.875*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x+lsin(this.spin.bow.loop[1]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*2.875*this.fades.kimono.outside.front.x*this.anim.kimono.bow.position.x,
                                 this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
                                 (lsin(this.spin.bow.center+this.anim.direction)*5.5*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x-lsin(this.spin.bow.loop[1]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*5.5*this.fades.kimono.outside.front.x*this.anim.kimono.bow.position.x),
                                 1*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y
+                            )*/
+                            this.layer.bezier(
+                                lsin(this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
+                                lsin(this.spin.bow.loop[1]*2-this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y+0.5*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y,
+                                lsin(this.spin.bow.loop[1]*0.5+this.spin.bow.center*0.5+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y+2*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y,
+                                lsin(this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                                this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
                             )
                         }
-                    }
+                    //}
                     if(lcos(this.spin.bow.center/2+this.spin.bow.end[0]/2+this.anim.direction)>0){
                         this.layer.line(
-                            lsin(this.spin.bow.center+this.anim.direction)*5.75*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                            lsin(this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
                             this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
-                            lsin(this.spin.bow.end[0]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*(5.75*this.anim.kimono.bow.position.x+0.25*this.anim.kimono.bow.size.x)*this.fades.kimono.outside.front.x,
+                            lsin(this.spin.bow.end[0]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*(piv*this.anim.kimono.bow.position.x+0.25*this.anim.kimono.bow.size.x)*this.fades.kimono.outside.front.x,
                             this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y+1.5*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y
                         )
                     }
                     if(lcos(this.spin.bow.center/2+this.spin.bow.end[1]/2+this.anim.direction)>0){
                         this.layer.line(
-                            lsin(this.spin.bow.center+this.anim.direction)*5.75*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
+                            lsin(this.spin.bow.center+this.anim.direction)*piv*this.anim.kimono.bow.position.x*this.fades.kimono.outside.front.x,
                             this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y,
-                            lsin(this.spin.bow.end[1]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*(5.75*this.anim.kimono.bow.position.x+0.25*this.anim.kimono.bow.size.x)*this.fades.kimono.outside.front.x,
+                            lsin(this.spin.bow.end[1]*this.anim.kimono.bow.size.x/this.anim.kimono.bow.position.x+this.anim.direction)*(piv*this.anim.kimono.bow.position.x+0.25*this.anim.kimono.bow.size.x)*this.fades.kimono.outside.front.x,
                             this.parts.kimono.outside+(this.parts.kimono.bow-this.parts.kimono.outside)*this.fades.kimono.outside.front.y+1.5*this.anim.kimono.bow.size.y*this.fades.kimono.outside.front.y
                         )
                     }
@@ -2444,9 +2735,45 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                     }
                     if(this.trigger.display.sleeve&&(lcos(this.spin.arms[g].top+this.anim.direction)>-0.3||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)){
+                    //if(this.trigger.display.sleeve&&(lcos(this.spin.arms[g].top+this.anim.direction)>-0.1||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)){
                         this.layer.noStroke()
+                        let dir=[
+                            atan2(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x,this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y),
+                            atan2(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x,this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)
+                        ]
+                        dir.push((dir[0]+dir[1])/2)
+                        if(abs(dir[0]-dir[1])>180){
+                            dir[2]+=180
+                        }
+                        //let cross=abs(lsin(dir[0])*lsin(dir[1])+lcos(dir[0])*lcos(dir[1]))
                         for(let h=0,lh=6;h<lh;h++){
+                            let key=1-h/lh*0.6
                             this.layer.fill(mergeColor(this.color.sleeve.back,this.color.sleeve.front,h/lh),this.fade*this.fades.sleeve)
+                            this.layer.quad(
+                                /*this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15-lcos(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15+lsin(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15+lcos(dir[0])*2.2*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15-lsin(dir[0])*2.2*key,*/
+                                this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15-lcos(dir[0])*(lsin(this.spin.arms[g].top+this.anim.direction)>0?2.2:constrain(4.8*lcos(this.spin.arms[g].top+this.anim.direction),-0.8,2.2))*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15+lsin(dir[0])*(lsin(this.spin.arms[g].top+this.anim.direction)>0?2.2:constrain(4.8*lcos(this.spin.arms[g].top+this.anim.direction),-0.8,2.2))*key,
+                                this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15+lcos(dir[0])*(lsin(this.spin.arms[g].top+this.anim.direction)<0?2.2:constrain(4.8*lcos(this.spin.arms[g].top+this.anim.direction),-0.8,2.2))*key,
+                                this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15-lsin(dir[0])*(lsin(this.spin.arms[g].top+this.anim.direction)<0?2.2:constrain(4.8*lcos(this.spin.arms[g].top+this.anim.direction),-0.8,2.2))*key,
+                                this.graphics.arms[g].middle.x+lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y-lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.x-lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y+lsin(dir[2])*2.6*key,
+                            )
+                            this.layer.quad(
+                                this.graphics.arms[g].middle.x+lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y-lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.x-lcos(dir[2])*2.6*key,
+                                this.graphics.arms[g].middle.y+lsin(dir[2])*2.6*key,
+                                this.graphics.arms[g].bottom.x*0.75+this.graphics.arms[g].middle.x*0.25-lcos(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.y*0.75+this.graphics.arms[g].middle.y*0.25+lsin(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.x*0.75+this.graphics.arms[g].middle.x*0.25+lcos(dir[1])*4.2*key,
+                                this.graphics.arms[g].bottom.y*0.75+this.graphics.arms[g].middle.y*0.25-lsin(dir[1])*4.2*key,
+                            )
+                            /*this.layer.fill(mergeColor(this.color.sleeve.back,this.color.sleeve.front,h/lh),this.fade*this.fades.sleeve)
                             if(lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
                                 if(this.trigger.display.extra.damage){
                                     this.layer.beginShape()
@@ -2511,19 +2838,26 @@ combatant.prototype.display=function(){
                                     this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(lcos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)/4,
                                     this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(lcos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)/4
                                 )
-                            }
+                            }*/
                         }
                     }
-                    if(this.trigger.display.wrap.sleeve){
+                    /*if(this.trigger.display.wrap.sleeve){
                         this.layer.strokeJoin(ROUND)
                         this.layer.strokeWeight(0.4)
                         this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.bow)
                         this.layer.stroke(this.color.wrap.out[0],this.color.wrap.out[1],this.color.wrap.out[2],this.fade*this.fades.wrap.bow)
+                        let dir=[
+                            atan2(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x,this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y),
+                        ]
                         this.calc.int=[
                             this.graphics.arms[g].top.x-constrain(lsin(this.spin.arms[g].top+this.anim.direction)*1.2,-1,1)*(this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y)*0.135-(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x)/8,
                             this.graphics.arms[g].top.y+constrain(lsin(this.spin.arms[g].top+this.anim.direction)*1.2,-1,1)*(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x)*0.135-(this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y)/8,
                             this.graphics.arms[g].top.x-constrain(lsin(this.spin.arms[g].top+this.anim.direction)*1.2,-1,1)*(this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y)*0.15-(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x)/4,
                             this.graphics.arms[g].top.y+constrain(lsin(this.spin.arms[g].top+this.anim.direction)*1.2,-1,1)*(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x)*0.15-(this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y)/4
+                            this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15-constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lcos(dir[0])*2.2,
+                            this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15+constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lsin(dir[0])*2.2,
+                            this.graphics.arms[g].top.x*(0.85*0.85)+this.graphics.arms[g].middle.x*(1-0.85*0.85)-constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lcos(dir[0])*2.25,
+                            this.graphics.arms[g].top.y*(0.85*0.85)+this.graphics.arms[g].middle.y*(1-0.85*0.85)+constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lsin(dir[0])*2.25,
                         ]
                         if(this.anim.direction*(g*2-1)+this.spin.arms[g].lock>-150&&this.anim.direction*(g*2-1)+this.spin.arms[g].lock<150&&(lcos(this.spin.wrap.center+this.anim.direction)>=0||lcos(90*(g*2-1)+this.anim.direction)>=0)){
                             if(this.anim.direction*(g*2-1)+this.spin.arms[g].lock<-70){
@@ -2543,20 +2877,107 @@ combatant.prototype.display=function(){
                                 this.layer.triangle(this.calc.int[0],this.calc.int[1],this.calc.int[2],this.calc.int[3],lsin(this.spin.wrap.center+this.anim.direction)*-6.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
                             }
                         }
-                    }
+                    }*/
                     if(this.trigger.display.eye[g]){
                         this.minorDisplayGeneral(0,g)
                     }
                 }
                 if(this.trigger.display.sleeveDecoration){
                     this.layer.noStroke()
+                    let dir=[
+                        [
+                            atan2(this.graphics.arms[0].top.x-this.graphics.arms[0].middle.x,this.graphics.arms[0].top.y-this.graphics.arms[0].middle.y),
+                            atan2(this.graphics.arms[0].middle.x-this.graphics.arms[0].bottom.x,this.graphics.arms[0].middle.y-this.graphics.arms[0].bottom.y)
+                        ],[
+                            atan2(this.graphics.arms[1].top.x-this.graphics.arms[1].middle.x,this.graphics.arms[1].top.y-this.graphics.arms[1].middle.y),
+                            atan2(this.graphics.arms[1].middle.x-this.graphics.arms[1].bottom.x,this.graphics.arms[1].middle.y-this.graphics.arms[1].bottom.y)
+                        ],
+                    ]
+                    for(let a=0,la=2;a<la;a++){
+                        dir[a].push((dir[a][0]+dir[a][1])/2)
+                        if(abs(dir[a][0]-dir[a][1])>180){
+                            dir[a][2]+=180
+                        }
+                    }
+                    let piv=[
+                        [
+                            [
+                                atan2(
+                                    (this.graphics.arms[0].top.x*0.85+this.graphics.arms[0].middle.x*0.15-lcos(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.x-lcos(dir[0][2])*2.6),
+                                    (this.graphics.arms[0].top.y*0.85+this.graphics.arms[0].middle.y*0.15+lsin(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.y+lsin(dir[0][2])*2.6),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[0].top.x*0.85+this.graphics.arms[0].middle.x*0.15+lcos(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.x+lcos(dir[0][2])*2.6),
+                                    (this.graphics.arms[0].top.y*0.85+this.graphics.arms[0].middle.y*0.15-lsin(dir[0][0])*2.2)-
+                                    (this.graphics.arms[0].middle.y-lsin(dir[0][2])*2.6),
+                                ),
+                            ],[
+                                atan2(
+                                    (this.graphics.arms[0].middle.x-lcos(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.x*0.75+this.graphics.arms[0].middle.x*0.25-lcos(dir[0][1])*4.2),
+                                    (this.graphics.arms[0].middle.y+lsin(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.y*0.75+this.graphics.arms[0].middle.y*0.25+lsin(dir[0][1])*4.2),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[0].middle.x+lcos(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.x*0.75+this.graphics.arms[0].middle.x*0.25+lcos(dir[0][1])*4.2),
+                                    (this.graphics.arms[0].middle.y-lsin(dir[0][2])*2.6)-
+                                    (this.graphics.arms[0].bottom.y*0.75+this.graphics.arms[0].middle.y*0.25-lsin(dir[0][1])*4.2),
+                                ),
+                            ],
+                        ],[
+                            [
+                                atan2(
+                                    (this.graphics.arms[1].top.x*0.85+this.graphics.arms[1].middle.x*0.15-lcos(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.x-lcos(dir[1][2])*2.6),
+                                    (this.graphics.arms[1].top.y*0.85+this.graphics.arms[1].middle.y*0.15+lsin(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.y+lsin(dir[1][2])*2.6),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[1].top.x*0.85+this.graphics.arms[1].middle.x*0.15+lcos(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.x+lcos(dir[1][2])*2.6),
+                                    (this.graphics.arms[1].top.y*0.85+this.graphics.arms[1].middle.y*0.15-lsin(dir[1][0])*2.2)-
+                                    (this.graphics.arms[1].middle.y-lsin(dir[1][2])*2.6),
+                                ),
+                            ],[
+                                atan2(
+                                    (this.graphics.arms[1].middle.x-lcos(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.x*0.75+this.graphics.arms[1].middle.x*0.25-lcos(dir[1][1])*4.2),
+                                    (this.graphics.arms[1].middle.y+lsin(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.y*0.75+this.graphics.arms[1].middle.y*0.25+lsin(dir[1][1])*4.2),
+                                ),
+                                atan2(
+                                    (this.graphics.arms[1].middle.x+lcos(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.x*0.75+this.graphics.arms[1].middle.x*0.25+lcos(dir[1][1])*4.2),
+                                    (this.graphics.arms[1].middle.y-lsin(dir[1][2])*2.6)-
+                                    (this.graphics.arms[1].bottom.y*0.75+this.graphics.arms[1].middle.y*0.25-lsin(dir[1][1])*4.2),
+                                ),
+                            ],
+                        ],
+                    ]
+                    for(let a=0,la=2;a<la;a++){
+                        for(let b=0,lb=2;b<lb;b++){
+                            if(abs(piv[a][b][0]-piv[a][b][1])>180){
+                                if(piv[a][b][1]>piv[a][b][0]){
+                                    piv[a][b][1]-=360
+                                }else{
+                                    piv[a][b][1]+=360
+                                }
+                            }
+                        }
+                    }
                     for(let g=0,lg=this.spin.sleeve.decoration.length;g<lg;g++){
-                        if(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&(lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)>-0.3||lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].bottom+this.anim.direction)>=0.6)&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
+                        //if(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&(lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)>-0.3||lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].bottom+this.anim.direction)>=0.6)&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
+                        if(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>0&&(lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)>-0.3||lcos(this.spin.arms[this.spin.sleeve.decoration[g].part].bottom+this.anim.direction)>=0.6)&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
                             h=this.spin.sleeve.decoration[g].part
                             this.layer.push()
+                            let key=lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)
                             if(this.spin.sleeve.decoration[g].length>1){
                                 this.layer.translate(
-                                    lerp(
+                                    /*lerp(
                                         this.graphics.arms[h].middle.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction),
                                         this.graphics.arms[h].bottom.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)/4,
                                         this.spin.sleeve.decoration[g].length-1
@@ -2565,15 +2986,46 @@ combatant.prototype.display=function(){
                                         this.graphics.arms[h].middle.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction),
                                         this.graphics.arms[h].bottom.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)/4,
                                         this.spin.sleeve.decoration[g].length-1
-                                    ))
-                                this.layer.rotate(-atan2(
+                                    ))*/
+                                    lerp(
+                                        this.graphics.arms[h].middle.x-lcos(dir[h][2])*2.6*key,
+                                        this.graphics.arms[h].bottom.x*0.75+this.graphics.arms[h].middle.x*0.25-lcos(dir[h][1])*4.2*key,
+                                        this.spin.sleeve.decoration[g].length-1
+                                    ),lerp(
+                                        this.graphics.arms[h].middle.y+lsin(dir[h][2])*2.6*key,
+                                        this.graphics.arms[h].bottom.y*0.75+this.graphics.arms[h].middle.y*0.25+lsin(dir[h][1])*4.2*key,
+                                        this.spin.sleeve.decoration[g].length-1
+                                    )
+                                )
+                                /*this.layer.rotate(-atan2(
                                     ((this.graphics.arms[h].middle.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction))-
                                     (this.graphics.arms[h].bottom.x-(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)/4)),
                                     ((this.graphics.arms[h].middle.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.165*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction))-
                                     (this.graphics.arms[h].bottom.y+(this.graphics.arms[h].middle.x-this.graphics.arms[h].bottom.x)*0.27*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)+(this.graphics.arms[h].middle.y-this.graphics.arms[h].bottom.y)/4))
+                                ))*/
+                                this.layer.rotate(-lerp(
+                                    piv[h][1][0],
+                                    piv[h][1][1],
+                                    this.spin.sleeve.decoration[g].length-1,
                                 ))
                             }else{
+                                let key2=lerp(
+                                    -(lsin(this.spin.arms[h].top+this.anim.direction)<0?2.2:constrain(4.8*lcos(this.spin.arms[h].top+this.anim.direction),-0.8,2.2)),
+                                    lsin(this.spin.arms[h].top+this.anim.direction)>0?2.2:constrain(4.8*lcos(this.spin.arms[h].top+this.anim.direction),-0.8,2.2),
+                                    key*0.5+0.5
+                                )
                                 this.layer.translate(
+                                    lerp(
+                                        this.graphics.arms[h].top.x*0.85+this.graphics.arms[h].middle.x*0.15-lcos(dir[h][0])*key2,
+                                        this.graphics.arms[h].middle.x-lcos(dir[h][2])*2.6*key,
+                                        this.spin.sleeve.decoration[g].length
+                                    ),lerp(
+                                        this.graphics.arms[h].top.y*0.85+this.graphics.arms[h].middle.y*0.15+lsin(dir[h][0])*key2,
+                                        this.graphics.arms[h].middle.y+lsin(dir[h][2])*2.6*key,
+                                        this.spin.sleeve.decoration[g].length
+                                    )
+                                )
+                                /*this.layer.translate(
                                     lerp(
                                         this.graphics.arms[h].top.x-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)*0.12*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)-(this.graphics.arms[h].top.x-this.graphics.arms[h].middle.x)/8,
                                         this.graphics.arms[h].middle.x-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)*0.15*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction),
@@ -2589,9 +3041,16 @@ combatant.prototype.display=function(){
                                     (this.graphics.arms[h].middle.x-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)*0.15*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction))),
                                     ((this.graphics.arms[h].top.y+(this.graphics.arms[h].top.x-this.graphics.arms[h].middle.x)*0.12*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)-(this.graphics.arms[h].top.y-this.graphics.arms[h].middle.y)/8)-
                                     (this.graphics.arms[h].middle.y+(this.graphics.arms[h].top.x-this.graphics.arms[h].middle.x)*0.15*lsin(this.spin.sleeve.decoration[g].spin+this.anim.direction)))
+                                ))*/
+                                this.layer.rotate(-lerp(
+                                    piv[h][0][0],
+                                    piv[h][0][1],
+                                    this.spin.sleeve.decoration[g].length,
                                 ))
                             }
-                            this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)*1.1-0.1,1)
+                            //this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)*1.1-0.1,1)
+                            //this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction),1)
+                            this.layer.scale(lcos(this.spin.sleeve.decoration[g].spin+this.anim.direction)*0.8,0.8)
                             this.layer.rotate(this.spin.sleeve.decoration[g].rotate)
                             this.layer.fill(this.color.sleeve.decoration[this.spin.sleeve.decoration[g].type],this.fade)
                             this.layer.beginShape()
@@ -2607,6 +3066,54 @@ combatant.prototype.display=function(){
                             this.layer.vertex(0.375,0.25)
                             this.layer.endShape()
                             this.layer.pop()
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.wrap.sleeve){
+                        this.layer.strokeJoin(ROUND)
+                        this.layer.strokeWeight(0.4)
+                        this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.bow)
+                        this.layer.stroke(this.color.wrap.out[0],this.color.wrap.out[1],this.color.wrap.out[2],this.fade*this.fades.wrap.bow)
+                        let dir=[
+                            atan2(this.graphics.arms[g].top.x-this.graphics.arms[g].middle.x,this.graphics.arms[g].top.y-this.graphics.arms[g].middle.y),
+                        ]
+                        let piv=5/6
+                        this.calc.int=[
+                            this.graphics.arms[g].top.x*0.85+this.graphics.arms[g].middle.x*0.15-constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lcos(dir[0])*2.2,
+                            this.graphics.arms[g].top.y*0.85+this.graphics.arms[g].middle.y*0.15+constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lsin(dir[0])*2.2,
+                            this.graphics.arms[g].top.x*(0.85*piv)+this.graphics.arms[g].middle.x*(1-0.85*piv)-constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lcos(dir[0])*2.2+(1-piv)*0.4,
+                            this.graphics.arms[g].top.y*(0.85*piv)+this.graphics.arms[g].middle.y*(1-0.85*piv)+constrain(lsin(this.spin.arms[g].top+this.anim.direction)*2,-1,1)*lsin(dir[0])*2.2+(1-piv)*0.4,
+                        ]
+                        for(let a=0,la=2;a<la;a++){
+                            if(lcos(this.spin.wrap.center+a*180+this.anim.direction)>=0){
+                                if((lcos(this.spin.arms[g].top+this.anim.direction)>=0||abs(this.graphics.arms[g].top.x)>2.4)){
+                                    this.layer.triangle(this.calc.int[0],this.calc.int[1],this.calc.int[2],this.calc.int[3],lsin(this.spin.wrap.center+a*180+this.anim.direction)*6.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
+                                }else if(lsin(this.spin.wrap.center+a*180+this.anim.direction)>=0){
+                                    this.layer.triangle(this.calc.int[1]*0.25+18.5,this.calc.int[1],this.calc.int[3]*0.25+18.5,this.calc.int[3],lsin(this.spin.wrap.center+a*180+this.anim.direction)*6.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
+                                }else if(lsin(this.spin.wrap.center+a*180+this.anim.direction)<=0){
+                                    this.layer.triangle(-this.calc.int[1]*0.25-18.5,this.calc.int[1],-this.calc.int[3]*0.25-18.5,this.calc.int[3],lsin(this.spin.wrap.center+a*180+this.anim.direction)*6.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
+                                }
+                            }else if(lcos(this.spin.arms[g].top+this.anim.direction)>=0.5){
+                                if(
+                                    lsin(this.spin.wrap.center+a*180+this.anim.direction)>=0&&
+                                    //lsin(this.spin.arms[g].top+this.anim.direction)>=0&&
+                                    //lsin(this.spin.arms[g].top+this.anim.direction)>=lsin(this.spin.arms[1-g].top+this.anim.direction)&&
+                                    lsin(this.spin.arms[g].top+this.anim.direction)<=lsin(this.spin.wrap.center+a*180+this.anim.direction)+1&&
+                                    this.graphics.arms[g].top.x*0.3+this.graphics.arms[g].middle.x*0.7<4.8
+                                ){
+                                    this.layer.triangle(this.calc.int[0],this.calc.int[1],this.calc.int[2],this.calc.int[3],6.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
+                                }
+                                if(
+                                    lsin(this.spin.wrap.center+a*180+this.anim.direction)<=0&&
+                                    //lsin(this.spin.arms[g].top+this.anim.direction)<=0&&
+                                    //lsin(this.spin.arms[g].top+this.anim.direction)<=lsin(this.spin.arms[1-g].top+this.anim.direction)&&
+                                    lsin(this.spin.arms[g].top+this.anim.direction)>=lsin(this.spin.wrap.center+a*180+this.anim.direction)-1&&
+                                    this.graphics.arms[g].top.x*0.3+this.graphics.arms[g].middle.x*0.7>-4.8
+                                ){
+                                    this.layer.triangle(this.calc.int[0],this.calc.int[1],this.calc.int[2],this.calc.int[3],-6.8*this.fades.kimono.outside.front.x,this.parts.kimono.outside+16*this.fades.kimono.outside.front.y)
+                                }
+                            }
                         }
                     }
                 }
@@ -2635,15 +3142,24 @@ combatant.prototype.display=function(){
                         this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
                         this.layer.triangle(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*9.3*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]+4.8,lsin(this.spin.wrap.bow+this.anim.direction)*7.7*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*8,this.calc.int[0]-4.8)
                     }
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    /*this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
                     this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.8*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
                     this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
-                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*7.6*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)*/
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.7*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.7*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]+1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.3*this.fades.kimono.outside.front.x-lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
+                    this.layer.line(lsin(this.spin.wrap.bow+this.anim.direction)*7.3*this.fades.kimono.outside.front.x,this.calc.int[0],lsin(this.spin.wrap.bow+this.anim.direction)*8.3*this.fades.kimono.outside.front.x+lcos(this.spin.wrap.bow+this.anim.direction)*6,this.calc.int[0]-1.2)
                     this.layer.strokeJoin(MITER)
                 }
                 if(this.trigger.display.kimono.flower&&this.fades.kimono.flower>0){
                     if(constrain((pow(lcos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1)>0){
-                        this.layer.image(graphics.combatant[1].sprites.minor[1],lsin(this.spin.flower[1]+this.anim.direction)*8*this.fades.kimono.outside.front.x-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(lcos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.kimono.outside+(this.parts.kimono.flowerLevel-this.parts.kimono.outside)*this.fades.kimono.outside.front.y-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x,30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(lcos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.y)
+                        //this.layer.image(graphics.combatant[1].sprites.minor[1],lsin(this.spin.flower[1]+this.anim.direction)*8*this.fades.kimono.outside.front.x-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(lcos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.kimono.outside+(this.parts.kimono.flowerLevel-this.parts.kimono.outside)*this.fades.kimono.outside.front.y-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x,30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(lcos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.y)
+                        this.layer.push()
+                        this.layer.translate(lsin(this.spin.flower[1]+this.anim.direction)*7.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+(this.parts.kimono.flowerLevel-this.parts.kimono.outside)*this.fades.kimono.outside.front.y)
+                        this.layer.rotate(-10*lsin(this.spin.flower[1]+this.anim.direction))
+                        this.layer.image(graphics.combatant[1].sprites.minor[1],-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(lcos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x,30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(lcos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.y)
+                        this.layer.pop()
                     }
                 }
                 if(this.trigger.display.hair.tail&&lcos(this.spin.tail+this.anim.direction)>0){
@@ -2657,12 +3173,17 @@ combatant.prototype.display=function(){
                     this.layer.stroke(this.color.hair.glow[0],this.color.hair.glow[1],this.color.hair.glow[2],this.fade/4)
                     for(let g=0;g<6;g++){
                         this.layer.strokeWeight((3-g/2)*this.fade)
-                        this.layer.arc(0,-75,30+g,30+g,-72+g*6,-12-g*6)
+                        //this.layer.arc(0,-75,30+g,30+g,-72+g*6,-12-g*6)
+                        this.layer.arc(0,-75,29+g,29+g,-72+g*6,-12-g*6)
                     }
                 }
                 if(this.trigger.display.flower&&this.fades.flower>0){
                     if(constrain((pow(lcos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1)>0){
-                        this.layer.image(graphics.combatant[1].sprites.minor[0],lsin(this.spin.flower[0]+this.anim.direction)*18-10*this.fade*this.fades.flower*constrain((pow(lcos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.flowerLevel-15*this.fade*this.fades.flower,20*this.fade*this.fades.flower*constrain((pow(lcos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.flower)
+                        this.layer.push()
+                        this.layer.translate(lsin(this.spin.flower[0]+this.anim.direction)*17.5,this.parts.flowerLevel)
+                        this.layer.rotate(-6*lsin(this.spin.flower[0]+this.anim.direction))
+                        this.layer.image(graphics.combatant[1].sprites.minor[0],-10*this.fade*this.fades.flower*constrain((pow(lcos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),-15*this.fade*this.fades.flower,20*this.fade*this.fades.flower*constrain((pow(lcos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.flower)
+                        this.layer.pop()
                     }
                 }
                 if(this.trigger.display.flower2&&this.fades.flower2>0){
@@ -3029,8 +3550,10 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.kimono.main.back){
                     if(this.trigger.display.extra.damage){
                         this.layer.image(graphics.combatant[3].sprites.kimono.mainDamage.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
+                        //this.layer.image(graphics.combatant[3].sprites.kimono.mainDamage.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-9*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,72*this.fade*this.fades.kimono.main.back.y)
                     }else{
                         this.layer.image(graphics.combatant[3].sprites.kimono.main.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
+                        //this.layer.image(graphics.combatant[3].sprites.kimono.main.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-9*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,72*this.fade*this.fades.kimono.main.back.y)
                     }
                 }
                 if(this.trigger.display.kimono.decoration){
@@ -3298,8 +3821,10 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.kimono.main.front){
                     if(this.trigger.display.extra.damage){
                         this.layer.image(graphics.combatant[3].sprites.kimono.mainDamage.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
+                        //this.layer.image(graphics.combatant[3].sprites.kimono.mainDamage.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-9*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,72*this.fade*this.fades.kimono.main.back.y)
                     }else{
                         this.layer.image(graphics.combatant[3].sprites.kimono.main.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
+                        //this.layer.image(graphics.combatant[3].sprites.kimono.main.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-9*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,72*this.fade*this.fades.kimono.main.back.y)
                     }
                 }
                 if(this.trigger.display.kimono.decoration){

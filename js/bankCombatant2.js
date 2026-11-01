@@ -17,14 +17,16 @@ combatant.prototype.setupGraphics=function(direction){
             this.calc={int:[0,0,0,0]}
             this.animSet={loop:0,flip:0,hand:0,foot:0}
             this.goal={anim:{direction:this.anim.direction}}
-            this.color={skin:{head:[240,220,180],body:[180,170,160],legs:[160,150,140],arms:[100,180,200],upperBody:[120,200,220]},logo:[0,255,50],belt:[180,100,20],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            //this.color={skin:{head:[240,220,180],body:[180,170,160],legs:[160,150,140],arms:[100,180,200],upperBody:[120,200,220]},logo:[0,255,50],belt:[180,100,20],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            this.color={skin:{head:[250,225,125],body:[180,170,160],legs:[160,150,140],arms:[100,180,200],upperBody:[120,200,220]},logo:[0,255,50],belt:[180,100,20],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
         break
         case 'George':
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                 legs:[{top:9,bottom:0,length:{top:18,bottom:18}},{top:9,bottom:0,length:{top:18,bottom:18}}],
                 arms:[{top:24,bottom:9,length:{top:18,bottom:18}},{top:24,bottom:9,length:{top:18,bottom:18}}]}
             this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216,sword:0}
-            this.color={skin:{head:[240,220,180],body:[35,40,40],legs:[25,30,30],arms:[30,35,35]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},helmet:[40,45,45],visor:[200,200,200],belt:[30,25,0],badge:[[240,240,200],[240,240,40]]}
+            //this.color={skin:{head:[240,220,180],body:[35,40,40],legs:[25,30,30],arms:[30,35,35]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},helmet:[40,45,45],visor:[200,200,200],belt:[30,25,0],badge:[[240,240,200],[240,240,40]]}
+            this.color={skin:{head:[220,175,136],body:[35,40,40],legs:[25,30,30],arms:[30,35,35]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},helmet:[40,45,45],visor:[200,200,200],belt:[30,25,0],badge:[[240,240,200],[240,240,40]]}
             this.parts={eyeLevel:-81,mouth:-73,minor:15,
                 legs:[{top:{x:3.5,y:-36},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-36},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:4,y:-64},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-64},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
@@ -193,7 +195,8 @@ combatant.prototype.setupGraphics=function(direction){
             this.spin={
                 legs:[{top:-60,bottom:-120},{top:60,bottom:120}],
                 arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],
-                bow:{center:0,end:[-5,5],loop:[-20,20]},
+                //bow:{center:0,end:[-5,5],loop:[-20,20]},
+                bow:{center:0,end:[-4,4],loop:[-15,15]},
                 under:{top:[[],[]],bottom:[[],[]],tanga:30,under:{top:[-40,40],button:[-39,39],bottom:[0,-15,15,-9,9]}},
                 underBow:{top:{center:0,end:[-4,4],loop:[-16,16]},bottom:{center:0,end:[-4,4],loop:[-16,16]}},
                 necklaceBow:{center:180,end:[172,-172],loop:[160,-160]},
@@ -205,8 +208,10 @@ combatant.prototype.setupGraphics=function(direction){
 
             this.parts={eyeLevel:-71.5,flowerLevel:-77.5,necklaceBow:-59,mouth:-68.5,
                 under:{dress:-58,top:-50,bottom:-31,bow:{top:3,bottom:-6.25}},
-                kimono:{main:-58,outside:-62,fringe:-38,shadow:-37.5,bow:-51.5,string:9,flowerLevel:-44},
-                wrap:{bow:-44,bar:7.5},
+                kimono:{main:-58,outside:-62,fringe:-38,shadow:-37.5,bow:-53,string:9,flowerLevel:-44},
+                //kimono:{main:-58,outside:-62,fringe:-38,shadow:-37.5,bow:-51.5,string:9,flowerLevel:-44},
+                //wrap:{bow:-44,bar:7.5},
+                wrap:{bow:-44,bar:6},
                 minor:15,
                 legs:[
                     {top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0},sandal:{back:{x:0,y:0},front:{x:0,y:0}}},
@@ -248,7 +253,8 @@ combatant.prototype.setupGraphics=function(direction){
                     skin:{legs:true,arms:true,body:true,head:true,button:false},
                     kimono:{main:{back:true,front:true},outside:{back:true,front:true},fringe:{back:true,front:true},decoration:{large:true,small:true},shadow:true,bow:true,string:true,flower:true},
                     wrap:{round:true,bow:true,bar:true,sleeve:true},
-                    under:{dress:{back:false,front:false,decoration:{large:false}},towel:false,top:false,bottom:false,tanga:false,bow:{top:false,bottom:false},under:{top:true,button:false,bottom:false}},
+                    under:{dress:{back:false,front:false,decoration:{large:false}},towel:false,top:false,bottom:false,tanga:false,bow:{top:false,bottom:false},under:{top:false,button:false,bottom:false}},
+                    //under:{dress:{back:false,front:false,decoration:{large:false}},towel:false,top:false,bottom:false,tanga:false,bow:{top:false,bottom:false},under:{top:true,button:false,bottom:false}},
                 }}
             }
 
@@ -273,7 +279,8 @@ combatant.prototype.setupGraphics=function(direction){
             this.kimono.decoration.large.push({spin:134,rotate:12,y:54,width:0.35,height:1})
             this.kimono.decoration.large.push({spin:180,rotate:0,y:55,width:0.35,height:1})
             this.kimono.decoration.large.push({spin:226,rotate:-12,y:54,width:0.35,height:1})
-            for(let g=0;g<7;g++){
+            //for(let g=0;g<7;g++){
+            for(let g=0;g<6;g++){
                 this.kimono.decoration.large.push({spin:270+g*47.5,rotate:-24,y:50-g*5,width:0.35,height:1})
             }
             for(let g=0;g<2;g++){
@@ -283,7 +290,8 @@ combatant.prototype.setupGraphics=function(direction){
             this.kimono.decoration.small.push({spin:156,rotate:6,y:54.5,width:0.6,height:0.8})
             this.kimono.decoration.small.push({spin:204,rotate:-6,y:54.5,width:0.6,height:0.8})
             this.kimono.decoration.small.push({spin:248,rotate:-21,y:52,width:0.6,height:0.8})
-            for(let g=0;g<7;g++){
+            //for(let g=0;g<7;g++){
+            for(let g=0;g<6;g++){
                 this.kimono.decoration.small.push({spin:294+g*47.5,rotate:-24,y:47-g*5,width:0.6,height:0.8})
             }
             for(let g=0;g<15;g++){
@@ -298,7 +306,7 @@ combatant.prototype.setupGraphics=function(direction){
                 this.kimono.string.push(g*120/7)
             }
             for(let g=0;g<4;g++){
-                this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:0,length:0.3,type:floor(random(0,this.color.sleeve.decoration.length))})
+                /*this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:0,length:0.3,type:floor(random(0,this.color.sleeve.decoration.length))})
                 this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:1,length:0.3,type:floor(random(0,this.color.sleeve.decoration.length))})
                 this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:0,length:0.65,type:floor(random(0,this.color.sleeve.decoration.length))})
                 this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:1,length:0.65,type:floor(random(0,this.color.sleeve.decoration.length))})
@@ -307,7 +315,19 @@ combatant.prototype.setupGraphics=function(direction){
                 this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:0,length:1.45,type:floor(random(0,this.color.sleeve.decoration.length))})
                 this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:1,length:1.45,type:floor(random(0,this.color.sleeve.decoration.length))})
                 this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:0,length:1.8,type:floor(random(0,this.color.sleeve.decoration.length))})
-                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:1,length:1.8,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:1,length:1.8,type:floor(random(0,this.color.sleeve.decoration.length))})*/
+                this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:0,length:0.3,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:1,length:0.3,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:0,length:0.6,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:1,length:0.6,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:0,length:0.9,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:1,length:0.9,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:0,length:1.2,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:1,length:1.2,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:0,length:1.5,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:1,length:1.5,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:45+g*90,rotate:random(0,360),part:0,length:1.8,type:floor(random(0,this.color.sleeve.decoration.length))})
+                this.spin.sleeve.decoration.push({spin:g*90,rotate:random(0,360),part:1,length:1.8,type:floor(random(0,this.color.sleeve.decoration.length))})
             }
             for(let h=0;h<2;h++){
                 for(let g=0,lg=8+h*2;g<lg;g++){
@@ -597,7 +617,8 @@ combatant.prototype.setupGraphics=function(direction){
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
             this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
-            this.color={skin:{head:[250,225,125],body:[30,40,50],legs:[20,30,40],arms:[25,35,45]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},tie:[[80,120,200],[200,80,40]],belt:[[120,60,20],[120,140,160],[80,100,120]],monocle:[[200,210,220],[40,50,60]]}
+            //this.color={skin:{head:[250,225,125],body:[30,40,50],legs:[20,30,40],arms:[25,35,45]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},tie:[[80,120,200],[200,80,40]],belt:[[120,60,20],[120,140,160],[80,100,120]],monocle:[[200,210,220],[40,50,60]]}
+            this.color={skin:{head:[79,41,3],body:[30,40,50],legs:[20,30,40],arms:[25,35,45]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},tie:[[80,120,200],[200,80,40]],belt:[[120,60,20],[120,140,160],[80,100,120]],monocle:[[200,210,220],[240,200,40]]}
             this.parts={eyeLevel:-78,mouth:-70,minor:15,
                 legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
@@ -615,7 +636,8 @@ combatant.prototype.setupGraphics=function(direction){
                 legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                 arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
             this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
-            this.color={skin:{head:[240,220,180],body:[220,220,220],upperBody:[240,240,240],legs:[210,210,210],arms:[230,230,230]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},rose:[[50,200,50],[200,50,50]],bowtie:[[200,200,120],[100,100,100]],hat:[240,240,240]}
+            //this.color={skin:{head:[240,220,180],body:[220,220,220],upperBody:[240,240,240],legs:[210,210,210],arms:[230,230,230]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},rose:[[50,200,50],[200,50,50]],bowtie:[[200,200,120],[100,100,100]],hat:[240,240,240]}
+            this.color={skin:{head:[224,210,147],body:[220,220,220],upperBody:[240,240,240],legs:[210,210,210],arms:[230,230,230]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},rose:[[50,200,50],[200,50,50]],bowtie:[[200,200,120],[100,100,100]],hat:[240,240,240]}
             this.parts={eyeLevel:-78,mouth:-70,minor:15,
                 legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
@@ -1188,7 +1210,8 @@ combatant.prototype.setupGraphics=function(direction){
                 legs:[{top:9,bottom:0,length:{top:13,bottom:13}},{top:9,bottom:0,length:{top:13,bottom:13}}],
                 arms:[{top:24,bottom:9,length:{top:13,bottom:13}},{top:24,bottom:9,length:{top:13,bottom:13}}]}
             this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
-            this.color={skin:{head:[240,220,180],body:[200,160,200],legs:[120,80,40],arms:[180,140,170]},overall:[125,85,45],hat:[15,30,45],glasses:[[55,45,55],[180,160,180]],button:[30,15,30],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            //this.color={skin:{head:[240,220,180],body:[200,160,200],legs:[120,80,40],arms:[180,140,170]},overall:[125,85,45],hat:[15,30,45],glasses:[[55,45,55],[180,160,180]],button:[30,15,30],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            this.color={skin:{head:[222,192,122],body:[200,160,200],legs:[120,80,40],arms:[180,140,170]},overall:[125,85,45],hat:[15,30,45],glasses:[[55,45,55],[180,160,180]],button:[30,15,30],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
             this.parts={eyeLevel:-63,mouth:-55,minor:15,
                 legs:[{top:{x:7.5,y:-26},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:7.5,y:-26},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                 arms:[{top:{x:16,y:-41},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:16,y:-41},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
@@ -6262,7 +6285,7 @@ combatant.prototype.minorDisplay=function(type,key){
                         this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75
                     )
                     this.layer.rotate(-dir)
-                    ang=atan2(6,dist(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,this.graphics.arms[key].bottom.x,this.graphics.arms[key].bottom.y)*0.75)
+                    //ang=atan2(6,dist(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,this.graphics.arms[key].bottom.x,this.graphics.arms[key].bottom.y)*0.75)
                     /*for(let a=0,la=17;a<la;a++){
                         if(lcos((a-0.5)/la*360+this.anim.direction)<=0&&lcos((a+0.5)/la*360+this.anim.direction)<=0){*/
                             /*this.layer.push()
