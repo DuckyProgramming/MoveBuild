@@ -7640,7 +7640,7 @@ class attack{
                     break
                     case 8333:
                         if(this.userManager.hand.turnPlayed[0]<=1){
-                            this.userManager.draw(this.effect[1])
+                            this.userManager.hand.upgrade(this.effect[1])
                         }
                     break
                     case 8335:

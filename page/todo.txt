@@ -1,6 +1,10 @@
 CS 146 [PREHEX / VINCENT]
 
-carbon
+carbon / compound
+split devil's prism
+trash compacting - when you play a fatigue, add compound
+
+a downright massacre
 
 prehex rework
 vincent rework
@@ -28,10 +32,6 @@ quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
-tooltips for dictionary
-
-recheck every tutorial
-
 tax evasion? (when you lose currency lose 1 less)
 blue pepper - get 3 ? if you have 3 empty spots???
 tedium capsule - next card reward is common
@@ -42,7 +42,35 @@ rich friend [replace loanshark] - heal 1 health at the start of combat, when rem
 bag of cards - add 1 block per skipped card reward this run
 [chili powder]
 [zaroff's contract]
+[refund]
 block cogs
+
++6 wishes
++4 evoke
+
+a ton of fresh prehex cards
+more ways to turn back time
+more evolve
+
+crowbar - damage, center of hand: draw and upgrade a card
+expendable asset - deal 11 damage, retain, when retained lose 1 currency
+comedy - gain 1 pity, gain 2 weak, apply 2 weak in all directions
+[swiss cheese]
+
+superspeed - gain 1 energy next turn, take another turn
+empty out - exit stance (nothing else)
+
+separate weaknesses - 2 vulnerable, 2 node
+other's mistakes - poison jet but light orb
+flux - draw a card, add 2 block per orb [4995]
+
+check that on mtg mode energy is never mentioned
+outdupes, outmtgerror
+grammar check
+
+tooltips for dictionary
+
+recheck every tutorial
 
 recycling - gain a reroll every turn??? [maybe use this to replace TEST 271]
 apparently divine wind is worthless
@@ -54,54 +82,6 @@ layoffs - remove randomly picked card 1, remove randomly picked card 2, or both 
 lose an arm - your character loses a limb and all attacks and defenses have 1 less effect from now on
 lose your identity - your character's name becomes redacted, your expression becomes blank, and you have 1 less card choice
 lose your eyesight - your character's eyes are permanently shut and you can only attack at range 1
-
-+8 wishes
-+4 evoke
-
-a ton of fresh prehex cards
-more ways to turn back time
-more evolve
-
-tick tock - 4 damage 2 times, increases by 1 when turn number decreases
-hyperactive - 7 damage, if you have caffeine gain 1 energy and draw a card
-rampant evolution - transform a card, evolve your hand
-controlled evolution - exhaust a card, evolve your hand
-crowbar - damage, center of hand: draw and upgrade a card
-expendable asset - deal 11 damage, retain, when retained lose 1 currency
-comedy - gain 1 pity, gain 2 weak, apply 2 weak in all directions
-scream - apply 1 stun, end your turn, exhaust
-sneaky worker - gain 5 currency per enemy, add a pristine
-nuclear hell - gain 1 radiation whenever you play a card
-blade of garbage - add a smite to hand, remove 2 fatigues (and a safety counterpart)
-trash compacting - when you play a fatigue, add compound
-gumdrop - heal 1, retain block for 2 turns
-refracting knife - damage, all shivs in hand gain damage equal to damage dealt
-guardian angel - temporal guard with an additional effect (thematic)
-royal gamble - virtous circle but for influence
-return of [biding] - [biden] but draw an equal number of cards, rare, rename old biding
-identify yourself - apply 2 vulnerable if used on an enemy, otherwise gain 2 strength
-[swiss cheese]
-
-deckbuild LEGACY [40]
-
-wave of the hand - when you add block, apply 1 weak to all enemies [9231]
-contrary - apply 2 anti-control
-dreams of speed - gain 1 energy next turn, take another turn, [dream]
-dreams of invincibility - 100 block, retain block for 2 turns, [dream]
-supernatural rejuvenation - gain 8 regeneration, vanishing 3 [recoup]
-quickswap - when you change stance, 2 splash damage
-empty out - exit stance (nothing else)
-
-rip and tear - 7 damage to a random adjacent enemy 2 times
-separate weaknesses - 2 vulnerable, 2 node
-other's mistakes - poison jet but light orb
-flux - draw a card, add 2 block per orb [4995]
-
-timeout - add 7 block, draw a card, if it's an attack apply 2 weak to all enemies
-
-check that on mtg mode energy is never mentioned
-outdupes, outmtgerror
-grammar check
 
 [slio9]
 

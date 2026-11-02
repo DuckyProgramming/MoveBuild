@@ -3779,6 +3779,7 @@ function checkExists(start,end){
 		4298,//invalid shooting echo
 		5868,//invalid halflife
 		6032,//invalid seven hakus
+		6109,//invalid anaphel
 		6199,//invalid cleaver
 		7929,//invalid suit up
 		8540,//invalid luminescent pillar
