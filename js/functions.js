@@ -569,10 +569,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[11]&&user.status.main[890]>0){
 				bonus+=user.status.main[890]
 			}
-			if(variant&&args[13]&&user.status.main[1041]>0){
+			if(variant&&args[12]=='Old\nRiptide'&&user.status.main[1041]>0){
 				bonus+=user.status.main[1041]
 			}
-			if(variant&&args[14]&&user.status.main[1060]>0){
+			if(variant&&args[12]=='Riptide'&&user.status.main[1060]>0){
 				damage+=user.status.main[1060]
 			}
 			if(user.status.main[12]!=0&&type!=22){
@@ -844,8 +844,11 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 		case 23:
 			let num=effect
 			let bonus23=0
-			if(variant&&args[12]&&user.status.main[1040]>0){
+			if(variant&&args[12]=='Divination'&&user.status.main[1040]>0){
 				bonus23+=user.status.main[1040]
+			}
+			if(variant&&args[12]=='Divine\nWind'&&user.status.main[1078]>0){
+				bonus23+=user.status.main[1078]
 			}
 			return bonus23!=0?`${num} (${num+bonus23})`:num
 	}

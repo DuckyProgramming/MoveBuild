@@ -106,7 +106,8 @@ constants.status={
         'Take Credit Vigor','Power Dexterity','Creation Block','Lock On Mortal','Divinity Bonus','Debuff Exhaust','Claw Draw','Temporary Dexterity in 2 Turns','Temporary Dexterity in 3 Turns','Created Block',
         'Divination Boost','Old Riptide Boost','Weak in 2 Turns','Weak in 3 Turns','Vulnerable in 2 Turns','Vulnerable in 3 Turns','Frail in 2 Turns','Frail in 3 Turns','Take Damage in 3 Turns','Lose Health in 3 Turns',
         'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn','Double Buff',
-        'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn',
+        'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
+        'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -215,7 +216,8 @@ constants.status={
         0,0,0,0,0,0,0,2,2,0,//104
         0,0,2,2,2,2,2,2,2,2,//105
         2,0,1,0,0,0,0,0,0,0,//106
-        0,1,0,2,2,0,2,0,0,
+        0,1,0,2,2,0,2,0,0,0,//107
+        0,0,0,0,0,0,0,0,0,0,//108
     ],
     /*
     0-none
@@ -333,7 +335,8 @@ constants.status={
         2,2,2,2,2,2,2,0,0,2,//104
         2,2,1,1,1,1,1,1,1,1,//105
         2,2,1,2,2,2,2,2,2,2,//106
-        2,2,2,0,0,2,0,2,2,
+        2,2,2,0,0,2,0,2,2,2,//107
+        2,2,2,2,2,2,2,2,2,2,//108
     ]
     /*
     0-good
@@ -6627,6 +6630,30 @@ class combatant{
             }
             if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1020]>0){
                 this.addBlock(this.status.main[1020])
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1070]>0){
+                this.battle.addEnergy(this.status.main[1070],this.id)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1071]>0){
+                this.battle.addSpecificEnergy(this.status.main[1071],this.id,0)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1072]>0){
+                this.battle.addSpecificEnergy(this.status.main[1072],this.id,1)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1073]>0){
+                this.battle.addSpecificEnergy(this.status.main[1073],this.id,2)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1074]>0){
+                this.battle.addSpecificEnergy(this.status.main[1074],this.id,3)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1075]>0){
+                this.battle.addSpecificEnergy(this.status.main[1075],this.id,4)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1076]>0){
+                this.battle.addSpecificEnergy(this.status.main[1076],this.id,5)
+            }
+            if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1077]>0){
+                this.battle.addSpecificEnergy(this.status.main[1077],this.id,6)
             }
             if(this.id<this.battle.players){
                 this.battle.relicManager.activate(20,[amount,this.id])

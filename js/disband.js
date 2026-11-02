@@ -33310,20 +33310,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Magic of\nthe Bullet',rarity:-1,list:-8,
-        levels:[
-            {effect:[1],attack:3571,cost:6,target:[0],spec:[],class:4},
-            {effect:[1],attack:3571,cost:5,target:[0],spec:[],class:4},
-            {effect:[1],attack:3571,cost:4,target:[0],spec:[],class:4},
-        ],mtg:{
-            rarity:-1,list:-8,color:[1,4,5],
-            levels:[
-                {effect:[1],attack:3571,cost:[1,4,5,-1,-1,-1,-1,-1],target:[0],spec:[],class:4},
-                {effect:[1],attack:3571,cost:[1,4,5,-1,-1,-1,-1],target:[0],spec:[],class:4},
-                {effect:[1],attack:3571,cost:[1,4,5,-1,-1,-1],target:[0],spec:[],class:4},
-            ],
-        },
-    },{
         name:'Ally\nSplit Draw',rarity:-1,list:-8,
         levels:[
             {effect:[1,1],attack:8177,cost:0,target:[0],spec:[],class:11},

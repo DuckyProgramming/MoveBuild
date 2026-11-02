@@ -311,6 +311,10 @@ class group{
         if(this.cards[this.cards.length-1].name.includes('War')>0){
             this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[7554])
         }
+        //if(this.cards[this.cards.length-1].spec.includes(82)){
+        if(this.cards[this.cards.length-1].rarity==2){
+            this.battle.cardManagers[this.player].trueAllGroupEffectArgs(65,[11613])
+        }
     }
     subAdded(){
         this.cards[this.cards.length-1].callSubAddEffect()
@@ -1017,7 +1021,7 @@ class group{
                 type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==2&&this.cards[a].name==args[0]||
-                type==3&&this.cards[a].class==5||
+                type==3&&thiss.cards[a].class==5||
                 type==4&&args[0].includes(this.cards[a].class)||
                 type==5&&this.cards[a].rarity==args[0]||
                 type==6&&this.cards[a].spec.includes(args[0])
@@ -1618,7 +1622,9 @@ class group{
                     }
                 break
                 case 48:
-                    this.cards[a].callStartEffect(this.battle.encounter.class)
+                    if(this.cards[a].callStartEffect(this.battle.encounter.class)){
+                        la--
+                    }
                 break
                 case 49:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
@@ -2672,27 +2678,28 @@ class group{
                                 }
                             break
                             case 7555:
-                                //there's no leader before alexander III added yet
-                                if(args[0]!=7470){
+                                if(args[0]==7470){
+                                    this.add(findName('Alexander\nII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
                                     this.add(findName('Nicholas\nII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
-                                    if(this.id==0){
-                                        changed=true
-                                        this.remove(a)
-                                        a--
-                                        if(args[0]==7274||args[0]==7470){
-                                            la--
-                                        }
-                                    }else if(this.id==2){
-                                        this.cards[a].deSize=true
-                                        this.cards[a].exhaust=true
-                                        this.cards[a].purge=true
-                                        if(args[0]!=7274&&args[0]!=7470){
-                                            la--
-                                        }
-                                    }else{
-                                        this.cards.splice(a,1)
-                                        a--
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
                                     }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
                                 }
                             break
                             case 8606: case 8607: case 8608: case 8609: case 8610: case 8620: case 11313:
@@ -2734,27 +2741,28 @@ class group{
                                 }
                             break
                             case 10567:
-                                //there's no leader before sun yat-set yet
-                                if(args[0]!=7470){
+                                if(args[0]==7470){
+                                    this.add(findName('Yuan\nShikai',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                }else{
                                     this.add(findName('Chiang\nKai-shek',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
-                                    if(this.id==0){
-                                        changed=true
-                                        this.remove(a)
-                                        a--
-                                        if(args[0]==7274||args[0]==7470){
-                                            la--
-                                        }
-                                    }else if(this.id==2){
-                                        this.cards[a].deSize=true
-                                        this.cards[a].exhaust=true
-                                        this.cards[a].purge=true
-                                        if(args[0]!=7274&&args[0]!=7470){
-                                            la--
-                                        }
-                                    }else{
-                                        this.cards.splice(a,1)
-                                        a--
+                                }
+                                if(this.id==0){
+                                    changed=true
+                                    this.remove(a)
+                                    a--
+                                    if(args[0]==7274||args[0]==7470){
+                                        la--
                                     }
+                                }else if(this.id==2){
+                                    this.cards[a].deSize=true
+                                    this.cards[a].exhaust=true
+                                    this.cards[a].purge=true
+                                    if(args[0]!=7274&&args[0]!=7470){
+                                        la--
+                                    }
+                                }else{
+                                    this.cards.splice(a,1)
+                                    a--
                                 }
                             break
                             case 10568:
@@ -3014,6 +3022,82 @@ class group{
                                     a--
                                 }
                             break
+                            case 11612:
+                                //there's no leader before alexander III added yet
+                                if(args[0]!=7470){
+                                    this.add(findName('Alexander\nIII',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 11613:
+                                //yuan shikai
+                                if(args[0]!=7470){
+                                    this.add(findName('Sun\nYat-sen',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
+                            case 11614:
+                                this.cards[a].effect[2]++
+                                if(this.cards[a].effect[2]>=this.cards[a].effect[1]||args[0]==7274||args[0]==7470){
+                                    if(args[0]==7470){
+                                        this.add(findName('Deng\nXioaping',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }else{
+                                        this.add(findName('Hu\nJintao',types.card),this.cards[a].level,this.cards[a].color,this.cards[a].edition)
+                                    }
+                                    if(this.id==0){
+                                        changed=true
+                                        this.remove(a)
+                                        a--
+                                        if(args[0]==7274||args[0]==7470){
+                                            la--
+                                        }
+                                    }else if(this.id==2){
+                                        this.cards[a].deSize=true
+                                        this.cards[a].exhaust=true
+                                        this.cards[a].purge=true
+                                        if(args[0]!=7274&&args[0]!=7470){
+                                            la--
+                                        }
+                                    }else{
+                                        this.cards.splice(a,1)
+                                        a--
+                                    }
+                                }
+                            break
                         }
                     }
                     if(changed){
@@ -3141,6 +3225,14 @@ class group{
                         this.cards[a].deSize=true
                         this.cards[a].discardEffect.push(0)
                     }
+                break
+                case 86:
+                    if(this.cards[a].class==args[0]){
+                        this.cards[a].deSize=true
+                    }
+                break
+                case 87:
+                    this.cards[a].callTurnEffect(args[0],args[1])
                 break
                 //mark allargs
             }
@@ -3786,7 +3878,7 @@ class group{
             }
         }*/
         switch(card.attack){
-            case -3:
+            case -3: case -167:
                 this.drawEffects.push([1,card.effect[0]])
             break
             case -6:
@@ -6772,6 +6864,9 @@ class group{
                 }
                 if(a.name=='Riptide'&&userCombatant.getStatus('Riptide Boost')>0){
                     this.battle.attackManager.effect[0]+=userCombatant.getStatus('Riptide Boost')
+                }
+                if(a.name=='Divine\nWind'&&userCombatant.getStatus('Divine Wind Boost')>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.getStatus('Divine Wind Boost')
                 }
             break
             case 35:

@@ -1736,6 +1736,11 @@ class combatantManager{
                             total++
                         }
                     break
+                    case 19:
+                        if(this.combatants[a].getStatus(values[0])>0){
+                            this.combatants[a].statusEffect(values[1],values[2])
+                        }
+                    break
                 }
                 if(
                     output==0||

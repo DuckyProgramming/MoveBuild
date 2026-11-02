@@ -849,7 +849,7 @@ class card{
             this.cancelDesc=false
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[
                 this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),
-                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Old\nRiptide',this.name=='Riptide',
+                this.spec.includes(82),this.spec.includes(86),this.name,
             ])
         }else{
             this.cancelDesc=false
@@ -865,7 +865,7 @@ class card{
             this.cancelDesc=false
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[
                 this.getBasic(-1),this.spec.includes(70),this.spec.includes(25),this.spec.includes(54),this.getBasic(1),this.getBasic(2),this.spec.includes(52),this.name.includes('Cable')&&this.class==1,this.rarity==0&&this.class==1,this.spec.includes(20),
-                this.spec.includes(82),this.spec.includes(86),this.name=='Divination',this.name=='Old\nRiptide',this.name=='Riptide',
+                this.spec.includes(82),this.spec.includes(86),this.name,
             ])
         }else{
             this.cancelDesc=false
@@ -1006,6 +1006,17 @@ class card{
             case -161:
                 if(userCombatant.status.misc[1]==0){
                     userCombatant.loseHealth(this.effect[0])
+                }
+            break
+            case -170:
+                userCombatant.takeDamage(this.effect[0],-1)
+                let list170neg=[this.battle.cardManagers[this.player].deck.cards,this.battle.cardManagers[this.player].discard.cards,this.battle.cardManagers[this.player].reserve.cards,this.battle.cardManagers[this.player].hand.cards,this.battle.cardManagers[this.player].exhaust.cards]
+                for(let a=0,la=list170neg.length;a<la;a++){
+                    for(let b=0,lb=list170neg[a].length;b<lb;b++){
+                        if(list170neg[a][b].id==this.id){
+                            list170neg[a][b].effect[0]+=list170neg[a][b].effect[1]
+                        }
+                    }
                 }
             break
             case 187:
@@ -2478,7 +2489,7 @@ class card{
                 this.battle.overlayManager.overlays[8][this.player].activate()
                 this.battle.cardManagers[this.player].hand.selfCall(6,[54,[],1,[6,1,1]])
             break
-            case 10762:
+            case 10762: case 11614:
                 this.battle.combatantManager.allEffect(48,['Communized',types.card[findName('Mao\nZedong',types.card)].levels[0].effect[0]])
                 this.battle.cardManagers[this.player].hand.generalStatus(58,types.card[findName('Hua\nGuofeng',types.card)].levels[0].effect[0])
                 this.battle.addCurrency(types.card[findName('Deng\nXiaoping',types.card)].levels[0].effect[0],this.player)
@@ -2512,7 +2523,21 @@ class card{
                     this.battle.cardManagers[this.player].hand.add(findName('Supporter',types.card),0,0,0)
                 }
             break
+            case 11585:
+                userCombatant.loseHealth(this.effect[2])
+            break
+            case 11612:
+                userCombatant.statusEffect('Vulnerable',types.card[findName('Nicholas\nII',types.card)].levels[0].effect[0])
+                userCombatant.statusEffect('Weak',types.card[findName('Alexander\nIII',types.card)].levels[0].effect[0])
+                this.battle.cardManagers[this.player].deck.deAbstract(6,1,[82])
+                return true
+            case 11613:
+                userCombatant.loseHealth(this.effect[0])
+                userCombatant.statusEffect('Frail',types.card[findName('Sun\nYat-sen',types.card)].levels[0].effect[0])
+                this.battle.loseCurrency(types.card[findName('Chiang\nKai-shek',types.card)].levels[0].effect[0],this.player)
+            break
         }
+        return false
     }
     callPostStartEffect(encounterClass){
         switch(this.attack){
@@ -2809,13 +2834,18 @@ class card{
             break
         }
     }
-    callTurnEffect(){
+    callTurnEffect(old,updated){
         switch(this.attack){
             case 2063: case 2069:
                 this.effect[0]+=this.effect[1]
             break
             case 2101: case 4471:
                 this.costDown(0,[1])
+            break
+            case 11636: case 11637:
+                if(updated<old){
+                    this.effect[0]+=this.effect[1]
+                }
             break
         }
     }
@@ -3044,7 +3074,7 @@ class card{
             case 266:
                 this.costUp(2,[1])
             break
-            case 282: case 1834: case 5105: case 9289:
+            case 282: case 1834: case 5105: case 9289: case 11611:
                 this.costDown(2,[1])
             break
             case 1072:
@@ -3289,7 +3319,7 @@ class card{
             case 3827: case 3828: case 3829: case 3830: case 3831: case 3832: case 3833: case 3834: case 3835: case 3836:
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
             case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442: case 9329: case 11305:
-            case 11306: case 11307: case 11308: case 11309: case 11310: case 11311: case 11312:
+            case 11306: case 11307: case 11308: case 11309: case 11310: case 11311: case 11312: case 11576: case 11607:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -3560,6 +3590,14 @@ class card{
                     if(card.edition!=0){
                         this.deSize=true
                         this.exhaust=true
+                    }
+                break
+                case -169:
+                    if(cardClass==4){
+                        this.deSize=true
+                        this.exhaust=true
+                    }else{
+                        this.battle.cardManagers[this.player].allEffect(2,2)
                     }
                 break
                 case 52: case 220: case 594: case 1508: case 3914: case 7530: case 7531: case 8268: case 10872:
@@ -4578,6 +4616,9 @@ class card{
     }
     triggerWish(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(userCombatant.getStatus('Wish Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Wish Block'))
+        }
         switch(this.attack){
             case 3827:
                 this.battle.cardManagers[this.player].draw(this.effect[0])
@@ -4712,6 +4753,12 @@ class card{
             case 11312:
                 this.battle.combatantManager.allEffect(47,[])
                 this.battle.combatantManager.allEffect(48,['Vulnerable',this.effect[0]])
+            break
+            case 11576:
+                userCombatant.wish+=this.effect[0]
+            break
+            case 11607:
+                this.battle.cardManagers[this.player].allEffectArgs(2,21,[this.effect[0]])
             break
         }
     }

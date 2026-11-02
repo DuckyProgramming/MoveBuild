@@ -1113,13 +1113,15 @@ class battle{
         for(let a=0,la=this.players;a<la;a++){
             reverses+=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].getStatus('Turn Reversal')>0?1:0
         }
+        let old=this.turn.total
         if(reverses%2==1){
             //this.turn.total=max(0,this.turn.total*2-value)
             this.turn.total=this.turn.total*2-value
         }else{
             this.turn.total=value
         }
-        this.cardManagers.forEach(cardManager=>cardManager.allEffect(2,63))
+        //this.cardManagers.forEach(cardManager=>cardManager.allEffect(2,63))
+        this.cardManagers.forEach(cardManager=>cardManager.allEffectArgs(2,87,[old,value]))
     }
     subTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
@@ -1579,6 +1581,9 @@ class battle{
         }
         if(userCombatant.getStatus('Card Play Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
+        }
+        if(userCombatant.getStatus('Card Play Radiation')>0){
+            userCombatant.statusEffect('Radiation',userCombatant.getStatus('Card Play Radiation'))
         }
         if(effectiveCost>=2){
             if(userCombatant.getStatus('2+ Cost Energy')>0){
