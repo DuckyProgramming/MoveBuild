@@ -1126,6 +1126,7 @@ class battle{
     subTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         combatant.tick()
+        this.attackManager.deTarget()
         if(this.tutorialManager.active){
             this.cardManagers[this.turn.main].allEffect(2,103)
         }else if(combatant.life>0&&!combatant.dead){

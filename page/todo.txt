@@ -1,18 +1,16 @@
 CS 146 [PREHEX / VINCENT]
 
 carbon / compound
-split devil's prism
 trash compacting - when you play a fatigue, add compound
 
 a downright massacre
-
-return of rainbow intensity
-split screwblock
 
 prehex rework
 vincent rework
 
 CS 147 [?]
+
+setback ideas
 
 test vincent (after fixes)
 test shinmy (after fixes)
@@ -37,31 +35,15 @@ glass = item slot
 
 tax evasion? (when you lose currency lose 1 less)
 blue pepper - get 3 ? if you have 3 empty spots???
-tedium capsule - next card reward is common
-anchor - damage, block if you have adjacent empty tile spots
-fine wine - heal 2 and gain 2 temporary strength, both increase by 1 after a boss is defeated
-readd pothole (now as speed bump)?
-rich friend [replace loanshark] - heal 1 health at the start of combat, when removed, gain 400 currnecy
-bag of cards - add 1 block per skipped card reward this run
-[chili powder]
+[dark humor]
 [zaroff's contract]
-[refund]
-block cogs
+[trigger all wishes in hand]
 
-+6 wishes
 +4 evoke
 
 a ton of fresh prehex cards
 more ways to turn back time
 more evolve
-
-crowbar - damage, center of hand: draw and upgrade a card
-expendable asset - deal 11 damage, retain, when retained lose 1 currency
-comedy - gain 1 pity, gain 2 weak, apply 2 weak in all directions
-[swiss cheese]
-
-superspeed - gain 1 energy next turn, take another turn
-empty out - exit stance (nothing else)
 
 separate weaknesses - 2 vulnerable, 2 node
 other's mistakes - poison jet but light orb
@@ -70,13 +52,13 @@ flux - draw a card, add 2 block per orb [4995]
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror
 grammar check
+checkexists
 
 tooltips for dictionary
 
 recheck every tutorial
 
 recycling - gain a reroll every turn??? [maybe use this to replace TEST 271]
-apparently divine wind is worthless
 
 new bar event option - take a shot - lose 50 currency, chance to remove a card
 layoffs - remove randomly picked card 1, remove randomly picked card 2, or both of them

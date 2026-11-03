@@ -2415,11 +2415,13 @@ function outListing(){
 		160,//misc
 		72,//error
 	]*/
+	//let overTotal=types.card.filter(card=>!(card.rarity==-1&&card.list==-10)).length
+	let overTotal=types.card.length
 	let arbitrary=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)+unlisted.reduce((acc,num)=>acc+num,0)
 	let goal=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)
 	let charGoal=160*(constants.playerNumber+1)
 	console.log(`
-(${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
+(${overTotal-arbitrary}) Total Cards: ${overTotal}/${arbitrary}
 (${actual-goal}) Listed Cards: ${actual}/${goal}
 (${char-charGoal}) Character Cards: ${char}/${charGoal}
 
@@ -2437,6 +2439,8 @@ ${box}
 (${current.collectionManager.totals.list[constants.playerNumber+12][0]-listed[10]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
 (${current.collectionManager.totals.list[constants.playerNumber+13][0]-listed[11]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
 (${current.collectionManager.totals.list[constants.playerNumber+10][0]-unlisted[0]}) Disband: ${current.collectionManager.totals.list[constants.playerNumber+10][0]}`,
+//Invalid: ${types.invalid.length}`,
+//Invalid: ${types.card.filter(card=>card.rarity==-1&&card.list==-10).length}`,
 ...multiplyArray(["color:red",""],colorChanges).flat())
 	/*console.log(`
 (${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
@@ -3788,6 +3792,14 @@ function checkExists(start,end){
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
 		9661,//invalid silverswivel
+
+		945,1208,1209,1212,1213,
+		1214,1216,1217,1219,1220,
+		1221,3762,3763,//blackjack
+		1215,1218,1222,1223,3761,//cyclic draw
+		1905,1906,1946,1947,1952,
+		2535,2957,3564,4625,7141,//assorted invalid
+
 		83,84,85,86,3595,9974,10352,//items
 	]
 	let total=0

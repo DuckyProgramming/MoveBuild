@@ -43,6 +43,9 @@ class attackManager{
         this.finalAfter=false
         this.finalWorldAfter=false
     }
+    deTarget(){
+        this.targetInfo[0]=0
+    }
     clear(){
         for(let a=0,la=this.attacks.length;a<la;a++){
             delete this.attacks[a]
@@ -51,7 +54,6 @@ class attackManager{
             la--
         }
         this.attacks=[]
-        this.targetInfo[0]=0
     }
     execute(){
         if(

@@ -70,6 +70,7 @@ class collectionManager{
                 constants.playerNumber+9
             ]
         }else if(cardData.rarity==-1&&cardData.list==-8||cardData.rarity==-1&&cardData.list==-10){
+        //}else if(cardData.rarity==-1&&cardData.list==-8){
             return [
                 -5,
                 constants.playerNumber+10

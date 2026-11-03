@@ -1535,6 +1535,14 @@ class card{
                 this.battle.overlayManager.overlays[8][this.player].activate()
                 this.exhaust=true
             break
+            case 11645:
+                for(let a=0,la=2;a<la;a++){
+                    this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.user])
+                }
+            break
+            case 11646:
+                userCombatant.statusEffect('Free Skill',1)
+            break
         }
     }
     callAnotherDrawEffect(number){
@@ -2626,12 +2634,23 @@ class card{
                     this.effect[1]+=this.effect[2]
                 }
             break
+            case 11668:
+                if(encounterClass==2){
+                    this.effect[0]+=this.effect[2]
+                    this.effect[1]+=this.effect[2]
+                }
+            break
         }
     }
     callPurchaseEffect(purchase){
         switch(this.attack){
             case 5297:
                 if(purchase.type==3){
+                    this.effect[0]+=this.effect[1]
+                }
+            break
+            case 11641:
+                if(purchase.type==2){
                     this.effect[0]+=this.effect[1]
                 }
             break
@@ -2702,6 +2721,14 @@ class card{
             break
             case 11553:
                 this.battle.addCurrency(this.effect[1],this.player)
+            break
+            case 11661:
+                if(this.battle.overlayManager.overlays[6][this.player].active){
+                    this.battle.overlayManager.overlays[6][this.player].activated--
+                }else{
+                    this.battle.overlayManager.overlays[6][this.player].active=true
+                    this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
+                }
             break
             
         }
@@ -2814,6 +2841,9 @@ class card{
             case 11483:
                 this.battle.overlayManager.overlays[87][this.player].active=true
                 this.battle.overlayManager.overlays[87][this.player].activate()
+            break
+            case 11660:
+                this.battle.addCurrency(this.effect[1],this.player)
             break
         }
     }
@@ -3319,7 +3349,8 @@ class card{
             case 3827: case 3828: case 3829: case 3830: case 3831: case 3832: case 3833: case 3834: case 3835: case 3836:
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
             case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442: case 9329: case 11305:
-            case 11306: case 11307: case 11308: case 11309: case 11310: case 11311: case 11312: case 11576: case 11607:
+            case 11306: case 11307: case 11308: case 11309: case 11310: case 11311: case 11312: case 11576: case 11607: case 11652:
+            case 11653: case 11654: case 11655: case 11656: case 11657: case 11658: case 11659:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -4431,6 +4462,9 @@ class card{
                     userCombatant.addBlock(this.effect[1])
                 }
             break
+            case 11648:
+                this.battle.loseCurrency(this.effect[1],this.player)
+            break
         }
         if(this.spec.includes(55)){
             switch(this.attack){
@@ -4759,6 +4793,38 @@ class card{
             break
             case 11607:
                 this.battle.cardManagers[this.player].allEffectArgs(2,21,[this.effect[0]])
+            break
+            case 11652:
+                userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
+                this.effect[0]+=this.effect[1]
+            break
+            case 11653:
+                this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[1]],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                this.battle.addEnergy(this.effect[2],this.player)
+                this.battle.cardManagers[this.player].draw(this.effect[3])
+            break
+            case 11654:
+                this.battle.combatantManager.areaAbstract(2,['Weak',this.effect[0]],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[1]],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                this.battle.addSpecificEnergy(1,this.player,6)
+                this.battle.cardManagers[this.player].draw(this.effect[2])
+            break
+            case 11655:
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+                this.battle.cardManagers[this.player].hand.exhaust(this.effect[1])
+            break
+            case 11656:
+                this.battle.cardManagers[this.player].hand.selfCall(6,[54,[],1,[6,1,1]])
+            break
+            case 11657:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,5,[3])
+            break
+            case 11658:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,13,[3])
+            break
+            case 11659:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,7,[3])
             break
         }
     }

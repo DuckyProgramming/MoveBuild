@@ -82,9 +82,9 @@ class cardManager{
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
-        //this.listing.junk=multiplyArray([],constants.playerNumber+2)
+        this.listing.junk=multiplyArray([],constants.playerNumber+2)
         this.listing.sub=[]
-        //this.listing.ally=[]
+        this.listing.ally=[]
         this.listing.dev=[]
         this.listing.disband=[]
         for(let a=0,la=types.card.length;a<la;a++){
