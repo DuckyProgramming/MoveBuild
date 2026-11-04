@@ -1,8 +1,5 @@
 CS 146 [PREHEX / VINCENT]
 
-carbon / compound
-trash compacting - when you play a fatigue, add compound
-
 a downright massacre
 
 prehex rework
@@ -10,13 +7,10 @@ vincent rework
 
 CS 147 [?]
 
-setback ideas
-
 test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
 
-carbon (4 damage), hydrogen, quartz (?), iron (6 block), nitrogen (remove 1 fatigue), zinc ()
 carbon = graphite ()
 graphite = diamond ()
 iron = iron sword?
@@ -32,6 +26,15 @@ explosive powder + battery = prismatic bomb
 quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
+
+trash compacting - when you play a fatigue, add compound
+[new asbestos] - countdown that makes the next few cards duplicate and adds armor
+e block -> t block
+muscle mania - when you gain strength, all enemies lose health
+antiparticle - double your energy, fuel: triple it instead
+[dev] moldy sandwich - randomly swap all the costs of cards in your deck
+slate peg - block, a random enemy deals no damagen next time they attack
+[golden diamond]
 
 tax evasion? (when you lose currency lose 1 less)
 blue pepper - get 3 ? if you have 3 empty spots???

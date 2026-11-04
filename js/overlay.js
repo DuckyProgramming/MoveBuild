@@ -1403,6 +1403,10 @@ class overlay{
                                         }
                                     }
                                 break
+                                case 22:
+                                    list=['Landmine','Donk\nMove','Dropkick','Potential\nMove','Bureaucratic\nBlade','Spine\nStrike','Manumation','Ditch','Leap\nDistance','Dustpan','Private\nHealthcare','Health\nTonic','Swapback','Vertical\nStrike','Bell\nPeppers','Javelin','Boomewrong','Black\nIce','Paper\nLantern','Castel','First\nWind','Ruin the\nSenses','Run With\nScissors','Flechettes','Unstuck','Befuddle','Overextended\nMove','Shiv-Only\nMove','Vertical\nMove','Death\nExplosion','Stand\nStill','Combination\nLock',`Don't\nDie`,'Descend','Terrible\nTimes','Shadow\nCard','Killifish','Prospect','Probiotic','Safety\nGoggles','Broken\nPhone','Pierce','Jammer','Breaking\nBad','Hat-in-a-Pot','Power\nFail','Dynamite\nBar','Wreath\nof Lights','Slew','Assessment','Sword\nToss','Double\nEdge','Clinch','Saltation','Cycle\nPike','Synchroscope','Slip\nLeft','Slip\nRight','Lowball','Deceleration','Oblique\nBeam','Agonist','Waluigi\nPinball','Laying\nStep','Military\nPolice','Terriball','Manic\nLaugh','Missmash','Tiny\nTrebuchet','Pandora','C4\nDrop','Cluster\nCasino','Sweepstake\nStep','All\nIn','Crit\nFail','Strefenseless','Ramming\nRock','Random\nWalk','Rubber Ducky\nUnlucky','Haunted\nSword','Unprepared','Weir','Provenience','Inlet','Berg','Jalpaite','Hawaiian\nRoll','Electric\nWhip','Plantgrinder','Junk\nPot','Kick\nBehind','Cracked\nCode','Laggy\nStep','MMC\nCard','Tellurium','Podal\nStar','The Bigger\nThe Worse','Splutter','Rock\nDrop','Podal\nPower','Continuum\nHypothesis','Rearguard','Free\nTime','Stickup','Unknown\nConcoction','Gearbox','Schismatic','Homeowner','Security\nAlarm','Endothermic','Idiocy','Discoordination','Faceting','Inferior\nStrike','Shrink\nStrike','Stately','Blinding\nGaze','The\nGuardless','Avatar','Vega','Salamander\nSlap','Seven\nSins','Reaggress','Simplex','Hispid',`MD's\nMiracle`,'The\nGiver','Grounded','Passive\nStance','Interferent\nStrike','Interferent\nDefend','Periphery','Posterity','Strengthen\nArms','Jump','Lamppost','Spiky\nPotion','Sea\nBreeze','Luxor\nBeam','Wandering\nHell','Bullet\nBonk','Sapphire\nFalls','Dodent','Nibble','Sprint','Speedy','Nod\nDown','Slapdown','Squeak','Fanta\nCake','Duck\nBump','Rebase','Backward\nCompatibility','Feckless','Baton','Interior\nBurst','Condense','Cheap\nTire','Aviation\nAdministration','Myst','Oversight','Permitted','Unconfident','Cloud\nDisc','Below the\nRealm','Seal\nForth','Death\nGame','Coating','Spite','Unicycle\nChain','Cornea','Corn\nJelly','Coruscate','Bouncy\nKey','Apprisal','Bleach','Blunt\nBonk','Ow','Brass\nCharm','Floral\nWallpaper','On the\nTar','Alveolate','Fat\nBird','Suicidal','Streetlight','Corrupt\nOfficial','Unforgiving','Scrawny','Panoply','Traitor','A Step\nBack','Forget\nthe Plan','Unready\nMove','Ermine','Crustacean','Gold\nStem','Unfamiliar\nMove','Plastic\nTree','Unrigid\nMove','Musitude','Forthbar','Double\nMeaning','Loss of\nAgency','Great\nEffort','Expose\nYourself','Collateral\nCounter']
+                                    list=list.map(a=>findName(a,types.card))
+                                break
                                 default:
                                     list=[]
                                 break
@@ -1644,6 +1648,27 @@ class overlay{
                                 ][a%3],types.card)
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
                                 this.cards[a].upSize=true
+                            }
+                        break
+                        case 61:
+                            list=copyArray(this.battle.cardManagers[this.player].listing[args[1]])
+                            for(let a=0,la=list.length;a<la;a++){
+                                if((
+                                    !variants.mtg&&types.card[list[a]].levels[args[0]].class!=args[3]||
+                                    variants.mtg&&types.card[list[a]].mtg.levels[args[0]].class!=args[3]
+                                )){
+                                    list.ssplice(a,1)
+                                    a--
+                                    la--
+                                }
+                            }
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list.length>0){
+                                    let index=floor(random(0,list.length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[index],args[0],this.battle.standardColorize(list[index]),-1))
+                                    this.cards[a].upSize=true
+                                    list.splice(index,1)
+                                }
                             }
                         break
                     }

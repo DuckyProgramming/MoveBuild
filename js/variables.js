@@ -1731,7 +1731,7 @@ types={
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},
         {name:'Salad',internal:'Heal 3',id:1003,rarity:3,list:0,menu:true,temp:true,mtg:0,description:'Heal 3 HP\nTemporary'},
         {name:'Energy Drink',internal:'1 Energy',id:1004,rarity:3,list:0,menu:false,temp:true,mtg:1,description:'Gain 1 Energy\nTemporary'},
-        {name:'Glass Shard',internal:'5 Damage',id:1005,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 5 Damage\nRange 1-3'},
+        {name:'Glass Shard',internal:'5 Damage',id:1005,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 5 Damage\nRange 1-3\nTemporary'},
         {name:'Molten Metal',internal:'10 Block',id:1006,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 10 Block\nTemporary'},
         {name:'Granola Bar',internal:'Draw 2',id:1007,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards\nTemporary'},
         {name:'Attack Dust',internal:'1 Strength',id:1008,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength\nTemporary'},
@@ -1748,9 +1748,14 @@ types={
         {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Mana, Draw 1',id:1018,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal 9 Damage to a Random Enemy,\nGain (E), Draw 1 Card'},
         {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
 
-        /*{name:'Carbon',internal:'4 Damage',id:1020,rarity:4,list:0,menu:false,temp:true,mtg:0,description:''},
-        {name:'Graphite',internal:'10 Damage',id:1021,rarity:4,list:0,menu:false,temp:true,mtg:0,description:''},
-        {name:'Diamond',internal:'25 Damage',id:1022,rarity:4,list:0,menu:false,temp:true,mtg:0,description:''},*/
+        {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 6 Damage\nRange 1-3\nTemporary'},
+        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 9 Block'},
+        {name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},
+        {name:'Ammonium',internal:'2 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 2 Vulnerable\nRange 1-3\nTemporary'},
+        {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 10 Splash Damage\nRange 1-3\nTemporary'},
+        {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
+        {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
 
         //mark i
     ],color:{

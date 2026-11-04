@@ -2295,7 +2295,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2076: string+=`Wrath:\nApply ${effect[0]} Burn\nCalm:\nApply ${effect[1]} Freeze\nHaste:\nApply ${effect[2]} Shock\nSturdy:\nApply ${effect[3]} Weak`; break
         case 2077: string+=`Gain ${effect[0]} Strength\nWhen Discarded\nDuring Your Turn`; break
         case 2078: string+=`Gain ${effect[0]} Dexterity\nWhen Discarded\nDuring Your Turn`; break
-        case 2079: string+=`Gain ${effect[0]} Dodge\nand Exhaust When\nDiscarded During Your Turn`; break
+        case 2079: string+=`Gain ${effect[0]} Dodge\nand Exhaust When\nDiscarded During\nYour Turn`; break
         case 2080: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nClaw Up ${effect[1]}`; break
         case 2081: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nDiscard ${effect[1]} Card${pl(effect[1])}`; break
         case 2082: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Triple on Turn 1\nAdds Double Turn 2`; break
@@ -2460,7 +2460,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2239: string+=`Gain ${effect[0]} Currency\nAdd a Random Common\nCard of Equivalent\nLevel to Hand`; break
         case 2240: string+=`Put a Card in Discard\nPile in Your Hand\nAdd a Random Common\nCard of Equivalent\nLevel to Hand`; break
         case 2241: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nAdd X Random Common\nCards of Equivalent\nLevel to Hand`; break
-        case 2242: string+=`Take Another Turn\nand Exhaust When\nDiscarded During Your Turn`; break
+        case 2242: string+=`Take Another Turn\nand Exhaust When\nDiscarded During\nYour Turn`; break
         case 2243: string+=`Put a Card in Discard\nPile in Your Hand\nAll Cards Cost 0\nTemporarily`; break
         case 2244: string+=`When Drawn,\nDraw ${effect[0]} More\nCard${pl(effect[0])} Next Turn\nWhen Discarded\nDuring Your Turn,\nHeal ${this.calculateEffect(effect[1],4)} Health`; break
         case 2245: string+=`Transforms and Costs 0\nWhen Retained`; break
@@ -2613,7 +2613,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2393: string+=`Apply ${effect[0]} Shock\nIf Target Already\nHas Shock, Also\nApply ${effect[1]} Poison`; break
         case 2394: string+=`Return ${effect[0]} Random\nCard${pl(effect[0])} From Discard Pile\nto Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
         case 2395: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You Have Shock`; break
-        case 2396: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Played or When\nDiscarded During Your Turn`; break
+        case 2396: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Played or When\nDiscarded During\nYour Turn`; break
         case 2397: string+=`Add ${effect[0]} Shiv${pl(effect[0])} to Hand\nYou Cannot Gain\nBlock For ${effect[1]} Turn${pl(effect[1])}`; break
         case 2398: string+=`Deal Damage Equal to\nFirst Attack in Hand's\nFirst Value\nDiscard ${effect[0]} Card${pl(effect[0])}`; break
         case 2399: string+=`Cable Cards Can\nBe Used in Their\nOpposing Directions`; break
@@ -2717,7 +2717,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2497: string+=`Deal Damage Equal to\nFirst Attack in Hand's\nFirst Value\nOn Prime Number,\nGain ${effect[0]} Burn`; break
         case 2498: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 ${variants.mtg?`Total `:``}Cost Cards\nin Hand Cost 3`; break
         case 2499: string+=`Put a Card in Discard\nPile in Your Hand\nBecome Confused`; break
-        case 2500: string+=`End Your Turn\nand Exhaust When\nDiscarded During Your Turn`; break
+        case 2500: string+=`End Your Turn\nand Exhaust When\nDiscarded During\nYour Turn`; break
         case 2501: string+=`Draw ${effect[0]} Card${pl(effect[0])}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTemporarily\nIncreases by ${effect[1]}`; break
         case 2502: string+=`Add ${effect[0]} Random\nCable${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
         case 2503: string+=`Choose a Timestamp\nto Add to Hand`; break
@@ -2751,7 +2751,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2532: string+=`Choose a Movement\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
         case 2533: string+=`Choose a Power\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
         case 2534: string+=`${effect[0]!=1?effect[0]:`A`} Random Card${pl(effect[0])} in Deck\nGet${effect[0]==1?`s a`:``} Random Edition${pl(effect[0])}`; break
-        case 2535: string+=`Add a Random\nMythic Card of Equivalent\nLevel to Deck`; break
+        case 2535: case 11672:
+            string+=`Add a Random\nMythic Card of Equivalent\nLevel to Deck`; break
         case 2536: string+=`All Cards in Hand\nCost 1 Permanently`; break
         case 2537: string+=`All Cards in Hand\nBecome a Singular\nNew Color`; break
         case 2538: string+=`Remove ${effect[0]} Random\nCard${pl(effect[0])} in Deck\nGain ${effect[1]} Currency`; break
@@ -3820,7 +3821,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 3561: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Common Card${pl(effect[1])}`; break
         case 3562: string+=`Apply ${effect[0]} Vulnerable\nApplies Double if\nNo Enemies Are\nAdjacent to Target`; break
         case 3563: string+=`Gain ${effect[0]} Energy\nLose a Random Item\nIf You Have One`; break
-        case 3564: string+=`Add a Random\nAlly Card of Equivalent\nLevel to Deck`; break
+        case 3564: case 11673:
+            string+=`Add a Random\nAlly Card of Equivalent\nLevel to Deck`; break
         case 3565: string+=`Remove a Card\nPermanently\nIf it Has an Edition,\nTransfer it to a\nRandom Other Card`; break
         case 3566: string+=`Remove a Random\nCard From Deck\nMake a Card Erratic\nPermanently`; break
         case 3567: string+=`Draw ${effect[0]!=1?effect[0]:``}X${effect[1]!=0?`+${effect[1]}`:``} Cards\nExhaust ${effect[2]!=1?effect[2]:``}X${effect[3]!=0?`+${effect[3]}`:``} Cards\nGain ${effect[4]!=1?effect[4]:``}X${effect[5]!=0?`+${effect[5]}`:``} Energy`; break
@@ -4893,7 +4895,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 4622: string+=`Gain ${effect[0]} Knowledge\nNext 3 Turns\nGain ${effect[1]} Wisdom\nDraw ${effect[2]} Card${pl(effect[2])}`; break
         case 4623: string+=`When You Start Your\nTurn in Elemental Form,\nGain (E) and\nDraw ${effect[0]} Card${pl(effect[0])}`; break
         case 4624: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nGain (E) Next Turn`; break
-        case 4625: string+=`Choose an Ally Card\nof Equivalent Level\nto Add to Deck`; break
+        case 4625: case 11674:
+            string+=`Choose an Ally Card\nof Equivalent Level\nto Add to Deck`; break
         case 4626: string+=`+1: Gain (G)\n-3: All Cards in Hand\nCost ${effect[0]} Less\n-6: Heal ${this.calculateEffect(effect[1],4)} Health`; break
             case -1054: string+=`-3: All Cards in Hand\nCost ${effect[0]} Less`; break
             case -1055: string+=`-6: Heal ${this.calculateEffect(effect[1],4)} Health`; break
@@ -5205,7 +5208,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 4927: string+=`Any Construct Takes\n${effect[0]} Extra Turn${pl(effect[0])}\nand Adds ${effect[1]} Block\nIt Loses ${effect[2]} Health\nNext Turn`; break
         case 4928: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn or Rewound,\nIncreases by ${effect[1]}`; break
         case 4929: string+=`Add X Random\nAttacks of Equivalent\nLevel to Hand\nThey Cost 0 and\nHave Exhaust`; break
-        case 4930: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Played or When\nDiscarded During Your Turn,\nAdd ${effect[1]} Throwing\nKni${effect[1]!=1?`ves`:`fe`} to Hand`; break
+        case 4930: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Played or When\nDiscarded During\nYour Turn,\nAdd ${effect[1]} Throwing\nKni${effect[1]!=1?`ves`:`fe`} to Hand`; break
         case 4931: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto a Random Enemy\nWhen Discarded\nin Any Way`; break
         case 4932: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You Have Played\n${effect[1]} Attack${pl(effect[1])} This Turn`; break
         case 4933: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nWhen Exhausted,\nDraw ${effect[1]} Card${pl(effect[1])}`; break
@@ -7422,7 +7425,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 7137: string+=`Discover a Blueprint`; break
         case 7139: string+=`Discover an Attack\nGain ${effect[0]} Temporary\nStrength`; break
         case 7140: string+=`Discover an Attack\nIt Costs 0\nGain ${effect[0]} Temporary\nStrength`; break
-        case 7141: string+=`Discover a Junkyard Card\nIt Costs 0`; break
+        case 7141: case 11676:
+            string+=`Discover a Junkyard Card\nIt Costs 0`; break
         case 7142: string+=`Exhaust a Card\nDiscover a Card\nof the Same Class`; break
         case 7143: string+=`Discover a Timestamp`; break
         case 7144: string+=`Discover a Card\nThat Costs Your Energy`; break
@@ -8296,7 +8300,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 8003: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nApply ${effect[1]} Lock On\nAdvance\nIf Played First,\nDraw ${effect[2]} Card${pl(effect[2])}`; break
         case 8004: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nUpgrade All\nDefenses in Hand`; break
         case 8005: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n10%: Target's Next ${effect[1]!=1?`${effect[1]} `:``}Attack${pl(effect[1])}\nDeal${effect[1]==1?`s`:``} No Damage`; break
-        case 8006: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n4th Card in Hand:\nAdd ${this.calculateEffect(effect[1],1)} Block\nGain ${effect[2]} Currency`; break
+        case 8006: case 11675:
+            string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n4th Card in Hand:\nAdd ${this.calculateEffect(effect[1],1)} Block\nGain ${effect[2]} Currency`; break
         case 8007: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n4th Card in Hand:\nDraw ${effect[1]} Card${pl(effect[1])}\nHeal ${this.calculateEffect(effect[2],4)} Health`; break
         case 8008: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Played,\nGains Retain`; break
         case 8009: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nApply ${effect[1]} Weak\nand ${effect[2]} Vulnerable\nto All Enemies`; break
@@ -10787,7 +10792,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10501: string+=`When Vanished,\nChoose and Add an\nUncommon Card of\nEquivalent Level From\nAny Character to Deck`; break
         case 10502: string+=`Gain ${effect[0]} Strength When\nYou Dodge an Attack`; break
         case 10503: string+=`Reflect Next Hit Taken\nGain ${effect[0]} Temporary\nStrength`; break
-        case 10504: string+=`Gain ${effect[0]} Buffer\nand Exhaust When\nDiscarded During Your Turn`; break
+        case 10504: string+=`Gain ${effect[0]} Buffer\nand Exhaust When\nDiscarded During\nYour Turn`; break
         case 10505: string+=`Change All Enemy Intents\nto Attacks if Possible\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
         case 10506: string+=`Gain ${effect[0]} Dodge\nGain ${effect[1]} Temporary\nStrength`; break
         case 10507: string+=`Gain ${effect[0]} Influence\nApply ${effect[1]} Weak\nin All Directions`; break
@@ -10885,10 +10890,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10600: string+=`Gain ${effect[0]} Dexterity\nWhen Discarded\nDuring Your Turn,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
         case 10601: string+=`Return ${effect[0]} Random\nNon-Fatigue Card${pl(effect[0])}\nFrom Discard Pile\nto Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
         case 10602: string+=`Draw ${effect[0]} Rare Card${pl(effect[0])}\nDiscard ${effect[1]} Card${pl(effect[1])}`; break
-        case 10603: string+=`Gain an Item\nand Exhaust When\nDiscarded During Your Turn`; break
-        case 10604: string+=`Gain an Item,\nDraw ${effect[0]} Card${pl(effect[0])},\nand Exhaust When\nDiscarded During Your Turn`; break
-        case 10605: string+=`Take Another Turn,\nDraw ${effect[0]} Card${pl(effect[0])}\nand Exhaust When\nDiscarded During Your Turn`; break
-        case 10606: string+=`Heal ${this.calculateEffect(effect[0],0)} Health\nand Exhaust When\nDiscarded During Your Turn`; break
+        case 10603: string+=`Gain an Item\nand Exhaust When\nDiscarded During\nYour Turn`; break
+        case 10604: string+=`Gain an Item,\nDraw ${effect[0]} Card${pl(effect[0])},\nand Exhaust When\nDiscarded During\nYour Turn`; break
+        case 10605: string+=`Take Another Turn,\nDraw ${effect[0]} Card${pl(effect[0])}\nand Exhaust When\nDiscarded During\nYour Turn`; break
+        case 10606: string+=`Heal ${this.calculateEffect(effect[0],0)} Health\nand Exhaust When\nDiscarded During\nYour Turn`; break
         case 10607: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Etherealed,\nGain ${effect[1]} Temporary\nStrength and Draw ${effect[2]} More\nCard${pl(effect[2])} Next Turn`; break
         case 10608: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Discarded\nDuring Your Turn,\nGain ${effect[1]} Temporary\nStrength and Draw ${effect[2]} More\nCard${pl(effect[2])} Next Turn`; break
         case 10609: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nWhen Etherealed,\nGain ${effect[1]} Temporary\nStrength and Draw ${effect[2]} More\nCard${pl(effect[2])} Next Turn`; break
@@ -11037,8 +11042,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 10753: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Item${pl(effect[1])}`; break
         case 10754: string+=`Gain ${effect[0]} Item${pl(effect[0])}\nGain ${effect[1]} Vulnerable`; break
         case 10755: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvery 3rd Time Played,\nGain ${effect[1]} Item${pl(effect[1])}\nOn Play: ${this.limit%3+1}/3`; break
-        case 10756: string+=`Gain ${effect[0]} Item${pl(effect[0])}\nand Exhaust When\nDiscarded During Your Turn`; break
-        case 10757: string+=`Gain ${effect[0]} Item${pl(effect[0])},\nDraw ${effect[1]} Card${pl(effect[1])},\nand Exhaust When\nDiscarded During Your Turn`; break
+        case 10756: string+=`Gain ${effect[0]} Item${pl(effect[0])}\nand Exhaust When\nDiscarded During\nYour Turn`; break
+        case 10757: string+=`Gain ${effect[0]} Item${pl(effect[0])},\nDraw ${effect[1]} Card${pl(effect[1])},\nand Exhaust When\nDiscarded During\nYour Turn`; break
         case 10758: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain ${effect[1]} Item${pl(effect[1])}`; break
         case 10759: string+=`Gain ${effect[0]} Energy\nWhen Added,\nMake a Card Retain\nPermanently`; break
         case 10760: string+=`Gain ${effect[0]} Mana\nof Any Color\nWhen Added,\nMake a Card Retain\nPermanently`; break
@@ -11948,6 +11953,13 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11668: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Temporary\nStrength\nBoth Increase by ${effect[2]} After\nEach Boss is Defeated`; break
         case 11669: string+=`Gain ${effect[0]} Energy\nGain ${effect[1]} Temporary\nStrength\nGain ${effect[2]} Temporary\nDexterity`; break
         case 11670: string+=`Gain (N)\nGain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Temporary\nDexterity`; break
+        case 11677: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Quartz Item${pl(effect[1])}`; break
+        case 11678: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Carbon Item${pl(effect[1])}`; break
+        case 11683: string+=`Gain ${effect[0]} Quartz Item${pl(effect[0])}`; break
+        case 11684: string+=`Gain ${effect[0]} Carbon Item${pl(effect[0])}`; break
+        case 11685: string+=`Gain ${effect[0]} Ammonium Item${pl(effect[0])}`; break
+        case 11686: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Quartz Item${pl(effect[1])}`; break
+        case 11687: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Carbon Item${pl(effect[1])}`; break
 
         //mark p
         //mark q

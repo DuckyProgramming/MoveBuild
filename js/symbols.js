@@ -19791,6 +19791,227 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(-2,-4,4)
             layer.ellipse(1.5,3,5)
         break
+        case 185:
+            layer.stroke(120,200,240,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            regPoly(layer,3.75*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,0.75*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,-2.25*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,-5.25*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,-3.75*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,-0.75*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,2.25*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,5.25*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,3.75*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,0.75*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,-2.25*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,-5.25*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,-3.75*constants.sqrt3,6.75,6,3,3,0)
+            regPoly(layer,-0.75*constants.sqrt3,6.75,6,3,3,0)
+            regPoly(layer,2.25*constants.sqrt3,6.75,6,3,3,0)
+            regPoly(layer,5.25*constants.sqrt3,6.75,6,3,3,0)
+            layer.strokeJoin(MITER)
+            /*layer.strokeWeight(1.5)
+            regPoly(layer,-6.75,3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-6.75,0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-6.75,-2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-6.75,-5.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,-3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,-0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,5.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,-2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,-5.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,-3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,-0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,5.25*constants.sqrt3,6,3,3,30)*/
+            /*layer.strokeWeight(1.5)
+            regPoly(layer,0,0,6,3,3,30)
+            regPoly(layer,-9,0,6,3,3,30)
+            regPoly(layer,9,0,6,3,3,30)
+            regPoly(layer,0,-3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,0,3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-9,-3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-9,3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,9,-3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,9,3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,-1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,-1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,-4.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,4.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,-4.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,4.5*constants.sqrt3,6,3,3,30)*/
+        break
+        case 186:
+            layer.stroke(40,fade)
+            layer.strokeJoin(ROUND)
+            //layer.strokeWeight(1.5)
+            layer.scale(0.9)
+            layer.strokeWeight(1.65)
+            regPoly(layer,3.75*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,0.75*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,-2.25*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,-5.25*constants.sqrt3,-6.75,6,3,3,0)
+            regPoly(layer,-3.75*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,-0.75*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,2.25*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,5.25*constants.sqrt3,-2.25,6,3,3,0)
+            regPoly(layer,3.75*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,0.75*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,-2.25*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,-5.25*constants.sqrt3,2.25,6,3,3,0)
+            regPoly(layer,-3.75*constants.sqrt3,6.75,6,3,3,0)
+            regPoly(layer,-0.75*constants.sqrt3,6.75,6,3,3,0)
+            regPoly(layer,2.25*constants.sqrt3,6.75,6,3,3,0)
+            regPoly(layer,5.25*constants.sqrt3,6.75,6,3,3,0)
+            layer.strokeJoin(MITER)
+            /*layer.strokeWeight(1.5)
+            regPoly(layer,-6.75,3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-6.75,0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-6.75,-2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-6.75,-5.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,-3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,-0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-2.25,5.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,-2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,2.25,-5.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,-3.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,-0.75*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,2.25*constants.sqrt3,6,3,3,30)
+            regPoly(layer,6.75,5.25*constants.sqrt3,6,3,3,30)*/
+            /*layer.strokeWeight(1.5)
+            regPoly(layer,0,0,6,3,3,30)
+            regPoly(layer,-9,0,6,3,3,30)
+            regPoly(layer,9,0,6,3,3,30)
+            regPoly(layer,0,-3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,0,3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-9,-3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-9,3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,9,-3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,9,3*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,-1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,-1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,1.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,-4.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,-4.5,4.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,-4.5*constants.sqrt3,6,3,3,30)
+            regPoly(layer,4.5,4.5*constants.sqrt3,6,3,3,30)*/
+        break
+        case 187:
+            //layer.stroke(240,160,200,fade)
+            layer.stroke(220,240,240,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            for(let a=0,la=9;a<la;a++){
+                layer.rotate(360/la)
+                pentagon(layer,0,0,-3,-9,-1,-12,1,-12,3,-9)
+            }
+            layer.strokeJoin(MITER)
+        break
+        case 188:
+            layer.stroke(60,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            for(let a=0,la=5;a<la;a++){
+                layer.rotate(360/la)
+                hexagon(layer,-7,-10,0,-12,7,-10,2.25,-6,0,-7,-2.25,-6)
+                //layer.line(0,-7,-2.8,-11.2)
+                //layer.line(0,-7,2.8,-11.2)
+            }
+            layer.strokeJoin(MITER)
+        break
+        case 189:
+            layer.stroke(120,200,240,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            regPoly(layer,0,0,6,10.8,10.8,0)
+            layer.line(5.4*constants.sqrt3,-1.35,0,-6.75)
+            layer.line(3.6*constants.sqrt3,0.9,1.8*constants.sqrt3,-0.9)
+            layer.strokeJoin(MITER)
+        break
+        case 190:
+            layer.stroke(50,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            /*for(let a=0,la=6;a<la;a++){
+                layer.stroke(35+a*13,fade)
+                for(let b=0,lb=13-a*2;b<lb;b++){
+                    let dir=b/lb*360+a*13+9
+                    layer.line(0,0,(12-a*2)*lsin(dir),(12-a*2)*lcos(dir))
+                }
+            }*/
+            for(let a=0,la=2;a<la;a++){
+                for(let b=0,lb=11;b<lb;b++){
+                    let dir=b/lb*360+a*19+9
+                    layer.line(0,0,(12-a*2)*lsin(dir),(12-a*2)*lcos(dir))
+                }
+            }
+            layer.strokeJoin(MITER)
+        break
+        case 191:
+            layer.stroke(160,120,40,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            regTriangle(layer,0,0,4.5,4.5,60)
+            regTriangle(layer,0,-9,4.5,4.5,0)
+            regTriangle(layer,-4.5*constants.sqrt3,4.5,4.5,4.5,0)
+            regTriangle(layer,4.5*constants.sqrt3,4.5,4.5,4.5,0)
+            for(let a=0,la=3;a<la;a++){
+                layer.line(0,2.5,0,5)
+                layer.line(-2.5,5+1.25*constants.sqrt3,0,5)
+                layer.line(2.5,5+1.25*constants.sqrt3,0,5)
+                layer.rotate(360/la)
+            }
+        break
+        case 192:
+            //layer.stroke(240,160,200,fade)
+            layer.stroke(240,120,200,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            layer.noFill()
+            for(let a=0,la=3;a<la;a++){
+                layer.line(0,0,0,11)
+                layer.arc(0,0,22,22,90,180)
+                layer.arc(0,0,16,16,90,150)
+                layer.arc(0,0,10,10,90,120)
+                layer.rotate(360/la)
+            }
+        break
+        case 193:
+            layer.stroke(240,240,240,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            layer.noFill()
+            regPoly(layer,0,0,10,12,12,0)
+            let tick=7.5
+            for(let a=0,la=5;a<la;a++){
+                layer.line(0,tick,0,12)
+                layer.line(0,tick,lsin(72)*tick,lcos(72)*tick)
+                layer.line(0,tick,-lsin(36)*12,lcos(36)*12)
+                layer.line(0,tick,lsin(36)*12,lcos(36)*12)
+                layer.rotate(360/la)
+            }
+        break
+        case 194:
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            layer.noFill()
+            for(let a=0,la=6;a<la;a++){
+                layer.stroke([255,255,255,0,0,150][a],[0,150,255,255,150,0][a],[0,0,0,50,255,200][a],fade)
+                layer.quad(0,-1.5,-2,-5,0,-13.5,2,-5)
+                layer.rotate(360/la)
+            }
+        break
         //mark g
     }
     layer.pop()
@@ -19977,4 +20198,14 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 182-Weird Move
 183-Bowler
 184-Duochrome
+185-Glass
+186-Graphene
+187-Quartz
+188-Carbon
+189-Glass
+190-Graphite
+191-Ammonium
+192-Hydrazine
+193-Diamond
+194-Prismatic Bomb 2
 */

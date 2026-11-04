@@ -340,7 +340,7 @@ class attack{
             case 11379: case 11393: case 11395: case 11400: case 11401: case 11402: case 11403: case 11404: case 11409: case 11412: case 11413: case 11418: case 11429: case 11430: case 11433: case 11435: case 11440: case 11441: case 11444: case 11446:
             case 11449: case 11459: case 11468: case 11475: case 11479: case 11483: case 11492: case 11493: case 11506: case 11507: case 11511: case 11528: case 11529: case 11535: case 11539: case 11550: case 11552: case 11558: case 11561: case 11572:
             case 11573: case 11580: case 11586: case 11587: case 11588: case 11589: case 11590: case 11591: case 11598: case 11601: case 11602: case 11603: case 11604: case 11606: case 11615: case 11630: case 11632: case 11634: case 11636: case 11639:
-            case 11641: case 11642: case 11647: case 11648: case 11661:
+            case 11641: case 11642: case 11647: case 11648: case 11661: case 11671: case 11675: case 11677: case 11679: case 11680: case 11682:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -443,7 +443,7 @@ class attack{
             case 11096: case 11126: case 11151: case 11152: case 11172: case 11175: case 11176: case 11186: case 11187: case 11207:
             case 11208: case 11224: case 11225: case 11291: case 11332: case 11349: case 11387: case 11388: case 11389: case 11390:
             case 11391: case 11397: case 11405: case 11406: case 11407: case 11408: case 11411: case 11416: case 11448: case 11498:
-            case 11499: case 11500: case 11514: case 11556: case 11557: case 11570: case 11605: case 11662:
+            case 11499: case 11500: case 11514: case 11556: case 11557: case 11570: case 11605: case 11662: case 11686: case 11687:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -1085,7 +1085,7 @@ class attack{
                     }
                 }
             break
-            case 3595: case 10352:
+            case 3595: case 10352: case 11681:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
                 this.target[1]=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
                 if(this.target[1]>=0){
@@ -13734,6 +13734,11 @@ class attack{
                             this.battle.combatantManager.allEffect(48,['Weak',this.effect[2]])
                         }
                     break
+                    case 11678:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -16860,6 +16865,16 @@ class attack{
                     case 11605:
                         if(this.userManager.hand.turnPlayed[0]<=1){
                             this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 11686:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Quartz',types.item),this.player)
+                        }
+                    break
+                    case 11687:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
                         }
                     break
 
@@ -30498,6 +30513,10 @@ class attack{
                         this.userManager.hand.exhaust(this.effect[0])
                         this.userManager.hand.duplicate(this.effect[1])
                     break
+                    case 11676:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[22],57,[0],[]])
+                    break
 
                 }
                 //mark 5
@@ -37013,6 +37032,12 @@ class attack{
                         this.userCombatant.statusEffect('Dexterity',this.effect[0]*this.selfCall(24)+this.effect[1])
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[2]*this.selfCall(25)+this.effect[3])
                     break
+                    case 11677:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Quartz',types.item),this.player)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -40661,6 +40686,21 @@ class attack{
                     case 11651:
                         this.userCombatant.statusEffect('Pity',this.effect[0])
                         this.battle.combatantManager.allEffect(48,['Weak',this.effect[1]])
+                    break
+                    case 11683:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Quartz',types.item),this.player)
+                        }
+                    break
+                    case 11684:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
+                        }
+                    break
+                    case 11685:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
+                        }
                     break
 
                 }
@@ -46138,6 +46178,16 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.deck.randomEffect(30,[floor(random(1,7))])
                         }
+                    break
+                    case 11672:
+                        this.userManager.deck.add(findName(['Seiun','Elysia','Australis','Miratei','Syuua','Aria','Haruka','Komachi'][floor(random(0,8))],types.card),this.level,constants.playerNumber+5)
+                    break
+                    case 11673:
+                        this.userManager.addRandomAbstract(0,this.level,0,8,0,[0],[9])
+                    break
+                    case 11674:
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,'disband',61,9])
                     break
                 }
             break

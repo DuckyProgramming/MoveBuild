@@ -5385,7 +5385,8 @@ class card{
                     this.layer.stroke(40,50,60,this.fade)
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
-                    if(this.type<findName('-h Prison',types.card)){
+                    //if(this.type<findName('-h Prison',types.card)){
+                    if(this.type>findName('-h Prison',types.card)){
                         this.layer.noStroke()
                         this.layer.fill(50,50,225,this.fade)
                         this.layer.quad(
@@ -5984,7 +5985,8 @@ class card{
                     this.layer.stroke(90,100,110,this.fade)
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
-                    if(this.type<findName('-h Prison',types.card)){
+                    //if(this.type<findName('-h Prison',types.card)){
+                    if(this.type>findName('-h Prison',types.card)){
                         this.layer.noStroke()
                         this.layer.fill(200,200,25,this.fade)
                         this.layer.quad(

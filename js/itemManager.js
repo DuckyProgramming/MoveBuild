@@ -658,7 +658,7 @@ class itemManager{
                 userCombatant.statusEffect('Dexterity',2*effectiveness)
             break
             case 119:
-                this.battle.cardManagers[player].hand.selfCall(6,[3595,[30*effectiveness,5],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[10352,[30*effectiveness,5],1,[2,1,3]])
             break
             case 120:
                 this.battle.cardManagers[player].hand.selfCall(6,[5692,[25*effectiveness,5],1,[2,1,3]])
@@ -693,7 +693,7 @@ class itemManager{
             case 1007:
                 this.battle.cardManagers[player].draw(2*effectiveness)
             break
-            case 1008:
+            case 1008: case 1026:
                 userCombatant.statusEffect('Strength',effectiveness)
             break
             case 1009:
@@ -747,6 +747,28 @@ class itemManager{
                 if(stage.scene=='battle'){
                     userCombatant.statusEffect('Strength',effectiveness)
                 }
+            break
+            case 1020:
+                this.battle.cardManagers[player].hand.selfCall(6,[11679,[6*effectiveness],1,[2,1,3]])
+            break
+            case 1021:
+                userCombatant.addBlock(9*effectiveness)
+            break
+            case 1022:
+                this.battle.cardManagers[player].hand.selfCall(6,[11680,[2*effectiveness],1,[2,1,3]])
+            break
+            case 1023:
+                this.battle.cardManagers[player].draw(effectiveness)
+            break
+            case 1024:
+                this.battle.cardManagers[player].hand.selfCall(6,[11682,[2*effectiveness],11,[2,1,3]])
+            break
+            case 1025:
+                this.battle.cardManagers[player].hand.selfCall(6,[11681,[2*effectiveness],1,[2,1,3]])
+            break
+            case 1027:
+                this.battle.cardManagers[player].draw(3*effectiveness)
+                userCombatant.statusEffect('Free Card',effectiveness)
             break
         }
         this.tempEffectiveness[player]=holdTempEffectiveness

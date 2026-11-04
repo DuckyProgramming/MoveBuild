@@ -1031,7 +1031,7 @@ class item{
                     this.layer.text('3',6,0)
                 break
                 case '9 Random Damage, 1 Energy, Draw 1': case '9 Random Damage, 1 Mana, Draw 1':
-                    displaySymbol(this.layer,0,0,133,0,2,this.fade)
+                    displaySymbol(this.layer,0,0,194,0,1,this.fade)
                 break
                 case '5 Heal/1 Strength':
                     displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
@@ -1040,6 +1040,30 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('5',-8,0)
                     this.layer.text('1',8,0)
+                break
+                case '6 Damage':
+                    displaySymbol(this.layer,0,0,187,0,1,this.fade)
+                break
+                case '9 Block':
+                    displaySymbol(this.layer,0,0,188,0,1,this.fade)
+                break
+                case '2 Damage Per Turn':
+                    displaySymbol(this.layer,0,0,189,0,1,this.fade)
+                break
+                case 'Draw 1':
+                    displaySymbol(this.layer,0,0,190,0,1,this.fade)
+                break
+                case '2 Vulnerable':
+                    displaySymbol(this.layer,0,0,191,0,1,this.fade)
+                break
+                case '10 Splash Damage':
+                    displaySymbol(this.layer,0,0,192,0,1,this.fade)
+                break
+                case '1 Strength 2':
+                    displaySymbol(this.layer,0,0,186,0,1,this.fade)
+                break
+                case 'Draw 3, Free Card':
+                    displaySymbol(this.layer,0,0,193,0,1,this.fade)
                 break
 
                 //mark p

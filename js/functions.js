@@ -3793,14 +3793,12 @@ function checkExists(start,end){
 		8695,//invalid set sail
 		9661,//invalid silverswivel
 
-		945,1208,1209,1212,1213,
-		1214,1216,1217,1219,1220,
-		1221,3762,3763,//blackjack
+		945,1208,1209,1212,1213,1214,1216,1217,1219,1220,
+		1221,3762,3763,4726,//blackjack
 		1215,1218,1222,1223,3761,//cyclic draw
-		1905,1906,1946,1947,1952,
-		2535,2957,3564,4625,7141,//assorted invalid
+		1905,1906,1946,1947,1952,2535,2957,3564,4625,7141,//assorted invalid
 
-		83,84,85,86,3595,9974,10352,//items
+		83,84,85,86,3595,9974,10352,11671,//items
 	]
 	let total=0
 	for(let a=start,la=end;a<la;a++){
@@ -3864,6 +3862,17 @@ function outCharIcon(start,end){
 		graphics.minor.push(createGraphics(100,100))
 		setupLayer(graphics.minor[graphics.minor.length-1])
 		displayPlayerSymbol(graphics.minor[graphics.minor.length-1],50,50,start+a,0,2,1)
+		save(graphics.minor[graphics.minor.length-1])
+	}
+}
+function outItemIcon(start,end){
+	graphics.minor=[]
+	for(let a=0,la=end-start;a<la;a++){
+		graphics.minor.push(createGraphics(50,50))
+		setupLayer(graphics.minor[graphics.minor.length-1])
+		let temp=new item(graphics.minor[graphics.minor.length-1],current,0,25,25,0,0,start+a,1)
+		temp.fade=1
+		temp.display()
 		save(graphics.minor[graphics.minor.length-1])
 	}
 }

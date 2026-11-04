@@ -14,7 +14,7 @@ function setup(){
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[17]
+        current.menu.combatant=[14]
         current.menu.deck=[-1]
 
             //variants.mtg=true
@@ -97,9 +97,10 @@ function setup(){
             }*/
             //current.overlayManager.closeAll()
 
-            /*current.itemManager.addItemSlots(7,0)
-            for(let a=0,la=2;a<la;a++){
-                current.itemManager.addItem(129+a,0)
+            /*current.itemManager.addItemSlots(5,0)
+            for(let a=0,la=8;a<la;a++){
+                //current.itemManager.addItem(129+a,0)
+                current.itemManager.addItem(types.item.length-la+a,0)
             }*/
 
             //stage.scene='tier'
