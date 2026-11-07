@@ -336,6 +336,20 @@ types.invalid=[
             ],
         },
     },{
+        name:'Flame of\nNirvana',rarity:-1,list:-10,
+        levels:[
+            {effect:[1,1],attack:1691,cost:4,target:[0],spec:[1],class:11},
+            {effect:[1,1],attack:1691,cost:3,target:[0],spec:[1],class:11},
+            {effect:[1,1],attack:1691,cost:2,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-10,color:[3,5],
+            levels:[
+                {effect:[1,1],attack:1691,cost:[3,5,-1,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1,1],attack:1691,cost:[3,5,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1,1],attack:1691,cost:[3,5,-1,-1],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
         name:'First\nQuarter',rarity:-1,list:-10,
         levels:[
             {effect:[2],attack:1692,cost:1,target:[2,1,6],spec:[1],class:11},

@@ -1064,7 +1064,7 @@ types={
         {name:'Napkin Rng',internal:'Starting Colorless',id:126,rarity:-1,list:0,mtg:0,world:[0,3],description:'Choose 1 Common Colorless Card\nto Add to Hand on Turn 1'},
         {name:'Rock of Duckontonlek',internal:'Relic Pack',id:127,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Gain 3 Relics\nand Become Cursed - Hoarding'},
         {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,mtg:0,world:[0,3],description:'All Cards\nHave Retain'},
-        {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:3,list:0,mtg:0,world:[0,3],description:'Draw Pile Cards Are\nViewed in Order'},
+        {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:-1,list:0,mtg:0,world:[0,3],description:'Draw Pile Cards Are\nViewed in Order'},
 
         {name:'Fogbank',internal:'Innate Card',id:130,rarity:-1,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Card Innate'},
         {name:'Concave Star',internal:'Energy/Card Choice',id:131,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy, Have 1\nLess Card to Choose From'},
@@ -1584,9 +1584,8 @@ types={
         {name:'Reptile Trinket',internal:'Item Temporary Strength',id:599,rarity:-1,list:0,mtg:0,world:[0,3],description:'When an Item is Used,\nGain 3 Temporary Strength'},
 
         {name:'Bloodstained Bowler Hat',internal:'Bowler',id:600,rarity:-1,list:0,mtg:0,world:[0,3],description:`Don't Forget Him`},
-
-        /*{name:'Swan Beak',internal:'Item Energy',id:597,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
-        {name:'Swan Beak',internal:'Item Mana',id:598,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},*/
+        {name:'Swan Beak',internal:'Item Energy',id:601,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
+        {name:'Swan Beak',internal:'Item Mana',id:602,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},
 
         //mark mtg mark r
     ],item:[

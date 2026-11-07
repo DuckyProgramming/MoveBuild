@@ -11955,6 +11955,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11670: string+=`Gain (N)\nGain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Temporary\nDexterity`; break
         case 11677: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Quartz Item${pl(effect[1])}`; break
         case 11678: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Carbon Item${pl(effect[1])}`; break
+        case 11679: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nAll Vanishing Cards\nin Deck Gain ${effect[1]} Use${pl(effect[1])}`; break
+        case 11680: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 0 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 11681: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 1 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 11682: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 2 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
         case 11683: string+=`Gain ${effect[0]} Quartz Item${pl(effect[0])}`; break
         case 11684: string+=`Gain ${effect[0]} Carbon Item${pl(effect[0])}`; break
         case 11685: string+=`Gain ${effect[0]} Ammonium Item${pl(effect[0])}`; break
@@ -12016,6 +12020,30 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11741: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have an\nHydrazine Item,\nGain (E) (G)`; break
         case 11742: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have an\nHydrazine Item,\nGain (E) (E)`; break
         case 11743: string+=`Randomly Shuffle All\nCard Costs in Deck`; break
+        case 11744: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nCosts 0 When\nYou Use an Item`; break
+        case 11745: string+=`Gain ${effect[0]} Carbon, Quartz,\nor Ammonium Item${pl(effect[0])}\nWhen Vanished,\nChoose a Rare Card\nof Equivalent Level\nto Add Permanently`; break
+        case 11746: string+=`Put a Card in Discard\nPile in Your Hand\nGain ${effect[0]} Ammonium Item${pl(effect[0])}`; break
+        case 11747: string+=`Gain ${effect[0]} Prismatic\nBomb Item${pl(effect[0])}\nGain ${effect[1]} Quartz Item${pl(effect[1])}`; break
+        case 11748: string+=`Next ${effect[0]!=1?`${effect[0]} `:``}Attack${pl(effect[0])}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[1]} Carbon Item${pl(effect[1])}`; break
+        case 11749: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nProcess:\nAmmonium to Hydrazine`; break
+        case 11750: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nIncreases by ${effect[1]}\nWhen Retained`; break
+        case 11751: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain ${effect[1]} Faith`; break
+        case 11752: string+=`Discard a Card\nGain ${variants.mtg?`Mana`:`Energy`} Equal\nto its Cost`; break
+        case 11753: string+=`When You\nDiscard a Fatigue,\nExhaust It`; break
+        case 11754: string+=`Apply ${effect[0]} Stun\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 11755: string+=`When You Assign,\nDraw ${effect[0]} Worker${pl(effect[0])}`; break
+        case 11756: string+=`Spend a Glass Item:\nGain an Item Slot\nThis Combat`; break
+        case 11757: string+=`Spend a Graphite Item:\nDraw to ${effect[0]} Card${pl(effect[0])}`; break
+        case 11758: string+=`Spend a Hydrazine Item:\nGain ${effect[0]} Energy`; break
+        case 11759: string+=`Spend a Hydrazine Item:\nGain (E) (E) (E) (E) (E)`; break
+        case 11760: string+=`Activate All\nWishes in Hand`; break
+        case 11761: string+=`Draw ${effect[0]} Basic Card${pl(effect[0])}\nEvery Turn`; break
+        case 11762: string+=`Gain ${effect[0]} Pity\nWhen an Enemy Dies,\nGain ${effect[1]} Energy`; break
+        case 11763: string+=`Gain ${effect[0]} Pity\nWhen an Enemy Dies,\nGain (E)`; break
+        case 11764: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nPer Exhausted\nStatus Card or Curse`; break
+        case 11765: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nIf Successful,\nAdd a Copy of\nThis Card to Hand`; break
+        case 11766: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nLose ${effect[1]} Health`; break
+        case 11767: string+=`Push 1 Tile\nDecrease Turn\nNumber by ${effect[0]}`; break
 
         //mark p
         //mark q

@@ -3220,7 +3220,7 @@ function generalizedSearch(test,type,subtract){
 		}
 	}
 }
-function generalizedSearch2(test,type){
+function generalizedSearch2(test,type,subtract){
 	let set=[]
 	current.overlayManager.overlays[35][0].active=true
     //current.overlayManager.overlays[35][0].activate([0])
@@ -3228,7 +3228,10 @@ function generalizedSearch2(test,type){
 	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-		if(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t))){
+		if(
+			(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
+			(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
+		){
 			set.push(cardData.name)
 		}
 	}
@@ -3239,7 +3242,10 @@ function generalizedSearch2(test,type){
 		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
 			let cardData=current.overlayManager.overlays[115][0].cards[a]
 			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-			if(cardData.desc.includes(test)){
+			if(
+				(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
+				(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
+			){
 				set.push(cardData.name)
 			}
 		}
@@ -3776,6 +3782,7 @@ function checkExists(start,end){
 		1284,2583,3151,3152,//invalid lucky 7, edict, graphite, graphene
 		1307,//invalid boston bat
 		1369,//invalid high vis jacket
+		1691,1692,1693,1694,//theme
 		1739,2053,//invalid password
 		1914,//invalid tin snips
 		1991,2017,//invalid overthrow, underthrow
@@ -3807,6 +3814,7 @@ function checkExists(start,end){
 		945,1208,1209,1212,1213,1214,1216,1217,1219,1220,
 		1221,3762,3763,4726,//blackjack
 		1215,1218,1222,1223,3761,//cyclic draw
+		1292,//techless
 		1905,1906,1946,1947,1952,2535,2957,3564,4625,7141,//assorted invalid
 
 		83,84,85,86,3595,9974,10352,11671,//items

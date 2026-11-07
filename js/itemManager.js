@@ -12,6 +12,7 @@ class itemManager{
         this.effectiveness=[]
         this.combatEffectiveness=[]
         this.tempEffectiveness=[]
+        this.tempSlots=[]
 
         this.initialListing()
     }
@@ -74,6 +75,7 @@ class itemManager{
             this.effectiveness.push(1)
             this.combatEffectiveness.push(1)
             this.tempEffectiveness.push(1)
+            this.tempSlots.push(0)
         }
     }
     hasEmpty(player){
@@ -171,8 +173,12 @@ class itemManager{
     removeItemSlots(amount,player){
         for(let a=0;a<amount;a++){
             if(this.items[player].length>0){
+                let storeType=this.items[player][this.items[player].length-1].type
                 delete this.items[player][this.items[player].length-1]
                 this.items[player].splice(this.items[player].length-1,1)
+                if(storeType>1){
+                    this.addItem(storeType,player)
+                }
             }
         }
         this.position[player]-=amount
@@ -226,6 +232,16 @@ class itemManager{
                 }
             }else{
                 break
+            }
+        }
+    }
+    spend(type,player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type==type){
+                this.items[player][a].type=1
+                this.items[player][a].refresh()
+                this.total[player]--
+                return true
             }
         }
     }
@@ -813,6 +829,10 @@ class itemManager{
             }
         }
         this.combatEffectiveness[player]=1
+        if(this.tempSlots[player]>0){
+            this.removeItemSlots(this.tempSlots[player],player)
+            this.tempSlots[player]=0
+        }
     }
     activateEndBattle(player,encounterClass,reward){
         for(let a=0,la=this.items[player].length;a<la;a++){

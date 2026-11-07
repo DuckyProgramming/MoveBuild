@@ -1,38 +1,25 @@
-CS 146 [PREHEX / VINCENT]
-
-a downright massacre
+CS 150 [GRANDEUR]
 
 prehex rework
 vincent rework
-
-CS 147 [?]
 
 test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
 
-iron = iron sword?
-diamond = diamond sword?
-zinc + carbon = battery (1 energy)
-carbon + hydrogen = plastic (draw 2)
-iron + hydrogen = steel (12 block for 2 turns)
-nitrogen + hydrogen = ammonium (splash damage)
+[diamond sword]
+[graphene value]
+carbon + quartz = plastic (draw 2)
 ammonium + carbon = explosive powder (a bomb)
-quartz + prismatic bomb = drone
-iron = storage (retain a card)
-glass = item slot
+quartz + ammonium = ?
 
-trash compacting - when you play a fatigue, add compound
+trash compacting - when you play a fatigue, add carbon
 muscle mania - when you gain strength, all enemies lose health
 [golden diamond]
-split brass beast
 
 tax evasion? (when you lose currency lose 1 less)
 blue pepper - get 3 ? if you have 3 empty spots???
-dark humor - gain 1 pity, gain 1 energy when an enemy dies [ace warrior]
-[trigger all wishes in hand]
-
-+4 evoke
+clairvoyance - this combat, you can see your draw pile in order
 
 a ton of fresh prehex cards
 more ways to turn back time
@@ -48,6 +35,7 @@ tooltips for dictionary
 recheck every tutorial
 
 recycling - gain a reroll every turn??? [maybe use this to replace TEST 271]
+also do something to replace mechanical eye
 
 new bar event option - take a shot - lose 50 currency, chance to remove a card
 layoffs - remove randomly picked card 1, remove randomly picked card 2, or both of them

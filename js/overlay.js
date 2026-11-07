@@ -636,6 +636,18 @@ class overlay{
                                     }
                                 }
                             }
+                            if(args[5]!=-1){
+                                for(let a=0,la=list[args[1]].length;a<la;a++){
+                                    if(
+                                        !variants.mtg&&types.card[list[args[1]][a]].levels[args[0]].cost!=args[5]||
+                                        variants.mtg&&types.card[list[args[1]][a]].mtg.levels[args[0]].cost.length!=args[5]
+                                    ){
+                                        list[args[1]].splice(a,1)
+                                        a--
+                                        la--
+                                    }
+                                }
+                            }
                             for(let a=0,la=this.options;a<la;a++){
                                 if(list[args[1]].length>0){
                                     let index=floor(random(0,list[args[1]].length))

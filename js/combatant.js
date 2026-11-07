@@ -108,7 +108,7 @@ constants.status={
         'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn','Double Buff',
         'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
-        'Base Item Per Turn',
+        'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -219,7 +219,7 @@ constants.status={
         2,0,1,0,0,0,0,0,0,0,//106
         0,1,0,2,2,0,2,0,0,0,//107
         0,0,0,0,0,0,0,0,0,0,//108
-        0,
+        0,0,0,0,
     ],
     /*
     0-none
@@ -339,7 +339,7 @@ constants.status={
         2,2,1,2,2,2,2,2,2,2,//106
         2,2,2,0,0,2,0,2,2,2,//107
         2,2,2,2,2,2,2,2,2,2,//108
-        2,
+        2,1,2,2,
     ]
     /*
     0-good
@@ -5970,6 +5970,9 @@ class combatant{
             if(this.status.main[798]>0){
                 this.battle.cardManagers[this.id].draw(this.status.main[798])
             }
+            if(this.status.main[1082]>0){
+                this.battle.cardManagers[this.id].drawAbstract(this.status.main[1082],10,0,[82])
+            }
             this.battle.cardManagers[this.id].allEffect(2,119)
             return value==-1?max(1,this.battle.cardManagers[this.id].hand.numberAbstract(3,[82])):true
         }else if(value==-1){
@@ -5983,6 +5986,9 @@ class combatant{
                 }
                 if(this.status.main[798]>0){
                     this.battle.cardManagers[this.id].draw(this.status.main[798])
+                }
+                if(this.status.main[1082]>0){
+                    this.battle.cardManagers[this.id].drawAbstract(this.status.main[1082],10,0,[82])
                 }
                 this.battle.cardManagers[this.id].allEffect(2,119)
             }
@@ -6005,6 +6011,9 @@ class combatant{
                 }
                 if(this.status.main[798]>0){
                     this.battle.cardManagers[this.id].draw(this.status.main[798])
+                }
+                if(this.status.main[1082]>0){
+                    this.battle.cardManagers[this.id].drawAbstract(this.status.main[1082],10,0,[82])
                 }
                 this.battle.cardManagers[this.id].allEffect(2,119)
                 return true
@@ -7056,6 +7065,7 @@ class combatant{
                     case 1064: this.miniStatus('Single Splash Damage Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 1068: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[2]+=this.status.main[this.status.ticker[a]]} break
                     case 1080: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findName(['Carbon','Quartz','Ammonium'][floor(random(0,3))],types.item),this.id)}} break
+                    case 1083: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.basic+=this.status.main[this.status.ticker[a]]} break
                 }
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])

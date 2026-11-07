@@ -1248,6 +1248,9 @@ class card{
         if(this.class==11&&userCombatant.getStatus('Skill Discard Draw')>0){
             this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Skill Discard Draw'))
         }
+        if(this.name=='Fatigue'&&userCombatant.getStatus('Fatigue Discard Exhaust')>0){
+            this.exhaust=true
+        }
         switch(this.attack){
             case -48:
                 userCombatant.statusEffect('Double Damage',this.effect[1])
@@ -2031,6 +2034,7 @@ class card{
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
             case 9523: case 9524: case 9525: case 9785: case 10505: case 10918: case 11003: case 11259: case 11302: case 11321:
+            case 11745:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -3081,7 +3085,7 @@ class card{
     }
     onItem(){
         switch(this.attack){
-            case 2261: case 6249:
+            case 2261: case 6249: case 11744:
                 this.setCost(0,[0])
             break
             case 2554: case 6250:
@@ -4379,7 +4383,7 @@ class card{
             case 757: case 1753: case 10681:
                 this.costDown(0,[1])
             break
-            case 775: case 776: case 1868: case 6875: case 7897: case 7898:
+            case 775: case 776: case 1868: case 6875: case 7897: case 7898: case 11750:
                 this.effect[0]+=this.effect[1]
             break
             case 1403:
@@ -7037,9 +7041,11 @@ class card{
                                 switch(this.edition){
                                     case 1:
                                         if(this.battle.relicManager.hasRelic(349,this.player)){
-                                            this.layer.text(`Shiny: -1(${2+2*this.battle.relicManager.active[349][this.player+1]}) Health`,0,this.height/2)
+                                            //this.layer.text(`Shiny: -1(${2+2*this.battle.relicManager.active[349][this.player+1]}) Health`,0,this.height/2)
+                                            this.layer.text(`Shiny: 1(${2+2*this.battle.relicManager.active[349][this.player+1]}) Health to All Enemies`,0,this.height/2)
                                         }else{
-                                            this.layer.text(`Shiny: -1 Health`,0,this.height/2)
+                                            //this.layer.text(`Shiny: -1 Health`,0,this.height/2)
+                                            this.layer.text(`Shiny: 1 Health to All Enemies`,0,this.height/2)
                                         }
                                     break
                                     case 2:
@@ -7085,9 +7091,11 @@ class card{
                                 switch(this.edition){
                                     case 1:
                                         if(this.battle.relicManager.hasRelic(349,this.player)){
-                                            this.layer.text(`Shiny: 1(${2+2*this.battle.relicManager.active[349][this.player+1]}) Health`,0,this.height/2)
+                                            //this.layer.text(`Shiny: 1(${2+2*this.battle.relicManager.active[349][this.player+1]}) Health`,0,this.height/2)
+                                            this.layer.text(`Shiny: 1(${2+2*this.battle.relicManager.active[349][this.player+1]}) Damage to All Enemies`,0,this.height/2)
                                         }else{
-                                            this.layer.text(`Shiny: 1 Health`,0,this.height/2)
+                                            //this.layer.text(`Shiny: 1 Health`,0,this.height/2)
+                                            this.layer.text(`Shiny: 1 Damage to All Enemies`,0,this.height/2)
                                         }
                                     break
                                     case 2:
@@ -7149,7 +7157,7 @@ class card{
             for(let a=0,la=anim.length;a<la;a++){
                 if(anim[a]>0){
                     switch(a){
-                        case 0: case 23: this.layer.stroke(255,0,0,this.fade*anim[a]); break
+                        case 0: case 23: case 47: this.layer.stroke(255,0,0,this.fade*anim[a]); break
                         case 1: case 24: case 28: case 29: case 31: case 46: this.layer.stroke(100,255,255,this.fade*anim[a]); break
                         case 2: this.layer.stroke(255,225,0,this.fade*anim[a]); break
                         case 3: this.layer.stroke(255,100,255,this.fade*anim[a]); break
@@ -7178,7 +7186,7 @@ class card{
                     switch(a){
                         case 21: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31:
                         case 32: case 33: case 34: case 35: case 37: case 39: case 40: case 42: case 43: case 44:
-                        case 45: case 46:
+                        case 45: case 46: case 47:
                             switch(a){
                                 case 21: case 23: case 24: case 45:
                                     this.layer.stroke(220,this.fade*anim[a])
@@ -7207,7 +7215,7 @@ class card{
                                 case 33:
                                     this.layer.stroke(100,0,100,this.fade*anim[a])
                                 break
-                                case 34:
+                                case 34: case 46:
                                     this.layer.stroke(150,255,255,this.fade*anim[a])
                                 break
                                 case 35:

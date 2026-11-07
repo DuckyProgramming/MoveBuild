@@ -2504,7 +2504,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
-            layer.rect(0,-0.5,4.5,6,1)
+            //layer.rect(0,-0.5,4.5,6,1)
+            layer.rect(0,0,4.5,6,1)
             layer.noStroke()
             layer.triangle(-2,4,2,4,0,7)
         break
@@ -11860,6 +11861,41 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.fill(180,fade)
             layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
+        case 1081:
+            layer.fill(75,fade)
+            regStar(layer,0,0,6,2,2,6,6,0)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.triangle(-2,4,2,4,0,7)
+        break
+        case 1082:
+            layer.fill(225,25,25,fade)
+            regStar(layer,0,0,5,6,6,2.5,2.5,180)
+            layer.fill(25,175,25,fade)
+            regTriangle(layer,0,0,4.5,4.5,30)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.fill(225,25,25,fade)
+            regStar(layer,0,0,5,3,3,1.25,1.25,180)
+        break
+        case 1083:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noStroke()
+            layer.fill(60,fade)
+            layer.rect(0,0,3,1)
+            layer.rect(0,-1.5,5,1)
+            layer.rect(0,1.5,5,1)
+            layer.rect(0,-3,3,1)
+            layer.rect(0,3,3,1)
         break
 
     }

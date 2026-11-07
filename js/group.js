@@ -35,7 +35,7 @@ class group{
         this.costDownListing=[]
         this.finalPosition=0
         this.sendAmounts=[]
-        this.listKey=61
+        this.listKey=62
         this.listInput=[
             [0,4],
             [1,8],
@@ -92,6 +92,7 @@ class group{
             [58,67],
             [59,68],
             [60,69],
+            [61,70],
         ]
 
         this.reset()
@@ -2024,6 +2025,11 @@ class group{
                         this.cards[a].deSize=true
                     }
                 break
+                case 125:
+                    if(this.cards[a].spec.includes(60)){
+                        this.cards[a].triggerWish()
+                    }
+                break
                 //mark all
             }
         }
@@ -3243,6 +3249,11 @@ class group{
                 break
                 case 87:
                     this.cards[a].callTurnEffect(args[0],args[1])
+                break
+                case 88:
+                    if(this.cards[a].spec.includes(15)){
+                        this.cards[a].limit+=args[0]
+                    }
                 break
                 //mark allargs
             }
@@ -5763,7 +5774,7 @@ class group{
                     this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],
                     this.anim[22],this.anim[23],this.anim[25],this.anim[27],this.anim[28],max(this.anim[31],this.anim[34]),this.anim[32],this.anim[33],this.anim[26],max(this.anim[35],this.anim[36],this.anim[49]),
                     this.anim[37],this.anim[38],this.anim[39],max(this.anim[40],this.anim[53]),this.anim[41],this.anim[42],this.anim[45],this.anim[46],this.anim[47],this.anim[48],
-                    this.anim[50],this.anim[51],this.anim[52],this.anim[54],this.anim[55],this.anim[56],this.anim[57],
+                    this.anim[50],this.anim[51],this.anim[52],this.anim[54],this.anim[55],this.anim[56],this.anim[57],this.anim[61],
                 ]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
@@ -7270,6 +7281,33 @@ class group{
                     if(this.status[60]>0){
                         this.status[60]=0
                     }
+                }
+            break
+            case 70:
+                if(variants.mtg){
+                    if(this.cards[a].specialCost){
+                        this.battle.addSpecificEnergy(max(0,this.cards[a].cost[0]),this.player,0)
+                    }else{
+                        for(let b=0,lb=this.cards[a].cost.length;b<lb;b++){
+                            switch(this.cards[a].cost[b]){
+                                case -1:
+                                    this.battle.addSpecificEnergy(1,this.player,0)
+                                break
+                                case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+                                    this.battle.addSpecificEnergy(1,this.player,this.cards[a].cost[b])
+                                break
+                                case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16:
+                                    this.battle.addSpecificEnergy(1,this.player,6)
+                                break
+                            }
+                        }
+                    }
+                }else{
+                    this.battle.addEnergy(max(0,this.cards[a].cost),this.player)
+                }
+                this.cards[a].deSize=true
+                if(this.status[61]>0){
+                    this.status[61]--
                 }
             break
         }

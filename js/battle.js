@@ -1368,9 +1368,11 @@ class battle{
             switch(card.edition){
                 case 1:
                     if(this.relicManager.hasRelic(354,player)){
-                        userCombatant.loseHealth(1+1*this.relicManager.active[354][player+1])
+                        //userCombatant.loseHealth(1+1*this.relicManager.active[354][player+1])
+                        this.combatantManager.allEffect(7,[1+1*this.relicManager.active[354][player+1]])
                     }else{
-                        userCombatant.loseHealth(1)
+                        //userCombatant.loseHealth(1)
+                        this.combatantManager.allEffect(7,[1])
                     }
                 break
                 case 2:
@@ -1413,9 +1415,11 @@ class battle{
             switch(card.edition){
                 case 1:
                     if(this.relicManager.hasRelic(354,player)){
-                        userCombatant.heal(1+1*this.relicManager.active[354][player+1])
+                        //userCombatant.heal(1+1*this.relicManager.active[354][player+1])
+                        this.combatantManager.allEffect(19,[1+1*this.relicManager.active[354][player+1]])
                     }else{
-                        userCombatant.heal(1)
+                        //userCombatant.heal(1)
+                        this.combatantManager.allEffect(19,[1])
                     }
                 break
                 case 2:
@@ -3487,7 +3491,7 @@ class battle{
                             this.layer.text(`${a*10}`,margin-20,this.layer.height-margin-(this.layer.height-margin*2)*a*10/maximum[1])
                         }
                     break
-                    case 4: case 5: case 6: case 7: case 11:
+                    case 4: case 5: case 6: case 7: case 11: case 12:
                         /*
                         4-all
                         5-no disband
@@ -3503,10 +3507,11 @@ class battle{
                                 graphics.test==5&&card.list!=-8&&card.list!=-10||
                                 graphics.test==6&&card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber||
                                 graphics.test==7&&card.list!=-8&&card.list!=-10&&!(card.rarity>=0&&card.list>0&&card.list<=constants.playerNumber)||
-                                graphics.test==11
+                                graphics.test==11||
+                                graphics.test==12
                             ){
                                 card.levels.forEach(level=>{
-                                    let series=graphics.test==11?
+                                    let series=graphics.test==11||graphics.test==12?
                                         level.class.length==2?level.class[0]:level.class:
                                         floor((level.attack.length==2?max(level.attack[0],level.attack[1]):level.attack)/1000)
                                     let res=this.collectionManager.overListing(card)
@@ -3526,7 +3531,7 @@ class battle{
                             }
                         })
                         overPos=margin
-                        for(let a=0,la=graphics.test==11?15:seriesTotal;a<la;a++){
+                        for(let a=0,la=graphics.test==11||graphics.test==12?15:seriesTotal;a<la;a++){
                             set[a].sort((a,b)=>q(b.list[1])-q(a.list[1]))
                             let overProp=(graphics.test==11?1/la:total[a]/overTotal)*(this.layer.width-margin*2)
                             let pos=margin
@@ -3547,7 +3552,7 @@ class battle{
                             overPos+=overProp
                         }
                         overPos=margin
-                        for(let a=0,la=graphics.test==11?15:seriesTotal;a<la;a++){
+                        for(let a=0,la=graphics.test==11||graphics.test==12?15:seriesTotal;a<la;a++){
                             let overProp=(graphics.test==11?1/la:total[a]/overTotal)*(this.layer.width-margin*2)
                             let pos=margin
                             let x=overPos+overProp*0.5
