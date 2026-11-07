@@ -3817,7 +3817,8 @@ function checkExists(start,end){
 		1292,//techless
 		1905,1906,1946,1947,1952,2535,2957,3564,4625,7141,//assorted invalid
 
-		83,84,85,86,3595,9974,10352,11671,//items
+		83,84,85,86,3595,9974,10352,11671,11679,11680,
+		11681,11682,//items
 	]
 	let total=0
 	for(let a=start,la=end;a<la;a++){

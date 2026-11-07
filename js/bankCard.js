@@ -11955,10 +11955,6 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11670: string+=`Gain (N)\nGain ${effect[0]} Temporary\nStrength\nGain ${effect[1]} Temporary\nDexterity`; break
         case 11677: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Quartz Item${pl(effect[1])}`; break
         case 11678: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Carbon Item${pl(effect[1])}`; break
-        case 11679: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nAll Vanishing Cards\nin Deck Gain ${effect[1]} Use${pl(effect[1])}`; break
-        case 11680: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 0 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
-        case 11681: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 1 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
-        case 11682: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 2 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
         case 11683: string+=`Gain ${effect[0]} Quartz Item${pl(effect[0])}`; break
         case 11684: string+=`Gain ${effect[0]} Carbon Item${pl(effect[0])}`; break
         case 11685: string+=`Gain ${effect[0]} Ammonium Item${pl(effect[0])}`; break
@@ -12067,9 +12063,11 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11788: string+=`Decrease Turn\nNumber by ${effect[0]}\nEvolve Your Hand For ${effect[1]}`; break
         case 11789: string+=`Gain ${effect[0]} Currency\nProcess:\nGraphene to Diamond`; break
         case 11790: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nEvolve Your Hand For ${effect[1]}`; break
-
         case 11791: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCurse in Hand:\nIncreases by ${effect[1]}\nDraw ${effect[2]} Card${pl(effect[2])}`; break
-        //8303
+        case 11792: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nAll Vanishing Cards\nin Deck Gain ${effect[1]} Use${pl(effect[1])}`; break
+        case 11793: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 0 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 11794: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 1 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 11795: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 2 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
 
         //mark p
         //mark q

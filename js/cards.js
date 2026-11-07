@@ -66491,57 +66491,57 @@ types.card=[
     },{
         name:'Cryptid',rarity:3,list:constants.playerNumber+5,
         levels:[
-            {effect:[1],attack:11680,cost:1,target:[0],spec:[15],limit:1,class:11},
-            {effect:[1],attack:11680,cost:1,target:[0],spec:[15],limit:2,class:11},
-            {effect:[1],attack:11680,cost:1,target:[0],spec:[15],limit:3,class:11},
+            {effect:[1],attack:11793,cost:1,target:[0],spec:[15],limit:1,class:11},
+            {effect:[1],attack:11793,cost:1,target:[0],spec:[15],limit:2,class:11},
+            {effect:[1],attack:11793,cost:1,target:[0],spec:[15],limit:3,class:11},
         ],mtg:{
             rarity:3,list:constants.playerNumber+5,color:[constants.playerNumber+5],
             levels:[
-                {effect:[1],attack:11680,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
-                {effect:[1],attack:11680,cost:[-1,-1],target:[0],spec:[15],limit:2,class:11},
-                {effect:[1],attack:11680,cost:[-1,-1],target:[0],spec:[15],limit:3,class:11},
+                {effect:[1],attack:11793,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
+                {effect:[1],attack:11793,cost:[-1,-1],target:[0],spec:[15],limit:2,class:11},
+                {effect:[1],attack:11793,cost:[-1,-1],target:[0],spec:[15],limit:3,class:11},
             ],
         },
     },{
         name:'Quanta',rarity:3,list:constants.playerNumber+5,
         levels:[
-            {effect:[1],attack:11681,cost:1,target:[0],spec:[15],limit:1,class:11},
-            {effect:[1],attack:11681,cost:1,target:[0],spec:[15],limit:2,class:11},
-            {effect:[1],attack:11681,cost:1,target:[0],spec:[15],limit:3,class:11},
+            {effect:[1],attack:11794,cost:1,target:[0],spec:[15],limit:1,class:11},
+            {effect:[1],attack:11794,cost:1,target:[0],spec:[15],limit:2,class:11},
+            {effect:[1],attack:11794,cost:1,target:[0],spec:[15],limit:3,class:11},
         ],mtg:{
             rarity:3,list:constants.playerNumber+5,color:[constants.playerNumber+5],
             levels:[
-                {effect:[1],attack:11681,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
-                {effect:[1],attack:11681,cost:[-1,-1],target:[0],spec:[15],limit:2,class:11},
-                {effect:[1],attack:11681,cost:[-1,-1],target:[0],spec:[15],limit:3,class:11},
+                {effect:[1],attack:11794,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
+                {effect:[1],attack:11794,cost:[-1,-1],target:[0],spec:[15],limit:2,class:11},
+                {effect:[1],attack:11794,cost:[-1,-1],target:[0],spec:[15],limit:3,class:11},
             ],
         },
     },{
         name:'Backroom',rarity:3,list:constants.playerNumber+5,
         levels:[
-            {effect:[1],attack:11682,cost:1,target:[0],spec:[15],limit:1,class:11},
-            {effect:[1],attack:11682,cost:1,target:[0],spec:[15],limit:2,class:11},
-            {effect:[1],attack:11682,cost:1,target:[0],spec:[15],limit:3,class:11},
+            {effect:[1],attack:11795,cost:1,target:[0],spec:[15],limit:1,class:11},
+            {effect:[1],attack:11795,cost:1,target:[0],spec:[15],limit:2,class:11},
+            {effect:[1],attack:11795,cost:1,target:[0],spec:[15],limit:3,class:11},
         ],mtg:{
             rarity:3,list:constants.playerNumber+5,color:[constants.playerNumber+5],
             levels:[
-                {effect:[1],attack:11682,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
-                {effect:[1],attack:11682,cost:[-1,-1],target:[0],spec:[15],limit:2,class:11},
-                {effect:[1],attack:11682,cost:[-1,-1],target:[0],spec:[15],limit:3,class:11},
+                {effect:[1],attack:11795,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
+                {effect:[1],attack:11795,cost:[-1,-1],target:[0],spec:[15],limit:2,class:11},
+                {effect:[1],attack:11795,cost:[-1,-1],target:[0],spec:[15],limit:3,class:11},
             ],
         },
     },{
         name:'Resurrect',rarity:3,list:constants.playerNumber+5,
         levels:[
-            {effect:[1,1],attack:11679,cost:1,target:[0],spec:[15],limit:1,class:11},
-            {effect:[1,2],attack:11679,cost:1,target:[0],spec:[15],limit:1,class:11},
-            {effect:[1,3],attack:11679,cost:1,target:[0],spec:[15],limit:1,class:11},
+            {effect:[1,1],attack:11792,cost:1,target:[0],spec:[15],limit:1,class:11},
+            {effect:[1,2],attack:11792,cost:1,target:[0],spec:[15],limit:1,class:11},
+            {effect:[1,3],attack:11792,cost:1,target:[0],spec:[15],limit:1,class:11},
         ],mtg:{
             rarity:3,list:constants.playerNumber+5,color:[constants.playerNumber+5],
             levels:[
-                {effect:[1,1],attack:11679,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
-                {effect:[1,2],attack:11679,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
-                {effect:[1,3],attack:11679,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
+                {effect:[1,1],attack:11792,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
+                {effect:[1,2],attack:11792,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
+                {effect:[1,3],attack:11792,cost:[-1,-1],target:[0],spec:[15],limit:1,class:11},
             ],
         },
     },

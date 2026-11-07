@@ -46656,7 +46656,7 @@ class attack{
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,'disband',61,9])
                     break
-                    case 11679:
+                    case 11792:
                         this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
                         this.userManager.hand.allEffectArgs(88,[this.effect[1]])
                         this.userManager.reserve.allEffectArgs(88,[this.effect[1]])
@@ -46664,17 +46664,17 @@ class attack{
                         this.userManager.exhaust.allEffectArgs(88,[this.effect[1]])
                         this.userManager.deck.allEffectArgs(88,[this.effect[1]])
                     break
-                    case 11680:
+                    case 11793:
                         this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,-1,0])
                     break
-                    case 11681:
+                    case 11794:
                         this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,-1,1])
                     break
-                    case 11682:
+                    case 11795:
                         this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,-1,2])

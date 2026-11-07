@@ -8010,7 +8010,7 @@ attack.prototype.update=function(){
         case 8212: case 8213: case 8344: case 8353: case 10954: case 10955: case 10956: case 10957: case 10958:
         case 10959: case 10960: case 10961: case 10962: case 10963: case 10964: case 10965: case 10966: case 10967:
         case 10968: case 10969: case 10970: case 10971: case 10972: case 10973: case 10981: case 11015: case 11672:
-        case 11673: case 11674: case 11679: case 11680: case 11681: case 11682:
+        case 11673: case 11674: case 11792: case 11793: case 11794: case 11795:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
