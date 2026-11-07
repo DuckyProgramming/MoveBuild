@@ -61,23 +61,27 @@ class node{
                 this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].splice(index,1)
             break
             case 5:
-                index=floor(random(0,this.battle.nodeManager.unknownPossibilities.length))
-                this.reality=this.battle.nodeManager.unknownPossibilities[index]
-                this.battle.nodeManager.unknownPossibilities.splice(index,1)
-                switch(this.reality){
-                    case 0:
-                        //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
-                        //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
-                        list=this.tilePosition.y<=1?4:this.tilePosition.y<=(variants.shortMap?3:4)&&this.battle.nodeManager.world==0?3:0
-                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
-                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
-                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
-                    break
-                    case 1: case 2:
-                        index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
-                        this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
-                        this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
-                    break
+                if(this.battle.tutorialManager.active){
+                    this.reality=5
+                }else{
+                    index=floor(random(0,this.battle.nodeManager.unknownPossibilities.length))
+                    this.reality=this.battle.nodeManager.unknownPossibilities[index]
+                    this.battle.nodeManager.unknownPossibilities.splice(index,1)
+                    switch(this.reality){
+                        case 0:
+                            //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                            //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.reality
+                            list=this.tilePosition.y<=1?4:this.tilePosition.y<=(variants.shortMap?3:4)&&this.battle.nodeManager.world==0?3:0
+                            index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
+                            this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
+                            this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+                        break
+                        case 1: case 2:
+                            index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].length))
+                            this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality][index]
+                            this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.reality].splice(index,1)
+                        break
+                    }
                 }
             break
             case 6:

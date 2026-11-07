@@ -12044,6 +12044,32 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11765: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nIf Successful,\nAdd a Copy of\nThis Card to Hand`; break
         case 11766: string+=`Evoke First Orb ${effect[0]} Time${pl(effect[0])}\nLose ${effect[1]} Health`; break
         case 11767: string+=`Push 1 Tile\nDecrease Turn\nNumber by ${effect[0]}`; break
+        case 11768: string+=`Spend a Graphene Item:\nGain ${effect[0]} Intangible`; break
+        case 11769: string+=`Spend a Diamond Item:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}`; break
+        case 11770: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block\nIf You Have\nFull Item Slots`; break
+        case 11771: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nPer Carbon Item\nDraw ${effect[2]} Card${pl(effect[2])}\nPer Quartz Item`; break
+        case 11772: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds ${this.calculateEffect(effect[1],14)} More Block\nPer Carbon Item\nDeal ${this.calculateEffect(effect[2],0)} Splash Damage\nPer Ammonium Item`; break
+        case 11773: string+=`Apply ${effect[0]} Weak\nApplies ${effect[1]} More Weak\nPer Quartz Item\nApply ${effect[2]} Vulnerable\nPer Ammonium Item`; break
+        case 11774: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nProcess:\nCarbon to Graphite,\nQuartz to Glass`; break
+        case 11775: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nProcess:\nAmmonium to Hydrazine`; break
+        case 11776: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nProcess:\nCarbon to Graphite,\nQuartz to Glass`; break
+        case 11777: string+=`Push 1 Tile\nProcess:\nGraphite and Hydrazine to\nGraphene and Hydrazine`; break
+        case 11778: string+=`Spend a Diamond Item:\nAdd ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}`; break
+        case 11779: string+=`Draw Cards Equal\nto Your Strength`; break
+        case 11780: string+=`Draw Cards Equal\nto Your Strength +${effect[0]}`; break
+        case 11781: string+=`Gain ${effect[0]} Quartz Item${pl(effect[0])}\nRetain Your Hand\nThis Turn`; break
+        case 11782: string+=`Gain ${effect[0]} Carbon Item${pl(effect[0])}\nRemove ${effect[1]} Fatigue${pl(effect[1])}`; break
+        case 11783: string+=`Gain ${effect[0]} Ammonium Item${pl(effect[0])}\nA Random Card\nCosts ${effect[1]} Less`; break
+        case 11784: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf There Are\n${effect[1]} or More Adjacent\nEmpty Tile Locations,\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${pl(effect[3])}`; break
+        case 11785: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf There Are\n${effect[1]} or More Adjacent\nEmpty Tile Locations,\nGain (B) (B)\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 11786: string+=`Turn 0 or Earlier:\nAdd ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 11787: string+=`Put a Card in Discard\nPile in Your Hand\nDecrease Turn\nNumber by ${effect[0]}`; break
+        case 11788: string+=`Decrease Turn\nNumber by ${effect[0]}\nEvolve Your Hand For ${effect[1]}`; break
+        case 11789: string+=`Gain ${effect[0]} Currency\nProcess:\nGraphene to Diamond`; break
+        case 11790: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nEvolve Your Hand For ${effect[1]}`; break
+
+        case 11791: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCurse in Hand:\nIncreases by ${effect[1]}\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        //8303
 
         //mark p
         //mark q

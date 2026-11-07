@@ -108,6 +108,9 @@ class itemManager{
     hasItem(type,player){
         return this.items[player].some(item=>item.type==type)
     }
+    quantityItem(type,player){
+        return this.items[player].filter(item=>item.type==type).length
+    }
     loseRandom(player){
         let possible=[]
         for(let a=0,la=this.items[player].length;a<la;a++){

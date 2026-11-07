@@ -24194,7 +24194,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Silicone',rarity:-1,list:-8,
+        name:'Tungsten\nTires',rarity:-1,list:-8,
         levels:[
             {effect:[1,1],attack:5487,cost:0,target:[1,1,1],spec:[0],class:3},
             {effect:[1,1],attack:5487,cost:0,target:[1,1,1],spec:[],class:3},
@@ -35620,7 +35620,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Overcast',rarity:-1,list:-8,
+        name:'Overrun',rarity:-1,list:-8,
         levels:[
             {effect:[13],attack:3276,cost:1,target:[0],spec:[],class:2},
             {effect:[20],attack:3276,cost:1,target:[0],spec:[],class:2},
@@ -43460,7 +43460,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Retrograde',rarity:-1,list:-8,
+        name:'Adderall',rarity:-1,list:-8,
         levels:[
             {effect:[7,2],attack:991,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[12,2],attack:991,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -66532,7 +66532,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Lure',rarity:-1,list:-8,
+        name:'Cheer',rarity:-1,list:-8,
         levels:[
             {effect:[4,1],attack:2425,cost:0,target:[0],spec:[],class:2},
             {effect:[7,1],attack:2425,cost:0,target:[0],spec:[],class:2},
@@ -67481,20 +67481,6 @@ types.disband=[
                 {effect:[14],attack:2641,cost:[-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[20],attack:2641,cost:[-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[25],attack:2641,cost:[-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Sapphire\nRapids',rarity:-1,list:-8,
-        levels:[
-            {effect:[12,1],attack:5621,cost:1,target:[0],spec:[],class:2},
-            {effect:[16,2],attack:5621,cost:1,target:[0],spec:[],class:2},
-            {effect:[20,2],attack:5621,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[1],
-            levels:[
-                {effect:[20,1],attack:5621,cost:[1,-1],target:[0],spec:[],class:2},
-                {effect:[28,2],attack:5621,cost:[1,-1],target:[0],spec:[],class:2},
-                {effect:[36,2],attack:5621,cost:[1,-1],target:[0],spec:[],class:2},
             ],
         },
     },{
@@ -69906,7 +69892,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Glass\nHouse',rarity:-1,list:-8,
+        name:'Glass\nRoof',rarity:-1,list:-8,
         levels:[
             {effect:[1,1],attack:7966,cost:2,target:[0],spec:[4],class:11},
             {effect:[1,1],attack:7966,cost:2,target:[0],spec:[],class:11},
@@ -69987,6 +69973,34 @@ types.disband=[
                 {effect:[14,1],attack:7875,cost:[1,-1],target:[0],spec:[],class:2},
                 {effect:[22,1],attack:7875,cost:[1,-1],target:[0],spec:[],class:2},
                 {effect:[28,1],attack:7875,cost:[1,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Yeltsin',rarity:-1,list:-8,
+        levels:[
+            {effect:[10],attack:7625,cost:0,target:[0],spec:[41,80,81],class:14},
+            {effect:[10],attack:7625,cost:0,target:[0],spec:[41,80,81],class:14},
+            {effect:[10],attack:7625,cost:0,target:[0],spec:[41,80,81],class:14},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[10],attack:7625,cost:[],target:[0],spec:[41,80,81],class:14},
+                {effect:[10],attack:7625,cost:[],target:[0],spec:[41,80,81],class:14},
+                {effect:[10],attack:7625,cost:[],target:[0],spec:[41,80,81],class:14},
+            ],
+        },
+    },{
+        name:'Plastic\nDefense',rarity:-1,list:-8,
+        levels:[
+            {effect:[10,4],attack:2865,cost:1,target:[0],spec:[],class:2},
+            {effect:[14,6],attack:2865,cost:1,target:[0],spec:[],class:2},
+            {effect:[16,8],attack:2865,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[16,6],attack:2865,cost:[2,2],target:[0],spec:[],class:2},
+                {effect:[24,9],attack:2865,cost:[2,2],target:[0],spec:[],class:2},
+                {effect:[28,12],attack:2865,cost:[2,2],target:[0],spec:[],class:2},
             ],
         },
     },

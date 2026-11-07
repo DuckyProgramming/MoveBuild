@@ -376,10 +376,11 @@ You'll often find synergies in places you'd never expect.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
-                this.popups=[[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[]]
                 this.pages=[
 `George, the Agent, is fairly simple, but can unleash deadly combos.
-His gimmicks include: Combo, Collision, Packs`,
+His gimmicks include: Combo, Collision, Bruise`,
+//His gimmicks include: Combo, Collision, Packs`,
 `Combo, at its base, is a counter that increases by one each time you hit an enemy.
 There is no limit to combo, and it does not reset after each turn.
 Combo can also be gained through certain cards.`,
@@ -391,12 +392,15 @@ See how much combo you can get!`,
 `Conditioning, in comparison, is much simpler. It doubles one block add.
 After doubling one block add, one stack of conditioning is removed.
 More stacks of conditioning increase the number of block adds doubled.`,
-`At the Perk screen, George behaves differently from the other characters.
+`A final status effect George can apply is Bruise.
+Bruise increases damage that enemies take by its value.
+It decreases by 1 after each hit, so make sure to keep applying it.`,
+/*`At the Perk screen, George behaves differently from the other characters.
 Rather than being completely random, one card of each option is set.
 These are the pack cards. You can typically only get one per game.`,
 `The pack cards each give you a selection of other cards to play.
 These cards are typically powerful, but fit a distinct theme.
-Each one has a different utility, so pick your pack wisely.`,
+Each one has a different utility, so pick your pack wisely.`,*/
 `END OF TUTORIAL`,
                 ]
             break
@@ -414,11 +418,12 @@ Each one has a different utility, so pick your pack wisely.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
-                this.popups=[[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Lira, the Apprentice, is designed to be fairly simple to play,
 possessing many basic cards. However, she still has few gimmicks.
 They include: Health, Plant Tiles, Fatigue Manipulation, Poison`,
+//They include: Health, Plant Tiles, Fatigue Manipulation, Poison`,
 `While Lira doesn't have much health, that can be increased.
 Each point of health is also very valuable because of certain cards.`,
 `Some cards, such as Increment, can increase your max health.
@@ -432,11 +437,12 @@ These tiles have no effect and must be created through certain cards.`,
 `Once the tiles are created, however, they can be accessed for various effects.
 These can be beneficial or detrimental, so check the characters on plant tiles
 before using them, as those characters will be afflicted.`,
-`Next, we have Fatigue manipulation. Most other characters are stuck with Fatigue,
+/*`Next, we have Fatigue manipulation. Most other characters are stuck with Fatigue,
 but as Lira, there are ways to remove fatigue or capitalize off of it.
-But still, Fatigue remains an issue during longer battles.`,
+But still, Fatigue remains an issue during longer battles.`,*/
 `Finally, Poison acts similarly to Bleed. It deals damage each turn.
-It decreases by 1 each turn as well. Poison also bypasses Block.`,
+It decreases by 1 each turn, so it wears off on its own unless more is applied.`,
+//It decreases by 1 each turn as well. Poison also bypasses Block.`,
 //It decreases by 1 each turn as well. Unlike Bleed, Poison bypasses Block.`,
 `To see the full effect of Poison against this enemy,
 end you turn a couple times to let it take damage.`,
@@ -815,7 +821,7 @@ when the energy doesn't work out in your favor.`,
                 this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
 `DD-610, the Paradigm, has many valid strategies.
-Its gimmicks are: Claws and Shock`,
+Its gimmicks are: Claws and Shock.`,
 //Its gimmicks are: Claws, Shock, and Cables.`,
 `Claws are a set of cards that interact with each other.
 Clawup refers to increasing the effect of other Claws.`,
@@ -1140,7 +1146,8 @@ are many ways to build around these high-cost cards.`,
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
-                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                //this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
                 this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
@@ -1313,7 +1320,7 @@ as Workers will be drawn instead of other cards.`,
 This lets you spend a number of Workers for a effect.`,
 `Because your deck will often be large, you can then activte
 the Population keyword. This acts as threshold for your deck size,
-giving you an advntage if you have enough cards in your deck.`,
+giving you an advantage if you have enough cards in your deck.`,
 `When you begin the game as Dukelis, you will be given Lenin,
 the first Leader card. Each Leader gives you incremental buffs,
 and can be succeeded after meeting a requirement.`,
@@ -1707,7 +1714,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,1)
                         this.battle.cardManagers[0].hand.add(findName('Ready\nUp',types.card),0,1)
                     break
-                    case 5:
+                    /*case 5:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
@@ -1715,6 +1722,15 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Security\nPack',types.card),0,1)
                         this.battle.cardManagers[0].hand.add(findName('Sapper\nPack',types.card),0,1)
                         this.battle.cardManagers[0].hand.add(findName('Infantry\nPack',types.card),0,1)
+                    break*/
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(40)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Thud',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Triple\nPunch',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Punch-Kick\nCombo',types.card),0,1)
                     break
                 }
             break
@@ -1739,12 +1755,12 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Grow\nThorns',types.card),0,2)
                         this.battle.cardManagers[0].hand.add(findName('Euphonia',types.card),0,2)
                     break
-                    case 6:
+                    /*case 6:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Recover',types.card),0,2)
                         this.battle.cardManagers[0].hand.add(findName('Trapezius',types.card),0,2)
-                    break
-                    case 7:
+                    break*/
+                    case 6:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
@@ -1760,7 +1776,7 @@ while staying aware of when they can feed a quick combo.`,
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Quick\nStab',types.card),0,3)
                         this.battle.cardManagers[0].hand.add(findName('Scratch',types.card),0,3)
-                        this.battle.cardManagers[0].hand.add(findName('Gush of\nBlood',types.card),0,3)
+                        //this.battle.cardManagers[0].hand.add(findName('Gush of\nBlood',types.card),0,3)
                     break
                     /*case 4:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1777,7 +1793,8 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Dodge',types.card),0,17)
+                        //this.battle.cardManagers[0].hand.add(findName('Dodge',types.card),0,17)
+                        this.battle.cardManagers[0].hand.add(findName('Dodge',types.card),0,3)
                     break
                     case 6:
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].addAttack(1,[1])
@@ -2585,6 +2602,7 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
                     break
                     case 9:
+                        this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
                         this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
                         this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)
                         this.battle.cardManagers[0].hand.add(findName('Reverberation',types.card),0,25)

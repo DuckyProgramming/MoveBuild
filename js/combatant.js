@@ -5888,8 +5888,8 @@ class combatant{
             if(this.status.main[309]>0){
                 this.battle.combatantManager.allEffect(19,[this.status.main[306]])
             }else{
-                this.battle.combatantManager.highestEffect(0,[this.status.main[306]])
-                //this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[306]])
+                //this.battle.combatantManager.highestEffect(0,[this.status.main[306]])
+                this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[306]])
             }
         }
     }
