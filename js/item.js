@@ -1053,10 +1053,10 @@ class item{
                 case 'Draw 1':
                     displaySymbol(this.layer,0,0,190,0,1,this.fade)
                 break
-                case '2 Vulnerable':
+                case '1 Vulnerable':
                     displaySymbol(this.layer,0,0,191,0,1,this.fade)
                 break
-                case '10 Splash Damage':
+                case '5 Splash Damage':
                     displaySymbol(this.layer,0,0,192,0,1,this.fade)
                 break
                 case '1 Strength 2':

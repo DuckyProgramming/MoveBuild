@@ -11,35 +11,25 @@ test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
 
-carbon = graphite ()
-graphite = diamond ()
 iron = iron sword?
 diamond = diamond sword?
-quartz = glass (4 bleed)
 zinc + carbon = battery (1 energy)
 carbon + hydrogen = plastic (draw 2)
 iron + hydrogen = steel (12 block for 2 turns)
 nitrogen + hydrogen = ammonium (splash damage)
 ammonium + carbon = explosive powder (a bomb)
-explosive powder + glass = shrapnel
-explosive powder + battery = prismatic bomb
 quartz + prismatic bomb = drone
 iron = storage (retain a card)
 glass = item slot
 
 trash compacting - when you play a fatigue, add compound
-[new asbestos] - countdown that makes the next few cards duplicate and adds armor
-e block -> t block
 muscle mania - when you gain strength, all enemies lose health
-antiparticle - double your energy, fuel: triple it instead
-[dev] moldy sandwich - randomly swap all the costs of cards in your deck
-slate peg - block, a random enemy deals no damagen next time they attack
 [golden diamond]
+split brass beast
 
 tax evasion? (when you lose currency lose 1 less)
 blue pepper - get 3 ? if you have 3 empty spots???
-[dark humor]
-[zaroff's contract]
+dark humor - gain 1 pity, gain 1 energy when an enemy dies [ace warrior]
 [trigger all wishes in hand]
 
 +4 evoke
@@ -47,10 +37,6 @@ blue pepper - get 3 ? if you have 3 empty spots???
 a ton of fresh prehex cards
 more ways to turn back time
 more evolve
-
-separate weaknesses - 2 vulnerable, 2 node
-other's mistakes - poison jet but light orb
-flux - draw a card, add 2 block per orb [4995]
 
 check that on mtg mode energy is never mentioned
 outdupes, outmtgerror

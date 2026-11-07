@@ -335,6 +335,48 @@ types.invalid=[
                 {effect:[],attack:1292,cost:[],target:[0],spec:[4,5],class:5},
             ],
         },
+    },{
+        name:'First\nQuarter',rarity:-1,list:-10,
+        levels:[
+            {effect:[2],attack:1692,cost:1,target:[2,1,6],spec:[1],class:11},
+            {effect:[3],attack:1692,cost:1,target:[2,1,6],spec:[1],class:11},
+            {effect:[4],attack:1692,cost:1,target:[2,1,6],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-10,color:[2,3],
+            levels:[
+                {effect:[2],attack:1692,cost:[11],target:[2,1,6],spec:[1],class:11},
+                {effect:[3],attack:1692,cost:[11],target:[2,1,6],spec:[1],class:11},
+                {effect:[4],attack:1692,cost:[11],target:[2,1,6],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Last\nQuarter',rarity:-1,list:-10,
+        levels:[
+            {effect:[2],attack:1693,cost:1,target:[0],spec:[1],class:11},
+            {effect:[3],attack:1693,cost:1,target:[0],spec:[1],class:11},
+            {effect:[4],attack:1693,cost:1,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-10,color:[2,3],
+            levels:[
+                {effect:[2],attack:1693,cost:[2,3],target:[0],spec:[1],class:11},
+                {effect:[3],attack:1693,cost:[2,3],target:[0],spec:[1],class:11},
+                {effect:[4],attack:1693,cost:[2,3],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Foehn',rarity:-1,list:-10,
+        levels:[
+            {effect:[],attack:1694,cost:1,target:[0],spec:[1],class:11},
+            {effect:[],attack:1694,cost:1,target:[0],spec:[1],class:11},
+            {effect:[],attack:1694,cost:1,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-10,color:[1,2],
+            levels:[
+                {effect:[],attack:1694,cost:[1,2],target:[0],spec:[1],class:11},
+                {effect:[],attack:1694,cost:[1,2],target:[0],spec:[1],class:11},
+                {effect:[],attack:1694,cost:[1,2],target:[0],spec:[1],class:11},
+            ],
+        },
     },
 
     //mark er

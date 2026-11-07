@@ -11841,6 +11841,26 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.rect(0,0,4.5,6,1)
         break
+        case 1080:
+            layer.stroke(60,fade)
+            layer.strokeWeight(0.5)
+            layer.rect(-2,-2,3,3)
+            layer.rect(2,-2,3,3)
+            layer.rect(-2,2,3,3)
+            layer.rect(2,2,3,3)
+            layer.rect(0,0,9,9)
+            layer.stroke(220,240,240,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1)
+            for(let a=0,la=9;a<la;a++){
+                layer.rotate(360/la)
+                pentagon(layer,0,0,-1.5,-4.5,-0.5,-6,0.5,-6,1.5,-4.5)
+            }
+            layer.strokeJoin(MITER)
+            layer.noStroke()
+            layer.fill(180,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
 
     }
     //mark s
@@ -19993,12 +20013,12 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1.5)
             layer.noFill()
             regPoly(layer,0,0,10,12,12,0)
-            let tick=7.5
+            let tick193=7.5
             for(let a=0,la=5;a<la;a++){
-                layer.line(0,tick,0,12)
-                layer.line(0,tick,lsin(72)*tick,lcos(72)*tick)
-                layer.line(0,tick,-lsin(36)*12,lcos(36)*12)
-                layer.line(0,tick,lsin(36)*12,lcos(36)*12)
+                layer.line(0,tick193,0,12)
+                layer.line(0,tick193,lsin(72)*tick193,lcos(72)*tick193)
+                layer.line(0,tick193,-lsin(36)*12,lcos(36)*12)
+                layer.line(0,tick193,lsin(36)*12,lcos(36)*12)
                 layer.rotate(360/la)
             }
         break
@@ -20011,6 +20031,33 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
                 layer.quad(0,-1.5,-2,-5,0,-13.5,2,-5)
                 layer.rotate(360/la)
             }
+        break
+        case 195:
+            layer.stroke(240,240,240,fade)
+            layer.strokeJoin(ROUND)
+            layer.strokeWeight(1.5)
+            layer.noFill()
+            let tick195=[10.8,6]
+            layer.line(0,-tick195[1],lsin(-36)*tick195[0],tick195[1])
+            layer.line(0,-tick195[1],lsin(36)*tick195[0],tick195[1])
+            layer.line(lsin(-72)*tick195[0],-tick195[1],lsin(-36)*tick195[0],tick195[1])
+            layer.line(lsin(72)*tick195[0],-tick195[1],lsin(36)*tick195[0],tick195[1])
+            /*layer.line(lsin(-18)*tick195[0],-tick195[1],lsin(18)*tick195[0],tick195[1])
+            layer.line(lsin(54)*tick195[0],-tick195[1],lsin(18)*tick195[0],tick195[1])
+            layer.line(lsin(-18)*tick195[0],-tick195[1],lsin(-54)*tick195[0],tick195[1])
+            layer.line(lsin(54)*tick195[0],-tick195[1],tick195[0],tick195[1])
+            layer.line(-tick195[0],-tick195[1],lsin(-54)*tick195[0],tick195[1])*/
+            layer.line(-tick195[0],-tick195[1],tick195[0],-tick195[1])
+            layer.line(-tick195[0],tick195[1],tick195[0],tick195[1])
+            layer.line(-tick195[0],-tick195[1],-tick195[0],tick195[1])
+            layer.line(tick195[0],-tick195[1],tick195[0],tick195[1])
+            layer.line(-tick195[0],-tick195[1],0,-tick195[1]*2)
+            layer.line(tick195[0],-tick195[1],0,-tick195[1]*2)
+            layer.line(-tick195[0],tick195[1],0,tick195[1]*2)
+            layer.line(tick195[0],tick195[1],0,tick195[1]*2)
+            layer.line(0,-tick195[1],0,-tick195[1]*2)
+            layer.line(lsin(-36)*tick195[0],tick195[1],0,tick195[1]*2)
+            layer.line(lsin(36)*tick195[0],tick195[1],0,tick195[1]*2)
         break
         //mark g
     }
@@ -20208,4 +20255,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 192-Hydrazine
 193-Diamond
 194-Prismatic Bomb 2
+195-Diamond 2
 */

@@ -2392,14 +2392,14 @@ function outListing(){
 		64,//curse
 		40,//partnership
 		32,//tarot
-		20,//spectral
+		24,//spectral
 		40,//subcard
 		24,//event
 		160,//reserve
 		160,//developer
 		12,//basic
 		28,//pack
-		36,//misc
+		32,//misc
 	]
 	let unlisted=[
 		5000,//disband
@@ -3154,6 +3154,16 @@ function oracleCut(start,end){
 		cardData.display()
 	}
 }
+function oracleCost(min,max){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.cost>=min&&card.cost<=max)
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
 function oracleClass(cardClass){
 	current.overlayManager.overlays[35][0].active=true
     current.overlayManager.overlays[35][0].activate([0,-99])
@@ -3251,18 +3261,18 @@ function mtgPlayerColor(player){
 		case 0: return [0]
 		case 1: return [4]
 		case 2: return [1]
-		case 3: return [3,5]
+		case 3: return [3]
 		case 4: return [5]
-		case 5: return [2,5]
+		case 5: return [2]
 		case 6: return [3,4]
 		case 7: return [4,5]
 		case 8: return [1,5]
 		case 9: return [1,4]
-		case 10: return [3]
+		case 10: return [3,5]
 		case 11: return [2,3]
 		case 12: return [1,3]
 		case 13: return [1,2]
-		case 14: return [2]
+		case 14: return [2,5]
 		case 15: return [2,4]
 		case 16: return [1,2,4]
 		case 17: return [1,4,5]
@@ -3784,6 +3794,7 @@ function checkExists(start,end){
 		3943,4190,//invalid mtg mergers
 		3662,//invalid recycling
 		4298,//invalid shooting echo
+		5752,//invalid light it up
 		5868,//invalid halflife
 		6032,//invalid seven hakus
 		6109,//invalid anaphel

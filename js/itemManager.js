@@ -201,6 +201,34 @@ class itemManager{
             }
         }
     }
+    process(player,input,output,catalyst=[]){
+        for(let a=0,la=10;a<la;a++){
+            if(input.every(a=>this.items[player].some(b=>a==b.type))&&catalyst.every(a=>this.items[player].some(b=>a==b.type))){
+                for(let b=0,lb=input.length;b<lb;b++){
+                    for(let c=0,lc=this.items[player].length;c<lc;c++){
+                        if(this.items[player][c].type==input[b]){
+                            this.items[player][c].type=1
+                            this.items[player][c].refresh()
+                            this.total[player]--
+                            break
+                        }
+                    }
+                }
+                for(let b=0,lb=output.length;b<lb;b++){
+                    for(let c=0,lc=this.items[player].length;c<lc;c++){
+                        if(this.items[player][c].type==1){
+                            this.items[player][c].type=output[b]
+                            this.items[player][c].refresh()
+                            this.total[player]++
+                            break
+                        }
+                    }
+                }
+            }else{
+                break
+            }
+        }
+    }
     fillAll(type,player){
         for(let a=0,la=this.items[player].length;a<la;a++){
             this.addItem(type,player)
@@ -761,10 +789,10 @@ class itemManager{
                 this.battle.cardManagers[player].draw(effectiveness)
             break
             case 1024:
-                this.battle.cardManagers[player].hand.selfCall(6,[11682,[2*effectiveness],11,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[11682,[effectiveness],11,[2,1,3]])
             break
             case 1025:
-                this.battle.cardManagers[player].hand.selfCall(6,[11681,[2*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[11681,[5*effectiveness],1,[2,1,3]])
             break
             case 1027:
                 this.battle.cardManagers[player].draw(3*effectiveness)

@@ -172,7 +172,7 @@ class battle{
     create(){
         graphics.combatant=[]
         constants.collisionDamage=4
-        game.theme=0
+        //game.theme=0
         this.players=this.player.length
         this.initialGraphics()
 
@@ -3040,7 +3040,7 @@ class battle{
                     this.layer.noStroke()
                     this.layer.rect(this.layer.width/2,this.layer.height/2,this.layer.width,this.layer.height)
                 }
-                if(game.theme>0){
+                /*if(game.theme>0){
                     switch(game.theme){
                         case 1:
                             this.layer.fill(255,0,0,0.1)
@@ -3058,7 +3058,7 @@ class battle{
                             this.layer.triangle(this.layer.width*(b%2),this.layer.height*floor(b/2),3+3*a+(this.layer.width-6-6*a)*(b%2),this.layer.height*floor(b/2),this.layer.width*(b%2),3+3*a+(this.layer.height-6-6*a)*floor(b/2))
                         }
                     }
-                }
+                }*/
             break
             case 'replay':
                 this.layer.background(110,115,120)

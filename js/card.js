@@ -1418,7 +1418,7 @@ class card{
                 this.battle.itemManager.addRandomItem(this.player)
                 this.exhaust=true
             break
-            case 5752:
+            case 5752: case 11729:
                 this.effect[1]+=this.effect[3]
             break
             case 5825:
@@ -2277,12 +2277,22 @@ class card{
         if(type>=0){
             switch(this.attack){
                 case 5942:
-                    this.battle.combatantManager.areaAbstract(0,[this.effect[1],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
-                    this.battle.cardManagers[this.player].draw(this.effect[2])
-                    this.deSize=true
+                    if(!this.deSize){
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[1],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                        this.battle.cardManagers[this.player].draw(this.effect[2])
+                        this.deSize=true
+                    }
                 break
                 case 5960: case 5961: case 7864: case 7865: case 11322:
                     this.costDown(0,[1])
+                break
+                case 11721:
+                    if(!this.deSize){
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[0],userCombatant.id,0],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
+                        userCombatant.statusEffect('Focus',this.effect[1])
+                        this.battle.cardManagers[this.player].draw(this.effect[2])
+                        this.deSize=true
+                    }
                 break
             }
         }
@@ -3397,7 +3407,7 @@ class card{
                     this.costDown(2,[1])
                 }
             break
-            case 5752:
+            case 5752: case 11729:
                 this.effect[0]+=this.effect[2]
             break
             case 5973: case 10153: case 10203:

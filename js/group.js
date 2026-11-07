@@ -529,6 +529,16 @@ class group{
         this.cards.splice(this.cardShuffledIndex,0,this.cards[this.cards.length-1])
         this.cards.splice(this.cards.length-1,1)
     }
+    shuffleCosts(){
+        let costs=this.cards.filter(card=>!card.specialCost).map(card=>card.cost)
+        let possible=this.cards.filter(card=>!card.specialCost)
+        while(costs.length>0){
+            let index=floor(random(0,possible.length))
+            possible[index].setCost(2,[costs[0]])
+            possible.splice(index,1)
+            costs.splice(0,1)
+        }
+    }
     slideTop(){
         this.cards.splice(0,0,this.cards[this.cards.length-1])
         this.cards.splice(this.cards.length-1,1)
@@ -4534,6 +4544,14 @@ class group{
             break
             case 11487:
                 card.effect[0]=max(0,card.effect[0]-card.effect[1])
+            break
+            case 11713:
+                this.battle.cardManagers[this.player].hand.upgrade(card.effect[0])
+                this.sendAmounts[sendId]+=card.effect[1]
+            break
+            case 11714:
+                this.battle.cardManagers[this.player].hand.exhaust(card.effect[0])
+                this.sendAmounts[sendId]+=card.effect[1]
             break
 
         }

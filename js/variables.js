@@ -1752,8 +1752,8 @@ types={
         {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 9 Block'},
         {name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},
-        {name:'Ammonium',internal:'2 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 2 Vulnerable\nRange 1-3\nTemporary'},
-        {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 10 Splash Damage\nRange 1-3\nTemporary'},
+        {name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
+        {name:'Hydrazine',internal:'5 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 5 Splash Damage\nRange 1-3\nTemporary'},
         {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
 
@@ -8536,7 +8536,7 @@ Deactivate themselves automatically if not enough Influence is available.`,
 }
 stage={scale:0,scene:'title',internal:{version:1.9}}
 game={player:[],deck:[],ascend:0,diff:0,id:0,timer:0,animRate:1,turnTime:0,
-    collisionDamage:4,dev:false,allMap:-1,theme:0,infoOff:false}
+    collisionDamage:4,dev:false,allMap:-1,infoOff:false}
 variants={
     mtg:false,mod:false,randomCombat:false,initiative:false,
     assault:false,business:false,domain:false,relicspam:false,
