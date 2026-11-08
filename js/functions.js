@@ -899,7 +899,7 @@ function intentDescription(attack,user,info){
 			case 36: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain 1 Combo Per Hit\nIf Unblocked,\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nRange 1-1`
 			case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage+${info?calculateIntent(attack.effect[1],user,0):`?`}*Combo\nRange 1-1`
 			case 38: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
-			case 39: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(pl(attack.effect[0])):`?`}`
+			case 39: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[1]=='Glitch'&&attack.effect[0]!=1?`e`:``)+pl(attack.effect[0]):`?`}`
 			case 40: return `Create ${info?attack.effect[0]:`?`} Landmine${pl(attack.effect[0])}`;
 			case 41: return `Create ${info?attack.effect[0]:`?`} Spike${pl(attack.effect[0])}`;
 			case 42: return `Create ${info?attack.effect[0]:`?`} Trenche${pl(attack.effect[0])}`;
@@ -1019,7 +1019,7 @@ function intentDescription(attack,user,info){
 			case 152: return `Apply ${info?attack.effect[0]:`?`} Weak\nRange 1-6`
 			case 153: return `Apply ${info?attack.effect[0]:`?`} Weak\n3 Tiles Wide\nRange 1-1`
 			case 154: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nSpawn Line of Poison Tiles`
-			case 155: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(pl(attack.effect[0])):`?`} Nearby`
+			case 155: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[1]=='Glitch'&&attack.effect[0]!=1?`e`:``)+(pl(attack.effect[0])):`?`} Nearby`
 			case 156: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nPulls at Range 2\nRange 1-2`
 			case 157: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}${pl(attack.effect[1])}\nPush 1 Tile\nin All Directions\nRange 1-1`
 			case 158: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Exhausts ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])}\nRange 1-6\nNo Movement`
@@ -1050,7 +1050,7 @@ function intentDescription(attack,user,info){
 			case 186: return `Respawn All Defeated\nAllies Nearby`
 			case 187: return `Gain ${info?attack.effect[0]:`?`} Buffer\nGain ${info?attack.effect[1]:`?`} Strength`
 			case 188: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}xRange Damage\nRange 1-6\nNo Movement`
-			case 189: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[0]>0?`s`:``):`?`} at Corners\nHas Chance to Spawn ${info?attack.effect[2]+(attack.effect[0]>0?`s`:``):`?`}`
+			case 189: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[1]=='Glitch'&&attack.effect[0]!=1?`e`:``)+pl(attack.effect[0]):`?`} at Corners\nHas Chance to Spawn ${info?attack.effect[2]+pl(attack.effect[0]):`?`}`
 			case 190: return `Add ${info?attack.effect[0]:`?`} Block\nGain ${info?attack.effect[1]:`?`} Armor\nGain ${info?attack.effect[2]:`?`} Strength`
 			case 191: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6\nNo Movement`
 			case 192: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nin All Directions\nRange 1-2`
@@ -1078,7 +1078,7 @@ function intentDescription(attack,user,info){
 			case 214: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2\nTargets 2 Adjacent Tiles`
 			case 215: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Dissipating\nin All Directions\nRange 1-2`
 			case 216: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage to Self\nHeal Health to Boss\nEqual to Damage Dealt`
-			case 217: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\nSpawn ${info?attack.effect[1]:`?`} ${info?attack.effect[2]+(attack.effect[1]>0?`s`:``):`?`}\nOn Hit\nRange 1-1`
+			case 217: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\nSpawn ${info?attack.effect[1]:`?`} ${info?attack.effect[2]+(attack.effect[2]=='Glitch'&&attack.effect[1]!=1?`e`:``)+(attack.effect[1]>0?`s`:``):`?`}\nOn Hit\nRange 1-1`
 			case 218: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Diagonal Directions\nRange 1-6\nNo Movement`
 			case 219: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin All Directions\nRange 1-6\nNo Movement`
 			case 220: return `Take Third Damage\nFor ${info?attack.effect[0]:`?`} Turns`
@@ -1182,7 +1182,7 @@ function intentDescription(attack,user,info){
 			case 322: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMore than or Equal to 5 Charge:\nDeals Double`; break
 			case 323: return `Apply ${info?attack.effect[0]:`?`} Burn\nAnywhere`
 			case 324: return `Apply ${info?attack.effect[0]:`?`} Miss\nAnywhere`
-			case 325: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damagec\nRange 1-2`
+			case 325: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2`
 			case 326: return `Replace ${info?attack.effect[0]:`?`} Card${pl(attack.effect[0])}\nWith${attack.effect[0]!=1?``:` a`} Strike${pl(attack.effect[0])}\nReplace ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])}\nWith${attack.effect[1]!=1?``:` a`} Defend${pl(attack.effect[1])}`
 			case 327: return `Apply ${info?attack.effect[0]:`?`} Jinx\nRange 1-6`
 			case 328: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDiscard ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])}\nRange 1-6`
@@ -1287,7 +1287,7 @@ function intentDescription(attack,user,info){
 				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-6\nNo Movement`
 			case 429: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 2-2\nNo Movement`
 			case 430: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 2-2\nNo Movement`
-			case 431: return `Leave Battle\nSpawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(pl(attack.effect[0])):`?`}`
+			case 431: return `Leave Battle\nSpawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[1]=='Glitch'&&attack.effect[0]!=1?`e`:``)+(pl(attack.effect[0])):`?`}`
 			case 432: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Temporary Strength`
 			case 433: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[1]:`?`} Less\nCard${pl(attack.effect[1])} Next Turn\nRange 1-2`
 			case 434: return `Apply ${info?attack.effect[0]:`?`} Weak\nApply ${info?attack.effect[1]:`?`} Vulnerable\nApply ${info?attack.effect[2]:`?`} Frail\nRange 1-1`
@@ -2080,6 +2080,15 @@ function qa(name){
 	let type=findNameApprox(name,types.card)
 	if(type>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,current.standardColorize(type))
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
+function qae(name,edition){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,current.standardColorize(type),edition)
 		return 'Added'
 	}else{
 		return 'Invalid'
@@ -3041,7 +3050,8 @@ function colorTest(){
 	}
 }
 function attackTest(type,target,startpoint,endpoint){
-	let lim=0//7500
+	let lim=0
+	game.attackTest=true
 	switch(type){
 		case 0: case 1: case 2: case 3:
 			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(9999999999999)
@@ -3089,37 +3099,41 @@ function attackTest(type,target,startpoint,endpoint){
 			}else{
 				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
 					for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-						if((
-								type==0&&types.card[a].levels[b].target[0]==2||
-								type==1&&types.card[a].levels[b].target[0]==1||
-								type==2&&types.card[a].levels[b].target[0]==5||
-								type==3&&types.card[a].levels[b].target[0]==0
-							)&&types.card[a].levels[b].attack>=lim
-						){
-							current.attackManager.type=types.card[a].levels[b].attack
-							current.attackManager.player=0
-							current.attackManager.effect=types.card[a].levels[b].effect
-							current.attackManager.attackClass=types.card[a].levels[b].class
-							current.attackManager.user=0
-							current.attackManager.level=b
-							current.attackManager.color=current.standardColorize(a)
-							current.attackManager.energy=3
-							current.attackManager.target[0]=type==1?target[0]:target
-							current.attackManager.targetDistance=1
-							current.attackManager.targetClass=2
-							current.attackManager.combo=0
-							current.attackManager.amplify=true
-							current.attackManager.relPos=[0,0]
-							current.attackManager.limit=types.card[a].levels[b].limit
-							current.attackManager.id=-1
-							current.attackManager.edition=0
-							current.attackManager.drawn=0
-							current.attackManager.fuel=0
-							current.attackManager.debut=false
-							current.attackManager.evolve=0
-							current.attackManager.rewinding=false
-							current.attackManager.cost=types.card[a].levels[b].cost
-							current.attackManager.execute()
+						try{
+							if((
+									type==0&&types.card[a].levels[b].target[0]==2||
+									type==1&&types.card[a].levels[b].target[0]==1||
+									type==2&&types.card[a].levels[b].target[0]==5||
+									type==3&&types.card[a].levels[b].target[0]==0
+								)&&types.card[a].levels[b].attack>=lim
+							){
+								current.attackManager.type=types.card[a].levels[b].attack
+								current.attackManager.player=0
+								current.attackManager.effect=types.card[a].levels[b].effect
+								current.attackManager.attackClass=types.card[a].levels[b].class
+								current.attackManager.user=0
+								current.attackManager.level=b
+								current.attackManager.color=current.standardColorize(a)
+								current.attackManager.energy=3
+								current.attackManager.target[0]=type==1?target[0]:target
+								current.attackManager.targetDistance=1
+								current.attackManager.targetClass=2
+								current.attackManager.combo=0
+								current.attackManager.amplify=true
+								current.attackManager.relPos=[0,0]
+								current.attackManager.limit=types.card[a].levels[b].limit
+								current.attackManager.id=-1
+								current.attackManager.edition=0
+								current.attackManager.drawn=0
+								current.attackManager.fuel=0
+								current.attackManager.debut=false
+								current.attackManager.evolve=0
+								current.attackManager.rewinding=false
+								current.attackManager.cost=types.card[a].levels[b].cost
+								current.attackManager.execute()
+							}
+						}catch(e){
+							print(types.card[a].name,b)
 						}
 					}
 				}
@@ -3895,6 +3909,50 @@ function outItemIcon(start,end){
 		temp.display()
 		save(graphics.minor[graphics.minor.length-1])
 	}
+}
+function outText(type){
+	let str='';
+	switch(type){
+		case 0://card name+desc
+			current.overlayManager.overlays[35][0].active=true
+    		current.overlayManager.overlays[35][0].activate([0,-99])
+			current.overlayManager.overlays[35][0].cards.forEach(card=>str+=`${card.name.replaceAll('\n',' ')}: ${card.outDescription().replaceAll('\n',' ')}\n`)
+		break
+		case 1://card name+desc
+			current.overlayManager.overlays[35][0].active=true
+    		current.overlayManager.overlays[35][0].activate([0,-99])
+			current.overlayManager.overlays[35][0].cards.forEach(card=>str+=`${card.outDescription().replaceAll('\n',' ')}\n`)
+		break
+		case 2://relic+item+mod name+desc
+			types.relic.forEach(relic=>str+=`${relic.name}: ${relic.description.replaceAll('\n',' ')}\n`)
+			types.item.forEach(item=>str+=`${item.name}: ${item.description.replaceAll('\n',' ')}\n`)
+			types.mod.forEach(mod=>str+=`${mod.name}: ${mod.desc.replaceAll('\n',' ')}\n`)
+		break
+		case 3://relic+item+mod name+desc
+			types.relic.forEach(relic=>str+=`${relic.description.replaceAll('\n',' ')}\n`)
+			types.item.forEach(item=>str+=`${item.description.replaceAll('\n',' ')}\n`)
+			types.mod.forEach(mod=>str+=`${mod.desc.replaceAll('\n',' ')}\n`)
+		break
+		case 4://tutorial text
+			range(0,34).forEach(num=>{
+				current.tutorialManager.setupTutorial(num)
+				current.tutorialManager.pages.forEach(page=>str+=`${page}\n`)
+			})
+		break
+		case 5://event text
+			types.event.forEach(event=>event.pages.forEach(page=>str+=`${page.desc}\n${page.option.join(' ')}\n${page.optionDesc.join(' ')}\n`))
+		break
+		case 6://loading+dict+ascend/diff text
+			types.dictionary.forEach(dict=>str+=`${dict.desc.replaceAll('\n',' ')}\n`)
+			types.loading.forEach(loading=>str+=`${loading}\n`)
+			types.ascend.forEach(ascend=>str+=`${ascend.name}: ${ascend.desc}\n`)
+			types.diff.forEach(diff=>str+=`${diff.name}: ${diff.desc}\n`)
+		break
+		case 7://combatant name+desc, attack name+desc
+			types.combatant.forEach(combatant=>str+=`${combatant.name}: ${combatant.description} (${combatant.attack.map(attack=>intentDescription(attack,player(0),true)).join(' ')})\n`)
+		break
+	}
+	print(str)
 }
 /*chambers=[`B`,``,``,``,``,``]
 function russianRoulette(){

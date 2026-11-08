@@ -14,7 +14,7 @@ types.loading=[
     `The Humanic Wars, while a moment of triumph for the humans, were in reality a mass extinction event.`,
     `After the Great Humanic War, Management forces occupied the core, ignoring orders from imperial admirals.`,
     `While it has been mostly erased, sources referring to the Admiral-Manager by his original name can still be found.`,
-    `Class Admiral Hethzeroslaj Paullusthz won the Grand Coalition War, but you won't find his name in history books.`,
+    `Class-Admiral Hethzeroslaj Paullusthz won the Grand Coalition War, but you won't find his name in history books.`,
     `The Management Patriotic War's name could've been a little less on the nose, but the then-Manager made his decision.`,
     `General Alexis Ambrose Angle is known for his nickname "Triple A" and for being miserable to work with.`,
     `Governor Kirt Kodrax was appointed by the Reconstructor-Manager himself. He's disappointed in his own performance.`,
@@ -36,7 +36,7 @@ types.loading=[
     //30
 
     `After defeating Lexio II at the Arioscape, Grand Admiral Leibzo returned to a hero's welcome, but was then exiled.`,
-    `Maximilian Liyos disappeared after he supposedly masterminded the deposition of the Lawyer-Manager.`,
+    `Maximilian Ledai disappeared after he supposedly masterminded the deposition of the Lawyer-Manager.`,
     `Lexio II expected to be able to resupply at the Arioscape, but underestimated the speed of Management fighters.`,
     `Enric III "The Dark" had no choice but to confirm the Management's suzerainty after his father Lexio's death.`,
     `Konai under Management vassalage was constrained and economically backwards, but only due to their own faults.`,
@@ -72,7 +72,7 @@ types.loading=[
     //60
 
     `The Management Supreme Admiral used to command the 1st Fleet, but in modern times the title is now administrative.`,
-    `Director Ledis of Operation Godhood received a commendation for his efforts. Many expected far worse.`,
+    `Director Ledai of Operation Godhood received a commendation for his efforts. Many expected far worse.`,
     `"I regret having ever worked with Alexis Angle. How can such a popular man be so abrasive?" - Admiral Schenn`,
     `"As you begin your new lives, think about this: Do you love the Management?" - Executive of Corrections`,
     `"If you can't trust the most powerful, good luck with those that have less.' - Class General Bahgge`,
@@ -175,7 +175,7 @@ types.loading=[
     `HVM troops were allowed to guard their various armories on Konai, as Vorynx wanted to free up his regulars.`,
     `After Orofos was cleared by Management soldiers, some of the remaining clans were resettled across the galaxy.`,
     `The Management's communications have been mostly defunct during the rebellion, except via road couriers.`,
-    `Management soldiers on Konai are mostly garrison troops and light artillerists, as well as a few demolitionists.`,
+    `Management soldiers on Konai are mostly garrison troops and light artillerists, as well as a few demolitions men.`,
     `A few high-profile bombings have occurred during the rebellion. Neither side has taken responsibility for them.`,
     //150
 
@@ -283,7 +283,7 @@ types.loading=[
     `The Ring Mountains are notably less impressive in height than the nearby Charchallan range.`,
     `The Konaian First University was established in the days of King Enric I and has remained ever since.`,
     `Class-General Maximilian Ledai briefly ascended to the rank of Supreme General before being purged.`,
-    `Thanks to the sieges, Rueso is quite badly deopulated and cheap housing there is easy to find.`,
+    `Thanks to the sieges, Rueso is quite badly depopulated and cheap housing there is easy to find.`,
     `Back when it was called the Council of 24, the Operator worked tirelessly to communicate with Rueso.`,
     //240
 
@@ -2057,7 +2057,7 @@ culture and how it remains despite fierce resistance.`,
             },{
                 desc:
 `Within, you see a discussion of the the future
-prospects of Managemental conquests.`,
+prospects of Management conquests.`,
                 option:['Interesting'],
                 optionDesc:['Add a Random Card'],
                 link:[-1],
@@ -2306,9 +2306,9 @@ of empty cans and glasses. Nobody recognizes you, but as the
 first new person to arrive in some time, you are invited to
 join in by the bartender, offering the drinks for free and
 showing you the stack of prize money.`,
-                option:['Participate','Decline'],
-                optionDesc:['Become Cursed - Drunk',''],
-                link:[1,2],
+                option:['Participate','Have a Shot','Decline'],
+                optionDesc:['Become Cursed - Drunk','Lose 50 Currency',''],
+                link:[1,3,2],
             },{
                 desc:
 `Almost an hour later, your final opponent has had enough
@@ -2324,6 +2324,22 @@ champion now. You're too drunk to respond reasonably.`,
 where you watch their drinking game go to completion.
 At the end, they're barely even awake. Looks like
 you dodged a bullet there...`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`The taste is a little bitter, but it's not the worst
+thing you've ever had to drink. At the very least, your head
+feels just a little lighter after finishing it.`,
+                option:['Leave'],
+                optionDesc:['Lose 6 Health, Remove a Card'],
+                link:[-1],
+            },{
+                desc:
+`The taste isn't anything to write home about, in fact you
+barely register any distinctive notes of flavor at all.
+You leave a little disappointed, but at least you aren't drunk.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
@@ -2577,7 +2593,7 @@ made a counterweapon to their machines!"`,
 `A spirit appears before you, looking you over.
 "Your way of utilizing energy is quite inefficient,
 I must say", she remarks. "Could you allow my powers
-of purifcation to assist you in controlling it?`,
+of purification to assist you in controlling it?`,
                 option:['Accept','Decline'],
                 optionDesc:['Lose 1 Base Energy',''],
                 link:[1,2],
@@ -2702,7 +2718,7 @@ before its battery runs out.`,
                 link:[-1],
             },{
                 desc:
-`As you press the yreen Button, the machine lights up,
+`As you press the green Button, the machine lights up,
 beeping loud noises, and you follow its instructions,
 for the few minutes before its battery runs out.`,
                 option:['Done'],
@@ -3369,7 +3385,7 @@ to find the next victim to scam.`,
 One of them drags a cart of green minerals while another
 carries several pickaxes. They look ragged and dirty,
 not exactly the richest ducks around. One approaches you.
-"Would you be interestesd in buying some of the minerals
+"Would you be interested in buying some of the minerals
 from us? I'll give you a discount!"`,
                 option:['Buy Titanite','Decline'],
                 optionDesc:['Lose 40 Currency, Add a Titanite to Deck',''],
@@ -3445,7 +3461,7 @@ strange encounter resonates with you - something is following you around.`,
 by then of course - warfare outpaced them, but at least they were
 architecture. Yet most have long since been demolished. Now, you
 find yourself before one of the last. It's said the owner is
-gone now, but she moved in following Management relocation efforts.
+gone now, but she moved in following Managerial relocation efforts.
 It's open to the public now, but there's not much of value inside.
 Maybe something here is useful?`,
                 option:['Take an Item','Take Money'],
@@ -3489,7 +3505,7 @@ You've got places to be... there's nothing to do here.`,
                 desc:
 `Given the state of destruction the area's in, nobody will notice
 if you take what you find. Maybe the Management was right to
-recquisition the rest... certainly that's impossible.`,
+requisition the rest... certainly that's impossible.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
@@ -3766,7 +3782,7 @@ bodies and the remnants of destroyed fighters.`,
             },{
                 desc:
 `Getting deep underground, you and the other survivors
-successfully wait out the attacks until the fightefrs
+successfully wait out the attacks until the fighters
 run out of ammunition and withdraw. But it looks
 like a lot of rebels didn't make it out alive...`,
                 option:['Exit'],
@@ -3834,7 +3850,7 @@ value in the short-term if you have lots of trash.`,
                 desc:
 `You throw something onto the assembly line and
 watch as it is chewed up by the machine, with its
-remnants desposited into the plant's many reservoirs.`,
+remnants deposited into the plant's many reservoirs.`,
                 option:['Leave'],
                 optionDesc:['Remove a Card'],
                 link:[-1],
@@ -3945,7 +3961,7 @@ Those gangster assassins are no joke.`,
         pages:[
             {
                 desc:
-`You see two ducks, each dressed in strange cothing,
+`You see two ducks, each dressed in strange clothing,
 having an argument. Each claims he came up with some
 idea first, about a chocolate experience.`,
                 option:['Help Ducky Donka','Help Ducky McDuff',`Don't`],
@@ -4176,8 +4192,8 @@ Only one way to find out...`,
                 link:[-1],
             },{
                 desc:
-`You watch them buzz throughout the night, until they eventaully scatter.
-It wasn't much, but for some reason, you feel englightened.`,
+`You watch them buzz throughout the night, until they eventually scatter.
+It wasn't much, but for some reason, you feel enlightened, in a way.`,
                 option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
@@ -4230,7 +4246,7 @@ it never ends well for them.
                 desc:
 `You feel the coins you have collected being drained,
 disappearing into invisible voids, as she laughs, the purple glow
-becomeing stronger as it blocks out everything else around.
+becoming stronger as it blocks out everything else around.
 "Yes... you are poor."`,
                 option:['Leave'],
                 optionDesc:[''],
@@ -4559,7 +4575,7 @@ but you might still be able to use it for something.`,
             },{
                 desc:
 `You fail to grab anything, but a few of the
-ghostly lights seem to absort themselves into your hands,
+ghostly lights seem to absorb themselves into your hands,
 granting you a tiny bit of their power.`,
                 option:['Keep it'],
                 optionDesc:['Add Temptation of the Next World to Deck'],
@@ -5434,7 +5450,7 @@ He asks if you'd like to switch to door %3 or stay with door %a.`,
             {
                 desc:
 `On a dark night out, the sounds of birds around you
-suddenly seem to fade away, drowned out by some imperceivable
+suddenly seem to fade away, drowned out by some imperceptible
 force. Unable to move, you look up at the sky, empty except
 for the moon. And as you stare, a fairy appears from behind
 the trees, snickering as you stand there.`,
@@ -5569,7 +5585,7 @@ But you are disenfranchised now, regardless.`,
         pages:[
             {
                 desc:
-`You find a duck on the side of the raod, rolling around.
+`You find a duck on the side of the road, rolling around.
 With a raspy, weak voice, he asks you to take him to a doctor.
 He's looks heavy and unsafe to touch though.`,
                 option:['Get Him Medical Help','Take His Stuff'],
@@ -5870,7 +5886,7 @@ As you leave, you feel a little bad... more like... really bad.`,
             {
                 desc:
 `On a dark night out, the sounds of birds around you
-suddenly seem to fade away, drowned out by some imperceivable
+suddenly seem to fade away, drowned out by some imperceptible
 force. Unable to move, you look up at the sky, but your eyes
 seem to be overwhelmed by incredibly bright lights, coming both
 from the stars above you and from the horizon in all directions,
@@ -6177,7 +6193,7 @@ Maybe it's time I spent a little more time on the surface."`,
                 desc:
 `You come across a lone campfire in the darkness,
 with a shadowy figure sitting beside it. As you approach,
-you see that the fiture is an old man, seemingly with nothing
+you see that the figure is an old man, seemingly with nothing
 to do, yet he wears a uniform that can only mean one thing:
 This man was once a colonel in the Management army.
 WIth some convincing, he might be wiling to help you.`,

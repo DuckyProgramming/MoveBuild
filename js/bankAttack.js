@@ -423,7 +423,7 @@ attack.prototype.update=function(){
         case 10024: case 10025: case 10026: case 10027: case 10053: case 10054: case 10055: case 10056: case 10057: case 10058:
         case 10059: case 10060: case 10116: case 10142: case 10167: case 10198: case 10235: case 10238: case 10239: case 10299:
         case 10304: case 10305: case 10306: case 10307: case 10321: case 10369: case 10371: case 10387: case 10414: case 10415:
-        case 10426: case 10483: case 10519: case 10534: case 10562: case 10565: case 10666: case 10695: case 10700: case 10071:
+        case 10426: case 10483: case 10519: case 10534: case 10562: case 10565: case 10666: case 10695: case 10700: case 10701:
         case 10747: case 10782: case 10785: case 10786: case 10790: case 10791: case 11047: case 11071: case 11072: case 11084:
         case 11096: case 11126: case 11151: case 11152: case 11172: case 11175: case 11176: case 11186: case 11187: case 11207:
         case 11208: case 11224: case 11225: case 11332: case 11387: case 11388: case 11389: case 11390: case 11391: case 11397:
@@ -16793,9 +16793,27 @@ attack.prototype.update=function(){
             }
             this.userCombatant.runAnimation(1,46)
             if(this.timer==30){
-                this.userCombatant.loseMaxHP(this.userCombatant.base.life/2)
-                for(let a=0,la=this.userManager.deck.cards.length/2;a<la;a++){
-                    this.userManager.deck.randomEffect(39)
+                if((variants.mtg?this.cost[0]:this.cost)>=20){
+                    this.selfCall(20)
+                }else if((variants.mtg?this.cost[0]:this.cost)>=10){
+                    let holdDir=this.userCombatant.anim.direction
+                    this.battle.player[this.player]=floor(random(0,constants.playerNumber))+1
+                    this.battle.addCombatant({x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y},this.battle.player[this.player],this.player+1,0,false)
+                    this.battle.combatantManager.combatants[this.player]=this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1]
+                    this.battle.combatantManager.combatants[this.player].anim.direction=holdDir
+                    this.battle.combatantManager.combatants[this.player].goal.anim.direction=holdDir
+                    this.battle.combatantManager.combatants.splice(this.battle.combatantManager.combatants.length-1,1)
+                    this.battle.colorDetail[this.player]=types.color.card[this.battle.player[this.player]]
+                    this.battle.initialGraphics()
+                    this.userCombatant=this.battle.combatantManager.combatants[this.player]
+                    let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                    for(let a=0,la=list.length;a<la;a++){
+                        for(let b=0,lb=list[a].length;b<lb;b++){
+                            if(list[a][b].id==this.id){
+                                list[a][b].costDown(0,[10])
+                            }
+                        }
+                    }
                 }
             }else if(this.timer>=60){
                 this.remove=true

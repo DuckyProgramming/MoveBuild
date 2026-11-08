@@ -8138,7 +8138,7 @@ be chosen when a "random" card is selected.
 Stacks degrade by half, rounded up, each turn.`,
         },{name:'Bounce',mtg:0,desc:
 `Acts like block, but counters equal to amount of Bounce spent.
-If no targettable user can be countered, still blocks
+If no targetable user can be countered, still blocks
 damage and is spent, but does not counter.`,
         },{name:'Pure',mtg:0,desc:
 `When you draw a status card, it is automatically exhausted,
@@ -8164,7 +8164,7 @@ When Triggered, draw the next Follow-Up card.
 It costs 0, but must be played immediately or discards.`,
         },{name:'Communize',mtg:0,desc:
 `When an enemy with Communize dies, add a Worker to deck.
-Decrements eaach turn.`,
+Decrements each turn.`,
         },{name:'Assign X',mtg:0,desc:
 `If you have X Workers in hand, exhaust them and
 trigger the assign effect.`,
@@ -8196,7 +8196,7 @@ Does not decrement.`,
 `When you gain 3 Caffeine, lose 3 Caffeine and lose 3 health.`,
         },{name:'Evolve',mtg:0,desc:
 `An Evolve card discards to your draw pile when not played.
-Afterward, the Evolve counter increemnts by 1.`,
+Afterward, the Evolve counter increments by 1.`,
         },{name:'Forge',mtg:0,desc:
 `When this card is upgraded, it is instead removed from the deck.
 Afterward, trigger its forge effect.`,
@@ -8374,7 +8374,7 @@ Continues activating as long as you have the inputs.`,
         {name:'Assistant Hiring Officer',desc:'Cannot Skip Adding Cards'},
         {name:'Corrupt Detective',desc:'Playing a Power Costs 3 HP'},
         {name:'Elf Archer',desc:'Randomly Remove 1 Rest Site Option (Other Than Skip)'},
-        {name:'Riot Police',desc:'All Enemies Are Untargettable From Front First 2 Turns'},
+        {name:'Riot Police',desc:'All Enemies Are Untargetable From Front First 2 Turns'},
         {name:'Reichswehr',desc:'Offcolor Cards Cost 1 More'},
         {name:'Louse',desc:'All Enemies Get 10 Block the First Time They Take Damage'},
         {name:'Fungling',desc:'Gain 1 Poison Whenever You Move'},

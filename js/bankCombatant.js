@@ -90,37 +90,45 @@ combatant.prototype.display=function(){
             }
             if(this.infoAnim.elemental>0){
                 this.layer.noFill()
-                this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                //this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
                 for(let a=0,la=6;a<la;a++){
-                    if(lcos(this.anim.direction+a/la*360+this.time*0.5)<0){
-                        this.layer.strokeWeight(1)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
-                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
-                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
-                        this.layer.strokeWeight(3)
-                        this.layer.point(lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
-                    }
-                    if(lcos(this.anim.direction+a/la*360-this.time*0.4)<0){
-                        this.layer.strokeWeight(1)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
-                        this.layer.strokeWeight(3)
-                        this.layer.point(lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                    for(let b=0,lb=2;b<lb;b++){
+                        let ls=lsin(this.anim.direction+a/la*360+this.time*(0.5-b*0.9))
+                        let lc=lcos(this.anim.direction+a/la*360+this.time*(0.5-b*0.9))
+                        let ly=lsin(this.anim.direction+a/la*360+this.time*(1-b*0.25))*12
+                        if(lc<0){
+                            this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                            this.layer.strokeWeight(1)
+                            this.layer.noFill()
+                            /*this.layer.bezier(
+                                -5*lc+ls*33,ly,
+                                -3*lc+ls*33,-3.5+ly,
+                                3*lc+ls*33,-3.5+ly,
+                                5*lc+ls*33,ly)
+                            this.layer.bezier(
+                                -5*lc+ls*33,ly,
+                                -3*lc+ls*33,3.5+ly,
+                                3*lc+ls*33,3.5+ly,
+                                5*lc+ls*33,ly)*/
+                            this.layer.beginShape()
+                            this.layer.vertex(-5*lc+ls*33,ly)
+                            this.layer.bezierVertex(
+                                -3*lc+ls*33,-3.5+ly,
+                                3*lc+ls*33,-3.5+ly,
+                                5*lc+ls*33,ly
+                            )
+                            this.layer.bezierVertex(
+                                3*lc+ls*33,3.5+ly,
+                                -3*lc+ls*33,3.5+ly,
+                                -5*lc+ls*33,ly,
+                            )
+                            this.layer.endShape()
+                            this.layer.fill(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                            this.layer.noStroke()
+                            this.layer.ellipse(ls*33,ly,1+2*abs(lc),3)
+                            /*this.layer.strokeWeight(3)
+                            this.layer.point(ls*33,ly)*/
+                        }
                     }
                 }
             }
@@ -18012,37 +18020,45 @@ combatant.prototype.display=function(){
             }
             if(this.infoAnim.elemental>0){
                 this.layer.noFill()
-                this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                //this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
                 for(let a=0,la=6;a<la;a++){
-                    if(lcos(this.anim.direction+a/la*360+this.time*0.5)>=0){
-                        this.layer.strokeWeight(1)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
-                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
-                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
-                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
-                        this.layer.strokeWeight(3)
-                        this.layer.point(lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
-                    }
-                    if(lcos(this.anim.direction+a/la*360-this.time*0.4)>=0){
-                        this.layer.strokeWeight(1)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
-                        this.layer.bezier(
-                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
-                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
-                        this.layer.strokeWeight(3)
-                        this.layer.point(lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                    for(let b=0,lb=2;b<lb;b++){
+                        let ls=lsin(this.anim.direction+a/la*360+this.time*(0.5-b*0.9))
+                        let lc=lcos(this.anim.direction+a/la*360+this.time*(0.5-b*0.9))
+                        let ly=lsin(this.anim.direction+a/la*360+this.time*(1-b*0.25))*12
+                        if(lc>=0){
+                            this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                            this.layer.strokeWeight(1)
+                            this.layer.noFill()
+                            /*this.layer.bezier(
+                                -5*lc+ls*33,ly,
+                                -3*lc+ls*33,-3.5+ly,
+                                3*lc+ls*33,-3.5+ly,
+                                5*lc+ls*33,ly)
+                            this.layer.bezier(
+                                -5*lc+ls*33,ly,
+                                -3*lc+ls*33,3.5+ly,
+                                3*lc+ls*33,3.5+ly,
+                                5*lc+ls*33,ly)*/
+                            this.layer.beginShape()
+                            this.layer.vertex(-5*lc+ls*33,ly)
+                            this.layer.bezierVertex(
+                                -3*lc+ls*33,-3.5+ly,
+                                3*lc+ls*33,-3.5+ly,
+                                5*lc+ls*33,ly
+                            )
+                            this.layer.bezierVertex(
+                                3*lc+ls*33,3.5+ly,
+                                -3*lc+ls*33,3.5+ly,
+                                -5*lc+ls*33,ly,
+                            )
+                            this.layer.endShape()
+                            this.layer.fill(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                            this.layer.noStroke()
+                            this.layer.ellipse(ls*33,ly,1+2*abs(lc),3)
+                            /*this.layer.strokeWeight(3)
+                            this.layer.point(ls*33,ly)*/
+                        }
                     }
                 }
             }

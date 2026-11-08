@@ -12139,12 +12139,15 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             layer.stroke(...stroke[0],fade)
             switch(variant){
                 case 1:
-                    layer.arc(0,0,18,18,-225,-45)
+                    //layer.arc(0,0,18,18,-225,-45)
+                    layer.arc(0,0,18,18,45,225)
                     layer.noStroke()
-                    layer.arc(0,0,16,16,-225,-45)
+                    //layer.arc(0,0,16,16,-225,-45)
+                    layer.arc(0,0,16,16,45,225)
                 break
                 default:
-                    layer.arc(0,0,20,20,-225,-45)
+                    //layer.arc(0,0,20,20,-225,-45)
+                    layer.arc(0,0,20,20,45,225)
                 break
             }
             layer.fill(...fill[1],fade)
@@ -12152,17 +12155,23 @@ function displayMtgManaSymbol(layer,x,y,type,direction,size,fade,variant=-1,args
             switch(variant){
                 case 1:
                     layer.rect(-4.5,-4.5,9)
-                    layer.arc(0,0,18,18,-90,45)
-                    layer.arc(0,0,18,18,135,180)
+                    //layer.arc(0,0,18,18,-90,45)
+                    layer.arc(0,0,18,18,-225,-90)
+                    //layer.arc(0,0,18,18,135,180)
+                    layer.arc(0,0,18,18,0,45)
                     layer.noStroke()
-                    layer.arc(0,0,16,16,-45,135)
+                    //layer.arc(0,0,16,16,-45,135)
+                    layer.arc(0,0,16,16,-135,45)
                 break
                 default:
-                    layer.arc(0,0,20,20,-45,135)
+                    //layer.arc(0,0,20,20,-45,135)
+                    layer.arc(0,0,20,20,-135,45)
                 break
             }
-            displayMtgManaIcon(layer,-3.2,-3.2,map[0],0,0.5,1)
-            displayMtgManaIcon(layer,3.2,3.2,map[1],0,0.5,1)
+            /*displayMtgManaIcon(layer,-3.2,-3.2,map[0],0,0.5,1)
+            displayMtgManaIcon(layer,3.2,3.2,map[1],0,0.5,1)*/
+            displayMtgManaIcon(layer,-3.2,3.2,map[0],0,0.5,1)
+            displayMtgManaIcon(layer,3.2,-3.2,map[1],0,0.5,1)
         break
     }
     layer.strokeCap(ROUND)

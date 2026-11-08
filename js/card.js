@@ -3349,7 +3349,7 @@ class card{
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
             case 4628: case 4629: case 4630: case 4631: case 4632: case 5164: case 5543: case 5544: case 6243: case 6262:
             case 6263: case 6264: case 7189: case 7190: case 7345: case 7740: case 8313: case 8314: case 8315: case 8354:
-            case 8355: case 8987: case 9949: case 10938: case 11028: case 11029: case 11030: case 11489:
+            case 8355: case 8987: case 9949: case 10938: case 11028: case 11029: case 11030: case 11489: case 11805:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -4650,6 +4650,10 @@ class card{
                 case 11489:
                     this.battle.cardManagers[this.player].deAbstract(1,this.effect[0],[])
                 break
+                case 11805:
+                    this.battle.overlayManager.overlays[10][this.player].active=true
+                    this.battle.overlayManager.overlays[10][this.player].activate([this.level,[23],57,[],[]])
+                break
 
             }
         }else if(this.spec.includes(60)){
@@ -5383,11 +5387,16 @@ class card{
                     this.layer.stroke(50,this.fade)
                     this.layer.strokeWeight(5)
                 }else if(this.colorful){
-                    this.gradient=[new p5.LinearGradient(-15,this.width-20)]
-                    this.gradient[0].colors(0.0,
+                    //this.gradient=[new p5.LinearGradient(-15,this.width-20)]
+                    this.gradient=[new p5.LinearGradient(-45,this.width*1.6-16)]
+                    /*this.gradient[0].colors(0.0,
                         color(255,50,255,this.fade),0.3,
                         color(255,200,255,this.fade),0.7,
                         color(255,200,255,this.fade),1.0,
+                        color(255,50,255,this.fade))*/
+                    this.gradient[0].colors(0.0,
+                        color(255,50,255,this.fade),0.5,
+                        color(255,200,200,this.fade),1.0,
                         color(255,50,255,this.fade))
                     this.layer.fill(255,150,255,this.fade*this.anim.select)
                     this.layer.noStroke()
@@ -5400,8 +5409,22 @@ class card{
                     this.layer.strokeWeight(1)
                     //this.layer.stroke(255,50,255,this.fade)
                     this.layer.push()
-                    this.layer.translate(-this.width*0.4-4,0)
+                    //this.layer.translate(-this.width*0.4-4,0)
+                    let displace=this.width*0.9+9
+                    this.layer.translate(-displace,0)
                     this.layer.strokeGradient(this.gradient[0])
+                    this.layer.rect(displace,0,this.width-4,this.height-4,3)
+                    this.layer.line(displace-this.width/2+2,-this.height/2+6,displace-this.width/2+10,-this.height/2+6)
+                    this.layer.line(displace+this.width/2-2,-this.height/2+6,displace+this.width/2-10,-this.height/2+6)
+                    this.layer.arc(displace-this.width/2+16,-this.height/2+6,12,8,-180,-90)
+                    this.layer.arc(displace+this.width/2-16,-this.height/2+6,12,8,-90,0)
+                    this.layer.line(displace+this.width/2-4,this.height/2-12,displace+this.width/2-4,this.height/2-24)
+                    this.layer.line(displace+this.width/2-4,this.height/2-12,displace+this.width/2-12,this.height/2-4)
+                    this.layer.line(displace+this.width/2-12,this.height/2-4,displace+this.width/2-24,this.height/2-4)
+                    this.layer.line(displace+this.width/2-6,this.height/2-6,displace+this.width/2-6,this.height/2-18)
+                    this.layer.line(displace+this.width/2-6,this.height/2-6,displace+this.width/2-18,this.height/2-6)
+                    this.layer.line(displace+this.width/2-6,this.height/2-18,displace+this.width/2-4,this.height/2-20)
+                    this.layer.line(displace+this.width/2-18,this.height/2-6,displace+this.width/2-20,this.height/2-4)
                     /*this.layer.rect(0,0,this.width-4,this.height-4,3)
                     this.layer.line(-this.width/2+2,-this.height/2+6,-this.width/2+10,-this.height/2+6)
                     this.layer.line(this.width/2-2,-this.height/2+6,this.width/2-10,-this.height/2+6)
@@ -5414,7 +5437,7 @@ class card{
                     this.layer.line(this.width/2-6,this.height/2-6,this.width/2-18,this.height/2-6)
                     this.layer.line(this.width/2-6,this.height/2-18,this.width/2-4,this.height/2-20)
                     this.layer.line(this.width/2-18,this.height/2-6,this.width/2-20,this.height/2-4)*/
-                    this.layer.rect(this.width*0.4+4,0,this.width-4,this.height-4,3)
+                    /*this.layer.rect(this.width*0.4+4,0,this.width-4,this.height-4,3)
                     this.layer.line(-this.width*0.1+6,-this.height/2+6,-this.width*0.1+14,-this.height/2+6)
                     this.layer.line(this.width*0.9+2,-this.height/2+6,this.width*0.9-6,-this.height/2+6)
                     this.layer.arc(-this.width*0.1+20,-this.height/2+6,12,8,-180,-90)
@@ -5425,13 +5448,15 @@ class card{
                     this.layer.line(this.width*0.9-2,this.height/2-6,this.width*0.9-2,this.height/2-18)
                     this.layer.line(this.width*0.9-2,this.height/2-6,this.width*0.9-14,this.height/2-6)
                     this.layer.line(this.width*0.9-2,this.height/2-18,this.width*0.9,this.height/2-20)
-                    this.layer.line(this.width*0.9-14,this.height/2-6,this.width*0.9-16,this.height/2-4)
+                    this.layer.line(this.width*0.9-14,this.height/2-6,this.width*0.9-16,this.height/2-4)*/
                     //this.layer.fill(255,50,255,this.fade)
                     this.layer.fillGradient(this.gradient[0])
+                    this.layer.ellipse(displace-this.width/2+6,this.height/2-6,3)
+                    this.layer.quad(displace+this.width/2-10,this.height/2-10,displace+this.width/2-14,this.height/2-11,displace+this.width/2-18,this.height/2-18,displace+this.width/2-11,this.height/2-14)
                     /*this.layer.ellipse(-this.width/2+6,this.height/2-6,3)
                     this.layer.quad(this.width/2-10,this.height/2-10,this.width/2-14,this.height/2-11,this.width/2-18,this.height/2-18,this.width/2-11,this.height/2-14)*/
-                    this.layer.ellipse(-this.width*0.1+11.5,this.height/2-7.5,3)
-                    this.layer.quad(this.width*0.9-6,this.height/2-10,this.width*0.9-10,this.height/2-11,this.width*0.9-14,this.height/2-18,this.width*0.9-7,this.height/2-14)
+                    /*this.layer.ellipse(-this.width*0.1+11.5,this.height/2-7.5,3)
+                    this.layer.quad(this.width*0.9-6,this.height/2-10,this.width*0.9-10,this.height/2-11,this.width*0.9-14,this.height/2-18,this.width*0.9-7,this.height/2-14)*/
                     this.layer.pop()
                     this.layer.noFill()
                     this.layer.stroke(50,this.fade)
@@ -5496,8 +5521,9 @@ class card{
                     this.layer.noFill()
                 }else if(variants.mtg&&colorDetail.length>=2){
                     if(colorDetail.length>=4){
-                        this.gradient=[new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10)]
-                        this.gradient[0].colors(0.0,
+                        //this.gradient=[new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10)]
+                        this.gradient=[new p5.LinearGradient(-45,this.width*1.6-16),new p5.LinearGradient(-45,this.width*1.6-16),new p5.LinearGradient(-45,this.width*1.6-16)]
+                        /*this.gradient[0].colors(0.0,
                             color(51,37,37,this.fade*this.anim.select),0.25,
                             color(51,51,37,this.fade*this.anim.select),0.5,
                             color(37,51,37,this.fade*this.anim.select),0.75,
@@ -5514,9 +5540,28 @@ class card{
                             color(51,51,17,this.fade),0.5,
                             color(17,51,17,this.fade),0.75,
                             color(17,17,51,this.fade),1.0,
-                            color(51,17,51,this.fade))
+                            color(51,17,51,this.fade))*/
+                        
+                        this.gradient[0].colors(0.0,
+                            color(types.color.mtg[1].active[0]*0.2,types.color.mtg[1].active[1]*0.2,types.color.mtg[1].active[2]*0.2,this.fade*this.anim.select),0.25,
+                            color(types.color.mtg[2].active[0]*0.2,types.color.mtg[2].active[1]*0.2,types.color.mtg[2].active[2]*0.2,this.fade*this.anim.select),0.5,
+                            color(types.color.mtg[3].active[0]*0.2,types.color.mtg[3].active[1]*0.2,types.color.mtg[3].active[2]*0.2,this.fade*this.anim.select),0.75,
+                            color(types.color.mtg[4].active[0]*0.2,types.color.mtg[4].active[1]*0.2,types.color.mtg[4].active[2]*0.2,this.fade*this.anim.select),1.0,
+                            color(types.color.mtg[5].active[0]*0.2,types.color.mtg[5].active[1]*0.2,types.color.mtg[5].active[2]*0.2,this.fade*this.anim.select))
+                        this.gradient[1].colors(0.0,
+                            color(types.color.mtg[1].stroke[0]*0.2,types.color.mtg[1].stroke[1]*0.2,types.color.mtg[1].stroke[2]*0.2,this.fade),0.25,
+                            color(types.color.mtg[2].stroke[0]*0.2,types.color.mtg[2].stroke[1]*0.2,types.color.mtg[2].stroke[2]*0.2,this.fade),0.5,
+                            color(types.color.mtg[3].stroke[0]*0.2,types.color.mtg[3].stroke[1]*0.2,types.color.mtg[3].stroke[2]*0.2,this.fade),0.75,
+                            color(types.color.mtg[4].stroke[0]*0.2,types.color.mtg[4].stroke[1]*0.2,types.color.mtg[4].stroke[2]*0.2,this.fade),1.0,
+                            color(types.color.mtg[5].stroke[0]*0.2,types.color.mtg[5].stroke[1]*0.2,types.color.mtg[5].stroke[2]*0.2,this.fade))
+                        this.gradient[2].colors(0.0,
+                            color(types.color.mtg[1].fill[0]*0.2,types.color.mtg[1].fill[1]*0.2,types.color.mtg[1].fill[2]*0.2,this.fade),0.25,
+                            color(types.color.mtg[2].fill[0]*0.2,types.color.mtg[2].fill[1]*0.2,types.color.mtg[2].fill[2]*0.2,this.fade),0.5,
+                            color(types.color.mtg[3].fill[0]*0.2,types.color.mtg[3].fill[1]*0.2,types.color.mtg[3].fill[2]*0.2,this.fade),0.75,
+                            color(types.color.mtg[4].fill[0]*0.2,types.color.mtg[4].fill[1]*0.2,types.color.mtg[4].fill[2]*0.2,this.fade),1.0,
+                            color(types.color.mtg[5].fill[0]*0.2,types.color.mtg[5].fill[1]*0.2,types.color.mtg[5].fill[2]*0.2,this.fade))
                     
-                        this.layer.noStroke()
+                        /*this.layer.noStroke()
                         this.layer.fill(51,37,37,this.fade*this.anim.select)
                         this.layer.rect(-20,0,this.width-25,this.height+15,10)
                         this.layer.fill(51,37,51,this.fade*this.anim.select)
@@ -5541,29 +5586,53 @@ class card{
                         this.layer.rect(this.width*0.4+4,0,this.width-10,this.height+5)
                         this.layer.fillGradient(this.gradient[2])
                         this.layer.rect(this.width*0.4+4,0,this.width-10,this.height-5)
-                        this.layer.translate(this.width*0.4+4,0)
+                        this.layer.translate(this.width*0.4+4,0)*/
 
-                        this.layer.stroke(40,13,13,this.fade)
+                        this.layer.translate(-this.width*0.9-9,0)
+                        this.layer.fillGradient(this.gradient[0])
+                        this.layer.rect(this.width*0.9+9,0,this.width+15,this.height+15,10)
+                        this.layer.fillGradient(this.gradient[1])
+                        this.layer.rect(this.width*0.9+9,0,this.width+5,this.height+5,7.5)
+                        this.layer.fillGradient(this.gradient[2])
+                        this.layer.rect(this.width*0.9+9,0,this.width-5,this.height-5,2.5)
+                        this.layer.translate(this.width*0.9+9,0)
+
+                        //this.layer.stroke(40,13,13,this.fade)
+                        this.layer.stroke(types.color.mtg[1].stroke[0]*0.2,types.color.mtg[1].stroke[1]*0.2,types.color.mtg[1].stroke[2]*0.2,this.fade)
                         this.layer.noFill()
                     }else{
-                        this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5)]
+                        //this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5)]
                         if(colorDetail.length==3){
+                            this.gradient=[new p5.LinearGradient(-45,this.width*1.2-12),new p5.LinearGradient(-45,this.width*1.2-12),new p5.LinearGradient(-45,this.width*1.2-12)]
                             this.gradient[0].colors(0.0,
-                                color(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select),0.3,
-                                color(colorDetail[2].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select),0.7,
-                                color(colorDetail[2].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select),1.0,
-                                color(colorDetail[1].active[0]*0.2,colorDetail[2].active[1]*0.2,colorDetail[2].active[2]*0.2,this.fade*this.anim.select))
+                                /*color(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select),0.3,
+                                color(colorDetail[1].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select),0.7,*/
+                                color(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select),0.5,
+                                color(colorDetail[1].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select),1.0,
+                                color(colorDetail[2].active[0]*0.2,colorDetail[2].active[1]*0.2,colorDetail[2].active[2]*0.2,this.fade*this.anim.select))
                             this.gradient[1].colors(0.0,
-                                color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.3,
-                                color(colorDetail[2].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade),0.7,
-                                color(colorDetail[2].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade),1.0,
-                                color(colorDetail[1].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade))
+                                /*color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.3,
+                                color(colorDetail[2].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade),0.7,*/
+                                color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.5,
+                                color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade),1.0,
+                                color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade))
                             this.gradient[2].colors(0.0,
-                                color(colorDetail[0].fill[0]*0.2,colorDetail[0].fill[1]*0.2,colorDetail[0].fill[2]*0.2,this.fade),0.3,
-                                color(colorDetail[2].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade),0.7,
-                                color(colorDetail[2].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade),1.0,
-                                color(colorDetail[1].fill[0]*0.2,colorDetail[2].fill[1]*0.2,colorDetail[1].fill[2]*0.2,this.fade))
+                                /*color(colorDetail[0].fill[0]*0.2,colorDetail[0].fill[1]*0.2,colorDetail[0].fill[2]*0.2,this.fade),0.3,
+                                color(colorDetail[2].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade),0.7,*/
+                                color(colorDetail[0].fill[0]*0.2,colorDetail[0].fill[1]*0.2,colorDetail[0].fill[2]*0.2,this.fade),0.5,
+                                color(colorDetail[1].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[1].fill[2]*0.2,this.fade),1.0,
+                                color(colorDetail[2].fill[0]*0.2,colorDetail[2].fill[1]*0.2,colorDetail[2].fill[2]*0.2,this.fade))
+
+                            this.layer.translate(-this.width*0.7-7,0)
+                            this.layer.fillGradient(this.gradient[0])
+                            this.layer.rect(this.width*0.7+7,0,this.width+15,this.height+15,10)
+                            this.layer.fillGradient(this.gradient[1])
+                            this.layer.rect(this.width*0.7+7,0,this.width+5,this.height+5,7.5)
+                            this.layer.fillGradient(this.gradient[2])
+                            this.layer.rect(this.width*0.7+7,0,this.width-5,this.height-5,2.5)
+                            this.layer.translate(this.width*0.7+7,0)
                         }else{
+                            this.gradient=[new p5.LinearGradient(-45,this.width-10),new p5.LinearGradient(-45,this.width-10),new p5.LinearGradient(-45,this.width-10)]
                             this.gradient[0].colors(0.0,
                                 color(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select),1.0,
                                 color(colorDetail[1].active[0]*0.2,colorDetail[1].active[1]*0.2,colorDetail[1].active[2]*0.2,this.fade*this.anim.select))
@@ -5573,9 +5642,18 @@ class card{
                             this.gradient[2].colors(0.0,
                                 color(colorDetail[0].fill[0]*0.2,colorDetail[0].fill[1]*0.2,colorDetail[0].fill[2]*0.2,this.fade),1.0,
                                 color(colorDetail[1].fill[0]*0.2,colorDetail[1].fill[1]*0.2,colorDetail[1].fill[2]*0.2,this.fade))
+
+                            this.layer.translate(-this.width*0.6-6,0)
+                            this.layer.fillGradient(this.gradient[0])
+                            this.layer.rect(this.width*0.6+6,0,this.width+15,this.height+15,10)
+                            this.layer.fillGradient(this.gradient[1])
+                            this.layer.rect(this.width*0.6+6,0,this.width+5,this.height+5,7.5)
+                            this.layer.fillGradient(this.gradient[2])
+                            this.layer.rect(this.width*0.6+6,0,this.width-5,this.height-5,2.5)
+                            this.layer.translate(this.width*0.6+6,0)
                         }
                         
-                        this.layer.noStroke()
+                        /*this.layer.noStroke()
                         this.layer.fill(colorDetail[0].active[0]*0.2,colorDetail[0].active[1]*0.2,colorDetail[0].active[2]*0.2,this.fade*this.anim.select)
                         this.layer.rect(-20,0,this.width-25,this.height+15,10)
                         this.layer.fill(colorDetail[colorDetail.length-1].active[0]*0.2,colorDetail[colorDetail.length-1].active[1]*0.2,colorDetail[colorDetail.length-1].active[2]*0.2,this.fade*this.anim.select)
@@ -5600,7 +5678,7 @@ class card{
                         this.layer.rect(this.width*0.2+2,0,this.width-10,this.height+5)
                         this.layer.fillGradient(this.gradient[2])
                         this.layer.rect(this.width*0.2+2,0,this.width-10,this.height-5)
-                        this.layer.translate(this.width*0.2+2,0)
+                        this.layer.translate(this.width*0.2+2,0)*/
 
                         this.layer.stroke(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade)
                         this.layer.noFill()
@@ -6027,10 +6105,15 @@ class card{
                     this.layer.stroke(50,this.fade)
                     this.layer.strokeWeight(5)
                 }else if(this.colorful){
-                    this.gradient=[new p5.LinearGradient(-15,this.width-20)]
-                    this.gradient[0].colors(0.0,
+                    //this.gradient=[new p5.LinearGradient(-15,this.width-20)]
+                    this.gradient=[new p5.LinearGradient(-45,this.width*1.6-16)]
+                    /*this.gradient[0].colors(0.0,
                         color(255,255,50,this.fade),0.3,
                         color(255,255,200,this.fade),0.7,
+                        color(255,255,200,this.fade),1.0,
+                        color(255,255,50,this.fade))*/
+                    this.gradient[0].colors(0.0,
+                        color(255,255,50,this.fade),0.5,
                         color(255,255,200,this.fade),1.0,
                         color(255,255,50,this.fade))
                     this.layer.fill(255,255,150,this.fade*this.anim.select)
@@ -6045,8 +6128,22 @@ class card{
                     //this.layer.stroke(255,255,50,this.fade)
                     //this.layer.stroke(0,this.fade)
                     this.layer.push()
-                    this.layer.translate(-this.width*0.4-4,0)
+                    //this.layer.translate(-this.width*0.4-4,0)
+                    let displace=this.width*0.9+9
+                    this.layer.translate(-displace,0)
                     this.layer.strokeGradient(this.gradient[0])
+                    this.layer.rect(displace,0,this.width-4,this.height-4,3)
+                    this.layer.line(displace-this.width/2+2,-this.height/2+6,displace-this.width/2+10,-this.height/2+6)
+                    this.layer.line(displace+this.width/2-2,-this.height/2+6,displace+this.width/2-10,-this.height/2+6)
+                    this.layer.arc(displace-this.width/2+16,-this.height/2+6,12,8,-180,-90)
+                    this.layer.arc(displace+this.width/2-16,-this.height/2+6,12,8,-90,0)
+                    this.layer.line(displace+this.width/2-4,this.height/2-12,displace+this.width/2-4,this.height/2-24)
+                    this.layer.line(displace+this.width/2-4,this.height/2-12,displace+this.width/2-12,this.height/2-4)
+                    this.layer.line(displace+this.width/2-12,this.height/2-4,displace+this.width/2-24,this.height/2-4)
+                    this.layer.line(displace+this.width/2-6,this.height/2-6,displace+this.width/2-6,this.height/2-18)
+                    this.layer.line(displace+this.width/2-6,this.height/2-6,displace+this.width/2-18,this.height/2-6)
+                    this.layer.line(displace+this.width/2-6,this.height/2-18,displace+this.width/2-4,this.height/2-20)
+                    this.layer.line(displace+this.width/2-18,this.height/2-6,displace+this.width/2-20,this.height/2-4)
                     /*this.layer.rect(0,0,this.width-4,this.height-4,3)
                     this.layer.line(-this.width/2+2,-this.height/2+6,-this.width/2+10,-this.height/2+6)
                     this.layer.line(this.width/2-2,-this.height/2+6,this.width/2-10,-this.height/2+6)
@@ -6059,7 +6156,7 @@ class card{
                     this.layer.line(this.width/2-6,this.height/2-6,this.width/2-18,this.height/2-6)
                     this.layer.line(this.width/2-6,this.height/2-18,this.width/2-4,this.height/2-20)
                     this.layer.line(this.width/2-18,this.height/2-6,this.width/2-20,this.height/2-4)*/
-                    this.layer.rect(this.width*0.4+4,0,this.width-4,this.height-4,3)
+                    /*this.layer.rect(this.width*0.4+4,0,this.width-4,this.height-4,3)
                     this.layer.line(-this.width*0.1+6,-this.height/2+6,-this.width*0.1+14,-this.height/2+6)
                     this.layer.line(this.width*0.9+2,-this.height/2+6,this.width*0.9-6,-this.height/2+6)
                     this.layer.arc(-this.width*0.1+20,-this.height/2+6,12,8,-180,-90)
@@ -6070,13 +6167,15 @@ class card{
                     this.layer.line(this.width*0.9-2,this.height/2-6,this.width*0.9-2,this.height/2-18)
                     this.layer.line(this.width*0.9-2,this.height/2-6,this.width*0.9-14,this.height/2-6)
                     this.layer.line(this.width*0.9-2,this.height/2-18,this.width*0.9,this.height/2-20)
-                    this.layer.line(this.width*0.9-14,this.height/2-6,this.width*0.9-16,this.height/2-4)
+                    this.layer.line(this.width*0.9-14,this.height/2-6,this.width*0.9-16,this.height/2-4)*/
                     //this.layer.fill(255,255,50,this.fade)
                     this.layer.fillGradient(this.gradient[0])
+                    this.layer.ellipse(displace-this.width/2+6,this.height/2-6,3)
+                    this.layer.quad(displace+this.width/2-10,this.height/2-10,displace+this.width/2-14,this.height/2-11,displace+this.width/2-18,this.height/2-18,displace+this.width/2-11,this.height/2-14)
                     /*this.layer.ellipse(-this.width/2+6,this.height/2-6,3)
                     this.layer.quad(this.width/2-10,this.height/2-10,this.width/2-14,this.height/2-11,this.width/2-18,this.height/2-18,this.width/2-11,this.height/2-14)*/
-                    this.layer.ellipse(-this.width*0.1+11.5,this.height/2-7.5,3)
-                    this.layer.quad(this.width*0.9-6,this.height/2-10,this.width*0.9-10,this.height/2-11,this.width*0.9-14,this.height/2-18,this.width*0.9-7,this.height/2-14)
+                    /*this.layer.ellipse(-this.width*0.1+11.5,this.height/2-7.5,3)
+                    this.layer.quad(this.width*0.9-6,this.height/2-10,this.width*0.9-10,this.height/2-11,this.width*0.9-14,this.height/2-18,this.width*0.9-7,this.height/2-14)*/
                     this.layer.pop()
                     this.layer.noFill()
                     this.layer.stroke(50,this.fade)
@@ -6269,8 +6368,9 @@ class card{
                     this.layer.noFill()*/
                 }else if(variants.mtg&&colorDetail.length>=2){
                     if(colorDetail.length>=4){
-                        this.gradient=[new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10)]
-                        this.gradient[0].colors(0.0,
+                        //this.gradient=[new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10),new p5.LinearGradient(0,this.width-10)]
+                        this.gradient=[new p5.LinearGradient(-45,this.width*1.6-16),new p5.LinearGradient(-45,this.width*1.6-16),new p5.LinearGradient(-45,this.width*1.6-16)]
+                        /*this.gradient[0].colors(0.0,
                             color(255,185,185,this.fade*this.anim.select),0.25,
                             color(255,255,185,this.fade*this.anim.select),0.5,
                             color(185,255,185,this.fade*this.anim.select),0.75,
@@ -6287,9 +6387,28 @@ class card{
                             color(255,255,85,this.fade),0.5,
                             color(85,255,85,this.fade),0.75,
                             color(85,85,255,this.fade),1.0,
-                            color(255,85,255,this.fade))
+                            color(255,85,255,this.fade))*/
+
+                        this.gradient[0].colors(0.0,
+                            color(...types.color.mtg[1].active,this.fade*this.anim.select),0.25,
+                            color(...types.color.mtg[2].active,this.fade*this.anim.select),0.5,
+                            color(...types.color.mtg[3].active,this.fade*this.anim.select),0.75,
+                            color(...types.color.mtg[4].active,this.fade*this.anim.select),1.0,
+                            color(...types.color.mtg[5].active,this.fade*this.anim.select))
+                        this.gradient[1].colors(0.0,
+                            color(...types.color.mtg[1].stroke,this.fade),0.25,
+                            color(...types.color.mtg[2].stroke,this.fade),0.5,
+                            color(...types.color.mtg[3].stroke,this.fade),0.75,
+                            color(...types.color.mtg[4].stroke,this.fade),1.0,
+                            color(...types.color.mtg[5].stroke,this.fade))
+                        this.gradient[2].colors(0.0,
+                            color(...types.color.mtg[1].fill,this.fade),0.25,
+                            color(...types.color.mtg[2].fill,this.fade),0.5,
+                            color(...types.color.mtg[3].fill,this.fade),0.75,
+                            color(...types.color.mtg[4].fill,this.fade),1.0,
+                            color(...types.color.mtg[5].fill,this.fade))
                     
-                        this.layer.noStroke()
+                        /*this.layer.noStroke()
                         this.layer.fill(255,185,185,this.fade*this.anim.select)
                         this.layer.rect(-20,0,this.width-25,this.height+15,10)
                         this.layer.fill(255,185,255,this.fade*this.anim.select)
@@ -6314,29 +6433,54 @@ class card{
                         this.layer.rect(this.width*0.4+4,0,this.width-10,this.height+5)
                         this.layer.fillGradient(this.gradient[2])
                         this.layer.rect(this.width*0.4+4,0,this.width-10,this.height-5)
-                        this.layer.translate(this.width*0.4+4,0)
+                        this.layer.translate(this.width*0.4+4,0)*/
 
-                        this.layer.stroke(200,65,65,this.fade)
+                        this.layer.translate(-this.width*0.9-9,0)
+                        this.layer.fillGradient(this.gradient[0])
+                        this.layer.rect(this.width*0.9+9,0,this.width+15,this.height+15,10)
+                        this.layer.fillGradient(this.gradient[1])
+                        this.layer.rect(this.width*0.9+9,0,this.width+5,this.height+5,7.5)
+                        this.layer.fillGradient(this.gradient[2])
+                        this.layer.rect(this.width*0.9+9,0,this.width-5,this.height-5,2.5)
+                        this.layer.translate(this.width*0.9+9,0)
+
+                        //this.layer.stroke(200,65,65,this.fade)
+                        this.layer.stroke(...types.color.mtg[1].stroke,this.fade)
                         this.layer.noFill()
                     }else{
-                        this.gradient=[new p5.LinearGradient(-15,this.width-5),new p5.LinearGradient(-15,this.width-5),new p5.LinearGradient(-15,this.width-5)]
+                        //this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5)]
+                        //this.gradient=[new p5.LinearGradient(-45,this.width-10),new p5.LinearGradient(-45,this.width-10),new p5.LinearGradient(-45,this.width-10)]
                         if(colorDetail.length==3){
+                            this.gradient=[new p5.LinearGradient(-45,this.width*1.2-12),new p5.LinearGradient(-45,this.width*1.2-12),new p5.LinearGradient(-45,this.width*1.2-12)]
                             this.gradient[0].colors(0.0,
-                                color(...colorDetail[0].active,this.fade*this.anim.select),0.3,
-                                color(...colorDetail[1].active,this.fade*this.anim.select),0.7,
+                                /*color(...colorDetail[0].active,this.fade*this.anim.select),0.3,
+                                color(...colorDetail[1].active,this.fade*this.anim.select),0.7,*/
+                                color(...colorDetail[0].active,this.fade*this.anim.select),0.5,
                                 color(...colorDetail[1].active,this.fade*this.anim.select),1.0,
                                 color(...colorDetail[2].active,this.fade*this.anim.select))
                             this.gradient[1].colors(0.0,
-                                color(...colorDetail[0].stroke,this.fade),0.3,
-                                color(...colorDetail[1].stroke,this.fade),0.7,
+                                /*color(...colorDetail[0].stroke,this.fade),0.3,
+                                color(...colorDetail[1].stroke,this.fade),0.7,*/
+                                color(...colorDetail[0].stroke,this.fade),0.5,
                                 color(...colorDetail[1].stroke,this.fade),1.0,
                                 color(...colorDetail[2].stroke,this.fade))
                             this.gradient[2].colors(0.0,
-                                color(...colorDetail[0].fill,this.fade),0.3,
-                                color(...colorDetail[1].fill,this.fade),0.7,
+                                /*color(...colorDetail[0].fill,this.fade),0.3,
+                                color(...colorDetail[1].fill,this.fade),0.7,*/
+                                color(...colorDetail[0].fill,this.fade),0.5,
                                 color(...colorDetail[1].fill,this.fade),1.0,
                                 color(...colorDetail[2].fill,this.fade))
+
+                            this.layer.translate(-this.width*0.7-7,0)
+                            this.layer.fillGradient(this.gradient[0])
+                            this.layer.rect(this.width*0.7+7,0,this.width+15,this.height+15,10)
+                            this.layer.fillGradient(this.gradient[1])
+                            this.layer.rect(this.width*0.7+7,0,this.width+5,this.height+5,7.5)
+                            this.layer.fillGradient(this.gradient[2])
+                            this.layer.rect(this.width*0.7+7,0,this.width-5,this.height-5,2.5)
+                            this.layer.translate(this.width*0.7+7,0)
                         }else{
+                            this.gradient=[new p5.LinearGradient(-45,this.width-10),new p5.LinearGradient(-45,this.width-10),new p5.LinearGradient(-45,this.width-10)]
                             try{
                                 this.gradient[0].colors(0.0,
                                     color(...colorDetail[0].active,this.fade*this.anim.select),1.0,
@@ -6350,9 +6494,18 @@ class card{
                             this.gradient[2].colors(0.0,
                                 color(...colorDetail[0].fill,this.fade),1.0,
                                 color(...colorDetail[1].fill,this.fade))
+
+                            this.layer.translate(-this.width*0.6-6,0)
+                            this.layer.fillGradient(this.gradient[0])
+                            this.layer.rect(this.width*0.6+6,0,this.width+15,this.height+15,10)
+                            this.layer.fillGradient(this.gradient[1])
+                            this.layer.rect(this.width*0.6+6,0,this.width+5,this.height+5,7.5)
+                            this.layer.fillGradient(this.gradient[2])
+                            this.layer.rect(this.width*0.6+6,0,this.width-5,this.height-5,2.5)
+                            this.layer.translate(this.width*0.6+6,0)
                         }
                         
-                        this.layer.noStroke()
+                        /*this.layer.noStroke()
                         this.layer.fill(...colorDetail[0].active,this.fade*this.anim.select)
                         this.layer.rect(-20,0,this.width-25,this.height+15,10)
                         this.layer.fill(...colorDetail[colorDetail.length-1].active,this.fade*this.anim.select)
@@ -6377,7 +6530,7 @@ class card{
                         this.layer.rect(this.width*0.2+2,0,this.width-10,this.height+5)
                         this.layer.fillGradient(this.gradient[2])
                         this.layer.rect(this.width*0.2+2,0,this.width-10,this.height-5)
-                        this.layer.translate(this.width*0.2+2,0)
+                        this.layer.translate(this.width*0.2+2,0)*/
 
                         this.layer.stroke(...colorDetail[0].stroke,this.fade)
                         this.layer.noFill()
@@ -6477,13 +6630,15 @@ class card{
                     break
                 }
                 if(spec.includes(12)){
-                    if(variants.mtg&&list>=0&&colorDetail.length>=2){
-                        this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5)]
+                    if(variants.mtg&&list>=-1&&colorDetail.length>=2){
+                        //this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5)]
                         if(this.edition==5){
-                            if(corDetail.length==3){
+                            this.gradient=[new p5.LinearGradient(-45,this.width*1.2-12)]
+                            if(colorDetail.length==3){
                                 this.gradient[0].colors(0.0,
-                                    color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.3,
-                                    color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),0.7,
+                                    /*color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.3,
+                                    color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),0.7,*/
+                                    color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),0.5,
                                     color(colorDetail[2].stroke[0]*0.2,colorDetail[2].stroke[1]*0.2,colorDetail[2].stroke[2]*0.2,this.fade),1.0,
                                     color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade))
                             }else{
@@ -6491,11 +6646,19 @@ class card{
                                     color(colorDetail[0].stroke[0]*0.2,colorDetail[0].stroke[1]*0.2,colorDetail[0].stroke[2]*0.2,this.fade),1.0,
                                     color(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade))
                             }
+                            this.layer.noStroke()
+                            this.layer.translate(-this.width*0.7-7,0)
+                            this.layer.fill(...colorDetail[0].stroke,this.fade)
+                            this.layer.fillGradient(this.gradient[0])
+                            this.layer.rect(this.width*0.7+7,16,this.width,3)
+                            this.layer.translate(this.width*0.7+7,0)
                         }else{
+                            this.gradient=[new p5.LinearGradient(-45,this.width-10)]
                             if(colorDetail.length==3){
                                 this.gradient[0].colors(0.0,
-                                    color(...colorDetail[0].stroke,this.fade),0.3,
-                                    color(...colorDetail[2].stroke,this.fade),0.7,
+                                    /*color(...colorDetail[0].stroke,this.fade),0.3,
+                                    color(...colorDetail[2].stroke,this.fade),0.7,*/
+                                    color(...colorDetail[0].stroke,this.fade),0.5,
                                     color(...colorDetail[2].stroke,this.fade),1.0,
                                     color(...colorDetail[1].stroke,this.fade))
                             }else{
@@ -6503,13 +6666,19 @@ class card{
                                     color(...colorDetail[0].stroke,this.fade),1.0,
                                     color(...colorDetail[1].stroke,this.fade))
                             }
+                            this.layer.noStroke()
+                            this.layer.translate(-this.width*0.6-6,0)
+                            this.layer.fill(...colorDetail[0].stroke,this.fade)
+                            this.layer.fillGradient(this.gradient[0])
+                            this.layer.rect(this.width*0.6+6,16,this.width,3)
+                            this.layer.translate(this.width*0.6+6,0)
                         }
-                        this.layer.noStroke()
+                        /*this.layer.noStroke()
                         this.layer.translate(-this.width*0.2-2,0)
                         this.layer.fill(...colorDetail[0].stroke,this.fade)
                         this.layer.fillGradient(this.gradient[0])
                         this.layer.rect(this.width*0.2+2,16,this.width,3)
-                        this.layer.translate(this.width*0.2+2,0)
+                        this.layer.translate(this.width*0.2+2,0)*/
                     }else{
                         this.layer.strokeWeight(3)
                         this.layer.line(-this.width/2,variants.mtg?16:10,this.width/2,variants.mtg?16:10)
@@ -6522,9 +6691,25 @@ class card{
                     if(devglow){
                         this.layer.stroke(50,this.fade)
                     }else if(this.edition==5){
-                        this.layer.stroke(colorDetail[colorDetail.length-1].stroke[0]*0.2,colorDetail[colorDetail.length-1].stroke[1]*0.2,colorDetail[colorDetail.length-1].stroke[2]*0.2,this.fade)
+                        //this.layer.stroke(colorDetail[colorDetail.length-1].stroke[0]*0.2,colorDetail[colorDetail.length-1].stroke[1]*0.2,colorDetail[colorDetail.length-1].stroke[2]*0.2,this.fade)
+                        if(colorDetail.length>=4){
+                            let set=mergeColor(types.color.mtg[2].stroke,types.color.mtg[3].stroke,0.5)
+                            this.layer.stroke(set[0]*0.2,set[1]*0.2,set[2]*0.2,this.fade)
+                        }else if(colorDetail.length==3){
+                            this.layer.stroke(colorDetail[1].stroke[0]*0.2,colorDetail[1].stroke[1]*0.2,colorDetail[1].stroke[2]*0.2,this.fade)
+                        }else{
+                            let set=mergeColor(colorDetail[0].stroke,colorDetail[1].stroke,0.5)
+                            this.layer.stroke(set[0]*0.2,set[1]*0.2,set[2]*0.2,this.fade)
+                        }
                     }else{
-                        this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
+                        //this.layer.stroke(...colorDetail[colorDetail.length-1].stroke,this.fade)
+                        if(colorDetail.length>=4){
+                            this.layer.stroke(...mergeColor(types.color.mtg[2].stroke,types.color.mtg[3].stroke,0.5),this.fade)
+                        }else if(colorDetail.length==3){
+                            this.layer.stroke(...colorDetail[1].stroke,this.fade)
+                        }else{
+                            this.layer.stroke(...mergeColor(colorDetail[0].stroke,colorDetail[1].stroke,0.5),this.fade)
+                        }
                     }
                 }
                 this.layer.strokeWeight(2)
@@ -6699,9 +6884,10 @@ class card{
                         for(let a=0,la=finalCost.length;a<la;a++){
                             totals[finalCost[a]+1]++
                         }
+                        let order=[0,5,4,3,2,1,6]
                         for(let a=1,la=totals.length;a<la;a++){
-                            if(totals[a]>0){
-                                displayMtgManaSymbol(this.layer,this.width/2-6-pos*12.5,-this.height/2+6,a-1,0,0.6,this.fade,1,[this.anim.afford,this.anim.costDown,this.anim.costUp,totals[a]>1?totals[a]:``])
+                            if(totals[order[a]]>0){
+                                displayMtgManaSymbol(this.layer,this.width/2-6-pos*12.5,-this.height/2+6,order[a]-1,0,0.6,this.fade,1,[this.anim.afford,this.anim.costDown,this.anim.costUp,totals[order[a]]>1?totals[order[a]]:``])
                                 pos++
                             }
                         }
@@ -6853,6 +7039,7 @@ class card{
                         }
                         let totalNeutral=0
                         let total=0
+                        finalCost=finalCost.sort((a,b)=>([0,5,4,3,2,1,6][a]-[0,5,4,3,2,1,6][b]))
                         for(let a=0,la=finalCost.length;a<la;a++){
                             if(finalCost[a]==-1){
                                 totalNeutral++

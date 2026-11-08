@@ -1167,7 +1167,8 @@ class overlay{
                         break
                         case 53:
                             for(let a=0,la=this.options;a<la;a++){
-                                let type=findName(['Discus of Light\nand Dark','Discus of Moon\nand Sky','Discus of Truth\nand Lie'][a%3],types.card)
+                                //let type=findName(['Discus of Light\nand Dark','Discus of Moon\nand Sky','Discus of Truth\nand Lie'][a%3],types.card)
+                                let type=findName(['Spinner of Light\nand Dark','Spinner of Moon\nand Sky','Spinner of Truth\nand Lie'][a%3],types.card)
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,type,args[0],this.battle.standardColorize(type),-1))
                                 this.cards[a].upSize=true
                             }
@@ -1269,13 +1270,21 @@ class overlay{
                                     list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[1][1]])[args[1][2]]
                                 break
                                 case 8:
-                                    list=[
+                                    /*list=[
                                         findName('Discus of Wind\nand Thunder',types.card),
                                         findName('Discus of\nSand and Sea',types.card),
                                         findName('Discus of Salt\nand Steel',types.card),
                                         findName('Discus of Light\nand Dark',types.card),
                                         findName('Discus of Moon\nand Sky',types.card),
                                         findName('Discus of Truth\nand Lie',types.card)
+                                    ]*/
+                                    list=[
+                                        findName('Spinner of Wind\nand Thunder',types.card),
+                                        findName('Spinner of\nSand and Sea',types.card),
+                                        findName('Spinner of Salt\nand Steel',types.card),
+                                        findName('Spinner of Light\nand Dark',types.card),
+                                        findName('Spinner of Moon\nand Sky',types.card),
+                                        findName('Spinner of Truth\nand Lie',types.card)
                                     ]
                                 break
                                 case 9:
@@ -1418,6 +1427,9 @@ class overlay{
                                 case 22:
                                     list=['Landmine','Donk\nMove','Dropkick','Potential\nMove','Bureaucratic\nBlade','Spine\nStrike','Manumation','Ditch','Leap\nDistance','Dustpan','Private\nHealthcare','Health\nTonic','Swapback','Vertical\nStrike','Bell\nPeppers','Javelin','Boomewrong','Black\nIce','Paper\nLantern','Castel','First\nWind','Ruin the\nSenses','Run With\nScissors','Flechettes','Unstuck','Befuddle','Overextended\nMove','Shiv-Only\nMove','Vertical\nMove','Death\nExplosion','Stand\nStill','Combination\nLock',`Don't\nDie`,'Descend','Terrible\nTimes','Shadow\nCard','Killifish','Prospect','Probiotic','Safety\nGoggles','Broken\nPhone','Pierce','Jammer','Breaking\nBad','Hat-in-a-Pot','Power\nFail','Dynamite\nBar','Wreath\nof Lights','Slew','Assessment','Sword\nToss','Double\nEdge','Clinch','Saltation','Cycle\nPike','Synchroscope','Slip\nLeft','Slip\nRight','Lowball','Deceleration','Oblique\nBeam','Agonist','Waluigi\nPinball','Laying\nStep','Military\nPolice','Terriball','Manic\nLaugh','Missmash','Tiny\nTrebuchet','Pandora','C4\nDrop','Cluster\nCasino','Sweepstake\nStep','All\nIn','Crit\nFail','Strefenseless','Ramming\nRock','Random\nWalk','Rubber Ducky\nUnlucky','Haunted\nSword','Unprepared','Weir','Provenience','Inlet','Berg','Jalpaite','Hawaiian\nRoll','Electric\nWhip','Plantgrinder','Junk\nPot','Kick\nBehind','Cracked\nCode','Laggy\nStep','MMC\nCard','Tellurium','Podal\nStar','The Bigger\nThe Worse','Splutter','Rock\nDrop','Podal\nPower','Continuum\nHypothesis','Rearguard','Free\nTime','Stickup','Unknown\nConcoction','Gearbox','Schismatic','Homeowner','Security\nAlarm','Endothermic','Idiocy','Discoordination','Faceting','Inferior\nStrike','Shrink\nStrike','Stately','Blinding\nGaze','The\nGuardless','Avatar','Vega','Salamander\nSlap','Seven\nSins','Reaggress','Simplex','Hispid',`MD's\nMiracle`,'The\nGiver','Grounded','Passive\nStance','Interferent\nStrike','Interferent\nDefend','Periphery','Posterity','Strengthen\nArms','Jump','Lamppost','Spiky\nPotion','Sea\nBreeze','Luxor\nBeam','Wandering\nHell','Bullet\nBonk','Sapphire\nFalls','Dodent','Nibble','Sprint','Speedy','Nod\nDown','Slapdown','Squeak','Fanta\nCake','Duck\nBump','Rebase','Backward\nCompatibility','Feckless','Baton','Interior\nBurst','Condense','Cheap\nTire','Aviation\nAdministration','Myst','Oversight','Permitted','Unconfident','Cloud\nDisc','Below the\nRealm','Seal\nForth','Death\nGame','Coating','Spite','Unicycle\nChain','Cornea','Corn\nJelly','Coruscate','Bouncy\nKey','Apprisal','Bleach','Blunt\nBonk','Ow','Brass\nCharm','Floral\nWallpaper','On the\nTar','Alveolate','Fat\nBird','Suicidal','Streetlight','Corrupt\nOfficial','Unforgiving','Scrawny','Panoply','Traitor','A Step\nBack','Forget\nthe Plan','Unready\nMove','Ermine','Crustacean','Gold\nStem','Unfamiliar\nMove','Plastic\nTree','Unrigid\nMove','Musitude','Forthbar','Double\nMeaning','Loss of\nAgency','Great\nEffort','Expose\nYourself','Collateral\nCounter']
                                     list=list.map(a=>findName(a,types.card))
+                                break
+                                case 23:
+                                    list=copyArray(this.battle.cardManagers[this.player].listing.dev)
                                 break
                                 default:
                                     list=[]
@@ -2093,6 +2105,9 @@ class overlay{
                                 break
                                 case 11030:
                                     this.cards[a].attack=[-1097,-1098][a]
+                                break
+                                case 11805:
+                                    this.cards[a].attack=[-1099,-1100][a]
                                 break
                             }
                         }
@@ -2844,6 +2859,25 @@ class overlay{
                                     userCombatant.lowRoll()
                                 }
                                 this.card.setCost(0,[0])
+                            break
+                            case -1099:
+                                this.card.costDown(0,[10])
+                                let holdDir=userCombatant.anim.direction
+                                this.battle.player[this.player]=floor(random(0,constants.playerNumber))+1
+                                this.battle.addCombatant({x:userCombatant.tilePosition.x,y:userCombatant.tilePosition.y},this.battle.player[this.player],this.player+1,0,false)
+                                this.battle.combatantManager.combatants[this.player]=this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1]
+                                this.battle.combatantManager.combatants[this.player].anim.direction=holdDir
+                                this.battle.combatantManager.combatants[this.player].goal.anim.direction=holdDir
+                                this.battle.combatantManager.combatants.splice(this.battle.combatantManager.combatants.length-1,1)
+                                this.battle.colorDetail[this.player]=types.color.card[this.battle.player[this.player]]
+                                this.battle.initialGraphics()
+                            break
+                            case -1100:
+                                this.card.costDown(0,[20])
+                                userCombatant.loseMaxHP(userCombatant.base.life/2)
+                                for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length/2;a<la;a++){
+                                    this.battle.cardManagers[this.player].deck.randomEffect(39)
+                                }
                             break
                         }
                     break

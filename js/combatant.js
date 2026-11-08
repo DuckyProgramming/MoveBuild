@@ -3840,18 +3840,6 @@ class combatant{
                 if(userCombatant.tempStatus[3]>0){
                     this.statusEffect('Take Damage Next Turn',round(damage)*userCombatant.tempStatus[3])
                 }
-                if(userCombatant.status.main[171]>0){
-                    this.statusEffect('Regeneration',userCombatant.status.main[171])
-                }
-                if(userCombatant.status.main[318]>0){
-                    this.statusEffect('Shock',userCombatant.status.main[318])
-                }
-                if(userCombatant.status.main[448]>0){
-                    this.statusEffect('Jinx',userCombatant.status.main[448])
-                }
-                if(userCombatant.status.main[449]>0){
-                    this.statusEffect('Shock',userCombatant.status.main[449])
-                }
                 if(userCombatant.status.main[470]>0){
                     this.statusEffect('Mortal',userCombatant.status.main[470])
                     userCombatant.status.main[470]=0
@@ -4216,7 +4204,7 @@ class combatant{
                                 if(this.id<this.battle.players){
                                     this.battle.stats.taken[this.id][1]+=damageLeft
                                 }
-                                if(user>=0&&user<this.battle.combatantManager.combatants.length&&(spec==0||spec==2)){
+                                if(user>=0&&user<this.battle.combatantManager.combatants.length&&(spec==0||spec==2||spec==4)){
                                     let userCombatant=this.battle.combatantManager.combatants[user]
                                     userCombatant.takeDamage(damageLeft,-1)
                                 }
@@ -4227,7 +4215,7 @@ class combatant{
                                 if(this.id<this.battle.players){
                                     this.battle.stats.taken[this.id][1]+=this.bounce
                                 }
-                                if(user>=0&&user<this.battle.combatantManager.combatants.length&&(spec==0||spec==2)){
+                                if(user>=0&&user<this.battle.combatantManager.combatants.length&&(spec==0||spec==2||spec==4)){
                                     let userCombatant=this.battle.combatantManager.combatants[user]
                                     userCombatant.takeDamage(this.bounce,-1)
                                 }
@@ -4303,50 +4291,64 @@ class combatant{
                     if(userCombatant.tempStatus[6]!=0){
                         this.statusEffect('Poison',userCombatant.tempStatus[6])
                     }
-                    if(userCombatant.status.main[98]>0){
-                        this.statusEffect('Bleed',userCombatant.status.main[98])
-                    }
-                    if(userCombatant.status.main[100]>0){
-                        this.statusEffect('Bleed',userCombatant.status.main[100])
-                    }
-                    if(userCombatant.status.main[202]>0&&damage>=20){
-                        this.statusEffect('Miss',userCombatant.status.main[202])
-                    }
-                    if(userCombatant.status.main[370]>0){
-                        this.statusEffect('Damage Taken Up',userCombatant.status.main[370])
-                    }
-                    if(userCombatant.status.main[463]>0){
-                        this.statusEffect('Lock On',userCombatant.status.main[463])
-                    }
-                    if(userCombatant.status.main[476]>0){
-                        this.statusEffect('Poison',userCombatant.status.main[476])
-                    }
-                    if(userCombatant.status.main[554]>0){
-                        this.statusEffect('Burn',userCombatant.status.main[554])
-                    }
-                    if(userCombatant.status.main[692]>0){
-                        this.statusEffect('Freeze',userCombatant.status.main[692])
-                    }
-                    if(userCombatant.status.main[724]>0){
-                        this.statusEffect('Bruise',userCombatant.status.main[724])
-                    }
-                    if(userCombatant.status.main[750]>0&&this.getStatus('Vulnerable')==0){
-                        this.statusEffect('Vulnerable',userCombatant.status.main[750])
-                    }
-                    if(userCombatant.status.main[805]>0&&this.getStatus('Weak')==0){
-                        this.statusEffect('Weak',userCombatant.status.main[805])
-                    }
-                    if(userCombatant.status.main[856]>0&&damage>=20){
-                        this.statusEffect('Weak',userCombatant.status.main[856])
-                    }
-                    if(userCombatant.status.main[857]>0&&damage>=20){
-                        this.statusEffect('Vulnerable',userCombatant.status.main[857])
-                    }
-                    if(userCombatant.status.main[858]>0&&damage>=20){
-                        this.statusEffect('Frail',userCombatant.status.main[858])
-                    }
-                    if(userCombatant.status.main[1051]>0){
-                        this.statusEffect('Lock On',userCombatant.status.main[1051])
+                    if(spec!=4){
+                        if(userCombatant.status.main[98]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[98])
+                        }
+                        if(userCombatant.status.main[100]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[100])
+                        }
+                        if(userCombatant.status.main[171]>0){
+                            this.statusEffect('Regeneration',userCombatant.status.main[171])
+                        }
+                        if(userCombatant.status.main[202]>0&&damage>=20){
+                            this.statusEffect('Miss',userCombatant.status.main[202])
+                        }
+                        if(userCombatant.status.main[318]>0){
+                            this.statusEffect('Shock',userCombatant.status.main[318])
+                        }
+                        if(userCombatant.status.main[370]>0){
+                            this.statusEffect('Damage Taken Up',userCombatant.status.main[370])
+                        }
+                        if(userCombatant.status.main[448]>0){
+                            this.statusEffect('Jinx',userCombatant.status.main[448])
+                        }
+                        if(userCombatant.status.main[449]>0){
+                            this.statusEffect('Shock',userCombatant.status.main[449])
+                        }
+                        if(userCombatant.status.main[463]>0){
+                            this.statusEffect('Lock On',userCombatant.status.main[463])
+                        }
+                        if(userCombatant.status.main[476]>0){
+                            this.statusEffect('Poison',userCombatant.status.main[476])
+                        }
+                        if(userCombatant.status.main[554]>0){
+                            this.statusEffect('Burn',userCombatant.status.main[554])
+                        }
+                        if(userCombatant.status.main[692]>0){
+                            this.statusEffect('Freeze',userCombatant.status.main[692])
+                        }
+                        if(userCombatant.status.main[724]>0){
+                            this.statusEffect('Bruise',userCombatant.status.main[724])
+                        }
+                        if(userCombatant.status.main[750]>0&&this.getStatus('Vulnerable')==0){
+                            this.statusEffect('Vulnerable',userCombatant.status.main[750])
+                        }
+                        if(userCombatant.status.main[805]>0&&this.getStatus('Weak')==0){
+                            this.statusEffect('Weak',userCombatant.status.main[805])
+                        }
+                        if(userCombatant.status.main[856]>0&&damage>=20){
+                            this.statusEffect('Weak',userCombatant.status.main[856])
+                        }
+                        if(userCombatant.status.main[857]>0&&damage>=20){
+                            this.statusEffect('Vulnerable',userCombatant.status.main[857])
+                        }
+                        if(userCombatant.status.main[858]>0&&damage>=20){
+                            this.statusEffect('Frail',userCombatant.status.main[858])
+                        }
+                        if(userCombatant.status.main[1051]>0){
+                            this.statusEffect('Lock On',userCombatant.status.main[1051])
+                        }
                     }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
@@ -4360,7 +4362,7 @@ class combatant{
                 }
             }
             if(hit||dodged){
-                if(user>=0&&user<this.battle.combatantManager.combatants.length&&(spec==0||spec==2)){
+                if(user>=0&&user<this.battle.combatantManager.combatants.length&&(spec==0||spec==2||spec==4)){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     let distance=distTargetCombatant(0,this,userCombatant)
                     if(this.status.main[134]>0){
@@ -5238,7 +5240,7 @@ class combatant{
             this.infoAnim.orbSpec.splice(this.infoAnim.orbSpec.length-1,1)
         }
     }
-    holdOrb(type){
+    holdOrb(type,loop=false){
         if(this.orbs.length>0){
             this.totalOrb++
             this.totalOrbClass[type]++
@@ -5269,11 +5271,11 @@ class combatant{
                 if(this.status.main[375]>0){
                     let result=this.battle.combatantManager.getRandom(1,[])
                     if(result.length>0){
-                        this.evoke(0,result[0],[1])
+                        this.evoke(0,result[0],[1],loop)
                         this.holdOrb(type)
                     }
                 }else{
-                    this.evoke(0,this.id,[1])
+                    this.evoke(0,this.id,[1],loop)
                     this.holdOrb(type)
                 }
             }else{
@@ -5284,7 +5286,7 @@ class combatant{
             this.checkAnyOrb()
         }
     }
-    subEvoke(type,detail,target){
+    subEvoke(type,detail,target,loop=false){
         let multi=1
         let totalFocus=this.status.main[111]+this.status.main[865]
         if(totalFocus>0){
@@ -5342,9 +5344,9 @@ class combatant{
                 //if(this.battle.combatantManager.combatants[target].id!=this.id){
                 this.battle.combatantManager.combatants[target].statusEffect('Mortal',round(2*multi))
                 //}
-                if(this.status.main[646]>0&&!this.orbs.includes(6)){
+                if(this.status.main[646]>0&&!this.orbs.includes(6)&&!loop){
                     for(let a=0,la=this.status.main[646];a<la;a++){
-                        this.holdOrb(6)
+                        this.holdOrb(6,true)
                     }
                 }
             break
@@ -5357,9 +5359,9 @@ class combatant{
                     //this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(2)
                     this.battle.cardManagers[target].draw(2)
                 }
-                if(this.status.main[647]>0&&!this.orbs.includes(4)){
+                if(this.status.main[647]>0&&!this.orbs.includes(4)&&!loop){
                     for(let a=0,la=this.status.main[647];a<la;a++){
-                        this.holdOrb(4)
+                        this.holdOrb(4,true)
                     }
                 }
             break
@@ -5551,11 +5553,11 @@ class combatant{
             break
         }
     }
-    evoke(type,target,args){
+    evoke(type,target,args,loop=false){
         switch(type){
             case 0:
                 for(let a=0,la=args[0];a<la;a++){
-                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target,loop)
                 }
                 for(let a=0,la=this.orbs.length-1;a<la;a++){
                     this.orbs[a]=this.orbs[a+1]
@@ -5567,7 +5569,7 @@ class combatant{
             case 1:
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
-                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target,loop)
                         this.orbs[a]=-1
                     }
                 }
@@ -5586,7 +5588,7 @@ class combatant{
                     if(this.orbs[a]>=0){
                         this.battle.addSpecificEnergy(1,this.id,6)
                         this.battle.cardManagers[this.id].draw(1)
-                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target,loop)
                         this.orbs[a]=-1
                     }
                 }
@@ -5594,7 +5596,7 @@ class combatant{
             case 4:
                 let type=this.orbs[0]
                 for(let a=0,la=args[0];a<la;a++){
-                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target,loop)
                 }
                 for(let a=0,la=this.orbs.length-1;a<la;a++){
                     this.orbs[a]=this.orbs[a+1]
@@ -5632,10 +5634,10 @@ class combatant{
                     if(this.orbs[a]>=0){
                         switch(this.orbs[a]){
                             case 1: case 3: case 6: case 9:
-                                this.subEvoke(this.orbs[a],this.orbDetail[a],this.id)
+                                this.subEvoke(this.orbs[a],this.orbDetail[a],this.id,loop)
                             break
                             case 0: case 2: case 4: case 5: case 7: case 8: case 10: case 11: case 12:
-                                this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                                this.subEvoke(this.orbs[a],this.orbDetail[a],target,loop)
                             break
                         }
                         this.orbs[a]=-1
@@ -5644,7 +5646,7 @@ class combatant{
             break
             case 8:
                 for(let a=0,la=args[0];a<la;a++){
-                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target,loop)
                 }
             break
             case 9:
@@ -5661,7 +5663,7 @@ class combatant{
                     if(this.orbs[a]>=0){
                         this.battle.addSpecificEnergy(args[0],this.id,6)
                         this.battle.cardManagers[this.id].draw(args[1])
-                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target,loop)
                         this.orbs[a]=-1
                     }
                 }
@@ -5684,7 +5686,7 @@ class combatant{
                             this.battle.addSpecificEnergy(1,this.id,args[0][b])
                         }
                         this.battle.cardManagers[this.id].draw(args[1])
-                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target,loop)
                         this.orbs[a]=-1
                     }
                 }
@@ -5702,14 +5704,14 @@ class combatant{
             case 14:
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
-                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target,loop)
                     }
                 }
             break
             case 15:
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
-                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target,loop)
                         this.orbs[a]=antiOrb(this.orbs[a])
                     }
                 }
@@ -5717,7 +5719,7 @@ class combatant{
             case 16:
                 let type16=this.orbs[0]
                 for(let a=0,la=args[0];a<la;a++){
-                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target,loop)
                 }
                 for(let a=0,la=this.orbs.length-1;a<la;a++){
                     this.orbs[a]=this.orbs[a+1]
@@ -6188,7 +6190,7 @@ class combatant{
                     if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
                         if(userCombatant.getStatus('Debuff Damage')>0){
-                            this.takeDamage(userCombatant.getStatus('Debuff Damage'),userCombatant.id)
+                            this.takeDamage(userCombatant.getStatus('Debuff Damage'),userCombatant.id,4)
                         }
                     }
                     if(this.battle.modded(203)&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
@@ -6783,7 +6785,7 @@ class combatant{
                         for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: if(this.combo>0){this.comboConsumed()};this.combo=0; break
                     case 71: case 72:
-                        if(this.combo>0&&this.status.main[this.status.ticker[a]]<0){this.comboConsmed()};this.combo=constrain(this.combo+this.status.main[this.status.ticker[a]],0,this.comboCap); break
+                        if(this.combo>0&&this.status.main[this.status.ticker[a]]<0){this.comboConsumed()};this.combo=constrain(this.combo+this.status.main[this.status.ticker[a]],0,this.comboCap); break
                     case 81: this.miniStatus('Energy Next Turn',this.status.main[this.status.ticker[a]]); break
                     case 83: this.miniStatus('Double Damage Turn',this.status.main[this.status.ticker[a]]); break
                     case 85: case 1017:

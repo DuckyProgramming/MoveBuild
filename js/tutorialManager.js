@@ -907,10 +907,11 @@ when they are played or when another card is played.`,
                 this.battle.cardManagers[0].deck.cards=[]
                 //this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
-                this.popups=[[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Prehextorica, the Recollection, can make use of several game mechanics.
-His gimmicks include: the Turn Number and Extra Turns.`,
+His gimmicks include: the Turn Number, Extra Turns, and Evolve.`,
+//His gimmicks include: the Turn Number and Extra Turns.`,
 //His gimmicks include: the turn number, and Weak.`,
 `Prehextorica can benefit from the current turn number, in the bottom left corner.
 It counts up by 1 normally and starts at 1, but Prehextorica's cards can change that.`,
@@ -937,6 +938,11 @@ but getting the turns can be expensive in terms of energy.`,
 `Importantly, extra turns don't increment the turn number.
 This lets you stay on a certain number for a longer period of time,
 setting the turn number to what you want and leveraging it.`,
+`Finally, several of Prehextorica's cards have the Evolve keyword.
+If one of these cards is unplayed when your turn ends, it returns to your draw pile.
+It also increases its evolve quantity by one, improving the card's effect.`,
+`Taking extra turns can be a useful way to spend more time evolving your cards.
+Furthermore, some cards can cause others to evolve.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1106,7 +1112,7 @@ However, you can still make use of these as Shinmyoumaru.`,
 and they can often turn out better than many added cards to your deck.`,
 `Lock On is similar to Vulnerable, but additional stacks of Lock On
 increase damage taken. For each stack of Lock On you apply to an enemy,
-they take 10% more damage, and the stacks degarde by 1 each turn.`,
+they take 10% more damage, and the stacks degrade by 1 each turn.`,
 `While it can take some time, stacking lots of Lock On on a
 targetted enemy can be extremely effective in terms of damage multiplier,
 but you must be careful to not let the stacks reduce back down to 0.`,
@@ -1264,7 +1270,7 @@ They do retain, though, so a Discus can be held until the right time to use it.`
 //`Discuses also give bounce, so decisions regarding when to use them have
 `Discuses also give block, so decisions regarding when to use them have
 to be made off when damage and block are needed and when energy is available.`,
-`Other than Discuses, Sagume's other creatable cards are status cards.
+`Other than Discuses, Sagume's other created cards are status cards.
 These aren't playable, and must be exhausted to trigger their effects.`,
 `They can be exhausted normally through cards effects, but there is
 also the status effect Pure. If you have Pure, it will be spent when
@@ -1345,9 +1351,9 @@ Primed down to cost 0, then used to attack.`,
 if it's of the class that's being cycled.
 Otherwise, the use of Cycle is spent for nothing.`,
 `Some cards are marked as Follow-Up attacks.
-When Follow-Up is Triggerd, the next Follow-Up card in
+When Follow-Up is Triggered, the next Follow-Up card in
 the draw pile will be put in the hand.`,
-`The Follow-Up card must be played immdiately,
+`The Follow-Up card must be played immediately,
 as it discards if any other card is played.
 Follow-Up attacks can also be played normally otherwise.`,
 `A lot of Decratite cards synergize around costing 0.
@@ -2271,6 +2277,15 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Vault',types.card),0,13)
                         this.battle.cardManagers[0].hand.add(findName('Time\nDetective',types.card),0,13)
+                    break
+                    case 7:
+                        this.battle.cardManagers[0].reserve.cards=[]
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Protozoa',types.card),0,13)
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].hand.add(findName('Protozoa',types.card),0,13)
+                        this.battle.cardManagers[0].hand.add(findName('Deep\nDefense',types.card),0,13)
                     break
                 }
             break

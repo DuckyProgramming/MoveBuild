@@ -2,18 +2,15 @@ test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
 
-check that on mtg mode energy is never mentioned
-grammar check
-
 tooltips for dictionary
 
 when you win diff 26 on a character they become shiny
+
+recheck every single traitor (like mundane dust)
 
 lose an item slot diff option is unfair to vincent
 recycling - gain a reroll every turn??? [maybe use this to replace TEST 271]
 also do something to replace mechanical eye
 and something to replace optimal sneakers
-
-new bar event option - take a shot - lose 50 currency, chance to remove a card
 
 

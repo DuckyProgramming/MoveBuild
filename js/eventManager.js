@@ -90,6 +90,7 @@ class eventManager{
                 !(this.listing.event[a]==55&&userCombatant.life<10)&&
                 !(this.listing.event[a]==56&&this.battle.currency.money[this.player]<40)&&
                 !(this.listing.event[a]==60&&userCombatant.life>userCombatant.base.life-12)&&
+                !(this.listing.event[a]==62&&(userCombatant.life<7||this.battle.currency.money[this.player]<50))&&
                 !(this.listing.event[a]==63&&(this.listing.complete.length<=3||this.battle.nodeManager.world!=2))&&
                 !(this.listing.event[a]==66&&this.battle.currency.money[this.player]<50)&&
                 !(this.listing.event[a]==67&&this.battle.currency.money[this.player]<40)&&
@@ -1029,8 +1030,17 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     case 62:
                         if(this.page==0&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Drunk',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(400,this.player)
+                        }else if(this.page==3&&a==0){
+                            this.harm(userCombatant,6)
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
                         }
                     break
                     case 63:

@@ -8551,7 +8551,7 @@ class attack{
                         if(this.targetCombatant.lastTake>=this.effect[1]||this.userCombatant.thresholdCheck()){
                             this.targetCombatant.statusEffect('Stun',this.effect[2])
                             this.battle.updateTargetting()
-                            if(this.userManager.hand.sendAbstract(this.userManager.exhaust.cards,this.effect[0],26,0,[this.procedure[0].id])==0){
+                            if(this.procedure[0]!=undefined&&this.userManager.hand.sendAbstract(this.userManager.exhaust.cards,this.effect[0],26,0,[this.procedure[0].id])==0){
                                 if(this.userManager.discard.sendAbstract(this.userManager.exhaust.cards,this.effect[0],26,0,[this.procedure[0].id])==0){
                                     this.userManager.reserve.sendAbstract(this.userManager.exhaust.cards,this.effect[0],26,0,[this.procedure[0].id])
                                 }
@@ -23092,7 +23092,7 @@ class attack{
                     case 10477:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
                         this.userManager.draw(this.effect[1])
-                        this.userCombatant.loseHealth(this.effect[s])
+                        this.userCombatant.loseHealth(this.effect[2])
                     break
                     case 10502:
                         this.userCombatant.statusEffect('Dodge Strength',this.effect[0])
@@ -28795,7 +28795,10 @@ class attack{
                     break
                     case 8498:
                         let result8498=this.userManager.drawReturn(this.effect[0])
-                        randin(result8498.filter(card=>card.getCost(0)>0)).costDown(0,[1])
+                        result8498=result8498.filter(card=>card.getCost(0)>0)
+                        if(result8498.length>0){
+                            randin(result8498).costDown(0,[1])
+                        }
                     break
                     case 8507:
                         this.battle.overlayManager.overlays[180][this.player].active=true
@@ -47162,4 +47165,4 @@ class attack{
 
         }
     }
-}
+}98

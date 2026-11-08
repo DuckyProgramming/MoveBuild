@@ -1032,7 +1032,7 @@ class group{
                 type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
                 type==2&&this.cards[a].name==args[0]||
-                type==3&&thiss.cards[a].class==5||
+                type==3&&this.cards[a].class==5||
                 type==4&&args[0].includes(this.cards[a].class)||
                 type==5&&this.cards[a].rarity==args[0]||
                 type==6&&this.cards[a].spec.includes(args[0])
@@ -3601,6 +3601,7 @@ class group{
                         }
                     break
                     case 50:
+                        userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         this.cards[index].deSize=true
                         if(userCombatant.getStatus('Random Exhaust Discard')<=0){
                             this.cards[index].exhaust=true

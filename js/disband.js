@@ -16208,9 +16208,9 @@ types.disband=[
         ],mtg:{
             rarity:-1,list:-8,color:[4],
             levels:[
-                {effect:[1],attack:6846,cost:[4,-1],target:[1,1,1],spec:[0,1],class:3},
-                {effect:[1],attack:6846,cost:[-1,-1],target:[1,1,1],spec:[0,1],class:3},
-                {effect:[1],attack:6846,cost:[-1],target:[1,1,1],spec:[0,1],class:3},
+                {effect:[1,1],attack:6846,cost:[4,-1],target:[1,1,1],spec:[0,1],class:3},
+                {effect:[1,1],attack:6846,cost:[-1,-1],target:[1,1,1],spec:[0,1],class:3},
+                {effect:[1,1],attack:6846,cost:[-1],target:[1,1,1],spec:[0,1],class:3},
             ],
         },
     },{
@@ -27134,7 +27134,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Axphyxia',rarity:-1,list:-8,
+        name:'Out of\nBreath',rarity:-1,list:-8,
         levels:[
             {effect:[18,2],attack:5648,cost:1,target:[0],spec:[2],class:11},
             {effect:[27,3],attack:5648,cost:1,target:[0],spec:[2],class:11},
@@ -30364,9 +30364,9 @@ types.disband=[
         ],mtg:{
             rarity:-1,list:-8,color:[1,3],
             levels:[
-                {effect:[9,3],attack:5501,cost:[1,3,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[12,5],attack:5501,cost:[1,3,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[16,6],attack:5501,cost:[1,3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[9,3,9],attack:5501,cost:[1,3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[12,5,12],attack:5501,cost:[1,3,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[16,6,16],attack:5501,cost:[1,3,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },{
@@ -30664,7 +30664,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Abphyxia',rarity:-1,list:-8,
+        name:'Emeritus',rarity:-1,list:-8,
         levels:[
             {effect:[18,2,1],attack:8900,cost:1,target:[0],spec:[2],class:11},
             {effect:[27,3,1],attack:8900,cost:1,target:[0],spec:[2],class:11},
@@ -35824,9 +35824,9 @@ types.disband=[
         ],mtg:{
             rarity:-1,list:-8,color:[1,5],
             levels:[
-                {effect:[2],attack:7546,cost:[1,5,-1],target:[0],spec:[],class:11},
-                {effect:[2],attack:7546,cost:[10,-1],target:[0],spec:[],class:11},
-                {effect:[3],attack:7546,cost:[10],target:[0],spec:[],class:11},
+                {effect:[1,1,1],attack:7546,cost:[1,5,-1],target:[0],spec:[],class:11},
+                {effect:[1,1,1],attack:7546,cost:[10,-1],target:[0],spec:[],class:11},
+                {effect:[1,1,1],attack:7546,cost:[10],target:[0],spec:[],class:11},
             ],
         },
     },{
@@ -40158,9 +40158,9 @@ types.disband=[
     },{
         name:'Wipe\nSlate',rarity:-1,list:-8,
         levels:[
-            {effect:[],attack:595,cost:0,target:[0],spec:[1],class:11},
-            {effect:[],attack:595,cost:0,target:[0],spec:[1,2],class:11},
-            {effect:[],attack:595,cost:0,target:[0],spec:[1,2,22],class:11},
+            {effect:[1],attack:595,cost:0,target:[0],spec:[1],class:11},
+            {effect:[1],attack:595,cost:0,target:[0],spec:[1,2],class:11},
+            {effect:[1],attack:595,cost:0,target:[0],spec:[1,2,22],class:11},
         ],mtg:{
             rarity:-1,list:-8,color:[2],
             levels:[
@@ -41914,9 +41914,9 @@ types.disband=[
         ],mtg:{
             rarity:-1,list:-8,color:[4],
             levels:[
-                {effect:[],attack:9374,cost:[4,-1,-1,-1],target:[0],spec:[],class:4},
-                {effect:[],attack:9374,cost:[4,-1,-1,-1],target:[0],spec:[],class:4},
-                {effect:[],attack:9374,cost:[4,-1,-1,-1],target:[0],spec:[],class:4},
+                {effect:[1],attack:9374,cost:[4,-1,-1,-1],target:[0],spec:[],class:4},
+                {effect:[1],attack:9374,cost:[4,-1,-1,-1],target:[0],spec:[],class:4},
+                {effect:[1],attack:9374,cost:[4,-1,-1,-1],target:[0],spec:[],class:4},
             ],
         },
     },{
@@ -48746,9 +48746,9 @@ types.disband=[
         ],mtg:{
             rarity:-1,list:-8,color:[1],
             levels:[
-                {effect:[2,7],attack:10125,cost:[1,1],target:[0],spec:[],class:11},
-                {effect:[3,7],attack:10125,cost:[1,1],target:[0],spec:[],class:11},
-                {effect:[4,7],attack:10125,cost:[1,1],target:[0],spec:[],class:11},
+                {effect:[2,7,1],attack:10125,cost:[1,1],target:[0],spec:[],class:11},
+                {effect:[3,7,1],attack:10125,cost:[1,1],target:[0],spec:[],class:11},
+                {effect:[3,7,2],attack:10125,cost:[1,1],target:[0],spec:[],class:11},
             ],
         },
     },{
@@ -50846,9 +50846,9 @@ types.disband=[
         ],mtg:{
             rarity:-1,list:-8,color:[3],
             levels:[
-                {effect:[77,7,7],attack:3127,cost:[3],target:[0],spec:[1],class:11},
-                {effect:[88,8,8],attack:3127,cost:[3],target:[0],spec:[1],class:11},
-                {effect:[99,9,9],attack:3127,cost:[3],target:[0],spec:[1],class:11},
+                {effect:[77,7,7,7],attack:3127,cost:[3],target:[0],spec:[1],class:11},
+                {effect:[88,8,8,8],attack:3127,cost:[3],target:[0],spec:[1],class:11},
+                {effect:[99,9,9,9],attack:3127,cost:[3],target:[0],spec:[1],class:11},
             ],
         },
     },{
@@ -63908,9 +63908,9 @@ types.disband=[
         ],mtg:{
             rarity:-1,list:-8,color:[3,4],
             levels:[
-                {effect:[1],attack:7310,cost:[3,4,-1],target:[0],spec:[1],class:11},
-                {effect:[2],attack:7310,cost:[3,4,-1],target:[0],spec:[1],class:11},
-                {effect:[2],attack:7310,cost:[14,-1],target:[0],spec:[1],class:11},
+                {effect:[1,1],attack:7310,cost:[3,4,-1],target:[0],spec:[1],class:11},
+                {effect:[2,1],attack:7310,cost:[3,4,-1],target:[0],spec:[1],class:11},
+                {effect:[2,1],attack:7310,cost:[14,-1],target:[0],spec:[1],class:11},
             ],
         },
     },{

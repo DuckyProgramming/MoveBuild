@@ -47,6 +47,9 @@ class attackManager{
         this.targetInfo[0]=0
     }
     clear(){
+        /*if(this.attacks.length>0){
+            throw new Error()
+        }*/
         for(let a=0,la=this.attacks.length;a<la;a++){
             delete this.attacks[a]
             this.attacks.splice(a,1)
@@ -121,7 +124,7 @@ class attackManager{
         }
         if(this.endAfter){
             this.endAfter=false
-            if(this.battle.turn.main<this.battle.players){
+            if(this.battle.turn.main<this.battle.players&&!game.attackTest){
                 this.battle.endTurn()
             }
         }else if(this.nodeAfter){
@@ -147,12 +150,18 @@ class attackManager{
                     delete this.attacks[0]
                     this.attacks.splice(0,1)
                     this.after()
+                    /*if(this.attacks.length>0&&game.attackTest){
+                        print('a',this.attacks[0].type,this.attacks.length)
+                    }*/
                 }else{
                     this.attacks[0].update()
                     if(this.attacks[0].remove){
                         delete this.attacks[0]
                         this.attacks.splice(0,1)
                         this.after()
+                        /*if(this.attacks.length>0&&game.attackTest){
+                            print('a',this.attacks[0].type,this.attacks.length)
+                        }*/
                     }
                 }
             }
