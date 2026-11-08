@@ -54170,20 +54170,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Distract',rarity:-1,list:-8,
-        levels:[
-            {effect:[],attack:348,cost:0,target:[5],spec:[1],class:11},
-            {effect:[],attack:348,cost:0,target:[5],spec:[1,2],class:11},
-            {effect:[],attack:348,cost:0,target:[5],spec:[1,2,22],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[],attack:348,cost:[],target:[5],spec:[1],class:11},
-                {effect:[],attack:348,cost:[],target:[5],spec:[1,2],class:11},
-                {effect:[],attack:348,cost:[],target:[5],spec:[1,2,22],class:11},
-            ],
-        },
-    },{
         name:'Sidearm',rarity:-1,list:-8,
         levels:[
             {effect:[9],attack:1148,cost:1,target:[46,1,1,1,3],spec:[0,25],class:1},
@@ -54237,20 +54223,6 @@ types.disband=[
                 {effect:[14],attack:1181,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[20],attack:1181,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[25],attack:1181,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Orlando\nTouch',rarity:-1,list:-8,
-        levels:[
-            {effect:[4],attack:1187,cost:0,target:[2,1,1],spec:[],class:1},
-            {effect:[6],attack:1187,cost:0,target:[2,1,1],spec:[],class:1},
-            {effect:[8],attack:1187,cost:0,target:[2,1,1],spec:[],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[3],
-            levels:[
-                {effect:[8],attack:1187,cost:[3],target:[2,1,1],spec:[],class:1},
-                {effect:[12],attack:1187,cost:[3],target:[2,1,1],spec:[],class:1},
-                {effect:[15],attack:1187,cost:[3],target:[2,1,1],spec:[],class:1},
             ],
         },
     },{
@@ -70001,6 +69973,34 @@ types.disband=[
                 {effect:[16,6],attack:2865,cost:[2,2],target:[0],spec:[],class:2},
                 {effect:[24,9],attack:2865,cost:[2,2],target:[0],spec:[],class:2},
                 {effect:[28,12],attack:2865,cost:[2,2],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Purple\nBalloon',rarity:-1,list:-8,
+        levels:[
+            {effect:[10,4],attack:9208,cost:1,target:[2,1,1],spec:[],class:11},
+            {effect:[16,4],attack:9208,cost:1,target:[2,1,1],spec:[],class:11},
+            {effect:[20,4],attack:9208,cost:1,target:[2,1,1],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,2],
+            levels:[
+                {effect:[16,4],attack:9208,cost:[1,2],target:[2,1,1],spec:[],class:11},
+                {effect:[25,4],attack:9208,cost:[1,2],target:[2,1,1],spec:[],class:11},
+                {effect:[32,4],attack:9208,cost:[1,2],target:[2,1,1],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Free\nMove',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:4262,cost:0,target:[1,1,2],spec:[1,4],class:3},
+            {effect:[3],attack:4262,cost:0,target:[1,1,3],spec:[1,4],class:3},
+            {effect:[4],attack:4262,cost:0,target:[1,1,4],spec:[1,4],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[2],attack:4262,cost:[],target:[1,1,2],spec:[1,4],class:3},
+                {effect:[3],attack:4262,cost:[],target:[1,1,3],spec:[1,4],class:3},
+                {effect:[4],attack:4262,cost:[],target:[1,1,4],spec:[1,4],class:3},
             ],
         },
     },

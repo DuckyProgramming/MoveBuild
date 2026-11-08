@@ -8903,7 +8903,7 @@ function setupGeneralGraphics(){
 		}
 		setupLayer(graphics.minor[graphics.minor.length-1])
 	}*/
-	for(let a=0,la=3;a<la;a++){
+	/*for(let a=0,la=3;a<la;a++){
 		switch(a){
 			case 0:
 				graphics.minor.push(createGraphics(80,80))
@@ -8919,7 +8919,20 @@ function setupGeneralGraphics(){
 	}
 	generateGeneralSprite(graphics.minor[0],26)
 	generateGeneralSprite(graphics.minor[1],39)
-	generateGeneralSprite(graphics.minor[2],17)
+	generateGeneralSprite(graphics.minor[2],17)*/
+	for(let a=0,la=2;a<la;a++){
+		switch(a){
+			case 0:
+				graphics.minor.push(createGraphics(80,80))
+			break
+			default:
+				graphics.minor.push(createGraphics(160,160))
+			break
+		}
+		setupLayer(graphics.minor[graphics.minor.length-1])
+	}
+	generateGeneralSprite(graphics.minor[0],26)
+	generateGeneralSprite(graphics.minor[1],17)
 }
 function setupBackground(type,layer){
 	switch(type){

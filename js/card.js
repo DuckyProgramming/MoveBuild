@@ -5337,6 +5337,51 @@ class card{
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
                     this.layer.noFill()
+                }else if(this.attack==10447||this.attack==10810||this.attack==11805){
+                    this.gradient=[new p5.LinearGradient(-45,this.width*3-60)]
+                    this.gradient[0].colors(0.0,
+                        color(0,255,0,this.fade),0.1,
+                        color(255,0,255,this.fade),0.2,
+                        color(0,255,0,this.fade),0.3,
+                        color(255,0,255,this.fade),0.4,
+                        color(0,255,0,this.fade),0.5,
+                        color(255,0,255,this.fade),0.6,
+                        color(0,255,0,this.fade),0.7,
+                        color(255,0,255,this.fade),0.8,
+                        color(0,255,0,this.fade),0.9,
+                        color(255,0,255,this.fade),1.0,
+                        color(0,255,0,this.fade))
+                    this.layer.fill(255,255,150,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(20,20,20,this.fade)
+                    this.layer.stroke(50,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(1)
+                    this.layer.push()
+                    this.layer.translate(-this.width*1.2-12,0)
+                    this.layer.strokeGradient(this.gradient[0])
+                    this.layer.rect(this.width*1.2+12,0,this.width-4,this.height-4,3)
+                    this.layer.line(this.width*0.7+14,-this.height/2+6,this.width*0.7+22,-this.height/2+6)
+                    this.layer.line(this.width*1.7+10,-this.height/2+6,this.width*1.7+2,-this.height/2+6)
+                    this.layer.arc(this.width*0.7+28,-this.height/2+6,12,8,-180,-90)
+                    this.layer.arc(this.width*1.7-4,-this.height/2+6,12,8,-90,0)
+                    this.layer.line(this.width*1.7+8,this.height/2-12,this.width*1.7+8,this.height/2-24)
+                    this.layer.line(this.width*1.7+8,this.height/2-12,this.width*1.7,this.height/2-4)
+                    this.layer.line(this.width*1.7,this.height/2-4,this.width*1.7-12,this.height/2-4)
+                    this.layer.line(this.width*1.7+6,this.height/2-6,this.width*1.7+6,this.height/2-18)
+                    this.layer.line(this.width*1.7+6,this.height/2-6,this.width*1.7-6,this.height/2-6)
+                    this.layer.line(this.width*1.7+6,this.height/2-18,this.width*1.7+8,this.height/2-20)
+                    this.layer.line(this.width*1.7-6,this.height/2-6,this.width*1.7-8,this.height/2-4)
+                    this.layer.fillGradient(this.gradient[0])
+                    this.layer.ellipse(this.width*0.7+19.5,this.height/2-7.5,3)
+                    this.layer.quad(this.width*1.7+2,this.height/2-10,this.width*1.7-2,this.height/2-11,this.width*1.7-6,this.height/2-18,this.width*1.7+1,this.height/2-14)
+                    this.layer.pop()
+                    this.layer.noFill()
+                    this.layer.stroke(50,this.fade)
+                    this.layer.strokeWeight(5)
                 }else if(this.colorful){
                     this.gradient=[new p5.LinearGradient(-15,this.width-20)]
                     this.gradient[0].colors(0.0,
@@ -5936,6 +5981,51 @@ class card{
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
                     this.layer.noFill()
+                }else if(this.attack==10447||this.attack==10810||this.attack==11805){
+                    this.gradient=[new p5.LinearGradient(-45,this.width*3-60)]
+                    this.gradient[0].colors(0.0,
+                        color(0,255,0,this.fade),0.1,
+                        color(0,255,255,this.fade),0.2,
+                        color(0,255,0,this.fade),0.3,
+                        color(0,255,255,this.fade),0.4,
+                        color(0,255,0,this.fade),0.5,
+                        color(0,255,255,this.fade),0.6,
+                        color(0,255,0,this.fade),0.7,
+                        color(0,255,255,this.fade),0.8,
+                        color(0,255,0,this.fade),0.9,
+                        color(0,255,255,this.fade),1.0,
+                        color(0,255,0,this.fade))
+                    this.layer.fill(255,255,150,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(20,20,20,this.fade)
+                    this.layer.stroke(50,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(1)
+                    this.layer.push()
+                    this.layer.translate(-this.width*1.2-12,0)
+                    this.layer.strokeGradient(this.gradient[0])
+                    this.layer.rect(this.width*1.2+12,0,this.width-4,this.height-4,3)
+                    this.layer.line(this.width*0.7+14,-this.height/2+6,this.width*0.7+22,-this.height/2+6)
+                    this.layer.line(this.width*1.7+10,-this.height/2+6,this.width*1.7+2,-this.height/2+6)
+                    this.layer.arc(this.width*0.7+28,-this.height/2+6,12,8,-180,-90)
+                    this.layer.arc(this.width*1.7-4,-this.height/2+6,12,8,-90,0)
+                    this.layer.line(this.width*1.7+8,this.height/2-12,this.width*1.7+8,this.height/2-24)
+                    this.layer.line(this.width*1.7+8,this.height/2-12,this.width*1.7,this.height/2-4)
+                    this.layer.line(this.width*1.7,this.height/2-4,this.width*1.7-12,this.height/2-4)
+                    this.layer.line(this.width*1.7+6,this.height/2-6,this.width*1.7+6,this.height/2-18)
+                    this.layer.line(this.width*1.7+6,this.height/2-6,this.width*1.7-6,this.height/2-6)
+                    this.layer.line(this.width*1.7+6,this.height/2-18,this.width*1.7+8,this.height/2-20)
+                    this.layer.line(this.width*1.7-6,this.height/2-6,this.width*1.7-8,this.height/2-4)
+                    this.layer.fillGradient(this.gradient[0])
+                    this.layer.ellipse(this.width*0.7+19.5,this.height/2-7.5,3)
+                    this.layer.quad(this.width*1.7+2,this.height/2-10,this.width*1.7-2,this.height/2-11,this.width*1.7-6,this.height/2-18,this.width*1.7+1,this.height/2-14)
+                    this.layer.pop()
+                    this.layer.noFill()
+                    this.layer.stroke(50,this.fade)
+                    this.layer.strokeWeight(5)
                 }else if(this.colorful){
                     this.gradient=[new p5.LinearGradient(-15,this.width-20)]
                     this.gradient[0].colors(0.0,
@@ -6229,7 +6319,7 @@ class card{
                         this.layer.stroke(200,65,65,this.fade)
                         this.layer.noFill()
                     }else{
-                        this.gradient=[new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5),new p5.LinearGradient(-15,this.width*0.5-5)]
+                        this.gradient=[new p5.LinearGradient(-15,this.width-5),new p5.LinearGradient(-15,this.width-5),new p5.LinearGradient(-15,this.width-5)]
                         if(colorDetail.length==3){
                             this.gradient[0].colors(0.0,
                                 color(...colorDetail[0].active,this.fade*this.anim.select),0.3,
@@ -6426,9 +6516,10 @@ class card{
                     }
                 }
             }
+            let devglow=this.colorful||this.attack==10447||this.attack==10810||this.attack==11805
             if(variants.mtg&&list>=0&&list<=constants.playerNumber){
                 if(colorDetail.length>=2){
-                    if(this.colorful){
+                    if(devglow){
                         this.layer.stroke(50,this.fade)
                     }else if(this.edition==5){
                         this.layer.stroke(colorDetail[colorDetail.length-1].stroke[0]*0.2,colorDetail[colorDetail.length-1].stroke[1]*0.2,colorDetail[colorDetail.length-1].stroke[2]*0.2,this.fade)
@@ -6476,7 +6567,7 @@ class card{
                 if(this.edition==5){
                     let merge=[255,255,255]
                     this.layer.fill(...merge,this.fade)
-                }else if(this.colorful){
+                }else if(devglow){
                     let merge=[240,240,240]
                     this.layer.fill(...merge,this.fade)
                 }else{
@@ -6488,7 +6579,7 @@ class card{
                     if(this.edition==5){
                         let merge=mergeColor([255,255,255],flipColor(mergeColor3(colorDetail[0].text,colorDetail[1].text,colorDetail[2].text)),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
-                    }else if(this.colorful){
+                    }else if(devglow){
                         let merge=mergeColor([240,240,240],mergeColor3(colorDetail[0].text,colorDetail[1].text,colorDetail[2].text),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
                     }else{
@@ -6499,7 +6590,7 @@ class card{
                     if(this.edition==5){
                         let merge=mergeColor([255,255,255],flipColor(mergeColor(colorDetail[0].text,colorDetail[1].text,0.5)),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
-                    }else if(this.colorful){
+                    }else if(devglow){
                         let merge=mergeColor([240,240,240],mergeColor(colorDetail[0].text,colorDetail[1].text,0.5),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
                     }else{
@@ -6511,7 +6602,7 @@ class card{
                 if(this.edition==5){
                     let merge=mergeColor([255,255,255],flipColor(colorDetail.text),this.level/max(1,this.levels-1))
                     this.layer.fill(...merge,this.fade)
-                }else if(this.colorful){
+                }else if(devglow){
                     let merge=mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))
                     this.layer.fill(...merge,this.fade)
                 }else{
@@ -6571,11 +6662,11 @@ class card{
                     this.layer.fill(138,141,207,this.fade)
                     this.layer.stroke(111,114,178,this.fade)
                     this.layer.strokeWeight(2)
-                    this.layer.ellipse(-this.width/2+10,-this.height/2+(this.colorful?15:12),20)
+                    this.layer.ellipse(-this.width/2+10,-this.height/2+(devglow?15:12),20)
                 }
                 if(spec.includes(11)){
                     //combo
-                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12))
+                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(devglow?15:12))
                     this.layer.noFill()
                     this.layer.stroke(240,240,40,this.fade)
                     this.layer.strokeWeight(variants.mtg?2.4:3)
@@ -6588,16 +6679,16 @@ class card{
                         this.layer.arc(-0.5,0.5,15,15,45,225)
                     }
                     this.layer.strokeCap(ROUND)
-                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-(this.colorful?15:12))
+                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-(devglow?15:12))
                 }else if(spec.includes(21)){
                     //metal
                     this.layer.fill(140,120,160,this.fade)
                     this.layer.stroke(120,100,140,this.fade)
                     this.layer.strokeWeight(variants.mtg?1.6:2)
                     if(variants.mtg){
-                        regPoly(this.layer,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12),8,5.6,5.6,0)
+                        regPoly(this.layer,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(devglow?15:12),8,5.6,5.6,0)
                     }else{
-                        regPoly(this.layer,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12),8,7,7,0)
+                        regPoly(this.layer,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(devglow?15:12),8,7,7,0)
                     }
                 }else if(spec.includes(35)){
                     //countdown
@@ -6619,7 +6710,7 @@ class card{
                         }
                     }else{
                         this.layer.strokeJoin(ROUND)
-                        if(this.colorful){
+                        if(devglow){
                             this.layer.fill(200,175,50,this.fade)
                             this.layer.stroke(175,150,25,this.fade)
                             this.layer.strokeWeight(2)
@@ -6655,7 +6746,7 @@ class card{
                     }
                 }else if(spec.includes(55)){
                     //activated ally
-                    if(this.colorful){
+                    if(devglow){
                         this.layer.fill(125,this.fade)
                         this.layer.stroke(100,this.fade)
                         this.layer.strokeWeight(variants.mtg?1.6:2)
@@ -6668,7 +6759,7 @@ class card{
                     }
                 }else if(spec.includes(58)){
                     //health-costing
-                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(this.colorful?15:12))
+                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+(devglow?15:12))
                     this.layer.fill(255,50,50,this.fade)
                     this.layer.stroke(200,0,0,this.fade)
                     this.layer.strokeWeight(variants.mtg?1.6:2)
@@ -6693,14 +6784,14 @@ class card{
                         this.layer.noStroke()
                         this.layer.ellipse(0,0,14)
                     }
-                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-(this.colorful?15:12))
+                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-(devglow?15:12))
                 }else if(spec.includes(59)){
                     //wish
-                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+12+(this.colorful?3:0))
+                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+12+(devglow?3:0))
                     if(!spec.includes(60)){
                         this.layer.fill(90,90,135,this.fade)
                         this.layer.stroke(105,105,150,this.fade)
-                    }else if(this.colorful){
+                    }else if(devglow){
                         this.layer.fill(150,this.fade)
                         this.layer.stroke(175,this.fade)
                     }else{
@@ -6714,7 +6805,7 @@ class card{
                     this.layer.noStroke()
                     if(!spec.includes(60)){
                         this.layer.fill(150,150,195,this.fade)
-                    }else if(this.colorful){
+                    }else if(devglow){
                         this.layer.fill(200,this.fade)
                     }else{
                         this.layer.fill(255,150,200,this.fade)
@@ -6724,10 +6815,10 @@ class card{
                         this.layer.quad(variants.mtg?-1.2:-1.5,variants.mtg?-3.2:-4.25,variants.mtg?1.2:1.5,variants.mtg?-3.2:-4.25,variants.mtg?0.375:0.5,variants.mtg?-4.8:-6,variants.mtg?-0.375:-0.5,variants.mtg?-4.8:-6)
                         this.layer.rotate(120)
                     }
-                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-12-(this.colorful?3:0))
+                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-12-(devglow?3:0))
                 }else if(spec.includes(67)){
                     //quest
-                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+12+(this.colorful?3:0))
+                    this.layer.translate(variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+7.5:-this.height/2+12+(devglow?3:0))
                     this.layer.fill(50,225,125,this.fade)
                     this.layer.stroke(25,200,100,this.fade)
                     this.layer.strokeWeight(variants.mtg?1.2:1.5)
@@ -6738,7 +6829,7 @@ class card{
                     this.layer.fill(125,255,175,this.fade)
                     this.layer.ellipse(0,0,variants.mtg?4.8:6)
                     regStar(this.layer,0,0,6,variants.mtg?2.4:3,variants.mtg?2.4:3,variants.mtg?4:5,variants.mtg?4:5,30)
-                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-12-(this.colorful?3:0))
+                    this.layer.translate(variants.mtg?-this.width/2+8:this.width/2-10,variants.mtg?this.height/2-7.5:this.height/2-12-(devglow?3:0))
                 }else if(!spec.includes(5)&&!spec.includes(41)){
                     if(variants.mtg){
                         let finalCost=this.editCost(cost,1)
@@ -6774,7 +6865,7 @@ class card{
                             displayMtgManaSymbol(this.layer,this.width/2-6-total*12.5,-this.height/2+6,-2,0,0.6,this.fade,0,[this.anim.afford,this.anim.costDown,this.anim.costUp,totalNeutral])
                             total++
                         }
-                    }else if(this.colorful){
+                    }else if(devglow){
                         this.layer.translate(-this.width/2+10,-this.height/2+15)
                         this.gradient=[new p5.ConicGradient(0,0,0)]
                         this.layer.colorMode(HSB,360,1,1,1)
@@ -6834,7 +6925,7 @@ class card{
                 }
                 this.layer.noStroke()
                 if(!spec.includes(5)&&!spec.includes(41)&&(!variants.mtg||this.specialCost)){
-                    if(this.colorful){
+                    if(devglow){
                         let merge=mergeColor([255,0,0],[240,240,240],this.anim.afford)
                         this.layer.fill(...merge,this.fade)
                     }else if(spec.includes(11)){
@@ -6853,7 +6944,7 @@ class card{
                     }
                     this.layer.textSize(variants.mtg?10:14)
                     let effectiveCost=this.editCost(cost,1)
-                    if(this.colorful){
+                    if(devglow){
                         this.layer.text(effectiveCost==-1?`X`:effectiveCost,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+8:-this.height/2+16)
                     }else{
                         this.layer.text(effectiveCost==-1?`X`:effectiveCost,variants.mtg?this.width/2-8:-this.width/2+10,variants.mtg?-this.height/2+8:-this.height/2+13)
@@ -6864,7 +6955,7 @@ class card{
                 }
                 if(this.edition==5){
                     this.layer.fill(255,this.fade)
-                }else if(this.colorful||this.attack>=3694&&this.attack<=3699){
+                }else if(devglow||this.attack>=3694&&this.attack<=3699){
                     this.layer.fill(240,this.fade)
                 }else{
                     this.layer.fill(0,this.fade)
@@ -6884,7 +6975,7 @@ class card{
                         }
                         this.layer.rotate(-90)
                     }else{
-                        this.layer.textSize(variants.blind||this.blind?12:10-((name.length>=22&&name.includes('Discus')||name.length>=24&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'||name=='Youmu, Phantom\nGardener'||name=='Discus of Moon\nand Sky'||name=='Discus of Truth\nand Lie'?3:0))
+                        this.layer.textSize(variants.blind||this.blind?12:10-((name.length>=22&&name.includes('Discus')||name.length>=24&&this.class==9&&name!='Sunny, Glowing\nSunlight'&&name!='Star, Showering\nStarlight')&&!name.includes('$colorcharacter')||name=='Cauchy-Riemann\nEquations'||name=='Temptation of\nthe Next World'||name=='Youmu, Phantom\nGardener'||name=='Discus of Moon\nand Sky'||name=='Discus of Truth\nand Lie'||name=='DuckyProgramming,\nDeity of Apathy'?3:0))
                         if(spec.includes(37)){
                             this.layer.text(effectiveName+":",0,variants.blind||this.blind?0:-this.height/2+15+(variants.mtg?10:0))
                         }else{
@@ -6893,7 +6984,7 @@ class card{
                         if(!variants.blind&&!this.blind){
                             if(this.edition==5){
                                 this.layer.fill(255,255,255,this.fade)
-                            }else if(this.colorful||this.attack>=3694&&this.attack<=3699){
+                            }else if(devglow||this.attack>=3694&&this.attack<=3699){
                                 this.layer.fill(240,this.fade)
                             }else{
                                 this.layer.fill(0,this.fade)

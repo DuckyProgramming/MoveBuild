@@ -411,6 +411,8 @@ types={
         {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Deals damage`},
         {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
         {name:'MoveDummy',life:1,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
+        {name:'TurnDummy',life:1,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Turns around`},
+        {name:'AggressDummy',life:1,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Follows you`},
         {name:'Unknown',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`???`},
         
     ],attack:[
@@ -1400,7 +1402,7 @@ types={
         {name:'Pasta Bowl',internal:'X Cost Mana',id:431,rarity:-1,list:0,mtg:2,world:[0,3],description:'When You Play an X Cost Card,\nGain (N)'},
         {name:'Gas Oven',internal:'Elite Upgrade',id:432,rarity:2,list:0,mtg:0,world:[0,2],description:'Upgrade a Card After Each Elite'},
         {name:'Radio Receiver',internal:'Emergency Push',id:433,rarity:0,list:0,mtg:0,world:[0,3],description:'Add 1 Emergency Push\non Turn 1'},
-        {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:4,list:0,mtg:1,world:[0,3],description:'Add a Free Move\nto Hand Every Turn'},
+        {name:'Optimal Sneakers',internal:'Free Move',id:434,rarity:-1,list:0,mtg:1,world:[0,3],description:'Add a Free Move\nto Hand Every Turn'},
         {name:'Purified Nebula',internal:'Neutral Mana/Colorless Cost Clear',id:435,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (N) to Base Mana,\nReplace (N) Costs With (1) Costs',manaColor:0},
         {name:'Ivory Beads',internal:'White Mana/Block Up',id:436,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (W) to Base Mana,\nIncrease All Block Added by 2',manaColor:1},
         {name:'Ice Crystal Wing',internal:'Blue Mana/Proxy Teleport',id:437,rarity:4,list:0,mtg:2,world:[0,3],description:'Add (B) to Base Mana,\nAdd a 0 Cost Ethereal Teleport on Turn 1',manaColor:2},
@@ -1749,11 +1751,14 @@ types={
 
         {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 6 Damage\nRange 1-3\nTemporary'},
         {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add 9 Block'},
-        {name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
-        {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},
+        /*{name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},*/
+        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
         {name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
-        {name:'Hydrazine',internal:'5 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 5 Splash Damage\nRange 1-3\nTemporary'},
+        {name:'Hydrazine',internal:'5 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 10 Splash Damage\nRange 1-3\nTemporary'},
         {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
+        //{name:'Graphene',internal:'2 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 2 Strength'},
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
 
         //mark i
@@ -7078,6 +7083,18 @@ types={
             ],ally:[
             ],
         },{
+            level:['Basic 5'],class:1,world:-1,
+            name:'-h Big Duck',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:2,y:4},name:'Duck'},
+                {position:{x:4,y:4},name:'Duck'},
+                {position:{x:1,y:0},name:'Big Duck'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
             level:['Sliced 5'],class:0,world:1,
             name:'Red',
             player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:1}]]},
@@ -7473,6 +7490,28 @@ types={
             enemy:[
                 {position:{x:0,y:0},name:'Kugelblitz'},
                 {position:{x:1,y:1},name:'Kugelblitz'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialTrick2',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'TurnDummy'},
+                {position:{x:1,y:1},name:'TurnDummy'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialAdvanced',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'TurnDummy'},
+                {position:{x:4,y:4},name:'AggressDummy'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
@@ -8178,6 +8217,9 @@ Playing them the first time activates them. Play them again to deactivate them.
 Deactivate themselves automatically if not enough Influence is available.`,
         },{name:'Influence',mtg:0,desc:
 `Resource gained through cards. Used to play Wishes.`,
+        },{name:'Process',mtg:0,desc:
+`Convert a set of temporary item inputs into corresponding outputs.
+Continues activating as long as you have the inputs.`,
         },
         //mark dict
     ],diff:[

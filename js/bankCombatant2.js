@@ -4029,6 +4029,18 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.logo=1
                     this.trigger.display.logo=true
                 break
+                case 'TurnDummy':
+                    this.color={skin:{head:[240,220,180],body:[70,80,90],legs:[60,70,80],arms:[65,75,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.logo=[255,175,0]
+                    this.fades.logo=1
+                    this.trigger.display.logo=true
+                break
+                case 'AggressDummy':
+                    this.color={skin:{head:[240,220,180],body:[70,80,90],legs:[60,70,80],arms:[65,75,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color.logo=[255,100,0]
+                    this.fades.logo=1
+                    this.trigger.display.logo=true
+                break
                 case '💀':
                     this.color={skin:{head:[230,230,210],body:[220,220,200],legs:[210,210,190],arms:[205,205,185]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[0,0,0],out:[0,0,0]}}
                     this.anim.eyeStyle=[5,5]

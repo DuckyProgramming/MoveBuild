@@ -1,45 +1,19 @@
-CS 150 [GRANDEUR]
-
 test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
 
 check that on mtg mode energy is never mentioned
-outdupes, outmtgerror
 grammar check
-checkexists (11789 forward)
 
 tooltips for dictionary
 
-recheck every tutorial
-certes - can exhaust
-azis - can't countdown, no explosive orbs
-donakho - can't transform cards
-airi - amplify 2 no longer exists
-chip - shock therapy is dead, strikes and defends
-dd610 - tesla is removed
-prehex - hell
-vincent - hell
-daiyousei - you don't get strength in elemental form
-sanae - divination died
-shinmyoumaru - collect power got renamed
-merlin - no more skill
-sagume - lemme see reversal
-dukelis - wrong definition of population, not all lenin, no fallen union
-ducopo - tiles got changed
-enemies tutorial - some people move when you move
-
 when you win diff 26 on a character they become shiny
 
+lose an item slot diff option is unfair to vincent
 recycling - gain a reroll every turn??? [maybe use this to replace TEST 271]
 also do something to replace mechanical eye
+and something to replace optimal sneakers
 
 new bar event option - take a shot - lose 50 currency, chance to remove a card
-layoffs - remove randomly picked card 1, remove randomly picked card 2, or both of them
-
-[world 2] ruckus ritchie - the most feared pirate in the system has found you, battle him (start fight) or suffer a "sadistic punishment":
-lose an arm - your character loses a limb and all attacks and defenses have 1 less effect from now on
-lose your identity - your character's name becomes redacted, your expression becomes blank, and you have 1 less card choice
-lose your eyesight - your character's eyes are permanently shut and you can only attack at range 1
 
 

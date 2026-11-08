@@ -172,7 +172,7 @@ class relicManager{
         }
         if(this.battle.tutorialManager.active){
             for(let a=0,la=3;a<la;a++){
-                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2,this.layer.height/2+10-la*50+a*100,findInternal('Placeholder',types.relic),2))
+                this.displayRelics.push(new relic(this.layer,this.battle,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,findInternal('Placeholder',types.relic),2))
             }
         }else if(variants.mtg){
             let groups=[[],[],[],[],[],[],[],[]]
@@ -3643,15 +3643,17 @@ class relicManager{
                 }
             break
             case 'bossstash':
-                for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade){
-                        this.selfCall(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,true])
+                if(!this.battle.tutorialManager.active){
+                    for(let a=0,la=this.displayRelics.length;a<la;a++){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade){
+                            this.selfCall(0,[a,this.battle.players==1?0:inputs.rel.x<this.displayRelics[a].position.x&&this.complete[0]>0||this.complete[1]<=0?0:1,true])
+                        }
                     }
-                }
-                if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+45)<30){
-                    transition.trigger=true
-                    this.battle.nextWorld()
-                    transition.scene='map'
+                    if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+45)<30){
+                        transition.trigger=true
+                        this.battle.nextWorld()
+                        transition.scene='map'
+                    }
                 }
             break
             case 'overlay':
@@ -3720,15 +3722,17 @@ class relicManager{
                 }
             break
             case 'bossstash':
-                for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade){
-                        this.selfCall(0,[a,this.complete[0]<=0?1:0,true])
+                if(!this.battle.tutorialManager.active){
+                    for(let a=0,la=this.displayRelics.length;a<la;a++){
+                        if((int(key)+9)%10==a&&!this.displayRelics[a].deFade){
+                            this.selfCall(0,[a,this.complete[0]<=0?1:0,true])
+                        }
                     }
-                }
-                if(code==ENTER){
-                    transition.trigger=true
-                    this.battle.nextWorld()
-                    transition.scene='map'
+                    if(code==ENTER){
+                        transition.trigger=true
+                        this.battle.nextWorld()
+                        transition.scene='map'
+                    }
                 }
             break
         }

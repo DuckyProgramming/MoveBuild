@@ -1047,16 +1047,16 @@ class item{
                 case '9 Block':
                     displaySymbol(this.layer,0,0,188,0,1,this.fade)
                 break
-                case '2 Damage Per Turn':
+                case '4 Damage Per Turn':
                     displaySymbol(this.layer,0,0,189,0,1,this.fade)
                 break
-                case 'Draw 1':
+                case 'Draw 2 2':
                     displaySymbol(this.layer,0,0,190,0,1,this.fade)
                 break
                 case '1 Vulnerable':
                     displaySymbol(this.layer,0,0,191,0,1,this.fade)
                 break
-                case '5 Splash Damage':
+                case '10 Splash Damage':
                     displaySymbol(this.layer,0,0,192,0,1,this.fade)
                 break
                 case '1 Strength 2':

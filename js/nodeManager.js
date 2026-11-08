@@ -322,8 +322,10 @@ class nodeManager{
     }
     setupTutorialMap(){
         this.nodes=[]
-        let list=[3,4,5,6]
-        for(let a=0,la=4;a<la;a++){
+        /*let list=[3,4,5,6]
+        for(let a=0,la=4;a<la;a++){*/
+        let list=[3,4,5,6,0,1,2]
+        for(let a=0,la=list.length;a<la;a++){
             this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150,0,a,game.allMap>=0?game.allMap:list[a]))
             this.nodes[a].typeConstruct()
         }

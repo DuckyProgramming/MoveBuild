@@ -305,6 +305,7 @@ attack.prototype.update=function(){
         case 11247: case 11267: case 11268: case 11269: case 11270: case 11274: case 11279: case 11282: case 11350: case 11369: case 11370: case 11380: case 11392: case 11396: case 11410: case 11415: case 11419: case 11431: case 11432:
         case 11434: case 11439: case 11442: case 11451: case 11460: case 11469: case 11480: case 11486: case 11488: case 11496: case 11497: case 11504: case 11510: case 11526: case 11531: case 11537: case 11546: case 11547: case 11548:
         case 11549: case 11553: case 11562: case 11573: case 11583: case 11611: case 11633: case 11635: case 11637: case 11643: case 11646: case 11649: case 11678: case 11738: case 11770: case 11772: case 11775: case 11778: case 11786:
+        case 11803: case 11804:
             //mark 2
             if(
                 this.timer==1&&(
@@ -3136,6 +3137,7 @@ attack.prototype.update=function(){
         case 11630: case 11640: case 11651: case 11683: case 11684: case 11685: case 11689: case 11690: case 11691: case 11692:
         case 11693: case 11694: case 11695: case 11702: case 11703: case 11704: case 11731: case 11734: case 11735: case 11736:
         case 11745: case 11747: case 11752: case 11753: case 11755: case 11756: case 11781: case 11782: case 11783: case 11789:
+        case 11796: case 11797: case 11798: case 11799: case 11800: case 11801: case 11802:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -16717,6 +16719,7 @@ attack.prototype.update=function(){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 11680:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Take Per Turn',this.effect[0])
                     break
                     case 11681:
@@ -16782,6 +16785,22 @@ attack.prototype.update=function(){
                 }else if(this.timer>=20){
                     this.remove=true
                 }
+            }
+        break
+        case 11805:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(46)
+            }
+            this.userCombatant.runAnimation(1,46)
+            if(this.timer==30){
+                this.userCombatant.loseMaxHP(this.userCombatant.base.life/2)
+                for(let a=0,la=this.userManager.deck.cards.length/2;a<la;a++){
+                    this.userManager.deck.randomEffect(39)
+                }
+            }else if(this.timer>=60){
+                this.remove=true
+                this.userCombatant.startAnimation(0)
+                this.userCombatant.runAnimation(0,0)
             }
         break
 

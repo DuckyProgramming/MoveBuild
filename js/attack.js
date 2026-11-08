@@ -13820,6 +13820,18 @@ class attack{
                     case 11775:
                         this.battle.itemManager.process(this.player,[findName('Ammonium',types.item)],[findName('Hydrazine',types.item)])
                     break
+                    case 11803:
+                        this.userManager.drawAbstract(this.effect[1],0,0,[11])
+                        if(this.userCombatant.getStatus('Temporary Dexterity')>0){
+                            this.battle.addEnergy(this.effect[2],this.player)
+                        }
+                    break
+                    case 11804:
+                        this.userManager.drawAbstract(this.effect[1],0,0,[11])
+                        if(this.userCombatant.getStatus('Temporary Dexterity')>0){
+                            this.battle.addSpecificEnergy(1,this.player,1)
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -41117,8 +41129,8 @@ class attack{
                     break
                     case 11756:
                         if(this.battle.itemManager.spend(findName('Glass',types.item),this.player)){
-                            this.battle.itemManager.addItemSlots(1,this.player)
-                            this.battle.itemManager.tempSlots[this.player]++
+                            this.battle.itemManager.addItemSlots(this.effect[0],this.player)
+                            this.battle.itemManager.tempSlots[this.player]+=this.effect[0]
                         }
                     break
                     case 11781:
@@ -41142,6 +41154,39 @@ class attack{
                     case 11789:
                         this.battle.addCurrency(this.effect[0],this.player)
                         this.battle.itemManager.process(this.player,[findName('Graphene',types.item)],[findName('Diamond',types.item)])
+                    break
+                    case 11796:
+                        this.userCombatant.statusEffect('Armor',this.effect[0])
+                        this.battle.itemManager.addItemSlots(this.effect[1],this.player)
+                        this.battle.itemManager.tempSlots[this.player]+=this.effect[1]
+                    break
+                    case 11797:
+                        this.battle.itemManager.process(this.player,[findName('Carbon',types.item)],[findName('Graphite',types.item)])
+                        this.battle.itemManager.process(this.player,[findName('Quartz',types.item)],[findName('Glass',types.item)])
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 11798:
+                        this.battle.itemManager.process(this.player,[findName('Ammonium',types.item)],[findName('Hydrazine',types.item)])
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 11799:
+                        this.battle.itemManager.process(this.player,[findName('Graphite',types.item)],[findName('Graphene',types.item)],[findName('Hydrazine',types.item)])
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 11800:
+                        this.battle.itemManager.process(this.player,[findName('Glass',types.item),findName('Hydrazine',types.item)],[findName('Prismatic Bomb',types.item),findName('Prismatic Bomb',types.item)])
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 11801:
+                        this.battle.itemManager.process(this.player,[findName('Graphene',types.item)],[findName('Diamond',types.item)])
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 11802:
+                        this.battle.itemManager.process(this.player,[findName('Carbon',types.item)],[findName('Graphite',types.item)])
+                        this.battle.itemManager.process(this.player,[findName('Quartz',types.item)],[findName('Glass',types.item)])
+                        this.battle.itemManager.process(this.player,[findName('Ammonium',types.item)],[findName('Hydrazine',types.item)])
+                        this.battle.itemManager.process(this.player,[findName('Graphene',types.item)],[findName('Diamond',types.item)])
+                        this.userManager.draw(this.effect[0])
                     break
 
                 }

@@ -12028,7 +12028,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11753: string+=`When You\nDiscard a Fatigue,\nExhaust It`; break
         case 11754: string+=`Apply ${effect[0]} Stun\nDraw ${effect[1]} Card${pl(effect[1])}`; break
         case 11755: string+=`When You Assign,\nDraw ${effect[0]} Worker${pl(effect[0])}`; break
-        case 11756: string+=`Spend a Glass Item:\nGain an Item Slot\nThis Combat`; break
+        case 11756: string+=`Spend a Glass Item:\nGain ${effect[0]} Item Slot${pl(effect[0])}\nThis Combat`; break
         case 11757: string+=`Spend a Graphite Item:\nDraw to ${effect[0]} Card${pl(effect[0])}`; break
         case 11758: string+=`Spend a Hydrazine Item:\nGain ${effect[0]} Energy`; break
         case 11759: string+=`Spend a Hydrazine Item:\nGain (E) (E) (E) (E) (E)`; break
@@ -12068,6 +12068,16 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11793: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 0 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
         case 11794: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 1 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
         case 11795: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 2 Cost Card\nWith an Edition\nFrom Any Character\nto Add to Deck`; break
+        case 11796: string+=`Gain ${effect[0]} Armor\nGain ${effect[1]} Item Slot${pl(effect[1])}\nThis Combat`; break
+        case 11797: string+=`Process:\nCarbon to Graphite,\nQuartz to Glass\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 11798: string+=`Process:\nAmmonium to Hydrazine\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 11799: string+=`Process:\nGraphite and Hydrazine to\nGraphene and Hydrazine\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 11800: string+=`Process:\nGlass and Hydrazine to\n2 Prismatic Bombs\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 11801: string+=`Process:\nGraphene to Diamond\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 11802: string+=`Process:\nCarbon to Graphite,\nQuartz to Glass,\nAmmonium to Hydrazine,\nGraphene to Diamond\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 11803: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Skill${pl(effect[1])}\nIf You Have\nTemporary Dexterity,\nGain ${effect[2]} Energy`; break
+        case 11804: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Skill${pl(effect[1])}\nIf You Have\nTemporary Dexterity,\nGain (W)`; break
+        case 11805: string+=`Lose Half of\nYour Max Health\nRandomly Remove Half\nof Your Deck`; break
 
         //mark p
         //mark q

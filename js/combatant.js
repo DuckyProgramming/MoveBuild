@@ -7309,7 +7309,7 @@ class combatant{
                         this.goal.anim.sword=false
                     break
                     case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24: case 25:
-                    case 30: case 34: case 37:
+                    case 30: case 34: case 37: case 46:
                         this.animSet.loop=0
                     break
                     case 5: case 45:
@@ -7834,6 +7834,15 @@ class combatant{
                     case 44: case 45:
                         this.animSet.loop+=rate
                         this.anim.eye[0]=lsin(this.animSet.loop*180)
+                    break
+                    case 46:
+                        this.animSet.loop+=rate
+                        for(let a=0,la=2;a<la;a++){
+                            this.anim.arms[a].top=random(-180,180)
+                            this.anim.arms[a].bottom=random(-180,180)
+                            this.spin.arms[a].top=random(-180,180)
+                            this.spin.arms[a].bottom=random(-180,180)
+                        }
                     break
                 }
             break

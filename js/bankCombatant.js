@@ -16195,7 +16195,7 @@ combatant.prototype.display=function(){
                     this.layer.rect(lsin(this.anim.direction)*6.5,-54,3*lcos(this.anim.direction),12)
                     this.layer.rect(lsin(this.anim.direction)*6.5,-54,12*lcos(this.anim.direction),3)
                 }
-                if((this.name=='NumberDummy'||this.name=='AttackDummy'||this.name=='BlockDummy'||this.name=='MoveDummy')&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                if((this.name=='NumberDummy'||this.name=='AttackDummy'||this.name=='BlockDummy'||this.name=='MoveDummy'||this.name=='TurnDummy'||this.name=='AggressDummy')&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.logo),this.fade*this.fades.logo)
                     this.layer.textSize(12)
@@ -16206,13 +16206,13 @@ combatant.prototype.display=function(){
                         case 'NumberDummy':
                             this.layer.text(this.base.life,0,0)
                         break
-                        case 'AttackDummy':
+                        case 'AttackDummy': case 'TurnDummy':
                             this.layer.text(this.attack[0].effect[0],0,0)
                         break
                         case 'BlockDummy':
                             this.layer.text(this.lastBlock,0,0)
                         break
-                        case 'MoveDummy':
+                        case 'MoveDummy': case 'AggressDummy':
                             this.layer.text(this.move.speed,0,0)
                         break
                     }

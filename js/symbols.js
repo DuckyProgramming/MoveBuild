@@ -11852,7 +11852,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,9,9)
             layer.stroke(220,240,240,fade)
             layer.strokeJoin(ROUND)
-            layer.strokeWeight(1)
+            //layer.strokeWeight(1)
+            layer.strokeWeight(0.75)
             for(let a=0,la=9;a<la;a++){
                 layer.rotate(360/la)
                 pentagon(layer,0,0,-1.5,-4.5,-0.5,-6,0.5,-6,1.5,-4.5)

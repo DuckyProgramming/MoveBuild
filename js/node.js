@@ -46,19 +46,29 @@ class node{
         this.combat=-1
         switch(this.type){
             case 0:
-                this.reality=this.type
-                //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
-                //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
-                list=this.tilePosition.y<=1?4:this.tilePosition.y<=(variants.shortMap?3:4)&&this.battle.nodeManager.world==0?3:0
-                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
-                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
-                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+                if(this.battle.tutorialManager.active){
+                    this.reality=this.type
+                    this.combat=findName(['Duck','-h Big Duck','General Duckion'][this.type],types.encounter)
+                }else{
+                    this.reality=this.type
+                    //list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][4].length>0?4:
+                    //this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][3].length>0?3:this.type
+                    list=this.tilePosition.y<=1?4:this.tilePosition.y<=(variants.shortMap?3:4)&&this.battle.nodeManager.world==0?3:0
+                    index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].length))
+                    this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list][index]
+                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][list].splice(index,1)
+                }
             break
             case 1: case 2:
-                this.reality=this.type
-                index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].length))
-                this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type][index]
-                this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].splice(index,1)
+                if(this.battle.tutorialManager.active){
+                    this.reality=this.type
+                    this.combat=findName(['Duck','-h Big Duck','General Duckion'][this.type],types.encounter)
+                }else{
+                    this.reality=this.type
+                    index=floor(random(0,this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].length))
+                    this.combat=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type][index]
+                    this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][this.type].splice(index,1)
+                }
             break
             case 5:
                 if(this.battle.tutorialManager.active){

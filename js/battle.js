@@ -603,7 +603,7 @@ class battle{
         this.attackManager.clear()
         this.turnManager.clear()
         this.particleManager.clear()
-        if(this.encounter.class==0&&this.encounter.world!=-1&&effectiveEncounter.ally.length==0&&!this.modded(10)){
+        if(this.encounter.class==0&&this.encounter.world!=-1&&effectiveEncounter.ally.length==0&&!this.modded(10)&&!this.tutorialManager.active){
             if(this.first){
                 let tile=this.tileManager.getRandomTilePosition()
                 this.encounter.custom=tile==-1?[0,0]:[constrain(floor(random(-3,5)),0,4),tile]
@@ -3838,7 +3838,7 @@ class battle{
                             }
                         }
                     }
-                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive&&!this.tutorialManager.active){
+                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive&&(!this.tutorialManager.active||this.tutorialManager.tutorial==1)){
                     this.result.victory=true
                     this.overlayManager.closeAll()
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
@@ -3858,6 +3858,8 @@ class battle{
                         for(let b=0,lb=variants.business||this.nodeManager.endless!=0?0:(variants.vanish||variants.inventor||variants.commoners)?2:1;b<lb;b++){
                             if(this.result.skipReward[a]){
                                 this.result.skipReward[a]=false
+                            }else if(this.tutorialManager.active){
+                                reward.push({type:1,value:[0,0,8]})
                             }else if(floor(random(0,2))==0||!this.modded(50)){
                                 switch(this.encounter.class){
                                     case 0: case 3: case 4:
