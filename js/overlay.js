@@ -17,7 +17,7 @@ class overlay{
             case 2:
                 this.page=0
                 switch(this.args[0]){
-                    case 3: case 17: case 43: case 75: case 77: case 91: case 116: case 117: case 122:
+                    case 3: case 17: case 43: case 75: case 77: case 91: case 116: case 117: case 122: case 130:
                         this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
                         this.card.nonCalc=true
                     break
@@ -30,6 +30,7 @@ class overlay{
                 this.options=variants.unary||variants.domain?1:3
                 this.additionalOptions=0
                 this.prune=false
+                this.reroll=0
                 this.lastTake=-1
             break
             case 5:
@@ -188,7 +189,7 @@ class overlay{
                     case 68: case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83:
                     case 86: case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107:
                     case 108: case 109: case 110: case 113: case 115: case 116: case 117: case 118: case 122: case 123:
-                    case 125: case 126: case 129:
+                    case 125: case 126: case 129: case 130:
                         this.battle.cardManagers[this.player].deck.resetAnim()
                     break
                     case 12: case 97:
@@ -303,6 +304,7 @@ class overlay{
                 }else{
                     args=this.sets[0]
                 }
+                this.reroll=0
                 if(this.sets.length==1||orig){
                     this.cards=[]
                     let sublist=[]
@@ -3459,6 +3461,7 @@ class overlay{
                     case 126: this.title='Make a Card Common'; break
                     case 127: this.title='Put a Card From Draw Pile in Hand and Make it Foil'; break
                     case 129: this.title='Make a Card Polychrome and Duplicate it'; break
+                    case 130: this.title='Double Effect of an Attack or Defense'; break
                     default: this.title=''; break
                 }
                 this.layer.fill(160,this.fade*0.8)
@@ -3496,7 +3499,7 @@ class overlay{
                     case 99: case 100: case 101: case 102: case 103: case 104: case 105: case 106: case 107: case 108:
                     case 109: case 110: case 111: case 112: case 113: case 114: case 115: case 116: case 117: case 118:
                     case 119: case 120: case 121: case 122: case 123: case 124: case 125: case 126: case 127: case 128:
-                    case 129:
+                    case 129: case 130:
                         this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
@@ -3550,11 +3553,12 @@ class overlay{
                     case 123: this.battle.cardManagers[this.player].deck.display('overlay',[15,this.page,this.args[1]]); break
                     case 124: this.battle.cardManagers[this.player].reserve.display('overlay',[16,this.page]); break
                     case 128: this.battle.cardManagers[this.player].discard.display('overlay',[17,this.page,this.args[3]]); break
+                    case 130: this.battle.cardManagers[this.player].deck.display('overlay',[9,this.page,[1,2]]); break
 
                 }
                 switch(this.args[0]){
                     case 3: case 17: case 43: case 75: case 77: case 89: case 91: case 100: case 101: case 116:
-                    case 117: case 122:
+                    case 117: case 122: case 130:
                         this.card.fade=1
                         this.card.anim.afford=1
                         this.card.display()
@@ -3571,45 +3575,65 @@ class overlay{
                     this.layer.rect(this.layer.width/2,this.layer.height/2,max(175,this.options*120+40),200,10)
                 }
                 let offset=this.options>=12?130:this.options>=8?75:0
+                let set=[]
                 if(!this.battle.modded(83)){
-                    this.layer.rect(this.layer.width/2,this.layer.height/2+125+offset,120,40,10)
+                    set.push(0)
                 }
                 if(this.battle.relicManager.hasRelic(173,this.player)){
-                    this.layer.rect(this.layer.width/2,this.layer.height/2+170+offset,120,40,10)
+                    set.push(1)
                 }
+                if(this.battle.relicManager.hasRelic(611,this.player)&&this.reroll<this.battle.relicManager.active[611][this.player+1]){
+                    set.push(2)
+                }
+                for(let a=0,la=set.length;a<la;a++){
+                    this.layer.rect(this.layer.width/2+a*125-la*62.5+62.5,this.layer.height/2+125+offset,120,40,10)
+                }
+                /*if(!this.battle.modded(83)){
+                    this.layer.rect(this.layer.width/2,this.layer.height/2+125+offset,120,40,10)
+                }*/
+                /*if(this.battle.relicManager.hasRelic(173,this.player)){
+                    this.layer.rect(this.layer.width/2,this.layer.height/2+170+offset,120,40,10)
+                }*/
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 switch(this.args[0]){
                     default: this.layer.text(this.setupArgs[2]==59?'Add Any Cards':'Add a Card',this.layer.width/2,this.layer.height/2-70-offset); break
                 }
-                if(!this.battle.modded(83)){
+                //if(!this.battle.modded(83)){
+                for(let a=0,la=set.length;a<la;a++){
+                    let pos=this.layer.width/2+a*125-la*62.5+62.5 
                     this.layer.textSize(20)
-                    switch(this.args[0]){
+                    this.layer.text(['Skip','Select All','Reroll'][set[a]],pos,this.layer.height/2+125+offset)
+                    /*switch(this.args[0]){
                         default: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125+offset); break
-                    }
-                    let bonuses=[]
-                    if(this.args[0]==0){
-                        if(this.battle.relicManager.hasRelic(49,this.player)){
-                            bonuses.push('2 Max HP')
-                        }
-                        if(this.battle.relicManager.hasRelic(101,this.player)){
-                            bonuses.push('10 Currency')
-                        }
-                        if(this.battle.relicManager.hasRelic(521,this.player)){
-                            bonuses.push('Potential Edition')
-                        }
-                    }
-                    this.layer.textSize(8)
-                    if(bonuses.length>=2){
-                        this.layer.text('Multiple Bonuses',this.layer.width/2,this.layer.height/2+140+offset)
-                    }else if(bonuses.length>=1){
-                        this.layer.text(bonuses[0],this.layer.width/2,this.layer.height/2+140+offset)
+                    }*/
+                    switch(set[a]){
+                        case 0:
+                            let bonuses=[]
+                            if(this.args[0]==0){
+                                if(this.battle.relicManager.hasRelic(49,this.player)){
+                                    bonuses.push('2 Max HP')
+                                }
+                                if(this.battle.relicManager.hasRelic(101,this.player)){
+                                    bonuses.push('10 Currency')
+                                }
+                                if(this.battle.relicManager.hasRelic(521,this.player)){
+                                    bonuses.push('Potential Edition')
+                                }
+                            }
+                            this.layer.textSize(8)
+                            if(bonuses.length>=2){
+                                this.layer.text('Multiple Bonuses',pos,this.layer.height/2+140+offset)
+                            }else if(bonuses.length>=1){
+                                this.layer.text(bonuses[0],pos,this.layer.height/2+140+offset)
+                            }
+                        break
                     }
                 }
-                if(this.battle.relicManager.hasRelic(173,this.player)){
+                /*if(this.battle.relicManager.hasRelic(173,this.player)){
                     this.layer.textSize(20)
                     this.layer.text('Select All',this.layer.width/2,this.layer.height/2+170+offset)
-                }
+                }*/
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
                     this.cards[a].anim={select:0,afford:1}
@@ -4405,7 +4429,7 @@ class overlay{
                         case 24:
                             this.page=constrain(this.page,0,ceil(this.battle.tierManager.tiers[this.args[1]].cards.length/15)-1)
                         break
-                        case 53: case 54: case 55: case 56: case 61: case 75: case 123:
+                        case 53: case 54: case 55: case 56: case 61: case 75: case 123: case 130:
                             this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].deck.sorted.length/15)-1)
                         break
                         case 36: case 81: case 82: case 115:
@@ -4434,7 +4458,7 @@ class overlay{
                         case 68: case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83:
                         case 86: case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107:
                         case 108: case 109: case 110: case 113: case 115: case 116: case 117: case 118: case 123: case 125:
-                        case 126: case 129:
+                        case 126: case 129: case 130:
                             this.battle.cardManagers[this.player].deck.update('overlay',[this.page])
                         break
                         case 12: case 97:
@@ -4470,7 +4494,7 @@ class overlay{
                         case 68: case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83:
                         case 86: case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107:
                         case 108: case 109: case 110: case 113: case 115: case 116: case 117: case 118: case 123: case 125:
-                        case 126: case 129:
+                        case 126: case 129: case 130:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].deck.cards[a].size=constrain(this.battle.cardManagers[this.player].deck.cards[a].size,0,this.fade)
                             }
@@ -4493,7 +4517,7 @@ class overlay{
                     }
                     switch(this.args[0]){
                         case 3: case 17: case 43: case 75: case 77: case 89: case 91: case 100: case 101: case 116:
-                        case 117: case 122:
+                        case 117: case 122: case 130:
                             this.card.size=constrain(smoothAnim(this.card.size,this.card.page==this.page,0,this.fade,5),0,this.fade)
                         break
                     }
@@ -4805,9 +4829,9 @@ class overlay{
                         case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83: case 86:
                         case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107: case 108:
                         case 109: case 110: case 113: case 115: case 116: case 117: case 118: case 123: case 125: case 126:
-                        case 129:
+                        case 129: case 130:
                             switch(this.args[0]){
-                                case 3: case 17: case 43: case 75: case 89: case 91: case 116: case 117:
+                                case 3: case 17: case 43: case 75: case 89: case 91: case 116: case 117: case 130:
                                     this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
                                 break
                             }
@@ -5221,6 +5245,11 @@ class overlay{
                                             base.edition=4
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
+                                        case 130:
+                                            base.doubleEffect()
+                                            base.spec.push(90)
+                                            base.additionalSpec.push(90)
+                                        break
 
                                     }
                                     this.active=!complete
@@ -5295,6 +5324,13 @@ class overlay{
                                                 this.card.size=1
                                                 this.card.costUp(3,[1])
                                                 this.card.anim.costUp=1
+                                            break
+                                            case 130:
+                                                this.card=copyCard(base)
+                                                this.card.doubleEffect()
+                                                this.card.nonCalc=true
+                                                this.card.page=this.page
+                                                this.card.size=1
                                             break
                                             
                                         }
@@ -5828,8 +5864,66 @@ class overlay{
                     }
                 break
                 case 3:
+                    let selectAll=false
+                    let offset=this.options>=12?130:this.options>=8?75:0
+                    let set=[]
+                    if(!this.battle.modded(83)){
+                        set.push(0)
+                    }
+                    if(this.battle.relicManager.hasRelic(173,this.player)){
+                        set.push(1)
+                    }
+                    if(this.battle.relicManager.hasRelic(611,this.player)&&this.reroll<this.battle.relicManager.active[611][this.player+1]){
+                        set.push(2)
+                    }
+                    for(let a=0,la=set.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+a*125-la*62.5+62.5 ,y:this.layer.height/2+125+offset},width:120,height:40})){
+                            switch(set[a]){
+                                case 0:
+                                    this.sets.splice(this.sets.length-1,1)
+                                    if(this.sets.length>0){
+                                        this.activate([])
+                                    }else{
+                                        this.active=false
+                                        for(let b=0,lb=this.cards.length;b<lb;b++){
+                                            this.cards[b].deSize=true
+                                            this.cards[b].upSize=false
+                                        }
+                                    }
+                                    this.cards.forEach(card=>card.deSize)
+                                    if(this.args[0]==0){
+                                        this.battle.relicManager.activate(8,[this.player,this.cards])
+                                    }
+                                    if(this.prune){
+                                        for(let a=0,la=this.cards.length;a<la;a++){
+                                            for(let b=0,lb=this.battle.cardManagers[this.player].listing.card.length;b<lb;b++){
+                                                for(let c=0,lc=this.battle.cardManagers[this.player].listing.card[b].length;c<lc;c++){
+                                                    for(let d=0,ld=this.battle.cardManagers[this.player].listing.card[b][c].length;d<ld;d++){
+                                                        if(this.cards[a].type==this.battle.cardManagers[this.player].listing.card[b][c][d]){
+                                                            this.battle.cardManagers[this.player].listing.card[b][c].splice(d,1)
+                                                            d--
+                                                            ld--
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                break
+                                case 1:
+                                    selectAll=true
+                                break
+                                case 2:
+                                    let storeReroll=this.reroll+1
+                                    this.sets.splice(this.sets.length-1,1)
+                                    this.activate(this.setupArgs)
+                                    this.reroll=storeReroll
+                                break
+                            }
+                        }
+                    }
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((pointInsideBox({position:inputs.rel},this.cards[a])||this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170+(this.options>=8?75:0)},width:120,height:40}))&&!this.cards[a].deSize){
+                        if((pointInsideBox({position:inputs.rel},this.cards[a])||selectAll)&&!this.cards[a].deSize){
                             if(this.setupArgs[2]==22){
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
                             }
@@ -5919,40 +6013,10 @@ class overlay{
                                     this.activate([])
                                 }else{
                                     this.active=false
-                                    for(let b=0,lb=this.cards.length;b<lb;b++){
-                                        this.cards[b].deSize=true
-                                        this.cards[b].upSize=false
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    let offset=this.options>=12?130:this.options>=8?75:0
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125+offset},width:120,height:40})&&!this.battle.modded(83)){
-                        this.sets.splice(this.sets.length-1,1)
-                        if(this.sets.length>0){
-                            this.activate([])
-                        }else{
-                            this.active=false
-                            for(let b=0,lb=this.cards.length;b<lb;b++){
-                                this.cards[b].deSize=true
-                                this.cards[b].upSize=false
-                            }
-                        }
-                        this.cards.forEach(card=>card.deSize)
-                        if(this.args[0]==0){
-                            this.battle.relicManager.activate(8,[this.player,this.cards])
-                        }
-                        if(this.prune){
-                            for(let a=0,la=this.cards.length;a<la;a++){
-                                for(let b=0,lb=this.battle.cardManagers[this.player].listing.card.length;b<lb;b++){
-                                    for(let c=0,lc=this.battle.cardManagers[this.player].listing.card[b].length;c<lc;c++){
-                                        for(let d=0,ld=this.battle.cardManagers[this.player].listing.card[b][c].length;d<ld;d++){
-                                            if(this.cards[a].type==this.battle.cardManagers[this.player].listing.card[b][c][d]){
-                                                this.battle.cardManagers[this.player].listing.card[b][c].splice(d,1)
-                                                d--
-                                                ld--
-                                            }
+                                    if(!selectAll){
+                                        for(let b=0,lb=this.cards.length;b<lb;b++){
+                                            this.cards[b].deSize=true
+                                            this.cards[b].upSize=false
                                         }
                                     }
                                 }
@@ -6496,9 +6560,9 @@ class overlay{
                         case 69: case 70: case 72: case 75: case 76: case 78: case 81: case 82: case 83: case 86:
                         case 87: case 89: case 90: case 91: case 92: case 93: case 98: case 106: case 107: case 108:
                         case 109: case 110: case 113: case 115: case 116: case 117: case 118: case 123: case 125: case 126:
-                        case 129:
+                        case 129: case 130:
                             switch(this.args[0]){
-                                case 3: case 17: case 43: case 75: case 89: case 91: case 116: case 117:
+                                case 3: case 17: case 43: case 75: case 89: case 91: case 116: case 117: case 130:
                                     this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,variants.mtg?[]:0,0)
                                 break
                             }
@@ -6903,6 +6967,11 @@ class overlay{
                                             base.edition=4
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
+                                        case 130:
+                                            base.doubleEffect()
+                                            base.spec.push(90)
+                                            base.additionalSpec.push(90)
+                                        break
 
                                     }
                                     this.active=!complete
@@ -6977,6 +7046,13 @@ class overlay{
                                                 this.card.size=1
                                                 this.card.costUp(3,[1])
                                                 this.card.anim.costUp=1
+                                            break
+                                            case 130:
+                                                this.card=copyCard(base)
+                                                this.card.doubleEffect()
+                                                this.card.nonCalc=true
+                                                this.card.page=this.page
+                                                this.card.size=1
                                             break
                                         }
                                     }
@@ -7505,8 +7581,65 @@ class overlay{
                     }
                 break
                 case 3:
+                    let selectAll=false
+                    let set=[]
+                    if(!this.battle.modded(83)){
+                        set.push(0)
+                    }
+                    if(this.battle.relicManager.hasRelic(173,this.player)){
+                        set.push(1)
+                    }
+                    if(this.battle.relicManager.hasRelic(611,this.player)&&this.reroll<this.battle.relicManager.active[611][this.player+1]){
+                        set.push(2)
+                    }
+                    for(let a=0,la=set.length;a<la;a++){
+                        if(key==inputs.hexadec[a+10]||set[a]==0&&(code==ENTER||code==ESCAPE)){
+                            switch(set[a]){
+                                case 0:
+                                    this.sets.splice(this.sets.length-1,1)
+                                    if(this.sets.length>0){
+                                        this.activate([])
+                                    }else{
+                                        this.active=false
+                                        for(let b=0,lb=this.cards.length;b<lb;b++){
+                                            this.cards[b].deSize=true
+                                            this.cards[b].upSize=false
+                                        }
+                                    }
+                                    this.cards.forEach(card=>card.deSize)
+                                    if(this.args[0]==0){
+                                        this.battle.relicManager.activate(8,[this.player,this.cards])
+                                    }
+                                    if(this.prune){
+                                        for(let a=0,la=this.cards.length;a<la;a++){
+                                            for(let b=0,lb=this.battle.cardManagers[this.player].listing.card.length;b<lb;b++){
+                                                for(let c=0,lc=this.battle.cardManagers[this.player].listing.card[b].length;c<lc;c++){
+                                                    for(let d=0,ld=this.battle.cardManagers[this.player].listing.card[b][c].length;d<ld;d++){
+                                                        if(this.cards[a].type==this.battle.cardManagers[this.player].listing.card[b][c][d]){
+                                                            this.battle.cardManagers[this.player].listing.card[b][c].splice(d,1)
+                                                            d--
+                                                            ld--
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                break
+                                case 1:
+                                    selectAll=true
+                                break
+                                case 2:
+                                    let storeReroll=this.reroll+1
+                                    this.sets.splice(this.sets.length-1,1)
+                                    this.activate(this.setupArgs)
+                                    this.reroll=storeReroll
+                                break
+                            }
+                        }
+                    }
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((key==inputs.hexadec[a]||this.battle.relicManager.hasRelic(173,this.player)&&(key=='t'||key=='T'))&&!this.cards[a].deSize){
+                        if((key==inputs.hexadec[a]||selectAll)&&!this.cards[a].deSize){
                             if(this.setupArgs[2]==22){
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect(['Strength','Dexterity'][a%2],this.setupArgs[4+a%2])
                             }
@@ -7590,44 +7723,16 @@ class overlay{
                             this.cards[a].deSize=true
                             this.cards[a].upSize=false
                             this.taken++
-                            if(this.taken>=this.takable&&!(this.battle.relicManager.hasRelic(173,this.player)&&(key=='t'||key=='T')&&a!=la-1)&&this.setupArgs[2]!=59){
-                                this.sets.splice(0,1)
+                            if(this.taken>=this.takable&&!(this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170},width:120,height:40})&&a!=la-1)&&this.setupArgs[2]!=59){
+                                this.sets.splice(this.sets.length-1,1)
                                 if(this.sets.length>0){
                                     this.activate([])
                                 }else{
                                     this.active=false
-                                    for(let b=0,lb=this.cards.length;b<lb;b++){
-                                        this.cards[b].deSize=true
-                                        this.cards[b].upSize=false
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if(code==ENTER||code==ESCAPE&&!this.battle.modded(83)){
-                        this.sets.splice(0,1)
-                        if(this.sets.length>0){
-                            this.activate([])
-                        }else{
-                            this.active=false
-                            for(let b=0,lb=this.cards.length;b<lb;b++){
-                                this.cards[b].deSize=true
-                                this.cards[b].upSize=false
-                            }
-                        }
-                        if(this.args[0]==0){
-                            this.battle.relicManager.activate(8,[this.player,this.cards])
-                        }
-                        if(this.prune){
-                            for(let a=0,la=this.cards.length;a<la;a++){
-                                for(let b=0,lb=this.battle.cardManagers[this.player].listing.card.length;b<lb;b++){
-                                    for(let c=0,lc=this.battle.cardManagers[this.player].listing.card[b].length;c<lc;c++){
-                                        for(let d=0,ld=this.battle.cardManagers[this.player].listing.card[b][c].length;d<ld;d++){
-                                            if(this.cards[a].type==this.battle.cardManagers[this.player].listing.card[b][c][d]){
-                                                this.battle.cardManagers[this.player].listing.card[b][c].splice(d,1)
-                                                d--
-                                                ld--
-                                            }
+                                    if(!selectAll){
+                                        for(let b=0,lb=this.cards.length;b<lb;b++){
+                                            this.cards[b].deSize=true
+                                            this.cards[b].upSize=false
                                         }
                                     }
                                 }

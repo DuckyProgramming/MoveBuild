@@ -99,6 +99,9 @@ class optionManager{
                     this.battle.relicManager.active[65][this.player+1]*10+
                     round(userCombatant.base.life)*0.4
                 )
+                if(this.battle.relicManager.hasRelic(603,this.player)){
+                    userCombatant.gainMaxHP(4*this.battle.relicManager.active[603][this.player+1])
+                }
             break
             case 2:
                 this.battle.overlayManager.overlays[5][this.player].active=true

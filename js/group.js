@@ -5474,6 +5474,15 @@ class group{
             this.costDownListing.splice(0,1)
         }
     }
+    unDoubleEffect(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].spec.includes(90)){
+                this.cards[a].spec.splice(this.cards[a].spec.indexOf(90),1)
+                this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(90),1)
+                this.cards[a].unDoubleEffect()
+            }
+        }
+    }
     cost(cost,cardClass,spec,target,card){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(!card.spec.includes(55)&&!card.spec.includes(59)){
@@ -5863,7 +5872,7 @@ class group{
                     break
                     case 9:
                         for(let a=0,la=this.cards.length;a<la;a++){
-                            if(this.cards[a].class==args[2]){
+                            if(this.cards[a].class==args[2]||typeof args[2]=='object'&&args[2].includes(this.cards[a].class)){
                                 this.cards[a].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
                                 this.cards[a].fade=1
                                 this.cards[a].relIndex=position

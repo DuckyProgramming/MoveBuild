@@ -54,7 +54,7 @@ class purchaseManager{
                     cost=this.generalizedListing(0)
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,95+a%6*130,130+floor(a/6)*170,1,
-                            [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?0.8:0.5):1)*(antisale==a?2:1))],
+                            [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(this.battle.relicManager.hasRelic([605,606,607][group[a]],0)?0.5:1)*(sale==a?(this.battle.modded(234)?0.8:0.5):1)*(antisale==a?2:1))],
                             [findName(['Character\nCommon','Character\nUncommon','Character\nRare'][group[a]],types.card),0,0,sale==a,antisale==a],
                             group[a]+1
                         ))
@@ -119,7 +119,7 @@ class purchaseManager{
                             if(list[group[a]].length>0){
                                 let index=floor(random(0,list[group[a]].length))
                                 this.purchases.push(new purchase(this.layer,this.battle,0,95+a%column*130,130+floor(a/column)*170,1,
-                                    [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(sale==a?(this.battle.modded(234)?0.8:0.5):1)*(antisale==a?2:1))],
+                                    [this.battle.relicManager.hasRelic([216,267,268][group[a]],0)?0:round(random(cost[group[a]][0],cost[group[a]][1])*(this.battle.relicManager.hasRelic([605,606,607][group[a]],0)?0.5:1)*(sale==a?(this.battle.modded(234)?0.8:0.5):1)*(antisale==a?2:1))],
                                     [list[group[a]][index],0,this.battle.standardColorize(list[group[a]][index]),sale==a,antisale==a],
                                     group[a]+1
                                 ))
@@ -234,11 +234,11 @@ class purchaseManager{
                             for(let b=0,lb=group.length;b<lb;b++){
                                 if(list[group[b]].length>0){
                                     let index=floor(random(0,list[group[b]].length))
-                                    let price=round(random(cost[group[b]][0],cost[group[b]][1])*(sale==b?(this.battle.modded(234)?0.8:0.5):1)*(antisale==b?2:1))
+                                    let price=round(random(cost[group[b]][0],cost[group[b]][1])*(this.battle.relicManager.hasRelic([605,606,607][group[b]],a)?0.5:1)*(sale==b?(this.battle.modded(234)?0.8:0.5):1)*(antisale==b?2:1))
                                     this.purchases.push(new purchase(this.layer,this.battle,a,
                                         game.diff>=7?450+(725-floor(b/3)*130)*(a*2-1):450+(905-b%4*130)*(a*2-1),
                                         game.diff>=7?130+b%3*170:130+floor(b/4)*170,1,
-                                        [this.battle.relicManager.hasRelic([216,267,268][group[b]],0)?0:price,group[b]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
+                                        [this.battle.relicManager.hasRelic([216,267,268][group[b]],a)?0:price,group[b]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
                                         [list[group[b]][index],0,this.battle.standardColorize(list[group[b]][index]),sale==b,antisale==b],
                                         group[b]+1
                                     ))

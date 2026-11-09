@@ -4885,6 +4885,19 @@ class card{
             }
         }
     }
+    unDoubleEffect(){
+        if(this.spec.includes(12)){
+            for(let a=0,la=this.effect.length;a<la;a++){
+                for(let b=0,lb=this.attack[a].length;b<lb;b++){
+                    this.effect[a][b]/=2
+                }
+            }
+        }else{
+            for(let a=0,la=this.effect.length;a<la;a++){
+                this.effect[a]/=2
+            }
+        }
+    }
     confuse(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         this.setCost(0,

@@ -526,7 +526,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
-            case 523:
+            case 523: case 609:
                 //mark e
                 this.battle.addEnergyBase(player)
             break
@@ -945,6 +945,19 @@ class relicManager{
                 this.battle.overlayManager.overlays[195][player].active=true
                 this.battle.overlayManager.overlays[195][player].activate()
             break
+            case 605:
+                this.battle.purchaseManager.costChange(player,1,0.5)
+            break
+            case 606:
+                this.battle.purchaseManager.costChange(player,2,0.5)
+            break
+            case 607:
+                this.battle.purchaseManager.costChange(player,3,0.5)
+            break
+            case 610:
+                this.battle.overlayManager.overlays[197][player].active=true
+                this.battle.overlayManager.overlays[197][player].activate([0,0])
+            break
 
             //mark a
         }
@@ -1051,7 +1064,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
-            case 523:
+            case 523: case 609:
                 //mark e
                 this.battle.loseEnergyBase(player)
             break
@@ -1413,6 +1426,21 @@ class relicManager{
             case 598:
                 this.battle.cardManagers[player].deck.unDuoEdition(4)
             break
+            case 604:
+                this.battle.nodeManager.freeMove[0]++
+            break
+            case 605:
+                this.battle.purchaseManager.costChange(player,1,2)
+            break
+            case 606:
+                this.battle.purchaseManager.costChange(player,2,2)
+            break
+            case 607:
+                this.battle.purchaseManager.costChange(player,3,2)
+            break
+            case 610:
+                this.battle.cardManagers[player].deck.unDoubleEffect(1)
+            break
 
         }
         this.deactivate(type,player)
@@ -1636,6 +1664,9 @@ class relicManager{
                             }
                             if(this.active[578][a+1]>0){
                                 this.getPlayer(a).statusEffect('Strength',2*this.active[578][a+1])
+                            }
+                            if(this.active[609][a+1]>0){
+                                this.getPlayer(a).statusEffect('Power Cost Up',this.active[609][a+1])
                             }
                         }
                         if(this.active[96][0]>0&&args[1]==1){
@@ -3384,6 +3415,8 @@ class relicManager{
                     break
                     case 11:
                         if(this.active[357][args[1]+1]>0&&floor(random(0,2))<this.battle.relicManager.active[357][args[1]+1]){
+                            args[0].costDown(0,[1])
+                        }else if(this.active[608][args[1]+1]>0&&floor(random(0,4))<this.battle.relicManager.active[608][args[1]+1]){
                             args[0].costDown(0,[1])
                         }
                     break

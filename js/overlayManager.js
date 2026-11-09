@@ -205,6 +205,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[19,1])],//bring in discard card to draw, no return
                     [new overlay(this.layer,this.battle,0,2,[129])],//polychrome edition and double duplicate, no return
                     [new overlay(this.layer,this.battle,0,2,[5,0,2])],//bring in 2 discard cards, no return
+                    [new overlay(this.layer,this.battle,0,2,[130])],//double attack or defense
+                    //113->130
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

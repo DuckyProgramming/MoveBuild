@@ -13187,7 +13187,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
                 }
             }
             layer.strokeCap(ROUND)*/
-            regTriangle(layer,0,0,18,18,60)
+            /*regTriangle(layer,0,0,18,18,60)
             layer.stroke(200,100,175,fade)
             layer.strokeWeight(3)
             layer.line(-8,-8.5,8,-8.5)
@@ -13204,6 +13204,32 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.strokeCap(SQUARE)
             for(let a=0,la=3;a<la;a++){
                 layer.arc(0,0,34,34,85+a*120,114+a*120)
+            }
+            layer.strokeCap(ROUND)*/
+            regTriangle(layer,0,0,18,18,60)
+            layer.fill(200,100,175,fade)
+            regTriangle(layer,0,0,22.5,22.5,80)
+            layer.fill(255,fade)
+            regTriangle(layer,0,0,18,18,80)
+            layer.rotate(-20)
+            layer.stroke(200,100,175,fade)
+            layer.strokeWeight(2.5)
+            layer.line(-5.5,-8.5,5.5,-8.5)
+            layer.line(-11,1,11,1)
+            layer.rotate(20)
+            layer.noStroke()
+            layer.fill(255,fade)
+            for(let a=0,la=3;a<la;a++){
+                layer.rotate(110)
+                layer.triangle(0,22.25,0,12.25,7,17.25)
+                layer.rotate(10)
+            }
+            layer.stroke(255,fade)
+            layer.noFill()
+            layer.strokeWeight(3)
+            layer.strokeCap(SQUARE)
+            for(let a=0,la=3;a<la;a++){
+                layer.arc(0,0,34.5,34.5,75+a*120,104+a*120)
             }
             layer.strokeCap(ROUND)
         break

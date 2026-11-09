@@ -920,7 +920,8 @@ and Start of Combat effects trigger on turn 1 and may repeat if the turn number 
 The turn number can go as high as possible but cannot precede turn 0.`,*/
 `Prehextorica prefers controlling the turn number, often turning it backward.
 In fact, the turn number can go lower than 0 if necessary.
-Note that every time Turn 1 comes back around, you get Initiative again.`,
+Note that on turn 1 and all earlierturns , you get Initiative.`,
+//Note that every time Turn 1 comes back around, you get Initiative again.`,
 //`Many cards work with the turn number. Some prefer high or low turn numbers.
 `Many cards work with the turn number. Some prefer very low.
 Others work with turns of a specific nature, usually even turns.

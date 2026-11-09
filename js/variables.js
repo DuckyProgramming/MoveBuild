@@ -1006,7 +1006,7 @@ types={
         {name:'Shield Ram',internal:'3 Attack Block',id:44,rarity:1,list:0,mtg:0,world:[0,3],description:'Every 3 Attacks Played,\nGain 4 Block'},
         {name:'Rotisserie',internal:'Boss Heal',id:45,rarity:1,list:0,mtg:0,world:[0,2],description:'At the Start of Boss\nCombat, Heal All HP'},
         {name:'Empty Card',internal:'Extra Card Option',id:46,rarity:1,list:0,mtg:0,world:[0,3],description:'Card Rewards Have\n1 More Choice'},
-        {name:'Muffin Mix',internal:'Max HP Rest',id:47,rarity:1,list:0,mtg:0,world:[0,2],description:'Can Gain 8 Max\nHP When Resting'},
+        {name:'Muffin Mix',internal:'Max HP Rest',id:47,rarity:-1,list:0,mtg:0,world:[0,2],description:'Can Gain 8 Max\nHP When Resting'},
         {name:'Ceramic Egg',internal:'Damage Block Next Turn',id:48,rarity:1,list:0,mtg:0,world:[0,3],description:'When You Take Damage,\nAdd 3 Block Next Turn'},
         {name:'Serrulata',internal:'Skip Card Max HP',id:49,rarity:1,list:0,mtg:0,world:[0,3],description:'Gain 2 Max HP When\nYou Skip Adding a Card'},
 
@@ -1192,7 +1192,7 @@ types={
         {name:'Shiny Button',internal:'Energy/Shinies',id:213,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nFind No Editions and\nLose Existing Editions'},
         {name:'Auto Arm',internal:'Energy/Unupgrade',id:214,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nWhen Taken, Unupgrade 5 Random Cards'},
         {name:'Cartomancer',internal:'Random Arcana',id:215,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Add a Random\nArcana to Deck'},
-        {name:'Common Voucher',internal:'Free Common',id:216,rarity:3,list:0,mtg:0,world:[0,1],description:'Common Cards in the\nShop are Free'},
+        {name:'Common Voucher',internal:'Free Common',id:216,rarity:-1,list:0,mtg:0,world:[0,1],description:'Common Cards in the\nShop are Free'},
         {name:'Invisible Duck',internal:'Copy Random Relic',id:217,rarity:-1,list:0,mtg:0,world:[0,3],description:'When Sold, Copy a\nRandom Owned Relic'},
         {name:'Aerogel',internal:'Anti-Innate Card',id:218,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make\na Card Anti-Innate'},
         {name:'Aluminum Foil',internal:'Double Upgraded Card Rewards',id:219,rarity:1,list:0,mtg:0,world:[0,2],description:'Card Rewards Have a 10% Chance\nto be Double Upgraded'},
@@ -1248,8 +1248,8 @@ types={
         {name:'Rice Bowl',internal:'Cheap Basics',id:264,rarity:3,list:0,mtg:0,world:[0,3],description:'Basic Attacks and Defenses\nHave a 25% Chance to Cost 1 Less\nTemporarily When Drawn'},
         {name:'Donation Box',internal:'Currency Rest',id:265,rarity:1,list:0,mtg:0,world:[0,2],description:'You Can Collect 300 Currency\nat Rest Sites'},
         {name:'NAND Gate',internal:'Energy/Draw Toggle',id:266,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Energy on Even Turns\nDraw 2 More Cards on Odd Turns'},
-        {name:'Uncommon Voucher',internal:'Free Uncommon',id:267,rarity:3,list:0,mtg:0,world:[0,1],description:'Uncommon Cards in the\nShop are Free'},
-        {name:'Rare Voucher',internal:'Free Rare',id:268,rarity:3,list:0,mtg:0,world:[0,1],description:'Rare Cards in the\nShop are Free'},
+        {name:'Uncommon Voucher',internal:'Free Uncommon',id:267,rarity:-1,list:0,mtg:0,world:[0,1],description:'Uncommon Cards in the\nShop are Free'},
+        {name:'Rare Voucher',internal:'Free Rare',id:268,rarity:-1,list:0,mtg:0,world:[0,1],description:'Rare Cards in the\nShop are Free'},
         {name:'Common Colorless Voucher',internal:'Cheap Common Colorless',id:269,rarity:3,list:0,mtg:0,world:[0,1],description:'Common Colorless Cards in the\nShop Cost 50% Less'},
 
         {name:'Standard Pack Voucher',internal:'Standard Pack Discount',id:270,rarity:3,list:0,mtg:0,world:[0,1],description:'Standard Packs in the\nShop Cost 50% Less'},
@@ -1347,7 +1347,7 @@ types={
         {name:'Breccia',internal:'Double Shiny',id:354,rarity:-1,list:0,mtg:0,world:[0,2],description:'Shiny Editions Heal Double Health'},
         {name:'Virtuous Duck',internal:'Double First Attack',id:355,rarity:2,list:0,mtg:0,world:[0,3],description:'The First Attack Each Combat\nDeals Double Damage'},
         {name:'Congestion Control',internal:'Protocol',id:356,rarity:4,list:0,mtg:1,world:[0,3],description:'Shuffle 1 Protocol Into\nDraw on Turn 1'},
-        {name:'Tactical Conductor',internal:'Cheap Skills',id:357,rarity:2,list:0,mtg:1,world:[0,3],description:'Skills Have a 50%\nChance to Cost 1 Less\nTemporarily When Drawn'},
+        {name:'Tactical Conductor',internal:'Cheap Skills',id:357,rarity:-1,list:0,mtg:1,world:[0,3],description:'Skills Have a 50%\nChance to Cost 1 Less\nTemporarily When Drawn'},
         {name:'Blackened Nebula',internal:'Energy/Colorless',id:358,rarity:-1,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nAll Colorless Cards Cost 1 More'},
         {name:'Malicious Flame',internal:'Power Draw',id:359,rarity:2,list:0,mtg:0,world:[0,3],description:'When a Power is Played,\nDraw 1 Card'},
 
@@ -1461,7 +1461,7 @@ types={
         {name:'Quality Disguise',internal:'Offcolor Choice',id:458,rarity:2,list:0,mtg:0,world:[0,2],description:'You Get a Card Option From Another Color\nChoose Color When Taken'},
         {name:'Backtick',internal:'Any Character Card',id:459,rarity:2,list:0,mtg:0,world:[0,3],description:'When Taken, Choose Any Card\nFrom Your Color to Add to Deck'},
         
-        {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:460,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
+        {name:'Test 271',internal:'Energy/Damage Down/Block Down',id:460,rarity:-1,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nReduce All Damage Dealt by 1\nReduce All Block Added by 1'},
         {name:'Converging Stick',internal:'Status Damage Up',id:461,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Draw a Status Card,\nGain 3 Vigor'},
         {name:'Means and Motive',internal:'Starting Attack',id:462,rarity:-1,list:0,mtg:0,world:[0,1],description:'On Turn 1, Add a Random Attack to Hand\nIt Costs 0 Temporary and\nHas Exhaust and Ethereal'},
         {name:'Hubris',internal:'Death Temporary Strength',id:463,rarity:2,list:0,mtg:0,world:[0,3],description:'When an Enemy Dies,\nGain 5 Temporary Strength'},
@@ -1506,7 +1506,7 @@ types={
         {name:'Sod',internal:'Unupgraded Block',id:499,rarity:0,list:0,mtg:0,world:[0,1],description:'Add 1 Block When You Play\nan Unupgraded Card'},
 
         {name:'Protectorate Projection',internal:'Starting Intangible',id:500,rarity:2,list:0,mtg:0,world:[0,3],description:'Gain 1 Intangible\non Turn 1'},
-        {name:'Twisted Wire',internal:'Starting Cheap Power',id:501,rarity:2,list:0,mtg:0,world:[0,3],description:'On Turn 1,\nDraw a Power, it Costs 1 Less'},
+        {name:'Twisted Wire',internal:'Starting Cheap Power',id:501,rarity:-1,list:0,mtg:0,world:[0,3],description:'On Turn 1,\nDraw a Power, it Costs 1 Less'},
         {name:'Bottled Wish',internal:'Starting Random Reward',id:502,rarity:2,list:0,mtg:0,world:[0,2],description:'At the Start of Combat,\nRandomly Gain 3 Strength,\n10 Armor, or 50 Currency'},
         {name:'Honeycomb',internal:'Extended Starting Draw',id:503,rarity:2,list:0,mtg:0,world:[0,3],description:'Draw 1 More Card Per Turn\nFor the First 5 Turns'},
         {name:'Bleach',internal:'Colorless Deck',id:504,rarity:3,list:0,mtg:0,world:[0,2],description:'Replace a Card Reward\nOption With a Colorless One'},
@@ -1618,6 +1618,16 @@ types={
         {name:'Bloodstained Bowler Hat',internal:'Bowler',id:600,rarity:-1,list:0,mtg:0,world:[0,3],description:`Don't Forget Him`},
         {name:'Swan Beak',internal:'Item Energy',id:601,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
         {name:'Swan Beak',internal:'Item Mana',id:602,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},
+        {name:'Muffin Mix',internal:'Max HP Rest Heal',id:603,rarity:1,list:0,mtg:0,world:[0,2],description:'When You Heal at a Rest Site,\nGain 4 Max HP'},
+        {name:'Bus Ticket',internal:'Sell Free Move',id:604,rarity:3,list:0,mtg:1,world:[0,3],description:'When Sold,\nYour Next Map Move is Free'},
+        {name:'Common Voucher',internal:'Cheap Common',id:605,rarity:3,list:0,mtg:0,world:[0,1],description:'Common Cards in the\nShop Cost 50% Less'},
+        {name:'Uncommon Voucher',internal:'Cheap Uncommon',id:606,rarity:3,list:0,mtg:0,world:[0,1],description:'Uncommon Cards in the\nShop Cost 50% Less'},
+        {name:'Rare Voucher',internal:'Cheap Rare',id:607,rarity:3,list:0,mtg:0,world:[0,1],description:'Rare Cards in the\nShop Cost 50% Less'},
+        {name:'Tactical Conductor',internal:'Less Cheap Skills',id:608,rarity:2,list:0,mtg:1,world:[0,3],description:'Skills Have a 25%\nChance to Cost 1 Less\nTemporarily When Drawn'},
+        {name:'Spiked Gauntlets',internal:'Energy/Power Cost Up',id:609,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nPowers Cost 1 More'},
+
+        {name:'Heavy Pot',internal:'Double Card Effect',id:610,rarity:4,list:0,mtg:0,world:[0,2],description:'When Taken, Double the Effect\nof an Attack or Defense'},
+        {name:'Recycling',internal:'Card Reward Reroll',id:611,rarity:2,list:0,mtg:0,world:[0,2],description:'You Can Reroll\nAny Card Reward Once'},
 
         //mark mtg mark r
     ],item:[
@@ -8522,7 +8532,8 @@ Continues activating as long as you have the inputs.`,
         {name:'Enemy HP',desc:'Enemies Have More Health and Gain More Block'},//7-9
         {name:'Start Cursed',desc:`Start With Pride`},//new
         {name:'Shortage',desc:'The Shop Offers Less Options'},//new
-        {name:'Less Items',desc:'Lose 1 Item Slot'},//11
+        //{name:'Less Items',desc:'Lose 1 Item Slot'},//11
+        {name:'Less Items',desc:'Items Drop Less Often'},//11
         {name:'Less Upgrades',desc:'Upgraded Cards are Less Common'},//12
         {name:'Poor Bosses',desc:'Bosses Do Not Drop Currency'},//13
         {name:'Less Max Health',desc:'Lose 10% Max Health'},//14

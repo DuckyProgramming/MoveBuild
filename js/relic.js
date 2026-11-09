@@ -4463,6 +4463,73 @@ class relic{
                 case 'Duochrome':
                     displaySymbol(this.layer,0,0,184,0,1.2,this.fade)
                 break
+                case 'Max HP Rest Heal':
+                    displaySymbol(this.layer,0,-6,10,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',0,-6)
+                break
+                case 'Sell Free Move':
+                    displaySymbol(this.layer,0,0,1,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,4,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,5,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,8,6,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,-8,7,0,0.8,this.fade)
+                break
+                case 'Cheap Common':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,100,0,0.7,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Cheap Uncommon':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,95,0,0.7,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Cheap Rare':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,85,0,0.7,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',8,1)
+                break
+                case 'Less Cheap Skills':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,123,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',9,0)
+                    this.layer.textSize(6)
+                    this.layer.text('25%',-9,0)
+                break
+                case 'Energy/Power Cost Up':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,21,0,0.75,this.fade)
+                    displaySymbol(this.layer,10,0,9,0,0.5,this.fade)
+                break
+                case 'Double Card Effect':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,-5,18,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,6,19,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('x2',0,0)
+                break
+                case 'Card Reward Reroll':
+                    displaySymbol(this.layer,-10,-2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,14,0,1.2,this.fade)
+                break
 
                 //mark p
             }
