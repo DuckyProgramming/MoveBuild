@@ -4582,7 +4582,8 @@ combatant.prototype.display=function(){
             break
             case 'Edgar':
                 for(let g=0;g<2;g++){
-                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3&&g==1){
+                    //if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3&&g==1){
+                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -4616,7 +4617,8 @@ combatant.prototype.display=function(){
                     this.layer.quad(lsin(this.anim.direction)*6-lcos(this.anim.direction)*1.5,-60,lsin(this.anim.direction)*3,-70,lsin(this.anim.direction)*6+lcos(this.anim.direction)*1.5,-60,lsin(this.anim.direction)*9,-50)
                 }
                 for(let g=0;g<2;g++){
-                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.4&&g==1){
+                    //if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.4&&g==1){
+                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.4&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
@@ -4637,7 +4639,8 @@ combatant.prototype.display=function(){
                     }
                 }
                 for(let g=0;g<2;g++){
-                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==1){
+                    //if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==1){
+                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
@@ -4656,7 +4659,8 @@ combatant.prototype.display=function(){
                     this.minorDisplayGeneral(1,0)
                 }
                 for(let g=0;g<2;g++){
-                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6&&g==1){
+                    //if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6&&g==1){
+                    if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){

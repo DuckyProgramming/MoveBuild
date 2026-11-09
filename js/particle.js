@@ -3996,7 +3996,7 @@ class particle{
                 break
                 case 240:
                     for(let a=0,la=5;a<la;a++){
-                        this.layer.stroke(...mergeColor([225+a*30,50+a*100,50+a*100],[255,200,200],0.5+lsin(this.time*9)*0.5),this.fade)
+                        this.layer.stroke(...mergeColor([225+a/la*30,50+a/la*100,50+a/la*100],[255,200,200],0.5+lsin(this.time*9)*0.5),this.fade)
                         this.layer.strokeWeight(15-a*3)
                         this.layer.line(0,0,lsin(this.direction)*900,-lcos(this.direction)*900)
                     }

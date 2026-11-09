@@ -12,7 +12,8 @@ turn.prototype.update=function(){
                 case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
                 case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
                 case 420: case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459:
-                case 463: case 465: case 475: case 477: case 489: case 493: case 495: case 503: case 505:
+                case 463: case 465: case 475: case 477: case 489: case 493: case 495: case 503: case 505: case 506:
+                case 512:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -86,7 +87,7 @@ turn.prototype.update=function(){
                     }else{
                         if(this.timer==1&&this.targetDistance>1){
                             this.userCombatant.startAnimation(0)
-                        }else if(this.timer==15*this.targetDistance-14||this.timer==15*this.targetDistance+1&&this.userCombatant.id<this.battle.players/*(this.userCombatant.name=='Lira'||this.userCombatant.name=='Setsuna')*/){
+                        }else if(this.timer==15*this.targetDistance-14||this.timer==15*this.targetDistance+1&&this.userCombatant.type<constants.playerNumber/*(this.userCombatant.name=='Lira'||this.userCombatant.name=='Setsuna')*/){
                             this.userCombatant.startAnimation(2)
                         }
                         if(this.timer>=15*this.targetDistance-14){
@@ -111,7 +112,7 @@ turn.prototype.update=function(){
                                         this.userCombatant.combo++
                                     break
                                 }
-                                if(this.timer==15*this.targetDistance-3){
+                                if(this.timer==15*this.targetDistance+3){
                                     this.selfCall(6)
                                 }
                             }
@@ -356,7 +357,7 @@ turn.prototype.update=function(){
                 case 240: case 241: case 254: case 257: case 261: case 267: case 269: case 280: case 293: case 318:
                 case 346: case 359: case 365: case 376: case 392: case 401: case 405: case 408: case 410: case 411:
                 case 438: case 442: case 456: case 460: case 464: case 472: case 473: case 474: case 491: case 496:
-                case 501: case 504:
+                case 501: case 504: case 509: case 514:
                     if(variants.nobasicanim){
                         this.selfCall(1)
                         this.remove=true
@@ -374,7 +375,7 @@ turn.prototype.update=function(){
                 break
                 case 5: case 39: case 40: case 41: case 42: case 51: case 52: case 56: case 57: case 74:
                 case 75: case 78: case 88: case 92: case 93: case 94: case 155: case 186: case 189: case 244:
-                case 249: case 301: case 302: case 352: case 391: case 414: case 458: case 497: case 498:
+                case 249: case 301: case 302: case 352: case 391: case 414: case 458: case 497: case 498: case 516:
                     if(variants.nobasicanim){
                         this.selfCall(2)
                         this.remove=true
@@ -414,7 +415,7 @@ turn.prototype.update=function(){
                 case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                 case 114: case 124: case 153: case 204: case 259: case 264: case 265: case 278: case 288: case 308:
                 case 330: case 368: case 379: case 387: case 388: case 395: case 404: case 409: case 449: case 468:
-                case 470: case 476: case 490: case 500: case 502:
+                case 470: case 476: case 490: case 500: case 502: case 517:
                     if(variants.nobasicanim){
                         this.selfCall(3)
                         this.remove=true
@@ -1124,10 +1125,10 @@ turn.prototype.update=function(){
                     }
                 break
                 case 117: case 135: case 154: case 175: case 195: case 319: case 344: case 347: case 403: case 440:
-                case 471:
+                case 471: case 510:
                     if(this.timer==1){
                         this.procedure[0]=0
-                        if(this.type==175||this.type==319||this.type==403||this.type==440||this.userCombatant.name=='The Looker'){
+                        if(this.type==175||this.type==319||this.type==403||this.type==440||this.type==510||this.userCombatant.name=='The Looker'){
                             this.userCombatant.startAnimation(0)
                         }
                     }
@@ -1202,6 +1203,9 @@ turn.prototype.update=function(){
                                 this.remove=false
                                 this.type=87
                                 this.timer=0
+                            break
+                            case 510:
+                                this.userCombatant.stance=2
                             break
                         }
                     }
@@ -3368,10 +3372,12 @@ turn.prototype.update=function(){
                                     for(let a=0,la=this.battle.players;a<la;a++){
                                         this.battle.cardManagers[a].tempDraw.main-=this.effect[0]+this.effect[1]
                                         for(let b=0,lb=this.effect[0];b<lb;b++){
-                                            this.battle.cardManagers[a].hand.add(findName('Strike',types.card),0,10)
+                                            //this.battle.cardManagers[a].hand.add(findName('Strike',types.card),0,10)
+                                            this.battle.cardManagers[a].hand.add(findName('Strike',types.card),0,this.userCombatant.type)
                                         }
                                         for(let b=0,lb=this.effect[1];b<lb;b++){
-                                            this.battle.cardManagers[a].hand.add(findName('Defend',types.card),0,10)
+                                            //this.battle.cardManagers[a].hand.add(findName('Defend',types.card),0,10)
+                                            this.battle.cardManagers[a].hand.add(findName('Defend',types.card),0,this.userCombatant.type)
                                         }
                                     }
                                 break
@@ -3428,7 +3434,7 @@ turn.prototype.update=function(){
                         }
                     }
                 break
-                case 310: case 312: case 314: case 315:
+                case 310: case 312: case 314: case 315: case 507:
                     if(variants.nobasicanim){
                         this.selfCall(9)
                         this.remove=true
@@ -3466,7 +3472,8 @@ turn.prototype.update=function(){
                             switch(this.type){
                                 case 311:
                                     for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.userCombatant.holdOrb(floor(random(0,game.orbNumber)))
+                                        //this.userCombatant.holdOrb(floor(random(0,constants.orbNumber)))
+                                        this.userCombatant.holdOrb(randin([0,1,3,4,5,6,12,13,14,15,16]))
                                     }
                                 break
                                 case 313:
@@ -3775,7 +3782,8 @@ turn.prototype.update=function(){
                         if(this.timer==1){
                             this.userCombatant.startAnimation(1)
                         }
-                        this.userCombatant.runAnimation(1/30,1)
+                        //this.userCombatant.runAnimation(1/30,1)
+                        this.userCombatant.runAnimation(1/10,1)
                         if(this.timer==10||this.timer==15||this.timer==20){
                             this.selfCall(1)
                         }else if(this.timer>=30){
@@ -4270,6 +4278,92 @@ turn.prototype.update=function(){
                             this.targetCombatant.spec.splice(this.targetCombatant.spec.indexOf(2))
                         }
                         this.targetCombatant.spec.push(12)
+                    }
+                break
+                case 508:
+                    if(this.timer==1&&this.targetDistance>1){
+                        this.userCombatant.startAnimation(0)
+                    }else if(this.timer==15*this.targetDistance-14||this.timer==15*this.targetDistance+1&&this.userCombatant.type<constants.playerNumber/*(this.userCombatant.name=='Lira'||this.userCombatant.name=='Setsuna')*/){
+                        this.userCombatant.startAnimation(2)
+                    }
+                    if(this.timer>=15*this.targetDistance-14){
+                        this.userCombatant.runAnimation(1/15,2)
+                    }else{
+                        this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                        this.userCombatant.runAnimation(1/15,0)
+                    }
+                    if(this.timer==15*this.targetDistance-15){
+                        let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                        this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                    }else if(this.timer==15*this.targetDistance-3||this.timer==15*this.targetDistance+3){
+                        if(this.timer==15*this.targetDistance-3){
+                            this.userCombatant.enterStance(1)
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    }else if(this.timer>=15*this.targetDistance+15){
+                        if(this.targetDistance>1){
+                            this.battle.activate(1,this.userCombatant.id)
+                        }
+                        this.remove=true
+                    }
+                break
+                case 511:
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(17)
+                    }
+                    if(this.timer<=40){
+                        this.userCombatant.runAnimation(1/40,17)
+                    }
+                    if(this.timer==20){
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,
+                            this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x*0.8+this.userCombatant.graphics.arms[1].bottom.x*0.8,
+                            this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y*0.5+this.userCombatant.graphics.arms[1].bottom.y*0.5,
+                            240,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        if(this.userCombatant.spendCharge(5)){
+                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
+                            //this.targetCombatant.statusEffectNext('Vulnerable',this.effect[1])
+                            this.targetCombatant.statusEffect('Vulnerable Next Turn',this.effect[1])
+                        }else{
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }
+                    }else if(this.timer>=60){
+                        this.remove=true
+                    }
+                break
+                case 513:
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(17)
+                    }
+                    this.userCombatant.runAnimation(1/10,17)
+                    if(this.timer==10){
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,69,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                        this.userCombatant.statusEffect('Dexterity',this.effect[0])
+                        //this.targetCombatant.statusEffectNext('Frail',this.effect[1])
+                        this.targetCombatant.statusEffect('Frail Next Turn',this.effect[1])
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                break
+                case 515:
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(17)
+                    }
+                    if(this.timer<=10||this.timer>20&&this.timer<=30){
+                        this.userCombatant.runAnimation(1/20,17)
+                    }
+                    if(this.timer==15){
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                            this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                            this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                        279,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),7*this.targetDistance]))
+                    }else if(this.timer==21+this.targetDistance*3||this.timer==69-this.targetDistance*3){
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.timer==69-this.targetDistance*3){
+                            this.userCombatant.addBlock(this.effect[1])
+                        }
+                    }else if(this.timer>=75){
+                        this.remove=true
                     }
                 break
 

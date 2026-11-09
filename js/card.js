@@ -7554,27 +7554,29 @@ class card{
             if(userCombatant.getStatus('Temporary All Cost Down')>0){
                 costChange-=userCombatant.getStatus('Temporary All Cost Down')
             }
-            if((type==2?args[0]:this.class)==11){
-                if(userCombatant.getStatus('Skill Cost Down')>0){
-                    costChange-=userCombatant.getStatus('Skill Cost Down')
-                }
-                if(userCombatant.getStatus('Fragile Skill Cost Down')>0){
-                    costChange-=userCombatant.getStatus('Fragile Skill Cost Down')
-                }
+            switch(type==2?args[0]:this.class){
+                case 2:
+                    if(userCombatant.getStatus('Defense Cost Down')>0){
+                        costChange-=userCombatant.getStatus('Defense Cost Down')
+                    }
+                    if(userCombatant.getStatus('Fragile Defense Cost Down')>0){
+                        costChange-=userCombatant.getStatus('Fragile Defense Cost Down')
+                    }
+                break
+                case 11:
+                    if(userCombatant.getStatus('Skill Cost Down')>0){
+                        costChange-=userCombatant.getStatus('Skill Cost Down')
+                    }
+                    if(userCombatant.getStatus('Fragile Skill Cost Down')>0){
+                        costChange-=userCombatant.getStatus('Fragile Skill Cost Down')
+                    }
+                break
             }
             if(userCombatant.getStatus('Combo Cost Down')>0&&this.spec.includes(11)){
                 costChange-=userCombatant.getStatus('Combo Cost Down')
             }
             if(userCombatant.getStatus('All Cost Down')>0){
                 costChange-=userCombatant.getStatus('All Cost Down')
-            }
-            if((type==2?args[0]:this.class)==2){
-                if(userCombatant.getStatus('Defense Cost Down')>0){
-                    costChange-=userCombatant.getStatus('Defense Cost Down')
-                }
-                if(userCombatant.getStatus('Fragile Defense Cost Down')>0){
-                    costChange-=userCombatant.getStatus('Fragile Defense Cost Down')
-                }
             }
             if(userCombatant.getStatus('All Cost Up')>0){
                 costChange+=userCombatant.getStatus('All Cost Up')
@@ -7590,6 +7592,14 @@ class card{
             }
             if(userCombatant.getStatus('Safety Cost Down')>0&&this.name=='Safety'){
                 costChange-=userCombatant.getStatus('Safety Cost Down')
+            }
+            if(this.name=='Fatigue'){
+                if(userCombatant.getStatus('Fatigue Cost Down')>0){
+                    costChange-=userCombatant.getStatus('Fatigue Cost Down')
+                }
+                if(userCombatant.getStatus('Fatigue Cost Up')>0){
+                    costChange+=userCombatant.getStatus('Fatigue Cost Up')
+                }
             }
         }
         if(costChange!=0){

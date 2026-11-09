@@ -3,30 +3,30 @@ types={
         {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Commander of the rebels in Reptisa\nlong before the Operator came along.\nIn the first siege of Rueso,\nhe gave his life for the cause.\nHis sacrifice was in vain.`},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[8]},{type:304,effect:[20]},{type:37,effect:[15,5]}],description:`Former agent with the MMIS on Origin,\nand participant at the "Meeting of Five".\nClose to the Operator, he gets\nthe rare luxury to pick which\nobfuscated tasks he gets.`},
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:305,effect:[5,6]},{type:25,effect:[14]},{type:306,effect:[18]}],description:`The spark that set the second\nphase of the rebellion ablaze.\nAfter the "Meeting of Five" and\nher major propaganda role,\nshe just wants this all over with.`},
-        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:`One of the last heirs to the\npractices of the Daistilian plateaus,\nparticipant in the "Meeting of Five",\ndistrustful of the Operator but\nwith too much at stake to leave.`},
-        {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:`Possibly the first coming of Discord,\nthe eternal enemy of the Management.\nTasked with the elimination of all\ngalactic-level systems of governance,\nbut starting where it's easy.`},
+        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:413,effect:[2]}],description:`One of the last heirs to the\npractices of the Daistilian plateaus,\nparticipant in the "Meeting of Five",\ndistrustful of the Operator but\nwith too much at stake to leave.`},
+        {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:506,effect:[12,2]}],description:`Possibly the first coming of Discord,\nthe eternal enemy of the Management.\nTasked with the elimination of all\ngalactic-level systems of governance,\nbut starting where it's easy.`},
         {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:66,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:311,effect:[4]},{type:313,effect:[]},{type:411,effect:[14,2]}],description:`Resident of the Swamp of Constance\nand Master of the so-called "Orbs",\nhe once served the Management as a\nsecurity contractor but switched sides\nopportunistically to join the "winners".`},
-        {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:`Duck flown in by Management programs\nto aid in reconstruction of the\nStanis Generator Installation.\nAfter being offered a better chance\nby Randy, he switched sides fast.`},
-        {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:`Once just a simple trainee, dragged\ninto war by her younger sister Lira.\nShe would do anything to protect\nher, becoming a key member despite\nher reluctance at the "Meeting of Five".`},
-        {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`Student at the Konaian First\nUniversity, so depressed by her\nstudies that she fell into a trance\nand awakened a lost magical source.\nQuit school immediately after that.`},
-        {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:`The 153rd CEO of High Value Metrics,\ndeposed by the board's chairman\nafter Management disagreements.\nNow out to reclaim his company,\nand arming fellow rebels on the way.`},
-        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:410,effect:[15]},{type:128,effect:[7,1,'Invoice']}],description:`Gambler from a foreign planet,\ndeeply in debt to a Management officer.\nEscaped to Konai to scrape together\nsome cash to pay it off, but got\ncaught up in the rebellion instead.`},
-        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:470,effect:[20,3]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`One of the last survivors from the Hinokizuka\ncommune dispersed by Management\nforces. Adopted by a rebel operative\nand inducted into the organization,\nshe hopes to prove her capabilities.`},
+        {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:507,effect:[]}],description:`Duck flown in by Management programs\nto aid in reconstruction of the\nStanis Generator Installation.\nAfter being offered a better chance\nby Randy, he switched sides fast.`},
+        {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:508,effect:[10]},{type:509,effect:[22]},{type:510,effect:[12]}],description:`Once just a simple trainee, dragged\ninto war by her younger sister Lira.\nShe would do anything to protect\nher, becoming a key member despite\nher reluctance at the "Meeting of Five".`},
+        {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Wisp',2]},{type:511,effect:[10,1]}],description:`Student at the Konaian First\nUniversity, so depressed by her\nstudies that she fell into a trance\nand awakened a lost magical source.\nQuit school immediately after that.`},
+        {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:100,effect:[22]}],description:`The 153rd CEO of High Value Metrics,\ndeposed by the board's chairman\nafter Management disagreements.\nNow out to reclaim his company,\nand arming fellow rebels on the way.`},
+        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:410,effect:[15]},{type:67,effect:[19,100]}],description:`Gambler from a foreign planet,\ndeeply in debt to a Management officer.\nEscaped to Konai to scrape together\nsome cash to pay it off, but got\ncaught up in the rebellion instead.`},
+        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:114,effect:[20,2]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`One of the last survivors from the Hinokizuka\ncommune dispersed by Management\nforces. Adopted by a rebel operative\nand inducted into the organization,\nshe hopes to prove her capabilities.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:72,behavior:0,spec:[0,19],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`Prototype bot passed over for\nproduction in favor of higher-performance\nmodels and discarded, found by\nDonakho and repaired for a new fight.\nReady for revenge over the other bots.`},
         {name:'Prehextorica',moniker:'The Retrospect',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`The last of a near-extinct species,\nspending his last days in a state\nof sorrow over his people's fate.\nOut to attack the dominant power\njust to leave some kind of legacy behind.`},
-        {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Tenured professor with the Konaian\nFirst University, gave up on work after\nreceiving terrible paychecks to\ncook product instead. After being\ncaught, he quickly escaped to the rebels.`},
-        {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`The "One Who Remembers", one of the\ntwo patron fairies of Konai, and\nself-proclaimed "Great Fairy".\nWorking with the council just because\nit's more interesting if they win.`},
-        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:48,effect:[16]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:`Priestess maintaining a small presence\non the lower slopes of Hinokizuka.\nAfter being driven away by the\nsects higher up on the mountain, she found\na new source of much-needed mantra.`},
-        {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:`Younger sister of the claimant to\nthe Konaian throne Jovina III,\ndissatisfied with her sister's\nconciliatory approach and desperate to\nprove the efficacy of the alternative.`},
+        {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:512,effect:[18]}],description:`Tenured professor with the Konaian\nFirst University, gave up on work after\nreceiving terrible paychecks to\ncook product instead. After being\ncaught, he quickly escaped to the rebels.`},
+        {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,2]},{type:92,effect:[2]}],description:`The "One Who Remembers", one of the\ntwo patron fairies of Konai, and\nself-proclaimed "Great Fairy".\nWorking with the council just because\nit's more interesting if they win.`},
+        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:48,effect:[16]},{type:513,effect:[2,2]},{type:341,effect:[3,1]}],description:`Priestess maintaining a small presence\non the lower slopes of Hinokizuka.\nAfter being driven away by the\nsects higher up on the mountain, she found\na new source of much-needed mantra.`},
+        {name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:514,effect:[9,3]}],description:`Younger sister of the claimant to\nthe Konaian throne Jovina III,\ndissatisfied with her sister's\nconciliatory approach and desperate to\nprove the efficacy of the alternative.`},
         {name:'Merlin',moniker:'The Fanfare',identifier:['Sister','Miss'],life:62,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:38,effect:[26]},{type:420,effect:[3]},{type:93,effect:[1]}],description:`A ghost of a long-dead musical\ntradition on Konai, attempting to\nreclaim this lost ground for the arts.\nAwakened to return by great upheaval;\nthis is the chance to make a change.`},
         {name:'Ducopo',moniker:'The Adventurist',identifier:['Brother','Mister'],life:65,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:60,effect:[9,2,'Expenditure']},{type:421,effect:[3]},{type:422,effect:[6]}],description:`Wild duck looking for somewhere\nsafe to settle, never finding somewhere\njsut right for his tastes.\nHaving surveyed most of Konai's landscapes,\nhe now sells that service to the rebels.`},
         {name:'Randy',moniker:'The Inspector',identifier:['Brother','Mister'],life:71,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:133,effect:[9]},{type:423,effect:[6]},{type:424,effect:[20]}],description:`Technician hired by the Management to\nmaintain industrial hardware, but\nfound that destroying things was\nmuch more fun. On the run after his stunt\nat the Stanis Generator Installation.`},
-        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Curse of\nthe Heron']},{type:461,effect:[1,1]}],description:`Scavenger from the Arioscape,\nonce of the Wipers but forced\nto migrate by the lack of resources.\nBlessed with luck and the will to\nsurvive, the council took her in.`},
+        {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:515,effect:[12,6]},{type:53,effect:[12,1,'Reversal']},{type:461,effect:[1,1]}],description:`Scavenger from the Arioscape,\nonce of the Wipers but forced\nto migrate by the lack of resources.\nBlessed with luck and the will to\nsurvive, the council took her in.`},
         {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:`Never really though he was funny,\nbut couldn't find another career option.\nBrought down by awful viewership\nand endless self-doubt, he decided\nto fight the system instead.`},
-        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:`Eternal guardian force of Somber Falls,\nconvinced to leave by its endless quiet.\nImagined that the rest of Konai,\nwhile decidedly not home, might\njust have something actually going on.`},
+        {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:516,effect:[15,1]},{type:460,effect:[13,5]}],description:`Eternal guardian force of Somber Falls,\nconvinced to leave by its endless quiet.\nImagined that the rest of Konai,\nwhile decidedly not home, might\njust have something actually going on.`},
         {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:`Told tales of the glorious past\nrevolutions by elder duck farmers,\nhe hopes to carry on their work.\nBut with the Management clamping down,\nhe had to join with the council.`},
-        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:466,effect:[5]},{type:467,effect:[5]},{type:465,effect:[10,10]}],description:`Chief courier of the council,\nchosen personally by the Operator\nto act as the main liaison between\nrural rebels and their much weaker\ncounterparts holed up in Rueso.`},
-        {name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:474,effect:[9,2]},{type:475,effect:[12,2]},{type:476,effect:[8,1,1]}],description:`Harpist from the West of Konai,\nfrom an early age looking up to Jovina III.\nNow enrolled in the Konaian First\nUniversity, hoping to catch the\neye of some prominent patrons.`},
+        {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:466,effect:[10]},{type:467,effect:[10]},{type:465,effect:[10,10]}],description:`Chief courier of the council,\nchosen personally by the Operator\nto act as the main liaison between\nrural rebels and their much weaker\ncounterparts holed up in Rueso.`},
+        {name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:474,effect:[9,2]},{type:475,effect:[12,2]},{type:517,effect:[8,2]}],description:`Harpist from the West of Konai,\nfrom an early age looking up to Jovina III.\nNow enrolled in the Konaian First\nUniversity, hoping to catch the\neye of some prominent patrons.`},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[10]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -306,6 +306,23 @@ types={
         {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:102,effect:[66]}],description:`Fine... I'll do it myself`},
         {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
         {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:102,effect:[66]}],description:`Fine... I'll do it myself`},
+
+        //{name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:`One of the last heirs to the\npractices of the Daistilian plateaus,\nparticipant in the "Meeting of Five",\ndistrustful of the Operator but\nwith too much at stake to leave.`},
+        //{name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:`Possibly the first coming of Discord,\nthe eternal enemy of the Management.\nTasked with the elimination of all\ngalactic-level systems of governance,\nbut starting where it's easy.`},
+        //{name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:`Duck flown in by Management programs\nto aid in reconstruction of the\nStanis Generator Installation.\nAfter being offered a better chance\nby Randy, he switched sides fast.`},
+        //{name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:`Once just a simple trainee, dragged\ninto war by her younger sister Lira.\nShe would do anything to protect\nher, becoming a key member despite\nher reluctance at the "Meeting of Five".`},
+        //{name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:44,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`Student at the Konaian First\nUniversity, so depressed by her\nstudies that she fell into a trance\nand awakened a lost magical source.\nQuit school immediately after that.`},
+        //{name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:`The 153rd CEO of High Value Metrics,\ndeposed by the board's chairman\nafter Management disagreements.\nNow out to reclaim his company,\nand arming fellow rebels on the way.`},
+        //{name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:74,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:410,effect:[15]},{type:128,effect:[7,1,'Invoice']}],description:`Gambler from a foreign planet,\ndeeply in debt to a Management officer.\nEscaped to Konai to scrape together\nsome cash to pay it off, but got\ncaught up in the rebellion instead.`},
+        //{name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:470,effect:[20,3]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`One of the last survivors from the Hinokizuka\ncommune dispersed by Management\nforces. Adopted by a rebel operative\nand inducted into the organization,\nshe hopes to prove her capabilities.`},
+        //{name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Tenured professor with the Konaian\nFirst University, gave up on work after\nreceiving terrible paychecks to\ncook product instead. After being\ncaught, he quickly escaped to the rebels.`},
+        //{name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`The "One Who Remembers", one of the\ntwo patron fairies of Konai, and\nself-proclaimed "Great Fairy".\nWorking with the council just because\nit's more interesting if they win.`},
+        //{name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:48,effect:[16]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:`Priestess maintaining a small presence\non the lower slopes of Hinokizuka.\nAfter being driven away by the\nsects higher up on the mountain, she found\na new source of much-needed mantra.`},
+        //{name:'Shinmyoumaru',moniker:'The Inchling',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:326,effect:[1,1]},{type:412,effect:[15,2]},{type:413,effect:[2]}],description:`Younger sister of the claimant to\nthe Konaian throne Jovina III,\ndissatisfied with her sister's\nconciliatory approach and desperate to\nprove the efficacy of the alternative.`},
+        //{name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:453,effect:[9,6]},{type:53,effect:[12,1,'Curse of\nthe Heron']},{type:461,effect:[1,1]}],description:`Scavenger from the Arioscape,\nonce of the Wipers but forced\nto migrate by the lack of resources.\nBlessed with luck and the will to\nsurvive, the council took her in.`},
+        //{name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:459,effect:[11,1]},{type:460,effect:[13,5]}],description:`Eternal guardian force of Somber Falls,\nconvinced to leave by its endless quiet.\nImagined that the rest of Konai,\nwhile decidedly not home, might\njust have something actually going on.`},
+        //{name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:474,effect:[9,2]},{type:475,effect:[12,2]},{type:476,effect:[8,1,1]}],description:`Harpist from the West of Konai,\nfrom an early age looking up to Jovina III.\nNow enrolled in the Konaian First\nUniversity, hoping to catch the\neye of some prominent patrons.`},
+        
         //{name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
         //{name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
         
@@ -869,7 +886,7 @@ types={
         {name:'Zigzag Missile',class:5},//450
         {name:'Spin Weaken',class:11},
         {name:'Spin Vulnerable',class:11},
-        {name:'Dual Discus',class:1},
+        {name:'Old Dual Discus',class:1},
         {name:'6 Tile Strike / Weak Self',class:1},
         {name:'6 Tile Strike / Vulnerable Self',class:1},
         {name:'Block / Pity',class:2},
@@ -921,7 +938,20 @@ types={
         {name:'3 Spread Strike / Armor',class:1},
         {name:'6 Tile Strike / Armor',class:1},
         {name:'Builder Gun+',class:4},
-        {name:'3 Tile Statusing Strike',class:1},//32,505
+        {name:'3 Tile Statusing Strike',class:1},
+        {name:'6 Tile Strike / Exhaust',class:1},
+        {name:'Build Exploding Wall',class:4},
+        {name:'Enter Wrath / 2 Tile Double Strike',class:1},
+        {name:'Enter Sturdy / 3 Turn Block',class:2},
+        {name:'Enter Calm / 3 Tile Drive',class:5},//510
+        {name:'Flammable Laser',class:1},
+        {name:'6 Tile Strike / Carbonize',class:1},
+        {name:'Dexterity / Frail',class:1},
+        {name:'Block / All Enemy Temporary Strengthen',class:2},
+        {name:'Dual Discus',class:1},
+        {name:'Block / Energy Down',class:4},
+
+        {name:'Crescent Strike / Weak',class:1},//476->517
 
         //mark attack
     ],relic:[
@@ -4151,10 +4181,270 @@ types={
             ],
         },{
             level:['Basic 7'],class:0,world:-1,
-            name:'Placeholder',
+            name:'Testing',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Menessa',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Menessa'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Meri',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Meri'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Dukelis',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Dukelis'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Decratite',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Decratite'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Fernando',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Fernando'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Sagume',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Sagume'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Randy',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Randy'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Ducopo',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Ducopo'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Merlin',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Merlin'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Shinmyoumaru',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Shinmyoumaru'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Sanae',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Sanae'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Daiyousei',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Daiyousei'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Vincent',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Vincent'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Prehextorica',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Prehextorica'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'DD-610',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'DD-610'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Shiru',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Shiru'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Chip',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Chip'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Edgar',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Edgar'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Airi',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Airi'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Setsuna',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Setsuna'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Donakho',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Donakho'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Azis',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Azis'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Certes',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Certes'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Sakura',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Sakura'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'Lira',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Lira'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:-1,
+            name:'George',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'George'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
