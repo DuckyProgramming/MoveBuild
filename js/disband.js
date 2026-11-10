@@ -66814,15 +66814,15 @@ types.disband=[
     },{
         name:'Ascension\nKick',rarity:-1,list:-8,
         levels:[
-            {effect:[1,3],attack:5047,cost:1,target:[0],spec:[2],class:11},
-            {effect:[1,5],attack:5047,cost:1,target:[0],spec:[2],class:11},
-            {effect:[1,7],attack:5047,cost:1,target:[0],spec:[2],class:11},
+            {effect:[1,3,3],attack:11447,cost:1,target:[0],spec:[2],class:11},
+            {effect:[1,5,5],attack:11447,cost:1,target:[0],spec:[2],class:11},
+            {effect:[1,7,7],attack:11447,cost:1,target:[0],spec:[2],class:11},
         ],mtg:{
             rarity:-1,list:-8,color:[5],
             levels:[
-                {effect:[1,2],attack:5047,cost:[5],target:[0],spec:[2],class:11},
-                {effect:[1,3],attack:5047,cost:[5],target:[0],spec:[2],class:11},
-                {effect:[1,4],attack:5047,cost:[5],target:[0],spec:[2],class:11},
+                {effect:[1,2,2],attack:11447,cost:[5],target:[0],spec:[2],class:11},
+                {effect:[1,3,3],attack:11447,cost:[5],target:[0],spec:[2],class:11},
+                {effect:[1,4,4],attack:11447,cost:[5],target:[0],spec:[2],class:11},
             ],
         },
     },{

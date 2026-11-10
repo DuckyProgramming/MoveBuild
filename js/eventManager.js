@@ -191,6 +191,7 @@ class eventManager{
                 !(this.listing.event[a]==198&&userCombatant.life<11)&&
                 !(this.listing.event[a]==199&&(userCombatant.life>userCombatant.base.life-30||this.battle.nodeManager.world!=0))&&
                 !(this.listing.event[a]==200&&(userCombatant.life<2||this.battle.itemManager.hasEmpty(this.player)))&&
+                !(this.listing.event[a]==201&&this.battle.currency.money[this.player]<250)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -2526,6 +2527,20 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==2&&a==0){
                             this.harm(userCombatant,1)
                             this.battle.cardManagers[this.player].deck.randomEffect(2,[1])
+                        }
+                    break
+                    case 201:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,0,62,1])
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
+                        }else if(this.page==0&&a==2){
+                            this.battle.loseCurrency(250,this.player)
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
                         }
                     break
 

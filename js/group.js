@@ -520,6 +520,9 @@ class group{
                         this.cards[this.cards.length-1].deSizeDrop=true
                         this.cards[this.cards.length-1].exhaust=true
                     break
+                    case 15:
+                        this.cards[this.cards.length-1].costUp(3,[1])
+                    break
                 }
             }
         }

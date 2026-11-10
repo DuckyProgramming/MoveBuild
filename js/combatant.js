@@ -674,6 +674,12 @@ class combatant{
         }
     }
     initialBuff(){
+        if(!this.spec.includes(2)&&!this.spec.includes(12)&&!this.spec.includes(26)){
+            let mult=1+constrain(normalDistribution(),-5,5)*0.05
+            this.life=round(this.life*mult)
+            this.base.life=round(this.base.life*mult)
+            this.collect.life=round(this.collect.life*mult)
+        }
         this.turnsAlive=0
         if(this.battle.encounter.class==1&&this.battle.nodeManager.harmElite>0){
             this.life*=1-this.battle.nodeManager.harmElite
@@ -1711,7 +1717,8 @@ class combatant{
                         this.statusEffect('Double Damage',1)
                     break
                     case 'Warning Robot':
-                        this.subAttackTypeSwitch([[0,31,20,[]]])
+                        //this.subAttackTypeSwitch([[0,31,20,[]]])
+                        this.subAttackTypeSwitch([[0,518,519,[]]])
                     break
                     case 'Defective Robot C':
                         this.statusEffect('Counter Shock All Combat',1)
@@ -2241,7 +2248,7 @@ class combatant{
             case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
             case 282: case 295: case 305: case 309: case 332: case 341: case 355: case 369: case 370: case 371:
             case 372: case 373: case 377: case 378: case 399: case 412: case 424: case 426: case 434: case 437:
-            case 440: case 485: case 489:
+            case 440: case 485: case 489: case 518:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -2253,7 +2260,7 @@ class combatant{
             case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276: case 277:
             case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 342: case 343: case 354:
             case 374: case 375: case 382: case 383: case 386: case 394: case 403: case 429: case 430: case 433:
-            case 435: case 488: case 495: case 508: case 511:
+            case 435: case 488: case 495: case 508: case 511: case 519:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -3020,7 +3027,7 @@ class combatant{
                         case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
                         case 282: case 295: case 304: case 305: case 309: case 332: case 341: case 355: case 369: case 370:
                         case 371: case 372: case 373: case 377: case 378: case 399: case 412: case 424: case 426: case 434:
-                        case 437: case 485: case 489:
+                        case 437: case 485: case 489: case 518:
                             if(this.battle.modded(57)){
                                 for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                     if(
@@ -3045,7 +3052,7 @@ class combatant{
                         case 224: case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276:
                         case 277: case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 342: case 343:
                         case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 433: case 435: case 475:
-                        case 488: case 495: case 508: case 511:
+                        case 488: case 495: case 508: case 511: case 519:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3254,7 +3261,7 @@ class combatant{
                     case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247: case 251: case 252:
                     case 270: case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 331: case 332:
                     case 341: case 355: case 363: case 369: case 370: case 371: case 372: case 373: case 377: case 378:
-                    case 399: case 412: case 424: case 426: case 434: case 437: case 440: case 485: case 489:
+                    case 399: case 412: case 424: case 426: case 434: case 437: case 440: case 485: case 489: case 518:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
@@ -3273,7 +3280,7 @@ class combatant{
                     case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276: case 277:
                     case 297: case 298: case 299: case 310: case 317: case 325: case 329: case 335: case 342: case 343:
                     case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 433: case 435: case 475:
-                    case 488: case 495: case 508: case 511: case 512:
+                    case 488: case 495: case 508: case 511: case 512: case 519:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&

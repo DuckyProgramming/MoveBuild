@@ -242,8 +242,11 @@ class option{
         this.layer.pop()
     }
     update(){
-        this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<50,1,1.5,5)
-        this.anim.description=smoothAnim(this.anim.description,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<50,0,1,5)
+        //this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<50,1,1.5,5)
+        //this.anim.description=smoothAnim(this.anim.description,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<50,0,1,5)
+        let inside=dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<50*this.size
+        this.size=smoothAnim(this.size,inside,1,1.5,5)
+        this.anim.description=smoothAnim(this.anim.description,inside,0,1,5)
         this.anim.complete=smoothAnim(this.anim.complete,this.complete,0,1,5)
     }
 }

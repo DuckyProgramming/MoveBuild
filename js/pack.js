@@ -75,7 +75,9 @@ class pack{
             this.total+=this.speed
         }
         this.scale=min(this.scale+0.2,1)
-        this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<100,1,1.8,5)
+        //this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<100,1,1.8,5)
+        //this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y*2-inputs.rel.y)<100*this.size,1,1.8,5)
+        this.size=smoothAnim(this.size,pointInsideBox({position:inputs.rel},{position:this.position,width:176*this.size,height:84*this.size}),1,1.8,5)
         this.time++
     }
     reject(){

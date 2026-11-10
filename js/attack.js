@@ -39826,7 +39826,8 @@ class attack{
                     break
                     case 6951:
                         this.targetCombatant.statusEffect('Lock On',this.effect[0])
-                        this.targetCombatant.statusEffect('Free Defense',1)
+                        this.userCombatant.statusEffect('Free Defense',1)
+                        //this.targetCombatant.statusEffect('Free Defense',1)
                     break
                     case 6967:
                         for(let a=0,la=this.effect[0];a<la;a++){

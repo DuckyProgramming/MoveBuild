@@ -1901,8 +1901,9 @@ class battle{
         }
     }
     displayCurrency(){
+        let outline=options.moneyOutline||stage.scene==`event`||stage.scene==`stash`
         this.layer.noStroke()
-        if(options.moneyOutline||stage.scene==`event`){
+        if(outline){
             this.layer.stroke(0)
             this.layer.strokeWeight(0.4)
         }
@@ -1911,7 +1912,7 @@ class battle{
         if(this.currency.money.length>1){
             this.layer.ellipse(this.layer.width-20,16,16)
         }
-        if(options.moneyOutline||stage.scene==`event`){
+        if(outline){
             this.layer.noStroke()
         }
         this.layer.fill(220,220,200)
@@ -1929,7 +1930,7 @@ class battle{
             this.layer.triangle(this.layer.width-19,19,this.layer.width-21,19,this.layer.width-20,23)
         }
         this.layer.fill(230,230,210)
-        if(options.moneyOutline||stage.scene==`event`){
+        if(outline){
             this.layer.stroke(0)
             this.layer.strokeWeight(1)
         }

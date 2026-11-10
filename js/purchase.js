@@ -194,7 +194,8 @@ class purchase{
                         this.layer.fill(200,100,100)
                         this.layer.rect(0,0,3,125)
                     }*/
-                    this.gradient=[new p5.LinearGradient(15,90),new p5.LinearGradient(15,90)]
+                    //this.gradient=[new p5.LinearGradient(15,90),new p5.LinearGradient(15,90)]
+                    this.gradient=[new p5.LinearGradient(-45,120),new p5.LinearGradient(-45,120)]
                     this.gradient[0].colors(
                         0.0,color(200,125,125),
                         1.0,color(125,200,125)
@@ -203,14 +204,21 @@ class purchase{
                         0.0,color(225,150,150),
                         1.0,color(150,225,150)
                     )
-
-                    this.layer.translate(-50,0)
+                    /*this.layer.translate(-50,0)
                     this.layer.fill(255)
                     this.layer.fillGradient(this.gradient[0])
                     this.layer.rect(50,0,95,125,7.5)
                     this.layer.fillGradient(this.gradient[1])
                     this.layer.rect(50,0,85,115,2.5)
-                    this.layer.translate(50,0)
+                    this.layer.translate(50,0)*/
+                    let offset=72
+                    this.layer.translate(-offset,0)
+                    this.layer.fill(255)
+                    this.layer.fillGradient(this.gradient[0])
+                    this.layer.rect(offset,0,95,125,7.5)
+                    this.layer.fillGradient(this.gradient[1])
+                    this.layer.rect(offset,0,85,115,2.5)
+                    this.layer.translate(offset,0)
                     if(this.player==-1){
                         this.layer.fill(200)
                         this.layer.rect(0,0,3,125)
@@ -238,7 +246,7 @@ class purchase{
                 break
                 case 5:
                     if(this.args[0]==3){
-                        this.layer.strokeWeight(4)
+                        /*this.layer.strokeWeight(4)
                         this.layer.fill(types.color.card[12].fill)
                         this.layer.stroke(types.color.card[12].stroke)
                         this.layer.rect(-16,0,40,96,4)
@@ -290,13 +298,31 @@ class purchase{
                         this.layer.rect(50,0,68,92,2)
                         this.layer.fillGradient(this.gradient[2])
                         regStar(this.layer,50,0,12,12,12,30,30,0)
-                        this.layer.translate(50,0)
+                        this.layer.translate(50,0)*/
+
+                        this.gradient=[new p5.LinearGradient(-45,128),new p5.LinearGradient(-45,128),new p5.LinearGradient(-45,64)]
+                        let set=[12,9,13,15,constants.playerNumber+5,14]
+                        this.gradient[0].colors(...(set.map((a,index)=>[index/(set.length-1),color(types.color.card[a].stroke[0],types.color.card[a].stroke[1],types.color.card[a].stroke[2])])).flat(1))
+                        this.gradient[1].colors(...(set.map((a,index)=>[index/(set.length-1),color(types.color.card[a].fill[0],types.color.card[a].fill[1],types.color.card[a].fill[2])])).flat(1))
+                        this.gradient[2].colors(...(set.map((a,index)=>[index/(set.length-1),color(types.color.card[a].active[0],types.color.card[a].active[1],types.color.card[a].active[2])])).flat(1))
+                        let offset=100
+                        this.layer.translate(-offset,0)
+                        this.layer.fill(255)
+                        this.layer.fillGradient(this.gradient[0])
+                        this.layer.rect(offset,0,76,100,6)
+                        this.layer.fillGradient(this.gradient[1])
+                        this.layer.rect(offset,0,68,92,2)
+                        this.layer.fillGradient(this.gradient[2])
+                        this.layer.translate(offset/2,0)
+                        regStar(this.layer,offset/2,0,12,12,12,30,30,0)
+                        this.layer.translate(offset/2,0)
+
                         if(this.player==-1){
                             this.layer.fill(180)
                             this.layer.rect(0,0,2.4,100)
                         }
                     }else if(this.args[0]==0&&this.player==-1){
-                        this.layer.strokeWeight(4)
+                        /*this.layer.strokeWeight(4)
                         this.layer.fill(types.color.card[this.battle.player[0]].fill)
                         this.layer.stroke(types.color.card[this.battle.player[0]].stroke)
                         this.layer.rect(-16,0,40,96,4)
@@ -312,9 +338,9 @@ class purchase{
                         this.layer.fill(types.color.card[this.battle.player[0]].fill)
                         this.layer.rect(-8,0,16,92)
                         this.layer.fill(types.color.card[this.battle.player[1]].fill)
-                        this.layer.rect(8,0,16,92)
+                        this.layer.rect(8,0,16,92)*/
 
-                        this.layer.translate(-10,0)
+                        /*this.layer.translate(-10,0)
                         this.layer.noStroke()
                         this.gradient=[new p5.LinearGradient(15,20),new p5.LinearGradient(15,20),new p5.LinearGradient(15,20)]
                         this.gradient[0].colors(0.0,
@@ -333,7 +359,29 @@ class purchase{
                         this.layer.rect(10,0,60,92)
                         this.layer.fillGradient(this.gradient[2])
                         regStar(this.layer,10,0,12,12,12,30,30,0)
-                        this.layer.translate(10,0)
+                        this.layer.translate(10,0)*/
+
+                        this.gradient=[new p5.LinearGradient(-45,80),new p5.LinearGradient(-45,80),new p5.LinearGradient(-45,40)]
+                        this.gradient[0].colors(0.0,
+                            color(...types.color.card[this.battle.player[0]].stroke),1.0,
+                            color(...types.color.card[this.battle.player[1]].stroke))
+                        this.gradient[1].colors(0.0,
+                            color(...types.color.card[this.battle.player[0]].fill),1.0,
+                            color(...types.color.card[this.battle.player[1]].fill))
+                        this.gradient[2].colors(0.0,
+                            color(...types.color.card[this.battle.player[0]].active),1.0,
+                            color(...types.color.card[this.battle.player[1]].active))
+                        let offset=48
+                        this.layer.translate(-offset,0)
+                        this.layer.fill(255)
+                        this.layer.fillGradient(this.gradient[0])
+                        this.layer.rect(offset,0,76,100,6)
+                        this.layer.fillGradient(this.gradient[1])
+                        this.layer.rect(offset,0,68,92,2)
+                        this.layer.fillGradient(this.gradient[2])
+                        this.layer.translate(offset/2,0)
+                        regStar(this.layer,offset/2,0,12,12,12,30,30,0)
+                        this.layer.translate(offset/2,0)
 
                         this.layer.fill(180)
                         this.layer.rect(0,0,2.4,100)

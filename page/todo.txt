@@ -1,6 +1,15 @@
-test vincent (after fixes)
 test shinmy (after fixes)
 test prehex (after fixes)
+
+potential cardset:
+replace all quickdraw cards / remove all "values" cards
+more ways to get item slots as vincent
+extra large storage
+
+split bunsen burner since it ain't burning shit
+it also stacks directly into the area of superior stimulant
+
+fix shinmy chemise
 
 tooltips for dictionary
 

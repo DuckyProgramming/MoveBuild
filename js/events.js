@@ -6743,6 +6743,28 @@ Your fist does hurt just a little, but not too badly.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Online Shopping',id:201,list:0,
+        pages:[
+            {
+                desc:
+`With some time to spare, you go shopping for once.
+It seems like there's quite a few places you might go to.
+But while you have some time, it's only enough to visit one.
+Though, maybe something will be worth buying?`,
+                option:['Buy from Metu','Buy from Seabay','Buy from Zamazor'],
+                optionDesc:['Add a Common Card, it Costs 1 More','Lose 50 Currency, Add an Uncommon Card','Lose 250 Currency, Add a Rare Card'],
+                link:[1,1,1],
+            },{
+                desc:
+`You go on the site and look around the catalog.
+Maybe you'll come back here in the future.
+If you have enough time, that is.`,
+                option:['Leave'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },
     
     /*{

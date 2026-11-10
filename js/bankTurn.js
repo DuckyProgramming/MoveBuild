@@ -56,7 +56,7 @@ turn.prototype.update=function(){
                     }
                 break
                 case 20: case 31: case 59: case 66: case 99: case 103: case 107: case 194: case 258: case 292:
-                case 305: case 317: case 348: case 354: case 358: case 380: case 437: case 488:
+                case 305: case 317: case 348: case 354: case 358: case 380: case 437: case 488: case 518: case 519:
                     if(variants.nobasicanim){
                         if(this.targetDistance>1){
                             this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)

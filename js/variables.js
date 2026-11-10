@@ -186,7 +186,8 @@ types={
         {name:'Speedrunner',life:52,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[12]}],description:`Faster than you would ever believe`},
         {name:'Psychologist',life:87,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:5,effect:[1,'Trigger']},{type:48,effect:[15]},{type:5,effect:[1,'Stressor']},{type:9,effect:[18]}],description:`Knowing what you think`},
         {name:'Robot Commander',life:120,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:402,effect:[12,1]},{type:99,effect:[5]},{type:401,effect:[6,1]}],description:`Actually has a budget`},
-        {name:'Adrian Kane',life:350,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:129,effect:[5]},{type:208,effect:[24]},{type:406,effect:[8]},{type:127,effect:[28]}],description:`Deposed leader of HVM`},
+        //{name:'Adrian Kane',life:350,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:129,effect:[5]},{type:208,effect:[24]},{type:406,effect:[8]},{type:127,effect:[28]}],description:`Deposed leader of HVM`},
+        {name:'Adrian Kane',life:350,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:406,effect:[8]}],description:`Deposed leader of HVM`},
         {name:'Armored Biker',life:48,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[11]},{type:10,effect:[5]}],description:`That's a good helmet`},
         {name:'Prison Guard Gunner',life:32,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:400,effect:[10,2,'Dazed']}],description:`Average riot control measure`},
         {name:'Shield Prison Guard',life:62,behavior:0,spec:[7],move:{type:0,speed:1},attack:[{type:399,effect:[8,10]},{type:353,effect:[12,1]}],description:`Not as good as riot police`},
@@ -230,7 +231,7 @@ types={
         {name:'Defective Robot B',life:65,behavior:23,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Badly written microcode`},
         {name:'Defective Robot C',life:66,behavior:24,spec:[0,19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Badly planned architecture`},
         {name:'Rusted Robot',life:81,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:27,effect:[5,2]},{type:488,effect:[2,2]},{type:10,effect:[3]}],description:`Produced far too long ago`},
-        {name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[2]}],description:`We've been expecting you`},
+        {name:'Warning Robot',life:92,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:518,effect:[6,1,'Management Robot']}],description:`We've been expecting you`},
         {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
         {name:'Glazer',life:60,behavior:1,spec:[23],move:{type:2,speed:2},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
         {name:'Glazer Clone',life:60,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
@@ -334,6 +335,7 @@ types={
         //{name:'Defective Robot B',life:65,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:20,effect:[4]}],description:`Badly written microcode`},
         //{name:'Defective Robot C',life:66,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:10,effect:[4]}],description:`Badly planned architecture`},
         //{name:'Management Custodian',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
+        //{name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[2]}],description:`We've been expecting you`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -424,13 +426,13 @@ types={
         {name:'Rich Kid',life:20,behavior:0,spec:[25],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
         {name:'Rebel Negotiator',life:20,behavior:0,spec:[21],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Comes in peace?`},
         
-        {name:'NumberDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},
-        {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Deals damage`},
-        {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
-        {name:'MoveDummy',life:1,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
-        {name:'TurnDummy',life:1,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Turns around`},
-        {name:'AggressDummy',life:1,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Follows you`},
-        {name:'Unknown',life:0,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`???`},
+        {name:'NumberDummy',life:1,behavior:0,spec:[26],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},
+        {name:'AttackDummy',life:1,behavior:0,spec:[26],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Deals damage`},
+        {name:'BlockDummy',life:1,behavior:0,spec:[26],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
+        {name:'MoveDummy',life:1,behavior:0,spec:[26],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
+        {name:'TurnDummy',life:1,behavior:0,spec:[0,26],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Turns around`},
+        {name:'AggressDummy',life:1,behavior:0,spec:[1,26],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Follows you`},
+        {name:'Unknown',life:0,behavior:0,spec:[26],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`???`},
         
     ],attack:[
         {name:'',class:0},//0
@@ -950,8 +952,9 @@ types={
         {name:'Block / All Enemy Temporary Strengthen',class:2},
         {name:'Dual Discus',class:1},
         {name:'Block / Energy Down',class:4},
-
-        {name:'Crescent Strike / Weak',class:1},//476->517
+        {name:'Crescent Strike / Weak',class:1},
+        {name:'Double Strike / Spawn',class:1},
+        {name:'2 Tile Double Strike / Spawn',class:1},
 
         //mark attack
     ],relic:[
@@ -1796,7 +1799,7 @@ types={
         {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
         {name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
-        {name:'Hydrazine',internal:'5 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 10 Splash Damage\nRange 1-3\nTemporary'},
+        {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal 10 Splash Damage\nRange 1-3\nTemporary'},
         {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
         //{name:'Graphene',internal:'2 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 2 Strength'},
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},

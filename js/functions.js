@@ -1369,6 +1369,8 @@ function intentDescription(attack,user,info){
 			case 515: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block\nRange 1-3`
 			case 516: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nTarget Loses ${info?attack.effect[1]:`?`} ${variants.mtg?`Random Mana`:`Energy`}`
 			case 517: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\n2 Tiles Forward,\n1 Tile to the Side,\nor 1 Tile Diagonally`
+			case 518: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nSpawn ${info?attack.effect[1]:`?`} ${info?attack.effect[2]+(attack.effect[2]=='Glitch'&&attack.effect[1]!=1?`e`:``)+pl(attack.effect[1]):`?`}\nRange 1-1`
+			case 519: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nSpawn ${info?attack.effect[1]:`?`} ${info?attack.effect[2]+(attack.effect[2]=='Glitch'&&attack.effect[1]!=1?`e`:``)+pl(attack.effect[1]):`?`}\nRange 1-2`
 
 			//mark desc
 			/*

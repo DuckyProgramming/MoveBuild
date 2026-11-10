@@ -1697,6 +1697,18 @@ class overlay{
                                 }
                             }
                         break
+                        case 62:
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg[0]):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards[a].costUp(0,[1])
+                                    this.cards[this.cards.length-1].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
                     }
                     if(this.args[0]==0||this.args[0]==2){
                         this.cards.forEach(card=>card.nonCalc=true)
@@ -5877,7 +5889,7 @@ class overlay{
                         set.push(2)
                     }
                     for(let a=0,la=set.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+a*125-la*62.5+62.5 ,y:this.layer.height/2+125+offset},width:120,height:40})){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+a*125-la*62.5+62.5,y:this.layer.height/2+125+offset},width:120,height:40})){
                             switch(set[a]){
                                 case 0:
                                     this.sets.splice(this.sets.length-1,1)
@@ -5941,7 +5953,9 @@ class overlay{
                             }
                             this.lastTake=this.cards[a]
                             for(let b=0,lb=lists.length;b<lb;b++){
-                                if(this.setupArgs[2]==50){
+                                if(this.setupArgs[2]==62){
+                                    this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[15],[])
+                                }else if(this.setupArgs[2]==50){
                                     for(let c=0,lc=this.setupArgs[3];c<lc;c++){
                                         this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     }
@@ -7657,7 +7671,9 @@ class overlay{
                             }
                             this.lastTake=this.cards[a]
                             for(let b=0,lb=lists.length;b<lb;b++){
-                                if(this.setupArgs[2]==50){
+                                if(this.setupArgs[2]==62){
+                                    this.battle.cardManagers[this.player][lists[b]].addAbstract(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition,[15],[])
+                                }else if(this.setupArgs[2]==50){
                                     for(let c=0,lc=this.setupArgs[3];c<lc;c++){
                                         this.battle.cardManagers[this.player][lists[b]].add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
                                     }
