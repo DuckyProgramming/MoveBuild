@@ -151,6 +151,7 @@ class overlay{
                             break
                             case 3:
                                 this.rewards[this.rewards.length-1].item=new item(this.layer,this.battle,0,0,0,0,0,args[1][a].key,0.8)
+                                this.rewards[this.rewards.length-1].item.nonCalc=true
                             break
                         }
                     }else{
@@ -164,6 +165,7 @@ class overlay{
                             break
                             case 3:
                                 this.rewards[this.rewards.length-1].item=new item(this.layer,this.battle,0,0,0,0,0,this.battle.itemManager.makeRandom(),0.8)
+                                this.rewards[this.rewards.length-1].item.nonCalc=true
                             break
                         }
                     }

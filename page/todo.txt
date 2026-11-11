@@ -1,24 +1,37 @@
 crusader company count
 
-test processes
-test shinmy (after fixes)
 test prehex (after fixes)
-
-fix shinmy chemise
 
 tooltips for dictionary
 
-potential cardset:
+maybe nerf rejector 3000, replace transformer 5000, green pentachoron
+
+
+
+CS 151 [ENDSIEG ULTIMATE]
 
 replace all quickdraw cards (20, industrialization -> time flies, + many more) / remove all "values" cards (14, prob not necessary)
+
 more ways to get item slots as vincent
 extra large storage
 resplit pockets
 split silicone into a real item?
 split cookie clicker
-the spectre
+
+shoot every single prismatic bomb card
+replacing them with processes
+pipe bomb -> damage random + process to create bombs
+
+change the 11 spectrals
+
+some of these wishes aren't great
+    draw wishes don't trigger ice tray
+    donate down is identical to whatever card makes basic cards cost nothing (inchling's stand?)
+micropurge cards like tiny lie
 
 split bunsen burner since it ain't burning shit
 it also stacks directly into the area of superior stimulant
+
+test vincent
 
 

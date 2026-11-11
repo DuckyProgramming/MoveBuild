@@ -552,6 +552,7 @@ class battle{
             for(let a=0,la=6;a<la;a++){
                 let move=transformDirection(0,-150+shuffle[a]*60)
                 this.addCombatant({x:1+move[0],y:1+move[1]},type+a,0,0,false)
+                this.counter.enemy++
             }
         }
         for(let a=0,la=this.players;a<la;a++){

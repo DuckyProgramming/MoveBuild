@@ -4013,6 +4013,18 @@ function generateSprite(layer,type,direction){
 			data.sprites.temp.rect(0,52,40,104)
 			layer.image(data.sprites.temp,-layer.width/10,0,layer.width/5,layer.height/5)
 		break
+		case 94:
+			controlSpin(data.parts.kimono.main[0],direction,1)
+			controlSpin(data.parts.kimono.main[1],direction,1)
+			let mid94=mergeColor(data.color.kimono.main.start,data.color.kimono.main.end,0.5)
+			displayTrianglesFrontMerge3D(layer,data.parts.kimono.main[0],direction,20,8.5,0.5,0.12,data.color.kimono.main.start,mid94,1,0,0)
+			displayTrianglesFrontMerge3D(layer,data.parts.kimono.main[1],direction,20,8.5,0.5,0.12,mid94,data.color.kimono.main.end,1,0,0)
+		break
+		case 95:
+			let mid95=mergeColor(data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,0.5)
+			displayTrianglesBackMerge3D(layer,data.parts.kimono.main[0],direction,20,8.5,0.5,0.12,data.color.kimono.mainBack.start,mid95,1,0,0)
+			displayTrianglesBackMerge3D(layer,data.parts.kimono.main[1],direction,20,8.5,0.5,0.12,mid95,data.color.kimono.mainBack.end,1,0,0)
+		break
 		
 	}
 	//mark s
@@ -5405,7 +5417,7 @@ function setupCombatantGraphics(type){
 		case 8:
 			graphics.combatant.push({
 				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[]},kimono:{main:{back:[],front:[]},outside:{back:[],front:[]}}},
-				parts:{kimono:{main:[],outside:[[],[]],decoration:[[],[]]}},
+				parts:{kimono:{main:[[],[]],outside:[[],[]],decoration:[[],[]]}},
 				color:{
 					hair:{back:[115,92,134],front:[160,138,177],insideBack:[90,61,93],insideFront:[131,107,155],glow:[226,211,216]},
 					skin:{head:[252,222,212],body:[244,198,185],legs:[250,217,208],arms:[249,219,209],button:[238,164,165]},
@@ -5470,7 +5482,7 @@ function setupCombatantGraphics(type){
 			data.sprites.genAmount=360/data.sprites.detail
 
 			for(let a=0,la=12;a<la;a++){
-				data.parts.kimono.main.push({
+				/*data.parts.kimono.main.push({
 					spin:[-195+a*30,-165+a*30,-180+a*30],
 					y:[0,0,lsin((a+0.5)/(la+0.5)*90)*34]
 				})
@@ -5489,14 +5501,94 @@ function setupCombatantGraphics(type){
 				data.parts.kimono.main.push({
 					spin:[-159+a*30,-150+a*30,-165+a*30],
 					y:[lsin((a+1)/(la+0.5)*90)*34+3,lsin((a+1.5)/(la+0.5)*90)*34,0]
+				})*/
+				/*data.parts.kimono.main.push({
+					spin:[-195+a*30,-165+a*30,-180+a*30],
+					y:[0,0,lsin((a+0.5)/(la+0.5)*90)*34]
+				})*/
+				for(let b=0,lb=15;b<lb;b++){
+					/*if(b<lb/2){
+						data.parts.kimono.main.push({
+							spin:[-180+a*30+b/lb*30,-165+a*30,-180+a*30+(b+1)/lb*30],
+							y:[
+								lsin((a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+								0,
+								lsin((a+0.5+(b+1)/lb)/(la+0.5)*90)*34+lsin((b+1)/lb*180)*3.5,
+							]
+						})
+					}else{
+						data.parts.kimono.main.push({
+							spin:[-165+a*30,-180+a*30+(b+1)/lb*30,-180+a*30+b/lb*30],
+							y:[
+								0,
+								lsin((a+0.5+(b+1)/lb)/(la+0.5)*90)*34+lsin((b+1)/lb*180)*3.5,
+								lsin((a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+							]
+						})
+					}*/
+					/*data.parts.kimono.main.push({
+						spin:[-180+a*30+b/lb*30,-180+a*30+(b+1)/lb*30,-165+a*30],
+						y:[
+							lsin((a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+							lsin((a+0.5+(b+1)/lb)/(la+0.5)*90)*34+lsin((b+1)/lb*180)*3.5,
+							0
+						]
+					})*/
+					data.parts.kimono.main[0].push({
+						spin:[-180+a*30+(b-0.5)/lb*30,-180+a*30+(b+0.5)/lb*30,-180+a*30+b/lb*30],
+						y:[
+							0,0,
+							lsin((a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+						],
+						set:0,
+					})
+					data.parts.kimono.main[0].push({
+						spin:[-180+a*30+b/lb*30,-180+a*30+(b+1)/lb*30,-180+a*30+(b+0.5)/lb*30],
+						y:[
+							lsin((a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+							lsin((a+0.5+(b+1)/lb)/(la+0.5)*90)*34+lsin((b+1)/lb*180)*3.5,
+							0
+						],
+						set:1,
+					})
+				}
+				/*data.parts.kimono.main.push({
+					spin:[-180+a*30,-174+a*30,-165+a*30],
+					y:[lsin((a+0.5)/(la+0.5)*90)*34,lsin((a+0.7)/(la+0.5)*90)*34+2.5,0]
 				})
+				data.parts.kimono.main.push({
+					spin:[-174+a*30,-168+a*30,-165+a*30],
+					y:[lsin((a+0.7)/(la+0.5)*90)*34+2.5,lsin((a+0.85)/(la+0.5)*90)*34+3.4,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-168+a*30,-165+a*30,-165+a*30],
+					y:[lsin((a+0.85)/(la+0.5)*90)*34+3.4,lsin((a+1)/(la+0.5)*90)*34+3.5,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-165+a*30,-162+a*30,-165+a*30],
+					y:[lsin((a+1)/(la+0.5)*90)*34+3.5,lsin((a+1.15)/(la+0.5)*90)*34+3.4,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-162+a*30,-156+a*30,-165+a*30],
+					y:[lsin((a+1.15)/(la+0.5)*90)*34+3.4,lsin((a+1.3)/(la+0.5)*90)*34+2.5,0]
+				})
+				data.parts.kimono.main.push({
+					spin:[-156+a*30,-150+a*30,-165+a*30],
+					y:[lsin((a+1.3)/(la+0.5)*90)*34+2.5,lsin((a+1.5)/(la+0.5)*90)*34,0]
+				})*/
 			}
-			data.parts.kimono.main.push({
+			/*data.parts.kimono.main.push({
 				spin:[165,-165,-180],
-				y:[0,0,36]
+				y:[0,0,34]
+				//y:[0,0,36]
+			})*/
+			data.parts.kimono.main[1].push({
+				spin:[-181,-179,-180],
+				y:[0,0,34],
+				set:0,
 			})
 			for(let a=0,la=12;a<la;a++){
-				data.parts.kimono.main.push({
+				/*data.parts.kimono.main.push({
 					spin:[-159+a*30,-150+a*30,-165+a*30],
 					y:[lsin(90+(a+1)/(la+0.5)*90)*34+3,lsin(90+(a+1.5)/(la+0.5)*90)*34,0]
 				})
@@ -5515,8 +5607,122 @@ function setupCombatantGraphics(type){
 				data.parts.kimono.main.push({
 					spin:[-165+a*30,-135+a*30,-150+a*30],
 					y:[0,0,lsin(90+(a+1.5)/(la+0.5)*90)*34]
-				})
+				})*/
+				for(let b=0,lb=15;b<lb;b++){
+					/*data.parts.kimono.main.push({
+						spin:[-180+a*30+b/lb*30,-180+a*30+(b+1)/lb*30,-165+a*30],
+						y:[
+							lsin(90+(a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+							lsin(90+(a+0.5+(b+1)/lb)/(la+0.5)*90)*34+lsin((b+1)/lb*180)*3.5,
+							0
+						]
+					})*/
+					data.parts.kimono.main[1].push({
+						spin:[-180+a*30+b/lb*30,-180+a*30+(b+1)/lb*30,-180+a*30+(b+0.5)/lb*30],
+						y:[
+							lsin(90+(a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+							lsin(90+(a+0.5+(b+1)/lb)/(la+0.5)*90)*34+lsin((b+1)/lb*180)*3.5,
+							0
+						],
+						set:1,
+					})
+					data.parts.kimono.main[1].push({
+						spin:[-180+a*30+(b-0.5)/lb*30,-180+a*30+(b+0.5)/lb*30,-180+a*30+b/lb*30],
+						y:[
+							0,0,
+							lsin(90+(a+0.5+b/lb)/(la+0.5)*90)*34+lsin(b/lb*180)*3.5,
+						],
+						set:0,
+					})
+				}
+				/*data.parts.kimono.main.push({
+					spin:[-165+a*30,-135+a*30,-150+a*30],
+					y:[0,0,lsin(90+(a+1.5)/(la+0.5)*90)*34]
+				})*/
 			}
+			/*for(let a=0,la=data.parts.kimono.main.length;a<la;a++){
+				if(
+					data.parts.kimono.main[a].spin[0]<data.parts.kimono.main[a].spin[2]&&
+					data.parts.kimono.main[a].spin[2]<data.parts.kimono.main[a].spin[1]
+				){
+					data.parts.kimono.main[a].spin=[
+						data.parts.kimono.main[a].spin[0],
+						data.parts.kimono.main[a].spin[2],
+						data.parts.kimono.main[a].spin[1],
+					]
+					data.parts.kimono.main[a].y=[
+						data.parts.kimono.main[a].y[0],
+						data.parts.kimono.main[a].y[2],
+						data.parts.kimono.main[a].y[1],
+					]
+				}else if(
+					data.parts.kimono.main[a].spin[1]<data.parts.kimono.main[a].spin[2]&&
+					data.parts.kimono.main[a].spin[2]<data.parts.kimono.main[a].spin[0]
+				){
+					data.parts.kimono.main[a].spin=[
+						data.parts.kimono.main[a].spin[1],
+						data.parts.kimono.main[a].spin[2],
+						data.parts.kimono.main[a].spin[0],
+					]
+					data.parts.kimono.main[a].y=[
+						data.parts.kimono.main[a].y[1],
+						data.parts.kimono.main[a].y[2],
+						data.parts.kimono.main[a].y[0],
+					]
+				}else if(
+					data.parts.kimono.main[a].spin[1]<data.parts.kimono.main[a].spin[0]&&
+					data.parts.kimono.main[a].spin[0]<data.parts.kimono.main[a].spin[2]
+				){
+					data.parts.kimono.main[a].spin=[
+						data.parts.kimono.main[a].spin[1],
+						data.parts.kimono.main[a].spin[0],
+						data.parts.kimono.main[a].spin[2],
+					]
+					data.parts.kimono.main[a].y=[
+						data.parts.kimono.main[a].y[1],
+						data.parts.kimono.main[a].y[0],
+						data.parts.kimono.main[a].y[2],
+					]
+				}else if(
+					data.parts.kimono.main[a].spin[2]<data.parts.kimono.main[a].spin[1]&&
+					data.parts.kimono.main[a].spin[1]<data.parts.kimono.main[a].spin[0]
+				){
+					data.parts.kimono.main[a].spin=[
+						data.parts.kimono.main[a].spin[2],
+						data.parts.kimono.main[a].spin[1],
+						data.parts.kimono.main[a].spin[0],
+					]
+					data.parts.kimono.main[a].y=[
+						data.parts.kimono.main[a].y[2],
+						data.parts.kimono.main[a].y[1],
+						data.parts.kimono.main[a].y[0],
+					]
+				}else if(
+					data.parts.kimono.main[a].spin[2]<data.parts.kimono.main[a].spin[0]&&
+					data.parts.kimono.main[a].spin[0]<data.parts.kimono.main[a].spin[1]
+				){
+					data.parts.kimono.main[a].spin=[
+						data.parts.kimono.main[a].spin[2],
+						data.parts.kimono.main[a].spin[0],
+						data.parts.kimono.main[a].spin[1],
+					]
+					data.parts.kimono.main[a].y=[
+						data.parts.kimono.main[a].y[2],
+						data.parts.kimono.main[a].y[0],
+						data.parts.kimono.main[a].y[1],
+					]
+				}
+				data.parts.kimono.main[a].spin=[
+					data.parts.kimono.main[a].spin[0],
+					data.parts.kimono.main[a].spin[2],
+					data.parts.kimono.main[a].spin[1],
+				]
+				data.parts.kimono.main[a].y=[
+					data.parts.kimono.main[a].y[0],
+					data.parts.kimono.main[a].y[2],
+					data.parts.kimono.main[a].y[1],
+				]
+			}*/
 			let decorationIndex=0
 			for(let a=0,la=12;a<la;a++){
 				data.parts.kimono.outside[0].push({
@@ -5601,13 +5807,15 @@ function setupCombatantGraphics(type){
 				setupLayer(data.sprites.kimono.main.front[g])
 				data.sprites.kimono.main.front[g].translate(75,0)
 				data.sprites.kimono.main.front[g].scale(5)
-				generateSprite(data.sprites.kimono.main.front[g],64,g*data.sprites.detail)
+				//generateSprite(data.sprites.kimono.main.front[g],64,g*data.sprites.detail)
+				generateSprite(data.sprites.kimono.main.front[g],94,g*data.sprites.detail)
 				//console.log('Generated L-KMF-'+(g+1))
 				data.sprites.kimono.main.back.push(createGraphics(150,330))
 				setupLayer(data.sprites.kimono.main.back[g])
 				data.sprites.kimono.main.back[g].translate(75,0)
 				data.sprites.kimono.main.back[g].scale(5)
-				generateSprite(data.sprites.kimono.main.back[g],65,g*data.sprites.detail)
+				//generateSprite(data.sprites.kimono.main.back[g],65,g*data.sprites.detail)
+				generateSprite(data.sprites.kimono.main.back[g],95,g*data.sprites.detail)
 				//console.log('Generated L-KMB-'+(g+1))
 			}
 			data.sprites.kimono.outside={front:[],back:[]}

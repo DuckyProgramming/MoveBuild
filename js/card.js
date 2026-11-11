@@ -7698,6 +7698,9 @@ class card{
             userCombatant.getStatus('Free Defenses')>0&&(this.class==2||this.spec.includes(12)&&this.class[0]==2&&this.class[1]==2)||
             userCombatant.getStatus('Free Cables')>0&&this.name.includes('Cable')&&this.class==1||
             userCombatant.getStatus('Free Minerals')>0&&this.spec.includes(52)||
+            userCombatant.getStatus('Free Strike Time')>0&&this.getBasic(1)||
+            userCombatant.getStatus('Free Defend Time')>0&&this.getBasic(2)||
+            userCombatant.getStatus('Free Step Time')>0&&this.getBasic(3)||
             this.spec.includes(55)||
             this.spec.includes(58)||
             this.spec.includes(60)

@@ -3258,6 +3258,11 @@ class group{
                         this.cards[a].limit+=args[0]
                     }
                 break
+                case 89:
+                    if(this.cards[a].getBasic(-1)){
+                        this.cards[a].costDown(0,[args[0]])
+                    }
+                break
                 //mark allargs
             }
         }

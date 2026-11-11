@@ -51,6 +51,7 @@ class purchase{
             case 6:
                 this.item=new item(this.layer,this.battle,this.player,0,0,0,0,this.args[0],1.5)
                 this.item.fade=1
+                this.item.nonCalc=true
             break
         }
         if(this.player==-1){

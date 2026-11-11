@@ -30454,10 +30454,10 @@ class attack{
                         this.userManager.hand.exhaustAttackDraw(this.effect[0],this.effect[1])
                     break
                     case 11236:
-                        this.userManager.allEffectArgs(2,83,[this.effect[0]])
+                        this.userManager.allEffectArgs(2,89,[this.effect[0]])
                     break
                     case 11237:
-                        this.userManager.allEffectArgs(2,83,[this.effect[0]])
+                        this.userManager.allEffectArgs(2,89,[this.effect[0]])
                         this.userManager.draw(this.effect[1])
                     break
                     case 11239:

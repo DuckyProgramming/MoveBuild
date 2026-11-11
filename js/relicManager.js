@@ -3474,7 +3474,8 @@ class relicManager{
             break
             case 23://general nonstandard draw [amount,player]
                 if(this.active[481][args[1]+1]>0){
-                    this.battle.combatantManager.randomEnemyEffect(3,[this.active[481][args[1]+1]*args[0],this.getPlayer(args[1]).id])
+                    //this.battle.combatantManager.randomEnemyEffect(3,[this.active[481][args[1]+1]*args[0],this.getPlayer(args[1]).id])
+                    this.battle.combatantManager.randomEnemyEffect(11,[this.active[481][args[1]+1]*args[0],this.getPlayer(args[1]).id,1])
                 }
             break
             case 24://use item [item type,player]

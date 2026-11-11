@@ -9176,7 +9176,7 @@ class combatant{
                     this.battle.stats.killed[this.battle.turn.main]++
                 }
                 if(this.spec.includes(2)){
-                    this.battle.combatantManager.allEffect(2,[0])
+                    this.battle.combatantManager.allEffect(70,[0])
                     this.battle.clearReinforce()
                 }
                 if(this.status.main[42]>0){

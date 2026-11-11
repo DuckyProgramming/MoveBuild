@@ -1245,6 +1245,12 @@ class combatantManager{
                         this.combatants[a].takeDamage(args[0],args[1],2)
                         this.combatants[a].statusEffect('Burn',args[2])
                     break
+                    case 70:
+                        this.combatants[a].life=args[0]
+                        if(args[0]<=0){
+                            this.combatants[a].status.main[findList('Cannot Die',this.combatants[a].status.name)]=0
+                        }
+                    break
                 }
             }
         }

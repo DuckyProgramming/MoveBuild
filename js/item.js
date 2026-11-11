@@ -19,6 +19,7 @@ class item{
         this.fade=0
         this.infoFade=0
         this.deFade=false
+        this.nonCalc=false
     }
     save(){
         let composite={
@@ -1091,16 +1092,16 @@ class item{
                         activated=false
                         switch(last(replace)){
                             case 'D':
-                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,0,this.player,this.battle.relicManager,true,[])} Damage`
+                                temp+=`${this.nonCalc?replace.substring(0,replace.length-1):calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,0,this.player,this.battle.relicManager,true,[])} Damage`
                             break
                             case 'S':
-                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,0,this.player,this.battle.relicManager,true,[])} Splash Damage`
+                                temp+=`${this.nonCalc?replace.substring(0,replace.length-1):calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,0,this.player,this.battle.relicManager,true,[])} Splash Damage`
                             break
                             case 'B':
-                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,1,this.player,this.battle.relicManager,true,[])} Block`
+                                temp+=`${this.nonCalc?replace.substring(0,replace.length-1):calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,1,this.player,this.battle.relicManager,true,[])} Block`
                             break
                             case 'H':
-                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,4,this.player,this.battle.relicManager,true,[])} Health`
+                                temp+=`${this.nonCalc?replace.substring(0,replace.length-1):calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,4,this.player,this.battle.relicManager,true,[])} Health`
                             break
                         }
                     }

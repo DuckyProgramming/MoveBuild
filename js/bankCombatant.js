@@ -6544,23 +6544,30 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.wrap.round){
                     this.layer.noStroke()
                     this.layer.fill(this.color.wrap.in[0],this.color.wrap.in[1],this.color.wrap.in[2],this.fade*this.fades.wrap.round)
-                    this.layer.quad(
+                    /*this.layer.quad(
                         -6.7*this.fades.kimono.outside.front.x,this.parts.kimono.outside+15*this.fades.kimono.outside.front.y,
                         6.7*this.fades.kimono.outside.front.x,this.parts.kimono.outside+15*this.fades.kimono.outside.front.y,
                         7.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+23*this.fades.kimono.outside.front.y,
                         -7.5*this.fades.kimono.outside.front.x,this.parts.kimono.outside+23*this.fades.kimono.outside.front.y
+                    )*/
+                    this.layer.quad(
+                        -6.4*this.fades.kimono.outside.front.x,this.parts.kimono.outside+15*this.fades.kimono.outside.front.y,
+                        6.4*this.fades.kimono.outside.front.x,this.parts.kimono.outside+15*this.fades.kimono.outside.front.y,
+                        7.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+23*this.fades.kimono.outside.front.y,
+                        -7.6*this.fades.kimono.outside.front.x,this.parts.kimono.outside+23*this.fades.kimono.outside.front.y
                     )
                     this.layer.fill(this.color.wrap.rope[0],this.color.wrap.rope[1],this.color.wrap.rope[2],this.fade*this.fades.wrap.round)
                     for(let a=0,la=30;a<la;a++){
                         if(lcos(this.anim.direction+a/la*360)>0){
+                            let extend=7
                             this.layer.quad(
-                                lsin(this.anim.direction+a/la*360)*7.1*this.fades.kimono.outside.front.x-0.4*lcos(this.anim.direction+a/la*360),
+                                lsin(this.anim.direction+a/la*360)*extend*this.fades.kimono.outside.front.x-0.4*lcos(this.anim.direction+a/la*360),
                                 this.parts.kimono.outside+18.8*this.fades.kimono.outside.front.y,
-                                lsin(this.anim.direction+a/la*360)*7.1*this.fades.kimono.outside.front.x+0.8*lcos(this.anim.direction+a/la*360),
+                                lsin(this.anim.direction+a/la*360)*extend*this.fades.kimono.outside.front.x+0.8*lcos(this.anim.direction+a/la*360),
                                 this.parts.kimono.outside+18.8*this.fades.kimono.outside.front.y,
-                                lsin(this.anim.direction+a/la*360)*7.1*this.fades.kimono.outside.front.x+0.4*lcos(this.anim.direction+a/la*360),
+                                lsin(this.anim.direction+a/la*360)*extend*this.fades.kimono.outside.front.x+0.4*lcos(this.anim.direction+a/la*360),
                                 this.parts.kimono.outside+19.2*this.fades.kimono.outside.front.y,
-                                lsin(this.anim.direction+a/la*360)*7.1*this.fades.kimono.outside.front.x-0.8*lcos(this.anim.direction+a/la*360),
+                                lsin(this.anim.direction+a/la*360)*extend*this.fades.kimono.outside.front.x-0.8*lcos(this.anim.direction+a/la*360),
                                 this.parts.kimono.outside+19.2*this.fades.kimono.outside.front.y,
                             )
                         }
@@ -6568,11 +6575,14 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.color.wrap.decoration[0],this.color.wrap.decoration[1],this.color.wrap.decoration[2],this.fade*this.fades.wrap.round)
                     for(let a=0,la=this.parts.wrap.decoration.length;a<la;a++){
                         if(lcos(this.anim.direction+(a+this.parts.wrap.decoration[a][2])/la*360)>0){
+                            let ls=lsin(this.anim.direction+(a+this.parts.wrap.decoration[a][2])/la*360)
                             this.layer.push()
                             this.layer.translate(
-                                lsin(this.anim.direction+(a+this.parts.wrap.decoration[a][2])/la*360)*(6.7+this.parts.wrap.decoration[a][0]*0.8)*this.fades.kimono.outside.front.x,
+                                //lsin(this.anim.direction+(a+this.parts.wrap.decoration[a][2])/la*360)*(6.7+this.parts.wrap.decoration[a][0]*0.8)*this.fades.kimono.outside.front.x,
+                                ls*(6.4+this.parts.wrap.decoration[a][0]*1.2)*this.fades.kimono.outside.front.x,
                                 this.parts.kimono.outside+(15+this.parts.wrap.decoration[a][0]*8)*this.fades.kimono.outside.front.y
                             )
+                            this.layer.rotate(-6*ls)
                             this.layer.scale(lcos(this.anim.direction+(a+this.parts.wrap.decoration[a][2])/la*360)*this.parts.wrap.decoration[a][1],this.parts.wrap.decoration[a][1])
                             this.layer.rotate(a*9)
                             for(let b=0,lb=11;b<lb;b++){

@@ -187,7 +187,7 @@ class eventManager{
                 !(this.listing.event[a]==192&&userCombatant.life<9||userCombatant.base.life<17)&&
                 !(this.listing.event[a]==193&&this.battle.currency.money[this.player]<250)&&
                 !(this.listing.event[a]==196&&this.battle.nodeManager.world!=2)&&
-                !(this.listing.event[a]==197&&userCombatant.life>userCombatant.base.life-20)&&
+                !(this.listing.event[a]==197&&(userCombatant.life>userCombatant.base.life-20||this.battle.nodeManager.world!=0))&&
                 !(this.listing.event[a]==198&&userCombatant.life<11)&&
                 !(this.listing.event[a]==199&&(userCombatant.life>userCombatant.base.life-30||this.battle.nodeManager.world!=0))&&
                 !(this.listing.event[a]==200&&(userCombatant.life<2||this.battle.itemManager.hasEmpty(this.player)))&&

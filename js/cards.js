@@ -39166,7 +39166,7 @@ types.card=[
         name:'Seam\nRipper',rarity:0,list:17,
         levels:[
             {effect:[1],attack:3924,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[1,5],attack:3924,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[1.5],attack:3924,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[2],attack:3924,cost:1,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
             rarity:0,list:17,color:[4],
@@ -39291,15 +39291,15 @@ types.card=[
     },{
         name:`Inchling's\nThorny Path`,rarity:1,list:17,
         levels:[
-            {effect:[1,3,1],attack:4104,cost:1,target:[1,1,1],spec:[0,1],class:3},
-            {effect:[1,3,2],attack:4104,cost:1,target:[1,1,1],spec:[0,1],class:3},
-            {effect:[1,1,2],attack:4104,cost:1,target:[1,1,1],spec:[0,1],class:3},
+            {effect:[1,3,1],attack:4104,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,3,2],attack:4104,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1,2],attack:4104,cost:1,target:[1,1,1],spec:[0],class:3},
         ],mtg:{
             rarity:1,list:17,color:[5],
             levels:[
-                {effect:[1,3,1],attack:4104,cost:[5,5],target:[1,1,1],spec:[0,1],class:3},
-                {effect:[1,3,2],attack:4104,cost:[5,5],target:[1,1,1],spec:[0,1],class:3},
-                {effect:[1,1,2],attack:4104,cost:[5,5],target:[1,1,1],spec:[0,1],class:3},
+                {effect:[1,3,1],attack:4104,cost:[5,5],target:[1,1,1],spec:[0],class:3},
+                {effect:[1,3,2],attack:4104,cost:[5,5],target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1,2],attack:4104,cost:[5,5],target:[1,1,1],spec:[0],class:3},
             ],
         },
     },{
@@ -40061,15 +40061,15 @@ types.card=[
     },{
         name:'Firmament',rarity:0,list:17,
         levels:[
-            {effect:[2],attack:9684,cost:1,target:[0],spec:[],class:4},
             {effect:[3],attack:9684,cost:1,target:[0],spec:[],class:4},
             {effect:[4],attack:9684,cost:1,target:[0],spec:[],class:4},
+            {effect:[5],attack:9684,cost:1,target:[0],spec:[],class:4},
         ],mtg:{
             rarity:0,list:17,color:[4],
             levels:[
-                {effect:[3],attack:9684,cost:[4,4],target:[0],spec:[],class:4},
                 {effect:[4],attack:9684,cost:[4,4],target:[0],spec:[],class:4},
-                {effect:[5],attack:9684,cost:[4,4],target:[0],spec:[],class:4},
+                {effect:[6],attack:9684,cost:[4,4],target:[0],spec:[],class:4},
+                {effect:[8],attack:9684,cost:[4,4],target:[0],spec:[],class:4},
             ],
         },
     },{
@@ -40705,15 +40705,15 @@ types.card=[
     },{
         name:'Inchling\nHalo',rarity:2,list:17,
         levels:[
-            {effect:[1],attack:11563,cost:2,target:[0],spec:[],class:2},
-            {effect:[1],attack:11563,cost:1,target:[0],spec:[],class:2},
-            {effect:[2],attack:11563,cost:1,target:[0],spec:[],class:2},
+            {effect:[1],attack:11563,cost:2,target:[0],spec:[],class:11},
+            {effect:[1],attack:11563,cost:1,target:[0],spec:[],class:11},
+            {effect:[2],attack:11563,cost:1,target:[0],spec:[],class:11},
         ],mtg:{
             rarity:2,list:17,color:[1,5],
             levels:[
-                {effect:[1],attack:11563,cost:[1,5],target:[0],spec:[],class:2},
-                {effect:[1],attack:11563,cost:[10],target:[0],spec:[],class:2},
-                {effect:[2],attack:11563,cost:[10],target:[0],spec:[],class:2},
+                {effect:[1],attack:11563,cost:[1,5],target:[0],spec:[],class:11},
+                {effect:[1],attack:11563,cost:[10],target:[0],spec:[],class:11},
+                {effect:[2],attack:11563,cost:[10],target:[0],spec:[],class:11},
             ],
         },
     },{

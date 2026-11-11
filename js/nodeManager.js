@@ -38,7 +38,8 @@ class nodeManager{
             saveClass:this.saveClass,
             harmElite:this.harmElite,
             harmBoss:this.harmBoss,
-            endles:this.endless,
+            endless:this.endless,
+            //endles:this.endless,
         }
         this.nodes.forEach(node=>composite.nodes.push(node.save()))
         return composite

@@ -1735,7 +1735,7 @@ types={
         {name:'Sun Stone',internal:'Upgrade All/Burn',id:90,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All Cards This Combat\nGain 2 Burn'},
         {name:'Soap',internal:'Cleanse',id:91,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Remove All Debuffs'},
         {name:'Giant Scissors',internal:'Exhaust 5 From Draw',id:92,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Exhaust Up to 5 Cards\nFrom Draw Pile'},
-        {name:'Falling Stick',internal:'8 Damage Any',id:93,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [8D\nto any Enemy'},
+        {name:'Falling Stick',internal:'8 Damage Any',id:93,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [8D]\nto any Enemy'},
         {name:'Catalytic Converter',internal:'Transform Hand',id:94,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Transform All Cards\nin Your Hand'},
         {name:'Large Speaker',internal:'Push to End',id:95,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Push to End\nRange 1-1'},
         {name:'Tree Sapling',internal:'Strength in 3 Turns/Dexterity in 3 Turns',id:96,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'In 3 Turns, Gain 3 Strength\nand 3 Dexterity'},
