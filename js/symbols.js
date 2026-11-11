@@ -2680,8 +2680,10 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             regStar(layer,0,0,8,5,5,3,3,0,0)
             layer.noFill()
             layer.stroke(255,255,200,fade)
-            layer.strokeWeight(1)
-            regStar(layer,0,0,4,10,10,4,4,0)
+            layer.strokeWeight(0.6)
+            regStar(layer,0,0,4,6,6,2.4,2.4,0)
+            /*layer.strokeWeight(1)
+            regStar(layer,0,0,4,10,10,4,4,0)*/
         break
         case 294:
             layer.fill(255,100,255,fade)
@@ -18434,6 +18436,15 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.point(-2,0)
             layer.point(2,0)
         break
+        case 520:
+            layer.fill(0,150,255,fade)
+            layer.triangle(-2,6,-4,-3,0,-3)
+            layer.fill(200,0,0,fade)
+            layer.triangle(2,6,4,-3,0,-3)
+            layer.fill(255,50,50,fade)
+            layer.quad(9,0,0,2,-9,0,0,-2)
+            layer.quad(2,0,0,6,-2,0,0,-6)
+        break
 
     }
     //mark i
@@ -18529,7 +18540,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 188:
                 layer.text(`${effect[0]}xR`,0,0)
             break
-            case 190: case 269: case 379: case 434: case 435: case 448: case 476:
+            case 190: case 269: case 379: case 434: case 435: case 448: case 476: case 520:
                 layer.text(`${effect[0]}|${effect[1]}|${effect[2]}`,0,0)
             break
             case 207:
@@ -18966,7 +18977,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         break
         case 51:
             layer.fill(255,255,150,fade)
-            regStar(layer,0,0,10,1,1,7,7,0)
+            //regStar(layer,0,0,10,1,1,7,7,0)
+            regStar(layer,0,0,10,1.5,1.5,7,7,0)
         break
         case 52:
             layer.stroke(0,fade)
@@ -19645,6 +19657,10 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rect(3,-1,2,4)
         break
         case 136:
+            layer.fill(150,fade)
+            layer.ellipse(0,2,6)
+            layer.ellipse(sin(120)*2,cos(120)*2,6)
+            layer.ellipse(-sin(120)*2,cos(120)*2,6)
             layer.fill(225,fade)
             layer.ellipse(0,2,5,5)
             layer.ellipse(sin(120)*2,cos(120)*2,5,5)
@@ -19971,6 +19987,10 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeCap(ROUND)
         break
         case 172:
+            layer.fill(150,fade)
+            layer.ellipse(0,2,6)
+            layer.ellipse(sin(120)*2,cos(120)*2,6)
+            layer.ellipse(-sin(120)*2,cos(120)*2,6)
             layer.fill(225,fade)
             layer.ellipse(0,2,5,5)
             layer.ellipse(sin(120)*2,cos(120)*2,5,5)

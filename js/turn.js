@@ -521,7 +521,7 @@ class turn{
                                         [this.userCombatant.tilePosition.x-transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*6-transformDirection(0,this.userCombatant.goal.anim.direction+120)[0]*6,this.userCombatant.tilePosition.y-transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*6-transformDirection(0,this.userCombatant.goal.anim.direction+120)[1]*6]
                                     ]
                                 break
-                                case 291: case 292:
+                                case 291: case 292: case 520:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x-transformBase[0],this.userCombatant.tilePosition.y-transformBase[1]],
@@ -673,7 +673,7 @@ class turn{
                                 this.type==223||this.type==224||this.type==259||this.type==264||this.type==265||this.type==278||this.type==288||this.type==291||this.type==292||this.type==308||
                                 this.type==330||this.type==350||this.type==351||this.type==357||this.type==360||this.type==368||this.type==379||this.type==381||this.type==387||this.type==388||
                                 this.type==395||this.type==404||this.type==409||this.type==417||this.type==418||this.type==441||this.type==449||this.type==468||this.type==470||this.type==476||
-                                this.type==500||this.type==502||this.type==517
+                                this.type==500||this.type==502||this.type==517||this.type==520
                             ){
                                 this.targetCombatant=[]
                                 this.direction=[]
@@ -1569,11 +1569,6 @@ class turn{
                     break
                     case 248:
                         this.targetCombatant.takeDamage(floor(random(this.effect[0],this.effect[1]+1)),this.user)
-                    break
-                    case 291:
-                        for(let a=0,la=this.targetCombatant.length;a<la;a++){
-                            this.targetCombatant[a].takeDamage(this.effect[0],this.user)
-                        }
                     break
                     case 295:
                         this.targetCombatant.statusEffect('Burn',this.effect[0])

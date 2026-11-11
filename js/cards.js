@@ -9386,15 +9386,15 @@ types.card=[
     },{
         name:'Reap',rarity:2,list:3,
         levels:[
-            {effect:[5,5],attack:10561,cost:2,target:[0],spec:[0,1],class:1},
-            {effect:[7,7],attack:10561,cost:2,target:[0],spec:[0,1],class:1},
-            {effect:[9,9],attack:10561,cost:2,target:[0],spec:[0,1],class:1},
+            {effect:[5,5],attack:10561,cost:2,target:[0],spec:[0,1],class:11},
+            {effect:[7,7],attack:10561,cost:2,target:[0],spec:[0,1],class:11},
+            {effect:[9,9],attack:10561,cost:2,target:[0],spec:[0,1],class:11},
         ],mtg:{
             rarity:2,list:3,color:[1,5],
             levels:[
-                {effect:[6,6],attack:10561,cost:[1,5,-1],target:[0],spec:[0,1],class:1},
-                {effect:[8,8],attack:10561,cost:[1,5,-1],target:[0],spec:[0,1],class:1},
-                {effect:[10,10],attack:10561,cost:[1,5,-1],target:[0],spec:[0,1],class:1},
+                {effect:[6,6],attack:10561,cost:[1,5,-1],target:[0],spec:[0,1],class:11},
+                {effect:[8,8],attack:10561,cost:[1,5,-1],target:[0],spec:[0,1],class:11},
+                {effect:[10,10],attack:10561,cost:[1,5,-1],target:[0],spec:[0,1],class:11},
             ],
         },
     },{
@@ -67227,15 +67227,15 @@ types.card=[
     },{
         name:'Protocol',rarity:-6,list:0,
         levels:[
-            {effect:[1,1],attack:3934,cost:0,target:[0],spec:[62],class:4},
-            {effect:[1,2],attack:3934,cost:0,target:[0],spec:[62],class:4},
-            {effect:[1,3],attack:3934,cost:0,target:[0],spec:[62],class:4},
+            {effect:[1,1],attack:3934,cost:0,target:[0],spec:[1,62],class:4},
+            {effect:[1,2],attack:3934,cost:0,target:[0],spec:[1,62],class:4},
+            {effect:[1,3],attack:3934,cost:0,target:[0],spec:[1,62],class:4},
         ],mtg:{
             rarity:-6,list:0,color:[0],
             levels:[
-                {effect:[],attack:3991,cost:[],target:[0],spec:[62],class:4},
-                {effect:[],attack:3992,cost:[],target:[0],spec:[62],class:4},
-                {effect:[],attack:3993,cost:[],target:[0],spec:[62],class:4},
+                {effect:[],attack:3991,cost:[],target:[0],spec:[1,62],class:4},
+                {effect:[],attack:3992,cost:[],target:[0],spec:[1,62],class:4},
+                {effect:[],attack:3993,cost:[],target:[0],spec:[1,62],class:4},
             ],
         },
     },{

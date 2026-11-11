@@ -4530,6 +4530,38 @@ class relic{
                     displaySymbol(this.layer,-6,2,8,0,0.8,this.fade)
                     displaySymbol(this.layer,9,0,14,0,1.2,this.fade)
                 break
+                case 'Remove 4':
+                    displaySymbol(this.layer,0,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('4',0,0)
+                break
+                case 'Fatigue Cost Down':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,60,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,0,6,0,0.4,this.fade)
+                break
+                case 'Always Move':
+                    displaySymbol(this.layer,0,0,172,0,2,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1,this.fade)
+                break
+                case 'Level Energy':
+                    displaySymbol(this.layer,-14,-2.5,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,5,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,-2,-2.5,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('3',-14,-2.5)
+                    this.layer.text('2',-8,5)
+                    this.layer.text('1',-2,-2.5)
+                    this.layer.textSize(10)
+                    this.layer.text('1',4,-6)
+                    this.layer.text('2',9,0)
+                    this.layer.text('3',14,-6)
+                break
 
                 //mark p
             }

@@ -7738,7 +7738,7 @@ class card{
                 variants.overheat
             
             this.afford=this.energyAfford&&
-            !(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&
+            !(userCombatant.getStatus('Cannot Move')>0&&this.class==3&&!this.battle.relicManager.hasRelic(614,this.player))&&
             !(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
             !(this.spec.includes(6)&&!userCombatant.armed&&userCombatant.getStatus('Armament Bypass')<=0)&&
             !(this.spec.includes(25)&&userCombatant.ammo<=0&&this.target[0]!=46)

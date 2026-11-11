@@ -164,7 +164,7 @@ types={
         {name:'Anomaly',life:93,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[5,1]},{type:2,effect:[6]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunar Servant in never spawning`},
-        {name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
+        {name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:520,effect:[8,2,2]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[15]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
         {name:'Golden Duck',life:38,behavior:16,spec:[],move:{type:0,speed:3},attack:[{type:21,effect:[]},{type:68,effect:[]}],description:`Why is this thing alive?`},
         {name:'Management Shotgunner',life:146,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:364,effect:[24,3,1,'Electrocuted']},{type:365,effect:[7,2]}],description:`At least he doesn't OHKO`},
@@ -335,6 +335,7 @@ types={
         //{name:'Defective Robot C',life:66,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:10,effect:[4]}],description:`Badly planned architecture`},
         //{name:'Management Custodian',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         //{name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[2]}],description:`We've been expecting you`},
+        //{name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -954,6 +955,7 @@ types={
         {name:'Crescent Strike / Weak',class:1},
         {name:'Double Strike / Spawn',class:1},
         {name:'2 Tile Double Strike / Spawn',class:1},
+        {name:'4 Direction Strike / Weak / Vulnerable',class:1},//520
 
         //mark attack
     ],relic:[
@@ -1123,7 +1125,7 @@ types={
         {name:'Aquamarine',internal:'6 Free Cards',id:149,rarity:4,list:0,mtg:1,world:[0,3],description:'The First 6 Cards Played\nEvery Combat are Free'},
 
         {name:'Carnelian',internal:'Avoidance',id:150,rarity:-1,list:0,mtg:1,world:[0,3],description:'You May Move\nThrough Obstructions\nReplace Step With Swap'},
-        {name:'Rejector 300',internal:'Remove 6',id:151,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken, Remove 6 Cards'},
+        {name:'Rejector 300',internal:'Remove 6',id:151,rarity:-1,list:0,mtg:1,world:[0,3],description:'When Taken, Remove 6 Cards'},
         {name:'Shattered Chains',internal:'Difficulty Energy',id:152,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 2 Energy Every Turn\non Elite and Boss Combats'},
         {name:'Meal Plan',internal:'Large Quick Heal',id:153,rarity:4,list:0,mtg:1,world:[0,2],description:'Heal 10 HP at\nthe End of Combat'},
         {name:'?! Block',internal:'Transform Basic',id:154,rarity:-1,list:0,mtg:1,world:[0,3],description:'When Taken, Transform All\nBasic Attacks and Defenses,\nand Upgrade All Basic Movements'},
@@ -1475,7 +1477,7 @@ types={
         {name:'Straw Shield',internal:'Bonus Block',id:469,rarity:-1,list:0,mtg:0,world:[0,3],description:'If You End Your Turn With Block,\nAdd 2 Block'},
 
         {name:'Nuclear Waste',internal:'3 Turn Temporary Strength',id:470,rarity:-1,list:0,mtg:0,world:[0,3],description:'Every 3 Turns,\nGain 3 Temporary Strength'},
-        {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:4,list:0,mtg:1,world:[0,3],description:'Never Get Fatigued Again'},
+        {name:'Green Pentachoron',internal:'No Fatigue',id:471,rarity:-1,list:0,mtg:1,world:[0,3],description:'Never Get Fatigued Again'},
         {name:'HVM Orders',internal:'Turn 3 Free Card',id:472,rarity:-1,list:0,mtg:0,world:[0,3],description:'The First Card You\nPlay on Turn 3 is Free'},
         {name:'Prescription Bottle',internal:'6 Turn Control',id:473,rarity:0,list:0,mtg:0,world:[0,3],description:'Gain 1 Control Every 6 Turns'},
         {name:'Duck Sunglasses',internal:'Elite Block',id:474,rarity:0,list:0,mtg:0,world:[0,1],description:'During Elite Combats,\nGain 4 Block Per Turn'},
@@ -1518,7 +1520,7 @@ types={
         {name:`Prince Rupert's Drop`,internal:'Safe Energy',id:508,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nUntil You Lose Health Each Combat'},
         {name:'600-Cell',internal:'Free Innate',id:509,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken,\nMake a Card Innate and Free'},
 
-        {name:'Transformer 500',internal:'Transform 10',id:510,rarity:4,list:0,mtg:1,world:[0,2],description:'When Taken, Transform 10 Cards'},
+        {name:'Transformer 500',internal:'Transform 10',id:510,rarity:-1,list:0,mtg:1,world:[0,2],description:'When Taken, Transform 10 Cards'},
         {name:'Replicating Cake',internal:'Random Boss Relic/10 Max HP',id:511,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken, Gain a Random Boss Relic\nand Gain 10 Max HP'},
         {name:'Draft Card',internal:'Draw Up/Draft 10',id:512,rarity:-1,list:0,mtg:1,world:[0,2],description:'Draw 1 More Card Per Turn\nWhen Taken, Receive 10 Card Rewards'},
         {name:'Capstone',internal:'Leftmost Energy',id:513,rarity:4,list:0,mtg:1,world:[0,3],description:'Each Turn, Gain 1 Energy if\nYou Play the Leftmost Card First'},
@@ -1598,7 +1600,7 @@ types={
         {name:'Dampening Sphere',internal:'No Retain Block',id:580,rarity:3,list:0,mtg:0,world:[0,3],description:'Enemies Can Never Retain Block'},
         {name:'Festival Pole',internal:'Rest Transform',id:581,rarity:2,list:0,mtg:0,world:[0,2],description:'Can Transform Cards\nWhen Resting'},
         {name:'Quantum Quadrilateral',internal:'Quantum Card',id:582,rarity:3,list:0,mtg:0,world:[0,3],description:'Add Any Random Card to\nHand at the Start of Combat\nIt Retains and Transforms Until Played'},
-        {name:'Merchant Monocle',internal:'Buy Rare Get Common',id:583,rarity:3,list:0,mtg:0,world:[0,2],description:'After Purchasing Rare Card or Relic,\na Common One Becomes Free'},
+        {name:'Merchant Monocle',internal:'Buy Rare Get Common',id:583,rarity:3,list:0,mtg:0,world:[0,2],description:'After Purchasing a Rare Card or Relic,\na Common One Becomes Free'},
         {name:'Cheese Board',internal:'2 Max HP / Starting Temporary Strength',id:584,rarity:0,list:0,mtg:0,world:[0,3],description:'When Taken, Gain 2 Max HP\nGain 2 Temporary Strength on Turn 1'},
         {name:'Appraisal Glass',internal:'Item Sell Value',id:585,rarity:3,list:0,mtg:0,world:[0,2],description:'Selling Items Gives\n5x More Currency'},
         {name:'Amber Butterfly',internal:'Sell Duplicate',id:586,rarity:2,list:0,mtg:0,world:[0,1],description:'When Sold, Duplicate\nthe Last Card in Deck'},
@@ -1630,6 +1632,10 @@ types={
 
         {name:'Heavy Pot',internal:'Double Card Effect',id:610,rarity:4,list:0,mtg:0,world:[0,2],description:'When Taken, Double the Effect\nof an Attack or Defense'},
         {name:'Recycling',internal:'Card Reward Reroll',id:611,rarity:2,list:0,mtg:0,world:[0,2],description:'You Can Reroll\nAny Card Reward Once'},
+        {name:'Rejector 200',internal:'Remove 4',id:612,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken, Remove 4 Cards'},
+        {name:'Green Pentachoron',internal:'Fatigue Cost Down',id:613,rarity:4,list:0,mtg:1,world:[0,3],description:'Fatigues Cost 1 Less'},
+        {name:'Survival Notes',internal:'Always Move',id:614,rarity:-1,list:0,mtg:0,world:[0,3],description:`When You Can't Move,\nYou Can`},
+        {name:'Very Hot Cocoa',internal:'Level Energy',id:615,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 3 Energy at the Start of Turn 1\nGain 2 Energy at the Start of Turn 2\nGain 1 Energy at the Start of Turn 3'},
 
         //mark mtg mark r
     ],item:[
@@ -5591,6 +5597,16 @@ types={
                 {position:{x:5,y:3},name:'Embodimental Element',turn:4},
                 {position:{x:2,y:1},name:'Embodimental Element',turn:6},
                 {position:{x:4,y:5},name:'Embodimental Element',turn:6},
+            ],ally:[
+            ],
+        },{
+            level:['Unstable 7'],class:0,world:-1,
+            name:'Embodimental Element',
+            player:{position:[[{x:4,y:5}],[{x:3,y:5},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Embodimental Element'},
+            ],reinforce:[
+            ],assaultReinforce:[
             ],ally:[
             ],
         },{

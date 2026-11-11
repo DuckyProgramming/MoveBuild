@@ -5608,7 +5608,7 @@ It's not much, but it'll do.`,
             },
         ],
     },{
-        name:'Chocolate Factory',id:172,list:-1,
+        name:'Chocolate Land',id:172,list:-1,
         pages:[
             {
                 desc:
@@ -6461,7 +6461,7 @@ of chocolate on offer. They look to be from two different
 brands. Maybe you should make a purchase?`,
                 option:['Buy a Wrapper','Buy Ferrero','Buy Lindt','Decline'],
                 optionDesc:['Lose 25 Currency','Lose 50 Currency','Lose 50 Currency',''],
-                link:[1,2,3],
+                link:[1,2,3,4],
             },{
                 desc:
 `You grab a pile of empty wrappers and pay the price.

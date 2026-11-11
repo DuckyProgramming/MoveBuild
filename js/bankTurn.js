@@ -8,12 +8,11 @@ turn.prototype.update=function(){
                 case 79: case 83: case 100: case 112: case 113: case 152: case 172: case 178: case 183: case 193:
                 case 205: case 214: case 229: case 242: case 246: case 247: case 248: case 250: case 253: case 260:
                 case 262: case 263: case 268: case 270: case 271: case 274: case 275: case 276: case 277: case 279:
-                case 287: case 290: case 291: case 295: case 304: case 306: case 316: case 325: case 328: case 329:
-                case 332: case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375:
-                case 378: case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419:
-                case 420: case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459:
-                case 463: case 465: case 475: case 477: case 489: case 493: case 495: case 503: case 505: case 506:
-                case 512:
+                case 287: case 290: case 295: case 304: case 306: case 316: case 325: case 328: case 329: case 332:
+                case 335: case 342: case 343: case 353: case 369: case 372: case 373: case 374: case 375: case 378:
+                case 385: case 386: case 389: case 390: case 397: case 398: case 402: case 412: case 419: case 420:
+                case 424: case 426: case 433: case 434: case 435: case 448: case 454: case 455: case 459: case 463:
+                case 465: case 475: case 477: case 489: case 493: case 495: case 503: case 505: case 506: case 512:
                     if(this.type==205&&this.timer==1){
                         this.userCombatant.goal.anim.direction=this.relativeDirection
                     }
@@ -45,18 +44,19 @@ turn.prototype.update=function(){
                         if(this.timer==15*this.targetDistance-15){
                             let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                             this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                            this.battle.activate(1,this.userCombatant.id)
                         }else if(this.timer==15*this.targetDistance){
                             this.selfCall(0)
                         }else if(this.timer>=15*this.targetDistance+15){
-                            if(this.targetDistance>1){
+                            /*if(this.targetDistance>1){
                                 this.battle.activate(1,this.userCombatant.id)
-                            }
+                            }*/
                             this.remove=true
                         }
                     }
                 break
-                case 20: case 31: case 59: case 66: case 99: case 103: case 107: case 194: case 258: case 292:
-                case 305: case 317: case 348: case 354: case 358: case 380: case 437: case 488: case 518: case 519:
+                case 20: case 31: case 59: case 66: case 99: case 103: case 107: case 194: case 258: case 305:
+                case 317: case 348: case 354: case 358: case 380: case 437: case 488: case 518: case 519:
                     if(variants.nobasicanim){
                         if(this.targetDistance>1){
                             this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)
@@ -100,6 +100,7 @@ turn.prototype.update=function(){
                         if(this.timer==15*this.targetDistance-15){
                             let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                             this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                            this.battle.activate(1,this.userCombatant.id)
                         }else if(this.timer==15*this.targetDistance-3||this.timer==15*this.targetDistance+3){
                             if(this.type==292){
                                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
@@ -117,9 +118,9 @@ turn.prototype.update=function(){
                                 }
                             }
                         }else if(this.timer>=15*this.targetDistance+15){
-                            if(this.targetDistance>1){
+                            /*if(this.targetDistance>1){
                                 this.battle.activate(1,this.userCombatant.id)
-                            }
+                            }*/
                             this.remove=true
                         }
                     }
@@ -162,6 +163,7 @@ turn.prototype.update=function(){
                         if(this.timer==15*this.targetDistance-15){
                             let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                             this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                            this.battle.activate(1,this.userCombatant.id)
                         }else if(this.timer==15*this.targetDistance-5||this.timer==15*this.targetDistance||this.timer==15*this.targetDistance+5){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             switch(this.type){
@@ -173,9 +175,9 @@ turn.prototype.update=function(){
                                 this.selfCall(7)
                             }
                         }else if(this.timer>=15*this.targetDistance+15){
-                            if(this.targetDistance>1){
+                            /*if(this.targetDistance>1){
                                 this.battle.activate(1,this.userCombatant.id)
-                            }
+                            }*/
                             this.remove=true
                         }
                     }
@@ -3316,6 +3318,54 @@ turn.prototype.update=function(){
                         this.remove=true
                     }
                 break
+                case 291: case 520:
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(2)
+                    }
+                    this.userCombatant.runAnimation(1/30,2)
+                    if(this.timer==15){
+                        switch(this.type){
+                            case 291:
+                                for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                                    this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                                }
+                            break
+                            case 520:
+                                for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                                    this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                                    this.targetCombatant[a].statusEffect('Weak Next Turn',this.effect[1])
+                                    this.targetCombatant[a].statusEffect('Vulnerable Next Turn',this.effect[2])
+                                }
+                            break
+                        }
+                    }else if(this.timer>=30){
+                        this.remove=true
+                    }
+                break
+                case 292:
+                    if(this.timer==1||this.timer==16){
+                        this.userCombatant.startAnimation(2)
+                    }
+                    this.userCombatant.runAnimation(1/15,2)
+                    if(this.timer==12||this.timer==18){
+                        switch(this.type){
+                            case 291:
+                                for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                                    this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                                }
+                            break
+                            case 520:
+                                for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                                    this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                                    this.targetCombatant[a].statusEffect('Weak Next Turn',this.effect[1])
+                                    this.targetCombatant[a].statusEffect('Vulnerable Next Turn',this.effect[2])
+                                }
+                            break
+                        }
+                    }else if(this.timer>=30){
+                        this.remove=true
+                    }
+                break
                 case 303: case 364:
                     if(variants.nobasicanim){
                         this.targetCombatant.takeDamage(this.effect[0]-this.effect[1]*this.targetDistance,this.user)
@@ -3424,12 +3474,13 @@ turn.prototype.update=function(){
                         if(this.timer==15*this.targetDistance-15){
                             let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                             this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                            this.battle.activate(1,this.userCombatant.id)
                         }else if(this.timer==15*this.targetDistance-5||this.timer==15*this.targetDistance||this.timer==15*this.targetDistance+5||this.timer==15*this.targetDistance+15||this.timer==15*this.targetDistance+25||this.timer==15*this.targetDistance+35||this.timer==15*this.targetDistance+45){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=15*this.targetDistance+55){
-                            if(this.targetDistance>1){
+                            /*if(this.targetDistance>1){
                                 this.battle.activate(1,this.userCombatant.id)
-                            }
+                            }*/
                             this.remove=true
                         }
                     }

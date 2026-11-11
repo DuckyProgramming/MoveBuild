@@ -965,7 +965,8 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                     break
                     case 54:
                         if(this.page==1&&a==0){
-                            this.battle.relicManager.addRelic(findInternal('Random Fatigue Cost Decrease',types.relic),this.player)
+                            //this.battle.relicManager.addRelic(findInternal('Random Fatigue Cost Decrease',types.relic),this.player)
+                            this.battle.relicManager.addRelic(findInternal('Always Move',types.relic),this.player)
                         }else if(this.page==2&&a==0){
                             this.battle.addCurrency(55,this.player)
                         }
