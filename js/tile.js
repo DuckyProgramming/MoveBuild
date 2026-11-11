@@ -10,6 +10,7 @@ class tile{
 
         this.fade=1
         this.occupied=0
+        this.occupant=0
         this.targetted=[
             [false,false,false,false,false,false,false,false,false,false,false,false,false],
             [false,false,false,false,false,false,false,false,false,false,false,false,false],
@@ -19,7 +20,7 @@ class tile{
         ]
         this.reinforce=false
         this.fire=[0,0]
-        this.submark=[0]
+        this.submark=[0,0]
         this.combatant=0
 
         this.anim={target:[
@@ -28,7 +29,7 @@ class tile{
             [0,0,0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0,0,0]
-        ],reinforce:0,fire:[0,0],submark:[0],part:[],upPart:[]}
+        ],reinforce:0,fire:[0,0],submark:[0,0],part:[],upPart:[]}
         for(let a=0,la=this.type.length;a<la;a++){
             this.anim.part.push(0)
             this.anim.upPart.push(true)
@@ -359,8 +360,11 @@ class tile{
         this.targetted[type][direction]=true
         this.targetted[type][12]=true
         if(origin!=undefined&&origin.spec.includes(7)){
-            this.submark[0]=true
+            this.submark[constrain(floor((type-1)/2),0,1)]=true
         }
+    }
+    warn(type){
+        this.submark[type]=true
     }
     indescriptTarget(type){
         this.targetted[type][12]=true
@@ -371,7 +375,9 @@ class tile{
                 this.targetted[a][b]=false
             }
         }
-        this.submark[0]=false
+        for(let a=0,la=this.submark.length;a<la;a++){
+            this.submark[a]=false
+        }
     }
     removeType(index){
         this.type.splice(index,1)
@@ -690,6 +696,15 @@ class tile{
         }
         if(this.anim.submark[0]>0){
             this.layer.stroke(255,50,50,this.fade*this.anim.submark[0])
+            this.layer.strokeWeight(2)
+            this.layer.noFill()
+            regTriangle(this.layer,0,0,constants.targetRadius/2,constants.targetRadius/2,60)
+            this.layer.line(0,-constants.targetRadius/24,0,-constants.targetRadius/6)
+            this.layer.strokeWeight(3)
+            this.layer.point(0,constants.targetRadius/12)
+        }
+        if(this.anim.submark[1]>0){
+            this.layer.stroke(255,200,50,this.fade*this.anim.submark[1])
             this.layer.strokeWeight(2)
             this.layer.noFill()
             regTriangle(this.layer,0,0,constants.targetRadius/2,constants.targetRadius/2,60)

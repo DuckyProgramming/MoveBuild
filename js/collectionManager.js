@@ -4,6 +4,7 @@ class collectionManager{
         this.battle=battle
         this.known=[]
         this.knownKey=[]
+        this.won=[]
         this.saveKey=false
         this.cards=[]
         this.anim={query:{list:[],rarity:[],class:[]},variant:0}
@@ -15,6 +16,9 @@ class collectionManager{
             list:[],
             rarity:[],
             class:[],
+        }
+        for(let a=0,la=constants.playerNumber+1;a<la;a++){
+            this.won.push(-1)
         }
         for(let a=-10,la=constants.playerNumber+6;a<la;a++){
             this.anim.query.list.push(0)
@@ -165,6 +169,11 @@ class collectionManager{
     getData(){
         let result=getItem('DP_MOVEBUILD_COLLECTION_KNOWN')
         this.known=result==null?[]:JSON.parse(result)
+        result=getItem('DP_MOVEBUILD_COLLECTION_WON')
+        if(result!=null){
+            this.won=JSON.parse(result)
+        }
+        
         for(let a=0,la=types.card.length;a<la;a++){
             this.knownKey.push(false)
         }
@@ -173,6 +182,9 @@ class collectionManager{
     saveData(){
         this.known=this.known.filter(item=>!(typeof item=='object'&&item.length==0))
         storeItem('DP_MOVEBUILD_COLLECTION_KNOWN',JSON.stringify(this.known))
+    }
+    saveWon(){
+        storeItem('DP_MOVEBUILD_COLLECTION_WON',JSON.stringify(this.won))
     }
     display(scene){
         switch(scene){

@@ -14,6 +14,7 @@ class item{
         this.temp=types.item[this.type].temp
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
+        this.descSimple=!this.description.includes('[')
 
         this.fade=0
         this.infoFade=0
@@ -45,6 +46,7 @@ class item{
         this.temp=types.item[this.type].temp
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
+        this.descSimple=!this.description.includes('[')
     }
     display(total,alt=false){
         if(this.fade>0){
@@ -1071,6 +1073,53 @@ class item{
             this.layer.pop()
         }
     }
+    descriptionProcess(){
+        if(this.descSimple){
+            return this.description
+        }
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        let temp=''
+        let replace=''
+        let activated=false
+        for(let a=0,la=this.description.length;a<la;a++){
+            switch(this.description[a]){
+                case '[':
+                    activated=true
+                break
+                case ']':
+                    if(activated){
+                        activated=false
+                        switch(last(replace)){
+                            case 'D':
+                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,0,this.player,this.battle.relicManager,true,[])} Damage`
+                            break
+                            case 'S':
+                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,0,this.player,this.battle.relicManager,true,[])} Splash Damage`
+                            break
+                            case 'B':
+                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,1,this.player,this.battle.relicManager,true,[])} Block`
+                            break
+                            case 'H':
+                                temp+=`${calculateEffect(int(replace.substring(0,replace.length-1)),userCombatant,4,this.player,this.battle.relicManager,true,[])} Health`
+                            break
+                        }
+                    }
+                break
+                default:
+                    if(activated){
+                        replace+=this.description[a]
+                    }else{
+                        temp+=this.description[a]
+                    }
+                break
+            }
+        }
+        //[10D]
+        //[15H]
+        //[20S]
+        //[20B]
+        return temp
+    }
     displayInfo(pos=0){
         if(this.infoFade>0){
             this.layer.fill(150,this.infoFade)
@@ -1080,7 +1129,7 @@ class item{
             this.layer.textSize(12)
             this.layer.text(this.name,100+pos*50,200)
             this.layer.textSize(8)
-            this.layer.text(this.description,100+pos*50,245)
+            this.layer.text(this.descriptionProcess(),100+pos*50,245)
             this.layer.textSize(10)
             switch(this.rarity){
                 case 0:

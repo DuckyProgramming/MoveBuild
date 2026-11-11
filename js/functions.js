@@ -854,7 +854,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	}
 }
 function calculateIntent(effect,user,type){
-	return calculateEffect(effect,user,type,-1,new disabledRelicManager(),false,[])
+	return calculateEffect(effect,user,type,-1,constants.disabledRelicManager,false,[])
 }
 function intentDescription(attack,user,info){
 	try{
@@ -2848,10 +2848,10 @@ function outRepeats(){
 		}
 	}
 }
-function outSpecific(spec){
+function outSpecific(spec,bypass){
 	let totals=[[],[],[],0]
 	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list!=-8&&types.card[a].list!=-10){
+		if(types.card[a].list!=-8&&types.card[a].list!=-10||bypass){
 			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
 				if(types.card[a].levels[b].spec.includes(spec)){
 					totals[3]++

@@ -106,7 +106,7 @@ class battle{
             anim:{
                 combatant:[[],[]],deck:[[],[]],
                 //ascend:[],ascendDesc:[],ascendSingle:0,
-                diff:[],diffDesc:[],diffSingle:0,
+                diff:[],diffDesc:[],diffWon:[],diffSingle:0,
                 animRate:[],turnTime:[],variants:[],prismrule:[],mtg:[]
             },
             mtg:{manaChoice:[],manaBase:[],manaOld:[],manaNew:[]},
@@ -129,6 +129,7 @@ class battle{
         for(let a=0,la=types.diff.length;a<la;a++){
             this.menu.anim.diff.push(-1)
             this.menu.anim.diffDesc.push(-1)
+            this.menu.anim.diffWon.push(-1)
         }
         for(let a=0,la=4;a<la;a++){
             this.menu.anim.animRate.push(-1)
@@ -172,6 +173,7 @@ class battle{
     create(){
         graphics.combatant=[]
         constants.collisionDamage=4
+        constants.disabledRelicManager=new disabledRelicManager()
         //game.theme=0
         this.players=this.player.length
         this.initialGraphics()
@@ -2691,7 +2693,16 @@ class battle{
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=constants.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0&&a>0){
+                        /*if(this.collectionManager.won.includes(a)){
+                            this.layer.fill(255)
+                            this.layer.ellipse(this.layer.width/2,this.layer.height*0.3+88.75,55)
+                        }*/
+                        //displayPlayerSymbol(this.layer,this.layer.width/2,this.layer.height*0.3+88.75,a,0,1,this.menu.anim.combatant[0][a])
                         displayPlayerSymbol(this.layer,this.layer.width/2,this.layer.height*0.3+88.75,a,0,1,1)
+                        if(this.menu.anim.combatant[0][a]<1){
+                            this.layer.fill(0,1-this.menu.anim.combatant[0][a])
+                            this.layer.ellipse(this.layer.width/2,this.layer.height*0.3+88.75,60)
+                        }
                     }
                 }
                 for(let a=0,la=constants.playerNumber;a<=la;a++){
@@ -2731,6 +2742,10 @@ class battle{
                     }
                 }*/
                 for(let a=0,la=types.diff.length;a<la;a++){
+                    if(this.menu.anim.diffWon[a]>0){
+                        this.layer.fill(125,this.menu.anim.diffWon[a])
+                        this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,5)
+                    }
                     if(this.menu.anim.diff[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.diff[a])
                         this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
@@ -3682,6 +3697,7 @@ class battle{
                 for(let a=0,la=types.diff.length;a<=la;a++){
                     this.menu.anim.diff[a]=smoothAnim(this.menu.anim.diff[a],game.diff==a,0,1,5)
                     this.menu.anim.diffDesc[a]=smoothAnim(this.menu.anim.diffDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
+                    this.menu.anim.diffWon[a]=smoothAnim(this.menu.anim.diffWon[a],this.collectionManager.won[this.menu.combatant[0]]>=a,0,1,5)
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
@@ -3713,6 +3729,7 @@ class battle{
                 for(let a=0,la=types.diff.length;a<=la;a++){
                     this.menu.anim.diff[a]=smoothAnim(this.menu.anim.diff[a],game.diff==a,0,1,5)
                     this.menu.anim.diffDesc[a]=smoothAnim(this.menu.anim.diffDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
+                    this.menu.anim.diffWon[a]=smoothAnim(this.menu.anim.diffWon[a],this.collectionManager.won[this.menu.combatant[0]]>=a&&this.collectionManager.won[this.menu.combatant[1]]>=a,0,1,5)
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
@@ -3816,10 +3833,21 @@ class battle{
                         transition.trigger=true
                         this.combatantManager.clearBlockCombatants()
                         this.combatantManager.clearStatusCombatants()
-                        if(this.encounter.class==2){
-                            if(this.nodeManager.world==3||this.nodeManager.world==4){
+                        if(this.encounter.class==2||this.encounter.class==4&&this.nodeManager.world>=3){
+                            if(this.nodeManager.world>=3){
                                 transition.scene='victory'
                                 this.setupStats()
+                                for(let a=0,la=this.players;a<la;a++){
+                                    /*if(!this.collectionManager.won.includes(this.player[a])){
+                                        this.collectionManager.won.push(this.player[a])
+                                        this.collectionManager.saveWon()
+                                    }*/
+                                    if(!this.collectionManager.won[this.player[a]]<game.diff){
+                                        this.collectionManager.won[this.player[a]]=game.diff
+                                        this.collectionManager.saveWon()
+                                    }
+                                }
+                                //mark win
                             }else{
                                 if(variants.relicspam){
                                     transition.scene='map'
@@ -3839,13 +3867,14 @@ class battle{
                             }
                         }
                     }
-                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive&&(!this.tutorialManager.active||this.tutorialManager.tutorial==1)){
+                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!transition.trigger&&!this.overlayManager.anyActive&&(!this.tutorialManager.active||this.tutorialManager.tutorial==1)){
                     this.result.victory=true
                     this.overlayManager.closeAll()
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
+                    let over=(this.encounter.class==2||this.encounter.class==4)&&this.nodeManager.world>=3
                     this.cardManagers.forEach(cardManager=>cardManager.allEffectArgs(0,33,[this.encounter.class]))
                     for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
-                        if(!(this.encounter.class==2&&this.nodeManager.world==3)){
+                        if(!over){
                             this.itemManager.activatePreEndBattle(a,this.encounter.class)
                         }
                     }
@@ -3873,7 +3902,7 @@ class battle{
                                         reward.push({type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12&&game.diff>=9?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]})
                                     break
                                     case 2:
-                                        if(this.nodeManager.world!=3){
+                                        if(!over){
                                             reward.push({type:1,value:[0,2,0]})
                                             for(let b=0,lb=this.relicManager.active[232][a+1];b<lb;b++){
                                                 reward.push({type:1,value:[0,2,0]})
@@ -3893,7 +3922,7 @@ class battle{
                         if(this.modded(190)){
                             mult=0
                         }
-                        if(!(this.encounter.class==2&&this.nodeManager.world==3)){
+                        if(!over){
                             this.relicManager.activate(15,[a,-1,reward,this.turn.total])
                             this.itemManager.activateEndBattle(a,this.encounter.class,reward)
                         }
@@ -3929,7 +3958,7 @@ class battle{
                                 }
                             break
                             case 2:
-                                if(this.nodeManager.world!=3){
+                                if(!over){
                                     if(game.ascend<13&&game.diff<=10&&(!this.modded(177)||this.turn.total<=5)&&mult>0){
                                         reward.push({type:0,value:[round(floor(random(240,401)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
                                     }

@@ -236,7 +236,7 @@ constants.status={
         1,0,2,4,0,0,0,2,3,1,//3
         0,1,1,0,0,2,0,1,2,2,//4
         0,2,3,0,2,2,1,0,1,1,//5
-        0,0,3,0,2,0,0,0,0,0,//6
+        0,2,3,0,2,0,0,0,0,0,//6
         2,2,1,1,2,0,2,3,2,2,//7
         2,2,2,2,2,0,2,1,0,3,//8
         3,2,0,0,2,3,1,2,0,0,//9
@@ -879,11 +879,13 @@ class combatant{
                 this.statusEffect('Weak on Kill',diffUnfair?4:2)
             break
             case 'Fireball':
-                this.statusEffect('Counter All Combat',diffUnfair?2:1)
+                //this.statusEffect('Counter All Combat',diffUnfair?2:1)
+                this.statusEffect('Mortal',diffUnfair?1:3)
             break
             case 'Armored Ninja':
                 this.addBlock(18)
                 this.statusEffect('Retain Block',999)
+                this.statusEffect('Counter All Combat',1)
             break
             case 'Louse':
                 this.statusEffect('Single Counter Block',floor(random(3,8)))
@@ -1659,7 +1661,7 @@ class combatant{
                     break
                     case 'Adrian Kane':
                         this.spec.push(7)
-                        this.subAttackTypeSwitch([[2,406,406,[0.8]]])
+                        //this.subAttackTypeSwitch([[2,406,406,[0.8]]])
                     break
                     case 'Prison Guard Gunner':
                         this.move.type=12
@@ -3158,7 +3160,8 @@ class combatant{
                         case 127: case 150: case 440:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[0].tilePosition.x&&
-                                this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y){
+                                this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y
+                            ){
                                 this.activated=true
                                 targetted=true
                             }
@@ -3264,10 +3267,14 @@ class combatant{
                     case 399: case 412: case 424: case 426: case 434: case 437: case 440: case 485: case 489: case 518:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                                if(
-                                    this.targetTile[b].tilePosition.x>=0&&
-                                    !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                                if(this.targetTile[b].tilePosition.x>=0){
+                                    if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                        if(this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                            this.targetTile[b].warn(0)
+                                        }
+                                    }else{
                                         this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                    }
                                 }
                             }
                         }else if(this.targetTile[0].tilePosition.x>=0){
@@ -3282,19 +3289,27 @@ class combatant{
                     case 354: case 374: case 375: case 382: case 383: case 386: case 394: case 433: case 435: case 475:
                     case 488: case 495: case 508: case 511: case 512: case 519:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                    if(b==1&&this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
                     case 8:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b==1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                    if(b==1&&this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(1)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?4:3,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
@@ -3304,22 +3319,39 @@ class combatant{
                     case 71: case 73: case 79: case 99: case 143: case 172: case 312: case 339: case 348: case 367:
                     case 385: case 389: case 390: case 397: case 447: case 453: case 465: case 505: case 515:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                                !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                    if(b==1&&this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0)){
+                                    if(b==2&&this.spec.includes(7)&&this.targetTile[1].occupied>0&&this.targetTile[1].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
                     case 100: case 380:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                                !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
-                                !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                    if(b==1&&this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0)){
+                                    if(b==2&&this.spec.includes(7)&&this.targetTile[1].occupied>0&&this.targetTile[1].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0)){
+                                    if(b==3&&this.spec.includes(7)&&this.targetTile[2].occupied>0&&this.targetTile[2].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
@@ -3358,27 +3390,60 @@ class combatant{
                     case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
                     case 503: case 506: case 513:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                                !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
-                                !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))&&
-                                !(b>=4&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))&&
-                                !(b>=5&&(this.targetTile[4].tilePosition.x<0||this.targetTile[4].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                    if(b==1&&this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0)){
+                                    if(b==2&&this.spec.includes(7)&&this.targetTile[1].occupied>0&&this.targetTile[1].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0)){
+                                    if(b==3&&this.spec.includes(7)&&this.targetTile[2].occupied>0&&this.targetTile[2].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=4&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0)){
+                                    if(b==4&&this.spec.includes(7)&&this.targetTile[3].occupied>0&&this.targetTile[3].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=5&&(this.targetTile[4].tilePosition.x<0||this.targetTile[4].occupied>0)){
+                                    if(b==5&&this.spec.includes(7)&&this.targetTile[4].occupied>0&&this.targetTile[4].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
                     case 49: case 164: case 185: case 205: case 219: case 286: case 406: case 444:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b%6>=1&&(this.targetTile[floor(b/6)*6].tilePosition.x<0||this.targetTile[floor(b/6)*6].occupied>0))&&
-                                !(b%6>=2&&(this.targetTile[floor(b/6)*6+1].tilePosition.x<0||this.targetTile[floor(b/6)*6+1].occupied>0))&&
-                                !(b%6>=3&&(this.targetTile[floor(b/6)*6+2].tilePosition.x<0||this.targetTile[floor(b/6)*6+2].occupied>0))&&
-                                !(b%6>=4&&(this.targetTile[floor(b/6)*6+3].tilePosition.x<0||this.targetTile[floor(b/6)*6+3].occupied>0))&&
-                                !(b%6>=5&&(this.targetTile[floor(b/6)*6+4].tilePosition.x<0||this.targetTile[floor(b/6)*6+4].occupied>0))){
+                            let set=floor(b/6)*6
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b%6>=1&&(this.targetTile[set].tilePosition.x<0||this.targetTile[set].occupied>0)){
+                                    if(b%6==1&&this.spec.includes(7)&&this.targetTile[set].occupied>0&&this.targetTile[set].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b%6>=2&&(this.targetTile[set+1].tilePosition.x<0||this.targetTile[set+1].occupied>0)){
+                                    if(b%6==2&&this.spec.includes(7)&&this.targetTile[set+1].occupied>0&&this.targetTile[set+1].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b%6>=3&&(this.targetTile[set+2].tilePosition.x<0||this.targetTile[set+2].occupied>0)){
+                                    if(b%6==3&&this.spec.includes(7)&&this.targetTile[set+2].occupied>0&&this.targetTile[set+2].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b%6>=4&&(this.targetTile[set+3].tilePosition.x<0||this.targetTile[set+3].occupied>0)){
+                                    if(b%6==4&&this.spec.includes(7)&&this.targetTile[set+3].occupied>0&&this.targetTile[set+3].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b%6>=5&&(this.targetTile[set+4].tilePosition.x<0||this.targetTile[set+4].occupied>0)){
+                                    if(b%6==5&&this.spec.includes(7)&&this.targetTile[set+4].occupied>0&&this.targetTile[set+4].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
@@ -3420,30 +3485,48 @@ class combatant{
                     break
                     case 214:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b==3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b==3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                    if(b==3&&this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
                     case 218:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b>=18&&(this.targetTile[b-18].tilePosition.x<0||this.targetTile[b-18].occupied>0))&&
-                                !(b>=36&&(this.targetTile[b-36].tilePosition.x<0||this.targetTile[b-36].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b>=18&&(this.targetTile[b-18].tilePosition.x<0||this.targetTile[b-18].occupied>0)){
+                                    if(b>=18&&b<36&&this.spec.includes(7)&&this.targetTile[b-18].occupied>0&&this.targetTile[b-18].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=36&&(this.targetTile[b-36].tilePosition.x<0||this.targetTile[b-36].occupied>0)){
+                                    if(b>=36&&this.spec.includes(7)&&this.targetTile[b-36].occupied>0&&this.targetTile[b-36].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break
                     case 221:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                            if(
-                                this.targetTile[b].tilePosition.x>=0&&
-                                !(b>=3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                                !(b>=6&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                if(b>=3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
+                                    if(b>=3&&b<6&&this.spec.includes(7)&&this.targetTile[0].occupied>0&&this.targetTile[0].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else if(b>=6&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0)){
+                                    if(b==6&&this.spec.includes(7)&&this.targetTile[3].occupied>0&&this.targetTile[3].occupant.id==this.battle.turn.main){
+                                        this.targetTile[b].warn(0)
+                                    }
+                                }else{
                                     this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
+                                }
                             }
                         }
                     break

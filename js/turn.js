@@ -829,6 +829,14 @@ class turn{
                                             if(this.mover){
                                                 this.userCombatant.moved=true
                                             }
+                                        }else if(
+                                            this.type==49||this.type==131||this.type==164||this.type==185||this.type==195||this.type==205||this.type==218||this.type==219||this.type==296||this.type==384||
+                                            this.type==406||this.type==444
+                                        ){
+                                            if(this.targetCombatant==-1){
+                                                this.targetCombatant=[]
+                                            }
+                                            this.targetCombatant.push(this.battle.combatantManager.combatants[this.targetIndex[a]])
                                         }else{
                                             this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
                                             if((abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0){
@@ -845,6 +853,39 @@ class turn{
                                                 break
                                             }
                                         }
+                                    }
+                                }
+                                if(
+                                    this.type==49||this.type==131||this.type==164||this.type==185||this.type==195||this.type==205||this.type==218||this.type==219||this.type==296||this.type==384||
+                                    this.type==406||this.type==444
+                                ){
+                                    let hit=false
+                                    for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                                        if(this.battle.turn.main==this.targetCombatant[a].id){
+                                            this.targetCombatant=this.targetCombatant[a]
+                                            hit=true
+                                            break
+                                        }
+                                    }
+                                    if(!hit){
+                                        if(this.targetCombatant.filter(combatant=>combatant.life>0)){
+                                            this.targetCombatant=randin(this.targetCombatant.filter(combatant=>combatant.life>0))
+                                        }else{
+                                            this.targetCombatant=randin(this.targetCombatant)
+                                        }
+                                    }
+                                    if((abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0){
+                                        this.targetCombatant=-1
+                                    }else{
+                                        this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+
+                                        this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+
+                                        this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                        this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+
+                                        this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                                        break
                                     }
                                 }
                                 if(this.targetCombatant==-1&&this.attackClass!=5){

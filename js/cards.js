@@ -32434,14 +32434,14 @@ types.card=[
         name:'Quick\nDeal',rarity:1,list:14,
         levels:[
             {effect:[2,10],attack:3986,cost:1,target:[2,1,1],spec:[1],class:11},
-            {effect:[3,15],attack:3986,cost:1,target:[2,1,1],spec:[1],class:11},
-            {effect:[4,20],attack:3986,cost:1,target:[2,1,1],spec:[1],class:11},
+            {effect:[2,15],attack:3986,cost:1,target:[2,1,1],spec:[1],class:11},
+            {effect:[2,20],attack:3986,cost:1,target:[2,1,1],spec:[1],class:11},
         ],mtg:{
             rarity:1,list:14,color:[3,5],
             levels:[
                 {effect:[2,15],attack:3986,cost:[15,-1],target:[2,1,1],spec:[1],class:11},
-                {effect:[3,20],attack:3986,cost:[15,-1],target:[2,1,1],spec:[1],class:11},
-                {effect:[4,25],attack:3986,cost:[15,-1],target:[2,1,1],spec:[1],class:11},
+                {effect:[2,20],attack:3986,cost:[15,-1],target:[2,1,1],spec:[1],class:11},
+                {effect:[2,25],attack:3986,cost:[15,-1],target:[2,1,1],spec:[1],class:11},
             ],
         },
     },{
@@ -32587,9 +32587,9 @@ types.card=[
     },{
         name:'Denature',rarity:1,list:14,
         levels:[
-            {effect:[1],attack:6637,cost:1,target:[0],spec:[],class:11},
             {effect:[2],attack:6637,cost:1,target:[0],spec:[],class:11},
             {effect:[3],attack:6637,cost:1,target:[0],spec:[],class:11},
+            {effect:[4],attack:6637,cost:1,target:[0],spec:[],class:11},
         ],mtg:{
             rarity:1,list:14,color:[4],
             levels:[
@@ -32769,15 +32769,15 @@ types.card=[
     },{
         name:'Know\nNothing',rarity:2,list:14,
         levels:[
-            {effect:[],attack:7913,cost:3,target:[0],spec:[1],class:11},
             {effect:[],attack:7913,cost:2,target:[0],spec:[1],class:11},
             {effect:[],attack:7913,cost:1,target:[0],spec:[1],class:11},
+            {effect:[],attack:7913,cost:1,target:[0],spec:[],class:11},
         ],mtg:{
             rarity:2,list:14,color:[1,5],
             levels:[
-                {effect:[],attack:7913,cost:[1,5,-1,-1,-1],target:[],spec:[1],class:11},
-                {effect:[],attack:7913,cost:[1,5,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[],attack:7913,cost:[1,5,-1,-1],target:[],spec:[1],class:11},
                 {effect:[],attack:7913,cost:[1,5,-1],target:[0],spec:[1],class:11},
+                {effect:[],attack:7913,cost:[1,5],target:[0],spec:[1],class:11},
             ],
         },
     },{
@@ -33652,8 +33652,8 @@ types.card=[
         name:'Powdered\nSugar',rarity:2,list:14,
         levels:[
             {effect:[1,1],attack:11703,cost:2,target:[0],spec:[1],class:11},
-            {effect:[1,2],attack:11703,cost:1,target:[0],spec:[1],class:11},
-            {effect:[1,3],attack:11703,cost:1,target:[0],spec:[1,2],class:11},
+            {effect:[1,2],attack:11703,cost:2,target:[0],spec:[1],class:11},
+            {effect:[1,3],attack:11703,cost:2,target:[0],spec:[1],class:11},
         ],mtg:{
             rarity:2,list:14,color:[1,4],
             levels:[
@@ -37706,14 +37706,14 @@ types.card=[
         name:'Quick\nPreach',rarity:1,list:16,
         levels:[
             {effect:[2,10],attack:9866,cost:1,target:[2,1,1],spec:[1],class:11},
-            {effect:[3,15],attack:9866,cost:1,target:[2,1,1],spec:[1],class:11},
-            {effect:[4,20],attack:9866,cost:1,target:[2,1,1],spec:[1],class:11},
+            {effect:[2,15],attack:9866,cost:1,target:[2,1,1],spec:[1],class:11},
+            {effect:[2,20],attack:9866,cost:1,target:[2,1,1],spec:[1],class:11},
         ],mtg:{
             rarity:1,list:16,color:[1,2],
             levels:[
                 {effect:[2,15],attack:9866,cost:[7,-1],target:[2,1,1],spec:[1],class:11},
-                {effect:[3,20],attack:9866,cost:[7,-1],target:[2,1,1],spec:[1],class:11},
-                {effect:[4,25],attack:9866,cost:[7,-1],target:[2,1,1],spec:[1],class:11},
+                {effect:[2,20],attack:9866,cost:[7,-1],target:[2,1,1],spec:[1],class:11},
+                {effect:[2,25],attack:9866,cost:[7,-1],target:[2,1,1],spec:[1],class:11},
             ],
         },
     },{

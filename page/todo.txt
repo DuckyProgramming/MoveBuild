@@ -1,18 +1,24 @@
+crusader company count
+
+test processes
 test shinmy (after fixes)
 test prehex (after fixes)
-
-potential cardset:
-replace all quickdraw cards / remove all "values" cards
-more ways to get item slots as vincent
-extra large storage
-
-split bunsen burner since it ain't burning shit
-it also stacks directly into the area of superior stimulant
 
 fix shinmy chemise
 
 tooltips for dictionary
 
-when you win diff 26 on a character they become shiny
+potential cardset:
+
+replace all quickdraw cards (20, industrialization -> time flies, + many more) / remove all "values" cards (14, prob not necessary)
+more ways to get item slots as vincent
+extra large storage
+resplit pockets
+split silicone into a real item?
+split cookie clicker
+the spectre
+
+split bunsen burner since it ain't burning shit
+it also stacks directly into the area of superior stimulant
 
 

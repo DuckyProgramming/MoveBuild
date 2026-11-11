@@ -62,8 +62,9 @@ class itemManager{
         }
         for(let a=0,la=this.battle.players;a<la;a++){
             //let less=game.ascend>=11||game.diff>=8
-            let less=game.ascend>=11
-            this.items.push(less?[
+            //let less=game.ascend>=11
+            let quantity=(game.ascend>=11?2:3)+(types.combatant[this.battle.player[a]].name=='Vincent'?2:0)
+            /*this.items.push(less?[
                 new item(this.layer,this.battle,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
                 new item(this.layer,this.battle,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
                 new item(this.layer,this.battle,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1)
@@ -72,8 +73,11 @@ class itemManager{
                 new item(this.layer,this.battle,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
                 new item(this.layer,this.battle,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1),
                 new item(this.layer,this.battle,a,175+(this.layer.width-350)*a,50,250+(this.layer.width-500)*a,25,1,1)
-            ])
-            this.position.push(less?-1:0)
+            ])*/
+            this.items.push([new item(this.layer,this.battle,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1)])
+            this.items[a].push(...range(0,quantity).map(num=>new item(this.layer,this.battle,a,75+num*50+(this.layer.width-150-num*100)*a,50,150+num*50+(this.layer.width-300-num*100)*a,25,1,1)))
+            //this.position.push(less?-1:0)
+            this.position.push(quantity)
             this.up.push(true)
             this.total.push(0)
             this.effectiveness.push(1)
@@ -173,7 +177,8 @@ class itemManager{
     }
     addItemSlots(amount,player){
         for(let a=0;a<amount;a++){
-            this.items[player].push(new item(this.layer,this.battle,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,300+this.position[player]*50+(this.layer.width-600-this.position[player]*100)*player,25,1,1))
+            //this.items[player].push(new item(this.layer,this.battle,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,300+this.position[player]*50+(this.layer.width-600-this.position[player]*100)*player,25,1,1))
+            this.items[player].push(new item(this.layer,this.battle,player,75+50*this.position[player]+(this.layer.width-150-100*this.position[player])*player,50,150+this.position[player]*50+(this.layer.width-300-this.position[player]*100)*player,25,1,1))
             this.position[player]++
         }
     }
