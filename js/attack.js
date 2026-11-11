@@ -341,7 +341,7 @@ class attack{
             case 11449: case 11459: case 11468: case 11475: case 11479: case 11483: case 11492: case 11493: case 11506: case 11507: case 11511: case 11528: case 11529: case 11535: case 11539: case 11550: case 11552: case 11558: case 11561: case 11572:
             case 11573: case 11580: case 11586: case 11587: case 11588: case 11589: case 11590: case 11591: case 11598: case 11601: case 11602: case 11603: case 11604: case 11606: case 11615: case 11630: case 11632: case 11634: case 11636: case 11639:
             case 11641: case 11642: case 11647: case 11648: case 11661: case 11671: case 11675: case 11677: case 11679: case 11680: case 11682: case 11700: case 11717: case 11726: case 11727: case 11729: case 11732: case 11733: case 11737: case 11749:
-            case 11750: case 11754: case 11764: case 11765: case 11766: case 11767: case 11769: case 11771: case 11773: case 11774: case 11777: case 11784: case 11785: case 11791:
+            case 11750: case 11754: case 11764: case 11765: case 11766: case 11767: case 11769: case 11771: case 11773: case 11774: case 11777: case 11784: case 11785: case 11791: case 11806: case 11807: case 11812: case 11813: case 11814: case 11815:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -445,7 +445,8 @@ class attack{
             case 11208: case 11224: case 11225: case 11291: case 11332: case 11349: case 11387: case 11388: case 11389: case 11390:
             case 11391: case 11397: case 11405: case 11406: case 11407: case 11408: case 11411: case 11416: case 11448: case 11498:
             case 11499: case 11500: case 11514: case 11556: case 11557: case 11570: case 11605: case 11662: case 11686: case 11687:
-            case 11688: case 11739: case 11740: case 11741: case 11742: case 11744: case 11751: case 11776: case 11790:
+            case 11688: case 11739: case 11740: case 11741: case 11742: case 11744: case 11751: case 11776: case 11790: case 11808:
+            case 11809:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -10009,6 +10010,12 @@ class attack{
                             }
                         }
                     break
+                    case 11816: case 11817:
+                        this.userCombatant.addBlock(this.userCombatant.charge*this.effect[0])
+                        if(this.amplify){
+                            this.userCombatant.charge+=this.effect[1]
+                        }
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -17006,6 +17013,11 @@ class attack{
                     break
                     case 11790:
                         this.userManager.allEffectArgs(2,64,[this.effect[1]])
+                    break
+                    case 11808: case 11809:
+                        if(this.amplify){
+                            this.userCombatant.charge+=this.effect[1]
+                        }
                     break
 
                 }
@@ -30809,6 +30821,16 @@ class attack{
                         this.battle.setTurn(this.battle.turn.total-this.effect[0])
                         this.userManager.allEffectArgs(2,64,[this.effect[1]])
                     break
+                    case 11810:
+                        this.userCombatant.statusEffect('(E) Next Turn',this.amplify?6:4)
+                    break
+                    case 11811:
+                        this.userCombatant.statusEffect('(E) Next Turn',this.amplify?9:5)
+                    break
+                    case 11826:
+                        this.userManager.drawAbstract(this.effect[0],20,0,[1])
+                        this.userCombatant.wish+=this.effect[1]
+                    break
 
                 }
                 //mark 5
@@ -37362,6 +37384,28 @@ class attack{
                         this.battle.itemManager.process(this.player,[findName('Carbon',types.item)],[findName('Graphite',types.item)])
                         this.battle.itemManager.process(this.player,[findName('Quartz',types.item)],[findName('Glass',types.item)])
                     break
+                    case 11806: case 11807:
+                        if(this.amplify){
+                            this.targetCombatant.statusEffect('Weak',this.effect[1])
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[2])
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,195,[10]))
+                    break
+                    case 11812: case 11813:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.battle.combatantManager.areaAbstract(0,[this.effect[1],this.user,0],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                        if(this.amplify){
+                            this.targetCombatant.statusEffect('Take Damage',this.effect[0])
+                            this.userCombatant.statusEffect('Single Splash Damage',this.effect[1])
+                        }
+                    break
+                    case 11814: case 11815:
+                        this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.charge,this.user)
+                        if(this.amplify){
+                            this.userCombatant.charge+=this.effect[1]
+                        }
+                    break
 
                 }
                 //mark 8
@@ -38119,6 +38163,10 @@ class attack{
                 switch(this.type){
                     case -14: case -157:
                         this.battle.loseCurrency(this.effect[0],this.player)
+                    break
+                    case -59:
+                        this.battle.loseCurrency(this.effect[0],this.player)
+                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
                     break
                     case -60:
                         this.battle.loseCurrency(this.effect[0],this.player)
@@ -46727,6 +46775,54 @@ class attack{
                         this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,-1,2])
+                    break
+                    case 11818:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,1])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,1])
+                    break
+                    case 11819:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,2])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,2])
+                    break
+                    case 11820:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,3])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,3])
+                    break
+                    case 11821:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,4])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,4])
+                    break
+                    case 11822:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,11])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,11])
+                    break
+                    case 11823:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,-1,0])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,-1,0])
+                    break
+                    case 11824:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,-1,1])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,-1,1])
+                    break
+                    case 11825:
+                        this.userCombatant.loseMaxHP(++this.userManager.spectral*this.effect[0])
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        //this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,17,3,-1,2])
+                        this.battle.overlayManager.overlays[3][this.player].activate([this.level,3,63,3,-1,2])
                     break
                 }
             break

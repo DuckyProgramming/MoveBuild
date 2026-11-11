@@ -89,6 +89,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case -56: string+=`When Drawn,\nLose ${effect[0]} Energy\nAnd a Random Card\nin Hand Costs ${effect[1]} Less`; break
         case -57: string+=`When Etherealed,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy`; break
         case -58: string+=`When Etherealed,\nUnupgrade ${effect[0]} Random\nCard${pl(effect[0])}`; break
+        case -59: string+=`Lose ${effect[0]} Currency\nGain ${effect[1]} Temporary\nDexterity`; break
         case -60: string+=`Lose ${effect[0]} Currency\nGain ${effect[1]} Temporary\nStrength`; break
         case -61: string+=`When Drawn,\nMake ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}`; break
         case -62: string+=`Take ${effect[0]} Damage\nIf You Do Not\nAttack This Turn`; break
@@ -200,6 +201,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case -168: string+=`Spawn a Duck Enemy`; break
         case -169: string+=`Exhausts Self When\nYou Play a Power\nIf You Play Another\nClass of Card,\nDiscard Your Hand`; break
         case -170: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nIncreases by ${effect[1]}\nPermanently`; break
+        case -171: string+=`When Drawn,\nGain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
 
         //mark n
 
@@ -12080,6 +12082,31 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11805: string+=`+1: Discover a\nDeveloper Card\n-10: Polymorph Yourself\n-20: Lose Half of\nYour Max Health\nRandomly Remove Half\nof Your Deck`; break
             case -1099: string+=`-10: Polymorph Yourself`; break
             case -1100: string+=`-20: Lose Half of\nYour Max Health\nRandomly Remove Half\nof Your Deck`; break
+        case 11806: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify:\nApply ${effect[1]} Weak and\n${effect[2]} Vulnerable First`; break
+        case 11807: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: (N)\nApply ${effect[1]} Weak and\n${effect[2]} Vulnerable First`; break
+        case 11808: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAmplify:\nGain ${effect[1]} Charge`; break
+        case 11809: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAmplify (G):\nGain ${effect[1]} Charge`; break
+        case 11810: string+=`Gain (E) (E)\n(E) (E) Next Turn\nAmplify (W):\nGain (E) (E) (E) More`; break
+        case 11811: string+=`Gain (E) (E) (E)\n(E) (E) Next Turn\nAmplify (W):\nGain (E) (E) (E) (E) More`; break
+        case 11812: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage\nAround Self\nAmplify:\nRepeat Next Turn`; break
+        case 11813: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage\nAround Self\nAmplify (E):\nRepeat Next Turn`; break
+        case 11814: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Charge\nAmplify:\nGain ${effect[1]} Charge`; break
+        case 11815: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Charge\nAmplify (R):\nGain ${effect[1]} Charge`; break
+        case 11816: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Charge\nAmplify:\nGain ${effect[1]} Charge`; break
+        case 11817: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Charge\nAmplify (R):\nGain ${effect[1]} Charge`; break
+        case 11818: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose an Attack\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11819: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Defense\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11820: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Movement\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11821: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Power\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11822: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a Skill\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11823: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 0 Cost Card\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11824: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 1 Cost Card\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11825: string+=`Lose ${effect[0]} Max Health\nPer Spectral Card\nPlayed This Run\nChoose a 2 Cost Card\nWith an Edition\nof Equivalent Level\nto Add to Deck`; break
+        case 11826: string+=`Draw ${effect[0]} Strike${pl(effect[0])}\nGain ${effect[1]} Influence`; break
+        case 11827: string+=`Take 50% Less Damage\nFor ${effect[0]} Turn${pl(effect[0])}`; break
+        case 11828: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nAbsorbing Influence\nResets on Use`; break
+        case 11829: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]} When\nAbsorbing Influence\nResets on Use`; break
+        case 11830: string+=`Next Defense is Free\nNext Skill is Free`; break
 
         //mark p
         //mark q

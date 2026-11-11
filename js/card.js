@@ -3364,7 +3364,7 @@ class card{
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
             case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442: case 9329: case 11305:
             case 11306: case 11307: case 11308: case 11309: case 11310: case 11311: case 11312: case 11576: case 11607: case 11652:
-            case 11653: case 11654: case 11655: case 11656: case 11657: case 11658: case 11659:
+            case 11653: case 11654: case 11655: case 11656: case 11657: case 11658: case 11659: case 11827: case 11830:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -3536,6 +3536,22 @@ class card{
             case 11461:
                 if(this.fuel>=this.effect[0]){
                     this.exhaust=true
+                }
+            break
+            case 11828:
+                if(this.spec.includes(60)){
+                    this.battle.cardManagers[this.player].hand.selfCall(6,[1,[this.effect[0]],1,[2,1,1]])
+                    this.discardEffectBuffered.push(1)
+                }else{
+                    this.discardEffect.push(15)
+                }
+            break
+            case 11829:
+                if(this.spec.includes(60)){
+                    userCombatant.addBlock(this.effect[0])
+                    this.discardEffectBuffered.push(1)
+                }else{
+                    this.discardEffect.push(15)
                 }
             break
         }
@@ -4282,7 +4298,9 @@ class card{
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
             break
             case -58:
-                this.battle.cardManagers[this.player].randomEffect(2,3,[0])
+                for(let a=0,la=this.effect[0];a<la;a++){    
+                    this.battle.cardManagers[this.player].randomEffect(2,3,[0])
+                }
             break
             case 151:
                 this.battle.cardManagers[this.player].hand.add(findName('Operational\nDefend',types.card),this.level,this.color)
@@ -4733,7 +4751,7 @@ class card{
             case 4129:
                 userCombatant.statusEffect('Double Damage',this.effect[0])
             break
-            case 4130: case 5001:
+            case 4130: case 5001: case 11828: case 11829:
                 this.effect[0]+=this.effect[1]
             break
             case 4770:
@@ -4843,6 +4861,13 @@ class card{
             break
             case 11659:
                 this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,7,[3])
+            break
+            case 11827:
+                userCombatant.statusEffect('Take Half Damage',this.effect[0])
+            break
+            case 11830:
+                userCombatant.statusEffect('Free Defense',1)
+                userCombatant.statusEffect('Free Skill',1)
             break
         }
     }

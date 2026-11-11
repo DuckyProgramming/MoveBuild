@@ -3787,7 +3787,11 @@ function checkSpawns(){
 	})
 }
 function checkExists(start,end){
+	if(end<start){
+		return
+	}
 	let invalid=[
+		-120,//indecipherable
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
 		1017,1281,2186,2187,2664,2776,2837,3214,3333,3368,
@@ -3838,6 +3842,7 @@ function checkExists(start,end){
 		7929,//invalid suit up
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
+		8718,//xor (marker card)
 		9661,//invalid silverswivel
 
 		945,1208,1209,1212,1213,1214,1216,1217,1219,1220,
@@ -3850,8 +3855,66 @@ function checkExists(start,end){
 		11681,11682,//items
 	]
 	let total=0
-	for(let a=start,la=end;a<la;a++){
-		if(!invalid.includes(a)&&!types.card.some(card=>
+	/*let incl=[]
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(types.card[a].levels[b].spec.includes(12)){
+				incl.push(types.card[a].levels[b].attack[0])
+				incl.push(types.card[a].levels[b].attack[1])
+			}else{
+				incl.push(types.card[a].levels[b].attack)
+			}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(types.card[a].mtg.levels[b].spec.includes(12)){
+				incl.push(types.card[a].mtg.levels[b].attack[0])
+				incl.push(types.card[a].mtg.levels[b].attack[1])
+			}else{
+				incl.push(types.card[a].mtg.levels[b].attack)
+			}
+		}
+	}
+	//incl.sort((a,b)=>a-b)
+	let set=range(0,19).map(a=>[])
+	for(let a=0,la=5;a<la;a++){
+		incl.forEach(b=>set[b<0?ceil(b/(10**a))%10+9:floor(b/(10**a))%10+9].push(b))
+		incl=[]
+		set=set.map(bucket=>{bucket.forEach(b=>incl.push(b));return []})
+	}
+	//radix sort
+	for(let a=0,la=incl.length-1;a<la;a++){
+		if(incl[a]==incl[a+1]){
+			incl.splice(a+1,1)
+			a--
+			la--
+		}
+	}*/
+	//-170 - +11811
+	/*for(let a=start,la=end;a<la;a++){
+		if(!invalid.includes(a)){
+			let left=0
+			let right=incl.length
+			let found=false
+			while(right>left){
+				let curr=incl[floor((left+right)/2)]
+				if(curr==a){
+					found=true
+					break
+				}else if(curr>a){
+					right=floor((left+right)/2)
+				}else{
+					left=floor((left+right)/2)+1
+				}
+			}
+			if(incl[floor((left+right)/2)]==a){
+				found=true
+			}
+			if(!found){
+				print(`${a} NOT FOUND`)
+				total++
+			}
+		}*/
+		/*if(!invalid.includes(a)&&!types.card.some(card=>
 			card.levels[0].attack==a||card.levels[0].spec.includes(12)&&card.levels[0].attack.includes(a)||
 			card.levels[1].attack==a||card.levels[1].spec.includes(12)&&card.levels[1].attack.includes(a)||
 			card.levels[2].attack==a||card.levels[2].spec.includes(12)&&card.levels[2].attack.includes(a)||
@@ -3860,6 +3923,43 @@ function checkExists(start,end){
 			card.mtg.levels[2].attack==a||card.mtg.levels[2].spec.includes(12)&&card.mtg.levels[2].attack.includes(a)
 		)){
 			print(a)
+			total++
+		}*/
+	//}
+	let lookup=range(0,end-start).map(a=>0)
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(types.card[a].levels[b].spec.includes(12)){
+				if(types.card[a].levels[b].attack[0]>=start&&types.card[a].levels[b].attack[0]<end){
+					lookup[types.card[a].levels[b].attack[0]-start]++
+				}
+				if(types.card[a].levels[b].attack[1]>=start&&types.card[a].levels[b].attack[1]<end){
+					lookup[types.card[a].levels[b].attack[1]-start]++
+				}
+			}else{
+				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end){
+					lookup[types.card[a].levels[b].attack-start]++
+				}
+			}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].mtg.levels[b].attack[0]>=start&&types.card[a].mtg.levels[b].attack[0]<end){
+					lookup[types.card[a].mtg.levels[b].attack[0]-start]++
+				}
+				if(types.card[a].mtg.levels[b].attack[1]>=start&&types.card[a].mtg.levels[b].attack[1]<end){
+					lookup[types.card[a].mtg.levels[b].attack[1]-start]++
+				}
+			}else{
+				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end){
+					lookup[types.card[a].mtg.levels[b].attack-start]++
+				}
+			}
+		}
+	}
+	for(let a=0,la=lookup.length;a<la;a++){
+		if(lookup[a]==0&&!invalid.includes(start+a)){
+			print(`${start+a} NOT FOUND`)
 			total++
 		}
 	}
@@ -3878,7 +3978,14 @@ function checkPast(){
 				}
 			}
 		})
-		incl.sort((a,b)=>a-b)
+		//incl.sort((a,b)=>a-b)
+		let set=range(0,19).map(a=>[])
+		for(let a=0,la=5;a<la;a++){
+			incl.forEach(b=>set[b<0?ceil(b/(10**a))%10+9:floor(b/(10**a))%10+9].push(b))
+			incl=[]
+			set=set.map(bucket=>{bucket.forEach(b=>incl.push(b));return []})
+		}
+		//radix sort
 		types.past.forEach(card=>{
 			if(card.levels[0].attack.length!=2){
 				let left=0

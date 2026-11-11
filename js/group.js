@@ -4149,6 +4149,13 @@ class group{
                 this.battle.loseSpecificEnergy(999,this.player,3)
                 this.battle.addSpecificEnergy(e156,this.player,0)
             break
+            case -171:
+                this.battle.addSpecificEnergy(1,this.player,6)
+                this.sendAmounts[sendId]+=card.effect[0]
+                for(let a=0,la=card.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
+                }
+            break
 
             //mark n
             
@@ -5630,7 +5637,7 @@ class group{
                         switch(this.battle.attackManager.type){
                             case 4636: case 4639: case 4640: case 4641: case 4643: case 4644: case 4646: case 4892: case 4937: case 4938:
                             case 4939: case 10358: case 10359: case 10369: case 10361: case 10398: case 10456: case 10457: case 10458: case 11344:
-                            case 11354:
+                            case 11354: case 11810: case 11811:
                                 amplifyCost=[1]
                             break
                             case 4637: case 10400:
@@ -5639,11 +5646,11 @@ class group{
                             case 4642: case 4645:
                                 amplifyCost=[1,5]
                             break
-                            case 4650: case 6000: case 6229: case 8257: case 10393:
+                            case 4650: case 6000: case 6229: case 8257: case 10393: case 11815: case 11817:
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
-                            case 10061: case 11347: case 11352: case 11358: case 11365: case 11366: case 11485:
+                            case 10061: case 11347: case 11352: case 11358: case 11365: case 11366: case 11485: case 11813:
                                 amplifyCost=[6]
                             break
                             case 4663: case 6946: case 10368: case 11370:
@@ -5658,7 +5665,7 @@ class group{
                             case 4802:
                                 amplifyCost=[6,6]
                             break
-                            case 4860: case 6321:
+                            case 4860: case 6321: case 11809:
                                 amplifyCost=[4]
                             break
                             case 4868:
