@@ -67451,29 +67451,29 @@ types.card=[
     },{
         name:'Divine\nWind',rarity:-6,list:0,
         levels:[
-            {effect:[3,1,1],attack:11600,cost:0,target:[0],spec:[1,2],class:11},
-            {effect:[4,1,1],attack:11600,cost:0,target:[0],spec:[1,2],class:11},
-            {effect:[5,1,1],attack:11600,cost:0,target:[0],spec:[1,2],class:11},
+            {effect:[3,1,1],attack:11600,cost:0,target:[0],spec:[1,4],class:11},
+            {effect:[4,1,1],attack:11600,cost:0,target:[0],spec:[1,4],class:11},
+            {effect:[5,1,1],attack:11600,cost:0,target:[0],spec:[1,4],class:11},
         ],mtg:{
             rarity:-6,list:0,color:[1],
             levels:[
-                {effect:[3,1,1],attack:11600,cost:[],target:[0],spec:[1,2],class:11},
-                {effect:[4,1,1],attack:11600,cost:[],target:[0],spec:[1,2],class:11},
-                {effect:[5,1,1],attack:11600,cost:[],target:[0],spec:[1,2],class:11},
+                {effect:[3,1,1],attack:11600,cost:[],target:[0],spec:[1,4],class:11},
+                {effect:[4,1,1],attack:11600,cost:[],target:[0],spec:[1,4],class:11},
+                {effect:[5,1,1],attack:11600,cost:[],target:[0],spec:[1,4],class:11},
             ],
         },
     },{
         name:'Riptide',rarity:-6,list:0,
         levels:[
-            {effect:[1],attack:11412,cost:0,target:[2,1,6],spec:[1],class:1},
-            {effect:[1.5],attack:11412,cost:0,target:[2,1,6],spec:[1],class:1},
-            {effect:[2],attack:11412,cost:0,target:[2,1,6],spec:[1],class:1},
+            {effect:[1],attack:11412,cost:0,target:[2,1,6],spec:[1,4],class:1},
+            {effect:[1.5],attack:11412,cost:0,target:[2,1,6],spec:[1,4],class:1},
+            {effect:[2],attack:11412,cost:0,target:[2,1,6],spec:[1,4],class:1},
         ],mtg:{
             rarity:-6,list:0,color:[2],
             levels:[
-                {effect:[1],attack:11412,cost:[],target:[2,1,6],spec:[1],class:1},
-                {effect:[1.5],attack:11412,cost:[],target:[2,1,6],spec:[1],class:1},
-                {effect:[2],attack:11412,cost:[],target:[2,1,6],spec:[1],class:1},
+                {effect:[1],attack:11412,cost:[],target:[2,1,6],spec:[1,4],class:1},
+                {effect:[1.5],attack:11412,cost:[],target:[2,1,6],spec:[1,4],class:1},
+                {effect:[2],attack:11412,cost:[],target:[2,1,6],spec:[1,4],class:1},
             ],
         },
     },

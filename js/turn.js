@@ -830,13 +830,20 @@ class turn{
                                                 this.userCombatant.moved=true
                                             }
                                         }else if(
-                                            this.type==49||this.type==131||this.type==164||this.type==185||this.type==195||this.type==205||this.type==218||this.type==219||this.type==296||this.type==384||
+                                            this.type==49||this.type==131||this.type==164||this.type==185||this.type==195||this.type==205||this.type==218||this.type==219||this.type==286||this.type==384||
                                             this.type==406||this.type==444
                                         ){
                                             if(this.targetCombatant==-1){
                                                 this.targetCombatant=[]
                                             }
                                             this.targetCombatant.push(this.battle.combatantManager.combatants[this.targetIndex[a]])
+                                            switch(this.type){
+                                                case 49: case 131: case 164: case 185: case 195: case 205: case 219: case 286: case 384: case 406:
+                                                case 444:
+                                                    //a=floor(a/6)*6+6
+                                                    a=floor(a/6)*6+5
+                                                break
+                                            }
                                         }else{
                                             this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
                                             if((abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0){
@@ -856,8 +863,10 @@ class turn{
                                     }
                                 }
                                 if(
-                                    this.type==49||this.type==131||this.type==164||this.type==185||this.type==195||this.type==205||this.type==218||this.type==219||this.type==296||this.type==384||
-                                    this.type==406||this.type==444
+                                    (
+                                        this.type==49||this.type==131||this.type==164||this.type==185||this.type==195||this.type==205||this.type==218||this.type==219||this.type==286||this.type==384||
+                                        this.type==406||this.type==444
+                                    )&&this.targetCombatant!=-1&&this.targetCombatant.length>0
                                 ){
                                     let hit=false
                                     for(let a=0,la=this.targetCombatant.length;a<la;a++){
@@ -868,7 +877,9 @@ class turn{
                                         }
                                     }
                                     if(!hit){
-                                        if(this.targetCombatant.filter(combatant=>combatant.life>0)){
+                                        if(this.targetCombatant.filter(combatant=>combatant.life>0&&combatant.team!=this.userCombatant.team)){
+                                            this.targetCombatant=randin(this.targetCombatant.filter(combatant=>combatant.life>0&&combatant.team!=this.userCombatant.team))
+                                        }else if(this.targetCombatant.filter(combatant=>combatant.life>0)){
                                             this.targetCombatant=randin(this.targetCombatant.filter(combatant=>combatant.life>0))
                                         }else{
                                             this.targetCombatant=randin(this.targetCombatant)

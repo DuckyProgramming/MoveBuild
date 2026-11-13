@@ -1138,9 +1138,12 @@ function intentDescription(attack,user,info){
 			case 272: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2\nNo Movement`
 			case 273: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-2\nNo Movement`
 			case 274: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDiscard ${info?attack.effect[1]:`?`} Card${pl(attack.effect[1])} Next Turn\nRange 1-1`
-			case 275: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Miracle to\nYour Hand Next Turn\nRange 1-2`
+			/*case 275: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Miracle to\nYour Hand Next Turn\nRange 1-2`
 			case 276: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Smite to\nYour Hand Next Turn\nRange 1-2`
-			case 277: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Safety to\nYour Hand Next Turn\nRange 1-2`
+			case 277: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Safety to\nYour Hand Next Turn\nRange 1-2`*/
+			case 275: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Miracle to Your Hand\nRange 1-2`
+			case 276: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Smite to Your Hand\nRange 1-2`
+			case 277: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd a Safety to Your Hand\nRange 1-2`
 			case 278: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nGain ${info?attack.effect[1]:`?`} Deprecating Armor\nRange 1-1`
 			case 279: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Deprecating Armor\nRange 1-6`
 			case 280: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Deprecating Armor\nRange 1-6`
@@ -2758,9 +2761,25 @@ function outDupes(){
 }
 function outDupeBaseLevels(){
 	for(let a=0,la=types.card.length;a<la;a++){
+		types.card[a].levels[0].spec=[]
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=a+1,lb=types.card.length;b<lb;b++){
 			if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])){
-				console.log(types.card[a].name)
+				console.log(`${types.card[a].name} = ${types.card[b].name}`)
+			}
+		}
+	}
+}
+function outDupeDoubleLevels(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		types.card[a].levels[0].spec=[]
+		types.card[a].levels[1].spec=[]
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=a+1,lb=types.card.length;b<lb;b++){
+			if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&JSON.stringify(types.card[a].levels[1])==JSON.stringify(types.card[b].levels[1])){
+				console.log(`${types.card[a].name} = ${types.card[b].name}`)
 			}
 		}
 	}

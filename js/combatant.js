@@ -1339,7 +1339,8 @@ class combatant{
                     break
                     case 'Swordmaster':
                         this.removeAttack(21)
-                        this.behavior=1
+                        //this.behavior=1
+                        this.behavior=26
                     break
                     case 'Gas Man':
                         this.subAttackTypeSwitch([[0,6,38,[]],[0,104,381,[]]])
@@ -2834,6 +2835,13 @@ class combatant{
                         break
                         case 25:
                             this.intent=this.battle.counter.enemy-this.battle.counter.killed==1?0:floor(random(1,this.attack.length))
+                        break
+                        case 26:
+                            let set=[...range(0,this.attack.length),...range(0,this.attack.length)]
+                            if(set.includes(this.intent)){
+                                set.splice(set.indexOf(this.intent),1)
+                            }
+                            this.intent=randin(set)
                         break
                     }
                     this.convertIntent()

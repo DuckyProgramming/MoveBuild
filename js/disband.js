@@ -25482,20 +25482,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Accelerated\nCoffee',rarity:-1,list:-8,
-        levels:[
-            {effect:[10,1,1],attack:8701,cost:0,target:[0],spec:[84],class:1},
-            {effect:[15,1,1],attack:8701,cost:0,target:[0],spec:[84],class:1},
-            {effect:[18,1,2],attack:8701,cost:0,target:[0],spec:[84],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[3,5],
-            levels:[
-                {effect:[10,1,1],attack:8701,cost:[],target:[0],spec:[84],class:1},
-                {effect:[15,1,1],attack:8701,cost:[],target:[0],spec:[84],class:1},
-                {effect:[18,1,2],attack:8701,cost:[],target:[0],spec:[84],class:1},
-            ],
-        },
-    },{
         name:'British\nCoffee',rarity:-1,list:-8,
         levels:[
             {effect:[9,1],attack:8673,cost:0,target:[0],spec:[84],class:11},
@@ -46988,7 +46974,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Bleach',rarity:-1,list:-8,
+        name:'Bleached\nCoral',rarity:-1,list:-8,
         levels:[
             {effect:[8,1],attack:7335,cost:1,target:[0],spec:[],class:2},
             {effect:[14,1],attack:7335,cost:1,target:[0],spec:[],class:2},
@@ -48236,15 +48222,15 @@ types.disband=[
     },{
         name:'Transitory',rarity:-1,list:-8,
         levels:[
-            {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
-            {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[],class:3},
-            {effect:[3],attack:3,cost:0,target:[1,1,3],spec:[],class:3},
+            {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[4],class:3},
+            {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[4],class:3},
+            {effect:[3],attack:3,cost:0,target:[1,1,3],spec:[4],class:3},
         ],mtg:{
             rarity:-1,list:-8,color:[1],
             levels:[
-                {effect:[1],attack:3,cost:[1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3,cost:[-1],target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3,cost:[],target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:[1],target:[1,1,1],spec:[0,4],class:3},
+                {effect:[1],attack:3,cost:[-1],target:[1,1,1],spec:[0,4],class:3},
+                {effect:[1],attack:3,cost:[],target:[1,1,1],spec:[0,4],class:3},
             ],
         },
     },{

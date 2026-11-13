@@ -87,7 +87,7 @@ turn.prototype.update=function(){
                     }else{
                         if(this.timer==1&&this.targetDistance>1){
                             this.userCombatant.startAnimation(0)
-                        }else if(this.timer==15*this.targetDistance-14||this.timer==15*this.targetDistance+1&&this.userCombatant.type<constants.playerNumber/*(this.userCombatant.name=='Lira'||this.userCombatant.name=='Setsuna')*/){
+                        }else if(this.timer==15*this.targetDistance-14||this.timer==15*this.targetDistance+1&&(this.userCombatant.type<constants.playerNumber||this.userCombatant.name=='Swordmaster')/*(this.userCombatant.name=='Lira'||this.userCombatant.name=='Setsuna')*/){
                             this.userCombatant.startAnimation(2)
                         }
                         if(this.timer>=15*this.targetDistance-14){

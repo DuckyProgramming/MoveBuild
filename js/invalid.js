@@ -2267,6 +2267,20 @@ types.invalid=[
                 {effect:[1,2],attack:1759,cost:[-1],target:[1,1,1],spec:[0],class:3},
             ],
         },
+    },{
+        name:'Accelerated\nCoffee',rarity:-1,list:-8,
+        levels:[
+            {effect:[10,1,1],attack:8701,cost:0,target:[0],spec:[84],class:1},
+            {effect:[15,1,1],attack:8701,cost:0,target:[0],spec:[84],class:1},
+            {effect:[18,1,2],attack:8701,cost:0,target:[0],spec:[84],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3,5],
+            levels:[
+                {effect:[10,1,1],attack:8701,cost:[],target:[0],spec:[84],class:1},
+                {effect:[15,1,1],attack:8701,cost:[],target:[0],spec:[84],class:1},
+                {effect:[18,1,2],attack:8701,cost:[],target:[0],spec:[84],class:1},
+            ],
+        },
     },
 
     //mark er
