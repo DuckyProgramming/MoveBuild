@@ -94,7 +94,7 @@ function setup(){
 
             /*for(let a=0,la=1;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(615+a,0)
+                quickRelic(616+a,0)
             }*/
             //current.overlayManager.closeAll()
 

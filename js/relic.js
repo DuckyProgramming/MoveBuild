@@ -4562,6 +4562,14 @@ class relic{
                     this.layer.text('2',9,0)
                     this.layer.text('3',14,-6)
                 break
+                case 'Energy/Control':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-8,56,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,6,3,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,-8)
+                break
 
                 //mark p
             }

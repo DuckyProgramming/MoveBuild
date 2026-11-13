@@ -204,7 +204,7 @@ types={
         {name:'MMIS Agent',life:120,behavior:2,spec:[0],move:{type:0,speed:1},attack:[{type:304,effect:[18]},{type:437,effect:[10]},{type:37,effect:[6,2]}],description:`George's old friend`},
         {name:'HVM Contractor',life:118,behavior:1,spec:[0],move:{type:15,speed:1},attack:[{type:438,effect:[16,8]},{type:12,effect:[13]},{type:439,effect:[11,2]}],description:`Kane's old employees`},
         {name:'Rammer Robot',life:102,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:440,effect:[18]}],description:`One-directional`},
-        {name:'Management Experimental Robot',life:192,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:343,effect:[17,1]},{type:441,effect:[8,1]},{type:442,effect:[15,1]}],description:`Now obsolete`},
+        {name:'Experimental Robot',life:192,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:343,effect:[17,1]},{type:441,effect:[8,1]},{type:442,effect:[15,1]}],description:`Now obsolete`},
         {name:'Liaison',life:132,behavior:0,spec:[0],move:{type:12,speed:1},attack:[{type:450,effect:[16,6]},{type:29,effect:[17]}],description:`He'll find you if it's\nthe last thing he does`},
         {name:'Nerfmaster',life:116,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:449,effect:[15]},{type:48,effect:[16]},{type:448,effect:[3,3,3]}],description:`Nerfed entire characters`},
         {name:'Big Bounce',life:81,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:10,effect:[12]},{type:447,effect:[10]},{type:39,effect:[1,'Bouncer']}],description:`Bounces you hard`},
@@ -1209,7 +1209,7 @@ types={
         {name:'Purple Leaf',internal:'Uncommon Attack Heal',id:225,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Play an Uncommon\nAttack, Heal 1 HP'},
         {name:'Red Paperclip',internal:'Energy/Relics',id:226,rarity:4,list:0,mtg:1,world:[1,3],description:'Gain 1 Base Energy,\nLose 3 Random Relics'},
         {name:'Twin Pearls',internal:'Even Turn Vigor',id:227,rarity:1,list:0,mtg:0,world:[0,3],description:'Gain 4 Vigor\non Even Turns'},
-        {name:'Writ of Mandamus',internal:'Energy/Anti-Control',id:228,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nGain 1 Anti-Control\non Turn 1'},
+        {name:'Writ of Certiorari',internal:'Energy/Anti-Control',id:228,rarity:-1,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nGain 1 Anti-Control\non Turn 1'},
         {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Fully Block Damage,\nGain 1 Metallicize'},
 
         {name:'Painted Deck',internal:'Compact/Lose First Relic',id:230,rarity:-1,list:0,mtg:0,world:[0,3],description:'Compact Cards in Your Hand\nWhen Taken, Lose Your First Relic'},
@@ -1636,6 +1636,7 @@ types={
         {name:'Green Pentachoron',internal:'Fatigue Cost Down',id:613,rarity:4,list:0,mtg:1,world:[0,3],description:'Fatigues Cost 1 Less'},
         {name:'Survival Notes',internal:'Always Move',id:614,rarity:-1,list:0,mtg:0,world:[0,3],description:`When You Can't Move,\nYou Can`},
         {name:'Very Hot Cocoa',internal:'Level Energy',id:615,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 3 Energy at the Start of Turn 1\nGain 2 Energy at the Start of Turn 2\nGain 1 Energy at the Start of Turn 3'},
+        {name:'Writ of Mandamus',internal:'Energy/Control',id:616,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nEnemies Start Combat With 1 Control'},
 
         //mark mtg mark r
     ],item:[
@@ -1801,7 +1802,7 @@ types={
         {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]'},
         /*{name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},*/
-        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes [4D] Per Turn\nRange 1-3\nTemporary'},
+        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [4D]\nTarget Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
         {name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
         {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [10S]\nRange 1-3\nTemporary'},
@@ -4922,10 +4923,10 @@ types={
             ],
         },{
             level:['Tester 5'],class:0,world:2,
-            name:'Management Experimental Robot',
+            name:'Experimental Robot',
             player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:3}]]},
             enemy:[
-                {position:{x:5,y:2},name:'Management Experimental Robot'},
+                {position:{x:5,y:2},name:'Experimental Robot'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
@@ -8556,7 +8557,8 @@ Continues activating as long as you have the inputs.`,
         //{name:'Less Items',desc:'Lose 1 Item Slot'},//11
         {name:'Less Items',desc:'Items Drop Less Often'},//11
         {name:'Less Upgrades',desc:'Upgraded Cards are Less Common'},//12
-        {name:'Poor Bosses',desc:'Bosses Do Not Drop Currency'},//13
+        //{name:'Poor Bosses',desc:'Bosses Do Not Drop Currency'},//13
+        {name:'Poor Bosses',desc:'Bosses Drop Half Currency'},//13
         {name:'Less Max Health',desc:'Lose 10% Max Health'},//14
         {name:'Badlands',desc:'Battles Start With Randomly Positioned Anti-Player Spikes'},//26
         {name:'Elite Unknowns',desc:'Unknowns are More Likely to be Elites'},//15
@@ -8847,7 +8849,7 @@ Continues activating as long as you have the inputs.`,
         {name:'MMIS Agent',desc:'On Turn 4, Enemies Heal For the First Hit They Take'},
         {name:'HVM Contractor',desc:'Sales in the Shop are Less Effective'},
         {name:'Rammer Robot',desc:'Replace Text With Comic Sans'},
-        {name:'Management Experimental Robot',desc:'Append Qualitative Terms to Card Names'},
+        {name:'Experimental Robot',desc:'Append Qualitative Terms to Card Names'},
         {name:'Liaison',desc:'Get Bombed on Turn 5'},
         {name:'Nerfmaster',desc:'When You Get Nerfed, Gain 1 Weak'},
         {name:'Big Bounce',desc:'Enemies Have a 10% Chance to be Tripled but Pushed Back 1 Turn'},

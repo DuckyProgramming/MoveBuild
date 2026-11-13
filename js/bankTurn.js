@@ -4308,6 +4308,7 @@ turn.prototype.update=function(){
                     }
                     if(this.timer==900){
                         this.battle.combatantManager.summonCombatantDefinite(this.targetTile[1].tilePosition,findName('-h Rewriter',types.combatant),this.userCombatant.direction)
+                        this.battle.cardManagers.forEach(manager=>manager.hand.add(findName('Rewrite',types.card),0,0))
                     }
                     if(this.timer==930){
                         this.battle.combatantManager.summonCombatantDefinite(this.targetTile[0].tilePosition,findName('Nil',types.combatant),this.userCombatant.direction)

@@ -1828,7 +1828,10 @@ class combatant{
                 (this.attack[a].effect[0]>1||types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2||types.attack[this.attack[a].type].class==5)
             ){
                 for(let b=0,lb=this.attack[a].effect.length;b<lb;b++){
-                    if(
+                    if(this.attack[a].type==169){
+                        this.attack[a].effect[b]=min(this.attack[a].effect[b]*(value*0.5+0.5),999)
+                        this.attack[a].baseEffect[b]=min(this.attack[a].baseEffect[b]*(value*0.5+0.5),999)
+                    }else if(
                         (this.attack[a].effect[b]<0||this.attack[a].effect[b]>0)
                         &&!(this.attack[a].type==67&&b==1)
                         &&!(this.attack[a].type==124&&b==1)

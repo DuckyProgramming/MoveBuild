@@ -7,7 +7,6 @@ pivot signature style
 pivot extra large storage
 
 test vincent (again)
-test airi (again)
 test sanae (again)
 
 diff 26 anew

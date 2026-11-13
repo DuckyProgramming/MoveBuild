@@ -526,7 +526,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
-            case 523: case 609:
+            case 523: case 609: case 616:
                 //mark e
                 this.battle.addEnergyBase(player)
             break
@@ -1069,7 +1069,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
-            case 523: case 609:
+            case 523: case 609: case 616:
                 //mark e
                 this.battle.loseEnergyBase(player)
             break
@@ -1738,6 +1738,9 @@ class relicManager{
                         }
                         if(this.active[578][0]>0){
                             this.battle.combatantManager.allEffect(48,['Strength',this.active[578][0]])
+                        }
+                        if(this.active[616][0]>0){
+                            this.battle.combatantManager.allEffect(48,['Control',this.active[616][0]])
                         }
                         if(this.battle.modded(11)){
                             this.battle.combatantManager.fullAllEffect(3,[3])

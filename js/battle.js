@@ -3947,6 +3947,7 @@ class battle{
                             break
                             case 1:
                                 if((!this.modded(177)||this.turn.total<=5)&&mult>0){
+                                    //reward.push({type:0,value:[floor(random(120,201)*mult)]})
                                     reward.push({type:0,value:[floor(random(120,201)*mult)]})
                                 }
                                 if(!variants.business){
@@ -3964,8 +3965,13 @@ class battle{
                             break
                             case 2:
                                 if(!over){
-                                    if(game.ascend<13&&game.diff<=10&&(!this.modded(177)||this.turn.total<=5)&&mult>0){
-                                        reward.push({type:0,value:[round(floor(random(240,401)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
+                                    //if(game.ascend<13&&game.diff<=10&&(!this.modded(177)||this.turn.total<=5)&&mult>0){
+                                    if(game.ascend<13&&(!this.modded(177)||this.turn.total<=5)&&mult>0){
+                                        if(game.diff>=10){
+                                            reward.push({type:0,value:[round(floor(random(120,201)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
+                                        }else{
+                                            reward.push({type:0,value:[round(floor(random(240,401)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
+                                        }
                                     }
                                     if(!variants.business){
                                         this.relicManager.activate(15,[a,2,reward,this.turn.total])
@@ -4004,9 +4010,11 @@ class battle{
                                 }
                             }
                         }
-                        let io=a=>a<=1?1-a:a
-                        reward=reward.sort((a,b)=>io(a.type)-io(b.type))
-                        this.overlayManager.overlays[0][a].activate([0,reward])
+                        if(!over){
+                            let io=a=>a<=1?1-a:a
+                            reward=reward.sort((a,b)=>io(a.type)-io(b.type))
+                            this.overlayManager.overlays[0][a].activate([0,reward])
+                        }
                     }
                     this.relicManager.activate(1,[this.encounter.class])
                     if(variants.inventor){

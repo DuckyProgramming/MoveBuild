@@ -18662,14 +18662,14 @@ types.card=[
         name:'Southern\nCross',rarity:0,list:8,
         levels:[
             {effect:[16],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[22],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[27],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[24],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[30],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
         ],mtg:{
             rarity:0,list:8,color:[1],
             levels:[
                 {effect:[20],attack:862,cost:[1,-1,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[28],attack:862,cost:[1,-1,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[34],attack:862,cost:[1,-1,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[30],attack:862,cost:[1,-1,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[36],attack:862,cost:[1,-1,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },{
@@ -19110,14 +19110,14 @@ types.card=[
         name:'Sungraze',rarity:0,list:8,
         levels:[
             {effect:[24],attack:4299,cost:2,target:[0],spec:[],class:2},
-            {effect:[33],attack:4299,cost:2,target:[0],spec:[],class:2},
-            {effect:[40],attack:4299,cost:2,target:[0],spec:[],class:2},
+            {effect:[36],attack:4299,cost:2,target:[0],spec:[],class:2},
+            {effect:[45],attack:4299,cost:2,target:[0],spec:[],class:2},
         ],mtg:{
             rarity:0,list:8,color:[1],
             levels:[
                 {effect:[30],attack:4299,cost:[1,-1,-1],target:[0],spec:[],class:2},
-                {effect:[42],attack:4299,cost:[1,-1,-1],target:[0],spec:[],class:2},
-                {effect:[50],attack:4299,cost:[1,-1,-1],target:[0],spec:[],class:2},
+                {effect:[45],attack:4299,cost:[1,-1,-1],target:[0],spec:[],class:2},
+                {effect:[54],attack:4299,cost:[1,-1,-1],target:[0],spec:[],class:2},
             ],
         },
     },{
