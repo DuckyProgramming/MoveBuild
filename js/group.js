@@ -2033,6 +2033,11 @@ class group{
                         this.cards[a].triggerWish()
                     }
                 break
+                case 126:
+                    if(this.cards[a].spec.includes(60)&&this.cards[a].attack!=11844){
+                        this.cards[a].triggerWish()
+                    }
+                break
                 //mark all
             }
         }
@@ -3846,7 +3851,7 @@ class group{
         }
         if(card.getBasic(1)){
             if(userCombatant.getStatus('Speed Strike')>0){
-                this.battle.combatantManager.randomEnemyEffect(3,[max(0,card.effect[0]+userCombatant.getStatus('Strike Boost')),userCombatant.id])
+                this.battle.combatantManager.randomEnemyEffect(3,[max(0,card.effect[0]+userCombatant.getStatus('Strike Boost')+userCombatant.getStatus('Temporary Strike Boost')),userCombatant.id])
             }
         }
         switch(card.class){
@@ -6870,6 +6875,9 @@ class group{
                     if(userCombatant.getStatus('Strike Boost')!=0){
                         this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.getStatus('Strike Boost'))
                     }
+                    if(userCombatant.getStatus('Temporary Strike Boost')!=0){
+                        this.battle.attackManager.effect[0]=max(0,this.battle.attackManager.effect[0]+userCombatant.getStatus('Temporary Strike Boost'))
+                    }
                     if(userCombatant.getStatus('Strike Double')!=0){
                         this.battle.attackManager.effect[0]*=2
                     }
@@ -6877,6 +6885,9 @@ class group{
                 if(a.getBasic(2)){
                     if(userCombatant.getStatus('Defend Boost')!=0){
                         this.battle.attackManager.effect[a.attack==5045?1:0]=max(0,this.battle.attackManager.effect[a.attack==5045?1:0]+userCombatant.getStatus('Defend Boost'))
+                    }
+                    if(userCombatant.getStatus('Temporary Defend Boost')!=0){
+                        this.battle.attackManager.effect[a.attack==5045?1:0]=max(0,this.battle.attackManager.effect[a.attack==5045?1:0]+userCombatant.getStatus('Temporary Defend Boost'))
                     }
                     if(userCombatant.getStatus('Defend Double')!=0){
                         this.battle.attackManager.effect[a.attack==5045?1:0]*=2

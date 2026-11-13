@@ -1034,7 +1034,7 @@ class item{
                     this.layer.text('3',6,0)
                 break
                 case '9 Random Damage, 1 Energy, Draw 1': case '9 Random Damage, 1 Mana, Draw 1':
-                    displaySymbol(this.layer,0,0,194,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,133,0,2,this.fade)
                 break
                 case '5 Heal/1 Strength':
                     displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
@@ -1067,6 +1067,9 @@ class item{
                 break
                 case 'Draw 3, Free Card':
                     displaySymbol(this.layer,0,0,193,0,1,this.fade)
+                break
+                case '12 Random Damage, 1 Energy, Draw 1': case '12 Random Damage, 1 Mana, Draw 1':
+                    displaySymbol(this.layer,0,0,194,0,1,this.fade)
                 break
 
                 //mark p

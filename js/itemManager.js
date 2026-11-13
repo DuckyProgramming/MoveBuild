@@ -210,6 +210,18 @@ class itemManager{
             }
         }
     }
+    removeAllType(player,type){
+        let total=0
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type==type){
+                this.items[player][a].type=1
+                this.items[player][a].refresh()
+                this.total[player]--
+                total++
+            }
+        }
+        return total
+    }
     transformAll(player){
         for(let a=0,la=this.items[player].length;a<la;a++){
             if(this.items[player][a].type>1){
@@ -828,6 +840,25 @@ class itemManager{
             case 1027:
                 this.battle.cardManagers[player].draw(3*effectiveness)
                 userCombatant.statusEffect('Free Card',effectiveness)
+            break
+            case 1028: case 1029:
+                this.battle.combatantManager.randomNumberEffect(
+                    1+userCombatant.getStatus('Prismatic Bomb Targets'),
+                    0,
+                    [
+                        (12+userCombatant.getStatus('Prismatic Bomb Boost'))*effectiveness,
+                        this.player,
+                        userCombatant.getStatus('Prismatic Bomb Freeze'),
+                        userCombatant.getStatus('Prismatic Bomb Poison')
+                    ]
+                )
+                if(userCombatant.getStatus('Prismatic Bomb Items')>0){
+                    for(let a=0,la=userCombatant.getStatus('Prismatic Bomb Items');a<la;a++){
+                        this.addItem(findInternal(['Heal 3',variants.mtg?'2 Mana':'1 Energy','5 Damage','10 Block','Draw 2','1 Strength','1 Dexterity','1 Free Card'][floor(random(0,8))],types.item),player)
+                    }
+                }
+                this.battle.addSpecificEnergy(effectiveness,player,6)
+                this.battle.cardManagers[player].draw(effectiveness)
             break
         }
         this.tempEffectiveness[player]=holdTempEffectiveness

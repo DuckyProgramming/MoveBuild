@@ -13,6 +13,7 @@ class pack{
         this.scale=0
         this.total=0
         this.time=0
+        this.tooltip={active:game.tooltip,dict:[],anim:0}
         this.create()
     }
     create(){
@@ -45,6 +46,19 @@ class pack{
                 }
             }
         }
+        if(game.tooltip){
+            let desc=this.cards.map(card=>card.description(card.attack,card.effect,card.spec,card.target))
+            let fixed=desc.map(line=>line.toLowerCase().replaceAll('\n',' '))
+            for(let a=0,la=types.dictionary.length;a<la;a++){
+                if(
+                    !types.dictionary[a].basic&&
+                    (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
+                    fixed.some(line=>line.includes(types.dictionary[a].name.toLowerCase()))
+                ){
+                    this.tooltip.dict.push(a)
+                }
+            }
+        }
     }
     reposition(x,y){
         this.position.x+=x
@@ -60,6 +74,9 @@ class pack{
             this.cards[a].anim.afford=1
             this.cards[a].display()
         }
+        if(this.tooltip.active){
+            this.displayTooltip()
+        }
         /*let mult=1
         for(let a=0,la=this.cards.length;a<la;a++){
             this.cards[a].position.x=this.position.x+lsin(a/la*360+this.time*mult)*70*this.size
@@ -69,6 +86,29 @@ class pack{
         }
         range(0,this.cards.length).sort((a,b)=>lcos(a/this.cards.length*360+this.time*mult)-lcos(b/this.cards.length*360+this.time*mult)).forEach(num=>this.cards[num].display())*/
     }
+    displayTooltip(){
+        if(this.tooltip.anim>0){
+            this.layer.push()
+            this.layer.translate(this.layer.width/2,this.position.y+this.tooltip.dict.length*30+85)
+            this.layer.fill(200,0.8*this.tooltip.anim)
+            this.layer.stroke(0,0.8*this.tooltip.anim)
+            this.layer.strokeWeight(3)
+            for(let a=0,la=this.tooltip.dict.length;a<la;a++){
+                this.layer.rect(0,30-la*30+a*60,400,50,5)
+            }
+            this.layer.fill(0,0.8*this.tooltip.anim)
+            this.layer.noStroke()
+            this.layer.textSize(12)
+            for(let a=0,la=this.tooltip.dict.length;a<la;a++){
+                this.layer.text(types.dictionary[this.tooltip.dict[a]].name,0,15-la*30+a*60)
+            }
+            this.layer.textSize(8)
+            for(let a=0,la=this.tooltip.dict.length;a<la;a++){
+                this.layer.text(types.dictionary[this.tooltip.dict[a]].desc,0,37.5-la*30+a*60)
+            }
+            this.layer.pop()
+        }
+    }
     update(){
         if(this.complete){
             this.speed+=2
@@ -77,7 +117,11 @@ class pack{
         this.scale=min(this.scale+0.2,1)
         //this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<100,1,1.8,5)
         //this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y*2-inputs.rel.y)<100*this.size,1,1.8,5)
-        this.size=smoothAnim(this.size,pointInsideBox({position:inputs.rel},{position:this.position,width:176*this.size,height:84*this.size}),1,1.8,5)
+        let inside=pointInsideBox({position:inputs.rel},{position:this.position,width:176*this.size,height:84*this.size})
+        this.size=smoothAnim(this.size,inside,1,1.8,5)
+        if(this.tooltip.active){
+            this.tooltip.anim=smoothAnim(this.tooltip.anim,inside,0,1,5)
+        }
         this.time++
     }
     reject(){

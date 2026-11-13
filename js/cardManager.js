@@ -961,8 +961,9 @@ class cardManager{
         if(variants.unexpected){
             this.addRandomAbstract(2,0,0,4,0,[],[3])
         }
-        this.hand.allEffect(103)
         this.tempDraw.active=false
+        this.hand.allEffect(103)
+        //this.tempDraw.active=false
     }
     subFatigue(name,bypass,reserve){
         this.interval++

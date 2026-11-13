@@ -213,7 +213,7 @@ types={
         {name:'Ducksquad',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:`Duck with purpose`},
         {name:'Lockdown',life:216,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:111,effect:[2]},{type:98,effect:[24]},{type:407,effect:[5]},{type:408,effect:[27,9]},{type:409,effect:[22,11]}],description:`Stay in jail`},
         {name:'Crusader',life:109,behavior:21,spec:[0],move:{type:0,speed:1},attack:[{type:342,effect:[8,2]},{type:6,effect:[12]},{type:344,effect:[15]},{type:29,effect:[11]},{type:347,effect:[15]}],description:`Two millennia late to the party`},
-        {name:'Mini Puffball',life:1,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[4]},{type:4,effect:[8]}],description:`Apparently fluffy`},
+        {name:'Mini Puffball',life:1,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[5]},{type:4,effect:[6]}],description:`Apparently fluffy`},
         {name:'Inkblot',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:31,effect:[6]},{type:29,effect:[9]},{type:21,effect:[]}],description:`Not really his fault`},
         {name:'Snail',life:21,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:152,effect:[999]}],description:`He had one job`},
         {name:'Globe Head',life:48,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:493,effect:[7,2]},{type:30,effect:[5,10]}],description:`Don't want to be around him`},
@@ -285,7 +285,7 @@ types={
         {name:'The Looker',life:125,behavior:19,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:468,effect:[7,2]},{type:405,effect:[8,8]},{type:471,effect:[10]}],description:`Does he see?`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,2]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
-        {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,2]}],description:`Gunning for a promotion`},
+        {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,1]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb B']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Laser games`},
         {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,2]},{type:39,effect:[1,'Red']},{type:169,effect:[4]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
@@ -1793,8 +1793,8 @@ types={
         {name:'Quality Coffee',internal:'3 Energy/Draw and Upgrade 3',id:1014,rarity:-1,list:-1,menu:false,temp:false,mtg:1,description:'Gain 3 Energy,\nDraw and Upgrade 3 Cards'},
         {name:'Energy Drink',internal:'2 Mana',id:1015,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Gain (E) (E)\nTemporary'},
         {name:'Quality Coffee',internal:'4 Mana/Draw and Upgrade 3',id:1016,rarity:-1,list:-1,menu:false,temp:false,mtg:2,description:'Gain (E) (E) (E) (E),\nDraw and Upgrade 3 Cards'},
-        {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Energy, Draw 1',id:1017,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [9D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
-        {name:'Prismatic Bomb',internal:'9 Random Damage, 1 Mana, Draw 1',id:1018,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal [9D] to a Random Enemy,\nGain (E), Draw 1 Card'},
+        {name:'Mini Prismatic Bomb',internal:'9 Random Damage, 1 Energy, Draw 1',id:1017,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [9D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
+        {name:'Mini Prismatic Bomb',internal:'9 Random Damage, 1 Mana, Draw 1',id:1018,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal [9D] to a Random Enemy,\nGain (E), Draw 1 Card'},
         {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
 
         {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [6D]\nRange 1-3\nTemporary'},
@@ -1808,6 +1808,8 @@ types={
         {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
         //{name:'Graphene',internal:'2 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 2 Strength'},
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
+        {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Energy, Draw 1',id:1028,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [12D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
+        {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Mana, Draw 1',id:1029,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal [12D] to a Random Enemy,\nGain (E), Draw 1 Card'},
 
         //mark i
     ],color:{
@@ -7955,587 +7957,588 @@ types={
             ],
         },
     ],dictionary:[
-        {name:'',mtg:0,desc:``,
+        {name:'',mtg:0,basic:true,desc:``,
         },
 
-        {name:'Energy',mtg:1,desc:
+        {name:'Energy',mtg:1,basic:true,desc:
 `Energy is the fundamental currency used to play cards. Most cards cost energy.
 Energy is replenished at the start of each turn.`,
-        },{name:'Calm',mtg:1,desc:
+        },{name:'Calm',mtg:1,basic:false,desc:
 `Stance. Gain 2 energy when you leave this stance.`,
-        },{name:'Divinity',mtg:1,desc:
+        },{name:'Divinity',mtg:1,basic:false,desc:
 `Stance. When entered, gain 3 energy. Deal triple damage.`,
-        },{name:'Depression',mtg:1,desc:
+        },{name:'Depression',mtg:1,basic:false,desc:
 `Stance. Lose 1 energy per turn.`,
-        },{name:'Fatigue',mtg:1,desc:
+        },{name:'Fatigue',mtg:1,basic:false,desc:
 `When a card with Fatigue is played, a Fatigue will be added to you discard pile.
 Fatigue is a status that costs 1 energy to play, and exhausts when played.
 Most attack and movement cards have Fatigue.`,
-        },{name:'X Fatigue',mtg:1,desc:
+        },{name:'X Fatigue',mtg:1,basic:false,desc:
 `The amount of Fatigue effects from this effect is equal to the energy spent.`,
-        },{name:'X Cost',mtg:1,desc:
+        },{name:'X Cost',mtg:1,basic:false,desc:
 `X cost cards spend all remaining energy when played.
 The card effects play out with X = the amount of energy.`,
-        },{name:'Sludge Tile',mtg:1,desc:
+        },{name:'Sludge Tile',mtg:1,basic:false,desc:
 `Removes all energy when stepped on.`,
-        },{name:'Energy Orb',mtg:1,desc:
+        },{name:'Energy Orb',mtg:1,basic:false,desc:
 `On evoke, gain 2 energy.
 Unaffected by focus.`,
-        },{name:'Miracle',mtg:1,desc:
+        },{name:'Miracle',mtg:1,basic:false,desc:
 `Card that gives energy, exhausts and retains.
 Typically gives 1, but there are other versions that give more.`,
-        },{name:'Snip',mtg:1,desc:
+        },{name:'Snip',mtg:1,basic:false,desc:
 `Card that gives energy, exhausts and retains.
 The amount it gives is variable.`,
-        },{name:'Amplify',mtg:1,desc:
+        },{name:'Amplify',mtg:1,basic:false,desc:
 `Spend 1 Energy if possible to get a bonus effect on card.
 Amplify 2 means that 2 Energy will be spent instead.`,
-        },{name:'Pristine',mtg:1,desc:
+        },{name:'Pristine',mtg:1,basic:false,desc:
 `Token card. Makes another non-rare colorless card free,
 and draws another card. Costs 0.`,
         },
 
-        {name:'Mana',mtg:2,desc:
+        {name:'Mana',mtg:2,basic:false,desc:
 `Mana is the fundamental currency used to play cards. Most cards cost mana,
 which comes in colored, rainbow, and colorless varieties.
 Mana is replenished at the start of each turn, according to the mana base.`,
-        },{name:'Calm',mtg:2,desc:
+        },{name:'Calm',mtg:2,basic:false,desc:
 `Stance. Gain 3 rainbow mana when you leave this stance.`,
-        },{name:'Divinity',mtg:2,desc:
+        },{name:'Divinity',mtg:2,basic:false,desc:
 `Stance. When entered, gain 5 rainbow mana. Deal triple damage.`,
-        },{name:'Depression',mtg:2,desc:
+        },{name:'Depression',mtg:2,basic:false,desc:
 `Stance. Lose 1 random mana per turn.`,
-        },{name:'Fatigue',mtg:2,desc:
+        },{name:'Fatigue',mtg:2,basic:false,desc:
 `When a card with Fatigue is played, a Fatigue will be added to you discard pile.
 Fatigue is a status that costs 1 of any mana to play, and exhausts when played.
 Most attack and movement cards have Fatigue.`,
-        },{name:'X Fatigue',mtg:2,desc:
+        },{name:'X Fatigue',mtg:2,basic:false,desc:
 `The amount of Fatigue effects from this effect is equal to the mana spent.`,
-        },{name:'X Cost',mtg:2,desc:
+        },{name:'X Cost',mtg:2,basic:false,desc:
 `X cost cards spent some amount of mana, including all highlighted, when played.
 The card effects play out with X = the amount of mana spent.`,
-        },{name:'Sludge Tile',mtg:2,desc:
+        },{name:'Sludge Tile',mtg:2,basic:false,desc:
 `Removes all mana when stepped on.`,
-        },{name:'Energy Orb',mtg:2,desc:
+        },{name:'Energy Orb',mtg:2,basic:false,desc:
 `On evoke, gain (E) (E) (E).
 Unaffected by focus.`,
-        },{name:'Pristine',mtg:2,desc:
+        },{name:'Pristine',mtg:2,basic:false,desc:
 `Card that gives neutral mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },{name:'Shine',mtg:2,desc:
+        },{name:'Shine',mtg:2,basic:false,desc:
 `Card that gives white mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },{name:'Splash',mtg:2,desc:
+        },{name:'Splash',mtg:2,basic:false,desc:
 `Card that gives blue mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },{name:'Occult',mtg:2,desc:
+        },{name:'Occult',mtg:2,basic:false,desc:
 `Card that gives black mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },{name:'Vibrant',mtg:2,desc:
+        },{name:'Vibrant',mtg:2,basic:false,desc:
 `Card that gives green mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },{name:'Torch',mtg:2,desc:
+        },{name:'Torch',mtg:2,basic:false,desc:
 `Card that gives red mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },{name:'Miracle',mtg:2,desc:
+        },{name:'Miracle',mtg:2,basic:false,desc:
 `Card that gives rainbow mana, exhausts and retains.
 Typically gives 2, but there are other versions that give more.`,
-        },{name:'Amplify',mtg:2,desc:
+        },{name:'Amplify',mtg:2,basic:false,desc:
 `Spend additional mana if possible to get a bonus effect on card.
 If it cannot be paid, the bonus effect is not triggered.`,
         },
         
-        {name:'Draw',mtg:0,desc:
+        {name:'Draw',mtg:0,basic:false,desc:
 `Moves cards from draw pile to hand.
 When no cards are available, shuffles discard pile into draw pile.`,
-        },{name:'Discard',mtg:0,desc:
+        },{name:'Discard',mtg:0,basic:false,desc:
 `Moves cards to discard pile.`,
-        },{name:'Exhaust',mtg:0,desc:
+        },{name:'Exhaust',mtg:0,basic:false,desc:
 `Moves cards to exhaust pile, which is hidden.
 Exhausted cards are gone and can only be accessed through certain cards.`,
-        },{name:'Unplayable',mtg:0,desc:
+        },{name:'Unplayable',mtg:0,basic:false,desc:
 `Cards with unplayable cannot be played.
 They are essentially obstructions that take up place.`,
-        },{name:'Unremovable',mtg:0,desc:
+        },{name:'Unremovable',mtg:0,basic:false,desc:
 `Cards with unremovable cannot be removed in most ways.
 They can still be removed by transforming them or via other methods.`,
-        },{name:'Innate',mtg:0,desc:
+        },{name:'Innate',mtg:0,basic:false,desc:
 `Innate cards always start in your hand at the start of combat.
 This will deduct the number of normal cards drawn that turn.
 Appears naturally or applied by relics.`,
-        },{name:'Stapled',mtg:0,desc:
+        },{name:'Stapled',mtg:0,basic:false,desc:
 `When another card is played, this card will be discarded.
 Applied by enemies, relics, and cards.`,
-        },{name:'Range',mtg:0,desc:
+        },{name:'Range',mtg:0,basic:true,desc:
 `Range specifies the distance at which something can be used.
 Most attack cards have range, as do most enemy attacks.`,
-        },{name:'# Fatigue',mtg:0,desc:
+        },{name:'# Fatigue',mtg:0,basic:false,desc:
 `Specifies that a card will repeat the Fatigue effect multiple times.`,
-        },{name:'Heavy Fatigue',mtg:0,desc:
+        },{name:'Heavy Fatigue',mtg:0,basic:false,desc:
 `A variant of Fatigue, that costs 3 to play instead.`,
-        },{name:'Retain',mtg:0,desc:
+        },{name:'Retain',mtg:0,basic:false,desc:
 `A card with retain will not be discarded at the end of each turn and will stay in the hand.
 Retained cards will not deduct from next turn's draw.
 Appears naturally or applied by cards.`,
-        },{name:'Exhaust (Card)',mtg:0,desc:
+        },{name:'Exhaust (Card)',mtg:0,basic:false,desc:
 `A card with exhaust will exhaust itself when played.
 This means it effectively leaves play and can only be accessed by certain cards.`,
-        },{name:'Slimed',mtg:0,desc:
+        },{name:'Slimed',mtg:0,basic:false,desc:
 `Slimed cards do not display any useful text.
 Applied by enemies.`,
-        },{name:'Smoked',mtg:0,desc:
+        },{name:'Smoked',mtg:0,basic:false,desc:
 `Smoked cards do not display any useful text. It wears off when the card is discarded.
 Applied by enemies.`,
-        },{name:'Vanishing',mtg:0,desc:
+        },{name:'Vanishing',mtg:0,basic:false,desc:
 `When played, vanishing number decreases by 1.
 When it reaches 0, card is exhausted and removed from deck (permanently).`,
-        },{name:'Ethereal',mtg:0,desc:
+        },{name:'Ethereal',mtg:0,basic:false,desc:
 `A card with ethereal will exhaust itself if it is left in the hand and discarded at the end of the turn.`,
-        },{name:'Strength',mtg:0,desc:
+        },{name:'Strength',mtg:0,basic:false,desc:
 `Deal 10% more damage for every positive stack and 10% less per negative stack.
 Does not decrement.`,
-        },{name:'Dexterity',mtg:0,desc:
+        },{name:'Dexterity',mtg:0,basic:false,desc:
 `Add 10% more block for every positive stack and 10% less per negative stack.
 Does not decrement.`,
-        },{name:'Focus',mtg:0,desc:
+        },{name:'Focus',mtg:0,basic:false,desc:
 `Orbs are 20% more effective for every positive stack and 10% less per negative stack.
 Does not decrement.`,
-        },{name:'Node',mtg:0,desc:
+        },{name:'Node',mtg:0,basic:false,desc:
 `Increases damage taken from orbs by 50%.
 Decrements by 1 each turn.`,
-        },{name:'Damage',mtg:0,desc:
+        },{name:'Damage',mtg:0,basic:true,desc:
 `Reduces enemy health. Deducts block before health.
 A wide variety of things deal damage or edit its value.`,
-        },{name:'Block',mtg:0,desc:
+        },{name:'Block',mtg:0,basic:true,desc:
 `Damage deducts block before health. Block is removed at the end of your turn.
 A wide variety of things add block, edit its value, or remove it.`,
-        },{name:'Move Tiles',mtg:0,desc:
+        //},{name:'Move Tiles',mtg:0,basic:false,desc:
+        },{name:'Move',mtg:0,basic:true,desc:
 `Allows movement of combatant to adjacent tiles in a straight line.
 Can be used in six directions unless otherwise specified.`,
-        },{name:'Push',mtg:0,desc:
+        },{name:'Push',mtg:0,basic:false,desc:
 `Pushed combatants will move in the direction they are pushed.
 If the tile is occupied, the pushed combatant (and the occupant if applicable) take collision damage (default 4).`,
-        },{name:'Double Damage',mtg:0,desc:
+        },{name:'Double Damage',mtg:0,basic:false,desc:
 `Next attack will deal twice as much damage.
 Removes after each distinct attack (attack card or counter).`,
-        },{name:'Fatal',mtg:0,desc:
+        },{name:'Fatal',mtg:0,basic:false,desc:
 `An attack is fatal is the target's health is reduced to 0.`,
-        },{name:'Heal',mtg:0,desc:
+        },{name:'Heal',mtg:0,basic:false,desc:
 `Regain health, cannot go beyond maximum.
 Provided at rest sites, by relics, and in small quantities by cards.`,
-        },{name:'Lose Health',mtg:0,desc:
+        },{name:'Lose Health',mtg:0,basic:false,desc:
 `Distinct from Take Damage, is unblockable and ignores most effects.`,
-        },{name:'Gain Max Health',mtg:0,desc:
+        },{name:'Gain Max Health',mtg:0,basic:false,desc:
 `Increases Max Health. Normal Health will increase by the same amount.`,
-        },{name:'Lose Max Health',mtg:0,desc:
+        },{name:'Lose Max Health',mtg:0,basic:false,desc:
 `Decreases Max Health. Normal Health is only deducted if it is above maximum.`,
-        },{name:'In All Directions',mtg:0,desc:
+        },{name:'In All Directions',mtg:0,basic:false,desc:
 `Affects all 6 tiles/directions.`,
-        },{name:'Pull',mtg:0,desc:
+        },{name:'Pull',mtg:0,basic:false,desc:
 `Moves target toward user.`,
-        },{name:'Advance',mtg:0,desc:
+        },{name:'Advance',mtg:0,basic:false,desc:
 `Moves towards a set target. Typically ends 1 tile away.`,
-        },{name:'Counter',mtg:0,desc:
+        },{name:'Counter',mtg:0,basic:false,desc:
 `After taking damage, adds a counter attack against the aggressor.
 Counter all instantly deals damage back and does not initiate an attack.
-There are various types of counter, such as counter push.
 Counters are removed at the end of your turn.`,
-        },{name:'Dodge',mtg:0,desc:
+//There are various types of counter, such as counter push.
+        },{name:'Dodge',mtg:0,basic:false,desc:
 `Completely cancels an attack (with an originator).
 Stacks degrade by 1 each turn.`,
-        },{name:'Undamaged',mtg:0,desc:
+        },{name:'Undamaged',mtg:0,basic:false,desc:
 `Having health equal to maximum health.`,
-        },{name:'Disarm',mtg:0,desc:
+        },{name:'Disarm',mtg:0,basic:false,desc:
 `Removes weapon from posession, thus disabling scythe-requiring cards.
 Creates rearmament point on target (if applicable) or self.`,
-        },{name:'Rearmament Point',mtg:0,desc:
+        },{name:'Rearmament Point',mtg:0,basic:false,desc:
 `Rearms when stepped on, if you are disarmed.
 Removes itself in the process.`,
-        },{name:'Target Will',mtg:0,desc:
+        },{name:'Target Will',mtg:0,basic:false,desc:
 `Refers to the target's intent.
 Mouseover enemies to see their intent.`,
-        },{name:'Bleed',mtg:0,desc:
+        },{name:'Bleed',mtg:0,basic:false,desc:
 `Enemies with Bleed take damage whenever they intend to attack.
 Players with Bleed take damage when they play the first attack each turn.`,
-        },{name:'Upgrade',mtg:0,desc:
+        },{name:'Upgrade',mtg:0,basic:false,desc:
 `Each card has an upgraded version that is typically better.
 Cards can be upgraded at rest sites, in events, by relics, or by other cards (usually temporary).`,
-        },{name:'Retain Block',mtg:0,desc:
+        },{name:'Retain Block',mtg:0,basic:false,desc:
 `Block is not removed at the end of your turn.
 Stacks degrade by 1 each turn.`,
-        },{name:'Control',mtg:0,desc:
+        },{name:'Control',mtg:0,basic:false,desc:
 `When you would be debuffed, cancels the debuff.
 1 stack of control is deducted in the process.`,
-        },{name:'Weak',mtg:0,desc:
+        },{name:'Weak',mtg:0,basic:false,desc:
 `Lowers damage dealt by 25%, regardless of number of stacks.
 Stacks degrade by 1 each turn.`,
-        },{name:'Vulnerable',mtg:0,desc:
+        },{name:'Vulnerable',mtg:0,basic:false,desc:
 `Increases damage taken by 50%, regardless of number of stacks.
 Stacks degrade by 1 each turn.`,
-        },{name:'Frail',mtg:0,desc:
+        },{name:'Frail',mtg:0,basic:false,desc:
 `Lowers block added by 25%, regardless of number of stacks.
 Stacks degrade by 1 each turn.`,
-        },{name:'Intangible',mtg:0,desc:
+        },{name:'Intangible',mtg:0,basic:false,desc:
 `Lowers damage taken to 1.
 Stacks degrade by 1 each turn.`,
-        },{name:'Buffer',mtg:0,desc:
+        },{name:'Buffer',mtg:0,basic:false,desc:
 `Completely cancels any life loss.
 Lasts until used.`,
-        },{name:'Colorless',mtg:0,desc:
+        },{name:'Colorless',mtg:0,basic:false,desc:
 `Colorless cards are special cards with generic effects.
 Obtained in the shop, in events, by relics, and by cards (usually temporary).`,
-        },{name:'Temporary',mtg:0,desc:
+        },{name:'Temporary',mtg:0,basic:false,desc:
 `Most terms with temporary stop at the end of your turn.`,
-        },{name:'Special Move',mtg:0,desc:
+        },{name:'Special Move',mtg:0,basic:false,desc:
 `Term for any moves that are not attacks or defenses.`,
-        },{name:'Shiv',mtg:0,desc:
+        },{name:'Shiv',mtg:0,basic:false,desc:
 `Token card. Does a small amount of damage and is free, with Range 1-1.`,
-        },{name:'Spark',mtg:0,desc:
+        },{name:'Spark',mtg:0,basic:false,desc:
 `Token card. Does a small amount of damage and is free, with Range 1-2.`,
-        },{name:'Item',mtg:0,desc:
+        },{name:'Item',mtg:0,basic:false,desc:
 `Grants a benefit when used. Can be sold in the shop.
 Obtained through rewards or through events.`,
-        },{name:'Relic',mtg:0,desc:
+        },{name:'Relic',mtg:0,basic:false,desc:
 `Grants a small immediate or longer term benefit. Can be sold in the shop.
 Obtained through rewards, events, or through the shop.`,
-        },{name:'Elite',mtg:0,desc:
+        },{name:'Elite',mtg:0,basic:false,desc:
 `Stronger than a normal combat (typically).
 Grants more rewards, including a relic.`,
-        },{name:'Combo',mtg:0,desc:
+        },{name:'Combo',mtg:0,basic:false,desc:
 `Combo increases by 1 when an enemy is hit, and you are directly responsible.
 Some cards cost combo, or spend it in their effects. Others may generate it.`,
-        },{name:'Speed Up/Slow',mtg:0,desc:
+        },{name:'Speed Up/Slow',mtg:0,basic:false,desc:
 `Changes the amount of movement turns an enemy gets on their turn.
 Most enemies have 1 by default, some have more or less.`,
-        },{name:'Status',mtg:0,desc:
+        },{name:'Status',mtg:0,basic:false,desc:
 `Negative card that expends draw. Removed at the end of combat.`,
-        },{name:'Curse',mtg:0,desc:
+        },{name:'Curse',mtg:0,basic:false,desc:
 `Negative cards with various effects. Remain in deck until removed.`,
-        },{name:'Stun',mtg:0,desc:
+        },{name:'Stun',mtg:0,basic:false,desc:
 `Stunned enemies do not get a turn.
 Stacks degrade by 1 each turn.`,
-        },{name:'Conditioning',mtg:0,desc:
+        },{name:'Conditioning',mtg:0,basic:false,desc:
 `Increases block added by 100%.
 Expends 1 stack afterward.`,
-        },{name:'Selectively Discarded',mtg:0,desc:
+        },{name:'Selectively Discarded',mtg:0,basic:false,desc:
 `Term for discards that do not occur as normal ones at the end of the turn.`,
-        },{name:'Duplicate',mtg:0,desc:
+        },{name:'Duplicate',mtg:0,basic:false,desc:
 `When a card is played, another copy is created and added to your hand.`,
-        },{name:'Regeneration',mtg:0,desc:
+        },{name:'Regeneration',mtg:0,basic:false,desc:
 `Heal for value of regeneration at the end of your turn.
 Stacks degrade by 1 each turn.`,
-        },{name:'Confusion',mtg:0,desc:
+        },{name:'Confusion',mtg:0,basic:false,desc:
 `When confused, your cards cost randomly between 0-3.
 Confusing a single card change only that card.`
-        },{name:'Balance',mtg:0,desc:
+        },{name:'Balance',mtg:0,basic:false,desc:
 `Value that increases when certain cards are played. Other cards interact with it.
 When Balance exceeds its limit (default 10), your turn ends and it is reset to 0 (called Breaking).`,
-        },{name:'Plant Tile',mtg:0,desc:
+        },{name:'Plant Tile',mtg:0,basic:false,desc:
 `Created by some cards. Have no effect but can interact with special cards.`,
-        },{name:'Mine Tile',mtg:0,desc:
+        },{name:'Mine Tile',mtg:0,basic:false,desc:
 `Deals 10 damage when stepped on, to the target and in an area.
 Removes itself afterward.`,
-        },{name:'Spike Tile',mtg:0,desc:
+        },{name:'Spike Tile',mtg:0,basic:false,desc:
 `Deals 5 damage when stepped on.`,
-        },{name:'Trench Tile',mtg:0,desc:
+        },{name:'Trench Tile',mtg:0,basic:false,desc:
 `Adds 10 block when stepped on, to enemies only.`,
-        },{name:'Trap Tile',mtg:0,desc:
+        },{name:'Trap Tile',mtg:0,basic:false,desc:
 `Deals 15 damage when stepped on.`,
-        },{name:'Slime Tile',mtg:0,desc:
+        },{name:'Slime Tile',mtg:0,basic:false,desc:
 `Slimes a card when stepped on.`,
-        },{name:'Money Tile',mtg:0,desc:
+        },{name:'Money Tile',mtg:0,basic:false,desc:
 `Gives money when stepped on.
 If the Capitalist steps on it, he spawns a Bodyguard.`,
-        },{name:'Fire Tile',mtg:0,desc:
+        },{name:'Fire Tile',mtg:0,basic:false,desc:
 `Adds a Burn when stepped on.`,
-        },{name:'Shield Tile',mtg:0,desc:
+        },{name:'Shield Tile',mtg:0,basic:false,desc:
 `Adds 5 block when stepped on.`,
-        },{name:'Poison Tile',mtg:0,desc:
+        },{name:'Poison Tile',mtg:0,basic:false,desc:
 `Applies 3 Poison when stepped on.`,
-        },{name:'Trash Tile',mtg:0,desc:
+        },{name:'Trash Tile',mtg:0,basic:false,desc:
 `Applies 1 random status when stepped on.`,
-        },{name:'Barbed Wire Tile',mtg:0,desc:
+        },{name:'Barbed Wire Tile',mtg:0,basic:false,desc:
 `Deals 25 damage when stepped on.`,
-        },{name:'Spike Spawn Tile',mtg:0,desc:
+        },{name:'Spike Spawn Tile',mtg:0,basic:false,desc:
 `Becomes a spike tile when stepped on.`,
-        },{name:'Robot Spawn Tile',mtg:0,desc:
+        },{name:'Robot Spawn Tile',mtg:0,basic:false,desc:
 `Spawns a Robot when stepped on.`,
-        },{name:'Transform Tile',mtg:0,desc:
+        },{name:'Transform Tile',mtg:0,basic:false,desc:
 `Transforms a card when stepped on.`,
-        },{name:'Killzone Tile',mtg:0,desc:
+        },{name:'Killzone Tile',mtg:0,basic:false,desc:
 `Kills when stepped on.`,
-        },{name:'Redraw Tile',mtg:0,desc:
+        },{name:'Redraw Tile',mtg:0,basic:false,desc:
 `Redraws cards when stepped on.`,
-        },{name:'Transform',mtg:0,desc:
+        },{name:'Transform',mtg:0,basic:false,desc:
 `Becomes a random card of the same color.`,
-        },{name:'Targetted Spike Tile',mtg:0,desc:
+        },{name:'Targetted Spike Tile',mtg:0,basic:false,desc:
 `Deals 5 damage when stepped on, to players only.`,
-        },{name:'Hold Orb',mtg:0,desc:
+        },{name:'Hold Orb',mtg:0,basic:false,desc:
 `Add an orb to first empty slot. If all slots are full, will evoke first b on self.`,
-        },{name:'Evoke Orb',mtg:0,desc:
+        },{name:'Evoke Orb',mtg:0,basic:false,desc:
 `Spends orb, applying some sort of effect corresponding to that orb.`,
-        },{name:'Minor Evoke',mtg:0,desc:
+        },{name:'Minor Evoke',mtg:0,basic:false,desc:
 `Weaker than a normal evoke, usually with half effect.
 Does not spend the orb.`,
-        },{name:'Alternate Evoke',mtg:0,desc:
+        },{name:'Alternate Evoke',mtg:0,basic:false,desc:
 `Spends orb, has a different effect from normal evoke.`,
-        },{name:'Basic Orb',mtg:0,desc:
+        },{name:'Basic Orb',mtg:0,basic:false,desc:
 `On evoke, deals 12 damage.`,
-        },{name:'Shield Orb',mtg:0,desc:
+        },{name:'Shield Orb',mtg:0,basic:false,desc:
 `On evoke, adds 16 block.`,
-        },{name:'Explosive Orb',mtg:0,desc:
+        },{name:'Explosive Orb',mtg:0,basic:false,desc:
 `On evoke, deals 16 splash damage.
 If evoked on yourself, take 4 damage. Otherwise, cannot harm yourself.`,
-        },/*{name:'Iron Orb',mtg:1,desc:
+        },/*{name:'Iron Orb',mtg:1,basic:false,desc:
 `On evoke, deals 6 damage. The amount of damage increases by 3 every turn.`,
-        },*/{name:'Iron Orb',mtg:1,desc:
+        },*/{name:'Iron Orb',mtg:1,basic:false,desc:
 `On evoke, deals 9 damage. The amount of damage increases by 6 every turn.`,
-        },{name:'Lightning Orb',mtg:0,desc:
+        },{name:'Lightning Orb',mtg:0,basic:false,desc:
 `On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
-        },{name:'Dust Orb',mtg:0,desc:
+        },{name:'Dust Orb',mtg:0,basic:false,desc:
 `On evoke, adds 12 block. Also adds 6 block every turn.`,
-        },{name:'Crystal Orb',mtg:0,desc:
+        },{name:'Crystal Orb',mtg:0,basic:false,desc:
 `On evoke, counter 12 all. Also counters 6 all each turn.`,
-        },{name:'Light Orb',mtg:0,desc:
+        },{name:'Light Orb',mtg:0,basic:false,desc:
 `On evoke, draw 2 cards.
 Unaffected by focus.`,
-        },{name:'Dark Orb',mtg:1,desc:
+        },{name:'Dark Orb',mtg:1,basic:false,desc:
 `On evoke, applies 2 Mortal.`,
-        },{name:'Flame Orb',mtg:0,desc:
+        },{name:'Flame Orb',mtg:0,basic:false,desc:
 `On evoke, applies 3 Burn.
 Unaffected by focus.`,
-        },{name:'Ice Orb',mtg:0,desc:
+        },{name:'Ice Orb',mtg:0,basic:false,desc:
 `On evoke, applies 3 Freeze.
 Unaffected by focus.`,
-        },{name:'Buff Orb',mtg:0,desc:
+        },{name:'Buff Orb',mtg:0,basic:false,desc:
 `On evoke, applies 3 Strength.
 Unaffected by focus.`,
-        },{name:'Nerf Orb',mtg:0,desc:
+        },{name:'Nerf Orb',mtg:0,basic:false,desc:
 `On evoke, applies 3 Weak.
 Unaffected by focus.`,
-        },{name:'Poison Orb',mtg:0,desc:
+        },{name:'Poison Orb',mtg:0,basic:false,desc:
 `On evoke, applies 5 Poison.
 Unaffected by focus.`,
-        },/*{name:'Glass Orb',mtg:0,desc:
+        },/*{name:'Glass Orb',mtg:0,basic:false,desc:
 `On evoke, deals 4 damage.`,
-        },*/{name:'Glass Orb',mtg:0,desc:
+        },*/{name:'Glass Orb',mtg:0,basic:false,desc:
 `On evoke, deals 24 damage. When ticked, the amount of damage increases by 4.
 However, the damage also decrease by 8 each turn.`,
-        },{name:'Dual Orb',mtg:0,desc:
+        },{name:'Dual Orb',mtg:0,basic:false,desc:
 `On evoke, deals 15 damage on an enemy or adds 20 block on an ally or yourself.`,
-        },{name:'Holding',mtg:0,desc:
+        },{name:'Holding',mtg:0,basic:false,desc:
 `Draw 1 Card When Discarded`,
-        },{name:'Quickdraw',mtg:0,desc:
+        },{name:'Quickdraw',mtg:0,basic:false,desc:
 `Draw 1 Card`,
-        },{name:'Replenish',mtg:0,desc:
+        },{name:'Replenish',mtg:0,basic:false,desc:
 `When Drawn, Draw 1 Card`,
-        },{name:'Metal',mtg:0,desc:
+        },{name:'Metal',mtg:0,basic:false,desc:
 `Resource gained through cards. Used to play Blueprints.`,
-        },{name:'Construct',mtg:0,desc:
+        },{name:'Construct',mtg:0,basic:false,desc:
 `Ally, buffs player or attacks enemy. Effects vary by type.`,
-        },{name:'Blueprint',mtg:0,desc:
+        },{name:'Blueprint',mtg:0,basic:false,desc:
 `Card that builds Constructs.`,
-        },{name:'Jagged Bleed',mtg:0,desc:
+        },{name:'Jagged Bleed',mtg:0,basic:false,desc:
 `Similar to Bleed, but also causes enemy to turn more randomly.`,
-        },{name:'Swap Intents',mtg:0,desc:
+        },{name:'Swap Intents',mtg:0,basic:false,desc:
 `If enemies have an intent to do said action, they will do something else instead.`,
-        },{name:'Wrath',mtg:0,desc:
+        },{name:'Wrath',mtg:0,basic:false,desc:
 `Stance. Deal double damage and take double damage.`,
-        },{name:'Haste',mtg:0,desc:
+        },{name:'Haste',mtg:0,basic:false,desc:
 `Stance. Add a Stride to Hand when entered, but you cannot attack.`,
-        },{name:'Sturdy',mtg:0,desc:
+        },{name:'Sturdy',mtg:0,basic:false,desc:
 //`Stance. Deal 60% damage and take 40% damage.`,
 `Stance. Deal 50% damage and take 50% damage.`,
 //`Stance. Deal 50% damage and add double block.`,
-        },{name:'Mantra',mtg:0,desc:
+        },{name:'Mantra',mtg:0,basic:false,desc:
 //`Gained through cards. When you gain 8 Mantra, enter Divinity.`,
 `Gained through cards. When you gain 12 Mantra, enter Divinity.`,
-        },{name:'Safety',mtg:0,desc:
+        },{name:'Safety',mtg:0,basic:false,desc:
 `Card that gives block, exhausts and retains.`,
-        },{name:'Insight',mtg:0,desc:
+        },{name:'Insight',mtg:0,basic:false,desc:
 `Card that draws cards, exhausts and retains.`,
-        },{name:'Smite',mtg:0,desc:
+        },{name:'Smite',mtg:0,basic:false,desc:
 `Card that deals damage, exhausts and retains.`,
-        },{name:'Obstruction',mtg:0,desc:
+        },{name:'Obstruction',mtg:0,basic:false,desc:
 `Anything blocking movement, mainly combatants.`,
-        },{name:'Lowroll',mtg:0,desc:
+        },{name:'Lowroll',mtg:0,basic:false,desc:
 `When a randomness-based card has an unfavorable outcome.`,
-        },{name:'Charge',mtg:0,desc:
+        },{name:'Charge',mtg:0,basic:false,desc:
 `Charge increases by 1 each turn.
 Some card spend it in their effects. Others may generate it.`
-        },{name:'Burn (Card)',mtg:0,desc:
+        },{name:'Burn (Card)',mtg:0,basic:false,desc:
 `Status, unplayable, makes you take damage at the end of your turn.`,
-        },{name:'Burn (Status Effect)',mtg:0,desc:
+        },{name:'Burn (Status Effect)',mtg:0,basic:false,desc:
 `Take bonus damage from all incoming damage 20 or greater.`,
-        },{name:'Mortal',mtg:0,desc:
+        },{name:'Mortal',mtg:0,basic:false,desc:
 `Lose health each turn.`,
-        },{name:'Take Credit',mtg:0,desc:
+        },{name:'Take Credit',mtg:0,basic:false,desc:
 `When you take damage, heals you instead. Typically lasts for one hit.`,
-        },{name:'Ichor',mtg:0,desc:
+        },{name:'Ichor',mtg:0,basic:false,desc:
 `Take 25% more damage per stack.
 Decrements after each hit taken.`,
-        },{name:'Gun',mtg:0,desc:
+        },{name:'Gun',mtg:0,basic:false,desc:
 `Class of cards, typically ranged.
 Using most guns costs 1 Ammo.`,
-        },{name:'Ammo',mtg:0,desc:
+        },{name:'Ammo',mtg:0,basic:false,desc:
 `Resource gained through cards. Used to play Guns.`,
-        },{name:'Bruise',mtg:0,desc:
+        },{name:'Bruise',mtg:0,basic:false,desc:
 `Take 1 more damage per stack.
 Decrements after each hit taken.`,
-        },{name:'Reflect',mtg:0,desc:
+        },{name:'Reflect',mtg:0,basic:false,desc:
 `Causes the attacker to take damage instead.
 Only works if an attacker is identifiably designated.`,
-        },{name:'Arcana',mtg:0,desc:
+        },{name:'Arcana',mtg:0,basic:false,desc:
 `Set of cards, accessible only through the predetermined Fortune Teller event.
 Vary greatly in effect.`,
-        },{name:'Distracted',mtg:0,desc:
+        },{name:'Distracted',mtg:0,basic:false,desc:
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
 Is removed when damage taken.`,
-        },{name:'Freeze',mtg:0,desc:
+        },{name:'Freeze',mtg:0,basic:false,desc:
 `At the end of the global turn, combatants take damage equal to Freeze squared.
 Stacks degrade by half, rounded up, each turn.`,
-        },{name:'Shock',mtg:0,desc:
+        },{name:'Shock',mtg:0,basic:false,desc:
 `Take damage after each movement step.`,
-        },{name:'Jinx',mtg:0,desc:
+        },{name:'Jinx',mtg:0,basic:false,desc:
 `Take damage after a random period of time, a 1/3 chance each turn.
 Reduces to half, rounded down, afterward.`,
-        },{name:'Fade',mtg:0,desc:
+        },{name:'Fade',mtg:0,basic:false,desc:
 `After a successful hit, the next attack next turn will do no damage.`,
-        },{name:'Contains',mtg:0,desc:
+        },{name:'Contains',mtg:0,basic:false,desc:
 `Will create another card and add it to your deck when destroyed.`,
-        },{name:'Silence',mtg:0,desc:
+        },{name:'Silence',mtg:0,basic:false,desc:
 `Reduces enemy attack to just damage, no additional effects.`,
-        },{name:'Mixed',mtg:0,desc:
+        },{name:'Mixed',mtg:0,basic:false,desc:
 `Will face 180 degrees from target.`,
-        },{name:'Chained',mtg:0,desc:
+        },{name:'Chained',mtg:0,basic:false,desc:
 `Cannot turn around. Decrements afterward.`,
-        },{name:'Poison',mtg:0,desc:
+        },{name:'Poison',mtg:0,basic:false,desc:
 `Deals damage every turn. Decrements afterward.`,
-        },{name:'Vision',mtg:0,desc:
+        },{name:'Vision',mtg:0,basic:false,desc:
 `Counts up by 1 whenever you play a card.
 When you gain 12 Vision, lose 12 and gain 1 Awakening.`,
-        },{name:'Awakening',mtg:0,desc:
+        },{name:'Awakening',mtg:0,basic:false,desc:
 `Gain Awakening by getting 12 vision. When you gain Awakening, enter Elemental Form.
 When you end you turn without Awakening, exit Elemental Form. Degrades by 1 per turn.`,
-        },{name:'Elemental Form',mtg:0,desc:
+        },{name:'Elemental Form',mtg:0,basic:false,desc:
 `When you gain Awakening, enter Elemental Form.`,
-        },{name:'History',mtg:0,desc:
+        },{name:'History',mtg:0,basic:false,desc:
 //`Whenever you draw or rewind a card, deal damage to a random enemy.
 `Whenever you draw or rewind a card, deal damage to the enemy with the highest health.
 Stacks degrade by half, rounded up, each turn.`,
-        },{name:'Rewind',mtg:0,desc:
+        },{name:'Rewind',mtg:0,basic:false,desc:
 `Send a card back to your draw pile. By default, shuffles it in.`,
-        },{name:'Scry',mtg:0,desc:
+        },{name:'Scry',mtg:0,basic:false,desc:
 `Look at the top X cards of your draw pile. You may choose to discard any number of them.`,
-        },{name:'Temporary Item',mtg:0,desc:
+        },{name:'Temporary Item',mtg:0,basic:false,desc:
 `Item that is removed at the end of combat.`,
-        },{name:'Barrier',mtg:0,desc:
+        },{name:'Barrier',mtg:0,basic:false,desc:
 `Damage deducts barrier before health. Barrier is kept between turns.
 Block is reduced before barrier when calculating hits taken.`,
-        },{name:'Discus',mtg:0,desc:
+        },{name:'Discus',mtg:0,basic:false,desc:
 `Token card. Does decent damage and gives some bounce as well.
 Costs 2 to play and retains. Range 1-3.`,
-        },{name:'Miss',mtg:0,desc:
+        },{name:'Miss',mtg:0,basic:false,desc:
 `Has a 50% chance to miss each attack.
 Decrements after each miss.`,
-        },{name:'Knowledge',mtg:0,desc:
+        },{name:'Knowledge',mtg:0,basic:false,desc:
 `For every 3 Knowledge you have, draw 1 more card each turn.
 Caps at +1, cap is raised by 1 for each Wisdom you have.`,
-        },{name:'Wisdom',mtg:0,desc:
+        },{name:'Wisdom',mtg:0,basic:false,desc:
 `Raises the cap on extra draw gained from Knowledge.`,
-        },{name:'Chocolate Chip',mtg:0,desc:
+        },{name:'Chocolate Chip',mtg:0,basic:false,desc:
 `Deals splash damage when you add block.`,
-        },{name:'Mass',mtg:0,desc:
+        },{name:'Mass',mtg:0,basic:false,desc:
 `If a card with Mass is present, it will always
 be chosen when a "random" card is selected.
 (Only works in battle, not out of combat.)`,
-        },{name:'Pulled',mtg:0,desc:
+        },{name:'Pulled',mtg:0,basic:false,desc:
 `Triggers when a card with Mass is randomly selected.`,
-        },{name:'Radiation',mtg:0,desc:
+        },{name:'Radiation',mtg:0,basic:false,desc:
 `Deals splash down around yourself at the start of your turn.
 Stacks degrade by half, rounded up, each turn.`,
-        },{name:'Bounce',mtg:0,desc:
+        },{name:'Bounce',mtg:0,basic:false,desc:
 `Acts like block, but counters equal to amount of Bounce spent.
 If no targetable user can be countered, still blocks
 damage and is spent, but does not counter.`,
-        },{name:'Pure',mtg:0,desc:
+        },{name:'Pure',mtg:0,basic:false,desc:
 `When you draw a status card, it is automatically exhausted,
 and another card is drawn in its place.
 Decrements afterward.`,
-        },{name:'Lock On',mtg:0,desc:
+        },{name:'Lock On',mtg:0,basic:false,desc:
 `Each stack increases damage taken by 10%.
 Decrements each turn.`,
-        },{name:'Pity',mtg:0,desc:
+        },{name:'Pity',mtg:0,basic:false,desc:
 `Prevents the effect of weak, vulnerable, and frail.
 Decrements each turn.`,
-        },{name:'Cycle',mtg:0,desc:
+        },{name:'Cycle',mtg:0,basic:false,desc:
 `If the next card played is of this class, it costs 0.
 Otherwise, remove this status.`,
-        },{name:'Recover X',mtg:0,desc:
+        },{name:'Recover X',mtg:0,basic:false,desc:
 `Put a card from discard pile into hand and make it cost 0.
 It must cost less than or equal to X.`,
-        },{name:'Prime X',mtg:0,desc:
+        },{name:'Prime X',mtg:0,basic:false,desc:
 `All cards containing 'Pulse' in hand cost X less.`,
-        },{name:'Follow-Up',mtg:0,desc:
+        },{name:'Follow-Up',mtg:0,basic:false,desc:
 `Marks specific cards.
 When Triggered, draw the next Follow-Up card.
 It costs 0, but must be played immediately or discards.`,
-        },{name:'Communize',mtg:0,desc:
+        },{name:'Communize',mtg:0,basic:false,desc:
 `When an enemy with Communize dies, add a Worker to deck.
 Decrements each turn.`,
-        },{name:'Assign X',mtg:0,desc:
+        },{name:'Assign X',mtg:0,basic:false,desc:
 `If you have X Workers in hand, exhaust them and
 trigger the assign effect.`,
-        },{name:'Worker',mtg:0,desc:
+        },{name:'Worker',mtg:0,basic:false,desc:
 `Subcard that costs 0, deals 4 damage and adds 4 block.
 Is considered classless.`,
-        },{name:'Vigor',mtg:0,desc:
+        },{name:'Vigor',mtg:0,basic:false,desc:
 `Next attack deals more damage equal to your Vigor.
 Removes itself afterward.`,
-        },{name:'Vigil',mtg:0,desc:
+        },{name:'Vigil',mtg:0,basic:false,desc:
 `Next times you add block, gain block equal to your Vigil.
 Removes itself afterward.`,
-        },{name:'Threshold',mtg:0,desc:
+        },{name:'Threshold',mtg:0,basic:false,desc:
 `If damage dealt is above a value, trigger an additional effect.`,
-        },{name:'Feint',mtg:0,desc:
+        },{name:'Feint',mtg:0,basic:false,desc:
 `The next attack deals no damage but gives Vigor equal to its damage.
 Decrements afterward.`,
-        },{name:'Resonance',mtg:0,desc:
+        },{name:'Resonance',mtg:0,basic:false,desc:
 `Vigor and vigil have 10% more effect for every positive stack and 10% less per negative stack.
 Does not decrement.`,
-        },{name:'Ringing',mtg:0,desc:
+        },{name:'Ringing',mtg:0,basic:false,desc:
 `When you gain 6 Ringing, lose it and gain 1 Bell.
 Does not decrement.`,
-        },{name:'Bell',mtg:0,desc:
+        },{name:'Bell',mtg:0,basic:false,desc:
 `When you gain Bell, deal 9 damage to each enemy once per Bell you have.
 This attack is not affected by most statuses but is affected by Vigor.
 Does not decrement.`,
-        },{name:'Caffeine',mtg:0,desc:
+        },{name:'Caffeine',mtg:0,basic:false,desc:
 `When you gain 3 Caffeine, lose 3 Caffeine and lose 3 health.`,
-        },{name:'Evolve',mtg:0,desc:
+        },{name:'Evolve',mtg:0,basic:false,desc:
 `An Evolve card discards to your draw pile when not played.
 Afterward, the Evolve counter increments by 1.`,
-        },{name:'Forge',mtg:0,desc:
+        },{name:'Forge',mtg:0,basic:false,desc:
 `When this card is upgraded, it is instead removed from the deck.
 Afterward, trigger its forge effect.`,
-        },{name:'Coffee',mtg:0,desc:
+        },{name:'Coffee',mtg:0,basic:false,desc:
 `When played, gain 1 caffeine.`,
-        },{name:'Faith',mtg:0,desc:
+        },{name:'Faith',mtg:0,basic:false,desc:
 `Gained through cards. When you gain 6 Faith, complete a Invocation.`,
-        },{name:'Invocation',mtg:0,desc:
+        },{name:'Invocation',mtg:0,basic:false,desc:
 `Choose an Astrology or Riptide to add to hand.
 After adding both, also add a Miracle.`,
-        },{name:'Echo',mtg:0,desc:
+        },{name:'Echo',mtg:0,basic:false,desc:
 `When drawn, duplicates once when played.`,
-        },{name:'Population',mtg:0,desc:
+        },{name:'Population',mtg:0,basic:false,desc:
 `The number of workers in your deck.`,
-        },{name:'Wish',mtg:0,desc:
+        },{name:'Wish',mtg:0,basic:false,desc:
 `Cards that consume Influence each turn to activate their abilities.
 Playing them the first time activates them. Play them again to deactivate them.
 Deactivate themselves automatically if not enough Influence is available.`,
-        },{name:'Influence',mtg:0,desc:
+        },{name:'Influence',mtg:0,basic:false,desc:
 `Resource gained through cards. Used to play Wishes.`,
-        },{name:'Process',mtg:0,desc:
+        },{name:'Process',mtg:0,basic:false,desc:
 `Convert a set of temporary item inputs into corresponding outputs.
 Continues activating as long as you have the inputs.`,
         },
@@ -8963,6 +8966,7 @@ options={
     attack:false,//shows the attack id of cards in the corner
     massDrop:true,//shows the player that cards were pulled
     moneyOutline:false,//draws outlines around money
+    tooltip:false,//card rewards have tooltips
 
     oldDuplicate:false,//duplicate cards by copying them, rather than reusing them, DEPRECATED
     oldUnbuild:false,//multiple copies of unbuild, 1 per construct, DEPRECATED

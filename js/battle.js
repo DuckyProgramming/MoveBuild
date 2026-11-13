@@ -172,9 +172,13 @@ class battle{
     }
     create(){
         graphics.combatant=[]
+
+        game.tooltip=game.diff==0&&!game.dev
+        //game.theme=0
+
         constants.collisionDamage=4
         constants.disabledRelicManager=new disabledRelicManager()
-        //game.theme=0
+
         this.players=this.player.length
         this.initialGraphics()
 

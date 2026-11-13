@@ -79,7 +79,8 @@ class card{
         this.characteristic=0
         this.time=0
 
-        this.anim={select:0,afford:0,costDown:0,costUp:0}
+        this.anim={select:0,afford:0,costDown:0,costUp:0,tooltip:0}
+        this.tooltip={active:false,dict:[]}
         
         try{
             this.name=name||types.card[this.type].name
@@ -3364,7 +3365,8 @@ class card{
             case 3873: case 3874: case 3875: case 4124: case 4125: case 4126: case 4127: case 4128: case 4129: case 4770:
             case 4972: case 5002: case 5003: case 5080: case 8338: case 8339: case 8340: case 8442: case 9329: case 11305:
             case 11306: case 11307: case 11308: case 11309: case 11310: case 11311: case 11312: case 11576: case 11607: case 11652:
-            case 11653: case 11654: case 11655: case 11656: case 11657: case 11658: case 11659: case 11827: case 11830:
+            case 11653: case 11654: case 11655: case 11656: case 11657: case 11658: case 11659: case 11827: case 11830: case 11842:
+            case 11843: case 11844: case 11845:
                 if(this.spec.includes(60)){
                     this.discardEffectBuffered.push(1)
                 }else{
@@ -3552,6 +3554,11 @@ class card{
                     this.discardEffectBuffered.push(1)
                 }else{
                     this.discardEffect.push(15)
+                }
+            break
+            case 11852:
+                if(userCombatant.getStatus('Strength')>0){
+                    this.exhaust=true
                 }
             break
         }
@@ -4021,7 +4028,7 @@ class card{
                 case 5540:
                     userCombatant.addBlock(this.effect[1])
                 break
-                case 5552: case 5553: case 5554: case 5555:
+                case 5552: case 5553: case 5554: case 5555: case 11851:
                     this.costDown(0,[1])
                 break
                 case 5592:
@@ -4869,6 +4876,20 @@ class card{
                 userCombatant.statusEffect('Free Defense',1)
                 userCombatant.statusEffect('Free Skill',1)
             break
+            case 11842:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,13,[1])
+                userCombatant.statusEffect('Temporary Strike Boost',this.effect[1])
+            break
+            case 11843:
+                this.battle.cardManagers[this.player].drawAbstract(this.effect[0],20,13,[2])
+                userCombatant.statusEffect('Temporary Defend Boost',this.effect[1])
+            break
+            case 11844:
+                this.battle.cardManagers[this.player].allEffect(2,126)
+            break
+            case 11845:
+                userCombatant.wish+=this.battle.cardManagers[this.player].hand.numberAbstract(4,[[12]])
+            break
         }
     }
     doubleBoth(){
@@ -4934,6 +4955,20 @@ class card{
                 this.battle.combatantManager.allEffect(30,[this.effect[1]])
             break
         }
+    }
+    formTooltip(){
+        let desc=this.description(this.attack,this.effect,this.spec,this.target)
+        let fixed=desc.toLowerCase().replaceAll('\n',' ')
+        for(let a=0,la=types.dictionary.length;a<la;a++){
+            if(
+                !types.dictionary[a].basic&&
+                (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
+                fixed.includes(types.dictionary[a].name.toLowerCase())
+            ){
+                this.tooltip.dict.push(a)
+            }
+        }
+        this.tooltip.active=this.tooltip.dict.length>0
     }
     display(cancelDesc=false){
         if(this.battle.modded(232)){
@@ -5379,7 +5414,8 @@ class card{
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
                     this.layer.noFill()
-                }else if(this.attack==10447||this.attack==10810||this.attack==11805){
+                //}else if(this.attack==10447||this.attack==10810||this.attack==11805){
+                }else if(this.attack==10447||this.attack==10810){
                     this.gradient=[new p5.LinearGradient(-45,this.width*3-60)]
                     this.gradient[0].colors(0.0,
                         color(0,255,0,this.fade),0.1,
@@ -6097,7 +6133,8 @@ class card{
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
                     this.layer.noFill()
-                }else if(this.attack==10447||this.attack==10810||this.attack==11805){
+                //}else if(this.attack==10447||this.attack==10810||this.attack==11805){
+                }else if(this.attack==10447||this.attack==10810){
                     this.gradient=[new p5.LinearGradient(-45,this.width*3-60)]
                     this.gradient[0].colors(0.0,
                         color(0,255,0,this.fade),0.1,
@@ -6723,7 +6760,8 @@ class card{
                     }
                 }
             }
-            let devglow=this.colorful||this.attack==10447||this.attack==10810||this.attack==11805
+            //let devglow=this.colorful||this.attack==10447||this.attack==10810||this.attack==11805
+            let devglow=this.colorful||this.attack==10447||this.attack==10810
             if(variants.mtg&&list>=0&&list<=constants.playerNumber){
                 if(colorDetail.length>=2){
                     if(devglow){
@@ -7460,6 +7498,33 @@ class card{
                 }
             }
             this.layer.pop()
+        }
+    }
+    displayTooltip(){
+        if(this.fade>0&&this.size>0){
+            if(this.anim.tooltip>0){
+                this.layer.push()
+                this.layer.translate(this.position.x,this.position.y+this.tooltip.dict.length*30+70)
+                /*this.layer.fill(160,this.fade*0.8*this.anim.tooltip)
+                this.layer.rect(0,0,430,20+this.tooltip.dict.length*60,10)*/
+                this.layer.fill(200,this.fade*0.8*this.anim.tooltip)
+                this.layer.stroke(0,this.fade*0.8*this.anim.tooltip)
+                this.layer.strokeWeight(3)
+                for(let a=0,la=this.tooltip.dict.length;a<la;a++){
+                    this.layer.rect(0,30-la*30+a*60,400,50,5)
+                }
+                this.layer.fill(0,this.fade*0.8*this.anim.tooltip)
+                this.layer.noStroke()
+                this.layer.textSize(12)
+                for(let a=0,la=this.tooltip.dict.length;a<la;a++){
+                    this.layer.text(types.dictionary[this.tooltip.dict[a]].name,0,15-la*30+a*60)
+                }
+                this.layer.textSize(8)
+                for(let a=0,la=this.tooltip.dict.length;a<la;a++){
+                    this.layer.text(types.dictionary[this.tooltip.dict[a]].desc,0,37.5-la*30+a*60)
+                }
+                this.layer.pop()
+            }
         }
     }
     displayStatus(anim){

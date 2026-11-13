@@ -551,6 +551,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[4]&&user.status.main[402]!=0){
 				bonus+=user.status.main[402]
 			}
+			if(variant&&args[4]&&user.status.main[1086]!=0){
+				bonus+=user.status.main[1086]
+			}
 			if(variant&&args[6]&&user.status.main[403]>0){
 				bonus+=user.status.main[403]
 			}
@@ -730,6 +733,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			let totalDex=0
 			if(variant&&args[5]&&user.status.main[585]!=0){
 				bonusB+=user.status.main[585]
+			}
+			if(variant&&args[5]&&user.status.main[1087]!=0){
+				bonusB+=user.status.main[1087]
 			}
 			if(variant&&args[9]&&user.status.main[544]>0){
 				bonusB+=user.status.main[544]
@@ -2750,6 +2756,15 @@ function outDupes(){
 		}
 	}
 }
+function outDupeBaseLevels(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=a+1,lb=types.card.length;b<lb;b++){
+			if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])){
+				console.log(types.card[a].name)
+			}
+		}
+	}
+}
 function outReuse(){
 	/*for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
@@ -3842,7 +3857,6 @@ function checkExists(start,end){
 		7929,//invalid suit up
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
-		8718,//xor (marker card)
 		9661,//invalid silverswivel
 
 		945,1208,1209,1212,1213,1214,1216,1217,1219,1220,
@@ -4010,6 +4024,71 @@ function checkPast(){
 				}
 			}
 		})
+	}
+}
+function outUnnecessarySpec(spec,start=-99999,end=99999){
+	let lookup=range(0,end-start).map(a=>0)
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(types.card[a].levels[b].spec.includes(12)){
+				if(types.card[a].levels[b].attack[0]>=start&&types.card[a].levels[b].attack[0]<end){
+					lookup[types.card[a].levels[b].attack[0]-start]++
+				}
+				if(types.card[a].levels[b].attack[1]>=start&&types.card[a].levels[b].attack[1]<end){
+					lookup[types.card[a].levels[b].attack[1]-start]++
+				}
+			}else{
+				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end){
+					lookup[types.card[a].levels[b].attack-start]++
+				}
+			}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].mtg.levels[b].attack[0]>=start&&types.card[a].mtg.levels[b].attack[0]<end){
+					lookup[types.card[a].mtg.levels[b].attack[0]-start]++
+				}
+				if(types.card[a].mtg.levels[b].attack[1]>=start&&types.card[a].mtg.levels[b].attack[1]<end){
+					lookup[types.card[a].mtg.levels[b].attack[1]-start]++
+				}
+			}else{
+				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end){
+					lookup[types.card[a].mtg.levels[b].attack-start]++
+				}
+			}
+		}
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].rarity==-1){
+			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+				if(types.card[a].levels[b].spec.includes(12)){
+					if(types.card[a].levels[b].attack[0]>=start&&types.card[a].levels[b].attack[0]<end&&lookup[types.card[a].levels[b].attack[0]-start]>6&&types.card[a].levels[b].reality[0].includes(spec)){
+						print(types.card[a].name)
+					}
+					if(types.card[a].levels[b].attack[1]>=start&&types.card[a].levels[b].attack[1]<end&&lookup[types.card[a].levels[b].attack[1]-start]>6&&types.card[a].levels[b].reality[1].includes(spec)){
+						print(types.card[a].name)
+					}
+				}else{
+					if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6&&types.card[a].levels[b].spec.includes(spec)){
+						print(types.card[a].name)
+					}
+				}
+			}
+			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+				if(types.card[a].mtg.levels[b].spec.includes(12)){
+					if(types.card[a].mtg.levels[b].attack[0]>=start&&types.card[a].mtg.levels[b].attack[0]<end&&lookup[types.card[a].mtg.levels[b].attack[0]-start]>6&&types.card[a].mtg.levels[b].reality[0].includes(spec)){
+						print(types.card[a].name)
+					}
+					if(types.card[a].mtg.levels[b].attack[1]>=start&&types.card[a].mtg.levels[b].attack[1]<end&&lookup[types.card[a].mtg.levels[b].attack[1]-start]>6&&types.card[a].mtg.levels[b].reality[1].includes(spec)){
+						print(types.card[a].name)
+					}
+				}else{
+					if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6&&types.card[a].mtg.levels[b].spec.includes(spec)){
+						print(types.card[a].name)
+					}
+				}
+			}
+		}
 	}
 }
 function outCharIcon(start,end){

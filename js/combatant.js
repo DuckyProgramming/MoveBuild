@@ -108,7 +108,7 @@ constants.status={
         'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn','Double Buff',
         'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
-        'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up',
+        'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -219,7 +219,7 @@ constants.status={
         2,0,1,0,0,0,0,0,0,0,//106
         0,1,0,2,2,0,2,0,0,0,//107
         0,0,0,0,0,0,0,0,0,0,//108
-        0,0,0,0,0,0,
+        0,0,0,0,0,0,2,2,
     ],
     /*
     0-none
@@ -339,7 +339,7 @@ constants.status={
         2,2,1,2,2,2,2,2,2,2,//106
         2,2,2,0,0,2,0,2,2,2,//107
         2,2,2,2,2,2,2,2,2,2,//108
-        2,1,2,2,2,2,
+        2,1,2,2,2,2,2,2,
     ]
     /*
     0-good
@@ -1520,7 +1520,8 @@ class combatant{
                         this.subAttackTypeSwitch([[2,270,270,[1,2]]])
                     break
                     case 'Relic':
-                        this.statusEffect('1.5x Damage',1)
+                        //this.statusEffect('1.5x Damage',1)
+                        this.statusEffect('Double Damage',1)
                     break
                     case 'Anomaly':
                         this.subAttackTypeSwitch([[0,2,19,[]]])
@@ -1588,7 +1589,8 @@ class combatant{
                     break
                     case 'Sharpshot':
                         this.move.type=11
-                        this.move.speed++
+                        this.subAttackTypeSwitch([[2,50,50,[1,1.5]]])
+                        //this.move.speed++
                     break
                     case 'Bronze Orb A': case 'Bronze Orb B':
                         this.statusEffect('Metallicize',6)

@@ -1761,6 +1761,9 @@ class overlay{
                     if(this.args[0]==0||this.args[0]==2){
                         this.cards.forEach(card=>card.nonCalc=true)
                     }
+                    if(game.tooltip){
+                        this.cards.forEach(card=>card.formTooltip())
+                    }
                     if(this.args[0]==3&&this.lastTake!=-1){
                         let index=floor(random(0,this.cards.length))
                         this.lastTake.deSize=false
@@ -1887,6 +1890,9 @@ class overlay{
                     this.setupArgs=args
                     for(let a=0,la=this.cards.length;a<la;a++){
                         this.cards[a].nonCalc=true
+                        if(game.tooltip){
+                            this.cards[a].formTooltip()
+                        }
                     }
                 }
             break
@@ -3696,8 +3702,12 @@ class overlay{
                 }*/
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
-                    this.cards[a].anim={select:0,afford:1}
+                    this.cards[a].anim.select=0
+                    this.cards[a].anim.afford=1
                     this.cards[a].display()
+                }
+                if(game.tooltip){
+                    this.cards.forEach(card=>card.displayTooltip())
                 }
             break
             case 4:
@@ -3802,7 +3812,7 @@ class overlay{
                 }
                 this.layer.textSize(8)
                 for(let a=0,la=this.suggestions.length;a<la;a++){
-                    this.layer.text(types.dictionary[this.suggestions[a]].desc,this.layer.width/2,this.layer.height/2-125+a*60)
+                    this.layer.text(types.dictionary[this.suggestions[a]].desc,this.layer.width/2,this.layer.height/2-122.5+a*60)
                 }
             break
             case 7:
@@ -3849,8 +3859,12 @@ class overlay{
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
-                    this.cards[a].anim={select:0,afford:1}
+                    this.cards[a].anim.select=0
+                    this.cards[a].anim.afford=1
                     this.cards[a].display()
+                }
+                if(game.tooltip){
+                    this.cards.forEach(card=>card.displayTooltip())
                 }
             break
             case 9:
@@ -3861,7 +3875,8 @@ class overlay{
                 this.layer.text('Techify a Card',this.layer.width/2,this.layer.height/2-65-this.battle.players*150+150+this.player*300)
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
-                    this.cards[a].anim={select:0,afford:1}
+                    this.cards[a].anim.select=0
+                    this.cards[a].anim.afford=1
                     this.cards[a].display()
                 }
             break
@@ -4016,7 +4031,8 @@ class overlay{
                 this.layer.text(this.args[0]==2?`Select Invocation`:`Select Ability`,this.layer.width/2,this.layer.height/2-70)
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
-                    this.cards[a].anim={select:0,afford:1}
+                    this.cards[a].anim.select=0
+                    this.cards[a].anim.afford=1
                     this.cards[a].display()
                 }
             break
@@ -4290,7 +4306,8 @@ class overlay{
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
-                    this.cards[a].anim={select:0,afford:1}
+                    this.cards[a].anim.select=0
+                    this.cards[a].anim.afford=1
                     this.cards[a].display()
                 }
                 this.layer.noStroke()
@@ -4383,7 +4400,8 @@ class overlay{
                 this.layer.text(`${this.picks} Pick${pl(this.picks)} Left`,this.layer.width/2+150,this.layer.height/2-210)
                 this.cards.forEach(card=>{
                     card.fade=1
-                    card.anim={select:0,afford:1}
+                    card.anim.select=0
+                    card.anim.afford=1
                 })
                 for(let a=0,la=this.sets.length;a<la;a++){
                     this.layer.push()
@@ -4589,6 +4607,10 @@ class overlay{
                         }else if(this.cards[a].deSize&&this.cards[a].size>0){
                             this.cards[a].size=round(this.cards[a].size*5-1)/5
                         }
+                        if(game.tooltip){
+                            let mouseover=pointInsideBox({position:inputs.rel},this.cards[a])
+                            this.cards[a].anim.tooltip=smoothAnim(this.cards[a].anim.tooltip,this.cards[a].tooltip.active&&mouseover,0,1,5)
+                        }
                     }
                 break
                 case 5:
@@ -4607,6 +4629,10 @@ class overlay{
                             this.cards[a].size=round(this.cards[a].size*5+1)/5
                         }else if(this.cards[a].deSize&&this.cards[a].size>0){
                             this.cards[a].size=round(this.cards[a].size*5-1)/5
+                        }
+                        if(game.tooltip){
+                            let mouseover=pointInsideBox({position:inputs.rel},this.cards[a])
+                            this.cards[a].anim.tooltip=smoothAnim(this.cards[a].anim.tooltip,this.cards[a].tooltip.active&&mouseover,0,1,5)
                         }
                     }
                 break
