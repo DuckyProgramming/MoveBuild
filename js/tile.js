@@ -22,6 +22,7 @@ class tile{
         this.fire=[0,0]
         this.submark=[0,0]
         this.combatant=0
+        this.pivot=random(0,1)
 
         this.anim={target:[
             [0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -475,10 +476,22 @@ class tile{
                     this.layer.ellipse(0,0,48,24)
                 break
                 case 7:
+                    this.layer.fill(200,200,180,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,1,24,12)
+                    this.layer.rect(0,0,24,2)
+                    this.layer.translate(0,-1)
+                    this.layer.scale(1,0.5)
+                    this.layer.rotate(this.pivot*360)
                     this.layer.fill(240,240,220,this.fade*this.anim.part[a])
-                    this.layer.ellipse(0,0,24,12)
+                    //this.layer.ellipse(0,0,24,12)
+                    this.layer.ellipse(0,0,24)
                     this.layer.fill(220,220,200,this.fade*this.anim.part[a])
-                    this.layer.ellipse(0,0,15,7.5)
+                    //this.layer.ellipse(0,0,15,7.5)
+                    this.layer.ellipse(0,0,15)
+                    this.layer.fill(255,255,100,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,6)
+                    this.layer.triangle(-1.5,-4.5,1.5,-4.5,0,-10.5)
+                    this.layer.triangle(-1.5,4.5,1.5,4.5,0,10.5)
                 break
                 case 8:
                     this.layer.fill(60,this.fade*this.anim.part[a])

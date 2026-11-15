@@ -759,14 +759,16 @@ and still wastes draw, so plan accordingly.`,
                 this.pages=[
 `Edgar, the Disgraced CEO, is a character with a focus on aggression.
 In terms of strategy, he is fairly simple, but he has a few gimmicks.
-They are: Guns and Ammo, Positioned Cards, and Burn.`,
+They are: Guns and Ammo, Accurate, and Burn.`,
+//They are: Guns and Ammo, Positioned Cards, and Burn.`,
 `Guns are a class of attack. They typically have longer range.
 Guns are powerful in terms of damage and range compared to normal cards.
 The weakness of guns is that each gun use spends 1 ammo.`,
 `Ammo is a numerical value, and is only really used for guns.
 Ammo is gained through cards. A gun-heavy deck is able to deal a lot of damage,
 but becomes reliant on an ammo source to remain functional.`,
-`Positioned cards are cards that have an extra effect based on their position.
+//`Positioned cards are cards that have an extra effect based on their position.
+`Accurate cards are cards that have an extra effect at your hand's center.
 Using them often requires playing cards to get them in the right place.`,
 `As Edgar, each turn is almost played out separately, even more than in normal runs.
 Finding the right way to play the cards you get as Edgar is simple, but key.`,

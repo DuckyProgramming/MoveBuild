@@ -4679,11 +4679,12 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.monocle&&lcos(this.anim.direction-18)>0){
-                    this.layer.noStroke()
+                    //this.layer.noStroke()
                     this.layer.fill(this.color.monocle[0][0],this.color.monocle[0][1],this.color.monocle[0][2],this.fade*this.fades.monocle/5)
                     this.layer.stroke(this.color.monocle[1][0],this.color.monocle[1][1],this.color.monocle[1][2],this.fade*this.fades.monocle)
                     this.layer.strokeWeight(1)
-                    this.layer.ellipse(lsin(this.anim.direction-18)*16,-78,6*lcos(this.anim.direction-16),6)
+                    //this.layer.ellipse(lsin(this.anim.direction-18)*16,-78,6*lcos(this.anim.direction-16),6)
+                    this.layer.ellipse(lsin(this.anim.direction-18)*16,-78,6*lcos(this.anim.direction-18),6)
                 }
             break
             case 'Chip':
@@ -17371,12 +17372,19 @@ combatant.prototype.display=function(){
                     this.layer.line(-16,-90,16,-90)
                     this.layer.quad(-12,-90,12,-90,8,-96,-8,-96)
                 }
-                if((this.name=='Cartel'||this.name=='Slippery Gangster'||this.name=='Roger Reviv'||this.name=='Bodyguard'||this.name=='Tech Support'||this.name=='Bar Security')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
+                if((this.name=='Cartel'||this.name=='Slippery Gangster'||this.name=='Roger Reviv'||this.name=='Tech Support'||this.name=='Bar Security')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
                     this.layer.fill(...this.color.sunglasses,this.fade*this.fades.sunglasses)
                     this.layer.noStroke()
                     this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,8*lcos(this.anim.direction),6)
                     this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,8*lcos(this.anim.direction),6)
                     this.layer.rect(lsin(this.anim.direction)*16,-78,16*lcos(this.anim.direction),2)
+                }
+                if(this.name=='Bodyguard'&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
+                    this.layer.fill(...this.color.sunglasses,this.fade*this.fades.sunglasses)
+                    this.layer.noStroke()
+                    this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-4.5,-78,6*lcos(this.anim.direction),4)
+                    this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*4.5,-78,6*lcos(this.anim.direction),4)
+                    this.layer.rect(lsin(this.anim.direction)*16,-78,12*lcos(this.anim.direction),1)
                 }
                 if(this.name=='Voidglass'&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
@@ -17501,11 +17509,28 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.name=='Capitalist'&&this.trigger.display.hat){
-                    this.layer.fill(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade*this.fades.hat)
-                    this.layer.stroke(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade*this.fades.hat)
+                    this.layer.fill(...this.flashColor(this.color.hat[0]),this.fade*this.fades.hat)
+                    this.layer.stroke(...this.flashColor(this.color.hat[0]),this.fade*this.fades.hat)
                     this.layer.strokeWeight(5)
                     this.layer.line(-15,-90,15,-90)
-                    this.layer.rect(0,-100,16,20,1)
+                    //this.layer.rect(0,-100,16,20,1)
+                    this.layer.rect(0,-98,16,16,1)
+                    this.layer.fill(...this.flashColor(this.color.hat[1]),this.fade*this.fades.hat)
+                    this.layer.noStroke()
+                    this.layer.rect(0,-97,21,5)
+                }
+                if(this.name=='Capitalist'&&this.trigger.display.monocle&&lcos(this.anim.direction-30)>0){
+                    this.layer.fill(...this.flashColor(this.color.monocle),this.fade*this.fades.monocle*0.5)
+                    this.layer.stroke(...this.flashColor(this.color.monocle),this.fade*this.fades.monocle)
+                    this.layer.strokeWeight(0.5)
+                    this.layer.ellipse(lsin(this.anim.direction-30)*16,-75.25,4.5*lcos(this.anim.direction-30),4.5)
+                    this.layer.noFill()
+                    this.layer.bezier(
+                        lsin(this.anim.direction-30)*16,-73,
+                        lsin(this.anim.direction-30)*15,-67,
+                        lsin(this.anim.direction-27)*11,-62,
+                        lsin(this.anim.direction-15)*5,-60,
+                    )
                 }
                 if((this.name=='Rewriter'||this.name=='-h Rewriter')&&this.trigger.display.hat){
                     this.layer.fill(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade*this.fades.hat)

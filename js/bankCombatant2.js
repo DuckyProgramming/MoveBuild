@@ -3397,13 +3397,23 @@ combatant.prototype.setupGraphics=function(direction){
                     this.color.eyeHole=[240,220,180]
                 break
                 case 'Capitalist':
-                    this.color={skin:{head:[240,220,180],body:[20,20,20],legs:[15,15,15],arms:[15,15,15]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
-                    this.color.tie=[[200,200,200],[200,100,50]]
-                    this.color.hat=[40,40,40]
+                    //this.color={skin:{head:[240,220,180],body:[20,20,20],legs:[15,15,15],arms:[15,15,15]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    //this.color={skin:{head:[240,220,180],body:[20,20,20],legs:[15,15,15],arms:[15,15,15]},eye:{back:[250,150,0],front:[250,225,50],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.color={skin:{head:[240,220,180],body:[225,180,0],legs:[220,175,0],arms:[220,175,0]},eye:{back:[250,150,0],front:[250,225,50],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    this.anim.eye=[1,1]
+                    this.anim.eyeStyle=[7,7]
+                    //this.color.tie=[[200,200,200],[200,100,50]]
+                    //this.color.tie=[[200,200,200],[225,180,0]]
+                    this.color.tie=[[200,180,160],[20,20,20]]
+                    //this.color.hat=[40,40,40]
+                    this.color.hat=[[40,40,40],[250,200,0]]
+                    this.color.monocle=[240,240,240]
                     this.fades.tie=1
                     this.fades.hat=1
+                    this.fades.monocle=1
                     this.trigger.display.tie=true
                     this.trigger.display.hat=true
+                    this.trigger.display.monocle=true
                 break
                 case 'Bodyguard':
                     this.color={skin:{head:[240,220,180],body:[20,20,20],legs:[15,15,15],arms:[15,15,15]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
@@ -3413,6 +3423,7 @@ combatant.prototype.setupGraphics=function(direction){
                     this.fades.sunglasses=1
                     this.trigger.display.tie=true
                     this.trigger.display.sunglasses=true
+                    this.trigger.display.eye=[false,false]
                 break
                 case 'Management Soldier':
                     this.color={skin:{head:[240,220,180],body:[95,105,110],legs:[65,85,85],arms:[85,135,195]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
@@ -7965,7 +7976,25 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
         break
         case 3:
             this.layer.noFill()
-            if(this.anim.eyeStyle[key]==6&&this.anim.eye[key]>0){
+            if(this.anim.eyeStyle[key]==7&&this.anim.eye[key]>0){
+                let x=lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor
+                let y=this.parts.eyeLevel
+                let lc=constrain(2*lcos(this.spin.eye[key]+this.anim.head),0,1)
+                this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                this.layer.arc(x,y-1.25*this.anim.eye[key]*lc,3*this.anim.eye[key]*lc,2.5*this.anim.eye[key],90,270)
+                this.layer.arc(x,y+1.25*this.anim.eye[key]*lc,3*this.anim.eye[key]*lc,2.5*this.anim.eye[key],-90,90)
+                this.layer.line(x,y-2.5*this.anim.eye[key],x+1.25*this.anim.eye[key]*lc,y-2.5*this.anim.eye[key])
+                this.layer.line(x,y+2.5*this.anim.eye[key],x-1.25*this.anim.eye[key]*lc,y+2.5*this.anim.eye[key])
+                this.layer.line(x,y-3.5*this.anim.eye[key],x,y+3.5*this.anim.eye[key])
+                this.layer.stroke(...this.color.eye.front,this.fade*this.fades.eye[key])
+                this.layer.strokeWeight((2-this.anim.eye[key]*1.5)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                this.layer.arc(x,y-1.25*this.anim.eye[key]*lc,3*this.anim.eye[key]*lc,2.5*this.anim.eye[key],90,270)
+                this.layer.arc(x,y+1.25*this.anim.eye[key]*lc,3*this.anim.eye[key]*lc,2.5*this.anim.eye[key],-90,90)
+                this.layer.line(x,y-2.5*this.anim.eye[key],x+1.25*this.anim.eye[key]*lc,y-2.5*this.anim.eye[key])
+                this.layer.line(x,y+2.5*this.anim.eye[key],x-1.25*this.anim.eye[key]*lc,y+2.5*this.anim.eye[key])
+                this.layer.line(x,y-3.5*this.anim.eye[key],x,y+3.5*this.anim.eye[key])
+            }else if(this.anim.eyeStyle[key]==6&&this.anim.eye[key]>0){
                 this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[key])
                 this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                 this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)

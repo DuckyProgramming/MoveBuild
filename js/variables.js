@@ -8543,6 +8543,9 @@ Deactivate themselves automatically if not enough Influence is available.`,
         },{name:'Process',mtg:0,basic:false,desc:
 `Convert a set of temporary item inputs into corresponding outputs.
 Continues activating as long as you have the inputs.`,
+        },{name:'Accurate',mtg:0,basic:false,desc:
+`Triggers when a card is at the center of your hand, in terms of card count.
+If you have an even number of cards in hand, both center cards count.`,
         },
         //mark dict
     ],diff:[
@@ -8573,7 +8576,8 @@ Continues activating as long as you have the inputs.`,
         {name:'Banlands',desc:'Anti-Player Spikes Apply Vulnerable'},//26
         {name:'Enemy Scaling',desc:'Enemies Scale Their Damage'},//27-29
         {name:'Price Gouging',desc:'Rarer and Unique Items in the Shop Cost Randomly More'},//new
-        {name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
+        {name:'Unfriendly',desc:'Random Allies Give Less Benefit'},//new
+        //{name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
         {name:'Unfair',desc:'All Enemies Have Their Unique Strengths Enhanced'},//31
         {name:'Brutal',desc:'Every Enemy is Buffed Heavily'},//32
         {name:'Ruination',desc:'???'},//33

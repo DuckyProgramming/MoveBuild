@@ -1151,7 +1151,7 @@ class card{
             case 2913: case 2998: case 9566:
                 this.effect[0]+=this.effect[1]
             break
-            case 2953: case 2954: case 2955: case 8388:
+            case 2953: case 2954: case 2955: case 8388: case 11883:
                 this.setCost(0,[0])
                 this.additionalSpec.push(-2)
             break
@@ -1201,6 +1201,15 @@ class card{
             case 11537:
                 userCombatant.addBlock(this.effect[0])
                 userCombatant.statusEffect('Block Next Turn',this.effect[1])
+                if(userCombatant.getStatus('Moriya Talisman Temporary Strength')>0){
+                    userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Moriya Talisman Temporary Strength'))
+                }
+            break
+            case 11894:
+                userCombatant.statusEffect('Strength',this.effect[0])
+            break
+            case 11905:
+                this.battle.combatantManager.allEffect(43,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
             break
         }
         return 0
@@ -2649,7 +2658,7 @@ class card{
                     this.effect[1]+=this.effect[2]
                 }
             break
-            case 11668:
+            case 11668: case 11908:
                 if(encounterClass==2){
                     this.effect[0]+=this.effect[2]
                     this.effect[1]+=this.effect[2]
@@ -3273,7 +3282,7 @@ class card{
             case 2501: case 3198: case 3647: case 3915: case 4013: case 4178: case 4457: case 4658: case 4727: case 4771:
             case 5208: case 5559: case 5560: case 5750: case 6114: case 6334: case 6657: case 6658: case 6901: case 7027:
             case 7028: case 7216: case 7224: case 7378: case 7754: case 7755: case 7811: case 7812: case 7893: case 8801:
-            case 8802: case 8834: case 9669: case 10797: case 10798: case 11429: case 11430: case 11431: case 11432:
+            case 8802: case 8834: case 9669: case 10797: case 10798: case 11429: case 11430: case 11431: case 11432: case 11926:
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431: case 8056:
@@ -3561,6 +3570,11 @@ class card{
                     this.exhaust=true
                 }
             break
+            case 11903:
+                if(userCombatant.getStatus('Dexterity')>0){
+                    this.exhaust=true
+                }
+            break
         }
         if(this.spec.includes(88)){
             this.spec.splice(this.spec.indexOf(88),1)
@@ -3667,6 +3681,10 @@ class card{
                     }else{
                         this.battle.cardManagers[this.player].allEffect(2,2)
                     }
+                break
+                case -172:
+                    userCombatant.takeDamage(this.effect[0],-1)
+                    this.effect[0]+=this.effect[1]
                 break
                 case 52: case 220: case 594: case 1508: case 3914: case 7530: case 7531: case 8268: case 10872:
                     this.deSize=true

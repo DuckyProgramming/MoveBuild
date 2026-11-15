@@ -4881,6 +4881,14 @@ class group{
                     case 30:
                         list[list.length-1].setCost(0,[1])
                     break
+                    case 31:
+                        list[list.length-1].setCost(0,[0])
+                        if(this.battle.cardManagers[this.player].hand.cards.length>0){
+                            for(let a=0,la=args[1];a<la;a++){
+                                this.battle.cardManagers[this.player].hand.copySelf(this.battle.cardManagers[this.player].hand.cards.length-1)
+                            }
+                        }
+                    break
                 }
             }
         }

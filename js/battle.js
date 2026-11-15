@@ -1954,10 +1954,10 @@ class battle{
     }
     addEnergy(amount,player){
         this.relicManager.activate(17,[amount,player])
-        if(player<this.players){
-            if(amount!=0){
-                this.anim[amount>0?'energyUp':'energyDown']=1
-            }
+        if(amount!=0&&player<this.players){
+            //if(amount!=0){
+            this.anim[amount>0?'energyUp':'energyDown']=1
+            //}
             this.cardManagers[player].allEffectArgs(2,25,[amount])
             this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount)
             if(variants.mtg){
@@ -1969,10 +1969,10 @@ class battle{
     }
     addSpecificEnergy(amount,player,type,bypass=false){
         this.relicManager.activate(17,[amount,player])
-        if(player<this.players){
-            if(amount!=0){
-                this.anim[amount>0?'energyUp':'energyDown']=1
-            }
+        if(amount!=0&&player<this.players){
+            //if(amount!=0){
+            this.anim[amount>0?'energyUp':'energyDown']=1
+            //}
             this.cardManagers[player].allEffectArgs(2,25,[amount])
             if(!bypass){
                 this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)].energyChange(amount)
@@ -3987,7 +3987,7 @@ class battle{
                         for(let b=0,lb=this.combatantManager.combatants.length;b<lb;b++){
                             if(this.combatantManager.combatants[b].life>0){
                                 if(this.combatantManager.combatants[b].spec.includes(13)){
-                                    reward.push({type:4,value:[10]})
+                                    reward.push({type:4,value:[20]})
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(14)){
                                     reward.push({type:7,value:[1]})
@@ -4007,6 +4007,15 @@ class battle{
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(25)){
                                     reward.push({type:0,value:[50]})
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(26)){
+                                    reward.push({type:4,value:[10]})
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(27)){
+                                    reward.push({type:5,value:[1]})
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(28)&&a==prefered){
+                                    reward.push({type:13,value:[1]})
                                 }
                             }
                         }

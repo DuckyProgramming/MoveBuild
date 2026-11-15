@@ -108,7 +108,8 @@ constants.status={
         'Prime Next Turn','Attack Lock On Combat','Fragile Stun','Move Worker','Double Invocation','Iron Orb Per Turn','Glass Orb Boost','Energy Orb Draw','Claw Up Per Turn','Double Buff',
         'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
-        'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost',
+        'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
+        'Faith Draw','Moriya Talisman Temporary Strength',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -219,7 +220,8 @@ constants.status={
         2,0,1,0,0,0,0,0,0,0,//106
         0,1,0,2,2,0,2,0,0,0,//107
         0,0,0,0,0,0,0,0,0,0,//108
-        0,0,0,0,0,0,2,2,
+        0,0,0,0,0,0,2,2,1,0,//109
+        0,0,
     ],
     /*
     0-none
@@ -339,7 +341,8 @@ constants.status={
         2,2,1,2,2,2,2,2,2,2,//106
         2,2,2,0,0,2,0,2,2,2,//107
         2,2,2,2,2,2,2,2,2,2,//108
-        2,1,2,2,2,2,2,2,
+        2,1,2,2,2,2,2,2,2,2,//109
+        2,2,
     ]
     /*
     0-good
@@ -1129,10 +1132,10 @@ class combatant{
                     randombuffs.splice(index,1)
                 }
             }*/
-            if((game.ascend>=30||game.diff>=23)&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3&&this.spec.includes(2)){
+            /*if((game.ascend>=30||game.diff>=23)&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3&&this.spec.includes(2)){
                 this.subHealthBuff(1.5)
                 this.subAttackBuff([1,2,5],1.2)
-            }
+            }*/
             if(diffUnfair||game.diff>=24){
                 if(this.type<=constants.playerNumber){
                     this.subHealthBuff(1.2)
@@ -1749,7 +1752,8 @@ class combatant{
                 }
             }
             if(game.ascend>=32||game.diff>=25){
-                this.subHealthBuff(1.2)
+                //this.subHealthBuff(1.2)
+                this.subHealthBuff(1.25)
                 this.subAttackBuff([1,2,5],1.2)
             }
             if(game.ascend>=33||game.diff>=26){
@@ -1776,6 +1780,25 @@ class combatant{
             }
             if(game.ascend>=14||game.diff>=11){
                 this.base.life*=0.9
+            }
+        }else if(game.diff>=23){
+            switch(this.name){
+                case 'Medic':
+                    this.spec.splice(this.spec.indexOf(13),1)
+                    this.spec.push(26)
+                break
+                case 'Smith':
+                    this.spec.splice(this.spec.indexOf(14),1)
+                    this.spec.push(27)
+                break
+                case 'Navigator':
+                    this.spec.splice(this.spec.indexOf(15),1)
+                    this.spec.push(28)
+                break
+                case 'Rich Kid':
+                    this.spec.splice(this.spec.indexOf(25),1)
+                    this.spec.push(16)
+                break
             }
         }
         if(variants.shortmap&&this.team==0){
@@ -4948,21 +4971,36 @@ class combatant{
                 if(this.status.main[358]>0){
                     this.heal(this.status.main[358])
                 }
-                if((this.spec.includes(13)||this.spec.includes(24)||this.battle.relicManager.hasRelic(492,-1)&&(this.spec.includes(14)||this.spec.includes(15)||this.spec.includes(16)||this.spec.includes(21)||this.spec.includes(22)||this.spec.includes(25)))&&this.life<=0&&user>=0&&user<this.battle.players){
+                //if((this.spec.includes(13)||this.spec.includes(24)||this.spec.includes(26)||this.battle.relicManager.hasRelic(492,-1)&&(this.spec.includes(14)||this.spec.includes(15)||this.spec.includes(16)||this.spec.includes(21)||this.spec.includes(22)||this.spec.includes(25)))&&this.life<=0&&user>=0&&user<this.battle.players){
+                if(
+                    (
+                        this.spec.includes(24)||
+                        this.battle.relicManager.hasRelic(492,-1)&&(
+                            this.spec.includes(13)||this.spec.includes(14)||this.spec.includes(15)||this.spec.includes(16)||this.spec.includes(21)||
+                            this.spec.includes(22)||this.spec.includes(25)||this.spec.includes(26)||this.spec.includes(27)||this.spec.includes(28)
+                        )
+                    )&&this.life<=0&&user>=0&&user<this.battle.players
+                ){
                     let prefered=floor(random(0,this.battle.overlayManager.overlays[0].length))
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        let reward=this.spec.includes(16)||this.spec.includes(24)?[{type:0,value:[5]}]:[]
+                        let reward=[]
+                        if(this.spec.includes(15)&&a==prefered){
+                            reward.push({type:6,value:[1]})
+                        }
+                        if(this.spec.includes(24)&&a==user){
+                            reward.push({type:13,value:[5]})
+                        }
+                        if(this.spec.includes(28)&&a==prefered){
+                            reward.push({type:6,value:[1]})
+                        }
                         if(this.battle.relicManager.hasRelic(492,user)){
                             if(this.spec.includes(13)){
-                                reward.push({type:4,value:[10]})
+                                reward.push({type:4,value:[20]})
                             }
                             if(this.spec.includes(14)){
                                 reward.push({type:7,value:[1]})
                             }
-                            if(this.spec.includes(15)&&a==prefered){
-                                reward.push({type:6,value:[1]})
-                            }
-                            if(this.spec.includes(16)||this.spec.includes(24)){
+                            if(this.spec.includes(16)){
                                 reward.push({type:0,value:[25]})
                             }
                             if(this.spec.includes(21)){
@@ -4974,6 +5012,12 @@ class combatant{
                             }
                             if(this.spec.includes(25)){
                                 reward.push({type:0,value:[50]})
+                            }
+                            if(this.spec.includes(26)){
+                                reward.push({type:4,value:[10]})
+                            }
+                            if(this.spec.includes(27)){
+                                reward.push({type:5,value:[1]})
                             }
                         }
                         if(reward.length>0){
@@ -5921,6 +5965,7 @@ class combatant{
     onScry(){
         this.addBarrier(this.status.main[345])
         this.addBlock(this.status.main[930])
+        this.gainFaith(this.status.main[1089])
         this.battle.combatantManager.allEffect(19,[this.status.main[679]])
         return this.status.main[335]
     }
@@ -6143,12 +6188,21 @@ class combatant{
         }
     }
     gainFaith(value){
-        this.faith+=value
-        this.interiorStatus[2]+=value
+        if(value>0){
+            this.faith+=value
+            this.interiorStatus[2]+=value
+            if(this.id<this.battle.players){
+                if(this.status.main[1090]>0){
+                    this.battle.cardManagers[this.id].draw(this.status.main[1090])
+                }
+            }
+        }
     }
     gainMantra(value){
-        this.mantra+=value
-        this.interiorStatus[3]+=value
+        if(value>0){
+            this.mantra+=value
+            this.interiorStatus[3]+=value
+        }
     }
     bell(mult){
         this.statusEffect('Bell',1)
@@ -8821,6 +8875,7 @@ class combatant{
                             this.layer.text(intentDescription(this.attack[a],this,!this.battle.relicManager.hasRelic(136,-1)),60,280)
                         }
                         this.layer.fill(0,this.fade*this.infoAnim.description)
+                        //mark spec
                         for(let a=0,la=this.spec.length;a<la;a++){
                             switch(this.spec[a]){
                                 case 0: this.layer.text('Will Turn to Face Player',40,305+a*10); break
@@ -8836,9 +8891,9 @@ class combatant{
                                 case 10: this.layer.text('Attacks When Injured',40,305+a*10); break
                                 case 11: this.layer.text('Immune to Poison Tiles',40,305+a*10); break
                                 case 12: this.layer.text('Co-Boss',40,305+a*10); break
-                                case 13: this.layer.text('On Survival, Heal 10 HP',40,305+a*10); break
+                                case 13: this.layer.text('On Survival, Heal 20 HP',40,305+a*10); break
                                 case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+a*10); break
-                                case 15: this.layer.text('On Survival, Move Freely',40,305+a*10); break
+                                case 15: case 28: this.layer.text('On Survival, Move Freely',40,305+a*10); break
                                 case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*10); break
                                 case 17: this.layer.text('Auto-Aims',40,305+a*10); break
                                 case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
@@ -8849,6 +8904,8 @@ class combatant{
                                 case 23: this.layer.text('Creates a Copy of Self Each Turn',40,305+a*10); break
                                 case 24: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
                                 case 25: this.layer.text('On Survival, Gain 50 Currency',40,305+a*10); break
+                                case 26: this.layer.text('On Survival, Heal 10 HP',40,305+a*10); break
+                                case 27: this.layer.text('On Survival, Upgrade a Card',40,305+a*10); break
 
                             }
                         }
@@ -9020,7 +9077,8 @@ class combatant{
             }
             if(this.caffeine>=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]){
                 this.caffeine-=3+this.status.main[findList('Caffeine Tolerance',this.status.name)]
-                this.loseHealth(6)
+                //this.loseHealth(6)
+                this.loseHealth(3)
                 if(this.status.main[914]>0){
                     this.battle.addEnergy(this.status.main[914],this.id)
                 }

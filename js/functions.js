@@ -2764,9 +2764,11 @@ function outDupeBaseLevels(){
 		types.card[a].levels[0].spec=[]
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=a+1,lb=types.card.length;b<lb;b++){
-			if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])){
-				console.log(`${types.card[a].name} = ${types.card[b].name}`)
+		if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
+			for(let b=a+1,lb=types.card.length;b<lb;b++){
+				if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])){
+					console.log(`${types.card[a].name} = ${types.card[b].name}`)
+				}
 			}
 		}
 	}
@@ -2777,9 +2779,11 @@ function outDupeDoubleLevels(){
 		types.card[a].levels[1].spec=[]
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=a+1,lb=types.card.length;b<lb;b++){
-			if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&JSON.stringify(types.card[a].levels[1])==JSON.stringify(types.card[b].levels[1])){
-				console.log(`${types.card[a].name} = ${types.card[b].name}`)
+		if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
+			for(let b=a+1,lb=types.card.length;b<lb;b++){
+				if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&JSON.stringify(types.card[a].levels[1])==JSON.stringify(types.card[b].levels[1])){
+					console.log(`${types.card[a].name} = ${types.card[b].name}`)
+				}
 			}
 		}
 	}
@@ -3826,6 +3830,7 @@ function checkExists(start,end){
 	}
 	let invalid=[
 		-120,//indecipherable
+		-26,//decremented
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
 		1017,1281,2186,2187,2664,2776,2837,3214,3333,3368,
@@ -3873,11 +3878,13 @@ function checkExists(start,end){
 		6032,//invalid seven hakus
 		6109,//invalid anaphel
 		6199,//invalid cleaver
+		7268,//invalid big time
 		7929,//invalid suit up
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
 		9661,//invalid silverswivel
 
+		894,1302,1324,1537,1909,2147,3346,3347,//values
 		945,1208,1209,1212,1213,1214,1216,1217,1219,1220,
 		1221,3762,3763,4726,//blackjack
 		1215,1218,1222,1223,3761,//cyclic draw
@@ -3923,6 +3930,7 @@ function checkExists(start,end){
 		}
 	}*/
 	//-170 - +11811
+	//-172 - +11925
 	/*for(let a=start,la=end;a<la;a++){
 		if(!invalid.includes(a)){
 			let left=0

@@ -1251,6 +1251,13 @@ class combatantManager{
                             this.combatants[a].status.main[findList('Cannot Die',this.combatants[a].status.name)]=0
                         }
                     break
+                    case 71:
+                        let preLife=this.combatants[a].life
+                        this.combatants[a].takeDamage(args[0],args[1])
+                        if(this.combatants[a].life<preLife){
+                            this.combatants[args[1]].addBlock(preLife-this.combatants[a].life)
+                        }
+                    break
                 }
             }
         }
