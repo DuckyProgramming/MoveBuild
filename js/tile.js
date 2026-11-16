@@ -394,9 +394,18 @@ class tile{
     }
     addType(type){
         if(!this.type.includes(type)){
-            this.type.push(type)
-            this.anim.part.push(0)
-            this.anim.upPart.push(true)
+            switch(type){
+                case 19:
+                    this.type.splice(0,0,type)
+                    this.anim.part.splice(0,0,0)
+                    this.anim.upPart.splice(0,0,true)
+                break
+                default:
+                    this.type.push(type)
+                    this.anim.part.push(0)
+                    this.anim.upPart.push(true)
+                break
+            }
             switch(type){
                 case 19:
                     if(this.battle.turn.main<this.battle.players){

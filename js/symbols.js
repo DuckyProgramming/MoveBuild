@@ -12023,6 +12023,18 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(2,-6,4,3,0,3)
             layer.rect(-3,0,3,3)
         break
+        case 1092:
+            layer.fill(225,fade)
+            layer.ellipse(0,0,8)
+            layer.rotate(-22.5)
+            for(let a=0,la=8;a<la;a++){
+                layer.triangle(-1,3,1,3,0,8)
+                layer.rotate(45)
+            }
+            layer.rotate(22.5)
+            layer.fill(200,fade)
+            layer.quad(0,-1.5,-6,0,0,1.5,6,0)
+        break
 
     }
     //mark s
@@ -13945,6 +13957,9 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.ellipse(0,3,7.5,7.5)
             layer.ellipse(sin(120)*3,cos(120)*3,7.5,7.5)
             layer.ellipse(-sin(120)*3,cos(120)*3,7.5,7.5)
+            /*layer.ellipse(0,2.4,6)
+            layer.ellipse(sin(120)*2.4,cos(120)*2.4,6)
+            layer.ellipse(-sin(120)*2.4,cos(120)*2.4,6)*/
             layer.fill(255,50,50,fade)
             for(let a=0,la=6;a<la;a++){
                 layer.rotate(60)
@@ -14468,12 +14483,16 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 88:
             layer.stroke(225,fade)
             layer.strokeWeight(1)
-            layer.ellipse(0,8,3,3)
+            //layer.ellipse(0,8,3,3)
+            layer.ellipse(0,6,3,3)
             layer.noStroke()
             layer.fill(225,fade)
-            layer.ellipse(0,3,7.5,7.5)
+            /*layer.ellipse(0,3,7.5,7.5)
             layer.ellipse(sin(120)*3,cos(120)*3,7.5,7.5)
-            layer.ellipse(-sin(120)*3,cos(120)*3,7.5,7.5)
+            layer.ellipse(-sin(120)*3,cos(120)*3,7.5,7.5)*/
+            layer.ellipse(0,2.4,6)
+            layer.ellipse(sin(120)*2.4,cos(120)*2.4,6)
+            layer.ellipse(-sin(120)*2.4,cos(120)*2.4,6)
         break
         case 89:
             layer.fill(150,0,0,fade)
@@ -14893,9 +14912,12 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         break
         case 140:
             layer.fill(225,fade)
-            layer.ellipse(0,3,7.5,7.5)
+            /*layer.ellipse(0,3,7.5,7.5)
             layer.ellipse(sin(120)*3,cos(120)*3,7.5,7.5)
-            layer.ellipse(-sin(120)*3,cos(120)*3,7.5,7.5)
+            layer.ellipse(-sin(120)*3,cos(120)*3,7.5,7.5)*/
+            layer.ellipse(0,2.4,6)
+            layer.ellipse(sin(120)*2.4,cos(120)*2.4,6)
+            layer.ellipse(-sin(120)*2.4,cos(120)*2.4,6)
             layer.fill(255,50,50,fade)
             layer.rect(-1.5,0,6,6)
             layer.arc(1.5,0,9,6,-90,90)

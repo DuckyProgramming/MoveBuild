@@ -345,7 +345,7 @@ function crystalFlower(layer,size,direction,color,width,height,fade){
     layer.pop()
 }
 function mergeColor(color1,color2,value){
-	return [color1[0]*(1-value)+color2[0]*value,color1[1]*(1-value)+color2[1]*value,color1[2]*(1-value)+color2[2]*value]
+	return value==0?color1:value==1?color2:[color1[0]*(1-value)+color2[0]*value,color1[1]*(1-value)+color2[1]*value,color1[2]*(1-value)+color2[2]*value]
 }
 function mergeColor3(color1,color2,color3){
 	return [(color1[0]+color2[0]+color3[0])/3,(color1[1]+color2[1]+color3[1])/3,(color1[2]+color2[2]+color3[2])/3]
@@ -2764,13 +2764,16 @@ function outDupeBaseLevels(){
 		types.card[a].levels[0].spec=[]
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
+		//if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
 			for(let b=a+1,lb=types.card.length;b<lb;b++){
-				if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])){
+				if(
+					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&
+					types.card[a].mtg.levels[0].attack==types.card[b].mtg.levels[0].attack&&a!=b&&JSON.stringify(types.card[a].mtg.levels[0])==JSON.stringify(types.card[b].mtg.levels[0])
+				){
 					console.log(`${types.card[a].name} = ${types.card[b].name}`)
 				}
 			}
-		}
+		//}
 	}
 }
 function outDupeDoubleLevels(){
@@ -2779,13 +2782,16 @@ function outDupeDoubleLevels(){
 		types.card[a].levels[1].spec=[]
 	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
+		//if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
 			for(let b=a+1,lb=types.card.length;b<lb;b++){
-				if(types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&JSON.stringify(types.card[a].levels[1])==JSON.stringify(types.card[b].levels[1])){
+				if(
+					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&JSON.stringify(types.card[a].levels[1])==JSON.stringify(types.card[b].levels[1])&&
+					types.card[a].mtg.levels[0].attack==types.card[b].mtg.levels[0].attack&&a!=b&&JSON.stringify(types.card[a].mtg.levels[0])==JSON.stringify(types.card[b].mtg.levels[0])&&JSON.stringify(types.card[a].mtg.levels[1])==JSON.stringify(types.card[b].mtg.levels[1])
+				){
 					console.log(`${types.card[a].name} = ${types.card[b].name}`)
 				}
 			}
-		}
+		//}
 	}
 }
 function outReuse(){
@@ -3316,6 +3322,44 @@ function generalizedSearch2(test,type,subtract){
 				set.push(cardData.name)
 			}
 		}
+		current.overlayManager.overlays[115][0].active=false
+	}
+	current.overlayManager.overlays[35][0].args[2]=4
+	current.overlayManager.overlays[35][0].activate([0,set])
+}
+function checkMislabel(type,cardClass){
+	let set=[]
+	let skillRegex=[/^\bdeal\s+\d+\s+damage\b/i,/^\badd\s+\d+\s+block\b/i]
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		if(
+			cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
+			cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
+			cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
+			cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
+		){
+			set.push(cardData.name)
+		}
+	}
+	if(type==1){
+		current.overlayManager.overlays[115][0].active=true
+		current.overlayManager.overlays[115][0].activate([0,-99])
+		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
+			let cardData=current.overlayManager.overlays[115][0].cards[a]
+			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			if(
+				cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
+				cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
+				cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
+				cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
+			){
+				set.push(cardData.name)
+			}
+		}
+		current.overlayManager.overlays[115][0].active=false
 	}
 	current.overlayManager.overlays[35][0].args[2]=4
 	current.overlayManager.overlays[35][0].activate([0,set])
@@ -3835,7 +3879,7 @@ function checkExists(start,end){
 		447,465,466,467,468,487,974,986,987,1001,
 		1017,1281,2186,2187,2664,2776,2837,3214,3333,3368,
 		4063,4066,4067,4550,4554,4812,5014,7411,7412,8549,
-		8550,//invalid push
+		8550,8960,//invalid push
 		62,//invalid enlighten
 		116,665,4180,4181,//invalid false surrender
 		188,440,1239,1255,1841,2813,3201,3488,3579,//damage taken up/down

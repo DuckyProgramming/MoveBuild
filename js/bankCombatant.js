@@ -16112,16 +16112,25 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.name=='Lunar Shard'&&this.trigger.display.moon){
-                    this.layer.fill(this.color.moon[0][0],this.color.moon[0][1],this.color.moon[0][2],this.fade*this.fades.moon)
+                    /*this.layer.fill(this.color.moon[0][0],this.color.moon[0][1],this.color.moon[0][2],this.fade*this.fades.moon)
                     this.layer.stroke(this.color.moon[1][0],this.color.moon[1][1],this.color.moon[1][2],this.fade*this.fades.moon)
-                    this.layer.strokeWeight(3)
+                    this.layer.strokeWeight(3)*/
+                    this.layer.fill(...this.flashColor(this.color.moon[0]),this.fade*this.fades.moon)
+                    this.layer.stroke(...this.flashColor(this.color.moon[1]),this.fade*this.fades.moon)
+                    this.layer.strokeWeight(1)
                     for(let a=0,la=2;a<la;a++){
                         if(lcos(a*180+this.anim.direction)<=0){
-                            this.layer.beginShape()
+                            /*this.layer.beginShape()
                             this.layer.vertex(24*lsin(a*180+this.anim.direction),-68)
                             this.layer.bezierVertex(18*lsin(a*180+this.anim.direction),-51,12*lsin(a*180+this.anim.direction),-45,7*lsin(a*180+this.anim.direction),-44)
                             this.layer.vertex(7*lsin(a*180+this.anim.direction),-52)
                             this.layer.bezierVertex(12*lsin(a*180+this.anim.direction),-52,18*lsin(a*180+this.anim.direction),-56,24*lsin(a*180+this.anim.direction),-68)
+                            this.layer.endShape()*/
+                            this.layer.beginShape()
+                            this.layer.vertex(7*lsin(a*180+this.anim.direction),-52)
+                            this.layer.bezierVertex(18*lsin(a*180+this.anim.direction),-54,24*lsin(a*180+this.anim.direction),-60,24*lsin(a*180+this.anim.direction),-68)
+                            //this.layer.vertex(24*lsin(a*180+this.anim.direction),-68)
+                            this.layer.bezierVertex(23*lsin(a*180+this.anim.direction),-56,18*lsin(a*180+this.anim.direction),-47,7*lsin(a*180+this.anim.direction),-44)
                             this.layer.endShape()
                         }
                     }
@@ -16730,16 +16739,25 @@ combatant.prototype.display=function(){
                     this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
                 }
                 if(this.name=='Lunar Shard'&&this.trigger.display.moon){
-                    this.layer.fill(this.color.moon[0][0],this.color.moon[0][1],this.color.moon[0][2],this.fade*this.fades.moon)
+                    /*this.layer.fill(this.color.moon[0][0],this.color.moon[0][1],this.color.moon[0][2],this.fade*this.fades.moon)
                     this.layer.stroke(this.color.moon[1][0],this.color.moon[1][1],this.color.moon[1][2],this.fade*this.fades.moon)
-                    this.layer.strokeWeight(3)
+                    this.layer.strokeWeight(3)*/
+                    this.layer.fill(...this.flashColor(this.color.moon[0]),this.fade*this.fades.moon)
+                    this.layer.stroke(...this.flashColor(this.color.moon[1]),this.fade*this.fades.moon)
+                    this.layer.strokeWeight(1)
                     for(let a=0,la=2;a<la;a++){
                         if(lcos(a*180+this.anim.direction)>0){
-                            this.layer.beginShape()
+                            /*this.layer.beginShape()
                             this.layer.vertex(24*lsin(a*180+this.anim.direction),-68)
                             this.layer.bezierVertex(18*lsin(a*180+this.anim.direction),-51,12*lsin(a*180+this.anim.direction),-45,7*lsin(a*180+this.anim.direction),-44)
                             this.layer.vertex(7*lsin(a*180+this.anim.direction),-52)
                             this.layer.bezierVertex(12*lsin(a*180+this.anim.direction),-52,18*lsin(a*180+this.anim.direction),-56,24*lsin(a*180+this.anim.direction),-68)
+                            this.layer.endShape()*/
+                            this.layer.beginShape()
+                            this.layer.vertex(7*lsin(a*180+this.anim.direction),-52)
+                            this.layer.bezierVertex(18*lsin(a*180+this.anim.direction),-54,24*lsin(a*180+this.anim.direction),-60,24*lsin(a*180+this.anim.direction),-68)
+                            //this.layer.vertex(24*lsin(a*180+this.anim.direction),-68)
+                            this.layer.bezierVertex(23*lsin(a*180+this.anim.direction),-56,18*lsin(a*180+this.anim.direction),-47,7*lsin(a*180+this.anim.direction),-44)
                             this.layer.endShape()
                         }
                     }

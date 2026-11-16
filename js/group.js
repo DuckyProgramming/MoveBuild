@@ -7432,7 +7432,14 @@ class group{
                     (a==0?
                         (100+(this.cards[a].spec.includes(34)?-20:((this.cards[a].spec.includes(33)?50:0)+(this.cards[a].spec.includes(66)?150:0)+(this.battle.relicManager.hasRelic(170,this.player)?25:0))))
                         :(
-                            (this.cards[a].name=='Unbuild'&&this.cards[a-1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100)+
+                            /*((
+                                this.cards[a].name=='Unbuild'&&this.cards[a-1].name=='Unbuild'||
+                                this.cards[a].name=='Shiv'&&this.cards[a-1].name=='Shiv'||
+                                this.cards[a].name=='Smite'&&this.cards[a-1].name=='Smite'||
+                                this.cards[a].name=='Safety'&&this.cards[a-1].name=='Safety'||
+                                this.cards[a].name=='Insight'&&this.cards[a-1].name=='Insight'
+                            )&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100)+*/
+                            100+
                             (this.cards[a].spec.includes(34)?-20:
                                 (this.cards[a].spec.includes(33)?50:0)+
                                 (this.cards[a].spec.includes(66)?150:0)+

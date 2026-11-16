@@ -344,7 +344,7 @@ class attack{
             case 11641: case 11642: case 11647: case 11648: case 11661: case 11671: case 11675: case 11677: case 11679: case 11680: case 11682: case 11700: case 11717: case 11726: case 11727: case 11729: case 11732: case 11733: case 11737: case 11749:
             case 11750: case 11754: case 11764: case 11765: case 11766: case 11767: case 11769: case 11771: case 11773: case 11774: case 11777: case 11784: case 11785: case 11791: case 11806: case 11807: case 11812: case 11813: case 11814: case 11815:
             case 11848: case 11849: case 11850: case 11852: case 11859: case 11861: case 11871: case 11872: case 11873: case 11874: case 11875: case 11876: case 11878: case 11884: case 11886: case 11892: case 11897: case 11903: case 11905: case 11908:
-            case 11909: case 11910: case 11911: case 11912: case 11913: case 11914: case 11915: case 11917: case 11918: case 11920: case 11926: case 11929: case 11930: case 11934:
+            case 11909: case 11910: case 11911: case 11912: case 11913: case 11914: case 11915: case 11917: case 11918: case 11920: case 11926: case 11929: case 11930: case 11934: case 11942:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -22668,22 +22668,22 @@ class attack{
                         }
                     break
                     case 9830:
-                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Focus',this.effect[0])
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                     break
                     case 9831:
-                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Focus',this.effect[0])
                         this.userCombatant.statusEffect('(W) Next Turn',1)
                         this.userCombatant.statusEffect('(R) Next Turn',1)
                     break
                     case 9832:
-                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Focus',this.effect[0])
                         this.userCombatant.statusEffect('(E) Next Turn',1)
                         this.userCombatant.statusEffect('(W) Next Turn',1)
                         this.userCombatant.statusEffect('(R) Next Turn',1)
                     break
                     case 9833:
-                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
+                        this.userCombatant.statusEffect('Temporary Focus',this.effect[0])
                         this.userCombatant.statusEffect('(E) Next Turn',3)
                     break
                     case 9855:
@@ -30381,7 +30381,8 @@ class attack{
                         this.battle.attackManager.endAfter=true
                     break
                     case 10997:
-                        this.userCombatant.enterStance(this.userCombatant.luckCheck()?5:this.userCombatant.luckCheckFail()?0:randin([1,2,3,4,5].filter(a=>a!=this.userCombatant.stance)))
+                        //this.userCombatant.enterStance(this.userCombatant.luckCheck()?5:this.userCombatant.luckCheckFail()?0:randin([1,2,3,4,5].filter(a=>a!=this.userCombatant.stance)))
+                        this.userCombatant.enterStance(this.userCombatant.luckCheck()?5:this.userCombatant.luckCheckFail()?0:randin([1,2,4,5].filter(a=>a!=this.userCombatant.stance)))
                     break
                     case 10998:
                         this.userCombatant.statusEffect('Strength Next Turn',this.effect[0])
@@ -47585,6 +47586,11 @@ class attack{
                             this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)
                         }
                     break
+                    case 8988:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                    break
                     case 9029:
                         this.userManager.drawAbstract(this.effect[0],0,0,[11])
                         this.userCombatant.statusEffect('Claw Up',this.effect[1])
@@ -47714,16 +47720,16 @@ class attack{
                                     this.battle.tileManager.tiles[index8823].addType(19)
                                 }
                             break
-                            case 8988:
-                                for(let a=0,la=this.effect[0];a<la;a++){
-                                    this.userManager.hand.add(findName('Pristine',types.card),0,0)
-                                }
-                            break
                             case 9243:
                                 this.targetCombatant.statusEffect('Cannot Add Block',this.effect[1])
                             break
                             case 9244:
                                 this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                            break
+                            case 11942:
+                                for(let a=0,la=this.effect[1];a<la;a++){
+                                    this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                                }
                             break
                         }
                     break

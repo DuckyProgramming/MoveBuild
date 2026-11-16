@@ -7495,7 +7495,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 7201: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nApply ${effect[2]}+${effect[3]!=1?effect[3]:``}X Weak\nWhere X = Evolve (${this.evolve})`; break
         case 7202: string+=`Draw and Evolve\n${effect[0]} Card${pl(effect[0])}`; break
         case 7203: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvolve Your Hand For ${effect[1]}`; break
-        case 7204: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nWhen Evolved,\nCosts 1 Less`; break
+        case 7204: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nWhen Evolved,\nCosts 1 Less Temporarily`; break
         case 7205: string+=`Take Another Turn\nWhen Evolved,\nCosts 1 Less`; break
         case 7206: string+=`When You Play\nan Evolve Card,\nEvolve it`; break
         case 7207: string+=`When a Card Evolves,\nGain ${effect[0]} Temporary\nStrength`; break
@@ -10129,10 +10129,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9827: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nCosts 0 When\nYou Highroll`; break
         case 9828: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain ${effect[1]} Temporary\nStrength\nGain ${effect[2]} Temporary\nDexterity`; break
         case 9829: string+=`Gain ${effect[0]} Armor\n50%: Draw ${effect[1]} Card${pl(effect[1])}`; break
-        case 9830: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain ${effect[1]} Energy\nNext Turn`; break
-        case 9831: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (W) (G) Next Turn`; break
-        case 9832: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (E) (W) (G) Next Turn`; break
-        case 9833: string+=`Gain ${effect[0]} Temporary\nDexterity\nGain (E) (E) (E) Next Turn`; break
+        case 9830: string+=`Gain ${effect[0]} Temporary\nFocus\nGain ${effect[1]} Energy\nNext Turn`; break
+        case 9831: string+=`Gain ${effect[0]} Temporary\nFocus\nGain (W) (G) Next Turn`; break
+        case 9832: string+=`Gain ${effect[0]} Temporary\nFocus\nGain (E) (W) (G) Next Turn`; break
+        case 9833: string+=`Gain ${effect[0]} Temporary\nFocus\nGain (E) (E) (E) Next Turn`; break
         case 9834: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\n2 Times\n50%: Deals Damage\na Third Time`; break
         case 9835: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nHighrolls This Turn${effect[1]!=0?` +${effect[1]}`:``}${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[4]+this.effect[1]})`:``}`; break
         case 9836: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nLowrolls This Turn${effect[1]!=0?` +${effect[1]}`:``}${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].turnStatus[5]+this.effect[1]})`:``}`; break
@@ -12219,6 +12219,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11939: string+=`Gain ${effect[0]} Faith\nAdd ${effect[1]} Moriya Talisman${pl(effect[1])}\nto Discard Pile`; break
         case 11940: string+=`Moriya Talismans Give\n${effect[0]} Temporary Strength`; break
         case 11941: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\n2 Times\nGain ${effect[1]} Faith\nFirst Time Played: (${this.debut?`Yes`:`No`})\nHeal ${this.calculateEffect(effect[2],4)} Health`; break
+        case 11942: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand`; break
 
         //mark p
         //mark q

@@ -394,8 +394,10 @@ turn.prototype.update=function(){
                         }else{
                             if(
                                 this.userCombatant.name=='General Duckion'||
-                                this.type!=39&&this.type!=56&&this.type!=74&&this.type!=75&&this.type!=78&&this.type!=92&&this.type!=93&&this.type!=94&&this.type!=155&&this.type!=186&&
-                                this.type!=189&&this.type!=244&&this.type!=249&&this.type!=352&&this.type!=392&&this.type!=414&&this.type!=497&&this.type!=498
+                                this.type==5||this.type==40||this.type==41||this.type==42||this.type==51||this.type==52||this.type==57||this.type==301||this.type==302||this.type==458||
+                                this.type==516
+                                /*this.type!=39&&this.type!=56&&this.type!=74&&this.type!=75&&this.type!=78&&this.type!=88&&this.type!=92&&this.type!=93&&this.type!=94&&this.type!=155&&
+                                this.type!=186&&this.type!=189&&this.type!=244&&this.type!=249&&this.type!=352&&this.type!=391&&this.type!=414&&this.type!=497&&this.type!=498*/
                             ){
                                 if(this.timer==1){
                                     this.userCombatant.startAnimation(3)

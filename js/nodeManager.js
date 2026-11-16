@@ -33,6 +33,7 @@ class nodeManager{
             tilePosition:this.tilePosition,
             scroll:this.scroll,
             world:this.world,
+            stashWorld:this.stashWorld,
             total:this.total,
             freeMove:this.freeMove,
             saveClass:this.saveClass,
@@ -48,7 +49,8 @@ class nodeManager{
         this.tilePosition=composite.tilePosition
         this.scroll=composite.scroll
         this.world=composite.world
-        this.total=composite.world
+        this.stashWorld=composite.stashWorld
+        this.total=composite.total
         this.freeMove=composite.freeMove
         this.saveClass=composite.saveClass
         this.harmElite=composite.harmElite

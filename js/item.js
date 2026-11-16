@@ -924,6 +924,18 @@ class item{
                     this.layer.text('0',-9,0)
                     this.layer.text('3',8,0)
                 break
+                case 'Upgrade All':
+                    displaySymbol(this.layer,0,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-12,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,0,7,0,0.48,this.fade)
+                break
+                case 'Double Block':
+                    displaySymbol(this.layer,0,0,27,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('x2',0,0)
+                break
 
                 //mark b
 

@@ -109,7 +109,7 @@ constants.status={
         'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
-        'Faith Draw','Moriya Talisman Temporary Strength',
+        'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -221,7 +221,7 @@ constants.status={
         0,1,0,2,2,0,2,0,0,0,//107
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
-        0,0,
+        0,0,0,
     ],
     /*
     0-none
@@ -342,7 +342,7 @@ constants.status={
         2,2,2,0,0,2,0,2,2,2,//107
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
-        2,2,
+        2,2,2,
     ]
     /*
     0-good
@@ -895,7 +895,8 @@ class combatant{
             break
             case 'Shadow Trooper':
                 if(diffUnfair){
-                    this.statusEffect('Protected Invisible Next Turn',999)
+                    //this.statusEffect('Protected Invisible Next Turn',999)
+                    this.statusEffect('Rapid Invisible Per Turn',1)
                 }else{
                     this.statusEffect('Invisible Per Turn',1)
                 }
@@ -1773,7 +1774,7 @@ class combatant{
                 this.subAttackBuff([1,2,5],1.5)
             }
             this.normalizeAttack()
-        }else if(this.type<=constants.playerNumber){
+        }/*else if(this.type<=constants.playerNumber){
             if(game.ascend>=6||game.diff>=4){
                 this.life*=0.75
                 this.collect.life*=0.75
@@ -1781,7 +1782,7 @@ class combatant{
             if(game.ascend>=14||game.diff>=11){
                 this.base.life*=0.9
             }
-        }else if(game.diff>=23){
+        }*/else if(game.diff>=23){
             switch(this.name){
                 case 'Medic':
                     this.spec.splice(this.spec.indexOf(13),1)
@@ -1839,6 +1840,15 @@ class combatant{
         if(variants.midhealth){
             this.subHealthBuff(0.5)
         }
+        if(this.type<=constants.playerNumber){
+            if(game.ascend>=6||game.diff>=4){
+                this.life*=0.75
+                this.collect.life*=0.75
+            }
+            if(game.ascend>=14||game.diff>=11){
+                this.base.life*=0.9
+            }
+        }
     }
     subHealthBuff(value){
         this.life=round(this.life*value)
@@ -1869,6 +1879,7 @@ class combatant{
                         &&!(this.attack[a].type==329&&b==1)
                         &&!(this.attack[a].type==331&&b==1)
                         &&!(this.attack[a].type==342&&b==1)
+                        &&!(this.attack[a].type==462&&b==1)
                         &&this.attack[a].type!=39
                         &&this.attack[a].type!=40
                         &&this.attack[a].type!=41
@@ -1877,6 +1888,7 @@ class combatant{
                         &&this.attack[a].type!=52
                         &&this.attack[a].type!=56
                         &&this.attack[a].type!=57
+                        &&this.attack[a].type!=88
                         &&this.attack[a].type!=120
                         &&this.attack[a].type!=155
                         &&this.attack[a].type!=189
@@ -3919,7 +3931,7 @@ class combatant{
                     if(userCombatant.status.main[357]>0){
                         damage=0
                     }
-                    if(this.status.main[3]>0){
+                    if(this.status.main[3]>0&&!this.getStun()){
                         this.status.main[3]--
                         hit=false
                         dodged=true
@@ -6922,6 +6934,7 @@ class combatant{
             this.getStatus('Retain Lock On')>0,
             this.getStatus('Retain Temporary Strength')>0,
             this.getStatus('Retain Temporary Dexterity')>0,
+            this.getStatus('Rapid Invisible Per Turn')>0,
         ]
         for(let a=0,la=this.status.ticker.length;a<la;a++){
             if(this.status.main[this.status.ticker[a]]!=0){
@@ -7244,6 +7257,7 @@ class combatant{
                 }else if(
                     (this.status.behavior[this.status.ticker[a]]==1||this.status.behavior[this.status.ticker[a]]==3&&this.team<=0||this.status.behavior[this.status.ticker[a]]==4&&this.team>0)
                     &&!(this.status.ticker[a]==3&&ret[2])
+                    &&!(this.status.ticker[a]==51&&ret[6])
                     &&!(this.status.ticker[a]==461&&ret[3])
                 ){
                     if(this.status.main[this.status.ticker[a]]>0){

@@ -24,7 +24,7 @@ types={
         {name:'Sagume',moniker:'The Sage',identifier:['Sister','Miss'],life:59,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:515,effect:[12,6]},{type:53,effect:[12,1,'Reversal']},{type:461,effect:[1,1]}],description:`Scavenger from the Arioscape,\nonce of the Wipers but forced\nto migrate by the lack of resources.\nBlessed with luck and the will to\nsurvive, the council took her in.`},
         {name:'Fernando',moniker:'The Comedian',identifier:['Brother','Mister'],life:55,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:456,effect:[16,3]},{type:454,effect:[22,2]},{type:455,effect:[22,2]}],description:`Never really though he was funny,\nbut couldn't find another career option.\nBrought down by awful viewership\nand endless self-doubt, he decided\nto fight the system instead.`},
         {name:'Decratite',moniker:'The Disciple',identifier:['Brother','Mister'],life:57,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:458,effect:[1]},{type:516,effect:[15,1]},{type:460,effect:[13,5]}],description:`Eternal guardian force of Somber Falls,\nconvinced to leave by its endless quiet.\nImagined that the rest of Konai,\nwhile decidedly not home, might\njust have something actually going on.`},
-        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:462,effect:[11,2]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:`Told tales of the glorious past\nrevolutions by elder duck farmers,\nhe hopes to carry on their work.\nBut with the Management clamping down,\nhe had to join with the council.`},
+        {name:'Dukelis',moniker:'The Collectivist',identifier:['Brother','Mister'],life:63,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:462,effect:[11,1]},{type:463,effect:[18,1,'Worker']},{type:2,effect:[5]}],description:`Told tales of the glorious past\nrevolutions by elder duck farmers,\nhe hopes to carry on their work.\nBut with the Management clamping down,\nhe had to join with the council.`},
         {name:'Meri',moniker:'The Whisper',identifier:['Sister','Miss'],life:49,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:466,effect:[10]},{type:467,effect:[10]},{type:465,effect:[10,10]}],description:`Chief courier of the council,\nchosen personally by the Operator\nto act as the main liaison between\nrural rebels and their much weaker\ncounterparts holed up in Rueso.`},
         {name:'Menessa',moniker:'The Emissary',identifier:['Sister','Miss'],life:46,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:474,effect:[9,2]},{type:475,effect:[12,2]},{type:517,effect:[8,2]}],description:`Harpist from the West of Konai,\nfrom an early age looking up to Jovina III.\nNow enrolled in the Konaian First\nUniversity, hoping to catch the\neye of some prominent patrons.`},
         
@@ -83,7 +83,7 @@ types={
         {name:'Deployer',life:40,behavior:9,spec:[],move:{type:2,speed:1},attack:[{type:6,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in backups`},
         {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:2,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
         {name:'Sentry',life:8,behavior:0,spec:[19],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
-        {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
+        {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[2]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[10]},{type:86,effect:[3]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
         {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:2,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Stuck']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
@@ -1716,7 +1716,7 @@ types={
         {name:'Golden Camera',internal:'Duplicate Item',id:66,rarity:1,list:0,menu:true,temp:false,mtg:0,description:'Duplicate a Random\nOther Owned Item'},
         {name:'Hummingbird Feather',internal:'Half Damage 2 Turns',id:67,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Take Half Damage For 2 Turns'},
         {name:'Surplus Voucher',internal:'Relic Voucher',id:68,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Gain a Relic and Destroys itself\nAfter a Completed Boss Combat\n(No Effect Otherwise)'},
-        {name:'Grimoire Page',internal:'Any Uncommon Card',id:69,rarity:2,list:0,menu:true,temp:false,mtg:1,description:'Choose an Uncommon Card From Any\nCharacter to Add to Deck'},
+        {name:'Grimoire Page',internal:'Any Uncommon Card',id:69,rarity:-1,list:0,menu:true,temp:false,mtg:1,description:'Choose an Uncommon Card From Any\nCharacter to Add to Deck'},
 
         {name:'Pocket Oracle',internal:'Oracle',id:70,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Choose ANY Character or Colorless\nCard to Add to Hand'},
         {name:'Blinker Light',internal:'24 Damage/Limited Extra Turn',id:71,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Deal [24D], Take Another Turn\nAll Cards Cost 1 More on That Turn\nRange 1-6'},
@@ -1740,7 +1740,7 @@ types={
         {name:'Corn Cob',internal:'Expensive Free',id:88,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'The Most Expensive Card\nin Hand Costs 0 Temporarily\n(Picks Randomly if Tied)'},
         {name:'Divination Pearl',internal:'Free Draw Pull',id:89,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Put a Card in Draw\nPile in Your Hand\nIt Costs 0 Temporarily'},
 
-        {name:'Sun Stone',internal:'Upgrade All/Burn',id:90,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All Cards This Combat\nGain 2 Burn'},
+        {name:'Sun Stone',internal:'Upgrade All/Burn',id:90,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All Cards This Combat\nGain 2 Burn'},
         {name:'Soap',internal:'Cleanse',id:91,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Remove All Debuffs'},
         {name:'Giant Scissors',internal:'Exhaust 5 From Draw',id:92,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Exhaust Up to 5 Cards\nFrom Draw Pile'},
         {name:'Falling Stick',internal:'8 Damage Any',id:93,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [8D]\nto any Enemy'},
@@ -1776,7 +1776,8 @@ types={
 
         {name:'Cheese Can',internal:'Terminate',id:120,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'If Target Has Less Than 25% Health, It Dies\nRange 1-3'},
         {name:'Surprise Coupon',internal:'3 Free Purchases',id:121,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'When Sold, Make 3\nRandom Purchases Free'},
-        //76
+        {name:'Perfect Stone',internal:'Upgrade All',id:122,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All Cards This Combat'},
+        {name:'Melted Mortar',internal:'Double Block',id:123,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Double Your Block'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},

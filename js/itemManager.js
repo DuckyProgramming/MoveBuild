@@ -731,6 +731,16 @@ class itemManager{
             case 120:
                 this.battle.cardManagers[player].hand.selfCall(6,[5692,[25*effectiveness,5],1,[2,1,3]])
             break
+            case 122:
+                this.battle.cardManagers[player].allEffect(1,4)
+                this.battle.cardManagers[player].allEffect(2,3)
+                this.battle.cardManagers[player].allEffect(3,4)
+            break
+            case 123:
+                if(userCombatant.block>0){
+                    userCombatant.addBlock(userCombatant.block)
+                }
+            break
 
             //mark p
 

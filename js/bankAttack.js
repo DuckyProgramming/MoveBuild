@@ -525,7 +525,7 @@ attack.prototype.update=function(){
         case 6859: case 7510: case 7532: case 8377: case 8389: case 8536: case 8575: case 8599: case 8823: case 8944:
         case 8960: case 8988: case 9029: case 9085: case 9173: case 9243: case 9244: case 9632: case 9689: case 9797:
         case 10047: case 10048: case 10049: case 10050: case 10051: case 10151: case 10152: case 10241: case 10531: case 10532:
-        case 10533: case 11290: case 11632: case 11767: case 11777:
+        case 10533: case 11290: case 11632: case 11767: case 11777: case 11942:
             if(
                 this.type==121&&this.userCombatant.armed||
                 (this.type==9689||this.type==11290)&&(variants.mtg?this.cost[0]:this.cost)!=0

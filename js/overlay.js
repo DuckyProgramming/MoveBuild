@@ -4433,7 +4433,8 @@ class overlay{
                     this.layer.translate(this.layer.width/2-150+a%4*100,this.layer.height/2-130+floor(a/4)%3*130)
                     this.cards[this.sets[a]].display()
                     this.layer.fill(0,this.fade)
-                    this.layer.rect(0,0,95*this.fades[a],125*this.fades[a],10*this.fades[a])
+                    //this.layer.rect(0,0,95*this.fades[a],125*this.fades[a],10*this.fades[a])
+                    this.layer.rect(0,0,95*this.fades[a],125*this.fades[a],7.5*this.fades[a])
                     this.layer.pop()
                 }
             break

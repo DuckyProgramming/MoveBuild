@@ -113,62 +113,73 @@ class turnManager{
         this.loads=0
         if(this.battle.modded(125)){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(floor(random(0,4))==0&&this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].getStatus('Cannot Move')<=0){
-                    for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Fragile Speed Up')+
-                    (variants.speedcard&&(this.battle.combatantManager.combatants[a].move.type==0||this.battle.combatantManager.combatants[a].move.type==1||this.battle.combatantManager.combatants[a].move.type==2||this.battle.combatantManager.combatants[a].move.type==4)?1:0);b<lb;b++){
-                        this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
+                let combatant=this.battle.combatantManager.combatants[a]
+                if(floor(random(0,4))==0&&combatant.team==0&&!combatant.getStun()&&combatant.getStatus('Cannot Move')<=0){
+                    for(let b=0,lb=combatant.move.speed+combatant.getStatus('Speed Up')+combatant.getStatus('Temporary Speed Up')+combatant.getStatus('Fragile Speed Up')+
+                    (variants.speedcard&&(combatant.move.type==0||combatant.move.type==1||combatant.move.type==2||combatant.move.type==4)?1:0);b<lb;b++){
+                        this.turns.push(new turn(1,this.battle,combatant.move.type,combatant.move.speed,a))
                         this.turns.push(new turn(2,this.battle,0,0,a))
                     }
                 }
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].intent>=0&&(
-                this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
-                this.battle.combatantManager.combatants[a].name=='Strengthener'
-            )){
-                this.turns.push(new turn(0,this.battle,
-                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
-                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
+            let combatant=this.battle.combatantManager.combatants[a]
+            if(combatant.getStatus('Rapid Invisible Per Turn')>0){
+                combatant.deStatus('Invisible',1)
+                combatant.statusEffect('Invisible',combatant.getStatus('Rapid Invisible Per Turn'))
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].getStun()&&this.battle.combatantManager.combatants[a].intent>=0&&(
-                this.battle.combatantManager.combatants[a].support&&!this.battle.combatantManager.combatants[a].moved||
-                this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].moved&&
-                this.battle.combatantManager.combatants[a].name!='Strengthener'
+            let combatant=this.battle.combatantManager.combatants[a]
+            if(combatant.team>0&&combatant.activated&&!combatant.getStun()&&combatant.intent>=0&&(
+                combatant.team>0&&combatant.construct&&!combatant.moved&&
+                combatant.name=='Strengthener'
             )){
                 this.turns.push(new turn(0,this.battle,
-                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
-                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
+                    combatant.attack[combatant.intent].type,
+                    combatant.attack[combatant.intent].effect,a))
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved&&!this.battle.combatantManager.combatants[a].getStun()){
-                for(let b=0,lb=1+this.battle.combatantManager.combatants[a].getStatus('Extra Turn')+(this.battle.modded(6)&&floor(random(0,4))==0?1:0)+(this.battle.modded(26)&&types.attack[this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type].name.includes('Gun')?1:0)+(this.battle.modded(52)&&types.attack[this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type].name.includes('Summon')?1:0)+(this.battle.modded(116)&&this.battle.combatantManager.combatants[a].life<=this.battle.combatantManager.combatants[a].base.life/2?1:0);b<lb;b++){
-                    if(this.battle.combatantManager.combatants[a].getStatus('Silence')>0){
+            let combatant=this.battle.combatantManager.combatants[a]
+            if(combatant.team>0&&combatant.activated&&!combatant.getStun()&&combatant.intent>=0&&(
+                combatant.support&&!combatant.moved||
+                combatant.team>0&&combatant.construct&&!combatant.moved&&
+                combatant.name!='Strengthener'
+            )){
+                this.turns.push(new turn(0,this.battle,
+                    combatant.attack[combatant.intent].type,
+                    combatant.attack[combatant.intent].effect,a))
+            }
+        }
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            let combatant=this.battle.combatantManager.combatants[a]
+            if(combatant.team==0&&combatant.activated&&!combatant.moved&&!combatant.getStun()){
+                for(let b=0,lb=1+combatant.getStatus('Extra Turn')+(this.battle.modded(6)&&floor(random(0,4))==0?1:0)+(this.battle.modded(26)&&types.attack[combatant.attack[combatant.intent].type].name.includes('Gun')?1:0)+(this.battle.modded(52)&&types.attack[combatant.attack[combatant.intent].type].name.includes('Summon')?1:0)+(this.battle.modded(116)&&combatant.life<=combatant.base.life/2?1:0);b<lb;b++){
+                    if(combatant.getStatus('Silence')>0){
                         let damageMax=1
-                        for(let c=0,lc=this.battle.combatantManager.combatants[a].attack.length;c<lc;c++){
-                            if(this.battle.combatantManager.combatants[a].attack[c].effect.length>0){
-                                damageMax=max(damageMax,this.battle.combatantManager.combatants[a].attack[c].effect[0])
+                        for(let c=0,lc=combatant.attack.length;c<lc;c++){
+                            if(combatant.attack[c].effect.length>0){
+                                damageMax=max(damageMax,combatant.attack[c].effect[0])
                             }
                         }
                         this.turns.push(new turn(0,this.battle,findName('Strike',types.attack),[damageMax],a))
                     }else{
                         this.turns.push(new turn(0,this.battle,
-                            this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
-                            this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
+                            combatant.attack[combatant.intent].type,
+                            combatant.attack[combatant.intent].effect,a))
                     }
                 }
-                if(this.battle.combatantManager.combatants[a].getStatus('Extra Turn')>0){
-                    this.battle.combatantManager.combatants[a].status.main[findList('Extra Turn',this.battle.combatantManager.combatants[a].status.name)]=0
+                if(combatant.getStatus('Extra Turn')>0){
+                    combatant.status.main[findList('Extra Turn',combatant.status.name)]=0
                 }
             }else{
-                if(this.battle.modded(66)&&!this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].team==0){
-                    this.battle.combatantManager.combatants[a].statusEffect('Strength',2)
+                if(this.battle.modded(66)&&!combatant.activated&&combatant.team==0){
+                    combatant.statusEffect('Strength',2)
                 }
-                if(this.battle.modded(129)&&!this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].team==0){
-                    this.battle.combatantManager.combatants[a].heal(5)
+                if(this.battle.modded(129)&&!combatant.activated&&combatant.team==0){
+                    combatant.heal(5)
                 }
             }
         }

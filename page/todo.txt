@@ -1,8 +1,6 @@
-test plant tiles
-test stances
-test evolve
-test bell
 test sanae (again)
+
+evolve sucks
 
 CS 154 [ENDSIEG ULTIMATE]
 
@@ -18,5 +16,26 @@ revenge of mysterious beam?
 probably split anammox
 probably split mountain of faith
 probably split cleansing ritual (exhaust top card of draw pile) and esoterica (maybe)
+spade shove is backwards
+why tf does irrigation fatigue
+fertilize is a little busted
+MAYBE split lily of the valley, something's not right with it (dubious tea as well?)
+split spicy cuisine
+remove all plant tiles but super thorns (garden riisng)
+
+move sky high (or just shoot it)
+posture is stupid
+buffsplit agitate
+
+perfect throw should count as a shiv (maybe it already does, but doesn't trigger things)
+destroy edge of reason
+
+maybe plant tile generating cards should be playable on yourself
+konai's blossoming sucks ass
+dawn's promise - when you play a card that costs 3 or more, get vitality
+
+split i-beam to match diamond plate
+
+rephrase backflip
 
 

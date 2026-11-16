@@ -88,7 +88,8 @@ class eventManager{
                 !(this.listing.event[a]==51&&this.battle.currency.money[this.player]<100)&&
                 !(this.listing.event[a]==52&&userCombatant.life<13)&&
                 !(this.listing.event[a]==55&&userCombatant.life<10)&&
-                !(this.listing.event[a]==56&&this.battle.currency.money[this.player]<40)&&
+                //!(this.listing.event[a]==56&&this.battle.currency.money[this.player]<40)&&
+                !(this.listing.event[a]==56&&(this.battle.currency.money[this.player]<40||this.battle.nodeManager.world!=0))&&
                 !(this.listing.event[a]==60&&userCombatant.life>userCombatant.base.life-12)&&
                 !(this.listing.event[a]==62&&(userCombatant.life<7||this.battle.currency.money[this.player]<50))&&
                 !(this.listing.event[a]==63&&(this.listing.complete.length<=3||this.battle.nodeManager.world!=2))&&
