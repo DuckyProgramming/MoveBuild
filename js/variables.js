@@ -128,7 +128,7 @@ types={
         {name:'Hwurmp',life:25,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:157,effect:[8,1,'Dazed']}],description:`Full of hot air`},
         {name:'Antihwurmp',life:25,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:166,effect:[8,1,'Dazed']}],description:`Kinda illogical`},
         {name:'Bee',life:4,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[1]}],description:`3 Pixels`},
-        {name:'Beekeeper',life:76,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
+        {name:'Beekeeper',life:76,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
         {name:'PhD',life:58,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
         {name:'Glimmerrer',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[4]},{type:161,effect:[5]},{type:162,effect:[7]}],description:`Oh shiny`},
@@ -154,7 +154,7 @@ types={
         {name:'Structural Energy',life:55,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
         {name:'Disorder Energy',life:104,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[10,1]},{type:269,effect:[16,1,1]}],description:`Coloration error moment`},
         {name:'Kugelblitz',life:97,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:262,effect:[8,1]},{type:263,effect:[8,1]},{type:264,effect:[9,1]},{type:265,effect:[9,1]}],description:`From the overseer`},
-        {name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
+        {name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:522,effect:[14,2]},{type:523,effect:[24,2]}],description:`Can't see anything behind those shades`},
         {name:'Intruder',life:21,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:270,effect:[7,1]},{type:271,effect:[5,1]}],description:`Didn't ask to be let in`},
         {name:'Lead Brick',life:35,behavior:1,spec:[],move:{type:0,speed:0},attack:[{type:272,effect:[8]},{type:273,effect:[4]}],description:`Somehow floats`},
         {name:'Regen Balloon',life:39,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:290,effect:[8,3]}],description:`Honestly I can't explain this one`},
@@ -162,7 +162,7 @@ types={
         {name:'Relic',life:108,behavior:0,spec:[0,18],move:{type:0,speed:1},attack:[{type:275,effect:[14]},{type:276,effect:[12]},{type:277,effect:[16]}],description:`Why do enemies award you now?`},
         {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:502,effect:[14,2]},{type:503,effect:[17,2]},{type:405,effect:[24,2]}],description:`Just you wait...`},
         {name:'Anomaly',life:93,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[5,1]},{type:2,effect:[6]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
-        {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
+        {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[22]},{type:526,effect:[18,1]},{type:527,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Unacceptably low spawn rate`},
         {name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:520,effect:[8,2,2]}],description:`This is getting out of hand!`},
         {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[15]},{type:300,effect:[2]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
@@ -337,6 +337,8 @@ types={
         //{name:'Warning Robot',life:92,behavior:0,spec:[0,8],move:{type:0,speed:1},attack:[{type:31,effect:[2]}],description:`We've been expecting you`},
         //{name:'Embodimental Destabilization',life:121,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[2,2,2,2]}],description:`This is getting out of hand!`},
         //{name:'Lunar Servant',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
+        //{name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
+        //{name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -957,6 +959,13 @@ types={
         {name:'Double Strike / Spawn',class:1},
         {name:'2 Tile Double Strike / Spawn',class:1},
         {name:'4 Direction Strike / Weak / Vulnerable',class:1},//520
+        {name:'1 Tile Drive / Frail',class:5},
+        {name:'Gun / Mortal',class:1},
+        {name:'Block / Self Mortal',class:2},
+        {name:'Moonbeam / Take Per Card Played',class:1},
+        {name:'Moonbeam / Self Take Per Card Played',class:1},
+        {name:'Moonbeam / Intangible',class:1},
+        {name:'Moonbeam / Self Intangible',class:1},
 
         //mark attack
     ],relic:[

@@ -1,6 +1,5 @@
 test sanae (again)
-
-evolve sucks
+test vincent (again)
 
 CS 154 [ENDSIEG ULTIMATE]
 
@@ -37,5 +36,11 @@ dawn's promise - when you play a card that costs 3 or more, get vitality
 split i-beam to match diamond plate
 
 rephrase backflip
+
+why doesn't gps apply shock
+condemnation = interpolation
+split inductor to draw
+
+evolve sucks
 
 

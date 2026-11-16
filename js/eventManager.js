@@ -115,6 +115,7 @@ class eventManager{
                 !(this.listing.event[a]==92&&this.battle.cardManagers[this.player].deck.numberAbstract(14,[[6],7])<=0)&&
                 !(this.listing.event[a]==93&&this.battle.currency.money[this.player]<60)&&
                 !(this.listing.event[a]==94&&(this.battle.currency.money[this.player]<200||this.battle.nodeManager.world!=2))&&
+                !(this.listing.event[a]==95&&this.battle.nodeManager.world!=1)&&
                 !(this.listing.event[a]==97&&this.battle.currency.money[this.player]<65)&&
                 !(this.listing.event[a]==99&&(this.battle.currency.money[this.player]<40||this.battle.nodeManager.world!=0))&&
                 !(this.listing.event[a]==100&&(userCombatant.life<16||this.battle.currency.money[this.player]<40))&&

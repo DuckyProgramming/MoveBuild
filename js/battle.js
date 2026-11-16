@@ -490,7 +490,7 @@ class battle{
     setupBattle(encounter,first=true){
         let effectiveEncounter=variants.randomCombat?this.simulateCombat(encounter):encounter
         this.lastEncounter=effectiveEncounter
-        this.encounter.class=effectiveEncounter.class
+        this.encounter.class=(game.ascend>=33||game.diff>=26)&&effectiveEncounter.class==4&&effectiveEncounter.world==3?2:effectiveEncounter.class
         this.encounter.world=effectiveEncounter.world
         this.encounter.name=effectiveEncounter.name
         for(let a=0,la=this.energy.base.length;a<la;a++){

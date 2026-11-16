@@ -193,7 +193,7 @@ class turn{
                                 case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427: case 428:
                                 case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463: case 475:
                                 case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
-                                case 503: case 506: case 512: case 513:
+                                case 503: case 506: case 512: case 513: case 522: case 524: case 525: case 526: case 527:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -357,7 +357,7 @@ class turn{
                                         [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+120)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+120)[1]]
                                     ]
                                 break
-                                case 209: case 440:
+                                case 209: case 440: case 521:
                                     this.targetIndex=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1])]
                                 break
                                 case 214:
@@ -580,7 +580,7 @@ class turn{
                                 this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||
                                 this.type==175||this.type==243||this.type==296||this.type==319||this.type==323||
                                 this.type==324||this.type==347||this.type==403||this.type==440||this.type==462||
-                                this.type==471||this.type==478||this.type==510
+                                this.type==471||this.type==478||this.type==510||this.type==521
                             ){
                                 this.direction=this.userCombatant.goal.anim.direction
                             }else if(this.type==344){
@@ -780,7 +780,8 @@ class turn{
                                         case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420:
                                         case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
                                         case 459: case 463: case 475: case 477: case 479: case 480: case 481: case 482: case 483: case 484:
-                                        case 486: case 493: case 499: case 503: case 506: case 512: case 513:
+                                        case 486: case 493: case 499: case 503: case 506: case 512: case 513: case 522: case 524: case 525:
+                                        case 526: case 527:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)||
@@ -1994,6 +1995,9 @@ class turn{
                             case 514:
                                 this.battle.combatantManager.allEffect(48,['Temporary Strength',this.effect[1]])
                             break
+                            case 523:
+                                this.userCombatant.statusEffect('Mortal',this.effect[1])
+                            break
 
                         }
                     break
@@ -2283,6 +2287,9 @@ class turn{
                     break
                     case 439:
                         this.targetCombatant.statusEffect('Frail Next Turn',this.effect[1])
+                    break
+                    case 522:
+                        this.targetCombatant.statusEffect('Mortal',this.effect[1])
                     break
                 }
             break

@@ -958,7 +958,8 @@ class combatant{
                 this.statusEffect('Fragile Speed Up',diffUnfair?2:1)
             break
             case 'Recollection':
-                this.statusEffect('Block Cycle 2 1',diffUnfair?24:10)
+                //this.statusEffect('Block Cycle 2 1',diffUnfair?24:10)
+                this.statusEffect('Block Cycle 2 1',diffUnfair?20:10)
             break
             case 'Daughter of Heaven':
                 this.statusEffect('Heal on Hit Taken',diffUnfair?5:3)
@@ -1706,7 +1707,8 @@ class combatant{
                         this.subAttackTypeSwitch([[2,177,177,[1.25]]])
                     break
                     case 'Rammer Robot':
-                        this.spec.push(20)
+                        this.subAttackTypeSwitch([[1,440,521,[1]]])
+                        //this.spec.push(20)
                     break
                     case 'Volt King':
                         this.subAttackTypeSwitch([[1,497,498,[10]]])
@@ -1880,6 +1882,8 @@ class combatant{
                         &&!(this.attack[a].type==331&&b==1)
                         &&!(this.attack[a].type==342&&b==1)
                         &&!(this.attack[a].type==462&&b==1)
+                        &&!(this.attack[a].type==526&&b==1)
+                        &&!(this.attack[a].type==527&&b==1)
                         &&this.attack[a].type!=39
                         &&this.attack[a].type!=40
                         &&this.attack[a].type!=41
@@ -2291,7 +2295,7 @@ class combatant{
             case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
             case 282: case 295: case 305: case 309: case 332: case 341: case 355: case 369: case 370: case 371:
             case 372: case 373: case 377: case 378: case 399: case 412: case 424: case 426: case 434: case 437:
-            case 440: case 485: case 489: case 518:
+            case 440: case 485: case 489: case 518: case 521:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -2342,7 +2346,8 @@ class combatant{
             case 358: case 361: case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420:
             case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
             case 459: case 463: case 471: case 475: case 477: case 479: case 480: case 481: case 482: case 483:
-            case 484: case 486: case 493: case 499: case 503: case 506: case 512: case 513:
+            case 484: case 486: case 493: case 499: case 503: case 506: case 512: case 513: case 522: case 524:
+            case 525: case 526: case 527:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -3174,7 +3179,7 @@ class combatant{
                         case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                         case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
                         case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
-                        case 503: case 506: case 512: case 513:
+                        case 503: case 506: case 512: case 513: case 522: case 524: case 525: case 526: case 527:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3206,7 +3211,7 @@ class combatant{
                                 }
                             }
                         break
-                        case 127: case 150: case 440:
+                        case 127: case 150: case 440: case 521:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[0].tilePosition.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y
@@ -3314,6 +3319,7 @@ class combatant{
                     case 270: case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 331: case 332:
                     case 341: case 355: case 363: case 369: case 370: case 371: case 372: case 373: case 377: case 378:
                     case 399: case 412: case 424: case 426: case 434: case 437: case 440: case 485: case 489: case 518:
+                    case 521:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(this.targetTile[b].tilePosition.x>=0){
@@ -3437,7 +3443,7 @@ class combatant{
                     case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                     case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
                     case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
-                    case 503: case 506: case 513:
+                    case 503: case 506: case 513: case 522: case 524: case 525: case 526: case 527:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){

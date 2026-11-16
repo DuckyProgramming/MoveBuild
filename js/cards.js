@@ -27623,15 +27623,15 @@ types.card=[
     },{
         name:'Lightning\nClaw',rarity:1,list:12,
         levels:[
-            {effect:[1,1],attack:2089,cost:1,target:[2,1,1],spec:[],class:11},
-            {effect:[2,1],attack:2089,cost:1,target:[2,1,1],spec:[],class:11},
-            {effect:[3,1],attack:2089,cost:1,target:[2,1,1],spec:[],class:11},
+            {effect:[1,1],attack:2089,cost:1,target:[2,1,1],spec:[20],class:11},
+            {effect:[2,1],attack:2089,cost:1,target:[2,1,1],spec:[20],class:11},
+            {effect:[3,1],attack:2089,cost:1,target:[2,1,1],spec:[20],class:11},
         ],mtg:{
             rarity:1,list:12,color:[1,3],
             levels:[
-                {effect:[2,1],attack:2089,cost:[8,-1],target:[2,1,1],spec:[],class:11},
-                {effect:[3,1],attack:2089,cost:[8,-1],target:[2,1,1],spec:[],class:11},
-                {effect:[4,1],attack:2089,cost:[8,-1],target:[2,1,1],spec:[],class:11},
+                {effect:[2,1],attack:2089,cost:[8,-1],target:[2,1,1],spec:[20],class:11},
+                {effect:[3,1],attack:2089,cost:[8,-1],target:[2,1,1],spec:[20],class:11},
+                {effect:[4,1],attack:2089,cost:[8,-1],target:[2,1,1],spec:[20],class:11},
             ],
         },
     },{

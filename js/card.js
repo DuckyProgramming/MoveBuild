@@ -6858,7 +6858,7 @@ class card{
                     if(this.edition==5){
                         let merge=mergeColor([255,255,255],flipColor(mergeColor3(colorDetail[0].text,colorDetail[1].text,colorDetail[2].text)),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
-                    }else if(devglow){
+                    }else if(devglow||this.attack>=3694&&this.attack<=3699){
                         let merge=mergeColor([240,240,240],mergeColor3(colorDetail[0].text,colorDetail[1].text,colorDetail[2].text),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
                     }else{
@@ -6869,7 +6869,7 @@ class card{
                     if(this.edition==5){
                         let merge=mergeColor([255,255,255],flipColor(mergeColor(colorDetail[0].text,colorDetail[1].text,0.5)),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
-                    }else if(devglow){
+                    }else if(devglow||this.attack>=3694&&this.attack<=3699){
                         let merge=mergeColor([240,240,240],mergeColor(colorDetail[0].text,colorDetail[1].text,0.5),this.level/max(1,this.levels-1))
                         this.layer.fill(...merge,this.fade)
                     }else{
@@ -6881,7 +6881,7 @@ class card{
                 if(this.edition==5){
                     let merge=mergeColor([255,255,255],flipColor(colorDetail.text),this.level/max(1,this.levels-1))
                     this.layer.fill(...merge,this.fade)
-                }else if(devglow){
+                }else if(devglow||this.attack>=3694&&this.attack<=3699){
                     let merge=mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))
                     this.layer.fill(...merge,this.fade)
                 }else{

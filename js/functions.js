@@ -1381,6 +1381,13 @@ function intentDescription(attack,user,info){
 			case 518: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nSpawn ${info?attack.effect[1]:`?`} ${info?attack.effect[2]+(attack.effect[2]=='Glitch'&&attack.effect[1]!=1?`e`:``)+pl(attack.effect[1]):`?`}\nRange 1-1`
 			case 519: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nSpawn ${info?attack.effect[1]:`?`} ${info?attack.effect[2]+(attack.effect[2]=='Glitch'&&attack.effect[1]!=1?`e`:``)+pl(attack.effect[1]):`?`}\nRange 1-2`
 			case 520: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nApply ${info?attack.effect[2]:`?`} Vulnerable\nin 4 Directions\nRange 1-1`
+			case 521: return `Move up to 1 Tile,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nand Apply ${info?attack.effect[1]:`?`} Frail\nto All Targets and Swap`
+			case 522: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Mortal\nRange 1-6\nNo Movement`
+			case 523: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Mortal`
+			case 524: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Takes ${info?attack.effect[1]:`?`} Damage\nPer Card Played\nRange 1-6\nNo Movement`
+			case 525: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nUser Takes ${info?attack.effect[1]:`?`} Damage\nPer Card Played\nRange 1-6\nNo Movement`
+			case 526: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Intangible\nRange 1-6\nNo Movement`
+			case 527: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Intangible\nRange 1-6\nNo Movement`
 
 			//mark desc
 			/*
