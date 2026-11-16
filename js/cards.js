@@ -33973,15 +33973,15 @@ types.card=[
     },{
         name:'Glass\nCeiling',rarity:2,list:14,
         levels:[
-            {effect:[1,1],attack:11841,cost:2,target:[0],spec:[],class:11},
-            {effect:[1,2],attack:11841,cost:2,target:[0],spec:[],class:11},
-            {effect:[1,3],attack:11841,cost:2,target:[0],spec:[],class:11},
+            {effect:[1,1],attack:11841,cost:2,target:[0],spec:[1],class:11},
+            {effect:[1,2],attack:11841,cost:2,target:[0],spec:[1],class:11},
+            {effect:[1,3],attack:11841,cost:2,target:[0],spec:[1],class:11},
         ],mtg:{
             rarity:2,list:14,color:[2,3],
             levels:[
-                {effect:[1,1],attack:11841,cost:[2,3,-1],target:[0],spec:[],class:11},
-                {effect:[1,2],attack:11841,cost:[2,3,-1],target:[0],spec:[],class:11},
-                {effect:[1,3],attack:11841,cost:[2,3,-1],target:[0],spec:[],class:11},
+                {effect:[1,1],attack:11841,cost:[2,3,-1],target:[0],spec:[1],class:11},
+                {effect:[1,2],attack:11841,cost:[2,3,-1],target:[0],spec:[1],class:11},
+                {effect:[1,3],attack:11841,cost:[2,3,-1],target:[0],spec:[1],class:11},
             ],
         },
     },{

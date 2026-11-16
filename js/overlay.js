@@ -331,13 +331,15 @@ class overlay{
                     if(this.battle.relicManager.active[131][this.player+1]>0&&this.args[0]==0){
                         this.options-=this.battle.relicManager.active[131][this.player+1]
                     }
-                    if(this.battle.relicManager.active[238][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
+                    //if(this.battle.relicManager.active[238][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
+                    if(this.battle.relicManager.active[238][this.player+1]>0&&[14,15,16,25,63].includes(args[2])&&this.args[0]==0){
                         this.options+=2*this.battle.relicManager.active[238][this.player+1]
                     }
                     if(this.battle.relicManager.active[420][this.player+1]>0&&this.args[0]==0){
                         this.options+=this.battle.relicManager.active[420][this.player+1]
                     }
-                    if(this.battle.relicManager.active[333][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
+                    //if(this.battle.relicManager.active[333][this.player+1]>0&&[14,15,16,25].includes(args[2])&&this.args[0]==0){
+                    if(this.battle.relicManager.active[333][this.player+1]>0&&[14,15,16,25,63].includes(args[2])&&this.args[0]==0){
                         upKey+=0.5*this.battle.relicManager.active[333][this.player+1]
                     }
                     if(this.battle.relicManager.active[504][this.player+1]>0&&this.args[0]==0&&(args[2]==0||args[2]==7)){
@@ -3850,7 +3852,8 @@ class overlay{
                 this.layer.text(`Heal ${10+this.battle.relicManager.active[449][this.player+1]*5} HP`,this.layer.width/2,this.layer.height/2-40)
                 this.layer.text('Close',this.layer.width/2,this.layer.height/2+40)
                 this.layer.textSize(8)
-                this.layer.text('60 Currency',this.layer.width/2,this.layer.height/2-25)
+                //this.layer.text('60 Currency',this.layer.width/2,this.layer.height/2-25)
+                this.layer.text('100 Currency',this.layer.width/2,this.layer.height/2-25)
                 this.battle.combatantManager.combatants[this.player].displayInfo('food')
             break
             case 8:
@@ -6169,8 +6172,9 @@ class overlay{
                     }
                 break
                 case 7:
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-40},width:120,height:40})&&this.battle.currency.money[this.player]>=60){
-                        this.battle.currency.money[this.player]-=60
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-40},width:120,height:40})&&this.battle.currency.money[this.player]>=100){
+                        //this.battle.currency.money[this.player]-=60
+                        this.battle.currency.money[this.player]-=100
                         this.battle.combatantManager.combatants[this.player].heal(10+this.battle.relicManager.active[449][this.player+1]*5)
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+40},width:120,height:40})){
                         this.active=false
@@ -7908,8 +7912,9 @@ class overlay{
                     }
                 break
                 case 7:
-                    if(key==UP_ARROW&&this.battle.currency.money[this.player]>=60){
-                        this.battle.currency.money[this.player]-=60
+                    if(key==UP_ARROW&&this.battle.currency.money[this.player]>=100){
+                        //this.battle.currency.money[this.player]-=60
+                        this.battle.currency.money[this.player]-=100
                         this.battle.combatantManager.combatants[this.player].heal(10+this.battle.relicManager.relic[449][this.player+1]*5)
                     }else if(code==ENTER||code==ESCAPE){
                         this.active=false

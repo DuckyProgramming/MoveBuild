@@ -4975,15 +4975,32 @@ class card{
         }
     }
     formTooltip(){
-        let desc=this.description(this.attack,this.effect,this.spec,this.target)
-        let fixed=desc.toLowerCase().replaceAll('\n',' ')
-        for(let a=0,la=types.dictionary.length;a<la;a++){
-            if(
-                !types.dictionary[a].basic&&
-                (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
-                fixed.includes(types.dictionary[a].name.toLowerCase())
-            ){
-                this.tooltip.dict.push(a)
+        if(this.spec.includes(12)){
+            let desc=[
+                this.description(this.attack[0],this.effect[0],this.reality[0],this.target),
+                this.description(this.attack[1],this.effect[1],this.reality[1],this.target)
+            ]
+            let fixed=desc.map(line=>line.toLowerCase().replaceAll('\n',' '))
+            for(let a=0,la=types.dictionary.length;a<la;a++){
+                if(
+                    !types.dictionary[a].basic&&
+                    (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
+                    fixed.some(line=>line.includes(types.dictionary[a].name.toLowerCase()))
+                ){
+                    this.tooltip.dict.push(a)
+                }
+            }
+        }else{
+            let desc=this.description(this.attack,this.effect,this.spec,this.target)
+            let fixed=desc.toLowerCase().replaceAll('\n',' ')
+            for(let a=0,la=types.dictionary.length;a<la;a++){
+                if(
+                    !types.dictionary[a].basic&&
+                    (types.dictionary[a].mtg==0||types.dictionary[a].mtg==1&&!variants.mtg||types.dictionary[a].mtg==2&&variants.mtg)&&
+                    fixed.includes(types.dictionary[a].name.toLowerCase())
+                ){
+                    this.tooltip.dict.push(a)
+                }
             }
         }
         this.tooltip.active=this.tooltip.dict.length>0

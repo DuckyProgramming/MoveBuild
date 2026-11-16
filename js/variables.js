@@ -232,8 +232,8 @@ types={
         {name:'Rusted Robot',life:81,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:27,effect:[5,2]},{type:488,effect:[2,2]},{type:10,effect:[3]}],description:`Produced far too long ago`},
         {name:'Warning Robot',life:92,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:518,effect:[6,1,'Management Robot']}],description:`We've been expecting you`},
         {name:'Ascended Soul',life:128,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:486,effect:[1]},{type:487,effect:[4,1]}],description:`Better than yours`},
-        {name:'Glazer',life:60,behavior:1,spec:[23],move:{type:2,speed:2},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
-        {name:'Glazer Clone',life:60,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
+        {name:'Glazer',life:68,behavior:1,spec:[23],move:{type:2,speed:2},attack:[{type:270,effect:[11,1]}],description:`The most egotistical man alive`},
+        {name:'Glazer Clone',life:68,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:270,effect:[11,1]}],description:`The least egotistical man alive`},
         {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[3]},{type:77,effect:[4]},{type:367,effect:[6]},{type:380,effect:[8]}],description:`PVZ Fusion looking`},
         {name:'Volt King',life:162,behavior:6,spec:[0],move:{type:0,speed:2},attack:[{type:497,effect:[6]},{type:59,effect:[10]},{type:45,effect:[6]},{type:53,effect:[10,1,'Electrocuted']},{type:5,effect:[1,'Electrocuted']}],description:`One with nothing`},
         {name:'Big Bush Thing',life:36,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:28,effect:[10]},{type:110,effect:[5,5]},{type:111,effect:[4]}],description:`Preparing his child for greatness`},
@@ -8217,7 +8217,8 @@ Obtained through rewards, events, or through the shop.`,
 `Stronger than a normal combat (typically).
 Grants more rewards, including a relic.`,
         },{name:'Combo',mtg:0,basic:false,desc:
-`Combo increases by 1 when an enemy is hit, and you are directly responsible.
+//`Combo increases by 1 when an enemy is hit, and you are directly responsible.
+`Combo increases by 1 when an enemy is hit and you are directly responsible.
 Some cards cost combo, or spend it in their effects. Others may generate it.`,
         },{name:'Speed Up/Slow',mtg:0,basic:false,desc:
 `Changes the amount of movement turns an enemy gets on their turn.

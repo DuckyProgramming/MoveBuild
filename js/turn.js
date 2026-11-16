@@ -878,9 +878,9 @@ class turn{
                                         }
                                     }
                                     if(!hit){
-                                        if(this.targetCombatant.filter(combatant=>combatant.life>0&&combatant.team!=this.userCombatant.team)){
+                                        if(this.targetCombatant.filter(combatant=>combatant.life>0&&combatant.team!=this.userCombatant.team).length>0){
                                             this.targetCombatant=randin(this.targetCombatant.filter(combatant=>combatant.life>0&&combatant.team!=this.userCombatant.team))
-                                        }else if(this.targetCombatant.filter(combatant=>combatant.life>0)){
+                                        }else if(this.targetCombatant.filter(combatant=>combatant.life>0).length>0){
                                             this.targetCombatant=randin(this.targetCombatant.filter(combatant=>combatant.life>0))
                                         }else{
                                             this.targetCombatant=randin(this.targetCombatant)

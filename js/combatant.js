@@ -1274,7 +1274,8 @@ class combatant{
                         this.behavior=0
                     break
                     case 'Looter': case 'Mugger':
-                        this.subAttackTypeSwitch([[2,67,67,[1,4]]])
+                        //this.subAttackTypeSwitch([[2,67,67,[1,4]]])
+                        this.subAttackTypeSwitch([[2,67,67,[1,2]]])
                     break
                     case 'Little Guy':
                         this.subAttackTypeSwitch([[1,1,378,[8]]])
@@ -2752,6 +2753,7 @@ class combatant{
                     this.intent=(this.turnsAlive-1)%this.attack.length
                     this.convertIntent()
                 }else{
+                    //mark behavior
                     switch(this.behavior){
                         case 0:
                             this.intent=(this.turnsAlive-1)%this.attack.length
@@ -2776,10 +2778,11 @@ class combatant{
                             this.intent=value==0?0:value==this.attack.length*2-3?this.attack.length-1:(value-1)%(this.attack.length-2)+1
                         break
                         case 7:
-                            this.intent=floor(random(0,this.attack.length))
+                            /*this.intent=floor(random(0,this.attack.length))
                             if(this.intent==0&&this.status.main[42]<=0){
                                 this.intent=floor(random(0,this.attack.length))
-                            }
+                            }*/
+                            this.intent=randin(range(this.status.main[42]<=0?1:0,this.attack.length))
                         break
                         case 8:
                             this.intent=this.turnsAlive<=1?this.attack.length-1:(this.turnsAlive-2)%(this.attack.length-1)

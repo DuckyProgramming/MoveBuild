@@ -7290,7 +7290,8 @@ class group{
             case 66:
                 if(this.cards[a].attack!=-3){
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                    this.battle.combatantManager.areaAbstract(2,['Burn',this.status[57]*max(0,this.cards[a].getCost(0))],userCombatant.tilePosition,[3,userCombatant.id],[0,2],false,0)
+                    //this.battle.combatantManager.areaAbstract(2,['Burn',this.status[57]*max(0,this.cards[a].getCost(0))],userCombatant.tilePosition,[3,userCombatant.id],[0,2],false,0)
+                    this.battle.combatantManager.areaAbstract(2,['Burn',this.status[57]*max(0,this.cards[a].getCost(0))],userCombatant.tilePosition,[3,userCombatant.id],[0,1],false,0)
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     if(this.status[57]>0){

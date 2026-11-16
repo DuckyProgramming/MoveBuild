@@ -47,7 +47,14 @@ class pack{
             }
         }
         if(game.tooltip){
-            let desc=this.cards.map(card=>card.description(card.attack,card.effect,card.spec,card.target))
+            let desc=this.cards.map(
+                card=>card.spec.includes(12)?
+                [
+                    card.description(card.attack[0],card.effect[0],card.reality[0],card.target),
+                    card.description(card.attack[1],card.effect[1],card.reality[1],card.target)
+                ]:
+                card.description(card.attack,card.effect,card.spec,card.target)
+            ).flat(1)
             let fixed=desc.map(line=>line.toLowerCase().replaceAll('\n',' '))
             for(let a=0,la=types.dictionary.length;a<la;a++){
                 if(

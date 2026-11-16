@@ -1,12 +1,9 @@
-test sanae (again)
-test vincent (again)
-
 CS 154 [ENDSIEG ULTIMATE]
 
 diff 26 anew
 act 5
-the admiral-manager
-asshole
+the admiral-manager (1453)
+asshole (1945)
 
 airi could use a new halo
 
@@ -42,5 +39,14 @@ condemnation = interpolation
 split inductor to draw
 
 evolve sucks
+guns are mid af
+
+wine and water is weird
+[when you discard a status card during scry, exhaust it]
+what if moriya talismans gave you faith
+
+vincent rares suck
+
+test vincent (again)
 
 
