@@ -5050,8 +5050,12 @@ function setupCombatantGraphics(type){
 
 			data.parts.hair={
 				main:[
-					{spin:[30,54,42],height:12},
-                    {spin:[-54,-30,-42],height:12},
+					/*{spin:[30,54,42],height:12},
+                    {spin:[-54,-30,-42],height:12},*/
+					{spin:[30,54,42],height:6},
+                    {spin:[-54,-30,-42],height:6},
+					{spin:[36,54,45],height:12},
+                    {spin:[-54,-36,-45],height:12},
 					{spin:[48,72,60],height:15},
                     {spin:[-72,-48,-60],height:15},
 					{spin:[66,90,78],height:17.8},
@@ -5083,8 +5087,10 @@ function setupCombatantGraphics(type){
                     {spin:[-171,-147,-159],height:27.7},
 					{spin:[163,207,180],height:28.8},
 				],reverse:[
-					{spin:[-27,3,-6],height:-5},
-					{spin:[3,27,6],height:-5},
+					/*{spin:[-27,3,-6],height:-5},
+					{spin:[3,27,6],height:-5},*/
+					{spin:[-29,3,-6],height:-5},
+					{spin:[3,29,6],height:-5},
 				]
 			}
 		

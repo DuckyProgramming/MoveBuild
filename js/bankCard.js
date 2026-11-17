@@ -12220,6 +12220,13 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11940: string+=`Moriya Talismans Give\n${effect[0]} Temporary Strength`; break
         case 11941: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\n2 Times\nGain ${effect[1]} Faith\nFirst Time Played: (${this.debut?`Yes`:`No`})\nHeal ${this.calculateEffect(effect[2],4)} Health`; break
         case 11942: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nAdd ${effect[1]} Pristine${pl(effect[1])} to Hand`; break
+        case 11943: string+=`Make ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of a\nCard in Hand\nIt Costs 0 Temporarily\nCop${effect[0]!=1?`ies Cost`:`y Costs`} 0 Temporarily`; break
+        case 11944: string+=`Move 1 Tile Away\nApply ${effect[0]} Weak`; break
+        case 11945: string+=`Move 1 Tile Away\nApply ${effect[0]} Vulnerable`; break
+        case 11946: string+=`Move 1 Tile Away\nGain ${effect[0]} Vulnerable`; break
+        case 11947: string+=`Move 1 Tile Away\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
+        case 11948: string+=`Move 1 Tile Away\nHeal ${this.calculateEffect(effect[0],4)} Health`; break
+        case 11949: string+=`Move 1 Tile Away\nAdd ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}`; break
 
         //mark p
         //mark q

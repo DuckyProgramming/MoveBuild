@@ -23805,20 +23805,6 @@ types.card=[
             ],
         },
     },{
-        name:'Dine and\nDash',rarity:1,list:10,
-        levels:[
-            {effect:[2],attack:9229,cost:0,target:[2,1,1],spec:[1],class:11},
-            {effect:[4],attack:9229,cost:0,target:[2,1,1],spec:[1],class:11},
-            {effect:[6],attack:9229,cost:0,target:[2,1,1],spec:[1],class:11},
-        ],mtg:{
-            rarity:1,list:10,color:[1,5],
-            levels:[
-                {effect:[2],attack:9229,cost:[],target:[2,1,1],spec:[1],class:11},
-                {effect:[4],attack:9229,cost:[],target:[2,1,1],spec:[1],class:11},
-                {effect:[6],attack:9229,cost:[],target:[2,1,1],spec:[1],class:11},
-            ],
-        },
-    },{
         name:'Hot\nHand',rarity:1,list:10,
         levels:[
             {effect:[],attack:9286,cost:0,target:[0],spec:[1],class:11},
@@ -25258,6 +25244,20 @@ types.card=[
                 {effect:[],attack:1226,cost:[],target:[0],spec:[1],class:11},
                 {effect:[],attack:1253,cost:[],target:[0],spec:[1],class:11},
                 {effect:[],attack:1254,cost:[],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Dine and\nDash',rarity:1,list:10,
+        levels:[
+            {effect:[2],attack:11948,cost:0,target:[2,1,1],spec:[1],class:3},
+            {effect:[4],attack:11948,cost:0,target:[2,1,1],spec:[1],class:3},
+            {effect:[6],attack:11948,cost:0,target:[2,1,1],spec:[1],class:3},
+        ],mtg:{
+            rarity:1,list:10,color:[1,5],
+            levels:[
+                {effect:[2],attack:11948,cost:[],target:[2,1,1],spec:[1],class:3},
+                {effect:[4],attack:11948,cost:[],target:[2,1,1],spec:[1],class:3},
+                {effect:[6],attack:11948,cost:[],target:[2,1,1],spec:[1],class:3},
             ],
         },
     },
@@ -37003,20 +37003,6 @@ types.card=[
             ],
         },
     },{
-        name:'Rebuttal',rarity:0,list:16,
-        levels:[
-            {effect:[1],attack:8034,cost:0,target:[2,1,1],spec:[],class:11},
-            {effect:[2],attack:8034,cost:0,target:[2,1,1],spec:[],class:11},
-            {effect:[3],attack:8034,cost:0,target:[2,1,1],spec:[],class:11},
-        ],mtg:{
-            rarity:0,list:-1,color:[1,3],
-            levels:[
-                {effect:[1],attack:8034,cost:[],target:[2,1,1],spec:[],class:11},
-                {effect:[2],attack:8034,cost:[],target:[2,1,1],spec:[],class:11},
-                {effect:[3],attack:8034,cost:[],target:[2,1,1],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Lifegiver',rarity:1,list:16,
         levels:[
             {effect:[15,1],attack:8381,cost:1,target:[2,1,1],spec:[1],class:11},
@@ -38722,6 +38708,20 @@ types.card=[
                 {effect:[1],attack:7596,cost:[1,4,-1],target:[0],spec:[1],class:11},
                 {effect:[2],attack:7596,cost:[1,4,-1],target:[0],spec:[1],class:11},
                 {effect:[3],attack:7596,cost:[1,4,-1],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Rebuttal',rarity:0,list:16,
+        levels:[
+            {effect:[1],attack:11945,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[2],attack:11945,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[3],attack:11945,cost:0,target:[2,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:0,list:-1,color:[1,3],
+            levels:[
+                {effect:[1],attack:11945,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[2],attack:11945,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[3],attack:11945,cost:[],target:[2,1,1],spec:[],class:3},
             ],
         },
     },
@@ -46609,20 +46609,6 @@ types.card=[
             ],
         },
     },{
-        name:'Parting\nShot',rarity:0,list:20,
-        levels:[
-            {effect:[1],attack:8020,cost:0,target:[2,1,1],spec:[],class:11},
-            {effect:[2],attack:8020,cost:0,target:[2,1,1],spec:[],class:11},
-            {effect:[3],attack:8020,cost:0,target:[2,1,1],spec:[],class:11},
-        ],mtg:{
-            rarity:0,list:-1,color:[1,3],
-            levels:[
-                {effect:[1],attack:8020,cost:[],target:[2,1,1],spec:[],class:11},
-                {effect:[2],attack:8020,cost:[],target:[2,1,1],spec:[],class:11},
-                {effect:[3],attack:8020,cost:[],target:[2,1,1],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Cerberus',rarity:1,list:20,
         levels:[
             {effect:[12,1,1,1],attack:7787,cost:2,target:[2,1,1],spec:[0,1],class:1},
@@ -47698,6 +47684,20 @@ types.card=[
                 {effect:[6,1],attack:11715,cost:[16],target:[0],spec:[1,4],class:11},
                 {effect:[4,1],attack:11715,cost:[16],target:[0],spec:[1,4],class:11},
                 {effect:[2,1],attack:11715,cost:[16],target:[0],spec:[1,4],class:11},
+            ],
+        },
+    },{
+        name:'Parting\nShot',rarity:0,list:20,
+        levels:[
+            {effect:[1],attack:11944,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[2],attack:11944,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[3],attack:11944,cost:0,target:[2,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:0,list:-1,color:[1,3],
+            levels:[
+                {effect:[1],attack:11944,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[2],attack:11944,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[3],attack:11944,cost:[],target:[2,1,1],spec:[],class:3},
             ],
         },
     },
@@ -61715,20 +61715,6 @@ types.card=[
             ],
         },
     },{
-        name:'Backflip',rarity:1,list:-9,
-        levels:[
-            {effect:[4],attack:9228,cost:0,target:[2,1,1],spec:[],class:2},
-            {effect:[8],attack:9228,cost:0,target:[2,1,1],spec:[],class:2},
-            {effect:[11],attack:9228,cost:0,target:[2,1,1],spec:[],class:2},
-        ],mtg:{
-            rarity:1,list:-1,color:[1,5],
-            levels:[
-                {effect:[4],attack:9228,cost:[],target:[2,1,1],spec:[],class:2},
-                {effect:[8],attack:9228,cost:[],target:[2,1,1],spec:[],class:2},
-                {effect:[11],attack:9228,cost:[],target:[2,1,1],spec:[],class:2},
-            ],
-        },
-    },{
         name:'Breaking\nPush',rarity:1,list:-9,
         levels:[
             {effect:[3,1],attack:9243,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -63406,6 +63392,20 @@ types.card=[
                 {effect:[6,2],attack:6313,cost:[4,-1],target:[0],spec:[0],class:1},
                 {effect:[9,2],attack:6313,cost:[4,-1],target:[0],spec:[0],class:1},
                 {effect:[11,2],attack:6313,cost:[4,-1],target:[0],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Backflip',rarity:1,list:-9,
+        levels:[
+            {effect:[4],attack:11947,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[8],attack:11947,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[11],attack:11947,cost:0,target:[2,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:1,list:-1,color:[1,5],
+            levels:[
+                {effect:[4],attack:11947,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[8],attack:11947,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[11],attack:11947,cost:[],target:[2,1,1],spec:[],class:3},
             ],
         },
     },
@@ -66095,15 +66095,15 @@ types.card=[
     },{
         name:'XXII -\nOmnipotence',rarity:3,list:constants.playerNumber+4,
         levels:[
-            {effect:[1],attack:5781,cost:3,target:[0],spec:[1],class:11},
-            {effect:[1],attack:5781,cost:2,target:[0],spec:[1],class:11},
-            {effect:[1],attack:5781,cost:2,target:[0],spec:[],class:11},
+            {effect:[1],attack:11943,cost:3,target:[0],spec:[1],class:11},
+            {effect:[1],attack:11943,cost:2,target:[0],spec:[1],class:11},
+            {effect:[1],attack:11943,cost:2,target:[0],spec:[],class:11},
         ],mtg:{
             rarity:3,list:constants.playerNumber+4,color:[constants.playerNumber+4],
             levels:[
-                {effect:[1],attack:5781,cost:[-1,-1,-1,-1,-1],target:[0],spec:[1],class:11},
-                {effect:[1],attack:5781,cost:[-1,-1,-1,-1],target:[0],spec:[1],class:11},
-                {effect:[1],attack:5781,cost:[-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1],attack:11943,cost:[-1,-1,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1],attack:11943,cost:[-1,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1],attack:11943,cost:[-1,-1,-1],target:[0],spec:[1],class:11},
             ],
         },
     },{

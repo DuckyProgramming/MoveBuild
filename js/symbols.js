@@ -13002,7 +13002,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
         break
         case 8:
             //layer.scale(1.2)
-            layer.scale(1.16)
+            //layer.scale(1.16)
+            layer.scale(1.2,0.8)
+            layer.rotate(-30)
             layer.stroke(255,fade)
             layer.noFill()
             layer.strokeWeight(2)
@@ -13011,18 +13013,53 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.arc(0,0,30,30,-135,-45)
             layer.arc(0,0,30,30,45,75)
             layer.arc(0,0,30,30,-255,-225)
-            layer.line(3,-3,-3,3)
+            //layer.line(3,-3,-3,3)
             layer.line(15*lcos(75),15*lsin(75),18*lcos(75),18*lsin(75))
             layer.line(-15*lcos(75),15*lsin(75),-18*lcos(75),18*lsin(75))
+            /*layer.strokeWeight(1.5)
+            layer.ellipse(0,0,6)
+            for(let a=0,la=5;a<la;a++){
+                layer.rotate(72)
+                layer.line(0,3,0,6)
+                layer.line(0,6,-2,5.5)
+            }*/
             layer.fill(255,fade)
             layer.noStroke()
-            for(let a=0,la=5;a<la;a++){
+            /*for(let a=0,la=5;a<la;a++){
                 layer.ellipse(-14*lcos(-27+a*13.5),-14*lsin(-27+a*13.5),2.5,2.5)
                 layer.ellipse(14*lcos(-27+a*13.5),14*lsin(-27+a*13.5),2.5,2.5)
             }
             for(let a=0,la=4;a<la;a++){
                 layer.ellipse(-16.5*lcos(-20.25+a*13.5),-16.5*lsin(-20.25+a*13.5),2.5,2.5)
                 layer.ellipse(16.5*lcos(-20.25+a*13.5),16.5*lsin(-20.25+a*13.5),2.5,2.5)
+            }*/
+            layer.rotate(-27)
+            for(let a=0,la=5;a<la;a++){
+                layer.push()
+                layer.translate(-14,0)
+                layer.rotate(-40)
+                layer.ellipse(0,0,3,1.5)
+                layer.pop()
+                layer.push()
+                layer.translate(14,0)
+                layer.rotate(40)
+                layer.ellipse(0,0,3,1.5)
+                layer.pop()
+                layer.rotate(2)
+                if(a!=4){
+                    layer.push()
+                    layer.translate(-16.5,0)
+                    layer.rotate(-60)
+                    layer.ellipse(0,0,3,1.5)
+                    layer.pop()
+                    layer.rotate(9.5)
+                    layer.push()
+                    layer.translate(16.5,0)
+                    layer.rotate(60)
+                    layer.ellipse(0,0,3,1.5)
+                    layer.pop()
+                    layer.rotate(2)
+                }
             }
         break
         case 9:
@@ -13253,7 +13290,8 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
         break
         case 16:
             for(let a=0,la=6;a<la;a++){
-                layer.quad(-3,-12,-17.75,-12,-21,-6,0.25,-6)
+                //layer.quad(-3,-12,-17.75,-12,-21,-6,0.25,-6)
+                layer.quad(-3,-12,-17.25,-12,-20.5,-6,0.25,-6)
                 layer.rotate(60)
             }
         break
@@ -13533,6 +13571,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.arc(0,5,10,10,-180,0)
             layer.arc(-10,0,7.5,7.5,-45,135)
             layer.arc(10,0,7.5,7.5,45,225)
+            /*layer.arc(0,8,10,10,-180,0)
+            layer.arc(-4*constants.sqrt3,-4,10,10,-60,120)
+            layer.arc(4*constants.sqrt3,-4,10,10,60,240)*/
             for(let a=0,la=12;a<la;a++){
                 layer.quad(-3.5,-19.5,3.5,-19.5,3,-17,-3,-17)
                 layer.rotate(360/la)
@@ -13651,7 +13692,8 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             layer.line(lsin(48)*16+lsin(-16)*16,-10+lcos(48)*16+lcos(-16)*16,lsin(-16)*16,-10+lcos(-16)*16)
             layer.noStroke()
             layer.fill(240,135,150,fade)
-            layer.ellipse(0,-10,22)
+            //layer.ellipse(0,-10,22)
+            layer.ellipse(0,-10,23)
             layer.fill(255,fade)
             layer.ellipse(0,-10,18)
             layer.fill(240,135,150,fade)
@@ -20007,6 +20049,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rotate(22.5)
         break
         case 152:
+            layer.noFill()
             layer.stroke(80,fade)
             layer.strokeWeight(1)
             layer.rect(0,0,10,3)
@@ -20573,6 +20616,15 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(lsin(-36)*tick195[0],tick195[1],0,tick195[1]*2)
             layer.line(lsin(36)*tick195[0],tick195[1],0,tick195[1]*2)
         break
+        case 196:
+            layer.noFill()
+            layer.stroke(80,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,-5,10,3)
+            layer.fill(150,0,0,fade)
+            layer.rect(0,0,10,3)
+            layer.rect(0,5,10,3)
+        break
         //mark g
     }
     layer.pop()
@@ -20770,4 +20822,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 193-Diamond
 194-Prismatic Bomb 2
 195-Diamond 2
+196-Event Pain
 */

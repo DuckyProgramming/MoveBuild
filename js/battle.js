@@ -3237,6 +3237,21 @@ class battle{
             break
             case 'stash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.strokeWeight(3*this.anim.dictionaryMulti[a])
+                    this.layer.rect(26+a*(this.layer.width-52),522,32*this.anim.dictionaryMulti[a],20*this.anim.dictionaryMulti[a],5*this.anim.dictionaryMulti[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),494-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),494+4*this.anim.deck[a])
+                    this.layer.textSize(7*this.anim.dictionaryMulti[a])
+                    this.layer.text('Dictionary',26+a*(this.layer.width-52),522)
+                }
                 for(let a=0,la=this.players;a<la;a++){
                     let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
                     this.graphics.combatants[4][variant][a].time++
@@ -3248,6 +3263,21 @@ class battle{
             break
             case 'bossstash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.strokeWeight(3*this.anim.dictionaryMulti[a])
+                    this.layer.rect(26+a*(this.layer.width-52),522,32*this.anim.dictionaryMulti[a],20*this.anim.dictionaryMulti[a],5*this.anim.dictionaryMulti[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),494-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),494+4*this.anim.deck[a])
+                    this.layer.textSize(7*this.anim.dictionaryMulti[a])
+                    this.layer.text('Dictionary',26+a*(this.layer.width-52),522)
+                }
                 for(let a=0,la=this.players;a<la;a++){
                     let variant=!options.damage?0:this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0
                     this.graphics.combatants[6][variant][a].time++
@@ -4125,6 +4155,10 @@ class battle{
             case 'stash':  case 'bossstash':
                 this.relicManager.update(stage.scene)
                 this.overlayManager.update()
+                for(let a=0,la=this.anim.deck.length;a<la;a++){
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
+                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
+                }
             break
             case 'pack':
                 this.packManagers.forEach(packManager=>packManager.update())
@@ -4621,6 +4655,17 @@ class battle{
                 }
             break
             case 'stash': case 'bossstash':
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&
+                        !this.overlayManager.anySpecificActive(5)&&!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(62)
+                    ){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
+                    }
+                }
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onClick()
                 }else{
@@ -5224,6 +5269,30 @@ class battle{
                 }
             break
             case 'stash': case 'bossstash':
+                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(169)){
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
+                            !this.overlayManager.anySpecificActive(5)&&!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(62)
+                        ){
+                            if(this.overlayManager.overlays[4][a].active){
+                                this.overlayManager.overlays[4][a].active=false
+                                disabled=true
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[4][a].active=true
+                                this.overlayManager.overlays[4][a].activate()
+                                disabled=true
+                            }
+                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                            if(this.overlayManager.overlays[24][a].active){
+                                this.overlayManager.overlays[24][a].active=false
+                            }else if(!this.overlayManager.anyActive){
+                                this.overlayManager.overlays[24][a].active=true
+                                this.overlayManager.overlays[24][a].activate()
+                                disabled=true
+                            }
+                        }
+                    }
+                }
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onKey(key,code)
                 }else{

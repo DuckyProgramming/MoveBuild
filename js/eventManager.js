@@ -421,7 +421,11 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                 }
                 this.layer.textSize(8)
                 for(let b=0,lb=this.pages[a].optionDesc.length;b<lb;b++){
-                    this.layer.text(b>0&&this.battle.relicManager.hasRelic(339,this.player)?'':this.pages[a].optionDesc[b],this.posKey,310+b*50)
+                    let show=[
+                        b>0&&this.battle.relicManager.hasRelic(339,this.player)?'':this.pages[a].optionDesc[b],
+                        b>0&&this.battle.relicManager.hasRelic(617,this.player)?'Lose 20 Health':''
+                    ].filter(a=>a.length>0)
+                    this.layer.text(show.join(', '),this.posKey,310+b*50)
                 }
                 this.layer.noFill()
                 this.layer.stroke(0,this.fade[a]*this.primaryFade)
@@ -455,6 +459,9 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                 let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                 let tempPage=0
                 let cut=false
+                if(a>0&&this.battle.relicManager.hasRelic(617,this.player)){
+                    this.harm(userCombatant,20)
+                }
                 switch(this.id){
                     case 1:
                         if(this.page==0&&a==0){
@@ -2568,7 +2575,10 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
     onClick(){
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:220,height:30})&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
+                if(
+                    pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:220,height:30})&&
+                    !(a>0&&this.battle.relicManager.hasRelic(339,this.player))
+                ){
                     this.selfCall(0,a)
                 }
             }
@@ -2580,7 +2590,10 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
     onKey(key,code){
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
-                if((int(key)-1==a||a==0&&code==ENTER)&&!(a>0&&this.battle.relicManager.hasRelic(339,this.player))){
+                if(
+                    (int(key)-1==a||a==0&&code==ENTER)&&
+                    !(a>0&&this.battle.relicManager.hasRelic(339,this.player))
+                ){
                     this.selfCall(0,a)
                 }
             }

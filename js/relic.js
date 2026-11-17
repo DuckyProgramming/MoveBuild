@@ -42,6 +42,9 @@ class relic{
 
         this.value=relicSellValue(this.rarity)
     }
+    unsellable(){
+        return variants.mtg&&this.rarity==4||this.rarity==-2
+    }
     display(total,active=0,position=this.position,value=false,detail=-1){
         if(this.fade>0){
             this.layer.push()
@@ -4570,13 +4573,17 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',8,-8)
                 break
+                case 'Energy/Event Choice':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,196,0,1,this.fade)
+                break
 
                 //mark p
             }
             if(value){
                 this.layer.fill(230,230,210,this.fade)
                 this.layer.textSize(12)
-                this.layer.text(variants.mtg&&this.rarity==4?'X':this.value*(
+                this.layer.text(this.unsellable()?'X':this.value*(
                     this.rarity==0&&this.battle.relicManager.hasRelic(302,this.player)||
                     this.rarity==1&&this.battle.relicManager.hasRelic(303,this.player)||
                     this.rarity==2&&this.battle.relicManager.hasRelic(304,this.player)||

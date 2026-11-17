@@ -741,6 +741,11 @@ class itemManager{
                     userCombatant.addBlock(userCombatant.block)
                 }
             break
+            case 124:
+                for(let a=0,la=3;a<la;a++){
+                    this.battle.combatantManager.allEffect(43,[effectiveness,userCombatant.id])
+                }
+            break
 
             //mark p
 

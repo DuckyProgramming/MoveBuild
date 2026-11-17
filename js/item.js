@@ -936,6 +936,15 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('x2',0,0)
                 break
+                case '1 Damage All 3 Times':
+                    for(let a=0,la=6;a<la;a++){
+                        displaySymbol(this.layer,lsin(a*60)*12,lcos(a*60)*12,18,0,0.6,this.fade)
+                    }
+                    displaySymbol(this.layer,0,0,18,0,0.6,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1x3',0,0)
+                break
 
                 //mark b
 

@@ -3667,6 +3667,104 @@ types.invalid=[
                 {effect:[15],attack:8599,cost:[-1,-1],target:[2,1,1],spec:[1,2],class:11},
             ],
         },
+    },{
+        name:'XXII -\nOmnipotence',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:5781,cost:3,target:[0],spec:[1],class:11},
+            {effect:[1],attack:5781,cost:2,target:[0],spec:[1],class:11},
+            {effect:[1],attack:5781,cost:2,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[constants.playerNumber+4],
+            levels:[
+                {effect:[1],attack:5781,cost:[-1,-1,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1],attack:5781,cost:[-1,-1,-1,-1],target:[0],spec:[1],class:11},
+                {effect:[1],attack:5781,cost:[-1,-1,-1],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Parting\nWish',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:8020,cost:0,target:[2,1,1],spec:[],class:11},
+            {effect:[2],attack:8020,cost:0,target:[2,1,1],spec:[],class:11},
+            {effect:[3],attack:8020,cost:0,target:[2,1,1],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,3],
+            levels:[
+                {effect:[1],attack:8020,cost:[],target:[2,1,1],spec:[],class:11},
+                {effect:[2],attack:8020,cost:[],target:[2,1,1],spec:[],class:11},
+                {effect:[3],attack:8020,cost:[],target:[2,1,1],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Rebut',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:8034,cost:0,target:[2,1,1],spec:[],class:11},
+            {effect:[2],attack:8034,cost:0,target:[2,1,1],spec:[],class:11},
+            {effect:[3],attack:8034,cost:0,target:[2,1,1],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,3],
+            levels:[
+                {effect:[1],attack:8034,cost:[],target:[2,1,1],spec:[],class:11},
+                {effect:[2],attack:8034,cost:[],target:[2,1,1],spec:[],class:11},
+                {effect:[3],attack:8034,cost:[],target:[2,1,1],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Third Battle\nof Kharkov',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:8996,cost:0,target:[2,1,1],spec:[],class:11},
+            {effect:[2],attack:8996,cost:0,target:[2,1,1],spec:[],class:11},
+            {effect:[3],attack:8996,cost:0,target:[2,1,1],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,3],
+            levels:[
+                {effect:[1],attack:8996,cost:[],target:[2,1,1],spec:[],class:11},
+                {effect:[2],attack:8996,cost:[],target:[2,1,1],spec:[],class:11},
+                {effect:[3],attack:8996,cost:[],target:[2,1,1],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Backwards\nLong Jump',rarity:-1,list:-8,
+        levels:[
+            {effect:[4],attack:9228,cost:0,target:[2,1,1],spec:[],class:2},
+            {effect:[8],attack:9228,cost:0,target:[2,1,1],spec:[],class:2},
+            {effect:[11],attack:9228,cost:0,target:[2,1,1],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,5],
+            levels:[
+                {effect:[4],attack:9228,cost:[],target:[2,1,1],spec:[],class:2},
+                {effect:[8],attack:9228,cost:[],target:[2,1,1],spec:[],class:2},
+                {effect:[11],attack:9228,cost:[],target:[2,1,1],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Dive and\nDash',rarity:-1,list:-8,
+        levels:[
+            {effect:[2],attack:9229,cost:0,target:[2,1,1],spec:[1],class:11},
+            {effect:[4],attack:9229,cost:0,target:[2,1,1],spec:[1],class:11},
+            {effect:[6],attack:9229,cost:0,target:[2,1,1],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,5],
+            levels:[
+                {effect:[2],attack:9229,cost:[],target:[2,1,1],spec:[1],class:11},
+                {effect:[4],attack:9229,cost:[],target:[2,1,1],spec:[1],class:11},
+                {effect:[6],attack:9229,cost:[],target:[2,1,1],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Tactical\nProblems',rarity:-1,list:-8,
+        levels:[
+            {effect:[8,1],attack:10322,cost:0,target:[2,1,1],spec:[],class:2},
+            {effect:[14,1],attack:10322,cost:0,target:[2,1,1],spec:[],class:2},
+            {effect:[18,1],attack:10322,cost:0,target:[2,1,1],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1],
+            levels:[
+                {effect:[8,1],attack:10322,cost:[],target:[2,1,1],spec:[],class:2},
+                {effect:[14,1],attack:10322,cost:[],target:[2,1,1],spec:[],class:2},
+                {effect:[18,1],attack:10322,cost:[],target:[2,1,1],spec:[],class:2},
+            ],
+        },
     },
 
     //mark er

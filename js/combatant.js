@@ -2827,9 +2827,10 @@ class combatant{
                         break
                         case 18:
                             this.intent=(this.turnsAlive-1)%this.attack.length
+                            let diffUnfair=game.ascend>=31||game.diff>=24
                             switch(this.intent){
                                 case 0:
-                                    this.addBlock(15)
+                                    this.addBlock(diffUnfair?20:12)
                                     if(this.spec.includes(1)){
                                         this.spec.splice(this.spec.indexOf(1),1)
                                     }
@@ -2841,7 +2842,7 @@ class combatant{
                                     }
                                 break
                                 case 2:
-                                    this.statusEffect('Counter Once',10)
+                                    this.statusEffect('Counter Once',diffUnfair?12:8)
                                     if(this.spec.includes(1)){
                                         this.spec.splice(this.spec.indexOf(1),1)
                                     }
@@ -8899,38 +8900,40 @@ class combatant{
                         }
                         this.layer.fill(0,this.fade*this.infoAnim.description)
                         //mark spec
+                        let ticker=0
                         for(let a=0,la=this.spec.length;a<la;a++){
                             switch(this.spec[a]){
-                                case 0: this.layer.text('Will Turn to Face Player',40,305+a*10); break
-                                case 1: this.layer.text('Moves When You Move',40,305+a*10); break
-                                case 2: this.layer.text('Boss',40,305+a*10); break
-                                case 3: this.layer.text('Immune to Spikes and Mines',40,305+a*10); break
-                                case 4: this.layer.text('Immune to Traps',40,305+a*10); break
-                                case 5: this.layer.text('Slimes Tiles Moved On',40,305+a*10); break
-                                case 6: this.layer.text('Spawns Slimes Every 25 HP Lost',40,305+a*10); break
-                                case 7: this.layer.text('Auto-Attacks Line of Sight',40,305+a*10); break
-                                case 8: this.layer.text('Attacks When You Play a Card',40,305+a*10); break
-                                case 9: this.layer.text('Untargettable From Front',40,305+a*10); break
-                                case 10: this.layer.text('Attacks When Injured',40,305+a*10); break
-                                case 11: this.layer.text('Immune to Poison Tiles',40,305+a*10); break
-                                case 12: this.layer.text('Co-Boss',40,305+a*10); break
-                                case 13: this.layer.text('On Survival, Heal 20 HP',40,305+a*10); break
-                                case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+a*10); break
-                                case 15: case 28: this.layer.text('On Survival, Move Freely',40,305+a*10); break
-                                case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*10); break
-                                case 17: this.layer.text('Auto-Aims',40,305+a*10); break
-                                case 18: this.layer.text('On Defeat, Gain a Relic',40,305+a*10); break
-                                case 19: this.layer.text('Robot',40,305+a*10); break
-                                case 20: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+a*10); break
-                                case 21: this.layer.text('On Survival, Heal 15 HP\nand Gain 250 Currency',40,305+a*10); break
-                                case 22: this.layer.text('On Survival, Gain 100 Currency',40,305+a*10); break
-                                case 23: this.layer.text('Creates a Copy of Self Each Turn',40,305+a*10); break
-                                case 24: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+a*10); break
-                                case 25: this.layer.text('On Survival, Gain 50 Currency',40,305+a*10); break
-                                case 26: this.layer.text('On Survival, Heal 10 HP',40,305+a*10); break
-                                case 27: this.layer.text('On Survival, Upgrade a Card',40,305+a*10); break
-
+                                case 0: this.layer.text('Will Turn to Face Player',40,305+ticker); break
+                                case 1: this.layer.text('Moves When You Move',40,305+ticker); break
+                                case 2: this.layer.text('Boss',40,305+ticker); break
+                                case 3: this.layer.text('Immune to Spikes and Mines',40,305+ticker); break
+                                case 4: this.layer.text('Immune to Traps',40,305+ticker); break
+                                case 5: this.layer.text('Slimes Tiles Moved On',40,305+ticker); break
+                                case 6: this.layer.text('Spawns Slimes Every 25 HP Lost',40,305+ticker); break
+                                case 7: this.layer.text('Auto-Attacks Line of Sight',40,305+ticker); break
+                                case 8: this.layer.text('Attacks When You Play a Card',40,305+ticker); break
+                                case 9: this.layer.text('Untargettable From Front',40,305+ticker); break
+                                case 10: this.layer.text('Attacks When Injured',40,305+ticker); break
+                                case 11: this.layer.text('Immune to Poison Tiles',40,305+ticker); break
+                                case 12: this.layer.text('Co-Boss',40,305+ticker); break
+                                case 13: this.layer.text('On Survival, Heal 20 HP',40,305+ticker); break
+                                case 14: this.layer.text('On Survival, Deluxe Upgrade a Card',40,305+ticker); break
+                                case 15: case 28: this.layer.text('On Survival, Move Freely',40,305+ticker); break
+                                case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+ticker); break
+                                case 17: this.layer.text('Auto-Aims',40,305+ticker); break
+                                case 18: this.layer.text('On Defeat, Gain a Relic',40,305+ticker); break
+                                case 19: this.layer.text('Robot',40,305+ticker); break
+                                case 20: this.layer.text('Attacks When You Play the First Card Each Turn',40,305+ticker); break
+                                case 21: this.layer.text('On Survival, Heal 15 HP\nand Gain 250 Currency',40,305+ticker); break
+                                case 22: this.layer.text('On Survival, Gain 100 Currency',40,305+ticker); break
+                                case 23: this.layer.text('Creates a Copy of Self Each Turn',40,305+ticker); break
+                                case 24: this.layer.text('On Survival, Gain 25 Currency\nIf Killed by Player, Gain 5 Currency',40,305+ticker); break
+                                case 25: this.layer.text('On Survival, Gain 50 Currency',40,305+ticker); break
+                                case 26: this.layer.text('On Survival, Heal 10 HP',40,305+ticker); break
+                                case 27: this.layer.text('On Survival, Upgrade a Card',40,305+ticker); break
+                                case 29: this.layer.text('Gains Abilities Based on Current Intent:\nBlock, Dodge, Counter, Moves When You Move',40,308+ticker); break
                             }
+                            ticker+=this.spec[a]==29?16:10
                         }
                     }
                     if(this.name=='Eternal Judge'||this.name=='-h Eternal Judge'){

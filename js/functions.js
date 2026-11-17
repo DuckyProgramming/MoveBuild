@@ -1513,6 +1513,7 @@ function multiplyString(base,multiply){
 }
 function relicSellValue(rarity){
 	switch(rarity){
+		case -2: return -1
 		case -1: return 60
 		case 0: return 80
 		case 1: return 120
@@ -3925,12 +3926,14 @@ function checkExists(start,end){
 		3662,//invalid recycling
 		4298,//invalid shooting echo
 		5752,//invalid light it up
+		5781,//invalid omnipotence
 		5868,//invalid halflife
 		6032,//invalid seven hakus
 		6109,//invalid anaphel
 		6199,//invalid cleaver
 		7268,//invalid big time
 		7929,//invalid suit up
+		8020,8034,8996,9228,9229,10322,//move 1 tile away
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
 		9661,//invalid silverswivel

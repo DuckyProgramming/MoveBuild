@@ -291,7 +291,7 @@ types={
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[2]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         {name:'Daughter of Heaven',life:240,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[10,2,2]},{type:19,effect:[6]},{type:349,effect:[1,1]},{type:296,effect:[12]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
-        {name:'Renegade Agent',life:250,behavior:18,spec:[0,2],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:87,effect:[14]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
+        {name:'Renegade Agent',life:250,behavior:18,spec:[0,2,29],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:87,effect:[14]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
@@ -1148,7 +1148,7 @@ types={
         {name:'Watermelon',internal:'50 Max HP',id:160,rarity:4,list:0,mtg:1,world:[0,3],description:'When Taken,\nGain 50 Max HP'},
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,mtg:0,world:[0,3],description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
         {name:'Audric Codex',internal:'Duplicate Random Turn',id:162,rarity:-1,list:0,mtg:0,world:[0,3],description:'Every Turn, Duplicate a Random\nCard in Your Hand'},
-        {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,mtg:0,world:[0,3],description:'You Can No Longer Heal'},
+        {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-2,list:0,mtg:0,world:[0,3],description:'You Can No Longer Heal'},
         {name:'Mandelbox',internal:'Rarer Rewards',id:164,rarity:-1,list:0,mtg:0,world:[0,3],description:'Card Rewards Are Rarer'},
         {name:'Gold Bar',internal:'More Currency',id:165,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 25% More Currency'},
         {name:'Stocks',internal:'Currency Per Node',id:166,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 10 Currency Every Node'},
@@ -1341,7 +1341,7 @@ types={
         {name:'5D Multiverse Time Travel',internal:'Backwards Move',id:336,rarity:2,list:0,mtg:0,world:[0,2],description:'You Can Move Backwards on the Map\n3 Uses'},
         {name:'The Solo',internal:'Energy/Duplicate Cards',id:337,rarity:4,list:0,mtg:1,world:[2,3],description:'Gain 1 Base Energy, Remove\nAll Duplicate Non-Basic Cards in Deck\nRemove All Future Added Duplicate Cards'},
         {name:'Jankman',internal:'Special Draw',id:338,rarity:0,list:0,mtg:0,world:[0,3],description:'Draw 2 Cards When You\nPlay an Arcana or Spectral Card'},
-        {name:'Chainlink',internal:'Energy/Event Options',id:339,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCan Only Choose First Option in Events'},
+        {name:'Chainlink',internal:'Energy/Event Options',id:339,rarity:-1,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCan Only Choose First Option in Events'},
         
         {name:'Horizon Diamond',internal:'Energy/Invisible',id:340,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nAll Enemies are Invisible Until Hit'},
         {name:'Old Key',internal:'Extra Map Path',id:341,rarity:1,list:0,mtg:0,world:[0,2],description:'Extra Paths are Available in the Map'},
@@ -1647,6 +1647,7 @@ types={
         {name:'Survival Notes',internal:'Always Move',id:614,rarity:-1,list:0,mtg:0,world:[0,3],description:`When You Can't Move,\nYou Can`},
         {name:'Very Hot Cocoa',internal:'Level Energy',id:615,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 3 Energy at the Start of Turn 1\nGain 2 Energy at the Start of Turn 2\nGain 1 Energy at the Start of Turn 3'},
         {name:'Writ of Mandamus',internal:'Energy/Control',id:616,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nEnemies Start Combat With 1 Control'},
+        {name:'Chainlink Cage',internal:'Energy/Event Choice',id:617,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nLose 20 Health if You Pick an Option\nOther than the First in an Event'},
 
         //mark mtg mark r
     ],item:[
@@ -1742,7 +1743,7 @@ types={
         {name:'Fuel Cell',internal:'Double Item',id:81,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'The Next Item Used This Combat\nHas its Effect Doubled'},
         {name:'Bumper Sticker',internal:'Tick',id:82,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Tick Statuses'},
         {name:'Tape Roll',internal:'All Cannot Move',id:83,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'All Enemies Cannot\nMove This Turn'},
-        {name:'Confetti',internal:'1 Damage All',id:84,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [1D] to All Enemies'},
+        {name:'Confetti Cannon',internal:'1 Damage All',id:84,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Deal [1D] to All Enemies'},
         {name:'Shiny Coin',internal:'50 Sell',id:85,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Sells For 50 Currency at the Shop\n(No Effect Otherwise)'},
         {name:'Helium Canister',internal:'All Cannot Add Block',id:86,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'All Enemies Cannot Add\nBlock For 2 Turns'},
         {name:'Spare Spacebar',internal:'3 Pristines',id:87,rarity:-1,list:0,menu:false,temp:false,mtg:0,description:'Add 3 Pristines to Hand'},
@@ -1787,6 +1788,7 @@ types={
         {name:'Surprise Coupon',internal:'3 Free Purchases',id:121,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'When Sold, Make 3\nRandom Purchases Free'},
         {name:'Perfect Stone',internal:'Upgrade All',id:122,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All Cards This Combat'},
         {name:'Melted Mortar',internal:'Double Block',id:123,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Double Your Block'},
+        {name:'Confetti',internal:'1 Damage All 3 Times',id:124,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [1D] to All Enemies 3 Times'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
         {name:'Cola',internal:'15 Heal/No Block',id:1002,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 15 HP\nCan No Longer Gain Block'},

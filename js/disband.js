@@ -45924,20 +45924,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Reaggress',rarity:-1,list:-8,
-        levels:[
-            {effect:[1],attack:8996,cost:0,target:[2,1,1],spec:[],class:11},
-            {effect:[2],attack:8996,cost:0,target:[2,1,1],spec:[],class:11},
-            {effect:[3],attack:8996,cost:0,target:[2,1,1],spec:[],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[1,3],
-            levels:[
-                {effect:[1],attack:8996,cost:[],target:[2,1,1],spec:[],class:11},
-                {effect:[2],attack:8996,cost:[],target:[2,1,1],spec:[],class:11},
-                {effect:[3],attack:8996,cost:[],target:[2,1,1],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Simplex',rarity:-1,list:-8,
         levels:[
             {effect:[8],attack:9198,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -70001,6 +69987,34 @@ types.disband=[
                 {effect:[4],attack:9831,cost:[1,4],target:[0],spec:[],class:11},
                 {effect:[6],attack:9832,cost:[1,4],target:[0],spec:[],class:11},
                 {effect:[8],attack:9833,cost:[9,-1],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Reaggress',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:11946,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[2],attack:11946,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[3],attack:11946,cost:0,target:[2,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,3],
+            levels:[
+                {effect:[1],attack:11946,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[2],attack:11946,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[3],attack:11946,cost:[],target:[2,1,1],spec:[],class:3},
+            ],
+        },
+    },{
+        name:'Tactical\nHeat',rarity:-1,list:-8,
+        levels:[
+            {effect:[8,1],attack:11949,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[14,1],attack:11949,cost:0,target:[2,1,1],spec:[],class:3},
+            {effect:[18,1],attack:11949,cost:0,target:[2,1,1],spec:[],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1],
+            levels:[
+                {effect:[8,1],attack:11949,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[14,1],attack:11949,cost:[],target:[2,1,1],spec:[],class:3},
+                {effect:[18,1],attack:11949,cost:[],target:[2,1,1],spec:[],class:3},
             ],
         },
     },

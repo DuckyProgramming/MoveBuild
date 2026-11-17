@@ -4000,8 +4000,10 @@ combatant.prototype.display=function(){
                             this.layer.fill(...this.flashColor(this.color.hair.pin[1]),this.fades.hair.pin)
                             this.layer.triangle(-2,-1,2,-1,0,3)
                             this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[1],-25,[1,1,1])),this.fades.hair.pin)
-                            this.layer.quad(1,1,1.25,0.5,-1.75,-0.5,-1.5,0)
-                            this.layer.quad(-1,1,-1.25,0.5,1.75,-0.5,1.5,0)
+                            /*this.layer.quad(1,1,1.25,0.5,-1.75,-0.5,-1.5,0)
+                            this.layer.quad(-1,1,-1.25,0.5,1.75,-0.5,1.5,0)*/
+                            this.layer.quad(1,1,1.2,0.6,-1.75,-0.5,-1.5,0)
+                            this.layer.quad(-1,1,-1.2,0.6,1.75,-0.5,1.5,0)
                             this.layer.fill(...this.flashColor(this.color.hair.pin[0]),this.fades.hair.pin)
                             this.layer.arc(0,-1,6,6,-180,0)
                             this.layer.ellipse(0,-1,6,1.2)
@@ -4251,8 +4253,9 @@ combatant.prototype.display=function(){
                                     this.layer.translate(this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.6)
                                     this.layer.scale(lcos(this.anim.direction-90+h*180),1)
                                     this.layer.rotate(atan2(this.graphics.legs[h].top.x-this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y-this.graphics.legs[h].top.y))
-                                    this.layer.triangle(0,0,-2.4,-1.2,-2.4,1.2)
-                                    this.layer.triangle(0,0,2.4,-1.2,2.4,1.2)
+                                    /*this.layer.triangle(0,0,-2.4,-1.2,-2.4,1.2)
+                                    this.layer.triangle(0,0,2.4,-1.2,2.4,1.2)*/
+                                    hexagon(this.layer,-2.4,-1.2,-2.4,1.2,0,0.2,2.4,1.2,2.4,-1.2,0,-0.2)
                                     this.layer.pop()
                                 }
                             }
@@ -4273,11 +4276,28 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.uniform.skirt){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.uniform.underskirt),this.fade*this.fades.uniform.skirt*0.5)
-                    this.layer.quad(-5.75,-42,5.75,-42,10,-29,-10,-29)
+                    /*this.layer.quad(-5.75,-42,5.75,-42,10,-29,-10,-29)
                     this.layer.arc(0,-29,20,3,0,180)
                     for(let a=0,la=36;a<la;a++){
                         if(lcos((a+0.5)/la*360+this.anim.direction)>0){
                             this.layer.ellipse(lsin((a+0.5)/la*360+this.anim.direction)*10,-29+lcos((a+0.5)/la*360+this.anim.direction)*1.5,2*lcos((a+0.5)/la*360+this.anim.direction),1.5)
+                        }
+                    }*/
+                    for(let a=0,la=36;a<la;a++){
+                        if(lcos((a-0.5)/la*360+this.anim.direction)<0||lcos((a+0.5)/la*360+this.anim.direction)<0){
+                            let lloc={
+                                x:lsin(constrain(((a-0.5)/la*360+this.anim.direction+720)%360,90,270))*10,
+                                y:-30-1.5*lcos(constrain(((a-0.5)/la*360+this.anim.direction+720)%360,90,270))
+                            }
+                            let rloc={
+                                x:lsin(constrain(((a+0.5)/la*360+this.anim.direction+720)%360,90,270))*10,
+                                y:-30-1.5*lcos(constrain(((a+0.5)/la*360+this.anim.direction+720)%360,90,270))
+                            }
+                            this.layer.push()
+                            this.layer.translate(lloc.x/2+rloc.x/2,lloc.y/2+rloc.y/2)
+                            this.layer.rotate(-18*lsin(a/la*360+this.anim.direction))
+                            this.layer.ellipse(0,0,dist(lloc.x,lloc.y,rloc.x,rloc.y),2)
+                            this.layer.pop()
                         }
                     }
                     this.layer.fill(...this.flashColor(this.color.uniform.main),this.fade*this.fades.uniform.shirt)
@@ -4295,7 +4315,8 @@ combatant.prototype.display=function(){
                         this.layer.strokeCap(SQUARE)
                         this.layer.stroke(...this.flashColor(this.color.uniform.stripe),this.fade*this.fades.uniform.stripeShirt)
                         this.layer.strokeWeight(0.5)
-                        this.layer.arc(0,-31,19.5,3,0,180)
+                        //this.layer.arc(0,-31,19.5,3,0,180)
+                        this.layer.bezier(-9.75,-31,-7,-29.25,7,-29.25,9.75,-31)
                         this.layer.strokeCap(ROUND)
                     }
                 }
@@ -4508,8 +4529,10 @@ combatant.prototype.display=function(){
                             this.layer.fill(...this.flashColor(this.color.hair.pin[1]),this.fades.hair.pin)
                             this.layer.triangle(-2,-1,2,-1,0,3)
                             this.layer.fill(...this.flashColor(upColor(this.color.hair.pin[1],-25,[1,1,1])),this.fades.hair.pin)
-                            this.layer.quad(1,1,1.25,0.5,-1.75,-0.5,-1.5,0)
-                            this.layer.quad(-1,1,-1.25,0.5,1.75,-0.5,1.5,0)
+                            /*this.layer.quad(1,1,1.25,0.5,-1.75,-0.5,-1.5,0)
+                            this.layer.quad(-1,1,-1.25,0.5,1.75,-0.5,1.5,0)*/
+                            this.layer.quad(1,1,1.2,0.6,-1.75,-0.5,-1.5,0)
+                            this.layer.quad(-1,1,-1.2,0.6,1.75,-0.5,1.5,0)
                             this.layer.fill(...this.flashColor(this.color.hair.pin[0]),this.fades.hair.pin)
                             this.layer.arc(0,-1,6,6,-180,0)
                             this.layer.ellipse(0,-1,6,1.2)
@@ -4549,13 +4572,41 @@ combatant.prototype.display=function(){
                     this.layer.line(-15*lcos(75),15*lsin(75),-18*lcos(75),18*lsin(75))
                     this.layer.fill(this.color.halo[0],this.color.halo[1],this.color.halo[2],this.fade*this.fades.halo)
                     this.layer.noStroke()
-                    for(let a=0,la=5;a<la;a++){
+                    /*for(let a=0,la=5;a<la;a++){
                         this.layer.ellipse(-14*lcos(-27+a*13.5),-14*lsin(-27+a*13.5),2.5,2.5)
                         this.layer.ellipse(14*lcos(-27+a*13.5),14*lsin(-27+a*13.5),2.5,2.5)
                     }
                     for(let a=0,la=4;a<la;a++){
                         this.layer.ellipse(-16.5*lcos(-20.25+a*13.5),-16.5*lsin(-20.25+a*13.5),2.5,2.5)
                         this.layer.ellipse(16.5*lcos(-20.25+a*13.5),16.5*lsin(-20.25+a*13.5),2.5,2.5)
+                    }*/
+                    this.layer.rotate(-27)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.push()
+                        this.layer.translate(-14,0)
+                        this.layer.rotate(-40)
+                        this.layer.ellipse(0,0,3,1.5)
+                        this.layer.pop()
+                        this.layer.push()
+                        this.layer.translate(14,0)
+                        this.layer.rotate(40)
+                        this.layer.ellipse(0,0,3,1.5)
+                        this.layer.pop()
+                        this.layer.rotate(2)
+                        if(a!=4){
+                            this.layer.push()
+                            this.layer.translate(-16.5,0)
+                            this.layer.rotate(-60)
+                            this.layer.ellipse(0,0,3,1.5)
+                            this.layer.pop()
+                            this.layer.rotate(9.5)
+                            this.layer.push()
+                            this.layer.translate(16.5,0)
+                            this.layer.rotate(60)
+                            this.layer.ellipse(0,0,3,1.5)
+                            this.layer.pop()
+                            this.layer.rotate(2)
+                        }
                     }
                     this.layer.pop()
                 }

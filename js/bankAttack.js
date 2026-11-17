@@ -868,7 +868,7 @@ attack.prototype.update=function(){
         case 11377: case 11378: case 11414: case 11417: case 11420: case 11422: case 11427: case 11428: case 11436: case 11437: case 11443: case 11450: case 11452: case 11453: case 11454: case 11455: case 11466: case 11467: case 11470: case 11478:
         case 11481: case 11490: case 11501: case 11503: case 11505: case 11508: case 11509: case 11512: case 11513: case 11540: case 11541: case 11550: case 11555: case 11564: case 11585: case 11597: case 11610: case 11624: case 11631: case 11650:
         case 11663: case 11676: case 11697: case 11698: case 11699: case 11707: case 11718: case 11722: case 11723: case 11724: case 11725: case 11746: case 11757: case 11768: case 11779: case 11780: case 11787: case 11788: case 11810: case 11811:
-        case 11826: case 11846: case 11866: case 11867: case 11868: case 11869: case 11899: case 11921: case 11939:
+        case 11826: case 11846: case 11866: case 11867: case 11868: case 11869: case 11899: case 11921: case 11939: case 11943:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -14370,7 +14370,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 8020: case 8034: case 8996: case 9228: case 9229: case 10322:
+        case 8020: case 8034: case 8996: case 9228: case 9229: case 10322: case 11944: case 11945: case 11946: case 11948:
             if(this.timer==1){
                 this.userCombatant.startAnimation(22)
                 let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x*2-this.targetCombatant.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetCombatant.tilePosition.y)
@@ -14381,19 +14381,19 @@ attack.prototype.update=function(){
             }
             if(this.timer==15){
                 switch(this.type){
-                    case 8020:
+                    case 8020: case 11944:
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
                     break
-                    case 8034:
+                    case 8034: case 11945:
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                     break
-                    case 8996:
+                    case 8996: case 11946:
                         this.userCombatant.statusEffect('Vulnerable',this.effect[0])
                     break
                     case 9228:
                         this.userCombatant.addBlock(this.effect[0])
                     break
-                    case 9229:
+                    case 9229: case 11948:
                         this.userCombatant.heal(this.effect[0])
                     break
                     case 10322:
@@ -16969,6 +16969,41 @@ attack.prototype.update=function(){
                 }
             }else if(this.timer>=40){
                 this.remove=true
+            }
+        break
+        case 11947: case 11949:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(2)
+                let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x*2-this.targetCombatant.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetCombatant.tilePosition.y)
+                this.procedure[0]=index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+            }
+            if(this.timer<=30){
+                this.userCombatant.runAnimation(1/30,2)
+            }
+            if(this.timer==15){
+                switch(this.type){
+                    case 11947:
+                        this.userCombatant.addBlock(this.effect[0])
+                    break
+                    case 11949:
+                        this.userCombatant.addBlock(this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                    break
+                }
+            }
+            if(this.procedure[0]==1&&this.timer>=30){
+                this.remove=true
+            }else if(this.procedure[0]==0){
+                if(this.timer>30){
+                    this.userCombatant.runAnimation(1/10,0)
+                    this.userCombatant.moveTile(this.direction,-this.distance/10)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
+                }
+                if(this.timer>=40){
+                    this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x*2-this.targetCombatant.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetCombatant.tilePosition.y)
+                    this.battle.activate(1,this.userCombatant.id)
+                    this.remove=true
+                }
             }
         break
 

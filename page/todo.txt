@@ -1,17 +1,14 @@
 CS 154 [ENDSIEG ULTIMATE]
 
 diff 26 anew
-act 5
-the admiral-manager (1453)
-asshole (1945)
-
-airi could use a new halo
+act 5 (1453) (1945)
+the map shrinks by 1 tile every turn
 
 childish greed - gain 10 currency, amplify: gain an item
 revenge of mysterious beam?
 probably split anammox
 probably split mountain of faith
-probably split cleansing ritual (exhaust top card of draw pile) and esoterica (maybe)
+probably split cleansing ritual (exhaust top card of draw pile) and esoterica (draws now) (maybe)
 spade shove is backwards
 why tf does irrigation fatigue
 fertilize is a little busted
@@ -32,21 +29,43 @@ dawn's promise - when you play a card that costs 3 or more, get vitality
 
 split i-beam to match diamond plate
 
-rephrase backflip
-
 why doesn't gps apply shock
 condemnation = interpolation
 split inductor to draw
 
 evolve sucks
-guns are mid af
+some guns suck
 
 wine and water is weird
 [when you discard a status card during scry, exhaust it]
 what if moriya talismans gave you faith
+final sanae purge
 
+shoot the hierophant
+shoot the limit
+
+start recording a turnstatus for accurates triggered
+great bounty - charge strike + if fatal gain currency and all your energy back
+tilt off - add 5 block, draw a card if the last card played was accurate
+trigger itch only applies when accurate but buff its damage
+lead barricade could be better (draw and upgrade instead of upgrade random)
+deadeye - 5 damage, 2 strength if accurate
+enervate - 7 block, accurate: gain 1 energy draw a card
+feared presence - 8 block, accurate: 1 weak to all enemies
+gestalt - gain 1 buffer, get a ton of vulnerable
+ricochet - salvo but for accurates
+smoking barrel - when you hit an accurate effect, gain tempory strength (replace the current guns give temporary strength)
+simple song - gain 1 strength, lose 1 energy next turn, 0 cost
+shoot pliers
+move hook and drag
+shiv shove -> shiv pull
+
+calcify?
+
+burn sucks
 vincent rares suck
-
-test vincent (again)
+vincent-edgar reshuffle
+test edgar post-split
+test vincent post-split
 
 

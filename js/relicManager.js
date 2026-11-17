@@ -526,7 +526,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
-            case 523: case 609: case 616:
+            case 523: case 609: case 616: case 617:
                 //mark e
                 this.battle.addEnergyBase(player)
             break
@@ -1069,7 +1069,7 @@ class relicManager{
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243: case 280:
             case 281: case 282: case 284: case 285: case 286: case 287: case 288: case 289: case 306: case 335:
             case 339: case 340: case 347: case 358: case 451: case 460: case 466: case 506: case 507: case 514:
-            case 523: case 609: case 616:
+            case 523: case 609: case 616: case 617:
                 //mark e
                 this.battle.loseEnergyBase(player)
             break
@@ -3716,7 +3716,8 @@ class relicManager{
                 for(let a=0,la=this.relics.length;a<la;a++){
                     if(this.relics[a].player==args[0]&&this.relics[a].type!=0){
                         if(index>=args[1]*30&&index<args[1]*30+30){
-                            if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type][args[0]+1]>0&&!(variants.mtg&&this.relics[a].rarity==4)){
+                            //if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type][args[0]+1]>0&&!(variants.mtg&&this.relics[a].rarity==4)){
+                            if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type][args[0]+1]>0&&!this.relics[a].unsellable()){
                                 this.battle.addCurrency(
                                     this.relics[a].value*
                                     (1+this.active[307][this.relics[a].player+1]*0.5)*(
