@@ -64740,20 +64740,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Watery\nLand',rarity:-1,list:-8,
-        levels:[
-            {effect:[3,1],attack:5540,cost:1,target:[0],spec:[],class:11},
-            {effect:[3,2],attack:5540,cost:1,target:[0],spec:[],class:11},
-            {effect:[3,3],attack:5540,cost:1,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2],
-            levels:[
-                {effect:[3,1],attack:5540,cost:[2,2],target:[0],spec:[],class:11},
-                {effect:[3,2],attack:5540,cost:[2,2],target:[0],spec:[],class:11},
-                {effect:[3,3],attack:5540,cost:[2,2],target:[0],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Expanding\nBrilliance',rarity:-1,list:-8,
         levels:[
             {effect:[1,4,1],attack:5616,cost:1,target:[0],spec:[],class:11},
@@ -70001,6 +69987,20 @@ types.disband=[
                 {effect:[1,1],attack:603,cost:[],target:[0],spec:[0,1],class:11},
                 {effect:[1,2],attack:603,cost:[],target:[0],spec:[0,1],class:11},
                 {effect:[1,3],attack:603,cost:[],target:[0],spec:[0,1],class:11},
+            ],
+        },
+    },{
+        name:'Swarm Green\nBalloon',rarity:-1,list:-8,
+        levels:[
+            {effect:[8],attack:6855,cost:1,target:[2,1,1],spec:[75],class:11},
+            {effect:[12],attack:6855,cost:1,target:[2,1,1],spec:[75],class:11},
+            {effect:[15],attack:6855,cost:1,target:[2,1,1],spec:[75],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[13],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
+                {effect:[19],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
+                {effect:[24],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
             ],
         },
     },

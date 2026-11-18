@@ -109,7 +109,7 @@ constants.status={
         'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
-        'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust',
+        'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust','Damage Cap Once','Damage Cap Once Per Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -221,7 +221,7 @@ constants.status={
         0,1,0,2,2,0,2,0,0,0,//107
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
-        0,0,0,0,0,0,
+        0,0,0,0,0,0,2,0,
     ],
     /*
     0-none
@@ -342,7 +342,7 @@ constants.status={
         2,2,2,0,0,2,0,2,2,2,//107
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
-        2,2,2,2,2,2,
+        2,2,2,2,2,2,0,0,
     ]
     /*
     0-good
@@ -523,6 +523,7 @@ class combatant{
         if(this.team>0){
             this.fade=1
         }
+        this.turnsAlive=0
         if(this.battle.players>0&&this.battle.initialized){
             this.initialBuff()
         }
@@ -683,7 +684,7 @@ class combatant{
             this.base.life=round(this.base.life*mult)
             this.collect.life=round(this.collect.life*mult)
         }
-        this.turnsAlive=0
+        //this.turnsAlive=0
         if(this.battle.encounter.class==1&&this.battle.nodeManager.harmElite>0){
             this.life*=1-this.battle.nodeManager.harmElite
         }
@@ -1029,7 +1030,9 @@ class combatant{
                 this.statusEffect('Metallicize',diffUnfair?10:4)
             break
             case 'Adrian Kane':
-                this.statusEffect('Damage Cap',diffUnfair?25:50)
+                //this.statusEffect('Damage Cap',diffUnfair?25:50)
+                // this.statusEffect('Damage Cap Once Per Turn',diffUnfair?20:25)
+                this.statusEffect('Damage Cap Once',diffUnfair?20:25)
             break
             case 'Armored Biker':
                 this.statusEffect('Metallicize',diffUnfair?10:6)
@@ -1063,7 +1066,8 @@ class combatant{
                 }
             break
             case 'Globe Head':
-                this.statusEffect('Power Play Vigor',diffUnfair?10:6)
+                //this.statusEffect('Power Play Vigor',diffUnfair?10:6)
+                this.statusEffect('Power Play Vigor',diffUnfair?12:8)
             break
             case 'Infested Prism':
                 this.statusEffect('Skill Play Vigor',diffUnfair?3:2)
@@ -2878,7 +2882,8 @@ class combatant{
                             this.intent=2
                         break
                         case 25:
-                            this.intent=this.battle.counter.enemy-this.battle.counter.killed==1?0:floor(random(1,this.attack.length))
+                            this.intent=this.battle.counter.enemy-this.battle.counter.killed==1||this.battle.combatantManager.combatants.filter(a=>a.team==this.team&&a.life>0).every(a=>a.name==this.name)?0:floor(random(1,this.attack.length))
+                            //this.intent=this.battle.counter.enemy-this.battle.counter.killed==1?0:floor(random(1,this.attack.length))
                         break
                         case 26:
                             let set=[...range(0,this.attack.length),...range(0,this.attack.length)]
@@ -4169,6 +4174,10 @@ class combatant{
                 }
                 if(this.status.main[617]>0&&damage>this.status.main[617]){
                     damage=this.status.main[617]
+                }
+                if(this.status.main[1096]>0&&damage>this.status.main[1096]){
+                    damage=this.status.main[1096]
+                    this.status.main[1096]=0
                 }
                 let totalLck=0
                 if(this.status.main[461]>0){
@@ -7270,7 +7279,9 @@ class combatant{
                     case 1068: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.class[2]+=this.status.main[this.status.ticker[a]]} break
                     case 1080: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findName(['Carbon','Quartz','Ammonium'][floor(random(0,3))],types.item),this.id)}} break
                     case 1083: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.basic+=this.status.main[this.status.ticker[a]]} break
+                    case 1097: this.miniStatus('Damage Cap Once',this.status.main[this.status.ticker[a]]); break
                 }
+                //mark tick
                 if(this.status.behavior[this.status.ticker[a]]==6
                     &&!(this.status.ticker[a]==306&&ret[0])
                     &&!(this.status.ticker[a]==663&&ret[1])
@@ -9562,6 +9573,7 @@ class combatant{
                             break
                             case 'Danger':
                                 this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName(['Management Robot','Management Soldier','Management Officer','Management Custodian','Management Autoduck','Management Sniper'][floor(random(0,6))],types.combatant),this.goal.anim.direction)
+                                //this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Custodian',types.combatant),this.goal.anim.direction)
                             break
                         }
                     }

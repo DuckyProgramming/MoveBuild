@@ -24417,6 +24417,14 @@ class attack{
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         this.userCombatant.statusEffect('Random Mana Next Turn',-this.effect[1])
                     break
+                    case 12043:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                        this.userCombatant.loseHealth(this.effect[2])
+                        this.userCombatant.statusEffect('Strength Per Turn',this.effect[0])
+                        this.userCombatant.statusEffect('Dexterity Per Turn',this.effect[1])
+                        this.userCombatant.statusEffect('Mortal',this.effect[2])
+                    break
 
                 }
                 //mark 4

@@ -4899,6 +4899,20 @@ types.invalid=[
                 {effect:[4],attack:519,cost:[5,-1],target:[0],spec:[],class:11},
             ],
         },
+    },{
+        name:'Watery\nLand',rarity:-1,list:-8,
+        levels:[
+            {effect:[3,1],attack:5540,cost:1,target:[0],spec:[],class:11},
+            {effect:[3,2],attack:5540,cost:1,target:[0],spec:[],class:11},
+            {effect:[3,3],attack:5540,cost:1,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[3,1],attack:5540,cost:[2,2],target:[0],spec:[],class:11},
+                {effect:[3,2],attack:5540,cost:[2,2],target:[0],spec:[],class:11},
+                {effect:[3,3],attack:5540,cost:[2,2],target:[0],spec:[],class:11},
+            ],
+        },
     },
 
     //mark er

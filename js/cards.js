@@ -67841,7 +67841,7 @@ types.card=[
     },
 
     //mark p
-    
+
     //mark q
 
     /*{
@@ -68746,20 +68746,6 @@ types.card=[
                 {effect:[1],attack:6708,cost:[1,2,3,-1,-1,-1],target:[0],spec:[],class:4},
                 {effect:[2],attack:6708,cost:[1,2,3,-1,-1,-1],target:[0],spec:[],class:4},
                 {effect:[3],attack:6708,cost:[1,2,3,-1,-1,-1],target:[0],spec:[],class:4},
-            ],
-        },
-    },{
-        name:'Swarm Green\nBalloon',rarity:-5,list:-1,
-        levels:[
-            {effect:[8],attack:6855,cost:1,target:[2,1,1],spec:[75],class:11},
-            {effect:[12],attack:6855,cost:1,target:[2,1,1],spec:[75],class:11},
-            {effect:[15],attack:6855,cost:1,target:[2,1,1],spec:[75],class:11},
-        ],mtg:{
-            rarity:-5,list:-1,color:[4],
-            levels:[
-                {effect:[13],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
-                {effect:[19],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
-                {effect:[24],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
             ],
         },
     },{
@@ -70132,6 +70118,20 @@ types.card=[
                 {effect:[],attack:11805,cost:[1,2,3,4,5],target:[0],spec:[],class:9},
                 {effect:[],attack:11805,cost:[1,2,3,4,5],target:[0],spec:[],class:9},
                 {effect:[],attack:11805,cost:[1,2,3,4,5],target:[0],spec:[],class:9},
+            ],
+        },
+    },{
+        name:'Transcendental\nÉtudes',rarity:-5,list:-1,
+        levels:[
+            {effect:[1,1,1],attack:12043,cost:1,target:[0],spec:[1],class:11},
+            {effect:[1,1,1],attack:12043,cost:0,target:[0],spec:[1],class:11},
+            {effect:[1,1,1],attack:12043,cost:0,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-5,list:-1,color:[2,4],
+            levels:[
+                {effect:[1,1,1],attack:12043,cost:[2,4],target:[0],spec:[1],class:11},
+                {effect:[1,1,1],attack:12043,cost:[12],target:[0],spec:[1],class:11},
+                {effect:[1,1,1],attack:12043,cost:[],target:[0],spec:[1],class:11},
             ],
         },
     },

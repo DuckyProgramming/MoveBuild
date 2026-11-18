@@ -2705,7 +2705,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2481: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Strength`; break
         case 2482: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle ${effect[1]} Dazed${pl(effect[1])}\nto Draw Pile\nNumber Added\nIncreases by ${effect[2]}`; break
         case 2483: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nin 2 Turns`; break
-        case 2484: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts Increases by ${effect[1]}\nPermanently`; break
+        case 2484: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCost Increases by ${effect[1]}\nPermanently`; break
         case 2485: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf Your Deck Has\n20 Cards or Less`; break
         case 2486: string+=`Next Luck-Based Card\nis Guaranteed to Fail`; break
         case 2487: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Luck-Based Card\nis Guaranteed to Fail`; break
@@ -12321,6 +12321,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12040: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Burn,\nGain ${effect[1]} Glass Item${pl(effect[1])}`; break
         case 12041: string+=`Target Adds ${this.calculateEffect(effect[0],1)} Block\nIf Target Has Burn,\nGain ${effect[1]} Graphite Item${pl(effect[1])}`; break
         case 12042: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
+        case 12043: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nLose ${effect[2]} Health\nRepeat Every Turn`; break
 
         //mark p
         //mark q

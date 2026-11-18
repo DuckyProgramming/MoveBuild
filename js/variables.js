@@ -3901,6 +3901,13 @@ types={
                 [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
             ],
         },{
+            name:'Strong Induction 3',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Induction 3',
             map:[
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
@@ -4813,8 +4820,19 @@ types={
             ],ally:[
             ],
         },{
-            level:['Induction 3'],class:4,world:0,
+            level:['Strong Induction 3'],class:4,world:0,
             name:'Snail',
+            player:{position:[[{x:4,y:1}],[{x:4,y:1},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Snail'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:2},name:'Snail',turn:5},
+            ],ally:[
+            ],
+        },{
+            level:['Induction 3'],class:4,world:-1,
+            name:'Old Snail',
             player:{position:[[{x:4,y:1}],[{x:4,y:1},{x:3,y:2}]]},
             enemy:[
                 {position:{x:0,y:1},name:'Snail'},

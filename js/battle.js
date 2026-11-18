@@ -723,6 +723,7 @@ class battle{
     quickReinforce(name){
         let empty=this.tileManager.getEmptyTiles()
         if(empty.length>0){
+            //this.counter.enemy++
             let index=empty[floor(random(0,empty.length))]
             this.reinforce.front.push({position:this.tileManager.tiles[index].tilePosition,name:name,minion:true})
             this.tileManager.tiles[index].reinforce=true
@@ -732,6 +733,7 @@ class battle{
     setReinforce(name,tilePosition){
         let index=this.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
         if(index>=0){
+            //this.counter.enemy++
             this.reinforce.front.push({position:{x:tilePosition.x,y:tilePosition.y},name:name,minion:true})
             this.tileManager.tiles[index].reinforce=true
             this.counter.enemy++
@@ -740,6 +742,7 @@ class battle{
     longReinforce(name,time){
         let empty=this.tileManager.getEmptyTiles()
         if(empty.length>0){
+            //this.counter.enemy++
             let index=empty[floor(random(0,empty.length))]
             this.reinforce.back.push({position:this.tileManager.tiles[index].tilePosition,name:name,turn:this.turn.total+time,minion:true})
             this.counter.enemy++
@@ -749,6 +752,7 @@ class battle{
         for(let a=0,la=amount;a<la;a++){
             let index=this.tileManager.getTileIndex(size*(1+transformDirection(0,a*60-150)[0]),size*(1+transformDirection(0,a*60-150)[1]))
             if(index>=0){
+                //this.counter.enemy++
                 this.reinforce.front.push({position:{x:size*(1+transformDirection(0,a*60-150)[0]),y:size*(1+transformDirection(0,a*60-150)[1])},name:floor(random(0,5))==0?name2:name1,minion:true})
                 this.tileManager.tiles[index].reinforce=true
                 this.counter.enemy++

@@ -767,6 +767,7 @@ class combatantManager{
         this.combatants.forEach(combatant=>combatant.anotherDead())
     }
     holdSummonCombatant(tilePosition,type,direction,spec=0){
+        //this.battle.counter.enemy++
         this.summons.push([tilePosition,type,direction,spec])
         this.battle.counter.enemy++
     }
@@ -1402,7 +1403,8 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
-        this.combatants[this.combatants.length-1].setIntent()
+        //this.combatants[this.combatants.length-1].setIntent()
+        this.combatants[this.combatants.length-1].setIntent(0)
         this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()
@@ -1419,7 +1421,8 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
-        this.combatants[this.combatants.length-1].setIntent()
+        //this.combatants[this.combatants.length-1].setIntent()
+        this.combatants[this.combatants.length-1].setIntent(0)
         this.id++
         this.sort()
         this.reorder()
@@ -1442,7 +1445,8 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
-        this.combatants[this.combatants.length-1].setIntent()
+        //this.combatants[this.combatants.length-1].setIntent()
+        this.combatants[this.combatants.length-1].setIntent(0)
         this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()
