@@ -2730,7 +2730,7 @@ class combatant{
     }
     setIntent(type){
         switch(type){
-            case 0:
+            case 0: case 1:
                 if(this.team==0&&this.turnsAlive>0&&
                     (game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1||game.ascend>=29&&this.battle.encounter.class==2||game.diff>=21)&&
                     (this.turnsAlive%2==0&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||this.turnsAlive%3==0&&this.battle.encounter.class==1||this.turnsAlive%4==0&&this.battle.encounter.class==2)
@@ -2738,7 +2738,9 @@ class combatant{
                     this.subAttackBaseBuff([1,2,5],0.1)
                     this.normalizeAttack()
                 }
-                this.turnsAlive++
+                if(type==0){
+                    this.turnsAlive++
+                }
                 if(this.battle.modded(193)&&this.turnsAlive>5){
                     this.statusEffect('Strength',1)
                 }
@@ -2751,16 +2753,17 @@ class combatant{
                 if(!this.usedIntent.includes(this.intent)&&this.turnsAlive>=1){
                     this.usedIntent.push(this.intent)
                 }
+                let modulo=(a,b)=>a%b==0?0:a<0?a%b+b:a%b
                 if(this.status.main[378]>0){
                     this.status.main[378]--
                 }else if(this.battle.modded(41)){
-                    this.intent=(this.turnsAlive-1)%this.attack.length
+                    this.intent=modulo(this.turnsAlive,this.attack.length)
                     this.convertIntent()
                 }else{
                     //mark behavior
                     switch(this.behavior){
                         case 0:
-                            this.intent=(this.turnsAlive-1)%this.attack.length
+                            this.intent=modulo(this.turnsAlive-1,this.attack.length)
                         break
                         case 1:
                             this.intent=floor(random(0,this.attack.length))
@@ -2772,13 +2775,13 @@ class combatant{
                             this.intent=this.turnsAlive<=3?this.attack.length-1:floor(random(0,this.attack.length-1))
                         break
                         case 4:
-                            this.intent=this.turnsAlive<=3?this.attack.length-1:(this.turnsAlive-4)%this.attack.length
+                            this.intent=this.turnsAlive<=3?this.attack.length-1:modulo(this.turnsAlive-4,this.attack.length)
                         break
                         case 5:
                             this.intent=(this.turnsAlive+this.id)%this.attack.length
                         break
                         case 6:
-                            let value=(this.turnsAlive-1)%(this.attack.length*2-2)
+                            let value=modulo(this.turnsAlive-1,this.attack.length*2-2)
                             this.intent=value==0?0:value==this.attack.length*2-3?this.attack.length-1:(value-1)%(this.attack.length-2)+1
                         break
                         case 7:
@@ -2789,10 +2792,10 @@ class combatant{
                             this.intent=randin(range(this.status.main[42]<=0?1:0,this.attack.length))
                         break
                         case 8:
-                            this.intent=this.turnsAlive<=1?this.attack.length-1:(this.turnsAlive-2)%(this.attack.length-1)
+                            this.intent=this.turnsAlive<=1?this.attack.length-1:modulo(this.turnsAlive-2,this.attack.length-1)
                         break
                         case 9:
-                            this.intent=this.turnsAlive<=1?this.attack.length-1:(this.turnsAlive-2)%this.attack.length
+                            this.intent=this.turnsAlive<=1?this.attack.length-1:modulo(this.turnsAlive-2,this.attack.length)
                         break
                         case 10:
                             this.intent=this.turnsAlive<=1?this.attack.length-1:floor(random(0,this.attack.length-1))
@@ -2817,20 +2820,20 @@ class combatant{
                             }
                         break
                         case 14:
-                            this.intent=this.turnsAlive<=2?this.attack.length-1:(this.turnsAlive-3)%(this.attack.length-1)
+                            this.intent=this.turnsAlive<=2?this.attack.length-1:modulo(this.turnsAlive-3,this.attack.length-1)
                         break
                         case 15:
-                            this.intent=(this.turnsAlive-1)%this.attack.length
+                            this.intent=modulo(this.turnsAlive-1,this.attack.length)
                             this.move.type=this.turnsAlive%6>=3?9:0
                         break
                         case 16:
                             this.intent=this.turnsAlive>=4?1:0
                         break
                         case 17:
-                            this.intent=(this.turnsAlive-1+this.accelerate)%this.attack.length
+                            this.intent=modulo(this.turnsAlive-1+this.accelerate,this.attack.length)
                         break
                         case 18:
-                            this.intent=(this.turnsAlive-1)%this.attack.length
+                            this.intent=modulo(this.turnsAlive-1,this.attack.length)
                             let diffUnfair=game.ascend>=31||game.diff>=24
                             switch(this.intent){
                                 case 0:
@@ -2866,10 +2869,10 @@ class combatant{
                             }
                         break
                         case 20:
-                            this.intent=!this.completedIntent.includes(this.attack.length-1)?this.attack.length-1:(this.turnsAlive-1)%(this.attack.length-1)
+                            this.intent=!this.completedIntent.includes(this.attack.length-1)?this.attack.length-1:modulo(this.turnsAlive-1,this.attack.length-1)
                         break
                         case 21:
-                            this.intent=(this.turnsAlive-1)%this.attack.length
+                            this.intent=modulo(this.turnsAlive-1,this.attack.length)
                             this.move.type=this.turnsAlive%5>=3?9:0
                         break
                         case 22:

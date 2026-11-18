@@ -12051,8 +12051,12 @@ combatant.prototype.display=function(){
                     if(this.trigger.display.eye[g]){
                         this.layer.stroke(...this.color.eye.back,this.fade*this.fades.eye[g])
                         this.layer.strokeWeight((5-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
-                        this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*18+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
-                        this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*18+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                        if(this.anim.eye[g]==0){
+                            this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction),this.parts.eyeLevel)
+                        }else{
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*18+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*18-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*18+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                        }
                     }
                 }
             break

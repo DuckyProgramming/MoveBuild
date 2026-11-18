@@ -12322,6 +12322,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12041: string+=`Target Adds ${this.calculateEffect(effect[0],1)} Block\nIf Target Has Burn,\nGain ${effect[1]} Graphite Item${pl(effect[1])}`; break
         case 12042: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Played First,\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
         case 12043: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nLose ${effect[2]} Health\nRepeat Every Turn`; break
+        case 12044: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPer Turn`; break
 
         //mark p
         //mark q

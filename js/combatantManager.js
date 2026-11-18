@@ -774,6 +774,7 @@ class combatantManager{
     outSummons(){
         for(let a=0,la=this.summons.length;a<la;a++){
             this.summonCombatant(this.summons[a][0],this.summons[a][1],this.summons[a][2])
+            this.combatants[this.combatants.length-1].setIntent(0)
             switch(this.summons[a][3]){
                 case 1:
                     this.combatants[this.combatants.length-1].setMaxHP(1)
@@ -1404,7 +1405,7 @@ class combatantManager{
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
         //this.combatants[this.combatants.length-1].setIntent()
-        this.combatants[this.combatants.length-1].setIntent(0)
+        this.combatants[this.combatants.length-1].setIntent(1)
         this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()
@@ -1422,7 +1423,7 @@ class combatantManager{
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
         //this.combatants[this.combatants.length-1].setIntent()
-        this.combatants[this.combatants.length-1].setIntent(0)
+        this.combatants[this.combatants.length-1].setIntent(1)
         this.id++
         this.sort()
         this.reorder()
@@ -1446,7 +1447,7 @@ class combatantManager{
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
         //this.combatants[this.combatants.length-1].setIntent()
-        this.combatants[this.combatants.length-1].setIntent(0)
+        this.combatants[this.combatants.length-1].setIntent(1)
         this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()

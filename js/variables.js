@@ -1813,18 +1813,19 @@ types={
 
         {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [6D]\nRange 1-3\nTemporary'},
         {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]\nRange 1-3'},
-        /*{name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
-        {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},*/
-        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [4D]\nTarget Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
-        //{name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
         {name:'Ammonium',internal:'2 Burn',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 2 Burn\nRange 1-3\nTemporary'},
         {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [10S]\nRange 1-3\nTemporary'},
-        //{name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
         {name:'Graphene',internal:'2 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 2 Strength'},
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Energy, Draw 1',id:1028,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [12D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Mana, Draw 1',id:1029,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal [12D] to a Random Enemy,\nGain (E), Draw 1 Card'},
+        /*{name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},
+        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [4D]\nTarget Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
+        {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},*/
 
         //mark i
     ],color:{

@@ -33385,15 +33385,15 @@ types.card=[
     },{
         name:'Lift\nDrive',rarity:2,list:14,
         levels:[
-            {effect:[1],attack:11856,cost:1,target:[0],spec:[91],class:11},
             {effect:[2],attack:11856,cost:1,target:[0],spec:[91],class:11},
             {effect:[3],attack:11856,cost:1,target:[0],spec:[91],class:11},
+            {effect:[4],attack:11856,cost:1,target:[0],spec:[91],class:11},
         ],mtg:{
             rarity:2,list:14,color:[4,5],
             levels:[
-                {effect:[2],attack:11856,cost:[4,5],target:[0],spec:[91],class:11},
                 {effect:[3],attack:11856,cost:[4,5],target:[0],spec:[91],class:11},
                 {effect:[4],attack:11856,cost:[4,5],target:[0],spec:[91],class:11},
+                {effect:[5],attack:11856,cost:[4,5],target:[0],spec:[91],class:11},
             ],
         },
     },{

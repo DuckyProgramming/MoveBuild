@@ -16803,7 +16803,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 11679: case 11680: case 11681: case 11682: case 11975: case 12040:
+        case 11679: case 11680: case 11681: case 11682: case 11975: case 12040: case 12044:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
             }
@@ -16817,6 +16817,7 @@ attack.prototype.update=function(){
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,
                     this.type==11975?299:
                     this.type==12040?296:
+                    this.type==12044?297:
                     this.type-11383,
                     [atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),7.5*this.targetDistance-2])
                 )
@@ -16846,6 +16847,9 @@ attack.prototype.update=function(){
                                 this.battle.itemManager.addItem(findName('Glass',types.item),this.player)
                             }
                         }
+                    break
+                    case 12044:
+                        this.targetCombatant.statusEffect('Take Per Turn',this.effect[0])
                     break
                 }
             }else if(this.timer>=30*this.targetDistance+15){

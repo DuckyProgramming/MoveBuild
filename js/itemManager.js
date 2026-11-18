@@ -844,7 +844,8 @@ class itemManager{
             break
             case 1022:
                 //this.battle.cardManagers[player].hand.selfCall(6,[11680,[2*effectiveness],1,[2,1,3]])
-                this.battle.cardManagers[player].hand.selfCall(6,[11680,[4*effectiveness],1,[2,1,3]])
+                //this.battle.cardManagers[player].hand.selfCall(6,[11680,[4*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[12044,[4*effectiveness],1,[2,1,3]])
             break
             case 1023:
                 //this.battle.cardManagers[player].draw(effectiveness)

@@ -109,7 +109,8 @@ class eventManager{
                 !(this.listing.event[a]==85&&this.battle.currency.money[this.player]<75)&&
                 !(this.listing.event[a]==86&&this.battle.currency.money[this.player]<150)&&
                 !(this.listing.event[a]==87&&userCombatant.life<16)&&
-                !(this.listing.event[a]==88&&this.battle.relicManager.getRandomRelicRarity([this.player],1,[0,1,2,3]).length<1)&&
+                //!(this.listing.event[a]==88&&this.battle.relicManager.getRandomRelicRarity([this.player],1,[0,1,2,3]).length<1)&&
+                !(this.listing.event[a]==88&&this.battle.relicManager.getRandomRelicRarity([this.player],1,[0,1,2,3]).length<3)&&
                 !(this.listing.event[a]==89&&userCombatant.life<31)&&
                 !(this.listing.event[a]==90&&this.battle.currency.money[this.player]<125)&&
                 !(this.listing.event[a]==92&&this.battle.cardManagers[this.player].deck.numberAbstract(14,[[6],7])<=0)&&
