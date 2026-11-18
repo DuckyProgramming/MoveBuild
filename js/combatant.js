@@ -2300,7 +2300,7 @@ class combatant{
             case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
             case 282: case 295: case 305: case 309: case 332: case 341: case 355: case 369: case 370: case 371:
             case 372: case 373: case 377: case 378: case 399: case 412: case 424: case 426: case 434: case 437:
-            case 440: case 485: case 489: case 518: case 521:
+            case 440: case 485: case 489: case 518: case 521: case 528:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2)
@@ -3094,7 +3094,7 @@ class combatant{
                         case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
                         case 282: case 295: case 304: case 305: case 309: case 332: case 341: case 355: case 369: case 370:
                         case 371: case 372: case 373: case 377: case 378: case 399: case 412: case 424: case 426: case 434:
-                        case 437: case 485: case 489: case 518:
+                        case 437: case 485: case 489: case 518: case 528:
                             if(this.battle.modded(57)){
                                 for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                     if(
@@ -3331,7 +3331,7 @@ class combatant{
                     case 270: case 271: case 274: case 282: case 295: case 304: case 305: case 309: case 331: case 332:
                     case 341: case 355: case 363: case 369: case 370: case 371: case 372: case 373: case 377: case 378:
                     case 399: case 412: case 424: case 426: case 434: case 437: case 440: case 485: case 489: case 518:
-                    case 521:
+                    case 521: case 528:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(this.targetTile[b].tilePosition.x>=0){

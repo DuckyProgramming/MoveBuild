@@ -1388,6 +1388,7 @@ function intentDescription(attack,user,info){
 			case 525: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nUser Takes ${info?attack.effect[1]:`?`} Damage\nPer Card Played\nRange 1-6\nNo Movement`
 			case 526: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Intangible\nRange 1-6\nNo Movement`
 			case 527: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Intangible\nRange 1-6\nNo Movement`
+			case 528: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nKill Self\nRange 1-1`
 
 			//mark desc
 			/*

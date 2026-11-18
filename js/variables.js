@@ -127,7 +127,8 @@ types={
         {name:'Fungling',life:15,behavior:5,spec:[11],move:{type:1,speed:1},attack:[{type:4,effect:[5]},{type:154,effect:[6,1]}],description:`Doesn't do a whole lot`},
         {name:'Hwurmp',life:25,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:157,effect:[8,1,'Dazed']}],description:`Full of hot air`},
         {name:'Antihwurmp',life:25,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:166,effect:[8,1,'Dazed']}],description:`Kinda illogical`},
-        {name:'Bee',life:4,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[1]}],description:`3 Pixels`},
+        //{name:'Bee',life:4,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[1]}],description:`3 Pixels`},
+        {name:'Bee',life:4,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:528,effect:[1]}],description:`3 Pixels`},
         {name:'Beekeeper',life:76,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
         {name:'PhD',life:58,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
@@ -966,6 +967,7 @@ types={
         {name:'Moonbeam / Self Take Per Card Played',class:1},
         {name:'Moonbeam / Intangible',class:1},
         {name:'Moonbeam / Self Intangible',class:1},
+        {name:'Triple Strike / Die',class:1},
 
         //mark attack
     ],relic:[

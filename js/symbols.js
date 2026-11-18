@@ -18745,6 +18745,20 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             }
             layer.rotate(-90)
         break
+        case 528:
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,0,-2,0,2)
+            layer.triangle(3,-3,-6,-5,-6,-1)
+            layer.triangle(3,3,-6,1,-6,5)
+            layer.stroke(0,fade)
+            layer.strokeWeight(1)
+            layer.noFill()
+            layer.ellipse(0,0,10,10)
+            layer.line(-8/3,-2/3,-4/3,2/3)
+            layer.line(-8/3,2/3,-4/3,-2/3)
+            layer.line(8/3,-2/3,4/3,2/3)
+            layer.line(8/3,2/3,4/3,-2/3)
+        break
 
     }
     //mark i
@@ -18788,7 +18802,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
                 layer.text(`${effect[0]}x2`,0,0)
             break
             case 2: case 19: case 34: case 45: case 76: case 86: case 104: case 118: case 147: case 236:
-            case 367: case 377: case 381: case 415: case 422: case 443: 
+            case 367: case 377: case 381: case 415: case 422: case 443: case 528:
                 layer.text(`${effect[0]}x3`,0,0)
             break
             case 77: case 95: case 101: case 407:
