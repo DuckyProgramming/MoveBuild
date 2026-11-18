@@ -346,7 +346,7 @@ class attack{
             case 11848: case 11849: case 11850: case 11852: case 11859: case 11861: case 11871: case 11872: case 11873: case 11874: case 11875: case 11876: case 11878: case 11884: case 11886: case 11892: case 11897: case 11903: case 11905: case 11908:
             case 11909: case 11910: case 11911: case 11912: case 11913: case 11914: case 11915: case 11917: case 11918: case 11920: case 11926: case 11929: case 11930: case 11934: case 11942: case 11944: case 11945: case 11946: case 11947: case 11948:
             case 11949: case 11950: case 11953: case 11963: case 11964: case 11965: case 11969: case 11970: case 11971: case 11972: case 11973: case 11974: case 11975: case 11981: case 11982: case 11988: case 11991: case 11992: case 12001: case 12003:
-            case 12004: case 12006: case 12012: case 12014: case 12015: case 12023: case 12024: case 12039: case 12040: case 12041: case 12045: case 12046: case 12047:
+            case 12004: case 12006: case 12012: case 12014: case 12015: case 12023: case 12024: case 12039: case 12040: case 12041: case 12044: case 12045: case 12046: case 12047:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
