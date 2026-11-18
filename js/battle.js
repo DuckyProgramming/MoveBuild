@@ -1643,6 +1643,11 @@ class battle{
                 if(userCombatant.getStatus('3+ Cost Block')>0){
                     userCombatant.addBlock(userCombatant.getStatus('3+ Cost Block'))
                 }
+                if(userCombatant.getStatus('3+ Cost Vitality')>0){
+                    for(let a=0,la=userCombatant.getStatus('3+ Cost Vitality');a<la;a++){
+                        this.dropDrawShuffle(player,findName('Vitality',types.card),0,0)
+                    }
+                }
             }else if(effectiveCost==2){
                 if(userCombatant.getStatus('2 Cost Block')>0){
                     userCombatant.addBlock(userCombatant.getStatus('2 Cost Block'))
@@ -3391,7 +3396,7 @@ class battle{
                 let overPos
                 let names3=['Colorless','Status','Curse','Partner','Arcana','Spectral','Subcard','Event','Reserve','Developer','Disband','Basic','Pack','Misc']
                 let q=(num)=>{return num==constants.playerNumber+10?100:num}
-                let seriesTotal=12
+                let seriesTotal=13
                 switch(graphics.test){
                     case 0: case 1:
                         this.layer.noStroke()

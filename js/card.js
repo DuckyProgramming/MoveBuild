@@ -1211,6 +1211,14 @@ class card{
             case 11905:
                 this.battle.combatantManager.allEffect(43,[this.effect[1],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
             break
+            case 11960:
+                userCombatant.addBlock(this.effect[0])
+                userCombatant.statusEffect('Block Next Turn',this.effect[1])
+                userCombatant.gainFaith(this.effect[2])
+                if(userCombatant.getStatus('Moriya Talisman Temporary Strength')>0){
+                    userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Moriya Talisman Temporary Strength'))
+                }
+            break
         }
         return 0
     }
@@ -1555,6 +1563,10 @@ class card{
             break
             case 11646:
                 userCombatant.statusEffect('Free Skill',1)
+            break
+            case 11983:
+                this.battle.combatantManager.allEffect(43,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+                this.battle.cardManagers[this.player].draw(this.effect[1],5)
             break
         }
     }
@@ -2044,7 +2056,7 @@ class card{
             case 5537: case 5976: case 6103: case 6306: case 6403: case 7246: case 7247: case 7248: case 7275: case 8432:
             case 8433: case 8803: case 8876: case 8877: case 8878: case 8879: case 8880: case 8881: case 8882: case 9155:
             case 9523: case 9524: case 9525: case 9785: case 10505: case 10918: case 11003: case 11259: case 11302: case 11321:
-            case 11745:
+            case 11745: case 11966:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([this.level,2,0])
             break
@@ -2866,8 +2878,11 @@ class card{
                 this.battle.overlayManager.overlays[87][this.player].active=true
                 this.battle.overlayManager.overlays[87][this.player].activate()
             break
-            case 11660:
+            case 11660: case 12026: case 12027:
                 this.battle.addCurrency(this.effect[1],this.player)
+            break
+            case 12025:
+                this.battle.addCurrency(this.effect[2],this.player)
             break
         }
     }
@@ -4397,6 +4412,9 @@ class card{
             case 10607: case 10609:
                 userCombatant.statusEffect('Temporary Strength Next Turn',this.effect[1])
                 userCombatant.statusEffect('Temporary Draw',this.effect[2])
+            break
+            case 12000:
+                userCombatant.gainFaith(this.effect[1])
             break
         }
     }

@@ -1032,13 +1032,15 @@ class group{
         let done=0
         for(let a=0,la=this.cards.length;a<la;a++){
             if(
-                type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
-                type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
-                type==2&&this.cards[a].name==args[0]||
-                type==3&&this.cards[a].class==5||
-                type==4&&args[0].includes(this.cards[a].class)||
-                type==5&&this.cards[a].rarity==args[0]||
-                type==6&&this.cards[a].spec.includes(args[0])
+                (
+                    type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
+                    type==1&&(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
+                    type==2&&this.cards[a].name==args[0]||
+                    type==3&&this.cards[a].class==5||
+                    type==4&&args[0].includes(this.cards[a].class)||
+                    type==5&&this.cards[a].rarity==args[0]||
+                    type==6&&this.cards[a].spec.includes(args[0])
+                )&&!(this.id==2&&this.cards[a].deSize)
             ){
                 if(this.id==2){
                     this.cards[a].deSize=true
@@ -5663,7 +5665,7 @@ class group{
                                 amplifyCost=[5]
                             break
                             case 4659: case 4660: case 4661: case 4662: case 4671: case 4678: case 4800: case 4803: case 4862: case 4885:
-                            case 10061: case 11347: case 11352: case 11358: case 11365: case 11366: case 11485: case 11813:
+                            case 10061: case 11347: case 11352: case 11358: case 11365: case 11366: case 11485: case 11813: case 12008: case 12010:
                                 amplifyCost=[6]
                             break
                             case 4663: case 6946: case 10368: case 11370:
@@ -7707,7 +7709,8 @@ class group{
                                 this.cards[a].discardEffect=[]
                                 this.cards[a].evolve++
                                 this.cards[a].callEvolveEffect()
-                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                //this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                                 a--
                                 la--
                             }else{

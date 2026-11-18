@@ -109,7 +109,7 @@ constants.status={
         'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
-        'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn',
+        'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -221,7 +221,7 @@ constants.status={
         0,1,0,2,2,0,2,0,0,0,//107
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
-        0,0,0,
+        0,0,0,0,0,0,
     ],
     /*
     0-none
@@ -342,7 +342,7 @@ constants.status={
         2,2,2,0,0,2,0,2,2,2,//107
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
-        2,2,2,
+        2,2,2,2,2,2,
     ]
     /*
     0-good
@@ -481,8 +481,8 @@ class combatant{
             behavior:constants.status.behavior,
             class:constants.status.class,
         }
-        this.turnStatus=[0,0,0,0,0,0]
-        //dodges,taken,life lost,heal,highrolls,lowrolls
+        this.turnStatus=[0,0,0,0,0,0,0]
+        //dodges,taken,life lost,heal,highrolls,lowrolls,accurate
         this.resetTempStatus()
         this.interiorStatus=[0,0,0,0]
         //repeat extra turn 1,has done damage,total faith,total mantra
@@ -581,7 +581,7 @@ class combatant{
         this.ringing=0
         this.caffeine=0
 
-        this.turnStatus=[0,0,0,0,0,0]
+        this.turnStatus=[0,0,0,0,0,0,0]
         this.status.misc=[0,0]
     }
     resetInfo(){
@@ -3892,9 +3892,9 @@ class combatant{
             }*/
         }
         damage=round(damage*10)/10
-        if(damage>=20&&this.status.main[49]>0){
+        /*if(damage>=20&&this.status.main[49]>0){
             damage+=this.status.main[49]
-        }
+        }*/
         if(damage>0&&this.life>0){
             let hit=true
             let dodged=false
@@ -5188,6 +5188,9 @@ class combatant{
                 }else if(this.battle.relicManager.hasRelic(518,-1)){
                     this.loseHealth(this.battle.relicManager.active[518][0]*3)
                 }
+                if(this.status.main[49]>0){
+                    this.takeDamage(this.status.main[49],-1)
+                }
             }
         }
     }
@@ -5343,8 +5346,12 @@ class combatant{
         if(this.status.main[749]>0){
             this.addBlock(this.status.main[749])
         }
-        this.takeDamage(this.status.main[191]*(this.status.main[204]>0?2:1),-1)
-        this.statusEffect('Jinx',this.status.main[221])
+        if(this.status.main[191]>0){
+            this.takeDamage(this.status.main[191]*(this.status.main[204]>0?2:1),-1)
+        }
+        if(this.status.main[221]>0){
+            this.statusEffect('Jinx',this.status.main[221])
+        }
     }
     getOrbNumber(type){
         let count=0
@@ -6011,6 +6018,8 @@ class combatant{
                 break
                 case 5:
                     this.battle.addSpecificEnergy((variants.mtg?5:3)+this.status.main[1034],this.id,6)
+                    this.battle.cardManagers[this.id].discard.allEffectArgs(44,[11952])
+                    this.battle.cardManagers[this.id].reserve.allEffectArgs(44,[11952])
                 break
             }
             if(this.status.main[126]>0){
@@ -6249,6 +6258,13 @@ class combatant{
         if(this.status.main[847]>0){
             this.addBlock(value*this.status.main[840]*this.status.main[847])
         }
+    }
+    accurate(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
+        if(this.status.main[1094]>0){
+            userCombatant.statusEffect('Temporary Strength',this.status.main[1094])
+        }
+        this.turnStatus[6]++
     }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -6873,7 +6889,7 @@ class combatant{
         }
     }
     endTurn(){
-        this.turnStatus=[0,0,0,0,0,0]
+        this.turnStatus=[0,0,0,0,0,0,0]
     }
     tick(sub){
         switch(this.name){

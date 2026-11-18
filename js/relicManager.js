@@ -661,16 +661,20 @@ class relicManager{
                 this.battle.purchaseManager.costChange(player,4,0.5)
             break
             case 270:
-                this.battle.purchaseManager.costChange(player,9,0.5)
-            break
-            case 271:
+                //this.battle.purchaseManager.costChange(player,9,0.5)
                 this.battle.purchaseManager.costChange(player,10,0.5)
             break
-            case 272:
+            case 271:
+                //this.battle.purchaseManager.costChange(player,10,0.5)
                 this.battle.purchaseManager.costChange(player,11,0.5)
             break
-            case 273:
+            case 272:
+                //this.battle.purchaseManager.costChange(player,11,0.5)
                 this.battle.purchaseManager.costChange(player,12,0.5)
+            break
+            case 273:
+                //this.battle.purchaseManager.costChange(player,12,0.5)
+                this.battle.purchaseManager.costChange(player,13,0.5)
             break
             case 283:
                 this.battle.addEnergyBase(player)
@@ -1190,9 +1194,6 @@ class relicManager{
                     }
                 }
             break
-            case 236:
-                this.addRandomRelic(player)
-            break
             case 244:
                 this.battle.optionManagers[player].removeOption(9)
             break
@@ -1215,16 +1216,20 @@ class relicManager{
                 this.battle.purchaseManager.costChange(player,4,2)
             break
             case 270:
-                this.battle.purchaseManager.costChange(player,9,2)
-            break
-            case 271:
+                //this.battle.purchaseManager.costChange(player,9,2)
                 this.battle.purchaseManager.costChange(player,10,2)
             break
-            case 272:
+            case 271:
+                //this.battle.purchaseManager.costChange(player,10,2)
                 this.battle.purchaseManager.costChange(player,11,2)
             break
-            case 273:
+            case 272:
+                //this.battle.purchaseManager.costChange(player,11,2)
                 this.battle.purchaseManager.costChange(player,12,2)
+            break
+            case 273:
+                //this.battle.purchaseManager.costChange(player,12,2)
+                this.battle.purchaseManager.costChange(player,13,2)
             break
             case 275:
                 this.battle.cardManagers[player].deck.unInnate(1)
@@ -1431,9 +1436,6 @@ class relicManager{
             case 598:
                 this.battle.cardManagers[player].deck.unDuoEdition(4)
             break
-            case 604:
-                this.battle.nodeManager.freeMove[0]++
-            break
             case 605:
                 this.battle.purchaseManager.costChange(player,1,2)
             break
@@ -1450,6 +1452,16 @@ class relicManager{
         }
         this.deactivate(type,player)
         this.lost[player].push(type)
+    }
+    sellEffect(type,player){
+        switch(type){
+            case 236:
+                this.addRandomRelic(player)
+            break
+            case 604:
+                this.battle.nodeManager.freeMove[0]++
+            break
+        }
     }
     deactivate(type,player){
         if(this.active[type][player+1]<=0){
@@ -3728,6 +3740,7 @@ class relicManager{
                                         ?0.5:1
                                     ),this.relics[a].player)
                                 this.loseRelic(this.relics[a].type,args[0])
+                                this.sellEffect(this.relics[a].type,args[0])
                                 this.battle.cardManagers[this.relics[a].player].trueAllGroupEffectArgs(65,[11614])
                             }
                             position++

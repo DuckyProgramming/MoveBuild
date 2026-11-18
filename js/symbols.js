@@ -12035,6 +12035,40 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,fade)
             layer.quad(0,-1.5,-6,0,0,1.5,6,0)
         break
+        case 1093:
+            layer.stroke(200,255,100,fade)
+            layer.strokeWeight(1)
+            layer.bezier(0,1.6,-1.2,-4,-3.2,-5.2,-5.2,-6)
+            layer.bezier(-2.4,1.6,-5.6,1.6,-6,-4.8,-5.2,-6)
+            layer.bezier(0,1.6,1.2,-4,3.2,-5.2,5.2,-6)
+            layer.bezier(2.4,1.6,5.6,1.6,6,-4.8,5.2,-6)
+            layer.line(-2.4,1.6,2.4,1.6)
+            layer.bezier(0,1.6,-1.2,4.8,-2,6,-4,6.4)
+            layer.bezier(-1.6,1.6,-4.4,1.6,-4.8,4.8,-4,6.4)
+            layer.bezier(0,1.6,1.2,4.8,2,6,4,6.4)
+            layer.bezier(1.6,1.6,4.4,1.6,4.8,4.8,4,6.4)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(0,-2,-1,0,0,2,1,0)
+            layer.quad(-2.5,-2,-3.5,0,-2.5,2,-1.5,0)
+            layer.quad(2.5,-2,3.5,0,2.5,2,1.5,0)
+        break
+        case 1094:
+            layer.fill(150,0,0,fade)
+            hexagon(layer,0,0,-7,-4,-2.5,-0.5,-8,0,-2.5,0.5,-7,4)
+            hexagon(layer,0,0,7,-4,2.5,-0.5,8,0,2.5,0.5,7,4)
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+        break
+        case 1095:
+            layer.fill(255,50,255,fade)
+            layer.quad(-3,-6,-1.2,0.6,3,6,1.2,-0.6)
+            layer.fill(50,255,50,fade)
+            layer.quad(3,-6,1.2,0.6,-3,6,-1.2,-0.6)
+            layer.fill(75,fade)
+            regStar(layer,0,0,6,2,2,6,6,0)
+        break
 
     }
     //mark s

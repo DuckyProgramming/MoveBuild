@@ -2108,7 +2108,7 @@ function updateMouse(layer){
 	inputs.prevRel.x=(inputs.prev.x-width/2)/stage.scale+layer.width/2
 	inputs.prevRel.y=(inputs.prev.y-height/2)/stage.scale+layer.height/2
 }
-function qa(name){
+function qa(name=''){
 	let type=findNameApprox(name,types.card)
 	if(type>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,current.standardColorize(type))
@@ -2415,17 +2415,28 @@ function outListing(){
 		current.collectionManager.totals.list[constants.playerNumber+13][0]
 	let char=manager.listing.allPlayerCard[3].length+manager.listing.card[0][3].length
 	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
-	let colorChanges=0
+	//let colorChanges=0
+	let colorChanges=[]
 	for(let a=0,la=constants.playerNumber;a<la;a++){
-		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length>64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length>64?`%c`:``}, ${manager.listing.card[a+1][1].length>64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length>64?`%c`:``}, ${manager.listing.card[a+1][2].length>32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length>32?`%c`:``}\n`
+		//box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length>64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length>64?`%c`:``}, ${manager.listing.card[a+1][1].length>64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length>64?`%c`:``}, ${manager.listing.card[a+1][2].length>32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length>32?`%c`:``}\n`
+		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length!=64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length!=64?`%c`:``}, ${manager.listing.card[a+1][1].length!=64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length!=64?`%c`:``}, ${manager.listing.card[a+1][2].length!=32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length!=32?`%c`:``}\n`
 		if(manager.listing.card[a+1][0].length>64){
-			colorChanges++
+			//colorChanges++
+			colorChanges.push(0)
+		}else if(manager.listing.card[a+1][0].length<64){
+			colorChanges.push(1)
 		}
 		if(manager.listing.card[a+1][1].length>64){
-			colorChanges++
+			//colorChanges++
+			colorChanges.push(0)
+		}else if(manager.listing.card[a+1][1].length<64){
+			colorChanges.push(1)
 		}
 		if(manager.listing.card[a+1][2].length>32){
-			colorChanges++
+			//colorChanges++
+			colorChanges.push(0)
+		}else if(manager.listing.card[a+1][2].length<32){
+			colorChanges.push(1)
 		}
 	}
 	let listed=[
@@ -2482,7 +2493,9 @@ ${box}
 (${current.collectionManager.totals.list[constants.playerNumber+10][0]-unlisted[0]}) Disband: ${current.collectionManager.totals.list[constants.playerNumber+10][0]}`,
 //Invalid: ${types.invalid.length}`,
 //Invalid: ${types.card.filter(card=>card.rarity==-1&&card.list==-10).length}`,
-...multiplyArray(["color:red",""],colorChanges).flat())
+...colorChanges.map(change=>[["color:red",""],["color:blue",""]][change]).flat())
+//...colorChanges.map(change=>[["color:red",""],["color:lime",""]][change]).flat())
+//...multiplyArray(["color:red",""],colorChanges).flat())
 	/*console.log(`
 (${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
 (${actual-goal}) Listed Cards: ${actual}/${goal}
@@ -3245,6 +3258,16 @@ function oracleCost(min,max){
 		cardData.display()
 	}
 }
+function oracleRarity(rarity){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.rarity==rarity)
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
 function oracleClass(cardClass){
 	current.overlayManager.overlays[35][0].active=true
     current.overlayManager.overlays[35][0].activate([0,-99])
@@ -3946,7 +3969,7 @@ function checkExists(start,end){
 		1905,1906,1946,1947,1952,2535,2957,3564,4625,7141,//assorted invalid
 
 		83,84,85,86,3595,9974,10352,11671,11679,11680,
-		11681,11682,//items
+		11681,11682,11975,12040,12041,//items
 	]
 	let total=0
 	/*let incl=[]
@@ -4169,6 +4192,45 @@ function outUnnecessarySpec(spec,start=-99999,end=99999){
 					}
 				}
 			}
+		}
+	}
+}
+function outUnnecessaryGeneral(start=-99999,end=99999){
+	let lookup=range(0,end-start).map(a=>0)
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(!types.card[a].levels[b].spec.includes(12)){
+				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end){
+					lookup[types.card[a].levels[b].attack-start]++
+				}
+			}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(!types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end){
+					lookup[types.card[a].mtg.levels[b].attack-start]++
+				}
+			}
+		}
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		let overlap=0
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(!types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6){
+					overlap++
+				}
+			}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(!types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6){
+					overlap++
+				}
+			}
+		}
+		if(overlap>=6){
+			print(types.card[a].name)
 		}
 	}
 }

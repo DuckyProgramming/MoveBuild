@@ -1812,15 +1812,16 @@ types={
         {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
 
         {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [6D]\nRange 1-3\nTemporary'},
-        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]'},
+        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]\nRange 1-3'},
         /*{name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},*/
         {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [4D]\nTarget Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
-        {name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
+        //{name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
+        {name:'Ammonium',internal:'2 Burn',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 2 Burn\nRange 1-3\nTemporary'},
         {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [10S]\nRange 1-3\nTemporary'},
-        {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
-        //{name:'Graphene',internal:'2 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 2 Strength'},
+        //{name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
+        {name:'Graphene',internal:'2 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 2 Strength'},
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Energy, Draw 1',id:1028,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [12D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Mana, Draw 1',id:1029,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal [12D] to a Random Enemy,\nGain (E), Draw 1 Card'},
@@ -8383,8 +8384,10 @@ However, the damage also decrease by 8 each turn.`,
 Some card spend it in their effects. Others may generate it.`
         },{name:'Burn (Card)',mtg:0,basic:false,desc:
 `Status, unplayable, makes you take damage at the end of your turn.`,
-        },{name:'Burn (Status Effect)',mtg:0,basic:false,desc:
+        },/*{name:'Burn (Status Effect)',mtg:0,basic:false,desc:
 `Take bonus damage from all incoming damage 20 or greater.`,
+        },*/{name:'Burn (Status Effect)',mtg:0,basic:false,desc:
+`Combatants with burn take damage equal to it when they add block.`,
         },{name:'Mortal',mtg:0,basic:false,desc:
 `Lose health each turn.`,
         },{name:'Take Credit',mtg:0,basic:false,desc:

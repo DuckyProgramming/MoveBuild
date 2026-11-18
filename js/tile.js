@@ -336,6 +336,12 @@ class tile{
                                     occupant.statusEffect('Poison',effect[0])
                                 }
                             break
+                            case 9:
+                                if(occupant.team==0){
+                                    occupant.takeDamage(effect[0],effect[1])
+                                    this.anim.upPart[a]=false
+                                }
+                            break
                         }
                     }
                 break

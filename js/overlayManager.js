@@ -206,6 +206,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[129])],//polychrome edition and double duplicate, no return
                     [new overlay(this.layer,this.battle,0,2,[131,0,2])],//bring in quantity discard cards, no return
                     [new overlay(this.layer,this.battle,0,2,[130])],//double attack or defense
+                    [new overlay(this.layer,this.battle,0,2,[132])],//scry, exhaust top, no return
                     //113->130
                 )
                 if(this.battle.players==2){

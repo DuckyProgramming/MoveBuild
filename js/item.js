@@ -1077,13 +1077,13 @@ class item{
                 case 'Draw 2 2':
                     displaySymbol(this.layer,0,0,190,0,1,this.fade)
                 break
-                case '1 Vulnerable':
+                case '1 Vulnerable': case '2 Burn':
                     displaySymbol(this.layer,0,0,191,0,1,this.fade)
                 break
                 case '10 Splash Damage':
                     displaySymbol(this.layer,0,0,192,0,1,this.fade)
                 break
-                case '1 Strength 2':
+                case '1 Strength 2': case '2 Strength 2':
                     displaySymbol(this.layer,0,0,186,0,1,this.fade)
                 break
                 case 'Draw 3, Free Card':

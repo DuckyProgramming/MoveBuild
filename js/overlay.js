@@ -177,7 +177,7 @@ class overlay{
                     case 23: case 25: case 30: case 41: case 44: case 45: case 47: case 48: case 49: case 58:
                     case 59: case 60: case 62: case 63: case 73: case 74: case 80: case 84: case 85: case 94:
                     case 95: case 96: case 100: case 103: case 104: case 105: case 114: case 119: case 120: case 124:
-                    case 127:
+                    case 127: case 132:
                         this.battle.cardManagers[this.player].reserve.resetAnim()
                     break
                     case 1: case 5: case 11: case 19: case 21: case 31: case 34: case 39: case 40: case 42:
@@ -219,7 +219,7 @@ class overlay{
                         this.args[1]=args[0]
                     break
                     case 21: case 22: this.block=args[0]; break
-                    case 30: case 31: case 52: case 58: case 114: this.activated=0;this.args[1]=args[0]; break
+                    case 30: case 31: case 52: case 58: case 114: case 132: this.activated=0;this.args[1]=args[0]; break
                     case 41: case 44: case 48: case 84:
                         this.args[1]=args[0]+this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].onScry()
                         this.args[2]=args[1]
@@ -2427,6 +2427,11 @@ class overlay{
                     case 101:
                         this.battle.cardManagers[this.player].hand.upgrade(this.args[2])
                     break
+                    case 132:
+                        if(this.battle.cardManagers[this.player].reserve.cards.length>0){
+                            this.battle.cardManagers[this.player].reserve.generalExhaust(0)
+                        }
+                    break
                 }
             break
             case 17:
@@ -3555,6 +3560,7 @@ class overlay{
                     case 127: this.title='Put a Card From Draw Pile in Hand and Make it Foil'; break
                     case 129: this.title='Make a Card Polychrome and Duplicate it'; break
                     case 130: this.title='Double Effect of an Attack or Defense'; break
+                    case 132: this.title='Scry and Exhaust'; break
                     default: this.title=''; break
                 }
                 this.layer.fill(160,this.fade*0.8)
@@ -3592,7 +3598,7 @@ class overlay{
                     case 99: case 100: case 101: case 102: case 103: case 104: case 105: case 106: case 107: case 108:
                     case 109: case 110: case 111: case 112: case 113: case 114: case 115: case 116: case 117: case 118:
                     case 119: case 120: case 121: case 122: case 123: case 124: case 125: case 126: case 127: case 128:
-                    case 129: case 130: case 131:
+                    case 129: case 130: case 131: case 132:
                         this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
@@ -3622,6 +3628,7 @@ class overlay{
                     case 24: this.battle.tierManager.tiers[this.args[1]].display('overlay',[1,this.page]); break
                     case 36: this.battle.cardManagers[this.player].deck.display('overlay',[10,this.page,0]); break
                     case 41: case 44: case 47: case 48: case 49: case 59: case 73: case 80: case 84: case 85:
+                    case 132:
                         this.battle.cardManagers[this.player].reserve.display('overlay',[6,this.page,this.args[1]]); break
                     case 50: case 66: case 89:
                         this.battle.cardManagers[this.player].deck.display('overlay',[11,this.page,true]); break
@@ -4531,6 +4538,7 @@ class overlay{
                             this.page=0
                         break
                         case 41: case 44: case 47: case 48: case 49: case 59: case 73: case 80: case 84: case 85:
+                        case 132:
                             this.page=constrain(this.page,0,ceil(this.args[1]/15)-1)
                         break
                         case 24:
@@ -4551,7 +4559,7 @@ class overlay{
                         case 23: case 25: case 30: case 41: case 44: case 45: case 47: case 48: case 49: case 58:
                         case 59: case 60: case 62: case 63: case 73: case 74: case 80: case 84: case 85: case 94:
                         case 95: case 96: case 100: case 103: case 104: case 105: case 114: case 119: case 120: case 122:
-                        case 124: case 127:
+                        case 124: case 127: case 132:
                             this.battle.cardManagers[this.player].reserve.update('overlay',[this.page])
                         break
                         case 1: case 5: case 11: case 19: case 21: case 31: case 34: case 39: case 40: case 42:
@@ -4583,7 +4591,7 @@ class overlay{
                         case 23: case 25: case 30: case 41: case 44: case 45: case 47: case 48: case 49: case 58:
                         case 59: case 60: case 62: case 63: case 73: case 74: case 80: case 84: case 85: case 94:
                         case 95: case 96: case 100: case 103: case 104: case 105: case 114: case 119: case 120: case 122:
-                        case 124: case 127:
+                        case 124: case 127: case 132:
                             for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].reserve.cards[a].size=constrain(this.battle.cardManagers[this.player].reserve.cards[a].size,0,this.fade)
                             }
@@ -4900,7 +4908,8 @@ class overlay{
                             )||
                             this.page<ceil(this.args[1]/15)-1&&(
                                 this.args[0]==41||this.args[0]==44||this.args[0]==47||this.args[0]==48||this.args[0]==49||
-                                this.args[0]==59||this.args[0]==73||this.args[0]==80||this.args[0]==84||this.args[0]==85
+                                this.args[0]==59||this.args[0]==73||this.args[0]==80||this.args[0]==84||this.args[0]==85||
+                                this.args[0]==132
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.finalPosition/15)-1&&(
                                 this.args[0]==36||this.args[0]==81||this.args[0]==82||this.args[0]==92||this.args[0]==93||
@@ -5874,15 +5883,18 @@ class overlay{
                                 }
                             }
                         break
-                        case 41: case 44: case 47: case 48: case 49: case 59: case 73: case 84: case 85:
+                        case 41: case 44: case 47: case 48: case 49: case 59: case 73: case 84: case 85: case 132:
                             for(let a=0,la=min(this.args[1],this.battle.cardManagers[this.player].reserve.cards.length);a<la;a++){
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].reserve.cards[a])&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
                                     let complete=true
+                                    let set=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Fatigue Scry Exhaust')>0&&this.battle.cardManagers[this.player].reserve.cards[a].name=='Fatigue'?
+                                        this.battle.cardManagers[this.player].exhaust.cards:
+                                        this.battle.cardManagers[this.player].discard.cards
                                     switch(this.args[0]){
-                                        case 41: case 48: case 49: case 84:
+                                        case 41: case 48: case 49: case 84: case 132:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -5892,7 +5904,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].reserve.cards[a].setCost(0,[0])
                                             this.battle.cardManagers[this.player].reserve.cards[a].additionalSpec.push(-2)
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -5900,7 +5912,7 @@ class overlay{
                                         break
                                         case 47:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -5909,7 +5921,7 @@ class overlay{
                                         break
                                         case 59:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -5921,7 +5933,7 @@ class overlay{
                                             if(this.battle.cardManagers[this.player].reserve.cards[a].class==2){
                                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.args[3])
                                             }
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -5929,7 +5941,7 @@ class overlay{
                                         break
                                         case 85:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -6635,7 +6647,8 @@ class overlay{
                             )||
                             this.page<ceil(this.args[1]/15)-1&&(
                                 this.args[0]==41||this.args[0]==44||this.args[0]==47||this.args[0]==48||this.args[0]==49||
-                                this.args[0]==59||this.args[0]==73||this.args[0]==80||this.args[0]==84||this.args[0]==85
+                                this.args[0]==59||this.args[0]==73||this.args[0]==80||this.args[0]==84||this.args[0]==85||
+                                this.args[0]==132
                             )||
                             this.page<ceil(this.battle.cardManagers[this.player].deck.finalPosition/15)-1&&(
                                 this.args[0]==36||this.args[0]==81||this.args[0]==82||this.args[0]==92||this.args[0]==93||
@@ -7594,15 +7607,18 @@ class overlay{
                                 }
                             }
                         break
-                        case 41: case 44: case 47: case 48: case 49: case 59: case 73: case 84: case 85:
+                        case 41: case 44: case 47: case 48: case 49: case 59: case 73: case 84: case 85: case 132:
                             for(let a=0,la=min(this.args[1],this.battle.cardManagers[this.player].reserve.cards.length);a<la;a++){
                                 if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
                                     let complete=true
+                                    let set=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Fatigue Scry Exhaust')>0&&this.battle.cardManagers[this.player].reserve.cards[a].name=='Fatigue'?
+                                        this.battle.cardManagers[this.player].exhaust.cards:
+                                        this.battle.cardManagers[this.player].discard.cards
                                     switch(this.args[0]){
-                                        case 41: case 48: case 49: case 84:
+                                        case 41: case 48: case 49: case 84: case 132:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -7612,7 +7628,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].reserve.cards[a].setCost(0,[0])
                                             this.battle.cardManagers[this.player].reserve.cards[a].additionalSpec.push(-2)
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -7620,7 +7636,7 @@ class overlay{
                                         break
                                         case 47:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -7629,7 +7645,7 @@ class overlay{
                                         break
                                         case 59:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -7641,7 +7657,7 @@ class overlay{
                                             if(this.battle.cardManagers[this.player].reserve.cards[a].class==2){
                                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.args[3])
                                             }
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--
@@ -7649,7 +7665,7 @@ class overlay{
                                         break
                                         case 85:
                                             this.args[1]+=this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
-                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.battle.cardManagers[this.player].reserve.send(set,a,a+1)
                                             this.args[1]--
                                             a--
                                             la--

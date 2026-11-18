@@ -49,7 +49,7 @@ class particle{
                 this.scale=1
                 this.size=0
             break
-            case 5: case 8: case 267: case 294: case 295: case 296: case 297: case 298: case 299:
+            case 5: case 8: case 267: case 294: case 295: case 296: case 297: case 298: case 299: case 300:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=16/3
@@ -4780,6 +4780,9 @@ class particle{
                 case 299:
                     displaySymbol(this.layer,0,0,191,this.time*10,0.5,this.fade)
                 break
+                case 300:
+                    displaySymbol(this.layer,0,0,188,this.time*10,0.5,this.fade)
+                break
 
             }
             //mark p
@@ -4809,7 +4812,7 @@ class particle{
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
             case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89: case 98: case 105:
             case 111: case 113: case 131: case 160: case 201: case 267: case 293: case 294: case 295: case 296:
-            case 297: case 298: case 299:
+            case 297: case 298: case 299: case 300:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2,0,1,5)
