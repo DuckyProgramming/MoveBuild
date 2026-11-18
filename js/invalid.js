@@ -4913,6 +4913,34 @@ types.invalid=[
                 {effect:[3,3],attack:5540,cost:[2,2],target:[0],spec:[],class:11},
             ],
         },
+    },{
+        name:'Burnt\nTinsel',rarity:-1,list:-8,
+        levels:[
+            {effect:[15,1],attack:5215,cost:1,target:[0],spec:[],class:2},
+            {effect:[23,1],attack:5215,cost:1,target:[0],spec:[],class:2},
+            {effect:[29,1],attack:5215,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,3],
+            levels:[
+                {effect:[24,1],attack:5215,cost:[11,-1],target:[0],spec:[],class:2},
+                {effect:[36,1],attack:5215,cost:[11,-1],target:[0],spec:[],class:2},
+                {effect:[45,1],attack:5215,cost:[11,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Fast\nCash',rarity:-1,list:-8,
+        levels:[
+            {effect:[10,100],attack:3758,cost:1,target:[0],spec:[],class:2},
+            {effect:[16,100],attack:3758,cost:1,target:[0],spec:[],class:2},
+            {effect:[20,100],attack:3758,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[8,100],attack:3758,cost:[3],target:[0],spec:[],class:2},
+                {effect:[13,100],attack:3758,cost:[3],target:[0],spec:[],class:2},
+                {effect:[16,100],attack:3758,cost:[3],target:[0],spec:[],class:2},
+            ],
+        },
     },
 
     //mark er

@@ -1524,7 +1524,7 @@ types={
         {name:'Bottled Wish',internal:'Starting Random Reward',id:502,rarity:2,list:0,mtg:0,world:[0,2],description:'At the Start of Combat,\nRandomly Gain 3 Strength,\n10 Armor, or 50 Currency'},
         {name:'Honeycomb',internal:'Extended Starting Draw',id:503,rarity:2,list:0,mtg:0,world:[0,3],description:'Draw 1 More Card Per Turn\nFor the First 5 Turns'},
         {name:'Bleach',internal:'Colorless Deck',id:504,rarity:3,list:0,mtg:0,world:[0,2],description:'Replace a Card Reward\nOption With a Colorless One'},
-        {name:'Shop Phone',internal:'Heal Anytime',id:505,rarity:3,list:0,mtg:0,world:[0,2],description:'Click to Use the Shop Food Heal Anytime'},
+        {name:'Bowser Phone',internal:'Heal Anytime',id:505,rarity:-1,list:0,mtg:0,world:[0,2],description:'Click to Use the Shop Food Heal Anytime'},
         {name:'Immoral Elixir',internal:'Energy/Turn 6 Health',id:506,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nLose 6 Health on Turn 6'},
         {name:'Ochre Slime',internal:'Energy/Stuck',id:507,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy, Shuffle 1 Stuck\nInto Draw on Turn 1'},
         {name:`Prince Rupert's Drop`,internal:'Safe Energy',id:508,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nUntil You Lose Health Each Combat'},
@@ -1633,7 +1633,7 @@ types={
         {name:'Swan Beak',internal:'Item Energy',id:601,rarity:-1,list:0,mtg:1,world:[0,3],description:'When an Item is Used,\nGain 1 Energy'},
         {name:'Swan Beak',internal:'Item Mana',id:602,rarity:-1,list:0,mtg:2,world:[0,3],description:'When an Item is Used,\nGain (E) (E)'},
         {name:'Muffin Mix',internal:'Max HP Rest Heal',id:603,rarity:1,list:0,mtg:0,world:[0,2],description:'When You Heal at a Rest Site,\nGain 4 Max HP'},
-        {name:'Bus Ticket',internal:'Sell Free Move',id:604,rarity:3,list:0,mtg:1,world:[0,3],description:'When Sold,\nYour Next Map Move is Free'},
+        {name:'Bus Shelter',internal:'Sell Free Move',id:604,rarity:-1,list:0,mtg:1,world:[0,3],description:'When Sold,\nYour Next Map Move is Free'},
         {name:'Common Voucher',internal:'Cheap Common',id:605,rarity:3,list:0,mtg:0,world:[0,1],description:'Common Cards in the\nShop Cost 50% Less'},
         {name:'Uncommon Voucher',internal:'Cheap Uncommon',id:606,rarity:3,list:0,mtg:0,world:[0,1],description:'Uncommon Cards in the\nShop Cost 50% Less'},
         {name:'Rare Voucher',internal:'Cheap Rare',id:607,rarity:3,list:0,mtg:0,world:[0,1],description:'Rare Cards in the\nShop Cost 50% Less'},
@@ -1648,6 +1648,9 @@ types={
         {name:'Very Hot Cocoa',internal:'Level Energy',id:615,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 3 Energy at the Start of Turn 1\nGain 2 Energy at the Start of Turn 2\nGain 1 Energy at the Start of Turn 3'},
         {name:'Writ of Mandamus',internal:'Energy/Control',id:616,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nEnemies Start Combat With 1 Control'},
         {name:'Chainlink Cage',internal:'Energy/Event Choice',id:617,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nLose 20 Health if You Pick an Option\nOther than the First in an Event'},
+
+        {name:'Shop Phone',internal:'Shop Anytime',id:618,rarity:3,list:0,mtg:0,world:[0,2],description:'Click While on the Map to\nEnter the Shop Anytime\nSingle Use'},
+        {name:'Bus Ticket',internal:'Free Move Anytime',id:619,rarity:3,list:0,mtg:1,world:[0,3],description:'Click While on the Map to Make\nYour Next Map Move Free\nSingle Use'},
 
         //mark mtg mark r
     ],item:[

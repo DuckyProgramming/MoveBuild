@@ -3,17 +3,10 @@ test evolve
 
 CS 155 [ENDSIEG ULTIMATE]
 
-outunnecessaryspec
+outunnecessarygeneral
 
 diff 26 anew
 act 5 (1453) (1945)
 the map shrinks by 1 tile every turn
-
-change shop phone - can be uesd in the map to enter a shop at any time
-same for bus ticket
-
-orb particles can't see
-does 600-cell carry over the card being upgraded
-split ember to give you carbon [counterpart for other items]
 
 

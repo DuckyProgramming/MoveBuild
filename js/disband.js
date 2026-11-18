@@ -40660,20 +40660,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Fast\nCash',rarity:-1,list:-8,
-        levels:[
-            {effect:[10,100],attack:3758,cost:1,target:[0],spec:[],class:2},
-            {effect:[16,100],attack:3758,cost:1,target:[0],spec:[],class:2},
-            {effect:[20,100],attack:3758,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[3],
-            levels:[
-                {effect:[8,100],attack:3758,cost:[3],target:[0],spec:[],class:2},
-                {effect:[13,100],attack:3758,cost:[3],target:[0],spec:[],class:2},
-                {effect:[16,100],attack:3758,cost:[3],target:[0],spec:[],class:2},
-            ],
-        },
-    },{
         name:'Switcheroo',rarity:-1,list:-8,
         levels:[
             {effect:[2],attack:3842,cost:1,target:[0],spec:[],class:11},
@@ -48553,20 +48539,6 @@ types.disband=[
                 {effect:[16,1],attack:5000,cost:[11,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[24,1],attack:5000,cost:[11,-1],target:[2,1,1],spec:[0],class:1},
                 {effect:[30,1],attack:5000,cost:[11,-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Burnt\nTinsel',rarity:-1,list:-8,
-        levels:[
-            {effect:[15,1],attack:5215,cost:1,target:[0],spec:[],class:2},
-            {effect:[23,1],attack:5215,cost:1,target:[0],spec:[],class:2},
-            {effect:[29,1],attack:5215,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2,3],
-            levels:[
-                {effect:[24,1],attack:5215,cost:[11,-1],target:[0],spec:[],class:2},
-                {effect:[36,1],attack:5215,cost:[11,-1],target:[0],spec:[],class:2},
-                {effect:[45,1],attack:5215,cost:[11,-1],target:[0],spec:[],class:2},
             ],
         },
     },{
@@ -70001,6 +69973,34 @@ types.disband=[
                 {effect:[13],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
                 {effect:[19],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
                 {effect:[24],attack:6855,cost:[4,-1],target:[2,1,1],spec:[75],class:11},
+            ],
+        },
+    },{
+        name:'Flank\nShot',rarity:-1,list:-8,
+        levels:[
+            {effect:[10],attack:7579,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[15],attack:7579,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[18],attack:7579,cost:1,target:[2,1,3],spec:[0,25],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[8],attack:7579,cost:[4],target:[2,1,3],spec:[0,25],class:1},
+                {effect:[12],attack:7579,cost:[4],target:[2,1,3],spec:[0,25],class:1},
+                {effect:[15],attack:7579,cost:[4],target:[2,1,3],spec:[0,25],class:1},
+            ],
+        },
+    },{
+        name:'Scalping',rarity:-1,list:-8,
+        levels:[
+            {effect:[2,2],attack:8887,cost:0,target:[0],spec:[],class:11},
+            {effect:[3,2],attack:8887,cost:0,target:[0],spec:[],class:11},
+            {effect:[4,2],attack:8887,cost:0,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,4],
+            levels:[
+                {effect:[2],attack:8888,cost:[],target:[0],spec:[],class:11},
+                {effect:[2],attack:8889,cost:[],target:[0],spec:[],class:11},
+                {effect:[2],attack:8890,cost:[],target:[0],spec:[],class:11},
             ],
         },
     },

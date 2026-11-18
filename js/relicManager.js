@@ -3680,8 +3680,8 @@ class relicManager{
         let position=0
         let index=0
         switch(scene){
-            case 'battle':
-                this.relics.forEach(relic=>relic.onClick(inputs.rel,this.battle))
+            case 'battle': case 'map':
+                this.relics.forEach(relic=>relic.onClick(scene,inputs.rel,this.battle))
                 if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.overTotal[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
@@ -3689,7 +3689,8 @@ class relicManager{
                     this.up[1]=toggle(this.up[1])
                 }
             break
-            case 'map': case 'event':
+            case 'event':
+                this.relics.forEach(relic=>relic.onClickMenu(inputs.rel,this.battle))
                 if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.overTotal[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }

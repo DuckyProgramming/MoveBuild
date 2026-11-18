@@ -4475,7 +4475,6 @@ class relic{
                     this.layer.text('4',0,-6)
                 break
                 case 'Sell Free Move':
-                    displaySymbol(this.layer,0,0,1,0,1,this.fade)
                     displaySymbol(this.layer,8,0,4,0,0.8,this.fade)
                     displaySymbol(this.layer,-8,0,5,0,0.8,this.fade)
                     displaySymbol(this.layer,0,8,6,0,0.8,this.fade)
@@ -4577,6 +4576,19 @@ class relic{
                 case 'Energy/Event Choice':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,9,0,196,0,1,this.fade)
+                break
+                case 'Shop Anytime':
+                    displaySymbol(this.layer,0,0,1,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(30)
+                    this.layer.text('$',0,2)
+                break
+                case 'Free Move Anytime':
+                    displaySymbol(this.layer,0,0,1,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,4,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,5,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,8,6,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,-8,7,0,0.8,this.fade)
                 break
 
                 //mark p
@@ -4746,53 +4758,75 @@ class relic{
         this.infoFade=smoothAnim(this.infoFade,up&&(this.battle.encounter.tooltip==0||stage.scene!='battle')&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
         this.anim.active=smoothAnim(this.anim.active,this.active,0,1,5)
     }
-    onClick(mouse,battle){
+    onClick(scene,mouse,battle){
         if(dist(mouse.x,mouse.y,this.position.x,this.position.y)<20){
-            switch(this.internal){
-                case 'Click to Swap': case 'Click to Block': case 'Click For Energy': case 'Click For Mana':
-                    if(battle.relicManager.detail[this.type][this.player]<battle.relicManager.active[this.type][this.player+1]&&battle.turn.main==this.player){
-                        battle.relicManager.detail[this.type][this.player]++
-                        switch(this.internal){
-                            case 'Click to Swap':
-                                battle.cardManagers[this.player].draw(1)
-                                battle.cardManagers[this.player].hand.discard(1)
-                            break
-                            case 'Click to Block':
-                                battle.combatantManager.combatants[battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(15)
-                            break
-                            case 'Click For Energy':
-                                battle.addEnergy(2,this.player)
-                            break
-                            case 'Click For Mana':
-                                battle.addSpecificEnergy(3,this.player,6)
-                            break
-                        }
+            switch(scene){
+                case 'battle':
+                    switch(this.internal){
+                        case 'Click to Swap': case 'Click to Block': case 'Click For Energy': case 'Click For Mana':
+                            if(battle.relicManager.detail[this.type][this.player]<battle.relicManager.active[this.type][this.player+1]&&battle.turn.main==this.player){
+                                battle.relicManager.detail[this.type][this.player]++
+                                switch(this.internal){
+                                    case 'Click to Swap':
+                                        battle.cardManagers[this.player].draw(1)
+                                        battle.cardManagers[this.player].hand.discard(1)
+                                    break
+                                    case 'Click to Block':
+                                        battle.combatantManager.combatants[battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(15)
+                                    break
+                                    case 'Click For Energy':
+                                        battle.addEnergy(2,this.player)
+                                    break
+                                    case 'Click For Mana':
+                                        battle.addSpecificEnergy(3,this.player,6)
+                                    break
+                                }
+                            }
+                        break
+                        case 'Store Card':
+                            if(battle.relicManager.detail[this.type][this.player][0]<battle.relicManager.active[this.type][this.player+1]&&battle.turn.main==this.player){
+                                battle.relicManager.detail[this.type][this.player][0]++
+                                switch(this.internal){
+                                    case 'Store Card':
+                                        let base=battle.relicManager.detail[this.type][this.player][1]
+                                        battle.cardManagers[this.player].hand.cards.push(new card(
+                                            this.layer,this.battle,base.player,base.position.x,base.position.y,
+                                            findName(base.name,types.card),base.level,base.color,base.id,base.cost,
+                                            base.additionalSpec,base.name,base.list,base.effect,base.attack,
+                                            base.target,base.spec,base.cardClass,base.limit,undefined,
+                                            false,base.colorful,base.edition,base.base.cost,base.drawn,
+                                            base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
+                                            base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
+                                        ))
+                                        battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.x=1200
+                                        battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.y=500
+                                    break
+                                }
+                            }
+                        break
+                        case 'Heal Anytime':
+                            this.battle.overlayManager.overlays[27][this.player].active=true
+                            this.battle.overlayManager.overlays[27][this.player].activate()
+                        break
                     }
                 break
-                case 'Store Card':
-                    if(battle.relicManager.detail[this.type][this.player][0]<battle.relicManager.active[this.type][this.player+1]&&battle.turn.main==this.player){
-                        battle.relicManager.detail[this.type][this.player][0]++
-                        switch(this.internal){
-                            case 'Store Card':
-                                let base=battle.relicManager.detail[this.type][this.player][1]
-                                battle.cardManagers[this.player].hand.cards.push(new card(
-                                    this.layer,this.battle,base.player,base.position.x,base.position.y,
-                                    findName(base.name,types.card),base.level,base.color,base.id,base.cost,
-                                    base.additionalSpec,base.name,base.list,base.effect,base.attack,
-                                    base.target,base.spec,base.cardClass,base.limit,undefined,
-                                    false,base.colorful,base.edition,base.base.cost,base.drawn,
-                                    base.fuel,base.edited.cost,base.edited.costComplete,base.nonCalc,base.costDownTrigger,
-                                    base.costUpTrigger,base.baseCostDownTrigger,base.baseCostUpTrigger,base.debut,base.evolve
-                                ))
-                                battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.x=1200
-                                battle.cardManagers[this.player].hand.cards[battle.cardManagers[this.player].hand.cards.length-1].position.y=500
-                            break
-                        }
+                case 'map':
+                    switch(this.internal){
+                        case 'Shop Anytime':
+                            if(battle.relicManager.active[this.type][this.player+1]>0&&!transition.trigger){
+                                transition.trigger=true
+                                transition.scene='shop'
+                                this.battle.setupShop()
+                                battle.relicManager.loseRelic(this.type,this.player)
+                            }
+                        break
+                        case 'Free Move Anytime':
+                            if(battle.relicManager.active[this.type][this.player+1]>0){
+                                battle.nodeManager.freeMove[0]++
+                                battle.relicManager.loseRelic(this.type,this.player)
+                            }
+                        break
                     }
-                break
-                case 'Heal Anytime':
-                    this.battle.overlayManager.overlays[27][this.player].active=true
-                    this.battle.overlayManager.overlays[27][this.player].activate()
                 break
             }
         }

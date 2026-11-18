@@ -12324,6 +12324,12 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12043: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nLose ${effect[2]} Health\nRepeat Every Turn`; break
         case 12044: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPer Turn`; break
 
+        case 12045: string+=`Apply ${effect[0]} Burn\nIf Target Already\nHas Burn,\nGain ${effect[1]} Carbon Item${pl(effect[1])}`; break
+        //1484
+        case 12046: string+=`Apply ${effect[0]} Armor\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
+        case 12047: string+=`Apply ${effect[0]} Metallicize\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
+        //11696
+
         //mark p
         //mark q
         

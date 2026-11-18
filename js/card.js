@@ -7,7 +7,7 @@ class card{
         retain2=false,colorful=false,edition,baseCost,drawn,
         fuel,editedCost,editedCostComplete,nonCalc,costDownTrigger,
         costUpTrigger,baseCostDownTrigger,baseCostUpTrigger,debut,evolve,
-        rewinding
+        rewinding,
     ){
         this.layer=layer
         this.battle=battle
@@ -199,13 +199,22 @@ class card{
                     this.base.cost=types.card[this.type].levels[constrain(this.level,0,types.card[this.type].levels.length-1)].cost
                 }
             }
-            this.edited={cost:editedCost,costComplete:editedCostComplete}
+            this.edited={
+                cost:editedCost,costComplete:editedCostComplete,
+                //free:editedFree,freeComplete:editedFreeComplete
+            }
             if(this.edited.cost==undefined){
                 this.edited.cost=0
             }
             if(this.edited.costComplete==undefined){
                 this.edited.costComplete=false
             }
+            /*if(this.edited.free==undefined){
+                this.edited.free=0
+            }
+            if(this.edited.freeComplete==undefined){
+                this.edited.freeComplete=false
+            }*/
             if(!(variants.mtg&&!this.specialCost)&&this.edited.cost!=0&&!this.edited.costComplete){
                 if(this.edited.cost<=-100){
                     this.setCost(2,[-this.edited.cost-100])
