@@ -1,8 +1,51 @@
+/*
+FRONT-FACING FUNCTION LISTING
+
+checkDupes: finds cards that have the same exact name
+checkDupeBaseLevels: finds cards that have the same level 1 (other than spec, with some exceptions)
+checkDupeDoubleLevels: finds cards that have the same level 1 and 2 (other than spec, with some exceptions)
+checkExists: finds unused attack ids
+checkMislabel: finds cards with weird properties for their class
+checkMtg: finds various bugs with the mtg versions of cards
+checkMtgOld: deprecated version of the above
+checkPast: checks past cards that have no modern analogue (unusable until a past cardset is loaded)
+checkRepeats: finds card names that are substrings of other card names (deprecated)
+checkReuse: finds cards that have the same attack id
+checkReuseOld: deprecated version of the above
+checkSpawns: finds enemy names in encounters that are invalid
+checkUnusedEncounter: finds enemy names that don't have an encounter associated with them
+checkUnusedMod: finds enemy names that don't have a mod associated with them
+checkUnnecessary: finds cards with reused attack ids
+checkUnnecessarySpec: finds cards with reused attack ids and a spec
+
+outCosts: view costs by character
+outClassCosts: view costs by character and class
+outClass: view classes by character
+outEncounter: view encounter listing
+outEncounterOld: deprecated version of the above
+outItem: view item listing
+outListing: view listing of cards
+outListingOld: deprecated version of the above
+outMtg: view mtg colors by character
+outMtgRelic: view relics that differ in rarity between their mtg and normal versions
+outMtgSplit: view mtg neutral vs specific by character and rarity
+outRelic: view relic listing
+outSpec: view spec card number by character
+outSpecList: view cards that have a specific spec
+outText: view various combined text blocks on the console
+outUniqueCards: view number of cards with distinct level 1 attack ids
+outUniqueCards: view number of attack ids that are used somewhere
+
+saveCharIcon: saves character icons
+saveItemIcon: saves item icons
+
+testAttack: mass runs every attack of a specification to check for crashes
+*/
 function isCyclic(obj){
 	var seenObjects=[]
 	function detect(obj){
 		if(obj&&typeof obj=='object'){
-			if(seenObjects.indexOf(obj)!==-1){
+			if(seenObjects.indexOf(obj)!=-1){
 				return true
 			}
 			seenObjects.push(obj)
@@ -20,7 +63,7 @@ function isCyclic(obj){
 function isInt(value){
 	return !isNaN(value)&&parseInt(Number(value))==value&&!isNaN(parseInt(value,10))
 }
-//mark s
+//mark systemic
 function setupConstants(){
 	constants.sqrt2=sqrt(2)
 	constants.sqrt3=sqrt(3)
@@ -2090,6 +2133,33 @@ function prime(value){
 	}
 	return true
 }
+function even(pos,total){
+    return pos-total*0.5+0.5
+}
+function evens(num){
+    let result=[]
+    let left=1
+    for(let a=0,la=num;a<la;a++){
+        result.push(left*(random(0,1)**(la-a-1)))
+        left-=last(result)
+    }
+    return result
+}
+function factor(num){
+    let current=num
+    let div=2
+    let set=[]
+    while(current>div){
+        if(current%div==0){
+            current/=div
+            set.push(div)
+        }else{
+            div++
+        }
+    }
+    set.push(current)
+    return set.join(`, `)
+}
 function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
 	if(trigger&&anim<maxPoint){
 		return min(round(anim*speed+1)/speed,maxPoint)
@@ -2109,1011 +2179,29 @@ function updateMouse(layer){
 	inputs.prevRel.x=(inputs.prev.x-width/2)/stage.scale+layer.width/2
 	inputs.prevRel.y=(inputs.prev.y-height/2)/stage.scale+layer.height/2
 }
-function qa(name=''){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,current.standardColorize(type))
-		return 'Added'
-	}else{
-		return 'Invalid'
+function antiOrb(orb){
+	switch(orb){
+		case 0: return 1
+		case 1: return 0
+		case 2: return 2
+		case 3: return 14
+		case 4: return 6
+		case 5: return 15
+		case 6: return 4
+		case 7: return 8
+		case 8: return 7
+		case 9: return 10
+		case 10: return 9
+		case 11: return 18
+		case 12: return 16
+		case 13: return 13
+		case 14: return 3
+		case 15: return 5
+		case 16: return 12
+		case 17: return 19
+		case 18: return 11
+		case 19: return 17
 	}
-}
-function qae(name,edition){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,current.standardColorize(type),edition)
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function qad(name,quantity=1,level=0,color=0){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		for(let a=0,la=quantity;a<la;a++){
-			current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.add(type,level,color)
-			current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.cards.length-1].colorful=true
-		}
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickAdd(name){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0)
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickAddAlly(name){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0)
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].spec.push(55)
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=99
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickAddSec(name){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,types.card[type].list>=0&&types.card[type].list<=constants.playerNumber+5?types.card[type].list:0)
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=0
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickAddEdition(name,edition){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0,edition)
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickAddFull(name,group,level=0,color=0){
-	let type=findNameApprox(name,types.card)
-	if(type>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).add(type,level,color)
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards.length-1].colorful=true
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickSummon(name){
-	current.combatantManager.summonCombatant({x:0,y:0},findName(name,types.combatant),-30+floor(random(0,2))*60)
-}
-function quickSummonB(name){
-	current.combatantManager.summonCombatant({x:0,y:0},findName(name,types.combatant),-30+floor(random(0,2))*60)
-	current.counter.enemy--
-}
-function kill(index){
-	if(index<current.combatantManager.combatants.length){
-		current.combatantManager.combatants[index].life=0
-		if(current.combatantManager.combatants[index].getStatus('Cannot Die')>0){
-			current.combatantManager.combatants[index].status.main[findList('Cannot Die',current.combatantManager.combatants[index].status.name)]=0
-		}
-		return 'Dead'
-	}else{
-		return 'Invalid'
-	}
-}
-function massacre(index){
-	for(let a=index,la=current.combatantManager.combatants.length;a<la;a++){
-		current.combatantManager.combatants[a].life=0
-	}
-	return 'Dead'
-}
-function player(index){
-	return current.combatantManager.combatants[index]
-}
-function enemy(index){
-	return current.combatantManager.combatants[index+current.players]
-}
-function manager(index){
-	return current.cardManagers[index]
-}
-function money(value){
-	for(let a=0,la=current.players;a<la;a++){
-		current.addCurrency(value,a)
-	}
-}
-function combo(value){
-	current.combatantManager.combatants[0].combo+=value
-}
-function metal(value){
-	current.combatantManager.combatants[0].metal+=value
-}
-function stance(value){
-	current.combatantManager.combatants[0].enterStance(value)
-}
-function mantra(value){
-	current.combatantManager.combatants[0].mantra+=value
-}
-function elemental(){
-	current.combatantManager.combatants[0].vision+=12
-}
-function wish(value){
-	current.combatantManager.combatants[0].wish+=value
-}
-function histogram(histogram){
-	stage.scene='histogram'
-	graphics.test=histogram
-}
-function followup(){
-	quickAddFull('Overflowing',1,0,0)
-}
-function edition(edition){
-	current.cardManagers[0].hand.cards[0].edition=edition
-}
-function fight(name){
-	//current.setupBattle(types.encounter[findName(name,types.encounter)])
-	current.setupBattle(types.encounter[findNameApprox(name,types.encounter)])
-}
-function quickNode(type){
-	current.nodeManager.enterNode(type)
-	transition.trigger=true
-}
-function quickDraw(){
-	for(let a=0,la=4;a<la;a++){
-		quickAddFull('Strike',1,0,0)
-		quickAddFull('Defend',1,0,0)
-		quickAddFull('Step',1,0,0)
-		quickAddFull('Think',1,0,0)
-	}
-}
-function quickDiscard(){
-	for(let a=0,la=4;a<la;a++){
-		quickAddFull('Strike',3,0,0)
-		quickAddFull('Defend',3,0,0)
-		quickAddFull('Step',3,0,0)
-		quickAddFull('Think',3,0,0)
-	}
-}
-function quickPop(){
-	for(let a=0,la=100;a<la;a++){
-		quickAddFull('Strike',0,0,0)
-	}
-}
-function quickBuild(){
-	metal(100)
-	qa('Build\nTurret')
-	qa('Build\nProjector')
-	qa('Build\nStrengthener')
-}
-function event(name){
-	stage.scene='event'
-	graphics.staticBackground.clear()
-	setupBackground(5,graphics.staticBackground)
-    current.eventManagers.forEach(eventManager=>eventManager.event=findName(name,types.event))
-    current.eventManagers.forEach(eventManager=>eventManager.setup())
-    current.combatantManager.resetCombatants()
-}
-function status(name){
-	return findList(name,current.combatantManager.combatants[0].status.name)
-}
-function st(name){
-	player(0).statusEffect(name,1)
-}
-function upgrade(){
-	current.cardManagers[current.turn.main].allEffect(2,4)
-}
-function quickRelic(type,player=0){
-	current.relicManager.addRelic(type,player)
-}
-function quickItem(type,player){
-	current.itemManager.addItem(type,player)
-}
-function qi(name){
-	current.itemManager.addItem(findName(name,types.item),0)
-}
-function outEnc(){
-	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new nodeManager(current.layer,current):current.nodeManager
-	let goal=[
-		[24,16,8,12,4],
-		[36,16,8,0,4],
-		[36,16,8,0,4],
-		[0,4,2,0,2],
-	]
-	console.log(`
-Total: ${manager.listing.static.reduce((a,n)=>a+n.reduce((a,n)=>a+n.length,0),0)}/${goal.reduce((a,n)=>a+n.reduce((a,n)=>a+n,0),0)}
-\nWorld 1:
-Starters:${manager.listing.static[0][4].length}/${goal[0][4]}
-Easies:${manager.listing.static[0][3].length}/${goal[0][3]}
-Enemies:${manager.listing.static[0][0].length}/${goal[0][0]}
-Elites:${manager.listing.static[0][1].length}/${goal[0][1]}
-Bosses:${manager.listing.static[0][2].length}/${goal[0][2]}
-Total:${manager.listing.static[0].reduce((a,n)=>a+n.length,0)}/${goal[0].reduce((a,n)=>a+n,0)}
-\nWorld 2:
-Starters:${manager.listing.static[1][4].length}/${goal[1][4]}
-Enemies:${manager.listing.static[1][0].length}/${goal[1][0]}
-Elites:${manager.listing.static[1][1].length}/${goal[1][1]}
-Bosses:${manager.listing.static[1][2].length}/${goal[1][2]}
-Total:${manager.listing.static[1].reduce((a,n)=>a+n.length,0)}/${goal[1].reduce((a,n)=>a+n,0)}
-\nWorld 3:
-Starters:${manager.listing.static[2][4].length}/${goal[2][4]}
-Enemies:${manager.listing.static[2][0].length}/${goal[2][0]}
-Elites:${manager.listing.static[2][1].length}/${goal[2][1]}
-Bosses:${manager.listing.static[2][2].length}/${goal[2][2]}
-Total:${manager.listing.static[2].reduce((a,n)=>a+n.length,0)}/${goal[2].reduce((a,n)=>a+n,0)}
-\nWorld 4:
-Elites:${manager.listing.static[3][1].length}/${goal[3][1]}
-Bosses:${manager.listing.static[3][2].length}/${goal[3][2]}
-Specials:${manager.listing.static[3][4].length}/${goal[3][4]}
-Total:${manager.listing.static[3].reduce((a,n)=>a+n.length,0)}/${goal[3].reduce((a,n)=>a+n,0)}
-	`)
-}
-function outEncounter(){
-	//this uses the old numbers and shouldn't be relied upon
-	console.log(`
-Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length+current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length+current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length+current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/172
-\nWorld 1:
-Easies:${current.nodeManager.listing.static[0][3].length}/12
-(${current.nodeManager.listing.name[0][3].join(',')})
-Enemies:${current.nodeManager.listing.static[0][0].length}/24
-(${current.nodeManager.listing.name[0][0].join(',')})
-Elites:${current.nodeManager.listing.static[0][1].length}/12
-(${current.nodeManager.listing.name[0][1].join(',')})
-Bosses:${current.nodeManager.listing.static[0][2].length}/10
-(${current.nodeManager.listing.name[0][2].join(',')})
-Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length}/58
-\nWorld 2:
-Enemies:${current.nodeManager.listing.static[1][0].length}/32
-(${current.nodeManager.listing.name[1][0].join(',')})
-Elites:${current.nodeManager.listing.static[1][1].length}/16
-(${current.nodeManager.listing.name[1][1].join(',')})
-Bosses:${current.nodeManager.listing.static[1][2].length}/8
-(${current.nodeManager.listing.name[1][2].join(',')})
-Total:${current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length}/56
-\nWorld 3:
-Enemies:${current.nodeManager.listing.static[2][0].length}/32
-(${current.nodeManager.listing.name[2][0].join(',')})
-Elites:${current.nodeManager.listing.static[2][1].length}/12
-(${current.nodeManager.listing.name[2][1].join(',')})
-Bosses:${current.nodeManager.listing.static[2][2].length}/8
-(${current.nodeManager.listing.name[2][2].join(',')})
-Total:${current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length}/52
-\nWorld 4:
-Elites:${current.nodeManager.listing.static[3][1].length}/4
-(${current.nodeManager.listing.name[3][1].join(',')})
-Bosses:${current.nodeManager.listing.static[3][2].length}/2
-(${current.nodeManager.listing.name[3][2].join(',')})
-Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/6
-	`)
-}
-function outUnusedEncounter(){
-	types.combatant.forEach((comb,index)=>{
-		if(!types.encounter.some(enc=>enc.name==comb.name)&&index>=findName(`Human`,types.combatant)&&index<=findName(`Ducksquad`,types.combatant)){
-			print(comb.name)
-		}
-	})
-}
-function outUnusedMod(){
-	types.combatant.forEach((comb,index)=>{
-		if(!types.mod.some(enc=>enc.name==comb.name)&&index>=findName(`Human`,types.combatant)&&index<=findName(`Managerial`,types.combatant)){
-			print(comb.name)
-		}
-	})
-}
-function outListing(){
-	current.collectionManager.executeQuery()
-	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new cardManager(current.layer,current,0):current.cardManagers[0]
-	let actual=manager.listing.allListableCard[3].length+
-		current.collectionManager.totals.list[constants.playerNumber+6][0]+
-		current.collectionManager.totals.list[constants.playerNumber+7][0]+
-		current.collectionManager.totals.list[constants.playerNumber+8][0]+
-		current.collectionManager.totals.list[constants.playerNumber+9][0]+
-		current.collectionManager.totals.list[constants.playerNumber+11][0]+
-		current.collectionManager.totals.list[constants.playerNumber+12][0]+
-		current.collectionManager.totals.list[constants.playerNumber+13][0]
-	let char=manager.listing.allPlayerCard[3].length+manager.listing.card[0][3].length
-	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
-	//let colorChanges=0
-	let colorChanges=[]
-	for(let a=0,la=constants.playerNumber;a<la;a++){
-		//box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length>64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length>64?`%c`:``}, ${manager.listing.card[a+1][1].length>64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length>64?`%c`:``}, ${manager.listing.card[a+1][2].length>32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length>32?`%c`:``}\n`
-		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length!=64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length!=64?`%c`:``}, ${manager.listing.card[a+1][1].length!=64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length!=64?`%c`:``}, ${manager.listing.card[a+1][2].length!=32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length!=32?`%c`:``}\n`
-		if(manager.listing.card[a+1][0].length>64){
-			//colorChanges++
-			colorChanges.push(0)
-		}else if(manager.listing.card[a+1][0].length<64){
-			colorChanges.push(1)
-		}
-		if(manager.listing.card[a+1][1].length>64){
-			//colorChanges++
-			colorChanges.push(0)
-		}else if(manager.listing.card[a+1][1].length<64){
-			colorChanges.push(1)
-		}
-		if(manager.listing.card[a+1][2].length>32){
-			//colorChanges++
-			colorChanges.push(0)
-		}else if(manager.listing.card[a+1][2].length<32){
-			colorChanges.push(1)
-		}
-	}
-	let listed=[
-		64,//status
-		64,//curse
-		40,//partnership
-		32,//tarot
-		24,//spectral
-		40,//subcard
-		24,//event
-		160,//reserve
-		160,//developer
-		12,//basic
-		28,//pack
-		32,//misc
-	]
-	let unlisted=[
-		5000,//disband
-	]
-	/*let unlisted=[
-		40,//subcard
-		3200,//disband
-		constants.playerNumber*8,//junkyard
-		32,//event
-		160,//developer
-		20,//basic
-		32,//pack
-		160,//misc
-		72,//error
-	]*/
-	//let overTotal=types.card.filter(card=>!(card.rarity==-1&&card.list==-10)).length
-	let overTotal=types.card.length
-	let arbitrary=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)+unlisted.reduce((acc,num)=>acc+num,0)
-	let goal=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)
-	let charGoal=160*(constants.playerNumber+1)
-	console.log(`
-(${overTotal-arbitrary}) Total Cards: ${overTotal}/${arbitrary}
-(${actual-goal}) Listed Cards: ${actual}/${goal}
-(${char-charGoal}) Character Cards: ${char}/${charGoal}
-
-${box}
-(${manager.listing.card[constants.playerNumber+1][3].length-listed[0]}) Status: ${manager.listing.card[constants.playerNumber+1][3].length}
-(${manager.listing.card[constants.playerNumber+2][3].length-listed[1]}) Curse: ${manager.listing.card[constants.playerNumber+2][3].length}
-(${manager.listing.card[constants.playerNumber+3][3].length-listed[2]}) Partnership: ${manager.listing.card[constants.playerNumber+3][0].length}, ${manager.listing.card[constants.playerNumber+3][1].length}, ${manager.listing.card[constants.playerNumber+3][2].length}
-(${manager.listing.card[constants.playerNumber+4][3].length-listed[3]}) Tarot: ${manager.listing.card[constants.playerNumber+4][3].length}
-(${manager.listing.card[constants.playerNumber+5][3].length-listed[4]}) Spectral: ${manager.listing.card[constants.playerNumber+5][3].length}
-(${current.collectionManager.totals.list[constants.playerNumber+6][0]-listed[5]}) Subcard: ${current.collectionManager.totals.list[constants.playerNumber+6][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+7][0]-listed[6]}) Event: ${current.collectionManager.totals.list[constants.playerNumber+7][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+8][0]-listed[7]}) Reserve: ${current.collectionManager.totals.list[constants.playerNumber+8][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+9][0]-listed[8]}) Developer: ${current.collectionManager.totals.list[constants.playerNumber+9][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+11][0]-listed[9]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+12][0]-listed[10]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+13][0]-listed[11]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+10][0]-unlisted[0]}) Disband: ${current.collectionManager.totals.list[constants.playerNumber+10][0]}`,
-//Invalid: ${types.invalid.length}`,
-//Invalid: ${types.card.filter(card=>card.rarity==-1&&card.list==-10).length}`,
-...colorChanges.map(change=>[["color:red",""],["color:blue",""]][change]).flat())
-//...colorChanges.map(change=>[["color:red",""],["color:lime",""]][change]).flat())
-//...multiplyArray(["color:red",""],colorChanges).flat())
-	/*console.log(`
-(${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
-(${actual-goal}) Listed Cards: ${actual}/${goal}
-
-${box}
-(${manager.listing.card[constants.playerNumber+1][3].length-listed[0]}) Status: ${manager.listing.card[constants.playerNumber+1][3].length}
-(${manager.listing.card[constants.playerNumber+2][3].length-listed[1]}) Curse: ${manager.listing.card[constants.playerNumber+2][3].length}
-(${manager.listing.card[constants.playerNumber+3][3].length-listed[2]}) Partnership: ${manager.listing.card[constants.playerNumber+3][0].length}, ${manager.listing.card[constants.playerNumber+3][1].length}, ${manager.listing.card[constants.playerNumber+3][2].length}
-(${manager.listing.card[constants.playerNumber+4][3].length-listed[3]}) Tarot: ${manager.listing.card[constants.playerNumber+4][3].length}
-(${manager.listing.card[constants.playerNumber+5][3].length-listed[4]}) Spectral: ${manager.listing.card[constants.playerNumber+5][3].length}
-
-(${manager.listing.sub.length-unlisted[0]}) Subcard: ${manager.listing.sub.length}
-(${manager.listing.disband.length-unlisted[1]}) Disband: ${manager.listing.disband.length}
-(${manager.listing.junk[constants.playerNumber+1].length-unlisted[2]}) Junkyard: ${manager.listing.junk[constants.playerNumber+1].length}
-(${current.collectionManager.totals.list[constants.playerNumber+8][0]-unlisted[3]}) Event: ${current.collectionManager.totals.list[constants.playerNumber+8][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+9][0]-unlisted[4]}) Developer: ${current.collectionManager.totals.list[constants.playerNumber+9][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+11][0]-unlisted[5]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+12][0]-unlisted[6]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
-(${current.collectionManager.totals.list[constants.playerNumber+13][0]-unlisted[7]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
-(${types.card.filter(card=>card.list==-10).length-unlisted[8]}) Error: ${types.card.filter(card=>card.list==-10).length}`)*/
-}
-function outListingOld(){
-	let arbitrary=8500
-	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new cardManager(current.layer,current,0):current.cardManagers[0]
-	let actual=manager.listing.allListableCard[3].length
-	let box=`		Colorless:
-Common:${manager.listing.card[0][0].length}/64				${manager.listing.card[0][0].length-64}
-Uncommon:${manager.listing.card[0][1].length}/64				${manager.listing.card[0][1].length-64}
-Rare:${manager.listing.card[0][2].length}/32					${manager.listing.card[0][2].length-32}
-	Total:${manager.listing.card[0][3].length}/160\n`
-	for(let a=0,la=constants.playerNumber;a<la;a++){
-		box+=`		${types.combatant[a+1].name}:
-Common:${manager.listing.card[a+1][0].length}/64				${manager.listing.card[a+1][0].length-64}
-Uncommon:${manager.listing.card[a+1][1].length}/64				${manager.listing.card[a+1][1].length-64}
-Rare:${manager.listing.card[a+1][2].length}/32					${manager.listing.card[a+1][2].length-32}
-	Total:${manager.listing.card[a+1][3].length}/160\n`
-	}
-	console.log(`
-Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
-${box}		Status:
-	Total:${manager.listing.card[constants.playerNumber+1][3].length}/80				${manager.listing.card[constants.playerNumber+1][3].length-80}
-		Curse:
-	Total:${manager.listing.card[constants.playerNumber+2][3].length}/80				${manager.listing.card[constants.playerNumber+2][3].length-80}
-		Partnership:
-Common:${manager.listing.card[constants.playerNumber+3][0].length}/16				${manager.listing.card[constants.playerNumber+3][0].length-16}
-Uncommon:${manager.listing.card[constants.playerNumber+3][1].length}/16				${manager.listing.card[constants.playerNumber+3][1].length-16}
-Rare:${manager.listing.card[constants.playerNumber+3][2].length}/8					${manager.listing.card[constants.playerNumber+3][2].length-8}
-	Total:${manager.listing.card[constants.playerNumber+3][3].length}/40
-		Tarot:
-	Total:${manager.listing.card[constants.playerNumber+4][3].length}/32				${manager.listing.card[constants.playerNumber+4][3].length-32}
-		Spectral:
-	Total:${manager.listing.card[constants.playerNumber+5][3].length}/24				${manager.listing.card[constants.playerNumber+5][3].length-24}
-		Subcard:
-	Total:${manager.listing.sub.length}/48				${manager.listing.sub.length-48}
-		Disband:
-	Total:${manager.listing.disband.length}/2700			${manager.listing.disband.length-2700}
-		Junkyard:
-	Total:${manager.listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${manager.listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
-		Error:
-	Total:${types.card.filter(card=>card.list==-10).length}/64				${types.card.filter(card=>card.list==-10).length-64}
-			`)
-}
-function outClassCosts(){
-	let box=``
-	let count=[]
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		count.push([[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]])
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0){
-			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-				if(!specialCost(types.card[a].levels[b])&&types.card[a].levels[b].cost>=0&&[0,1,2,3,4,11].includes(types.card[a].levels[b].class)){
-					count[types.card[a].list][[0,1,2,3,4,11].indexOf(types.card[a].levels[b].class)][0]++
-					count[types.card[a].list][[0,1,2,3,4,11].indexOf(types.card[a].levels[b].class)][1]+=types.card[a].levels[b].cost
-					count[types.card[a].list][0][0]++
-					count[types.card[a].list][0][1]+=types.card[a].levels[b].cost
-				}
-			}
-		}
-	}
-	for(let a=0,la=count.length;a<la;a++){
-		if(a!=0){
-			box+=`\n\n`
-		}
-		box+=`		${a==0?`Colorless`:types.combatant[a].name}:`
-		for(let b=0,lb=count[a].length;b<lb;b++){
-			box+=`\n	${[`Total`,`Attack`,`Defense`,`Movement`,`Power`,`Skill`][b]}: ${round(count[a][b][1]/count[a][b][0]*1000)/1000}`
-		}
-	}
-	console.log(box)
-}
-function outMtg(){
-	let count=[]
-	for(let a=0,la=constants.playerNumber+2;a<la;a++){
-		count.push([])
-		for(let b=0,lb=4;b<lb;b++){
-			count[a].push([])
-			for(let c=0,lc=17;c<lc;c++){
-				count[a][b].push(0)
-			}
-		}
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].mtg!=undefined){
-			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=constants.playerNumber){
-				let list=types.card[a].mtg.list==-1?0:types.card[a].mtg.list==0?1:types.card[a].mtg.list+1
-				let color=types.card[a].mtg.color.length==1?types.card[a].mtg.color[0]:mtgCombineColor(types.card[a].mtg.color[0],types.card[a].mtg.color[1])
-				try{
-					count[list][types.card[a].mtg.rarity][color]++
-					count[list][3][color]++
-				}catch(error){
-					console.log(types.card[a].name)
-				}
-			}
-		}
-	}
-	let box=``
-	for(let a=0,la=constants.playerNumber+2;a<la;a++){
-		box+=`\n		${a==0?`Neutral`:a==1?`Colorless`:types.combatant[a-1].name}:
-	Common: ${subMtg(count[a][0])}
-	Uncommon: ${subMtg(count[a][1])}
-	Rare: ${subMtg(count[a][2])}
-	Total: ${subMtg(count[a][3])}\n`
-	}
-	console.log(box)
-}
-function subMtg(base){
-	return `[
-${base[0]},
-${base[1]},${base[2]},${base[3]},${base[4]},${base[5]},
-${base[7]},${base[8]},${base[9]},${base[10]},${base[11]},
-${base[12]},${base[13]},${base[14]},${base[15]},${base[16]},
-]`
-	/*return ''+
-	`Colorless: ${base[0]}, White: ${base[1]}, Blue: ${base[2]}, Black: ${base[3]}, `+
-	`Green: ${base[4]}, Red: ${base[5]}, White-Blue: ${base[7]}, White-Black: ${base[8]}, `+
-	`White-Green: ${base[9]}, White-Red: ${base[10]}, Blue-Black: ${base[11]}, Blue-Green: ${base[12]}, `+
-	`Blue-Red: 
-	${base[13]}, Black-Green: ${base[14]}, Black-Red: ${base[15]}, Green-Red: ${base[16]}`*/
-}
-function outMtg2(){
-	let mtgd=0
-	let count=[]
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		count.push([])
-		for(let b=0,lb=2;b<lb;b++){
-			count[a].push([0,0,0,0])
-		}
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].mtg!=undefined){
-			mtgd++
-			if(types.card[a].rarity>=0&&types.card[a].list>=0&&types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=constants.playerNumber){
-				let list=types.card[a].list
-				let sublist=types.card[a].list==types.card[a].mtg.list?0:1
-				try{
-					count[list][sublist][types.card[a].mtg.rarity]++
-					count[list][sublist][3]++
-				}catch(error){
-					console.log(types.card[a].name,'Failed!')
-				}
-			}
-		}
-	}
-	let box=``
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		box+=`\n		${a==0?`Colorless`:types.combatant[a].name}:
-	Character:
-Common: ${count[a][0][0]}
-Uncommon: ${count[a][0][1]}
-Rare: ${count[a][0][2]}
-Total: ${count[a][0][3]}\n
-	Neutral:
-Common: ${count[a][1][0]}
-Uncommon: ${count[a][1][1]}
-Rare: ${count[a][1][2]}
-Total: ${count[a][1][3]}\n`
-	}
-	console.log(box)
-	console.log(`${mtgd}/${types.card.length} (${round(mtgd/types.card.length*1000/10)}%) Converted`)
-}
-function outMtgError(){
-	let set=[
-		-2,
-		0,1,2,3,4,5,
-		constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5
-	]
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list>=0&&types.card[a].mtg.list>=0&&types.card[a].list!=types.card[a].mtg.list){
-			console.log(types.card[a].name,`A`)
-		}
-		if(types.card[a].rarity>=0&&types.card[a].mtg.rarity>=0&&types.card[a].rarity!=types.card[a].mtg.rarity){
-			console.log(types.card[a].name,`B`)
-		}
-		if(types.card[a].mtg.color.some(a=>!set.includes(a))){
-			console.log(types.card[a].name,`C`)
-		}
-		if(types.card[a].name!='Bozo'&&types.card[a].name!=`Ascender's\nBozo`){
-			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-				if(
-					types.card[a].mtg.levels[b].cost==undefined||
-					types.card[a].mtg.levels[b].cost.length==undefined
-				){
-					console.log(types.card[a].name,`D`)
-				}else{
-					if(
-						!types.card[a].mtg.levels[b].spec.includes(11)&&
-						!types.card[a].mtg.levels[b].spec.includes(21)&&
-						!types.card[a].mtg.levels[b].spec.includes(59)&&
-						!types.card[a].mtg.levels[b].spec.includes(67)
-					){
-						if(
-							(
-								types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
-								types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
-								types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
-								types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
-								types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
-								types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
-								types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
-								types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
-								types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
-								types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
-								types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
-								types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
-								types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
-								types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
-								types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
-								types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
-								types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
-							)&&!specialCost(types.card[a].mtg.levels[b])
-						){
-							console.log(types.card[a].name,`E`)
-						}else if(types.card[a].mtg.levels[b].cost.length>0&&types.card[a].mtg.levels[b].cost.some(cost=>cost!=-1&&cost!=-3)&&(
-							types.card[a].mtg.color.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(6)||
-							types.card[a].mtg.color.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(8)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(10)||
-							types.card[a].mtg.color.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(11)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(13)||
-							types.card[a].mtg.color.includes(3)&&!types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.levels[b].cost.includes(8)&&!types.card[a].mtg.levels[b].cost.includes(11)&&!types.card[a].mtg.levels[b].cost.includes(14)&&!types.card[a].mtg.levels[b].cost.includes(15)||
-							types.card[a].mtg.color.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(14)&&!types.card[a].mtg.levels[b].cost.includes(16)||
-							types.card[a].mtg.color.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(10)&&!types.card[a].mtg.levels[b].cost.includes(13)&&!types.card[a].mtg.levels[b].cost.includes(15)&&!types.card[a].mtg.levels[b].cost.includes(16)
-						)){
-							console.log(types.card[a].name,`F`)
-						}
-					}
-				}
-			}
-		}
-	}
-	/*for(let a=0,la=types.relic.length;a<la;a++){
-		if(types.relic[a].mtg==1&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==2)){
-			print(types.relic[a].name,'R-A')
-		}
-		if(types.relic[a].mtg==2&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==1)){
-			print(types.relic[a].name,'R-B')
-		}
-	}*/
-	//this complained about 2 relics that aren't really a problem
-}
-function outMtgRelic(){
-	for(let a=0,la=types.relic.length;a<la;a++){
-		if(types.relic[a].mtg==1&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==2&&relic.rarity!=types.relic[a].rarity)){
-			print(types.relic[a].name,'A')
-		}
-		if(types.relic[a].mtg==2&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==1&&relic.rarity!=types.relic[a].rarity)){
-			print(types.relic[a].name,'B')
-		}
-	}
-}
-function outDupes(){
-	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=a+1,lb=types.card.length;b<lb;b++){
-			if(types.card[a].name==types.card[b].name&&types.card[a].name.length>0&&a!=b){
-				console.log(types.card[a].name)
-			}
-		}
-	}
-	for(let a=0,la=types.relic.length;a<la;a++){
-		for(let b=a+1,lb=types.relic.length;b<lb;b++){
-			if(types.relic[a].name==types.relic[b].name&&types.relic[a].name.length>0&&a!=b&&types.relic[a].mtg==types.relic[b].mtg){
-				console.log(types.relic[a].name)
-			}
-		}
-	}
-}
-function outDupeBaseLevels(){
-	for(let a=0,la=types.card.length;a<la;a++){
-		types.card[a].levels[0].spec=[]
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		//if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
-			for(let b=a+1,lb=types.card.length;b<lb;b++){
-				if(
-					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&
-					types.card[a].mtg.levels[0].attack==types.card[b].mtg.levels[0].attack&&a!=b&&JSON.stringify(types.card[a].mtg.levels[0])==JSON.stringify(types.card[b].mtg.levels[0])
-				){
-					console.log(`${types.card[a].name} = ${types.card[b].name}`)
-				}
-			}
-		//}
-	}
-}
-function outDupeDoubleLevels(){
-	for(let a=0,la=types.card.length;a<la;a++){
-		types.card[a].levels[0].spec=[]
-		types.card[a].levels[1].spec=[]
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		//if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
-			for(let b=a+1,lb=types.card.length;b<lb;b++){
-				if(
-					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&JSON.stringify(types.card[a].levels[1])==JSON.stringify(types.card[b].levels[1])&&
-					types.card[a].mtg.levels[0].attack==types.card[b].mtg.levels[0].attack&&a!=b&&JSON.stringify(types.card[a].mtg.levels[0])==JSON.stringify(types.card[b].mtg.levels[0])&&JSON.stringify(types.card[a].mtg.levels[1])==JSON.stringify(types.card[b].mtg.levels[1])
-				){
-					console.log(`${types.card[a].name} = ${types.card[b].name}`)
-				}
-			}
-		//}
-	}
-}
-function outReuse(){
-	/*for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-			if(
-				types.card[a].levels[b].attack!=0&&
-				types.card[a].levels[b].attack!=1&&
-				types.card[a].levels[b].attack!=2&&
-				types.card[a].levels[b].attack!=3&&
-				types.card[a].levels[b].attack!=8&&
-				types.card[a].levels[b].attack!=10&&
-				types.card[a].levels[b].attack!=41&&
-				types.card[a].levels[b].attack!=42&&
-				types.card[a].levels[b].attack!=54&&
-				types.card[a].levels[b].attack!=113&&
-				types.card[a].levels[b].attack!=484&&
-				types.card[a].levels[b].attack!=485&&
-				types.card[a].levels[b].attack!=1513&&
-				types.card[a].levels[b].attack!=1514&&
-				types.card[a].levels[b].attack!=6706
-				//this block was removed from active use during CS 118 and is to be replaced
-			){
-				for(let c=a+1,lc=types.card.length;c<lc;c++){
-					for(let d=0,ld=types.card[c].levels.length;d<ld;d++){
-						//if(types.card[a].levels[b].attack==types.card[c].levels[d].attack&&a!=c){
-						if(types.card[a].levels[b].attack==types.card[c].levels[d].attack){
-							console.log(types.card[a].name,types.card[c].name,types.card[a].levels[b].attack)
-							b=lb
-							c=lc
-							d=ld
-						}
-					}
-				}
-			}
-		}
-	}*/
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(
-			types.card[a].levels[0].attack!=0&&//basic
-			types.card[a].levels[0].attack!=1&&//attack
-			types.card[a].levels[0].attack!=2&&//defense
-			types.card[a].levels[0].attack!=3&&//movement
-			types.card[a].levels[0].attack!=8&&//think
-			types.card[a].levels[0].attack!=10&&//heal
-			types.card[a].levels[0].attack!=41&&//energy
-			types.card[a].levels[0].attack!=5337&&//push
-
-			types.card[a].levels[0].attack!=42&&//basic + draw a card
-			types.card[a].levels[0].attack!=43&&
-
-			types.card[a].levels[0].attack!=54&&//teleport (basic)
-			types.card[a].levels[0].attack!=674&&
-
-			types.card[a].levels[0].attack!=1513&&//basic junkyard
-			types.card[a].levels[0].attack!=1514&&
-
-			types.card[a].levels[0].attack!=6706//nothings
-
-		){
-			for(let b=a+1,lb=types.card.length;b<lb;b++){
-				if(
-					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&
-					types.card[a].levels[1].attack==types.card[b].levels[1].attack&&
-					types.card[a].levels[2].attack==types.card[b].levels[2].attack
-				){
-					console.log(types.card[a].name,types.card[b].name,types.card[a].levels[0].attack)
-					b=lb
-				}
-			}
-		}
-	}
-}
-function outReuse2(){
-	let set=types.card.filter(card=>!card.levels[0].spec.includes(12)).sort((a,b)=>{
-		if(a.levels[0].attack==b.levels[0].attack){
-			return a.levels[0].effect[0]-b.levels[0].effect[0]
-		}
-		return a.levels[0].attack-b.levels[0].attack
-	})
-	for(let a=0,la=set.length-1;a<la;a++){
-		if(
-			set[a].levels[0].attack==set[a+1].levels[0].attack&&
-			set[a].levels[0].effect[0]==set[a+1].levels[0].effect[0]&&
-			set[a].levels[0].spec.every(spec=>set[a+1].levels[0].spec.includes(spec))&&
-			set[a+1].levels[0].spec.every(spec=>set[a].levels[0].spec.includes(spec))
-		){
-			print(set[a].name,set[a+1].name)
-		}
-	}
-}
-function outRepeats(){
-	//this is no longer useful, as this is no longer a rule for card names (maintaining it is impractical)
-	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=0,lb=types.card.length;b<lb;b++){
-			if(types.card[a].name==types.card[b].name.substr(0,types.card[a].name.length)&&types.card[a].name.length>0&&a!=b){
-				console.log(types.card[a].name)
-			}
-		}
-	}
-}
-function outSpecific(spec,bypass){
-	let totals=[[],[],[],0]
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list!=-8&&types.card[a].list!=-10||bypass){
-			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-				if(types.card[a].levels[b].spec.includes(spec)){
-					totals[3]++
-					totals[b].push(types.card[a].name)
-				}
-			}
-			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-				if(types.card[a].mtg.levels[b].spec.includes(spec)){
-					totals[3]++
-					totals[b].push(types.card[a].name)
-				}
-			}
-		}
-	}
-	if(totals[0].length==0&&totals[1].length==0){
-		print(totals[2])
-	}else{
-		print(totals)
-	}
-}
-function outOffColor(){
-	//this is no longer useful, having been subsumed by outMtgError
-	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-			if(
-				(
-					types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
-					types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
-					types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
-					types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
-					types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
-					types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
-					types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
-					types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
-					types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
-					types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
-					types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
-					types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
-					types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
-					types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
-					types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
-					types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
-					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
-				)&&!specialCost(types.card[a].mtg.levels[b])
-			){
-				console.log(types.card[a].name)
-			}
-		}
-	}
-}
-function outUniqueCards(){
-	let list=[]
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(!list.includes(types.card[a].levels[0].attack)){
-			list.push(types.card[a].levels[0].attack)
-		}
-	}
-	console.log(list.length)
-}
-function outUniqueEffects(){
-	let list=[]
-	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-			if(!list.includes(types.card[a].levels[b].attack)){
-				list.push(types.card[a].levels[b].attack)
-			}
-		}
-		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-			if(!list.includes(types.card[a].mtg.levels[b].attack)){
-				list.push(types.card[a].mtg.levels[b].attack)
-			}
-		}
-	}
-	console.log(list.length)
-}
-function outRelic(){
-	let manager=current.relicManager==undefined?new relicManager(current.layer,current):current.relicManager
-	console.log(`Common: ${manager.listing.relic[0].length}/${manager.listing.all[0].length}
-Uncommon: ${manager.listing.relic[1].length}/${manager.listing.all[1].length}
-Rare: ${manager.listing.relic[2].length}/${manager.listing.all[2].length}
-Shop: ${manager.listing.relic[3].length}/${manager.listing.all[3].length}
-Boss: ${manager.listing.relic[4].length}/${manager.listing.all[4].length}
-Total: ${manager.listing.relic.reduce((a,c)=>a+c.length,0)}/${manager.listing.all.reduce((a,c)=>a+c.length,0)}`)
-}
-function outRelicText(start,end){
-	print(range(start,end).map(a=>`${types.relic[a].name} (${types.relic[a].rarity==-1?`Unlisted`:[`Common`,`Uncommon`,`Rare`,`Shop`,`Boss`][types.relic[a].rarity]}): ${types.relic[a].description.replaceAll(`\n`,` `)}`).join(`\n`))
-}
-function outItem(){
-	console.log(`Common: ${current.itemManager.listing.item[0].length}
-Uncommon: ${current.itemManager.listing.item[1].length}
-Rare: ${current.itemManager.listing.item[2].length}
-Temp: ${current.itemManager.listing.item[3].length}`)
-}
-function outClass(){
-	let totals=[]
-	let build=``
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		totals.push([0,0,0,0,0,0,0,0,0,0,0,0])
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0&&types.card[a].levels[0].class>=1&&types.card[a].levels[0].class<=11){
-			totals[types.card[a].list][types.card[a].levels[0].class-1]++
-		}
-	}
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nSkills: ${totals[a][10]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
-	}
-	console.log(build)
-}
-function outSpec(){
-	let totals=[]
-	let build=``
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		totals.push([0,0,0,0])
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0){
-			if(types.card[a].levels[0].spec.includes(1)){
-				totals[types.card[a].list][0]++
-			}
-			if(types.card[a].levels[0].spec.includes(2)){
-				totals[types.card[a].list][1]++
-			}
-			if(types.card[a].levels[0].spec.includes(3)){
-				totals[types.card[a].list][2]++
-			}
-			if(types.card[a].levels[0].spec.includes(4)){
-				totals[types.card[a].list][3]++
-			}
-		}
-	}
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nExhaust: ${totals[a][0]}\nRetain: ${totals[a][1]}\nInnate: ${totals[a][2]}\nEthereal: ${totals[a][3]}\n\n`
-	}
-	console.log(build)
-}
-function outCosts(){
-	let averages=[]
-	let totals=[]
-	let build=``
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		averages.push([0,0])
-		totals.push([])
-	}
-	for(let a=0,la=types.card.length;a<la;a++){
-		if(
-			types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0&&
-			!types.card[a].levels[0].spec.includes(5)&&
-			!types.card[a].levels[0].spec.includes(11)&&
-			!types.card[a].levels[0].spec.includes(21)&&
-			!types.card[a].levels[0].spec.includes(35)&&
-			!types.card[a].levels[0].spec.includes(58)&&
-			!types.card[a].levels[0].spec.includes(59)&&
-			!types.card[a].levels[0].spec.includes(67)
-		){
-			if(types.card[a].levels[0].cost>=0){
-				averages[types.card[a].list][0]+=types.card[a].levels[0].cost
-				averages[types.card[a].list][1]++
-			}
-			let complete=false
-			for(let b=0,lb=totals[types.card[a].list].length;b<lb;b++){
-				if(totals[types.card[a].list][b][0]==types.card[a].levels[0].cost){
-					totals[types.card[a].list][b][1]++
-					complete=true
-				}
-			}
-			if(!complete){
-				totals[types.card[a].list].push([types.card[a].levels[0].cost,1])
-			}
-		}
-	}
-	for(let a=0,la=constants.playerNumber+1;a<la;a++){
-		build+=`${(a==0?`Colorless:`:`${types.combatant[a].name}:`)}\nAverage: ${round(averages[a][0]/averages[a][1]*1000)/1000}\n`
-		let left=[]
-		for(let b=0,lb=totals[a].length;b<lb;b++){
-			left.push(totals[a][b][0])
-		}
-		for(let b=0,lb=left.length;b<lb;b++){
-			left=sortNumbers(left)
-			for(let c=0,lc=totals[a].length;c<lc;c++){
-				if(totals[a][c][0]==left[0]){
-					build+=`${totals[a][c][0]==-1?`X`:totals[a][c][0]} Cost: ${totals[a][c][1]}\n`
-				}
-			}
-			left.splice(0,1)
-		}
-		build+=`\n`
-	}
-	console.log(build)
-}
-function outDescription(){
-	print(types.combatant.reduce((acc,combatant)=>`${acc}${combatant.description.replaceAll(`\n`,` `)}\n`,``))
 }
 function uniqueArray(array){
 	for(let a=0,la=array.length;a<la;a++){
@@ -3124,281 +2212,7 @@ function uniqueArray(array){
 		}
 	}
 }
-function colorTest(){
-	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]
-	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName('Charm\nQuark',types.card),0,0)
-	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
-	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.45
-	for(let a=0,la=constants.playerNumber+6;a<la;a++){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
-	}
-}
-function attackTest(type,target,startpoint,endpoint){
-	let lim=0
-	game.attackTest=true
-	switch(type){
-		case 0: case 1: case 2: case 3:
-			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(9999999999999)
-			current.combatantManager.combatants[type==1?target[1]:target].statusEffect('Cannot Die',1)
-			current.combatantManager.combatants[0].setMaxHP(9999999999999)
-			current.combatantManager.combatants[0].statusEffect('Cannot Die',1)
-			if(variants.mtg){
-				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
-					for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-						if((
-								type==0&&types.card[a].mtg.levels[b].target[0]==2||
-								type==1&&types.card[a].mtg.levels[b].target[0]==1||
-								type==2&&types.card[a].mtg.levels[b].target[0]==5||
-								type==3&&types.card[a].mtg.levels[b].target[0]==0
-							)&&types.card[a].mtg.levels[b].attack!=types.card[a].levels[b].attack
-							&&types.card[a].mtg.levels[b].attack>=lim
-						){
-							current.attackManager.type=types.card[a].mtg.levels[b].attack
-							current.attackManager.player=0
-							current.attackManager.effect=types.card[a].mtg.levels[b].effect
-							current.attackManager.attackClass=types.card[a].mtg.levels[b].class
-							current.attackManager.user=0
-							current.attackManager.level=b
-							current.attackManager.color=current.standardColorize(a)
-							current.attackManager.energy=3
-							current.attackManager.target[0]=type==1?target[0]:target
-							current.attackManager.targetDistance=1
-							current.attackManager.targetClass=2
-							current.attackManager.combo=0
-							current.attackManager.amplify=true
-							current.attackManager.relPos=[0,0]
-							current.attackManager.limit=types.card[a].mtg.levels[b].limit
-							current.attackManager.id=-1
-							current.attackManager.edition=0
-							current.attackManager.drawn=0
-							current.attackManager.fuel=0
-							current.attackManager.debut=false
-							current.attackManager.evolve=0
-							current.attackManager.rewinding=false
-							current.attackManager.cost=types.card[a].mtg.levels[b].cost
-							current.attackManager.execute()
-						}
-					}
-				}
-			}else{
-				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
-					for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-						try{
-							if((
-									type==0&&types.card[a].levels[b].target[0]==2||
-									type==1&&types.card[a].levels[b].target[0]==1||
-									type==2&&types.card[a].levels[b].target[0]==5||
-									type==3&&types.card[a].levels[b].target[0]==0
-								)&&types.card[a].levels[b].attack>=lim
-							){
-								current.attackManager.type=types.card[a].levels[b].attack
-								current.attackManager.player=0
-								current.attackManager.effect=types.card[a].levels[b].effect
-								current.attackManager.attackClass=types.card[a].levels[b].class
-								current.attackManager.user=0
-								current.attackManager.level=b
-								current.attackManager.color=current.standardColorize(a)
-								current.attackManager.energy=3
-								current.attackManager.target[0]=type==1?target[0]:target
-								current.attackManager.targetDistance=1
-								current.attackManager.targetClass=2
-								current.attackManager.combo=0
-								current.attackManager.amplify=true
-								current.attackManager.relPos=[0,0]
-								current.attackManager.limit=types.card[a].levels[b].limit
-								current.attackManager.id=-1
-								current.attackManager.edition=0
-								current.attackManager.drawn=0
-								current.attackManager.fuel=0
-								current.attackManager.debut=false
-								current.attackManager.evolve=0
-								current.attackManager.rewinding=false
-								current.attackManager.cost=types.card[a].levels[b].cost
-								current.attackManager.execute()
-							}
-						}catch(e){
-							print(types.card[a].name,b)
-						}
-					}
-				}
-			}
-		break
-	}
-	/*
-	attackTest(3,0,0);player(1).setMaxHP(999999);game.animRate=4
-	current.overlayManager.closeAll();manager(0).hand.clear();current.attackManager.attacks[0]
-	*/
-}
-function cursed(){
-	for(let a=0,la=current.combatantManager.combatants.length;a<la;a++){
-		current.combatantManager.combatants[a].goal.anim.direction=0
-	}
-}
-function oracle(){
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0,-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.display()
-	}
-}
-function oracleCut(start,end){
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0,-99])
-	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.attack>=start&&card.attack<end)
-    current.overlayManager.overlays[35][0].activate([-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.display()
-	}
-}
-function oracleCost(min,max){
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0,-99])
-	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.cost>=min&&card.cost<=max)
-    current.overlayManager.overlays[35][0].activate([-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.display()
-	}
-}
-function oracleRarity(rarity){
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0,-99])
-	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.rarity==rarity)
-    current.overlayManager.overlays[35][0].activate([-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.display()
-	}
-}
-function oracleClass(cardClass){
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0,-99])
-	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.class==cardClass)
-    current.overlayManager.overlays[35][0].activate([-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.display()
-	}
-}
-function oracleOrder(list=-1){
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0,-99])
-	let z=(card)=>{return typeof card.attack=='object'?max(card.attack[0],card.attack[1]):card.attack}
-	if(list!=-1){
-		current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>list==current.collectionManager.overListing(types.card[card.type])[0])
-	}
-	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.sort((a,b)=>z(a)-z(b))
-    current.overlayManager.overlays[35][0].activate([-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.display()
-	}
-	options.attack=true
-}
-function movebuildle(){
-	current.overlayManager.overlays.push([new overlay(current.overlayManager.layer,current.overlayManager.battle,0,27,[])])
-	current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].active=true
-    current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].activate([])
-}
-function rOracle(){
-	current.overlayManager.overlays[142][0].active=true
-    current.overlayManager.overlays[142][0].activate()
-}
-function generalizedSearch(test,type,subtract){
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-		if(cardData.desc.includes(test)&&(subtract==undefined||!cardData.desc.includes(subtract))){
-			console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
-		}
-	}
-	if(type==1){
-		current.overlayManager.overlays[115][0].active=true
-		current.overlayManager.overlays[115][0].activate([0])
-		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
-			let cardData=current.overlayManager.overlays[115][0].cards[a]
-			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-			if(cardData.desc.includes(test)&&(subtract==undefined||!cardData.desc.includes(subtract))){
-				console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
-			}
-		}
-	}
-}
-function generalizedSearch2(test,type,subtract){
-	let set=[]
-	current.overlayManager.overlays[35][0].active=true
-    //current.overlayManager.overlays[35][0].activate([0])
-	current.overlayManager.overlays[35][0].activate([0,-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-		if(
-			(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
-			(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
-		){
-			set.push(cardData.name)
-		}
-	}
-	if(type==1){
-		current.overlayManager.overlays[115][0].active=true
-		//current.overlayManager.overlays[115][0].activate([0])
-		current.overlayManager.overlays[115][0].activate([0,-99])
-		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
-			let cardData=current.overlayManager.overlays[115][0].cards[a]
-			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-			if(
-				(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
-				(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
-			){
-				set.push(cardData.name)
-			}
-		}
-		current.overlayManager.overlays[115][0].active=false
-	}
-	current.overlayManager.overlays[35][0].args[2]=4
-	current.overlayManager.overlays[35][0].activate([0,set])
-}
-function checkMislabel(type,cardClass){
-	let set=[]
-	let skillRegex=[/^\bdeal\s+\d+\s+damage\b/i,/^\badd\s+\d+\s+block\b/i]
-	current.overlayManager.overlays[35][0].active=true
-    current.overlayManager.overlays[35][0].activate([0,-99])
-	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
-		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-		if(
-			cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
-			cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
-			cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
-			cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
-		){
-			set.push(cardData.name)
-		}
-	}
-	if(type==1){
-		current.overlayManager.overlays[115][0].active=true
-		current.overlayManager.overlays[115][0].activate([0,-99])
-		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
-			let cardData=current.overlayManager.overlays[115][0].cards[a]
-			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
-			if(
-				cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
-				cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
-				cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
-				cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
-			){
-				set.push(cardData.name)
-			}
-		}
-		current.overlayManager.overlays[115][0].active=false
-	}
-	current.overlayManager.overlays[35][0].args[2]=4
-	current.overlayManager.overlays[35][0].activate([0,set])
-}
+//mark mech
 function mtgPlayerColor(player){
 	/*
 	0-colorless
@@ -3846,66 +2660,447 @@ function hybridRecurse(depth,mana,cost,spent,priority,variant){
 function total7(list){
 	return list[0]+list[1]+list[2]+list[3]+list[4]+list[5]+list[6]
 }
-function antiOrb(orb){
-	switch(orb){
-		case 0: return 1
-		case 1: return 0
-		case 2: return 2
-		case 3: return 14
-		case 4: return 6
-		case 5: return 15
-		case 6: return 4
-		case 7: return 8
-		case 8: return 7
-		case 9: return 10
-		case 10: return 9
-		case 11: return 18
-		case 12: return 16
-		case 13: return 13
-		case 14: return 3
-		case 15: return 5
-		case 16: return 12
-		case 17: return 19
-		case 18: return 11
-		case 19: return 17
+//mark mtg
+function qa(name=''){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,current.standardColorize(type))
+		return 'Added'
+	}else{
+		return 'Invalid'
 	}
 }
-function even(pos,total){
-    return pos-total*0.5+0.5
+function qae(name,edition){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,current.standardColorize(type),edition)
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
 }
-function evens(num){
-    let result=[]
-    let left=1
-    for(let a=0,la=num;a<la;a++){
-        result.push(left*(random(0,1)**(la-a-1)))
-        left-=last(result)
-    }
-    return result
+function qad(name,quantity=1,level=0,color=0){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		for(let a=0,la=quantity;a<la;a++){
+			current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.add(type,level,color)
+			current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].deck.cards.length-1].colorful=true
+		}
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
 }
-function factor(num){
-    let current=num
-    let div=2
-    let set=[]
-    while(current>div){
-        if(current%div==0){
-            current/=div
-            set.push(div)
-        }else{
-            div++
-        }
-    }
-    set.push(current)
-    return set.join(`, `)
+function quickAdd(name){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
 }
-function checkSpawns(){
-	types.encounter.forEach(encounter=>{
-		encounter.enemy.forEach(enemy=>{if(findName(enemy.name,types.combatant)==-1){print(enemy.name)}})
-		encounter.assaultReinforce.forEach(enemy=>{if(findName(enemy.name,types.combatant)==-1){print(enemy.name)}})
-	})
+function quickAddAlly(name){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].spec.push(55)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=99
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
 }
-function checkExists(start,end){
+function quickAddSec(name){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,types.card[type].list>=0&&types.card[type].list<=constants.playerNumber+5?types.card[type].list:0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].cost=0
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
+function quickAddEdition(name,edition){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(type,0,0,edition)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
+function quickAddFull(name,group,level=0,color=0){
+	let type=findNameApprox(name,types.card)
+	if(type>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).add(type,level,color)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards.length-1].colorful=true
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
+function quickSummon(name){
+	current.combatantManager.summonCombatant({x:0,y:0},findName(name,types.combatant),-30+floor(random(0,2))*60)
+}
+function quickSummonB(name){
+	current.combatantManager.summonCombatant({x:0,y:0},findName(name,types.combatant),-30+floor(random(0,2))*60)
+	current.counter.enemy--
+}
+function kill(index){
+	if(index<current.combatantManager.combatants.length){
+		current.combatantManager.combatants[index].life=0
+		if(current.combatantManager.combatants[index].getStatus('Cannot Die')>0){
+			current.combatantManager.combatants[index].status.main[findList('Cannot Die',current.combatantManager.combatants[index].status.name)]=0
+		}
+		return 'Dead'
+	}else{
+		return 'Invalid'
+	}
+}
+function massacre(index){
+	for(let a=index,la=current.combatantManager.combatants.length;a<la;a++){
+		current.combatantManager.combatants[a].life=0
+	}
+	return 'Dead'
+}
+function player(index){
+	return current.combatantManager.combatants[index]
+}
+function enemy(index){
+	return current.combatantManager.combatants[index+current.players]
+}
+function manager(index){
+	return current.cardManagers[index]
+}
+function money(value){
+	for(let a=0,la=current.players;a<la;a++){
+		current.addCurrency(value,a)
+	}
+}
+function combo(value){
+	current.combatantManager.combatants[0].combo+=value
+}
+function metal(value){
+	current.combatantManager.combatants[0].metal+=value
+}
+function stance(value){
+	current.combatantManager.combatants[0].enterStance(value)
+}
+function mantra(value){
+	current.combatantManager.combatants[0].mantra+=value
+}
+function elemental(){
+	current.combatantManager.combatants[0].vision+=12
+}
+function wish(value){
+	current.combatantManager.combatants[0].wish+=value
+}
+function histogram(histogram){
+	stage.scene='histogram'
+	graphics.test=histogram
+}
+function followup(){
+	quickAddFull('Overflowing',1,0,0)
+}
+function edition(edition){
+	current.cardManagers[0].hand.cards[0].edition=edition
+}
+function fight(name){
+	//current.setupBattle(types.encounter[findName(name,types.encounter)])
+	current.setupBattle(types.encounter[findNameApprox(name,types.encounter)])
+}
+function quickNode(type){
+	current.nodeManager.enterNode(type)
+	transition.trigger=true
+}
+function quickDraw(){
+	for(let a=0,la=4;a<la;a++){
+		quickAddFull('Strike',1,0,0)
+		quickAddFull('Defend',1,0,0)
+		quickAddFull('Step',1,0,0)
+		quickAddFull('Think',1,0,0)
+	}
+}
+function quickDiscard(){
+	for(let a=0,la=4;a<la;a++){
+		quickAddFull('Strike',3,0,0)
+		quickAddFull('Defend',3,0,0)
+		quickAddFull('Step',3,0,0)
+		quickAddFull('Think',3,0,0)
+	}
+}
+function quickPop(){
+	for(let a=0,la=100;a<la;a++){
+		quickAddFull('Strike',0,0,0)
+	}
+}
+function quickBuild(){
+	metal(100)
+	qa('Build\nTurret')
+	qa('Build\nProjector')
+	qa('Build\nStrengthener')
+}
+function event(name){
+	stage.scene='event'
+	graphics.staticBackground.clear()
+	setupBackground(5,graphics.staticBackground)
+    current.eventManagers.forEach(eventManager=>eventManager.event=findName(name,types.event))
+    current.eventManagers.forEach(eventManager=>eventManager.setup())
+    current.combatantManager.resetCombatants()
+}
+function status(name){
+	return findList(name,current.combatantManager.combatants[0].status.name)
+}
+function st(name){
+	player(0).statusEffect(name,1)
+}
+function upgrade(){
+	current.cardManagers[current.turn.main].allEffect(2,4)
+}
+function quickRelic(type,player=0){
+	current.relicManager.addRelic(type,player)
+}
+function quickItem(type,player){
+	current.itemManager.addItem(type,player)
+}
+function qi(name){
+	current.itemManager.addItem(findName(name,types.item),0)
+}
+function cursed(){
+	for(let a=0,la=current.combatantManager.combatants.length;a<la;a++){
+		current.combatantManager.combatants[a].goal.anim.direction=0
+	}
+}
+//mark run
+function oracle(){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
+function oracleCut(start,end){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.attack>=start&&card.attack<end)
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
+function oracleCost(min,max){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.cost>=min&&card.cost<=max)
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
+function oracleRarity(rarity){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.rarity==rarity)
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
+function oracleClass(cardClass){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>card.class==cardClass)
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+}
+function oracleOrder(list=-1){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0,-99])
+	let z=(card)=>{return typeof card.attack=='object'?max(card.attack[0],card.attack[1]):card.attack}
+	if(list!=-1){
+		current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.filter(card=>list==current.collectionManager.overListing(types.card[card.type])[0])
+	}
+	current.overlayManager.overlays[35][0].cards=current.overlayManager.overlays[35][0].cards.sort((a,b)=>z(a)-z(b))
+    current.overlayManager.overlays[35][0].activate([-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.display()
+	}
+	options.attack=true
+}
+function rOracle(){
+	current.overlayManager.overlays[142][0].active=true
+    current.overlayManager.overlays[142][0].activate()
+}
+function generalizedSearch(test,type,subtract){
+	current.overlayManager.overlays[35][0].active=true
+    current.overlayManager.overlays[35][0].activate([0])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		if(cardData.desc.includes(test)&&(subtract==undefined||!cardData.desc.includes(subtract))){
+			console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
+		}
+	}
+	if(type==1){
+		current.overlayManager.overlays[115][0].active=true
+		current.overlayManager.overlays[115][0].activate([0])
+		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
+			let cardData=current.overlayManager.overlays[115][0].cards[a]
+			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			if(cardData.desc.includes(test)&&(subtract==undefined||!cardData.desc.includes(subtract))){
+				console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
+			}
+		}
+	}
+}
+function generalizedSearch2(test,type,subtract){
+	let set=[]
+	current.overlayManager.overlays[35][0].active=true
+    //current.overlayManager.overlays[35][0].activate([0])
+	current.overlayManager.overlays[35][0].activate([0,-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		if(
+			(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
+			(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
+		){
+			set.push(cardData.name)
+		}
+	}
+	if(type==1){
+		current.overlayManager.overlays[115][0].active=true
+		//current.overlayManager.overlays[115][0].activate([0])
+		current.overlayManager.overlays[115][0].activate([0,-99])
+		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
+			let cardData=current.overlayManager.overlays[115][0].cards[a]
+			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			if(
+				(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
+				(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
+			){
+				set.push(cardData.name)
+			}
+		}
+		current.overlayManager.overlays[115][0].active=false
+	}
+	current.overlayManager.overlays[35][0].args[2]=4
+	current.overlayManager.overlays[35][0].activate([0,set])
+}
+function movebuildle(){
+	current.overlayManager.overlays.push([new overlay(current.overlayManager.layer,current.overlayManager.battle,0,27,[])])
+	current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].active=true
+    current.overlayManager.overlays[current.overlayManager.overlays.length-1][0].activate([])
+}
+function viewColors(){
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName('Charm\nQuark',types.card),0,0)
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.45
+	for(let a=0,la=constants.playerNumber+6;a<la;a++){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
+	}
+}
+//mark view
+function checkDupes(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=a+1,lb=types.card.length;b<lb;b++){
+			if(types.card[a].name==types.card[b].name&&types.card[a].name.length>0&&a!=b){
+				console.log(types.card[a].name)
+			}
+		}
+	}
+	for(let a=0,la=types.relic.length;a<la;a++){
+		for(let b=a+1,lb=types.relic.length;b<lb;b++){
+			if(types.relic[a].name==types.relic[b].name&&types.relic[a].name.length>0&&a!=b&&types.relic[a].mtg==types.relic[b].mtg){
+				console.log(types.relic[a].name)
+			}
+		}
+	}
+}
+function checkDupeBaseLevels(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		types.card[a].levels[0].spec=[]
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		//if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
+			for(let b=a+1,lb=types.card.length;b<lb;b++){
+				if(
+					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&
+					types.card[a].mtg.levels[0].attack==types.card[b].mtg.levels[0].attack&&a!=b&&JSON.stringify(types.card[a].mtg.levels[0])==JSON.stringify(types.card[b].mtg.levels[0])
+				){
+					console.log(`${types.card[a].name} = ${types.card[b].name}`)
+				}
+			}
+		//}
+	}
+}
+function checkDupeDoubleLevels(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		types.card[a].levels[0].spec=[]
+		types.card[a].levels[1].spec=[]
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		//if(types.card[a].levels[0].attack!=0&&types.card[a].levels[0].attack!=1&&types.card[a].levels[0].attack!=2&&types.card[a].levels[0].attack!=3&&types.card[a].levels[0].attack!=41&&types.card[a].levels[0].attack!=1192){
+			for(let b=a+1,lb=types.card.length;b<lb;b++){
+				if(
+					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&a!=b&&JSON.stringify(types.card[a].levels[0])==JSON.stringify(types.card[b].levels[0])&&JSON.stringify(types.card[a].levels[1])==JSON.stringify(types.card[b].levels[1])&&
+					types.card[a].mtg.levels[0].attack==types.card[b].mtg.levels[0].attack&&a!=b&&JSON.stringify(types.card[a].mtg.levels[0])==JSON.stringify(types.card[b].mtg.levels[0])&&JSON.stringify(types.card[a].mtg.levels[1])==JSON.stringify(types.card[b].mtg.levels[1])
+				){
+					console.log(`${types.card[a].name} = ${types.card[b].name}`)
+				}
+			}
+		//}
+	}
+}
+function checkExists(start=-1,end=-1){
 	if(end<start){
 		return
+	}
+	if(start==-1||end==-1){
+		let bounds=[0,0]
+		for(let a=0,la=types.card.length;a<la;a++){
+			let incl=[]
+			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+				if(types.card[a].levels[b].spec.includes(12)){
+					incl.push(types.card[a].levels[b].attack[0])
+					incl.push(types.card[a].levels[b].attack[1])
+				}else{
+					incl.push(types.card[a].levels[b].attack)
+				}
+			}
+			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+				if(types.card[a].mtg.levels[b].spec.includes(12)){
+					incl.push(types.card[a].mtg.levels[b].attack[0])
+					incl.push(types.card[a].mtg.levels[b].attack[1])
+				}else{
+					incl.push(types.card[a].mtg.levels[b].attack)
+				}
+			}
+			incl.forEach(a=>{
+				bounds[0]=min(bounds[0],a)
+				bounds[1]=max(bounds[1],a)
+			})
+		}
+		if(start==-1){
+			start=bounds[0]
+		}
+		if(end==-1){
+			end=bounds[1]
+		}
+		print(`LOOKING: ${start} to ${end}`)
 	}
 	let invalid=[
 		-120,//indecipherable
@@ -3973,7 +3168,7 @@ function checkExists(start,end){
 		1905,1906,1946,1947,1952,2535,2957,3564,4625,7141,//assorted invalid
 
 		83,84,85,86,3595,9974,10352,11671,11679,11680,
-		11681,11682,11975,12040,12041,12044,//items
+		11681,11682,11975,12040,12041,12044,12049,12050,//items
 	]
 	let total=0
 	/*let incl=[]
@@ -4087,6 +3282,154 @@ function checkExists(start,end){
 	}
 	print(`Total: ${total}`)
 }
+function checkMislabel(type,cardClass){
+	if(cardClass==undefined){
+		print('Usage: outMislabel(type[0 for regular,1 for mtg],cardClass[class to check])')
+	}else{
+		let set=[]
+		let skillRegex=[/^\bdeal\s+\d+\s+damage\b/i,/^\badd\s+\d+\s+block\b/i]
+		current.overlayManager.overlays[35][0].active=true
+		current.overlayManager.overlays[35][0].activate([0,-99])
+		for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+			let cardData=current.overlayManager.overlays[35][0].cards[a]
+			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			if(
+				cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
+				cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
+				cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
+				cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
+			){
+				set.push(cardData.name)
+			}
+		}
+		if(type==1){
+			current.overlayManager.overlays[115][0].active=true
+			current.overlayManager.overlays[115][0].activate([0,-99])
+			for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
+				let cardData=current.overlayManager.overlays[115][0].cards[a]
+				cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+				if(
+					cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
+					cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
+					cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
+					cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
+				){
+					set.push(cardData.name)
+				}
+			}
+			current.overlayManager.overlays[115][0].active=false
+		}
+		current.overlayManager.overlays[35][0].args[2]=4
+		current.overlayManager.overlays[35][0].activate([0,set])
+	}
+}
+function checkMtg(){
+	let set=[
+		-2,
+		0,1,2,3,4,5,
+		constants.playerNumber+1,constants.playerNumber+2,constants.playerNumber+3,constants.playerNumber+4,constants.playerNumber+5
+	]
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list>=0&&types.card[a].mtg.list>=0&&types.card[a].list!=types.card[a].mtg.list){
+			console.log(types.card[a].name,`A`)
+		}
+		if(types.card[a].rarity>=0&&types.card[a].mtg.rarity>=0&&types.card[a].rarity!=types.card[a].mtg.rarity){
+			console.log(types.card[a].name,`B`)
+		}
+		if(types.card[a].mtg.color.some(a=>!set.includes(a))){
+			console.log(types.card[a].name,`C`)
+		}
+		if(types.card[a].name!='Bozo'&&types.card[a].name!=`Ascender's\nBozo`){
+			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+				if(
+					types.card[a].mtg.levels[b].cost==undefined||
+					types.card[a].mtg.levels[b].cost.length==undefined
+				){
+					console.log(types.card[a].name,`D`)
+				}else{
+					if(
+						!types.card[a].mtg.levels[b].spec.includes(11)&&
+						!types.card[a].mtg.levels[b].spec.includes(21)&&
+						!types.card[a].mtg.levels[b].spec.includes(59)&&
+						!types.card[a].mtg.levels[b].spec.includes(67)
+					){
+						if(
+							(
+								types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
+								types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
+								types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
+								types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
+								types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
+								types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
+								types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
+								types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
+								types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
+								types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
+								types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
+								types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
+								types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
+								types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
+								types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
+								types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
+								types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
+							)&&!specialCost(types.card[a].mtg.levels[b])
+						){
+							console.log(types.card[a].name,`E`)
+						}else if(types.card[a].mtg.levels[b].cost.length>0&&types.card[a].mtg.levels[b].cost.some(cost=>cost!=-1&&cost!=-3)&&(
+							types.card[a].mtg.color.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.levels[b].cost.includes(6)||
+							types.card[a].mtg.color.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(8)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(10)||
+							types.card[a].mtg.color.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.levels[b].cost.includes(7)&&!types.card[a].mtg.levels[b].cost.includes(11)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(13)||
+							types.card[a].mtg.color.includes(3)&&!types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.levels[b].cost.includes(8)&&!types.card[a].mtg.levels[b].cost.includes(11)&&!types.card[a].mtg.levels[b].cost.includes(14)&&!types.card[a].mtg.levels[b].cost.includes(15)||
+							types.card[a].mtg.color.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.levels[b].cost.includes(9)&&!types.card[a].mtg.levels[b].cost.includes(12)&&!types.card[a].mtg.levels[b].cost.includes(14)&&!types.card[a].mtg.levels[b].cost.includes(16)||
+							types.card[a].mtg.color.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.levels[b].cost.includes(10)&&!types.card[a].mtg.levels[b].cost.includes(13)&&!types.card[a].mtg.levels[b].cost.includes(15)&&!types.card[a].mtg.levels[b].cost.includes(16)
+						)){
+							console.log(types.card[a].name,`F`)
+						}
+					}
+				}
+			}
+		}
+	}
+	/*for(let a=0,la=types.relic.length;a<la;a++){
+		if(types.relic[a].mtg==1&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==2)){
+			print(types.relic[a].name,'R-A')
+		}
+		if(types.relic[a].mtg==2&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&!types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==1)){
+			print(types.relic[a].name,'R-B')
+		}
+	}*/
+	//this complained about 2 relics that aren't really a problem
+}
+function checkMtgOld(){
+	//this is no longer useful, having been subsumed by outMtgError
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(
+				(
+					types.card[a].mtg.levels[b].cost.includes(0)&&!types.card[a].mtg.color.includes(0)||
+					types.card[a].mtg.levels[b].cost.includes(1)&&!types.card[a].mtg.color.includes(1)||
+					types.card[a].mtg.levels[b].cost.includes(2)&&!types.card[a].mtg.color.includes(2)||
+					types.card[a].mtg.levels[b].cost.includes(3)&&!types.card[a].mtg.color.includes(3)||
+					types.card[a].mtg.levels[b].cost.includes(4)&&!types.card[a].mtg.color.includes(4)||
+					types.card[a].mtg.levels[b].cost.includes(5)&&!types.card[a].mtg.color.includes(5)||
+					types.card[a].mtg.levels[b].cost.includes(6)&&!types.card[a].mtg.color.includes(0)||
+					types.card[a].mtg.levels[b].cost.includes(7)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(2))||
+					types.card[a].mtg.levels[b].cost.includes(8)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(3))||
+					types.card[a].mtg.levels[b].cost.includes(9)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(4))||
+					types.card[a].mtg.levels[b].cost.includes(10)&&(!types.card[a].mtg.color.includes(1)||!types.card[a].mtg.color.includes(5))||
+					types.card[a].mtg.levels[b].cost.includes(11)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(3))||
+					types.card[a].mtg.levels[b].cost.includes(12)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(4))||
+					types.card[a].mtg.levels[b].cost.includes(13)&&(!types.card[a].mtg.color.includes(2)||!types.card[a].mtg.color.includes(5))||
+					types.card[a].mtg.levels[b].cost.includes(14)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(4))||
+					types.card[a].mtg.levels[b].cost.includes(15)&&(!types.card[a].mtg.color.includes(3)||!types.card[a].mtg.color.includes(5))||
+					types.card[a].mtg.levels[b].cost.includes(16)&&(!types.card[a].mtg.color.includes(4)||!types.card[a].mtg.color.includes(5))
+				)&&!specialCost(types.card[a].mtg.levels[b])
+			){
+				console.log(types.card[a].name)
+			}
+		}
+	}
+}
 function checkPast(){
 	if(types.past==undefined){
 		print('No Past')
@@ -4132,6 +3475,170 @@ function checkPast(){
 				}
 			}
 		})
+	}
+}
+function checkRepeats(){
+	//this is no longer useful, as this is no longer a rule for card names (maintaining it is impractical)
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card.length;b<lb;b++){
+			if(types.card[a].name==types.card[b].name.substr(0,types.card[a].name.length)&&types.card[a].name.length>0&&a!=b){
+				console.log(types.card[a].name,types.card[b].name)
+			}
+		}
+	}
+}
+function checkReuse(){
+	let set=types.card.filter(card=>!card.levels[0].spec.includes(12))/*.sort((a,b)=>{
+		if(a.levels[0].attack==b.levels[0].attack){
+			return a.levels[0].effect[0]-b.levels[0].effect[0]
+		}
+		return a.levels[0].attack-b.levels[0].attack
+	})*/
+	let buc=range(0,19).map(a=>[])
+	for(let a=0,la=5;a<la;a++){
+		set.forEach(b=>buc[b<0?ceil(b.levels[0].attack/(10**a))%10+9:floor(b.levels[0].attack/(10**a))%10+9].push(b))
+		set=[]
+		buc=buc.map(bucket=>{bucket.forEach(b=>set.push(b));return []})
+	}
+	//radix sort
+	for(let a=0,la=set.length-1;a<la;a++){
+		if(
+			set[a].levels[0].attack==set[a+1].levels[0].attack&&
+			set[a].levels[0].effect[0]==set[a+1].levels[0].effect[0]&&
+			set[a].levels[0].spec.every(spec=>set[a+1].levels[0].spec.includes(spec))&&
+			set[a+1].levels[0].spec.every(spec=>set[a].levels[0].spec.includes(spec))
+		){
+			print(set[a].name,set[a+1].name)
+		}
+	}
+}
+function checkReuseOld(){
+	/*for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(
+				types.card[a].levels[b].attack!=0&&
+				types.card[a].levels[b].attack!=1&&
+				types.card[a].levels[b].attack!=2&&
+				types.card[a].levels[b].attack!=3&&
+				types.card[a].levels[b].attack!=8&&
+				types.card[a].levels[b].attack!=10&&
+				types.card[a].levels[b].attack!=41&&
+				types.card[a].levels[b].attack!=42&&
+				types.card[a].levels[b].attack!=54&&
+				types.card[a].levels[b].attack!=113&&
+				types.card[a].levels[b].attack!=484&&
+				types.card[a].levels[b].attack!=485&&
+				types.card[a].levels[b].attack!=1513&&
+				types.card[a].levels[b].attack!=1514&&
+				types.card[a].levels[b].attack!=6706
+				//this block was removed from active use during CS 118 and is to be replaced
+			){
+				for(let c=a+1,lc=types.card.length;c<lc;c++){
+					for(let d=0,ld=types.card[c].levels.length;d<ld;d++){
+						//if(types.card[a].levels[b].attack==types.card[c].levels[d].attack&&a!=c){
+						if(types.card[a].levels[b].attack==types.card[c].levels[d].attack){
+							console.log(types.card[a].name,types.card[c].name,types.card[a].levels[b].attack)
+							b=lb
+							c=lc
+							d=ld
+						}
+					}
+				}
+			}
+		}
+	}*/
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(
+			types.card[a].levels[0].attack!=0&&//basic
+			types.card[a].levels[0].attack!=1&&//attack
+			types.card[a].levels[0].attack!=2&&//defense
+			types.card[a].levels[0].attack!=3&&//movement
+			types.card[a].levels[0].attack!=8&&//think
+			types.card[a].levels[0].attack!=10&&//heal
+			types.card[a].levels[0].attack!=41&&//energy
+			types.card[a].levels[0].attack!=5337&&//push
+
+			types.card[a].levels[0].attack!=42&&//basic + draw a card
+			types.card[a].levels[0].attack!=43&&
+
+			types.card[a].levels[0].attack!=54&&//teleport (basic)
+			types.card[a].levels[0].attack!=674&&
+
+			types.card[a].levels[0].attack!=1513&&//basic junkyard
+			types.card[a].levels[0].attack!=1514&&
+
+			types.card[a].levels[0].attack!=6706//nothings
+
+		){
+			for(let b=a+1,lb=types.card.length;b<lb;b++){
+				if(
+					types.card[a].levels[0].attack==types.card[b].levels[0].attack&&
+					types.card[a].levels[1].attack==types.card[b].levels[1].attack&&
+					types.card[a].levels[2].attack==types.card[b].levels[2].attack
+				){
+					console.log(types.card[a].name,types.card[b].name,types.card[a].levels[0].attack)
+					b=lb
+				}
+			}
+		}
+	}
+}
+function checkSpawns(){
+	types.encounter.forEach(encounter=>{
+		encounter.enemy.forEach(enemy=>{if(findName(enemy.name,types.combatant)==-1){print(enemy.name)}})
+		encounter.assaultReinforce.forEach(enemy=>{if(findName(enemy.name,types.combatant)==-1){print(enemy.name)}})
+	})
+}
+function checkUnusedEncounter(){
+	types.combatant.forEach((comb,index)=>{
+		if(!types.encounter.some(enc=>enc.name==comb.name)&&index>=findName(`Human`,types.combatant)&&index<=findName(`Ducksquad`,types.combatant)){
+			print(comb.name)
+		}
+	})
+}
+function checkUnusedMod(){
+	types.combatant.forEach((comb,index)=>{
+		if(!types.mod.some(enc=>enc.name==comb.name)&&index>=findName(`Human`,types.combatant)&&index<=findName(`Managerial`,types.combatant)){
+			print(comb.name)
+		}
+	})
+}function outUnnecessary(start=-99999,end=99999){
+	let lookup=range(0,end-start).map(a=>0)
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(!types.card[a].levels[b].spec.includes(12)){
+				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end){
+					lookup[types.card[a].levels[b].attack-start]++
+				}
+			}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(!types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end){
+					lookup[types.card[a].mtg.levels[b].attack-start]++
+				}
+			}
+		}
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		let overlap=0
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(!types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6){
+					overlap++
+				}
+			}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			if(!types.card[a].mtg.levels[b].spec.includes(12)){
+				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6){
+					overlap++
+				}
+			}
+		}
+		if(overlap>=6){
+			print(types.card[a].name)
+		}
 	}
 }
 function outUnnecessarySpec(spec,start=-99999,end=99999){
@@ -4199,67 +3706,526 @@ function outUnnecessarySpec(spec,start=-99999,end=99999){
 		}
 	}
 }
-function outUnnecessaryGeneral(start=-99999,end=99999){
-	let lookup=range(0,end-start).map(a=>0)
+//mark check
+function outCosts(){
+	let averages=[]
+	let totals=[]
+	let build=``
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		averages.push([0,0])
+		totals.push([])
+	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-			if(!types.card[a].levels[b].spec.includes(12)){
-				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end){
-					lookup[types.card[a].levels[b].attack-start]++
+		if(
+			types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0&&
+			!types.card[a].levels[0].spec.includes(5)&&
+			!types.card[a].levels[0].spec.includes(11)&&
+			!types.card[a].levels[0].spec.includes(21)&&
+			!types.card[a].levels[0].spec.includes(35)&&
+			!types.card[a].levels[0].spec.includes(58)&&
+			!types.card[a].levels[0].spec.includes(59)&&
+			!types.card[a].levels[0].spec.includes(67)
+		){
+			if(types.card[a].levels[0].cost>=0){
+				averages[types.card[a].list][0]+=types.card[a].levels[0].cost
+				averages[types.card[a].list][1]++
+			}
+			let complete=false
+			for(let b=0,lb=totals[types.card[a].list].length;b<lb;b++){
+				if(totals[types.card[a].list][b][0]==types.card[a].levels[0].cost){
+					totals[types.card[a].list][b][1]++
+					complete=true
 				}
 			}
+			if(!complete){
+				totals[types.card[a].list].push([types.card[a].levels[0].cost,1])
+			}
 		}
-		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-			if(!types.card[a].mtg.levels[b].spec.includes(12)){
-				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end){
-					lookup[types.card[a].mtg.levels[b].attack-start]++
+	}
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		build+=`${(a==0?`Colorless:`:`${types.combatant[a].name}:`)}\nAverage: ${round(averages[a][0]/averages[a][1]*1000)/1000}\n`
+		let left=[]
+		for(let b=0,lb=totals[a].length;b<lb;b++){
+			left.push(totals[a][b][0])
+		}
+		for(let b=0,lb=left.length;b<lb;b++){
+			left=sortNumbers(left)
+			for(let c=0,lc=totals[a].length;c<lc;c++){
+				if(totals[a][c][0]==left[0]){
+					build+=`${totals[a][c][0]==-1?`X`:totals[a][c][0]} Cost: ${totals[a][c][1]}\n`
+				}
+			}
+			left.splice(0,1)
+		}
+		build+=`\n`
+	}
+	console.log(build)
+}
+function outClassCosts(){
+	let box=``
+	let count=[]
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		count.push([[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]])
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0){
+			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+				if(!specialCost(types.card[a].levels[b])&&types.card[a].levels[b].cost>=0&&[0,1,2,3,4,11].includes(types.card[a].levels[b].class)){
+					count[types.card[a].list][[0,1,2,3,4,11].indexOf(types.card[a].levels[b].class)][0]++
+					count[types.card[a].list][[0,1,2,3,4,11].indexOf(types.card[a].levels[b].class)][1]+=types.card[a].levels[b].cost
+					count[types.card[a].list][0][0]++
+					count[types.card[a].list][0][1]+=types.card[a].levels[b].cost
 				}
 			}
 		}
 	}
+	for(let a=0,la=count.length;a<la;a++){
+		if(a!=0){
+			box+=`\n\n`
+		}
+		box+=`		${a==0?`Colorless`:types.combatant[a].name}:`
+		for(let b=0,lb=count[a].length;b<lb;b++){
+			box+=`\n	${[`Total`,`Attack`,`Defense`,`Movement`,`Power`,`Skill`][b]}: ${round(count[a][b][1]/count[a][b][0]*1000)/1000}`
+		}
+	}
+	console.log(box)
+}
+function outClass(){
+	let totals=[]
+	let build=``
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		totals.push([0,0,0,0,0,0,0,0,0,0,0,0])
+	}
 	for(let a=0,la=types.card.length;a<la;a++){
-		let overlap=0
-		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
-			if(!types.card[a].mtg.levels[b].spec.includes(12)){
-				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6){
-					overlap++
+		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0&&types.card[a].levels[0].class>=1&&types.card[a].levels[0].class<=11){
+			totals[types.card[a].list][types.card[a].levels[0].class-1]++
+		}
+	}
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nSkills: ${totals[a][10]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
+	}
+	console.log(build)
+}
+function outEncounter(){
+	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new nodeManager(current.layer,current):current.nodeManager
+	let goal=[
+		[24,16,8,12,4],
+		[36,16,8,0,4],
+		[36,16,8,0,4],
+		[0,4,2,0,2],
+	]
+	console.log(`
+Total: ${manager.listing.static.reduce((a,n)=>a+n.reduce((a,n)=>a+n.length,0),0)}/${goal.reduce((a,n)=>a+n.reduce((a,n)=>a+n,0),0)}
+\nWorld 1:
+Starters:${manager.listing.static[0][4].length}/${goal[0][4]}
+Easies:${manager.listing.static[0][3].length}/${goal[0][3]}
+Enemies:${manager.listing.static[0][0].length}/${goal[0][0]}
+Elites:${manager.listing.static[0][1].length}/${goal[0][1]}
+Bosses:${manager.listing.static[0][2].length}/${goal[0][2]}
+Total:${manager.listing.static[0].reduce((a,n)=>a+n.length,0)}/${goal[0].reduce((a,n)=>a+n,0)}
+\nWorld 2:
+Starters:${manager.listing.static[1][4].length}/${goal[1][4]}
+Enemies:${manager.listing.static[1][0].length}/${goal[1][0]}
+Elites:${manager.listing.static[1][1].length}/${goal[1][1]}
+Bosses:${manager.listing.static[1][2].length}/${goal[1][2]}
+Total:${manager.listing.static[1].reduce((a,n)=>a+n.length,0)}/${goal[1].reduce((a,n)=>a+n,0)}
+\nWorld 3:
+Starters:${manager.listing.static[2][4].length}/${goal[2][4]}
+Enemies:${manager.listing.static[2][0].length}/${goal[2][0]}
+Elites:${manager.listing.static[2][1].length}/${goal[2][1]}
+Bosses:${manager.listing.static[2][2].length}/${goal[2][2]}
+Total:${manager.listing.static[2].reduce((a,n)=>a+n.length,0)}/${goal[2].reduce((a,n)=>a+n,0)}
+\nWorld 4:
+Elites:${manager.listing.static[3][1].length}/${goal[3][1]}
+Bosses:${manager.listing.static[3][2].length}/${goal[3][2]}
+Specials:${manager.listing.static[3][4].length}/${goal[3][4]}
+Total:${manager.listing.static[3].reduce((a,n)=>a+n.length,0)}/${goal[3].reduce((a,n)=>a+n,0)}
+	`)
+}
+function outEncounterOld(){
+	//this uses the old numbers and shouldn't be relied upon
+	console.log(`
+Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length+current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length+current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length+current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/172
+\nWorld 1:
+Easies:${current.nodeManager.listing.static[0][3].length}/12
+(${current.nodeManager.listing.name[0][3].join(',')})
+Enemies:${current.nodeManager.listing.static[0][0].length}/24
+(${current.nodeManager.listing.name[0][0].join(',')})
+Elites:${current.nodeManager.listing.static[0][1].length}/12
+(${current.nodeManager.listing.name[0][1].join(',')})
+Bosses:${current.nodeManager.listing.static[0][2].length}/10
+(${current.nodeManager.listing.name[0][2].join(',')})
+Total:${current.nodeManager.listing.static[0][0].length+current.nodeManager.listing.static[0][1].length+current.nodeManager.listing.static[0][2].length+current.nodeManager.listing.static[0][3].length}/58
+\nWorld 2:
+Enemies:${current.nodeManager.listing.static[1][0].length}/32
+(${current.nodeManager.listing.name[1][0].join(',')})
+Elites:${current.nodeManager.listing.static[1][1].length}/16
+(${current.nodeManager.listing.name[1][1].join(',')})
+Bosses:${current.nodeManager.listing.static[1][2].length}/8
+(${current.nodeManager.listing.name[1][2].join(',')})
+Total:${current.nodeManager.listing.static[1][0].length+current.nodeManager.listing.static[1][1].length+current.nodeManager.listing.static[1][2].length}/56
+\nWorld 3:
+Enemies:${current.nodeManager.listing.static[2][0].length}/32
+(${current.nodeManager.listing.name[2][0].join(',')})
+Elites:${current.nodeManager.listing.static[2][1].length}/12
+(${current.nodeManager.listing.name[2][1].join(',')})
+Bosses:${current.nodeManager.listing.static[2][2].length}/8
+(${current.nodeManager.listing.name[2][2].join(',')})
+Total:${current.nodeManager.listing.static[2][0].length+current.nodeManager.listing.static[2][1].length+current.nodeManager.listing.static[2][2].length}/52
+\nWorld 4:
+Elites:${current.nodeManager.listing.static[3][1].length}/4
+(${current.nodeManager.listing.name[3][1].join(',')})
+Bosses:${current.nodeManager.listing.static[3][2].length}/2
+(${current.nodeManager.listing.name[3][2].join(',')})
+Total:${current.nodeManager.listing.static[3][1].length+current.nodeManager.listing.static[3][2].length}/6
+	`)
+}
+function outItem(){
+	let manager=current.relicManager==undefined?new itemManager(current.layer,current):current.itemManager
+	console.log(`Common: ${manager.listing.item[0].length}
+Uncommon: ${manager.listing.item[1].length}
+Rare: ${manager.listing.item[2].length}
+Temp: ${manager.listing.item[3].length}`)
+}
+function outListing(){
+	current.collectionManager.executeQuery()
+	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new cardManager(current.layer,current,0):current.cardManagers[0]
+	let actual=manager.listing.allListableCard[3].length+
+		current.collectionManager.totals.list[constants.playerNumber+6][0]+
+		current.collectionManager.totals.list[constants.playerNumber+7][0]+
+		current.collectionManager.totals.list[constants.playerNumber+8][0]+
+		current.collectionManager.totals.list[constants.playerNumber+9][0]+
+		current.collectionManager.totals.list[constants.playerNumber+11][0]+
+		current.collectionManager.totals.list[constants.playerNumber+12][0]+
+		current.collectionManager.totals.list[constants.playerNumber+13][0]
+	let char=manager.listing.allPlayerCard[3].length+manager.listing.card[0][3].length
+	let box=`(${manager.listing.card[0][3].length-160}) Colorless: ${manager.listing.card[0][0].length}, ${manager.listing.card[0][1].length}, ${manager.listing.card[0][2].length}\n`
+	//let colorChanges=0
+	let colorChanges=[]
+	for(let a=0,la=constants.playerNumber;a<la;a++){
+		//box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length>64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length>64?`%c`:``}, ${manager.listing.card[a+1][1].length>64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length>64?`%c`:``}, ${manager.listing.card[a+1][2].length>32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length>32?`%c`:``}\n`
+		box+=`(${manager.listing.card[a+1][3].length-160}) ${types.combatant[a+1].name}: ${manager.listing.card[a+1][0].length!=64?`%c`:``}${manager.listing.card[a+1][0].length}${manager.listing.card[a+1][0].length!=64?`%c`:``}, ${manager.listing.card[a+1][1].length!=64?`%c`:``}${manager.listing.card[a+1][1].length}${manager.listing.card[a+1][1].length!=64?`%c`:``}, ${manager.listing.card[a+1][2].length!=32?`%c`:``}${manager.listing.card[a+1][2].length}${manager.listing.card[a+1][2].length!=32?`%c`:``}\n`
+		if(manager.listing.card[a+1][0].length>64){
+			//colorChanges++
+			colorChanges.push(0)
+		}else if(manager.listing.card[a+1][0].length<64){
+			colorChanges.push(1)
+		}
+		if(manager.listing.card[a+1][1].length>64){
+			//colorChanges++
+			colorChanges.push(0)
+		}else if(manager.listing.card[a+1][1].length<64){
+			colorChanges.push(1)
+		}
+		if(manager.listing.card[a+1][2].length>32){
+			//colorChanges++
+			colorChanges.push(0)
+		}else if(manager.listing.card[a+1][2].length<32){
+			colorChanges.push(1)
+		}
+	}
+	let listed=[
+		64,//status
+		64,//curse
+		40,//partnership
+		32,//tarot
+		24,//spectral
+		40,//subcard
+		24,//event
+		160,//reserve
+		160,//developer
+		12,//basic
+		28,//pack
+		32,//misc
+	]
+	let unlisted=[
+		5000,//disband
+	]
+	/*let unlisted=[
+		40,//subcard
+		3200,//disband
+		constants.playerNumber*8,//junkyard
+		32,//event
+		160,//developer
+		20,//basic
+		32,//pack
+		160,//misc
+		72,//error
+	]*/
+	//let overTotal=types.card.filter(card=>!(card.rarity==-1&&card.list==-10)).length
+	let overTotal=types.card.length
+	let arbitrary=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)+unlisted.reduce((acc,num)=>acc+num,0)
+	let goal=160*(constants.playerNumber+1)+listed.reduce((acc,num)=>acc+num,0)
+	let charGoal=160*(constants.playerNumber+1)
+	console.log(`
+(${overTotal-arbitrary}) Total Cards: ${overTotal}/${arbitrary}
+(${actual-goal}) Listed Cards: ${actual}/${goal}
+(${char-charGoal}) Character Cards: ${char}/${charGoal}
+
+${box}
+(${manager.listing.card[constants.playerNumber+1][3].length-listed[0]}) Status: ${manager.listing.card[constants.playerNumber+1][3].length}
+(${manager.listing.card[constants.playerNumber+2][3].length-listed[1]}) Curse: ${manager.listing.card[constants.playerNumber+2][3].length}
+(${manager.listing.card[constants.playerNumber+3][3].length-listed[2]}) Partnership: ${manager.listing.card[constants.playerNumber+3][0].length}, ${manager.listing.card[constants.playerNumber+3][1].length}, ${manager.listing.card[constants.playerNumber+3][2].length}
+(${manager.listing.card[constants.playerNumber+4][3].length-listed[3]}) Tarot: ${manager.listing.card[constants.playerNumber+4][3].length}
+(${manager.listing.card[constants.playerNumber+5][3].length-listed[4]}) Spectral: ${manager.listing.card[constants.playerNumber+5][3].length}
+(${current.collectionManager.totals.list[constants.playerNumber+6][0]-listed[5]}) Subcard: ${current.collectionManager.totals.list[constants.playerNumber+6][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+7][0]-listed[6]}) Event: ${current.collectionManager.totals.list[constants.playerNumber+7][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+8][0]-listed[7]}) Reserve: ${current.collectionManager.totals.list[constants.playerNumber+8][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+9][0]-listed[8]}) Developer: ${current.collectionManager.totals.list[constants.playerNumber+9][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+11][0]-listed[9]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+12][0]-listed[10]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+13][0]-listed[11]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+10][0]-unlisted[0]}) Disband: ${current.collectionManager.totals.list[constants.playerNumber+10][0]}`,
+//Invalid: ${types.invalid.length}`,
+//Invalid: ${types.card.filter(card=>card.rarity==-1&&card.list==-10).length}`,
+...colorChanges.map(change=>[["color:red",""],["color:blue",""]][change]).flat())
+//...colorChanges.map(change=>[["color:red",""],["color:lime",""]][change]).flat())
+//...multiplyArray(["color:red",""],colorChanges).flat())
+	/*console.log(`
+(${types.card.length-arbitrary}) Total Cards: ${types.card.length}/${arbitrary}
+(${actual-goal}) Listed Cards: ${actual}/${goal}
+
+${box}
+(${manager.listing.card[constants.playerNumber+1][3].length-listed[0]}) Status: ${manager.listing.card[constants.playerNumber+1][3].length}
+(${manager.listing.card[constants.playerNumber+2][3].length-listed[1]}) Curse: ${manager.listing.card[constants.playerNumber+2][3].length}
+(${manager.listing.card[constants.playerNumber+3][3].length-listed[2]}) Partnership: ${manager.listing.card[constants.playerNumber+3][0].length}, ${manager.listing.card[constants.playerNumber+3][1].length}, ${manager.listing.card[constants.playerNumber+3][2].length}
+(${manager.listing.card[constants.playerNumber+4][3].length-listed[3]}) Tarot: ${manager.listing.card[constants.playerNumber+4][3].length}
+(${manager.listing.card[constants.playerNumber+5][3].length-listed[4]}) Spectral: ${manager.listing.card[constants.playerNumber+5][3].length}
+
+(${manager.listing.sub.length-unlisted[0]}) Subcard: ${manager.listing.sub.length}
+(${manager.listing.disband.length-unlisted[1]}) Disband: ${manager.listing.disband.length}
+(${manager.listing.junk[constants.playerNumber+1].length-unlisted[2]}) Junkyard: ${manager.listing.junk[constants.playerNumber+1].length}
+(${current.collectionManager.totals.list[constants.playerNumber+8][0]-unlisted[3]}) Event: ${current.collectionManager.totals.list[constants.playerNumber+8][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+9][0]-unlisted[4]}) Developer: ${current.collectionManager.totals.list[constants.playerNumber+9][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+11][0]-unlisted[5]}) Basic: ${current.collectionManager.totals.list[constants.playerNumber+11][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+12][0]-unlisted[6]}) Pack: ${current.collectionManager.totals.list[constants.playerNumber+12][0]}
+(${current.collectionManager.totals.list[constants.playerNumber+13][0]-unlisted[7]}) Misc: ${current.collectionManager.totals.list[constants.playerNumber+13][0]}
+(${types.card.filter(card=>card.list==-10).length-unlisted[8]}) Error: ${types.card.filter(card=>card.list==-10).length}`)*/
+}
+function outListingOld(){
+	let arbitrary=8500
+	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new cardManager(current.layer,current,0):current.cardManagers[0]
+	let actual=manager.listing.allListableCard[3].length
+	let box=`		Colorless:
+Common:${manager.listing.card[0][0].length}/64				${manager.listing.card[0][0].length-64}
+Uncommon:${manager.listing.card[0][1].length}/64				${manager.listing.card[0][1].length-64}
+Rare:${manager.listing.card[0][2].length}/32					${manager.listing.card[0][2].length-32}
+	Total:${manager.listing.card[0][3].length}/160\n`
+	for(let a=0,la=constants.playerNumber;a<la;a++){
+		box+=`		${types.combatant[a+1].name}:
+Common:${manager.listing.card[a+1][0].length}/64				${manager.listing.card[a+1][0].length-64}
+Uncommon:${manager.listing.card[a+1][1].length}/64				${manager.listing.card[a+1][1].length-64}
+Rare:${manager.listing.card[a+1][2].length}/32					${manager.listing.card[a+1][2].length-32}
+	Total:${manager.listing.card[a+1][3].length}/160\n`
+	}
+	console.log(`
+Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
+${box}		Status:
+	Total:${manager.listing.card[constants.playerNumber+1][3].length}/80				${manager.listing.card[constants.playerNumber+1][3].length-80}
+		Curse:
+	Total:${manager.listing.card[constants.playerNumber+2][3].length}/80				${manager.listing.card[constants.playerNumber+2][3].length-80}
+		Partnership:
+Common:${manager.listing.card[constants.playerNumber+3][0].length}/16				${manager.listing.card[constants.playerNumber+3][0].length-16}
+Uncommon:${manager.listing.card[constants.playerNumber+3][1].length}/16				${manager.listing.card[constants.playerNumber+3][1].length-16}
+Rare:${manager.listing.card[constants.playerNumber+3][2].length}/8					${manager.listing.card[constants.playerNumber+3][2].length-8}
+	Total:${manager.listing.card[constants.playerNumber+3][3].length}/40
+		Tarot:
+	Total:${manager.listing.card[constants.playerNumber+4][3].length}/32				${manager.listing.card[constants.playerNumber+4][3].length-32}
+		Spectral:
+	Total:${manager.listing.card[constants.playerNumber+5][3].length}/24				${manager.listing.card[constants.playerNumber+5][3].length-24}
+		Subcard:
+	Total:${manager.listing.sub.length}/48				${manager.listing.sub.length-48}
+		Disband:
+	Total:${manager.listing.disband.length}/2700			${manager.listing.disband.length-2700}
+		Junkyard:
+	Total:${manager.listing.junk[constants.playerNumber+1].length}/${constants.playerNumber*8}			${manager.listing.junk[constants.playerNumber+1].length-constants.playerNumber*8}
+		Error:
+	Total:${types.card.filter(card=>card.list==-10).length}/64				${types.card.filter(card=>card.list==-10).length-64}
+			`)
+}
+function outMtg(){
+	let count=[]
+	for(let a=0,la=constants.playerNumber+2;a<la;a++){
+		count.push([])
+		for(let b=0,lb=4;b<lb;b++){
+			count[a].push([])
+			for(let c=0,lc=17;c<lc;c++){
+				count[a][b].push(0)
+			}
+		}
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].mtg!=undefined){
+			if(types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=constants.playerNumber){
+				let list=types.card[a].mtg.list==-1?0:types.card[a].mtg.list==0?1:types.card[a].mtg.list+1
+				let color=types.card[a].mtg.color.length==1?types.card[a].mtg.color[0]:mtgCombineColor(types.card[a].mtg.color[0],types.card[a].mtg.color[1])
+				try{
+					count[list][types.card[a].mtg.rarity][color]++
+					count[list][3][color]++
+				}catch(error){
+					console.log(types.card[a].name)
 				}
 			}
 		}
-		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
-			if(!types.card[a].mtg.levels[b].spec.includes(12)){
-				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6){
-					overlap++
-				}
-			}
+	}
+	let subMtg=(base)=>{
+		return `[
+	${base[0]},
+	${base[1]},${base[2]},${base[3]},${base[4]},${base[5]},
+	${base[7]},${base[8]},${base[9]},${base[10]},${base[11]},
+	${base[12]},${base[13]},${base[14]},${base[15]},${base[16]},
+		]`
+		/*return ''+
+		`Colorless: ${base[0]}, White: ${base[1]}, Blue: ${base[2]}, Black: ${base[3]}, `+
+		`Green: ${base[4]}, Red: ${base[5]}, White-Blue: ${base[7]}, White-Black: ${base[8]}, `+
+		`White-Green: ${base[9]}, White-Red: ${base[10]}, Blue-Black: ${base[11]}, Blue-Green: ${base[12]}, `+
+		`Blue-Red: 
+		${base[13]}, Black-Green: ${base[14]}, Black-Red: ${base[15]}, Green-Red: ${base[16]}`*/
+	}
+	let box=``
+	for(let a=0,la=constants.playerNumber+2;a<la;a++){
+		box+=`\n		${a==0?`Neutral`:a==1?`Colorless`:types.combatant[a-1].name}:
+	Common: ${subMtg(count[a][0])}
+	Uncommon: ${subMtg(count[a][1])}
+	Rare: ${subMtg(count[a][2])}
+	Total: ${subMtg(count[a][3])}\n`
+	}
+	console.log(box)
+}
+function outMtgRelic(){
+	for(let a=0,la=types.relic.length;a<la;a++){
+		if(types.relic[a].mtg==1&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==2&&relic.rarity!=types.relic[a].rarity)){
+			print(types.relic[a].name,'A')
 		}
-		if(overlap>=6){
-			print(types.card[a].name)
+		if(types.relic[a].mtg==2&&types.relic[a].rarity!=-1&&types.relic[a].rarity!=4&&types.relic.some(relic=>relic.name==types.relic[a].name&&relic.mtg==1&&relic.rarity!=types.relic[a].rarity)){
+			print(types.relic[a].name,'B')
 		}
 	}
 }
-function outCharIcon(start,end){
-	graphics.minor=[]
-	for(let a=0,la=end-start;a<la;a++){
-		graphics.minor.push(createGraphics(100,100))
-		setupLayer(graphics.minor[graphics.minor.length-1])
-		displayPlayerSymbol(graphics.minor[graphics.minor.length-1],50,50,start+a,0,2,1)
-		save(graphics.minor[graphics.minor.length-1])
+function outMtgSplit(){
+	let mtgd=0
+	let count=[]
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		count.push([])
+		for(let b=0,lb=2;b<lb;b++){
+			count[a].push([0,0,0,0])
+		}
 	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].mtg!=undefined){
+			mtgd++
+			if(types.card[a].rarity>=0&&types.card[a].list>=0&&types.card[a].mtg.rarity>=0&&types.card[a].mtg.list>=-1&&types.card[a].mtg.list<=constants.playerNumber){
+				let list=types.card[a].list
+				let sublist=types.card[a].list==types.card[a].mtg.list?0:1
+				try{
+					count[list][sublist][types.card[a].mtg.rarity]++
+					count[list][sublist][3]++
+				}catch(error){
+					console.log(types.card[a].name,'Failed!')
+				}
+			}
+		}
+	}
+	let box=``
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		box+=`\n		${a==0?`Colorless`:types.combatant[a].name}:
+	Character:
+Common: ${count[a][0][0]}
+Uncommon: ${count[a][0][1]}
+Rare: ${count[a][0][2]}
+Total: ${count[a][0][3]}\n
+	Neutral:
+Common: ${count[a][1][0]}
+Uncommon: ${count[a][1][1]}
+Rare: ${count[a][1][2]}
+Total: ${count[a][1][3]}\n`
+	}
+	console.log(box)
+	console.log(`${mtgd}/${types.card.length} (${round(mtgd/types.card.length*1000/10)}%) Converted`)
 }
-function outItemIcon(start,end){
-	graphics.minor=[]
-	for(let a=0,la=end-start;a<la;a++){
-		graphics.minor.push(createGraphics(50,50))
-		setupLayer(graphics.minor[graphics.minor.length-1])
-		let temp=new item(graphics.minor[graphics.minor.length-1],current,0,25,25,0,0,start+a,1)
-		temp.fade=1
-		temp.display()
-		save(graphics.minor[graphics.minor.length-1])
+function outRelic(){
+	let manager=current.relicManager==undefined?new relicManager(current.layer,current):current.relicManager
+	console.log(`Common: ${manager.listing.relic[0].length}/${manager.listing.all[0].length}
+Uncommon: ${manager.listing.relic[1].length}/${manager.listing.all[1].length}
+Rare: ${manager.listing.relic[2].length}/${manager.listing.all[2].length}
+Shop: ${manager.listing.relic[3].length}/${manager.listing.all[3].length}
+Boss: ${manager.listing.relic[4].length}/${manager.listing.all[4].length}
+Total: ${manager.listing.relic.reduce((a,c)=>a+c.length,0)}/${manager.listing.all.reduce((a,c)=>a+c.length,0)}`)
+}
+function outSpec(level=0){
+	let totals=[]
+	let build=``
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		totals.push([0,0,0,0])
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list>=0&&types.card[a].list<=constants.playerNumber&&types.card[a].rarity>=0){
+			if(types.card[a].levels[level].spec.includes(12)){
+				if(types.card[a].levels[level].reality[0].includes(1)){
+					totals[types.card[a].list][0]++
+				}
+				if(types.card[a].levels[level].reality[0].includes(2)){
+					totals[types.card[a].list][1]++
+				}
+				if(types.card[a].levels[level].reality[0].includes(3)){
+					totals[types.card[a].list][2]++
+				}
+				if(types.card[a].levels[level].reality[0].includes(4)){
+					totals[types.card[a].list][3]++
+				}
+			}else{
+				if(types.card[a].levels[level].spec.includes(1)){
+					totals[types.card[a].list][0]++
+				}
+				if(types.card[a].levels[level].spec.includes(2)){
+					totals[types.card[a].list][1]++
+				}
+				if(types.card[a].levels[level].spec.includes(3)){
+					totals[types.card[a].list][2]++
+				}
+				if(types.card[a].levels[level].spec.includes(4)){
+					totals[types.card[a].list][3]++
+				}
+			}
+		}
+	}
+	for(let a=0,la=constants.playerNumber+1;a<la;a++){
+		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nExhaust: ${totals[a][0]}\nRetain: ${totals[a][1]}\nInnate: ${totals[a][2]}\nEthereal: ${totals[a][3]}\n\n`
+	}
+	console.log(build)
+}
+function outSpecList(spec,bypass){
+	let totals=[[],[],[],0]
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list!=-8&&types.card[a].list!=-10||bypass){
+			for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+				if(types.card[a].levels[b].spec.includes(spec)){
+					totals[3]++
+					totals[b].push(types.card[a].name)
+				}
+			}
+			for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+				if(types.card[a].mtg.levels[b].spec.includes(spec)){
+					totals[3]++
+					totals[b].push(types.card[a].name)
+				}
+			}
+		}
+	}
+	if(totals[0].length==0&&totals[1].length==0){
+		print(totals[2])
+	}else{
+		print(totals)
 	}
 }
 function outText(type){
 	let str='';
+	/*function outRelicText(start,end){
+		print(range(start,end).map(a=>`${types.relic[a].name} (${types.relic[a].rarity==-1?`Unlisted`:[`Common`,`Uncommon`,`Rare`,`Shop`,`Boss`][types.relic[a].rarity]}): ${types.relic[a].description.replaceAll(`\n`,` `)}`).join(`\n`))
+	}*/
+	/*function outDescription(){
+		print(types.combatant.reduce((acc,combatant)=>`${acc}${combatant.description.replaceAll(`\n`,` `)}\n`,``))
+	}*/
 	switch(type){
 		case 0://card name+desc
 			current.overlayManager.overlays[35][0].active=true
@@ -4302,6 +4268,192 @@ function outText(type){
 	}
 	print(str)
 }
+function outUniqueCards(){
+	let incl=[]
+	for(let a=0,la=types.card.length;a<la;a++){
+		/*if(!list.includes(types.card[a].levels[0].attack)){
+			list.push(types.card[a].levels[0].attack)
+		}*/
+		if(types.card[a].levels[0].spec.includes(12)){
+			types.card[a].levels[0].attack.forEach(a=>incl.push(a))
+		}else{
+			incl.push(types.card[a].levels[0].attack)
+		}
+	}
+	let set=range(0,19).map(a=>[])
+	for(let a=0,la=5;a<la;a++){
+		incl.forEach(b=>set[b<0?ceil(b/(10**a))%10+9:floor(b/(10**a))%10+9].push(b))
+		incl=[]
+		set=set.map(bucket=>{bucket.forEach(b=>incl.push(b));return []})
+	}
+	//radix sort
+	for(let a=0,la=incl.length-1;a<la;a++){
+		if(incl[a]==incl[a+1]){
+			incl.splice(a+1,1)
+			a--
+			la--
+		}
+	}
+	console.log(incl.length)
+}
+function outUniqueEffects(){
+	let incl=[]
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			//if(!list.includes(types.card[a].levels[b].attack)){
+			if(types.card[a].levels[b].spec.includes(12)){
+				types.card[a].levels[b].attack.forEach(a=>incl.push(a))
+			}else{
+				incl.push(types.card[a].levels[b].attack)
+			}
+			//}
+		}
+		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+			//if(!list.includes(types.card[a].mtg.levels[b].attack)){
+			if(types.card[a].mtg.levels[b].spec.includes(12)){
+				types.card[a].mtg.levels[b].attack.forEach(a=>incl.push(a))
+			}else{
+				incl.push(types.card[a].mtg.levels[b].attack)
+			}
+			//}
+		}
+	}
+	let set=range(0,19).map(a=>[])
+	for(let a=0,la=5;a<la;a++){
+		incl.forEach(b=>set[b<0?ceil(b/(10**a))%10+9:floor(b/(10**a))%10+9].push(b))
+		incl=[]
+		set=set.map(bucket=>{bucket.forEach(b=>incl.push(b));return []})
+	}
+	//radix sort
+	for(let a=0,la=incl.length-1;a<la;a++){
+		if(incl[a]==incl[a+1]){
+			incl.splice(a+1,1)
+			a--
+			la--
+		}
+	}
+	console.log(incl.length)
+}
+//mark out
+
+function saveCharIcon(start=0,end=constants.playerNumber){
+	graphics.minor=[]
+	for(let a=0,la=end-start;a<la;a++){
+		graphics.minor.push(createGraphics(100,100))
+		setupLayer(graphics.minor[graphics.minor.length-1])
+		displayPlayerSymbol(graphics.minor[graphics.minor.length-1],50,50,start+a,0,2,1)
+		save(graphics.minor[graphics.minor.length-1])
+	}
+}
+function saveItemIcon(start,end){
+	graphics.minor=[]
+	for(let a=0,la=end-start;a<la;a++){
+		graphics.minor.push(createGraphics(50,50))
+		setupLayer(graphics.minor[graphics.minor.length-1])
+		let temp=new item(graphics.minor[graphics.minor.length-1],current,0,25,25,0,0,start+a,1)
+		temp.fade=1
+		temp.display()
+		save(graphics.minor[graphics.minor.length-1])
+	}
+}
+//amrk save
+function testAttack(type,target,startpoint,endpoint){
+	let lim=0
+	game.attackTest=true
+	switch(type){
+		case 0: case 1: case 2: case 3:
+			current.combatantManager.combatants[type==1?target[1]:target].setMaxHP(9999999999999)
+			current.combatantManager.combatants[type==1?target[1]:target].statusEffect('Cannot Die',1)
+			current.combatantManager.combatants[0].setMaxHP(9999999999999)
+			current.combatantManager.combatants[0].statusEffect('Cannot Die',1)
+			if(variants.mtg){
+				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
+					for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
+						if((
+								type==0&&types.card[a].mtg.levels[b].target[0]==2||
+								type==1&&types.card[a].mtg.levels[b].target[0]==1||
+								type==2&&types.card[a].mtg.levels[b].target[0]==5||
+								type==3&&types.card[a].mtg.levels[b].target[0]==0
+							)&&types.card[a].mtg.levels[b].attack!=types.card[a].levels[b].attack
+							&&types.card[a].mtg.levels[b].attack>=lim
+						){
+							current.attackManager.type=types.card[a].mtg.levels[b].attack
+							current.attackManager.player=0
+							current.attackManager.effect=types.card[a].mtg.levels[b].effect
+							current.attackManager.attackClass=types.card[a].mtg.levels[b].class
+							current.attackManager.user=0
+							current.attackManager.level=b
+							current.attackManager.color=current.standardColorize(a)
+							current.attackManager.energy=3
+							current.attackManager.target[0]=type==1?target[0]:target
+							current.attackManager.targetDistance=1
+							current.attackManager.targetClass=2
+							current.attackManager.combo=0
+							current.attackManager.amplify=true
+							current.attackManager.relPos=[0,0]
+							current.attackManager.limit=types.card[a].mtg.levels[b].limit
+							current.attackManager.id=-1
+							current.attackManager.edition=0
+							current.attackManager.drawn=0
+							current.attackManager.fuel=0
+							current.attackManager.debut=false
+							current.attackManager.evolve=0
+							current.attackManager.rewinding=false
+							current.attackManager.cost=types.card[a].mtg.levels[b].cost
+							current.attackManager.execute()
+						}
+					}
+				}
+			}else{
+				for(let a=startpoint,la=endpoint==-1?types.card.length:endpoint;a<la;a++){
+					for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+						try{
+							if((
+									type==0&&types.card[a].levels[b].target[0]==2||
+									type==1&&types.card[a].levels[b].target[0]==1||
+									type==2&&types.card[a].levels[b].target[0]==5||
+									type==3&&types.card[a].levels[b].target[0]==0
+								)&&types.card[a].levels[b].attack>=lim
+							){
+								current.attackManager.type=types.card[a].levels[b].attack
+								current.attackManager.player=0
+								current.attackManager.effect=types.card[a].levels[b].effect
+								current.attackManager.attackClass=types.card[a].levels[b].class
+								current.attackManager.user=0
+								current.attackManager.level=b
+								current.attackManager.color=current.standardColorize(a)
+								current.attackManager.energy=3
+								current.attackManager.target[0]=type==1?target[0]:target
+								current.attackManager.targetDistance=1
+								current.attackManager.targetClass=2
+								current.attackManager.combo=0
+								current.attackManager.amplify=true
+								current.attackManager.relPos=[0,0]
+								current.attackManager.limit=types.card[a].levels[b].limit
+								current.attackManager.id=-1
+								current.attackManager.edition=0
+								current.attackManager.drawn=0
+								current.attackManager.fuel=0
+								current.attackManager.debut=false
+								current.attackManager.evolve=0
+								current.attackManager.rewinding=false
+								current.attackManager.cost=types.card[a].levels[b].cost
+								current.attackManager.execute()
+							}
+						}catch(e){
+							print(types.card[a].name,b)
+						}
+					}
+				}
+			}
+		break
+	}
+	/*
+	attackTest(3,0,0);player(1).setMaxHP(999999);game.animRate=4
+	current.overlayManager.closeAll();manager(0).hand.clear();current.attackManager.attacks[0]
+	*/
+}
+//mark test
 /*chambers=[`B`,``,``,``,``,``]
 function russianRoulette(){
     res=randin(chambers)up

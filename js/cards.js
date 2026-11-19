@@ -32041,9 +32041,9 @@ types.card=[
     },{
         name:'Scrubber',rarity:0,list:14,
         levels:[
-            {effect:[12,4],attack:6250,cost:1,target:[0],spec:[],class:2},
-            {effect:[18,6],attack:6250,cost:1,target:[0],spec:[],class:2},
-            {effect:[21,8],attack:6250,cost:1,target:[0],spec:[],class:2},
+            {effect:[12,3],attack:6250,cost:1,target:[0],spec:[],class:2},
+            {effect:[18,5],attack:6250,cost:1,target:[0],spec:[],class:2},
+            {effect:[21,6],attack:6250,cost:1,target:[0],spec:[],class:2},
         ],mtg:{
             rarity:0,list:14,color:[2],
             levels:[

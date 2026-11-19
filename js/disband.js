@@ -22052,7 +22052,7 @@ types.disband=[
             ],
         },
     },{
-        name:'Backburner',rarity:-1,list:-8,
+        name:'Burnbacker',rarity:-1,list:-8,
         levels:[
             {effect:[4],attack:3394,cost:1,target:[2,1,3],spec:[2],class:11},
             {effect:[6],attack:3394,cost:1,target:[2,1,3],spec:[2],class:11},
