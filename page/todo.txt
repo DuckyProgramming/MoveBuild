@@ -9,4 +9,7 @@ diff 26 anew
 act 5 (1453) (1945)
 the map shrinks by 1 tile every turn
 
+better looking sagume symbol
+and her wing in general
+
 

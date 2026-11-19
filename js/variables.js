@@ -1669,7 +1669,8 @@ types={
 
         {name:'Battery Pack',internal:'Counter 5 All',id:10,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Counter 5 All This Turn'},
         {name:'Portable Shield',internal:'20 Block',id:11,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Add [20B]'},
-        {name:'Grenade',internal:'20 Splash Damage',id:12,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [20S]\nRange 1-3'},
+        //{name:'Grenade',internal:'20 Splash Damage',id:12,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [20S]\nRange 1-3'},
+        {name:'Grenade',internal:'20 Splash Damage',id:12,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [20S]\nMay Target Any Tile Within Range 1-2'},
         {name:'Rapid Forge',internal:'Upgrade Hand',id:13,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All\nCards in Hand'},
         {name:'Caffeine',internal:'3 Energy',id:14,rarity:0,list:0,menu:false,temp:false,mtg:1,description:'Gain 3 Energy'},
         {name:'Attack Juice',internal:'2 Strength',id:15,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Gain 2 Strength'},
@@ -1792,7 +1793,7 @@ types={
         {name:'Cheese Can',internal:'Terminate',id:120,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'If Target Has Less Than 25% Health, It Dies\nRange 1-3'},
         {name:'Surprise Coupon',internal:'3 Free Purchases',id:121,rarity:2,list:0,menu:true,temp:false,mtg:0,description:'When Sold, Make 3\nRandom Purchases Free'},
         {name:'Perfect Stone',internal:'Upgrade All',id:122,rarity:2,list:0,menu:false,temp:false,mtg:0,description:'Upgrade All Cards This Combat'},
-        {name:'Melted Mortar',internal:'Double Block',id:123,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Double Your Block'},
+        {name:'Melted Mortar',internal:'Double Block',id:123,rarity:1,list:0,menu:false,temp:false,mtg:0,description:'Add Block Equal to Your Block'},
         {name:'Confetti',internal:'1 Damage All 3 Times',id:124,rarity:0,list:0,menu:false,temp:false,mtg:0,description:'Deal [1D] to All Enemies 3 Times'},
 
         {name:'Starflame Prototype',internal:'5 Strength/Burn',id:1001,rarity:-1,list:-1,menu:false,temp:false,mtg:0,description:'Gain 5 Strength,\nShuffle 5 Burns into Draw'},
@@ -1818,10 +1819,10 @@ types={
 
         {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [6D]\nRange 1-3\nTemporary'},
         {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]\nRange 1-3'},
-        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Glass',internal:'6 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 6 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
         {name:'Ammonium',internal:'2 Burn',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 2 Burn\nRange 1-3\nTemporary'},
-        {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [10S]\nRange 1-3\nTemporary'},
+        {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [10S]\nMay Target Any Tile Within Range 1-2\nTemporary'},
         {name:'Graphene',internal:'2 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 2 Strength'},
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Energy, Draw 1',id:1028,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [12D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
@@ -1829,8 +1830,10 @@ types={
         /*{name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},
         {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [4D]\nTarget Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
+        {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Ammonium',internal:'1 Vulnerable',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 1 Vulnerable\nRange 1-3\nTemporary'},
-        {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},*/
+        {name:'Graphene',internal:'1 Strength 2',id:1026,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Gain 1 Strength'},
+        {name:'Hydrazine',internal:'10 Splash Damage',id:1025,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [10S]\nRange 1-3\nTemporary'},*/
 
         //mark i
     ],color:{

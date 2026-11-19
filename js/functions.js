@@ -2315,6 +2315,9 @@ function quickRelic(type,player=0){
 function quickItem(type,player){
 	current.itemManager.addItem(type,player)
 }
+function qi(name){
+	current.itemManager.addItem(findName(name,types.item),0)
+}
 function outEnc(){
 	let manager=current.cardManagers==undefined||current.cardManagers.length<=0?new nodeManager(current.layer,current):current.nodeManager
 	let goal=[

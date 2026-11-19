@@ -1759,6 +1759,9 @@ class combatantManager{
                             this.combatants[a].statusEffect(values[1],values[2])
                         }
                     break
+                    case 20:
+                        this.combatants[a].addBlock(values[0])
+                    break
                 }
                 if(
                     output==0||

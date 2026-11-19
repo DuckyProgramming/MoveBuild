@@ -1071,7 +1071,7 @@ class item{
                 case '9 Block':
                     displaySymbol(this.layer,0,0,188,0,1,this.fade)
                 break
-                case '4 Damage Per Turn':
+                case '6 Damage Per Turn':
                     displaySymbol(this.layer,0,0,189,0,1,this.fade)
                 break
                 case 'Draw 2 2':

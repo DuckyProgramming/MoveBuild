@@ -335,7 +335,8 @@ class itemManager{
                 userCombatant.addBlock(20*effectiveness)
             break
             case 12:
-                this.battle.cardManagers[player].hand.selfCall(6,[3595,[20*effectiveness],1,[2,1,3]])
+                //this.battle.cardManagers[player].hand.selfCall(6,[3595,[20*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[12049,[20*effectiveness],1,[8,1,2]])
             break
             case 13:
                 this.battle.cardManagers[player].allEffect(2,4)
@@ -845,7 +846,8 @@ class itemManager{
             case 1022:
                 //this.battle.cardManagers[player].hand.selfCall(6,[11680,[2*effectiveness],1,[2,1,3]])
                 //this.battle.cardManagers[player].hand.selfCall(6,[11680,[4*effectiveness],1,[2,1,3]])
-                this.battle.cardManagers[player].hand.selfCall(6,[12044,[4*effectiveness],1,[2,1,3]])
+                //this.battle.cardManagers[player].hand.selfCall(6,[12044,[4*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[12044,[6*effectiveness],1,[2,1,3]])
             break
             case 1023:
                 //this.battle.cardManagers[player].draw(effectiveness)
@@ -857,7 +859,8 @@ class itemManager{
                 this.battle.cardManagers[player].hand.selfCall(6,[11975,[2*effectiveness],11,[2,1,3]])
             break
             case 1025:
-                this.battle.cardManagers[player].hand.selfCall(6,[11681,[10*effectiveness],1,[2,1,3]])
+                //this.battle.cardManagers[player].hand.selfCall(6,[11681,[10*effectiveness],1,[2,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[12050,[10*effectiveness],1,[8,1,2]])
             break
             case 1027:
                 this.battle.cardManagers[player].draw(3*effectiveness)
@@ -869,7 +872,7 @@ class itemManager{
                     0,
                     [
                         (12+userCombatant.getStatus('Prismatic Bomb Boost'))*effectiveness,
-                        this.player,
+                        player,
                         userCombatant.getStatus('Prismatic Bomb Freeze'),
                         userCombatant.getStatus('Prismatic Bomb Poison')
                     ]

@@ -5181,6 +5181,9 @@ class combatant{
                     this.statusEffect('Block in 2 Turns',round(block))
                     this.status.main[474]--
                 }
+                if(this.status.main[49]>0){
+                    this.takeDamage(this.status.main[49],-1)
+                }
                 if(this.battle.modded(74)&&this.team==0){
                     this.heal(block)
                 }else if(this.status.main[329]>0){
@@ -5200,9 +5203,9 @@ class combatant{
                 }else if(this.battle.relicManager.hasRelic(518,-1)){
                     this.loseHealth(this.battle.relicManager.active[518][0]*3)
                 }
-                if(this.status.main[49]>0){
+                /*if(this.status.main[49]>0){
                     this.takeDamage(this.status.main[49],-1)
-                }
+                }*/
             }
         }
     }

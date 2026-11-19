@@ -12138,7 +12138,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11855: string+=`Upgrade Your Hand\nGain ${effect[0]} Carbon Item${pl(effect[0])}`; break
         case 11856: string+=`Gain ${effect[0]} Strength\nProcess:\nCarbon to Graphite,\nQuartz to Glass`; break
         case 11857: string+=`Store All of Your\nTemporary Items`; break
-        case 11858: string+=`Gain:${effect.every(a=>a<=0)?` Nothing`:``}${effect[0]>0?`\n${effect[0]} Carbon`:``}${effect[1]>0?`\n${effect[1]} Quartz`:``}${effect[2]>0?`\n${effect[2]} Ammonium`:``}${effect[3]>0?`\n${effect[3]} Graphite`:``}${effect[4]>0?`\n${effect[4]} Glass`:``}${effect[5]>0?`\n${effect[5]} Hydrazine`:``}${effect[6]>0?`\n${effect[6]} Graphene`:``}${effect[7]>0?`\n${effect[7]} Diamond`:``}${effect[8]>0?`\n${effect[8]} Prismatic Bomb`:``}`; break
+        case 11858: string+=`Contains:${effect.every(a=>a<=0)?` Nothing`:``}${effect[0]>0?`\n${effect[0]} Carbon`:``}${effect[1]>0?`\n${effect[1]} Quartz`:``}${effect[2]>0?`\n${effect[2]} Ammonium`:``}${effect[3]>0?`\n${effect[3]} Graphite`:``}${effect[4]>0?`\n${effect[4]} Glass`:``}${effect[5]>0?`\n${effect[5]} Hydrazine`:``}${effect[6]>0?`\n${effect[6]} Graphene`:``}${effect[7]>0?`\n${effect[7]} Diamond`:``}${effect[8]>0?`\n${effect[8]} Prismatic Bomb`:``}`; break
         case 11859: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Attack${pl(effect[1])}\nDecrease Turn\nNumber by ${effect[2]}\nAdvance`; break
         case 11860: string+=`Turn 0 or Earlier:\nDraw ${effect[0]} Card${pl(effect[0])}\nOtherwise, Decrease\nTurn Number by ${effect[1]}`; break
         case 11861: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGun in Hand:\nApply ${effect[1]} Weak`; break
@@ -12326,6 +12326,19 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12045: string+=`Apply ${effect[0]} Burn\nIf Target Already\nHas Burn,\nGain ${effect[1]} Carbon Item${pl(effect[1])}`; break
         case 12046: string+=`Apply ${effect[0]} Armor\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
         case 12047: string+=`Apply ${effect[0]} Metallicize\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
+        case 12048: string+=`Gain ${effect[0]} Strength\nSpend a Graphene Item:\nGain ${effect[1]} More Strength`; break
+        case 12049: case 12050:
+            string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nMay Target Any Tile\nWithin Range ${target[1]}-${target[2]}`; break
+        case 12051: string+=`Target Adds ${this.effect[0]} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nPush 1 Tile`; break
+        case 12052: string+=`Process:\nGraphite and Hydrazine to\nGraphene and Hydrazine,\nGlass and Hydrazine to\n2 Prismatic Bombs`; break
+        case 12053: string+=`Process:\nGraphite and Hydrazine to\nGraphene and Hydrazine,\nGlass and Hydrazine to\n2 Prismatic Bombs\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 12054: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Block\nto All Adjacent Enemies`; break
+        case 12055: string+=`Apply ${effect[0]} Burn\nApplies Double Burn\nIf You Have Played\nMore Than ${effect[1]} Card${effect[1]>0?`s`:``}\nThis Turn`; break
+        case 12056: string+=`Gain ${effect[0]} Energy and\nDraw ${effect[1]} Card${pl(effect[1])}\nIf You Have More\nEnergy Than Base`; break
+        case 12057: string+=`Gain (E) (W) (W) and\nDraw ${effect[0]} Card${pl(effect[0])}\nIf You Have More\nMana Than Base`; break
+        case 12058: string+=`Gain (E) (E) (W) (W) and\nDraw ${effect[0]} Card${pl(effect[0])}\nIf You Have More\nMana Than Base`; break
+        case 12059: string+=`Gain (E) (E) (E) (E) and\nDraw ${effect[0]} Card${pl(effect[0])}\nIf You Have More\nMana Than Base`; break
+        case 12060: string+=`Gain ${effect[0]} Ammonium Item${pl(effect[0])}\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext Turn\nDraw ${effect[2]} More Card${pl(effect[2])}\nin 2 Turns`; break
 
         //mark p
         //mark q
