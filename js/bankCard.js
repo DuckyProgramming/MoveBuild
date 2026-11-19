@@ -12339,6 +12339,9 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12058: string+=`Gain (E) (E) (W) (W) and\nDraw ${effect[0]} Card${pl(effect[0])}\nIf You Have More\nMana Than Base`; break
         case 12059: string+=`Gain (E) (E) (E) (E) and\nDraw ${effect[0]} Card${pl(effect[0])}\nIf You Have More\nMana Than Base`; break
         case 12060: string+=`Gain ${effect[0]} Ammonium Item${pl(effect[0])}\nDraw ${effect[1]} More Card${pl(effect[1])}\nNext Turn\nDraw ${effect[2]} More Card${pl(effect[2])}\nin 2 Turns`; break
+        case 12061: string+=`Create Plant Tiles\n3 Tiles Wide\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 12062: string+=`Apply ${effect[0]} Confusion\nto All Enemies\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 12063: string+=`Create 7 Plant Tiles\nin a Circle\nDraw ${effect[0]} Card${pl(effect[0])}`; break
 
         //mark p
         //mark q

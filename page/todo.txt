@@ -1,5 +1,3 @@
-check for skills that fatigue for some reason (checkmislabel)
-
 test vincent post-split
 test evolve
 

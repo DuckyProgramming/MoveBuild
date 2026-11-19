@@ -452,7 +452,7 @@ class attack{
             case 11499: case 11500: case 11514: case 11556: case 11557: case 11570: case 11605: case 11662: case 11686: case 11687:
             case 11688: case 11739: case 11740: case 11741: case 11742: case 11744: case 11751: case 11776: case 11790: case 11808:
             case 11809: case 11900: case 11919: case 11957: case 11995: case 11999: case 12005: case 12037: case 12038: case 12049:
-            case 12050:
+            case 12050: case 12061: case 12063:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -37410,16 +37410,16 @@ class attack{
                     break
                     case 10563:
                         this.targetTile.addType(19)
-                        let offset10562=[transformDirection(0,this.relativeDirection-120),transformDirection(0,this.relativeDirection+120)]
-                        let index10562=[
-                            this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x+offset10562[0][0],this.targetTile.tilePosition.y+offset10562[0][1]),
-                            this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x+offset10562[1][0],this.targetTile.tilePosition.y+offset10562[1][1])
+                        let offset10563=[transformDirection(0,this.relativeDirection-120),transformDirection(0,this.relativeDirection+120)]
+                        let index10563=[
+                            this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x+offset10563[0][0],this.targetTile.tilePosition.y+offset10563[0][1]),
+                            this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x+offset10563[1][0],this.targetTile.tilePosition.y+offset10563[1][1])
                         ]
-                        if(index10562[0]>=0){
-                            this.battle.tileManager.tiles[index10562[0]].addType(19)
+                        if(index10563[0]>=0){
+                            this.battle.tileManager.tiles[index10563[0]].addType(19)
                         }
-                        if(index10562[1]>=0){
-                            this.battle.tileManager.tiles[index10562[1]].addType(19)
+                        if(index10563[1]>=0){
+                            this.battle.tileManager.tiles[index10563[1]].addType(19)
                         }
                     break
                     case 10585:
@@ -38011,6 +38011,26 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
                         }
+                    break
+                    case 12061:
+                        this.targetTile.addType(19)
+                        let offset12061=[transformDirection(0,this.relativeDirection-120),transformDirection(0,this.relativeDirection+120)]
+                        let index12061=[
+                            this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x+offset12061[0][0],this.targetTile.tilePosition.y+offset12061[0][1]),
+                            this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x+offset12061[1][0],this.targetTile.tilePosition.y+offset12061[1][1])
+                        ]
+                        if(index12061[0]>=0){
+                            this.battle.tileManager.tiles[index12061[0]].addType(19)
+                        }
+                        if(index12061[1]>=0){
+                            this.battle.tileManager.tiles[index12061[1]].addType(19)
+                        }
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 12063:
+                        this.targetTile.addType(19)
+                        this.battle.tileManager.typeArea(19,this.targetTile.tilePosition)
+                        this.userManager.draw(this.effect[0])
                     break
 
                 }
@@ -46750,6 +46770,11 @@ class attack{
                         if(this.lastPlayed[0].class==11){
                             this.battle.addSpecificEnergy(3,this,player,6)
                         }
+                    break
+                    case 12062:
+                        this.battle.combatantManager.allEffect(14,[this.effect[0]])
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,37,[20]))
+                        this.userManager.draw(this.effect[1])
                     break
 
                 }

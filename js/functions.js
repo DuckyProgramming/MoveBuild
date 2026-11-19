@@ -3282,9 +3282,9 @@ function checkExists(start=-1,end=-1){
 	}
 	print(`Total: ${total}`)
 }
-function checkMislabel(type,cardClass){
-	if(cardClass==undefined){
-		print('Usage: outMislabel(type[0 for regular,1 for mtg],cardClass[class to check])')
+function checkMislabel(type,check){
+	if(check==undefined){
+		print('Usage: checkMislabel(type[0 for regular,1 for mtg],check)')
 	}else{
 		let set=[]
 		let skillRegex=[/^\bdeal\s+\d+\s+damage\b/i,/^\badd\s+\d+\s+block\b/i]
@@ -3294,10 +3294,12 @@ function checkMislabel(type,cardClass){
 			let cardData=current.overlayManager.overlays[35][0].cards[a]
 			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
 			if(
-				cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
-				cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
-				cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
-				cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
+				cardData.class==1&&check==1&&!cardData.desc.includes('Damage')||
+				cardData.class==2&&check==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
+				cardData.class==3&&check==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')&&!cardData.desc.includes('Pass')||
+				cardData.class==4&&check==4&&(cardData.desc.includes('Fatigue')||cardData.desc.includes('Exhaust'))||
+				cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
+				cardData.class==11&&check==11&&skillRegex.some(reg=>reg.test(cardData.desc))
 			){
 				set.push(cardData.name)
 			}
@@ -3309,10 +3311,12 @@ function checkMislabel(type,cardClass){
 				let cardData=current.overlayManager.overlays[115][0].cards[a]
 				cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
 				if(
-					cardData.class==1&&cardClass==1&&!cardData.desc.includes('Damage')||
-					cardData.class==2&&cardClass==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
-					cardData.class==3&&cardClass==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')||
-					cardData.class==11&&cardClass==11&&skillRegex.some(reg=>reg.test(cardData.desc))
+					cardData.class==1&&check==1&&!cardData.desc.includes('Damage')||
+					cardData.class==2&&check==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
+					cardData.class==3&&check==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')&&!cardData.desc.includes('Pass')||
+					cardData.class==4&&check==4&&(cardData.desc.includes('Fatigue')||cardData.desc.includes('Exhaust'))||
+					cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
+					cardData.class==11&&check==11&&skillRegex.some(reg=>reg.test(cardData.desc))
 				){
 					set.push(cardData.name)
 				}
