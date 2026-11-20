@@ -2091,6 +2091,10 @@ class card{
             case 11077:
                 userCombatant.heal(userCombatant.base.life-userCombatant.life)
             break
+            case 12067:
+                this.battle.overlayManager.overlays[199][this.player].active=true
+                this.battle.overlayManager.overlays[199][this.player].activate([this.level])
+            break
         }
     }
     callPullEffect(){

@@ -1947,7 +1947,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 1724: string+=`1 or Less\nNon-Attack in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
         case 1725: string+=`Even X: Deal ${this.calculateEffect(effect[0],2)} Damage\nOdd X: Add ${this.calculateEffect(effect[1],3)} Block`; break
         case 1726: string+=`Add ${effect[0]} Broken Shiv${pl(effect[0])}\nto Hand\nDraw ${effect[1]} Card${pl(effect[1])}`; break
-        case 1727: string+=`Add ${effect[0]}  Shiv${pl(effect[0])}\nto Hand`; break
+        case 1727: string+=`Add ${effect[0]} Deluxe Shiv${pl(effect[0])}\nto Hand`; break
         case 1728: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Power${pl(effect[1])}`; break
         case 1729: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${pl(effect[1])}\nDiscard ${effect[2]} Random Card${pl(effect[2])}\nCreate 1 Plant Tile`; break
         case 1730: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nFor Each Construct`; break
@@ -12138,7 +12138,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 11855: string+=`Upgrade Your Hand\nGain ${effect[0]} Carbon Item${pl(effect[0])}`; break
         case 11856: string+=`Gain ${effect[0]} Strength\nProcess:\nCarbon to Graphite,\nQuartz to Glass`; break
         case 11857: string+=`Store All of Your\nTemporary Items`; break
-        case 11858: string+=`Contains:${effect.every(a=>a<=0)?` Nothing`:``}${effect[0]>0?`\n${effect[0]} Carbon`:``}${effect[1]>0?`\n${effect[1]} Quartz`:``}${effect[2]>0?`\n${effect[2]} Ammonium`:``}${effect[3]>0?`\n${effect[3]} Graphite`:``}${effect[4]>0?`\n${effect[4]} Glass`:``}${effect[5]>0?`\n${effect[5]} Hydrazine`:``}${effect[6]>0?`\n${effect[6]} Graphene`:``}${effect[7]>0?`\n${effect[7]} Diamond`:``}${effect[8]>0?`\n${effect[8]} Prismatic Bomb`:``}`; break
+        case 11858: string+=`Contains:${effect.every(a=>a<=0)?` Nothing`:`${effect[0]>0?`\n${effect[0]} Carbon`:``}${effect[1]>0?`\n${effect[1]} Quartz`:``}${effect[2]>0?`\n${effect[2]} Ammonium`:``}${effect[3]>0?`\n${effect[3]} Graphite`:``}${effect[4]>0?`\n${effect[4]} Glass`:``}${effect[5]>0?`\n${effect[5]} Hydrazine`:``}${effect[6]>0?`\n${effect[6]} Graphene`:``}${effect[7]>0?`\n${effect[7]} Diamond`:``}${effect[8]>0?`\n${effect[8]} Prismatic Bomb`:``}\nClear This Card`}`; break
         case 11859: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Attack${pl(effect[1])}\nDecrease Turn\nNumber by ${effect[2]}\nAdvance`; break
         case 11860: string+=`Turn 0 or Earlier:\nDraw ${effect[0]} Card${pl(effect[0])}\nOtherwise, Decrease\nTurn Number by ${effect[1]}`; break
         case 11861: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGun in Hand:\nApply ${effect[1]} Weak`; break
@@ -12327,7 +12327,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12046: string+=`Apply ${effect[0]} Armor\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
         case 12047: string+=`Apply ${effect[0]} Metallicize\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
         case 12048: string+=`Gain ${effect[0]} Strength\nSpend a Graphene Item:\nGain ${effect[1]} More Strength`; break
-        case 12049: case 12050:
+        case 12049: case 1727:
             string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nMay Target Any Tile\nWithin Range ${target[1]}-${target[2]}`; break
         case 12051: string+=`Target Adds ${this.effect[0]} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nPush 1 Tile`; break
         case 12052: string+=`Process:\nGraphite and Hydrazine to\nGraphene and Hydrazine,\nGlass and Hydrazine to\n2 Prismatic Bombs`; break
@@ -12342,6 +12342,40 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12061: string+=`Create Plant Tiles\n3 Tiles Wide\nDraw ${effect[0]} Card${pl(effect[0])}`; break
         case 12062: string+=`Apply ${effect[0]} Confusion\nto All Enemies\nDraw ${effect[1]} Card${pl(effect[1])}`; break
         case 12063: string+=`Create 7 Plant Tiles\nin a Circle\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 12064: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nApply ${effect[1]} Burn\nPer Skill Drawn`; break
+        case 12065: string+=`Gain ${effect[0]} Strength\nIf You Have a\nGraphene Item,\nGain ${effect[1]} More Strength`; break
+        case 12066: string+=`Apply ${effect[0]} Burn\nApply ${effect[1]} Vulnerable\nPut a Card in Exhaust\nPile in Your Hand`; break
+        case 12067: string+=`When Vanished,\nChoose and Add an\nUncommon Card of\nEquivalent Level From A\nChosen Character to Deck`; break
+        case 12068: string+=`Apply ${effect[0]} Burn\nDeal ${this.calculateEffect(effect[1],0)} Damage\nNext Turn`; break
+        case 12069: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nMore Energy Than Base:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 12070: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf (B) (B) is Spent,\nGain (B)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 12071: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMore Energy Than Base:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 12072: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf (B) (B) is Spent,\nGain (B)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 12073: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nMore Energy Than Base:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${pl(effect[2])}`; break
+        case 12074: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf (B) (B) is Spent,\nGain (B)\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 12075: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nAdd ${effect[1]} Block\nto All Adjacent Enemies`; break
+        case 12076: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Vulnerable\nDeal ${this.calculateEffect(effect[2],0)} Damage to\nEvery Other Enemy`; break
+        case 12077: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf You Have an\nHydrazine Item,\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
+        case 12078: string+=`Add All of Your\nTemporary Items\nto This Card`; break
+        case 12079: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]} Shock`; break
+        case 12080: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]} Burn`; break
+        case 12081: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand\nProcess:\nCarbon to Graphite,\nQuartz to Glass`; break
+        case 12082: string+=`Add ${effect[0]} Miracle${pl(effect[0])}\nto Hand\nDraw ${effect[1]} Card${pl(effect[1])}\nProcess:\nCarbon to Graphite,\nQuartz to Glass`; break
+        case 12083: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have a\nGraphite Item,\nTarget Adds ${effect[1]} Block\nand Gains ${effect[2]} Weak`; break
+        case 12084: string+=`Gain ${effect[0]} Dexterity\nProcess:\nAmmonium to Hydrazine`; break
+        case 12085: string+=`Process:\nCarbon to Graphite,\nQuartz to Glass\nDraw ${effect[0]} Card${pl(effect[0])}\nPer Process in Hand`; break
+        case 12086: string+=`Process:\nGraphene to Diamond\nIf You Have a\nGraphite, Quartz,\nand Hydrazine Item,\nGain ${effect[0]} Diamond Item${pl(effect[0])}`; break
+        case 12087: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nIf Something is Ahead,\nItems Apply Statuses:\nGraphite: ${effect[1]} Weak\nGlass: ${effect[2]} Vulnerable\nHydrazine: ${effect[3]} Frail`; break
+        case 12088: string+=`Steal All Block\nFrom All Enemies\nProcess:\nGraphene to Diamond`; break
+        case 12089: string+=`Apply ${effect[0]} Burn\nProcess:\nAmmonium to Hydrazine`; break
+        case 12090: string+=`Gain ${effect[0]} Carbon Item${pl(effect[0])}\nGain ${effect[1]} Quartz Item${pl(effect[1])}`; break
+        case 12091: string+=`Gain ${effect[0]} Carbon Item${pl(effect[0])}\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
+        case 12092: string+=`Gain ${effect[0]} Quartz Item${pl(effect[0])}\nGain ${effect[1]} Ammonium Item${pl(effect[1])}`; break
+        case 12093: string+=`Gain ${effect[0]} Item Slot${pl(effect[0])}\nThis Combat\nGain ${effect[1]} Carbon, Quartz,\nor Ammonium Item${pl(effect[0])}`; break
+        case 12094: string+=`Take Another Turn\nGain ${effect[0]} Carbon Item${pl(effect[0])}\nGain ${effect[1]} Quartz Item${pl(effect[1])}\nGain ${effect[2]} Ammonium Item${pl(effect[2])}`; break
+        case 12095: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nIf You Have a\nHydrazine Item,\nDeals Double Damage`; break
+        case 12096: string+=`Gain ${effect[0]} Item Slot${pl(effect[0])}\nThis Combat\nGain ${effect[1]} Carbon Item${pl(effect[1])}\nGain ${effect[2]} Quartz Item${pl(effect[2])}\nGain ${effect[3]} Ammonium Item${pl(effect[3])}`; break
+        case 12097: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen a Process is Played`; break
 
         //mark p
         //mark q

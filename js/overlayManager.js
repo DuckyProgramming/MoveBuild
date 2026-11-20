@@ -207,7 +207,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[131,0,2])],//bring in quantity discard cards, no return
                     [new overlay(this.layer,this.battle,0,2,[130])],//double attack or defense
                     [new overlay(this.layer,this.battle,0,2,[132])],//scry, exhaust top, no return
-                    //113->130
+                    [new overlay(this.layer,this.battle,0,21,[1,0])],//pick a character for locked archive
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()

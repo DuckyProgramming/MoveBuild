@@ -346,7 +346,8 @@ class attack{
             case 11848: case 11849: case 11850: case 11852: case 11859: case 11861: case 11871: case 11872: case 11873: case 11874: case 11875: case 11876: case 11878: case 11884: case 11886: case 11892: case 11897: case 11903: case 11905: case 11908:
             case 11909: case 11910: case 11911: case 11912: case 11913: case 11914: case 11915: case 11917: case 11918: case 11920: case 11926: case 11929: case 11930: case 11934: case 11942: case 11944: case 11945: case 11946: case 11947: case 11948:
             case 11949: case 11950: case 11953: case 11963: case 11964: case 11965: case 11969: case 11970: case 11971: case 11972: case 11973: case 11974: case 11975: case 11981: case 11982: case 11988: case 11991: case 11992: case 12001: case 12003:
-            case 12004: case 12006: case 12012: case 12014: case 12015: case 12023: case 12024: case 12039: case 12040: case 12041: case 12044: case 12045: case 12046: case 12047: case 12051: case 12054: case 12055:
+            case 12004: case 12006: case 12012: case 12014: case 12015: case 12023: case 12024: case 12039: case 12040: case 12041: case 12044: case 12045: case 12046: case 12047: case 12051: case 12054: case 12055: case 12064: case 12066: case 12068:
+            case 12071: case 12072: case 12076: case 12079: case 12080: case 12083: case 12089: case 12095:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -452,7 +453,7 @@ class attack{
             case 11499: case 11500: case 11514: case 11556: case 11557: case 11570: case 11605: case 11662: case 11686: case 11687:
             case 11688: case 11739: case 11740: case 11741: case 11742: case 11744: case 11751: case 11776: case 11790: case 11808:
             case 11809: case 11900: case 11919: case 11957: case 11995: case 11999: case 12005: case 12037: case 12038: case 12049:
-            case 12050: case 12061: case 12063:
+            case 12050: case 12061: case 12063: case 12069: case 12070: case 12075: case 12077: case 12087:
                 //mark 3
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
@@ -1335,7 +1336,7 @@ class attack{
                     case 5300: case 5418: case 5817: case 5818: case 5819: case 5820: case 5856: case 7128: case 7129: case 8199:
                     case 8200: case 8201: case 8756: case 8772: case 8773: case 9441: case 9442: case 9444: case 9463: case 9464:
                     case 9459: case 9460: case 9514: case 9539: case 9540: case 9541: case 9542: case 9679: case 9680: case 10112:
-                    case 10113: case 10147: case 11234: case 11479: case 11964: case 11965:
+                    case 10113: case 10147: case 11234: case 11479: case 11964: case 11965: case 12079: case 12080:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
                     break
                     case 35:
@@ -9223,6 +9224,30 @@ class attack{
                     case 12054:
                         this.battle.combatantManager.areaAbstract(20,[this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
+                    case 12071:
+                        if(this.energy>this.battle.getEnergyBase(this.player)){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 12072:
+                        if(this.selfCall(25)>=2){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 12079:
+                        this.targetCombatant.statusEffect('Shock',this.effect[1])
+                    break
+                    case 12080:
+                        this.targetCombatant.statusEffect('Burn',this.effect[1])
+                    break
+                    case 12083:
+                        if(this.battle.itemManager.hasItem(findName('Graphite',types.item),this.player)){
+                            this.targetCombatant.addBlock(this.effect[2])
+                            this.targetCombatant.statusEffect('Weak',this.effect[2])
+                        }
+                    break
 
                 }
                 //mark 1s
@@ -14100,6 +14125,18 @@ class attack{
                             this.userManager.hand.upgrade(this.effect[1])
                         }
                     break
+                    case 12073:
+                        if(this.energy>this.battle.getEnergyBase(this.player)){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 12074:
+                        if(this.selfCall(25)>=2){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 2s
@@ -14228,7 +14265,7 @@ class attack{
                     break
                     case 973: case 1672: case 2140: case 2141: case 2159: case 2160: case 2180: case 2436: case 2459: case 2652:
                     case 4113: case 4369: case 4370: case 4371: case 4948: case 5113: case 6730: case 6821: case 7329: case 7491:
-                    case 8807: case 10060: case 10666:
+                    case 8807: case 10060: case 10666: case 12087:
                         let offset=transformDirection(0,this.relativeDirection)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x+offset[0],this.targetTile.tilePosition.y+offset[1])
                         if(index>=0){
@@ -14312,6 +14349,11 @@ class attack{
                                 break
                                 case 10666:
                                     this.battle.combatantManager.combatants[index].statusEffect('Poison',this.effect[1])
+                                break
+                                case 12087:
+                                    this.battle.combatantManager.combatants[index].statusEffect('Weak',this.effect[1]*this.battle.itemManager.quantityItem(findName('Graphite',types.item),this.player))
+                                    this.battle.combatantManager.combatants[index].statusEffect('Vulnerable',this.effect[1]*this.battle.itemManager.quantityItem(findName('Glass',types.item),this.player))
+                                    this.battle.combatantManager.combatants[index].statusEffect('Frail',this.effect[1]*this.battle.itemManager.quantityItem(findName('Hydrazine',types.item),this.player))
                                 break
                             }
                         }
@@ -17305,6 +17347,27 @@ class attack{
                     break
                     case 12038:
                         this.userCombatant.addBlock(this.effect[1]*this.userManager.hand.numberAbstract(4,[[11]]))
+                    break
+                    case 12069:
+                        if(this.energy>this.battle.getEnergyBase(this.player)){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 12070:
+                        if(this.selfCall(25)>=2){
+                            this.battle.addSpecificEnergy(1,this.player,2)
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 12075:
+                        this.battle.combatantManager.areaAbstract(20,[this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    break
+                    case 12077:
+                        if(this.battle.itemManager.hasItem(findName('Hydrazine',types.item),this.player)){
+                            this.battle.combatantManager.areaAbstract(0,[this.effect[1],this.user,0],this.targetTile.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetTile.position.x,this.targetTile.position.y,10,[10]))
+                        }
                     break
 
                 }
@@ -24458,6 +24521,25 @@ class attack{
                             this.userManager.draw(this.effect[0])
                         }
                     break
+                    case 12065:
+                        this.userCombatant.statusEffect('Strength',this.battle.itemManager.hasItem(findName('Graphene',types.item),this.player)?this.effect[0]+this.effect[1]:this.effect[0])
+                    break
+                    case 12084:
+                        this.userCombatant.statusEffect('Dexterity',this.effect[0])
+                        this.battle.itemManager.process(this.player,[findName('Ammonium',types.item)],[findName('Hydrazine',types.item)])
+                    break
+                    case 12094:
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Quartz',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
+                        }
+                    break
 
                 }
                 //mark 4
@@ -31326,6 +31408,9 @@ class attack{
                         this.userManager.draw(this.effect[2])
                         this.userManager.hand.discard(this.effect[3])
                     break
+                    case 12097:
+                        this.userCombatant.statusEffect('Process Block',this.effect[0])
+                    break
 
                 }
                 //mark 5
@@ -33333,6 +33418,10 @@ class attack{
                     case 12036:
                         this.battle.addSpecificEnergy(this.effect[0]*this.energy,this.player,6)
                     break
+                    case 12068:
+                        this.targetCombatant.statusEffect('Burn',this.effect[0])
+                        this.targetCombatant.statusEffect('Take Damage',this.effect[1])
+                    break
 
                 }
                 //mark 6
@@ -33785,6 +33874,18 @@ class attack{
                     case 12022:
                         this.userCombatant.statusEffect('Buffer',this.effect[0])
                         this.userCombatant.statusEffect('Vulnerable',this.effect[1])
+                    break
+                    case 12064:
+                        let result12064=this.userManager.drawReturn(this.effect[0])
+                        let total12064=0
+                        for(let a=0,la=result12064.length;a<la;a++){
+                            if(result12064[a].class==11){
+                                total12064++
+                            }
+                        }
+                        if(total12064>0){
+                            this.targetCombatant.statusEffect('Burn',total12064*this.effect[1])
+                        }
                     break
                 }
                 //mark 13
@@ -38032,6 +38133,11 @@ class attack{
                         this.battle.tileManager.typeArea(19,this.targetTile.tilePosition)
                         this.userManager.draw(this.effect[0])
                     break
+                    case 12076:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        this.battle.combatantManager.allEffect(55,[this.targetCombatant.id,this.effect[2],this.user])
+                    break
 
                 }
                 //mark 8
@@ -38515,6 +38621,16 @@ class attack{
                     break
                     case 12055:
                         this.targetCombatant.statusEffect('Burn',this.effect[0]*(this.userManager.hand.turnPlayed[0]>=this.effect[1]?2:1))
+                    break
+                    case 12066:
+                        this.targetCombatant.statusEffect('Burn',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        this.battle.overlayManager.overlays[19][this.player].active=true
+                        this.battle.overlayManager.overlays[19][this.player].activate()
+                    break
+                    case 12089:
+                        this.targetCombatant.statusEffect('Burn',this.effect[0])
+                        this.battle.itemManager.process(this.player,[findName('Ammonium',types.item)],[findName('Hydrazine',types.item)])
                     break
 
                 }
@@ -41982,6 +42098,14 @@ class attack{
                         }
                     break
                     case 11858:
+                        let list11858=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                        for(let a=0,la=list11858.length;a<la;a++){
+                            for(let b=0,lb=list11858[a].length;b<lb;b++){
+                                if(list11858[a][b].id==this.id){
+                                    list11858[a][b].effect[1]=[0,0,0,0,0,0,0,0,0]
+                                }
+                            }
+                        }
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
                         }
@@ -42181,6 +42305,104 @@ class attack{
                         }
                         this.userCombatant.statusEffect('Temporary Draw',this.effect[1])
                         this.userCombatant.statusEffect('Temporary Draw Next Turn',this.effect[2])
+                    break
+                    case 12078:
+                        let list12078=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                        for(let a=0,la=list12078.length;a<la;a++){
+                            for(let b=0,lb=list12078[a].length;b<lb;b++){
+                                if(list12078[a][b].id==this.id){
+                                    list12078[a][b].effect[1][0]+=this.battle.itemManager.quantityItem(findName('Carbon',types.item),this.player)
+                                    list12078[a][b].effect[1][1]+=this.battle.itemManager.quantityItem(findName('Quartz',types.item),this.player)
+                                    list12078[a][b].effect[1][2]+=this.battle.itemManager.quantityItem(findName('Ammonium',types.item),this.player)
+                                    list12078[a][b].effect[1][3]+=this.battle.itemManager.quantityItem(findName('Graphite',types.item),this.player)
+                                    list12078[a][b].effect[1][4]+=this.battle.itemManager.quantityItem(findName('Glass',types.item),this.player)
+                                    list12078[a][b].effect[1][5]+=this.battle.itemManager.quantityItem(findName('Hydrazine',types.item),this.player)
+                                    list12078[a][b].effect[1][6]+=this.battle.itemManager.quantityItem(findName('Graphene',types.item),this.player)
+                                    list12078[a][b].effect[1][7]+=this.battle.itemManager.quantityItem(findName('Diamond',types.item),this.player)
+                                    list12078[a][b].effect[1][8]+=this.battle.itemManager.quantityItem(findInternal(variants.mtg?'12 Random Damage, 1 Mana, Draw 1':'12 Random Damage, 1 Energy, Draw 1',types.item),this.player)
+                                }
+                            }
+                        }
+                    break
+                    case 12081:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                        this.battle.itemManager.process(this.player,[findName('Carbon',types.item)],[findName('Graphite',types.item)])
+                        this.battle.itemManager.process(this.player,[findName('Quartz',types.item)],[findName('Glass',types.item)])
+                    break
+                    case 12082:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                        this.battle.itemManager.process(this.player,[findName('Carbon',types.item)],[findName('Graphite',types.item)])
+                        this.battle.itemManager.process(this.player,[findName('Quartz',types.item)],[findName('Glass',types.item)])
+                    break
+                    case 12085:
+                        this.battle.itemManager.process(this.player,[findName('Carbon',types.item)],[findName('Graphite',types.item)])
+                        this.battle.itemManager.process(this.player,[findName('Quartz',types.item)],[findName('Glass',types.item)])
+                        this.userManager.draw(this.userManager.hand.numberAbstract(3,[91])*this.effect[0])
+                    break
+                    case 12086:
+                        if(
+                            this.battle.itemManager.hasItem(findName('Graphite',types.item),this.player)||
+                            this.battle.itemManager.hasItem(findName('Glass',types.item),this.player)||
+                            this.battle.itemManager.hasItem(findName('Hydrazine',types.item),this.player)
+                        ){
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.itemManager.addItem(findName('Diamond',types.item),this.player)
+                            }
+                        }
+                        this.battle.itemManager.process(this.player,[findName('Graphene',types.item)],[findName('Diamond',types.item)])
+                    break
+                    case 12088:
+                        this.battle.combatantManager.allEffect(72,[this.userCombatant])
+                        this.battle.itemManager.process(this.player,[findName('Graphene',types.item)],[findName('Diamond',types.item)])
+                    break
+                    case 12090:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Quartz',types.item),this.player)
+                        }
+                    break
+                    case 12091:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
+                        }
+                    break
+                    case 12092:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Quartz',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
+                        }
+                    break
+                    case 12093:
+                        this.battle.itemManager.addItemSlots(this.effect[0],this.player)
+                        this.battle.itemManager.tempSlots[this.player]+=this.effect[0]
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName(['Carbon','Quartz','Ammonium'][floor(random(0,3))],types.item),this.player)
+                        }
+                    break
+                    case 12096:
+                        this.battle.itemManager.addItemSlots(this.effect[0],this.player)
+                        this.battle.itemManager.tempSlots[this.player]+=this.effect[0]
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Carbon',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Quartz',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[3];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
+                        }
                     break
 
                 }

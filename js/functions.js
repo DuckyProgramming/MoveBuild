@@ -24,6 +24,7 @@ outClass: view classes by character
 outEncounter: view encounter listing
 outEncounterOld: deprecated version of the above
 outItem: view item listing
+outItemCard: view number of cards that mention certain items
 outListing: view listing of cards
 outListingOld: deprecated version of the above
 outMtg: view mtg colors by character
@@ -3606,7 +3607,8 @@ function checkUnusedMod(){
 			print(comb.name)
 		}
 	})
-}function outUnnecessary(start=-99999,end=99999){
+}
+function checkUnnecessary(start=-99999,end=99999){
 	let lookup=range(0,end-start).map(a=>0)
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
@@ -3645,7 +3647,7 @@ function checkUnusedMod(){
 		}
 	}
 }
-function outUnnecessarySpec(spec,start=-99999,end=99999){
+function checkUnnecessarySpec(spec,start=-99999,end=99999){
 	let lookup=range(0,end-start).map(a=>0)
 	for(let a=0,la=types.card.length;a<la;a++){
 		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
@@ -3890,6 +3892,34 @@ function outItem(){
 Uncommon: ${manager.listing.item[1].length}
 Rare: ${manager.listing.item[2].length}
 Temp: ${manager.listing.item[3].length}`)
+}
+function outItemCard(){
+	let set=[
+		'Carbon','Quartz','Ammonium',
+		'Graphite','Glass','Hydrazine',
+		'Prismatic','Graphene','Diamond',
+		//'to Graphite','to Glass','to Hydrazine',
+		//'to Prismatic','to Graphene','to Diamond',
+		//'Carbon to Graphite','Quartz to Glass','Ammonium to Hydrazine'
+	]
+	let total=set.map(a=>0)
+	let overTotal=0
+	current.overlayManager.overlays[35][0].active=true
+	current.overlayManager.overlays[35][0].activate([0,-99])
+	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=current.overlayManager.overlays[35][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		let lc=cardData.desc.toLowerCase()
+		if(cardData.list==14){
+			for(let b=0,lb=set.length;b<lb;b++){
+				if(lc.includes(set[b].toLowerCase())){
+					total[b]++
+					overTotal++
+				}
+			}
+		}
+	}
+	print(total.map((a,index)=>`${set[index]}: ${a}`).join('\n')+`\nGrand Total: ${overTotal}`)
 }
 function outListing(){
 	current.collectionManager.executeQuery()

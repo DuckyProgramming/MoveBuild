@@ -1894,6 +1894,14 @@ class battle{
                 userCombatant.statusEffect('Temporary Dexterity',userCombatant.getStatus('Coffee Temporary Dexterity'))
             }
         }
+        if(card.spec.includes(91)){
+            if(userCombatant.getStatus('Process Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('Process Draw'))
+            }
+            if(userCombatant.getStatus('Process Block')>0){
+                userCombatant.addBlock(userCombatant.getStatus('Process Block'))
+            }
+        }
         if(card.spec.includes(12)&&userCombatant.getStatus('Split Card Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Split Card Block'))
         }

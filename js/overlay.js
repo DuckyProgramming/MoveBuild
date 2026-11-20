@@ -1763,6 +1763,17 @@ class overlay{
                                 }
                             }
                         break
+                        case 64:
+                            list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[args[3]])
+                            for(let a=0,la=this.options;a<la;a++){
+                                if(list[args[1]].length>0){
+                                    let index=floor(random(0,list[args[1]].length))
+                                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.standardColorize(list[args[1]][index]),-1))
+                                    this.cards[a].upSize=true
+                                    list[args[1]].splice(index,1)
+                                }
+                            }
+                        break
                     }
                     if(this.args[0]==0||this.args[0]==2){
                         this.cards.forEach(card=>card.nonCalc=true)
@@ -2223,6 +2234,13 @@ class overlay{
                         this.options=2
                         this.cost=60
                         this.changes=0
+                    break
+                }
+            break
+            case 21:
+                switch(this.args[0]){
+                    case 1:
+                        this.args[1]=args[0]
                     break
                 }
             break
@@ -4153,7 +4171,14 @@ class overlay{
                 this.layer.rect(this.layer.width/2,this.layer.height/2-120+floor(constants.playerNumber/5)*20,770,60+floor(constants.playerNumber/5)*40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text('Select Disguise Target',this.layer.width/2,this.layer.height/2-120)
+                switch(this.args[0]){
+                    case 0:
+                        this.layer.text('Select Disguise Target',this.layer.width/2,this.layer.height/2-120)
+                    break
+                    case 1:
+                        this.layer.text('Select Archive Target',this.layer.width/2,this.layer.height/2-120)
+                    break
+                }
                 let jump=0
                 for(let a=0,la=constants.playerNumber;a+jump<la;a++){
                     if(a+1==this.battle.player[this.player]){
@@ -6442,6 +6467,10 @@ class overlay{
                                 case 0:
                                     this.battle.relicManager.detail[458][this.player].push(a+1+jump)
                                 break
+                                case 1:
+                                    this.battle.overlayManager.overlays[3][this.player].active=true
+                                    this.battle.overlayManager.overlays[3][this.player].activate([this.args[1],1,64,a+1+jump])
+                                break
                             }
                         }
                     }
@@ -8153,6 +8182,10 @@ class overlay{
                             switch(this.args[0]){
                                 case 0:
                                     this.battle.relicManager.detail[458][this.player].push(a+1+jump)
+                                break
+                                case 1:
+                                    this.battle.overlayManager.overlays[3][this.player].active=true
+                                    this.battle.overlayManager.overlays[3][this.player].activate([this.args[1],1,64,a+1+jump])
                                 break
                             }
                         }

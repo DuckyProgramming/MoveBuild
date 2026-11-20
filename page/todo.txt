@@ -1,17 +1,20 @@
-test vincent post-split
+test diamond/graphene
 test evolve
 
-CS 155 [ENDSIEG ULTIMATE]
-
-outunnecessarygeneral
+CS 156 [ENDSIEG ULTIMATE]
 
 diff 26 anew
 act 5 (1453) (1945)
 the map shrinks by 1 tile every turn
 
+revert airi symbol
 better looking sagume symbol
 and her wing in general
 
-bad vincent cards (still)
+vincent/edgar tutorials out of date
+
+fight the fat duck
+
+is capitalist weak to being manipulated
 
 

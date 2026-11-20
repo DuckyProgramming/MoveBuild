@@ -109,7 +109,7 @@ constants.status={
         'Riptide Boost','Shuffle Draw Search','Turn Rebound','Single Splash Damage Next Turn','Single Splash Damage in 2 Turns','Attack Discover Attack','Counter 2 Times','Movement Draw','Defense Draw Per Turn','Wish Block',
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
-        'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust','Damage Cap Once','Damage Cap Once Per Turn',
+        'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust','Damage Cap Once','Damage Cap Once Per Turn','Process Draw','Process Block',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -221,7 +221,7 @@ constants.status={
         0,1,0,2,2,0,2,0,0,0,//107
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
-        0,0,0,0,0,0,2,0,
+        0,0,0,0,0,0,2,0,0,0,//110
     ],
     /*
     0-none
@@ -342,7 +342,7 @@ constants.status={
         2,2,2,0,0,2,0,2,2,2,//107
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
-        2,2,2,2,2,2,0,0,
+        2,2,2,2,2,2,0,0,2,2,//110
     ]
     /*
     0-good
@@ -1031,8 +1031,8 @@ class combatant{
             break
             case 'Adrian Kane':
                 //this.statusEffect('Damage Cap',diffUnfair?25:50)
-                // this.statusEffect('Damage Cap Once Per Turn',diffUnfair?20:25)
                 this.statusEffect('Damage Cap Once',diffUnfair?20:25)
+                this.statusEffect('Damage Cap Once Per Turn',diffUnfair?20:25)
             break
             case 'Armored Biker':
                 this.statusEffect('Metallicize',diffUnfair?10:6)

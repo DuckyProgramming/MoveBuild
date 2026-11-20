@@ -1260,6 +1260,12 @@ class combatantManager{
                             this.combatants[args[1]].addBlock(preLife-this.combatants[a].life)
                         }
                     break
+                    case 72:
+                        if(this.combatants[a].block>0){
+                            args[0].addBlock(this.combatants[a].block)
+                        }
+                        this.combatants[a].block=0
+                    break
                 }
             }
         }
