@@ -248,20 +248,6 @@ class relicManager{
             this.total[player]--
         }
     }
-    loseRandomRelic(player){
-        let list=[]
-        for(let a=1,la=this.active.length;a<la;a++){
-            if(this.active[a][player+1]>0){
-                list.push(a)
-            }
-        }
-        if(list.length>0){
-            let index=list[floor(random(0,list.length))]
-            this.active[index][0]-=1
-            this.active[index][player+1]-=1
-            this.lose(index,player)
-        }
-    }
     loseRandomRelicMult(player,mult){
         let list=[]
         for(let a=1,la=this.active.length;a<la;a++){
@@ -1482,16 +1468,44 @@ class relicManager{
         }
     }
     loseRandomRelic(player){
-        let possible=[]
+        //let possible=[]
+        let possible=[[],[]]
         for(let a=0,la=this.relics.length;a<la;a++){
             if(this.relics[a].player==player&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].active&&this.relics[a].type>0){
-                possible.push(this.relics[a].type)
+                if(this.relics[a].rarity!=4){
+                    possible[0].push(this.relics[a].type)
+                }
+                possible[1].push(this.relics[a].type)
             }
         }
-        if(possible.length>0){
-            this.loseRelic(possible[floor(random(0,possible.length))],player)
+        for(let a=0,la=possible.length;a<la;a++){
+            if(possible[a].length>0){
+                this.loseRelic(randin(possible[a]),player)
+                break
+                //this.loseRelic(possible[floor(random(0,possible.length))],player)
+            }
         }
     }
+    /*loseRandomRelic(player){
+        let list=[]
+        for(let a=1,la=this.active.length;a<la;a++){
+            if(this.active[a][player+1]>0){
+                list.push(a)
+            }
+        }
+        if(list.filter(a=>types.relic[a].rarity!=4).length>0){
+            let index=randin(list.filter(a=>types.relic[a].rarity!=4))
+            this.active[index][0]-=1
+            this.active[index][player+1]-=1
+            this.lose(index,player)
+        }else if(list.length>0){
+            //let index=list[floor(random(0,list.length))]
+            let index=randin(list)
+            this.active[index][0]-=1
+            this.active[index][player+1]-=1
+            this.lose(index,player)
+        }
+    }*/
     clearRelicsSin(player){
         for(let a=0,la=this.relics.length;a<la;a++){
             if(this.relics[a].player==player&&this.relics[a].rarity!=4&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].active&&this.relics[a].type>0){

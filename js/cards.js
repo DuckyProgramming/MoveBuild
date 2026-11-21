@@ -33971,20 +33971,6 @@ types.card=[
             ],
         },
     },{
-        name:'Restricted\nArchive',rarity:1,list:14,
-        levels:[
-            {effect:[],attack:12067,cost:3,target:[0],spec:[1,15],limit:5,class:11},
-            {effect:[],attack:12067,cost:2,target:[0],spec:[1,15],limit:3,class:11},
-            {effect:[],attack:12067,cost:1,target:[0],spec:[1,15],limit:1,class:11},
-        ],mtg:{
-            rarity:1,list:-1,color:[4,5],
-            levels:[
-                {effect:[],attack:12067,cost:[4,5,-1,-1],target:[0],spec:[1,15],limit:5,class:11},
-                {effect:[],attack:12067,cost:[4,5,-1],target:[0],spec:[1,15],limit:3,class:11},
-                {effect:[],attack:12067,cost:[4,5],target:[0],spec:[1,15],limit:1,class:11},
-            ],
-        },
-    },{
         name:'Lumberyard',rarity:1,list:14,
         levels:[
             {effect:[2,7],attack:12068,cost:1,target:[2,1,1],spec:[],class:11},
@@ -34234,6 +34220,20 @@ types.card=[
                 {effect:[3],attack:12097,cost:[1,2],target:[0],spec:[],class:4},
                 {effect:[5],attack:12097,cost:[1,2],target:[0],spec:[],class:4},
                 {effect:[6],attack:12097,cost:[1,2],target:[0],spec:[],class:4},
+            ],
+        },
+    },{
+        name:'Sealed\nBottle',rarity:1,list:14,
+        levels:[
+            {effect:[],attack:12099,cost:3,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[],attack:12099,cost:2,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[],attack:12099,cost:1,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:-1,color:[2,4],
+            levels:[
+                {effect:[],attack:12099,cost:[2,4,-1,-1],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[],attack:12099,cost:[2,4,-1],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[],attack:12099,cost:[2,4],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -56047,20 +56047,6 @@ types.card=[
             ],
         },
     },{
-        name:'Denounce',rarity:1,list:24,
-        levels:[
-            {effect:[],attack:9431,cost:3,target:[0],spec:[15],limit:1,class:11},
-            {effect:[],attack:9431,cost:3,target:[0],spec:[15],limit:2,class:11},
-            {effect:[],attack:9431,cost:3,target:[0],spec:[15],limit:3,class:11},
-        ],mtg:{
-            rarity:1,list:24,color:[3,5],
-            levels:[
-                {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:1,class:11},
-                {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:2,class:11},
-                {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:3,class:11},
-            ],
-        },
-    },{
         name:'Civil\nWar',rarity:2,list:24,
         levels:[
             {effect:[15,1],attack:9628,cost:1,target:[2,1,1],spec:[0,85],class:1},
@@ -56674,6 +56660,20 @@ types.card=[
                 {effect:[1],attack:11755,cost:[2,4,-1],target:[0],spec:[],class:4},
                 {effect:[1],attack:11755,cost:[12,-1],target:[0],spec:[],class:4},
                 {effect:[1],attack:11755,cost:[12],target:[0],spec:[],class:4},
+            ],
+        },
+    },{
+        name:'Restricted\nArchive',rarity:1,list:24,
+        levels:[
+            {effect:[],attack:12067,cost:3,target:[0],spec:[1,15],limit:5,class:11},
+            {effect:[],attack:12067,cost:2,target:[0],spec:[1,15],limit:3,class:11},
+            {effect:[],attack:12067,cost:1,target:[0],spec:[1,15],limit:1,class:11},
+        ],mtg:{
+            rarity:1,list:-1,color:[4,5],
+            levels:[
+                {effect:[],attack:12067,cost:[4,5,-1,-1],target:[0],spec:[1,15],limit:5,class:11},
+                {effect:[],attack:12067,cost:[4,5,-1],target:[0],spec:[1,15],limit:3,class:11},
+                {effect:[],attack:12067,cost:[4,5],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
     },
@@ -62331,20 +62331,6 @@ types.card=[
             ],
         },
     },{
-        name:'Port\nPriority',rarity:1,list:-9,
-        levels:[
-            {effect:[8,4],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[12,6],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[14,8],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:-1,color:[3],
-            levels:[
-                {effect:[6,4],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
-                {effect:[8,6],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
-                {effect:[10,8],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
         name:'Reductive',rarity:0,list:-9,
         levels:[
             {effect:[2],attack:11026,cost:1,target:[2,1,3],spec:[],class:11},
@@ -63406,6 +63392,20 @@ types.card=[
                 {effect:[1,5],attack:10274,cost:[1],target:[0],spec:[2],class:11},
                 {effect:[1,8],attack:10274,cost:[1],target:[0],spec:[2],class:11},
                 {effect:[1,10],attack:10274,cost:[1],target:[0],spec:[2],class:11},
+            ],
+        },
+    },{
+        name:'Port\nPriority',rarity:0,list:-9,
+        levels:[
+            {effect:[8,4],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12,6],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,8],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:0,list:-9,color:[3],
+            levels:[
+                {effect:[6,4],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[8,6],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[10,8],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },
@@ -70248,20 +70248,6 @@ types.card=[
                 {effect:[1,1,1],attack:11030,cost:[3,5,-1],target:[0],spec:[],class:9},
                 {effect:[2,1,1],attack:11030,cost:[3,5,-1],target:[0],spec:[],class:9},
                 {effect:[3,1,1],attack:11030,cost:[3,5,-1],target:[0],spec:[],class:9},
-            ],
-        },
-    },{
-        name:'Closed\nPocket',rarity:-1,list:-8,
-        levels:[
-            {effect:[2,0],attack:183,cost:-1,target:[0],spec:[2],class:11},
-            {effect:[3,0],attack:183,cost:-1,target:[0],spec:[2],class:11},
-            {effect:[3,1],attack:183,cost:-1,target:[0],spec:[2],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2],
-            levels:[
-                {effect:[1,1],attack:183,cost:[2,-3],target:[0],spec:[2],class:11},
-                {effect:[1,2],attack:183,cost:[2,-3],target:[0],spec:[2],class:11},
-                {effect:[1,3],attack:183,cost:[2,-3],target:[0],spec:[2],class:11},
             ],
         },
     },

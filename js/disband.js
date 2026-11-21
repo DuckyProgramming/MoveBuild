@@ -69989,6 +69989,20 @@ types.disband=[
                 {effect:[1,1],attack:12093,cost:[16],target:[0],spec:[],class:11},
             ],
         },
+    },{
+        name:'Denounce',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:9431,cost:3,target:[0],spec:[15],limit:1,class:11},
+            {effect:[],attack:9431,cost:3,target:[0],spec:[15],limit:2,class:11},
+            {effect:[],attack:9431,cost:3,target:[0],spec:[15],limit:3,class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3,5],
+            levels:[
+                {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:1,class:11},
+                {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:2,class:11},
+                {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:3,class:11},
+            ],
+        },
     },
 
     //mark di

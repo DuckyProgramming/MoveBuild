@@ -5585,6 +5585,20 @@ types.invalid=[
                 {effect:[10],attack:11757,cost:[],target:[0],spec:[2],class:11},
             ],
         },
+    },{
+        name:'Closed\nPocket',rarity:-1,list:-8,
+        levels:[
+            {effect:[2,0],attack:183,cost:-1,target:[0],spec:[2],class:11},
+            {effect:[3,0],attack:183,cost:-1,target:[0],spec:[2],class:11},
+            {effect:[3,1],attack:183,cost:-1,target:[0],spec:[2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[1,1],attack:183,cost:[2,-3],target:[0],spec:[2],class:11},
+                {effect:[1,2],attack:183,cost:[2,-3],target:[0],spec:[2],class:11},
+                {effect:[1,3],attack:183,cost:[2,-3],target:[0],spec:[2],class:11},
+            ],
+        },
     },
 
     //mark er

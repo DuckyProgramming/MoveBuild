@@ -2095,6 +2095,9 @@ class card{
                 this.battle.overlayManager.overlays[199][this.player].active=true
                 this.battle.overlayManager.overlays[199][this.player].activate([this.level])
             break
+            case 12099:
+                this.battle.itemManager.addItemSlots(1,this.player)
+            break
         }
     }
     callPullEffect(){
