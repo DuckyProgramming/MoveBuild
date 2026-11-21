@@ -2086,20 +2086,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Queen of\nGlass',rarity:-1,list:-8,
-        levels:[
-            {effect:[10,10],attack:1100,cost:0,target:[2,1,1],spec:[2,36],class:1},
-            {effect:[14,14],attack:1100,cost:0,target:[2,1,1],spec:[2,36],class:1},
-            {effect:[16,16],attack:1100,cost:0,target:[2,1,1],spec:[2,36],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[10,10],attack:1100,cost:[],target:[2,1,1],spec:[2,36],class:1},
-                {effect:[14,14],attack:1100,cost:[],target:[2,1,1],spec:[2,36],class:1},
-                {effect:[16,16],attack:1100,cost:[],target:[2,1,1],spec:[2,36],class:1},
-            ],
-        },
-    },{
         name:'Fiend\nFire',rarity:-1,list:-8,
         levels:[
             {effect:[7],attack:419,cost:2,target:[2,1,6],spec:[0],class:1},
@@ -39848,20 +39834,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Outta\nHere',rarity:-1,list:-8,
-        levels:[
-            {effect:[],attack:988,cost:1,target:[0],spec:[],class:3},
-            {effect:[],attack:988,cost:0,target:[0],spec:[],class:3},
-            {effect:[],attack:988,cost:0,target:[0],spec:[22],class:3},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2,3],
-            levels:[
-                {effect:[],attack:988,cost:[11],target:[0],spec:[],class:3},
-                {effect:[],attack:988,cost:[],target:[0],spec:[],class:3},
-                {effect:[],attack:988,cost:[],target:[0],spec:[22],class:3},
-            ],
-        },
-    },{
         name:'Ribbed\nRoll',rarity:-1,list:-8,
         levels:[
             {effect:[40],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
@@ -44941,20 +44913,6 @@ types.disband=[
                 {effect:[12,1],attack:3344,cost:[14],target:[2,1,6],spec:[0],class:1},
                 {effect:[19,1],attack:3344,cost:[14],target:[2,1,6],spec:[0],class:1},
                 {effect:[24,1],attack:3344,cost:[14],target:[2,1,6],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Random\nWalk',rarity:-1,list:-8,
-        levels:[
-            {effect:[1],attack:1011,cost:0,target:[0],spec:[],class:3},
-            {effect:[1],attack:1011,cost:0,target:[0],spec:[2],class:3},
-            {effect:[1],attack:1011,cost:0,target:[0],spec:[2,22],class:3},
-        ],mtg:{
-            rarity:-1,list:-8,color:[5],
-            levels:[
-                {effect:[1],attack:1011,cost:[],target:[0],spec:[],class:3},
-                {effect:[1],attack:1011,cost:[],target:[0],spec:[2],class:3},
-                {effect:[1],attack:1011,cost:[],target:[0],spec:[2,22],class:3},
             ],
         },
     },{
@@ -70001,6 +69959,48 @@ types.disband=[
                 {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:1,class:11},
                 {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:2,class:11},
                 {effect:[],attack:9431,cost:[3,3,5,5,-1],target:[0],spec:[15],limit:3,class:11},
+            ],
+        },
+    },{
+        name:'Overfall',rarity:-1,list:-8,
+        levels:[
+            {effect:[22,4],attack:2420,cost:1,target:[2,1,1],spec:[0,2],class:1},
+            {effect:[32,6],attack:2420,cost:1,target:[2,1,1],spec:[0,2],class:1},
+            {effect:[40,8],attack:2420,cost:1,target:[2,1,1],spec:[0,2],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,5],
+            levels:[
+                {effect:[18,4],attack:2420,cost:[10],target:[2,1,1],spec:[0,2],class:1},
+                {effect:[26,6],attack:2420,cost:[10],target:[2,1,1],spec:[0,2],class:1},
+                {effect:[32,8],attack:2420,cost:[10],target:[2,1,1],spec:[0,2],class:1},
+            ],
+        },
+    },{
+        name:'Contained\nCan',rarity:-1,list:-8,
+        levels:[
+            {effect:[12,3],attack:9264,cost:1,target:[0],spec:[],class:2},
+            {effect:[19,4],attack:9264,cost:1,target:[0],spec:[],class:2},
+            {effect:[24,5],attack:9264,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4,5],
+            levels:[
+                {effect:[9,2],attack:9264,cost:[16],target:[0],spec:[],class:2},
+                {effect:[14,3],attack:9264,cost:[16],target:[0],spec:[],class:2},
+                {effect:[18,4],attack:9264,cost:[16],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'The\nHunter',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:7432,cost:2,target:[0],spec:[],class:4},
+            {effect:[1],attack:7432,cost:1,target:[0],spec:[],class:4},
+            {effect:[1],attack:7432,cost:1,target:[0],spec:[3],class:4},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,2],
+            levels:[
+                {effect:[1],attack:7432,cost:[1,2,-1],target:[0],spec:[],class:4},
+                {effect:[1],attack:7432,cost:[7,-1],target:[0],spec:[],class:4},
+                {effect:[1],attack:7432,cost:[7,-1],target:[0],spec:[3],class:4},
             ],
         },
     },

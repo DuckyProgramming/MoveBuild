@@ -2281,6 +2281,14 @@ class relicManager{
                         if(this.active[615][args[1]+1]>0){
                             this.battle.addSpecificEnergy(3*this.active[615][args[1]+1],args[1],6)
                         }
+                        if(this.active[620][args[1]+1]>0){
+                            for(let a=0,la=this.active[620][args[1]+1];a<la;a++){
+                                let index=floor(random(0,this.battle.cardManagers[args[1]].deck.cards.length))
+                                for(let b=0,lb=3;b<lb;b++){
+                                    this.battle.cardManagers[args[1]].deck.copy(this.battle.cardManagers[args[1]].hand.cards,index,index+1,3)
+                                }
+                            }
+                        }
                         if(this.battle.modded(62)){
                             for(let a=0,la=3;a<la;a++){
                                 this.battle.cardManagers[args[1]].fatigue()

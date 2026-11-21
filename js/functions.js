@@ -3167,6 +3167,7 @@ function checkExists(start=-1,end=-1){
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
 		9661,//invalid silverswivel
+		12101,//invalid fresh off the burner
 
 		894,1302,1324,1537,1909,2147,3346,3347,//values
 		945,1208,1209,1212,1213,1214,1216,1217,1219,1220,

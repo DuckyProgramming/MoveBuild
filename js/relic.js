@@ -4590,6 +4590,21 @@ class relic{
                     displaySymbol(this.layer,0,8,6,0,0.8,this.fade)
                     displaySymbol(this.layer,0,-8,7,0,0.8,this.fade)
                 break
+                case `Triple Ethereal Free Card`:
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    if(variants.mtg){
+                        displayMtgManaSymbol(this.layer,-8,0,-1,0,0.45,this.fade,-1,[])
+                    }else{
+                        displaySymbol(this.layer,-8,0,9,0,0.6,this.fade)
+                    }
+                    displaySymbol(this.layer,-8,0,64,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('x3',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
 
                 //mark p
             }

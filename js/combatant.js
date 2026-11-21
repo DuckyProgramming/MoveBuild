@@ -110,6 +110,7 @@ constants.status={
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
         'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust','Damage Cap Once','Damage Cap Once Per Turn','Process Draw','Process Block',
+        'Take Double Shiv',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -222,6 +223,7 @@ constants.status={
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
         0,0,0,0,0,0,2,0,0,0,//110
+        1,
     ],
     /*
     0-none
@@ -343,6 +345,7 @@ constants.status={
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
         2,2,2,2,2,2,0,0,2,2,//110
+        3,
     ]
     /*
     0-good

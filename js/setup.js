@@ -92,9 +92,9 @@ function setup(){
                 current.modManager.addMod(275+a)
             }*/
 
-            /*for(let a=0,la=150;a<la;a++){
+            /*for(let a=0,la=1;a<la;a++){
                 //current.relicManager.addRandomRelic(0)
-                quickRelic(a,0)
+                quickRelic(620+a,0)
             }*/
             //current.overlayManager.closeAll()
 

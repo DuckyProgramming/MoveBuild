@@ -1266,6 +1266,11 @@ class combatantManager{
                         }
                         this.combatants[a].block=0
                     break
+                    case 73:
+                        if(this.combatants[a].name=='Rewriter'||this.combatants[a].name=='Eternal Judge'||this.combatants[a].name=='-h Rewriter'||this.combatants[a].name=='-h Eternal Judge'){
+                            this.combatants[a].loseHealth(args[0])
+                        }
+                    break
                 }
             }
         }

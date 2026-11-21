@@ -1951,7 +1951,7 @@ class card{
             break
             case 9264:
                 for(let a=0,la=this.effect[1];a<la;a++){
-                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                    this.battle.cardManagers[this.player].hand.add(findName('Deluxe\nShiv',types.card),0,0)
                 }
             break
             case 9265:
@@ -1995,6 +1995,9 @@ class card{
             case 11536:
                 userCombatant.addBlock(this.effect[0])
                 userCombatant.statusEffect('Counter Once',this.effect[1])
+            break
+            case 12102:
+                userCombatant.statusEffect('Double Damage Turn',1)
             break
 
         }

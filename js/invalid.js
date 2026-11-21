@@ -5599,6 +5599,62 @@ types.invalid=[
                 {effect:[1,3],attack:183,cost:[2,-3],target:[0],spec:[2],class:11},
             ],
         },
+    },{
+        name:'Queen of\nGlass',rarity:-1,list:-8,
+        levels:[
+            {effect:[10,10],attack:1100,cost:0,target:[2,1,1],spec:[2,36],class:1},
+            {effect:[14,14],attack:1100,cost:0,target:[2,1,1],spec:[2,36],class:1},
+            {effect:[16,16],attack:1100,cost:0,target:[2,1,1],spec:[2,36],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[10,10],attack:1100,cost:[],target:[2,1,1],spec:[2,36],class:1},
+                {effect:[14,14],attack:1100,cost:[],target:[2,1,1],spec:[2,36],class:1},
+                {effect:[16,16],attack:1100,cost:[],target:[2,1,1],spec:[2,36],class:1},
+            ],
+        },
+    },{
+        name:'Rocky\nWrench',rarity:-1,list:-8,
+        levels:[
+            {effect:[8,16],attack:3774,cost:1,target:[0],spec:[],class:2},
+            {effect:[12,22],attack:3774,cost:1,target:[0],spec:[],class:2},
+            {effect:[14,28],attack:3774,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,5],
+            levels:[
+                {effect:[8,8],attack:3774,cost:[10],target:[0],spec:[],class:2},
+                {effect:[12,12],attack:3774,cost:[10],target:[0],spec:[],class:2},
+                {effect:[14,16],attack:3774,cost:[10],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Random\nWalk',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:1011,cost:0,target:[0],spec:[],class:3},
+            {effect:[1],attack:1011,cost:0,target:[0],spec:[2],class:3},
+            {effect:[1],attack:1011,cost:0,target:[0],spec:[2,22],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[1],attack:1011,cost:[],target:[0],spec:[],class:3},
+                {effect:[1],attack:1011,cost:[],target:[0],spec:[2],class:3},
+                {effect:[1],attack:1011,cost:[],target:[0],spec:[2,22],class:3},
+            ],
+        },
+    },{
+        name:'Outta\nHere',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:988,cost:1,target:[0],spec:[],class:3},
+            {effect:[],attack:988,cost:0,target:[0],spec:[],class:3},
+            {effect:[],attack:988,cost:0,target:[0],spec:[22],class:3},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,3],
+            levels:[
+                {effect:[],attack:988,cost:[11],target:[0],spec:[],class:3},
+                {effect:[],attack:988,cost:[],target:[0],spec:[],class:3},
+                {effect:[],attack:988,cost:[],target:[0],spec:[22],class:3},
+            ],
+        },
     },
 
     //mark er

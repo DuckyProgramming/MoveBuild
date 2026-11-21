@@ -5075,6 +5075,13 @@ class group{
                         case 2:
                             list[list.length-1].nonCalc=false
                         break
+                        case 3:
+                            list[list.length-1].setCost(0,[0])
+                            if(!list[list.length-1].spec.includes(4)){
+                                list[list.length-1].spec.push(4)
+                                list[list.length-1].additionalSpec.push(4)
+                            }
+                        break
                     }
                 }
             }
@@ -5090,6 +5097,13 @@ class group{
                         break
                         case 2:
                             list[list.length-1].nonCalc=false
+                        break
+                        case 3:
+                            list[list.length-1].setCost(0,[0])
+                            if(!list[list.length-1].spec.includes(4)){
+                                list[list.length-1].spec.push(4)
+                                list[list.length-1].additionalSpec.push(4)
+                            }
                         break
                     }
                 }

@@ -841,8 +841,8 @@ class itemManager{
             break
             case 1021:
                 //userCombatant.addBlock(9*effectiveness)
-                //this.battle.cardManagers[player].hand.selfCall(6,[12041,[9*effectiveness,1],1,[26,1,3]])
-                this.battle.cardManagers[player].hand.selfCall(6,[12098,[9*effectiveness,3*effectiveness,1],1,[26,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[12041,[9*effectiveness,1],1,[26,1,3]])
+                //this.battle.cardManagers[player].hand.selfCall(6,[12098,[9*effectiveness,3*effectiveness,1],1,[26,1,3]])
             break
             case 1022:
                 //this.battle.cardManagers[player].hand.selfCall(6,[11680,[2*effectiveness],1,[2,1,3]])

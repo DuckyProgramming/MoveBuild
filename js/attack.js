@@ -347,7 +347,7 @@ class attack{
             case 11909: case 11910: case 11911: case 11912: case 11913: case 11914: case 11915: case 11917: case 11918: case 11920: case 11926: case 11929: case 11930: case 11934: case 11942: case 11944: case 11945: case 11946: case 11947: case 11948:
             case 11949: case 11950: case 11953: case 11963: case 11964: case 11965: case 11969: case 11970: case 11971: case 11972: case 11973: case 11974: case 11975: case 11981: case 11982: case 11988: case 11991: case 11992: case 12001: case 12003:
             case 12004: case 12006: case 12012: case 12014: case 12015: case 12023: case 12024: case 12039: case 12040: case 12041: case 12044: case 12045: case 12046: case 12047: case 12051: case 12054: case 12055: case 12064: case 12066: case 12068:
-            case 12071: case 12072: case 12076: case 12079: case 12080: case 12083: case 12089: case 12095: case 12098:
+            case 12071: case 12072: case 12076: case 12079: case 12080: case 12083: case 12089: case 12095: case 12098: case 12100: case 12101: case 12103:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2620,7 +2620,7 @@ class attack{
                     case 6958:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.targetCombatant.getStatus('Vulnerable'),this.user)
                     break
-                    case 7197: case 7201:
+                    case 7197: case 7201: case 12100:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.evolve,this.user)
                     break
                     case 7215:
@@ -3016,7 +3016,7 @@ class attack{
                     case 9889:
                         this.targetCombatant.takeDamage((this.userCombatant.getStatus('Chocolate Chip')>0?2:1)*this.effect[0],this.user)
                     break
-                    case 9925:
+                    case 9925: case 12101:
                         if(this.userManager.exhaust.numberAbstract(29,[1])>0&&this.userManager.exhaust.numberAbstract(29,[2])>0){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.userCombatant.addBlock(this.effect[1])
@@ -5021,6 +5021,7 @@ class attack{
                     break
                     case 3520:
                         this.battle.combatantManager.finalBossSwitch+=this.effect[1]
+                        this.battle.combatantManager.allEffect(73,[this.effect[1]])
                     break
                     case 3530:
                         this.battle.overlayManager.overlays[58][this.player].active=true
@@ -9247,6 +9248,9 @@ class attack{
                             this.targetCombatant.addBlock(this.effect[2])
                             this.targetCombatant.statusEffect('Weak',this.effect[2])
                         }
+                    break
+                    case 12100:
+                        this.userCombatant.addBlock(this.effect[2]+this.effect[3]*this.evolve)
                     break
 
                 }
@@ -13869,6 +13873,7 @@ class attack{
                     break
                     case 11279:
                         this.battle.combatantManager.finalBossSwitch+=this.effect[1]
+                        this.battle.combatantManager.allEffect(73,[this.effect[1]])
                     break
                     case 11350:
                         if(this.amplify){
@@ -28535,6 +28540,7 @@ class attack{
                     case 7257:
                         this.userManager.draw(this.effect[0])
                         this.battle.combatantManager.finalBossSwitch+=this.effect[1]
+                        this.battle.combatantManager.allEffect(73,[this.effect[1]])
                     break
                     case 7262:
                         this.userCombatant.vision+=this.effect[0]
@@ -42404,6 +42410,9 @@ class attack{
                             this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
                         }
                     break
+                    case 12103:
+                        this.targetCombatant.statusEffect('Take Double Shiv',999)
+                    break
 
                 }
                 //mark 11
@@ -43112,6 +43121,7 @@ class attack{
                     break
                     case 1860:
                         this.battle.combatantManager.finalBossSwitch+=this.effect[0]
+                        this.battle.combatantManager.allEffect(73,[this.effect[0]])
                     break
                     case 1873:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)

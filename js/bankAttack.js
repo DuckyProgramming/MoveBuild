@@ -133,7 +133,7 @@ attack.prototype.update=function(){
         case 11264: case 11273: case 11304: case 11320: case 11322: case 11330: case 11345: case 11355: case 11356: case 11371: case 11395: case 11400: case 11404: case 11409: case 11418: case 11429: case 11430: case 11435: case 11440:
         case 11441: case 11449: case 11468: case 11479: case 11483: case 11506: case 11507: case 11528: case 11572: case 11598: case 11601: case 11602: case 11603: case 11604: case 11636: case 11639: case 11641: case 11642: case 11647:
         case 11648: case 11661: case 11737: case 11764: case 11769: case 11771: case 11784: case 11785: case 11791: case 11852: case 11861: case 11876: case 11897: case 11903: case 11905: case 11913: case 11914: case 11915: case 11918:
-        case 11929: case 11930: case 11934: case 11950: case 11964: case 11965: case 11991: case 11992: case 12006: case 12054: case 12071: case 12072: case 12079: case 12080: case 12083:
+        case 11929: case 11930: case 11934: case 11950: case 11964: case 11965: case 11991: case 11992: case 12006: case 12054: case 12071: case 12072: case 12079: case 12080: case 12083: case 12100: case 12101:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -144,6 +144,7 @@ attack.prototype.update=function(){
                     this.type==1006&&!(this.userCombatant.luckCheck()?true:this.userCombatant.luckCheckFail()?false:floor(random(0,100))<20*this.energy)||
                     this.type==1724&&this.userManager.hand.numberAbstract(15,[[1]])>1||
                     this.type==2054&&this.userCombatant.stance!=5||
+                    this.type==2420&&this.userCombatant.block<=0||
                     (this.type==7455||this.type==7456)&&this.userManager.hand.numberAbstract(21,[])==0||
                     this.type==7527&&this.userCombatant.totalUniqueStatus(1)==0||
                     this.type==7931&&!(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))!=0)||
@@ -176,7 +177,7 @@ attack.prototype.update=function(){
                 this.type==2328&&this.battle.turn.total>6||
                 this.type==2331&&this.battle.turn.total%4!=0||
                 this.type==2378&&this.battle.turn.total%2==0||
-                this.type==2420&&this.userCombatant.block<=0||
+                //this.type==2420&&this.userCombatant.block<=0||
                 this.type==3345&&this.battle.turn.total!=420||
                 this.type==3709&&this.limit%2!=1||
                 (this.type==4336||this.type==4350)&&this.userCombatant.energyParity(this.mtgEnergy.length)!=0||
@@ -307,7 +308,7 @@ attack.prototype.update=function(){
         case 11434: case 11439: case 11442: case 11451: case 11460: case 11469: case 11480: case 11486: case 11488: case 11496: case 11497: case 11504: case 11510: case 11526: case 11531: case 11537: case 11546: case 11547: case 11548:
         case 11549: case 11553: case 11562: case 11573: case 11583: case 11611: case 11633: case 11635: case 11637: case 11643: case 11646: case 11649: case 11678: case 11738: case 11770: case 11772: case 11775: case 11778: case 11786:
         case 11803: case 11804: case 11816: case 11817: case 11847: case 11877: case 11893: case 11901: case 11902: case 11931: case 11932: case 11933: case 11951: case 11955: case 11956: case 11960: case 11967: case 11968: case 11996:
-        case 12000: case 12013: case 12016: case 12017: case 12018: case 12021: case 12028: case 12042: case 12073: case 12074:
+        case 12000: case 12013: case 12016: case 12017: case 12018: case 12021: case 12028: case 12042: case 12073: case 12074: case 12102:
             //mark 2
             if(
                 this.timer==1&&(
@@ -3184,7 +3185,7 @@ attack.prototype.update=function(){
         case 11958: case 11959: case 11961: case 11966: case 11971: case 11972: case 11973: case 11974: case 11978: case 11979:
         case 11980: case 11982: case 12001: case 12007: case 12008: case 12029: case 12031: case 12032: case 12033: case 12034:
         case 12052: case 12053: case 12060: case 12078: case 12081: case 12082: case 12085: case 12086: case 12088: case 12090:
-        case 12091: case 12092: case 12093: case 12096:
+        case 12091: case 12092: case 12093: case 12096: case 12103:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -5082,7 +5083,7 @@ attack.prototype.update=function(){
                     if(this.userCombatant.getStatus('Shiv Target All')>0){
                         this.battle.combatantManager.allEffect(43,[this.effect[0],this.user])
                     }else{
-                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Take Double Shiv')>0?2:1),this.user)
                         switch(this.type){
                             case 5518:
                                 this.targetCombatant.statusEffect('Weak',this.effect[1])
@@ -15464,7 +15465,7 @@ attack.prototype.update=function(){
                 if(this.userCombatant.getStatus('Shiv Target All')>0){
                     this.battle.combatantManager.allEffect(43,[this.effect[0],this.user])
                 }else{
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Take Double Shiv')>0?2:1),this.user)
                     if(this.userCombatant.getStatus('Shiv Freeze')>0){
                         this.targetCombatant.statusEffect('Freeze',this.userCombatant.getStatus('Shiv Freeze'))
                     }
@@ -17095,7 +17096,7 @@ attack.prototype.update=function(){
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,1,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                 }else if(this.timer==10*this.targetDistance+15){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Take Double Shiv')>0?2:1),this.user)
                     if(this.userCombatant.getStatus('Shiv Freeze')>0){
                         this.targetCombatant.statusEffect('Freeze',this.userCombatant.getStatus('Shiv Freeze'))
                     }

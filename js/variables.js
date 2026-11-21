@@ -1559,7 +1559,7 @@ types={
         
         {name:'Napkin Ring',internal:'Discover Colorless',id:530,rarity:3,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nDiscover a Common Colorless Card\nIt Costs 0'},
         {name:'Fava Bean',internal:'Rare Relic Party',id:531,rarity:3,list:0,mtg:0,world:[0,3],description:'When Taken, Restock All Shop\nRelics With Rare Relics'},
-        {name:'Jacks',internal:'Triple Free Card',id:532,rarity:3,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nAdd 3 Copies of a Random\nCard in Deck to Hand\nThey Cost 0 Temporarily'},
+        {name:'Monterrey Jack',internal:'Triple Free Card',id:532,rarity:-1,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nAdd 3 Copies of a Random\nCard in Deck to Hand\nThey Cost 0 Temporarily'},
         {name:'Belt Buckle',internal:'No Item Block',id:533,rarity:0,list:0,mtg:0,world:[0,3],description:'If You Start Your Turn With No Items,\nAdd 4 Block'},
         {name:'Neutrinoball',internal:'Switching Buff',id:534,rarity:0,list:0,mtg:0,world:[0,3],description:'20% Chance to Oscillate Each Room'},
         {name:'Tauball',internal:'Switching Strength',id:535,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n20% Chance to Oscillate Each Room'},
@@ -1656,6 +1656,7 @@ types={
 
         {name:'Shop Phone',internal:'Shop Anytime',id:618,rarity:3,list:0,mtg:0,world:[0,2],description:'Click While on the Map to\nEnter the Shop Anytime\nSingle Use'},
         {name:'Bus Ticket',internal:'Free Move Anytime',id:619,rarity:3,list:0,mtg:1,world:[0,3],description:'Click While on the Map to Make\nYour Next Map Move Free\nSingle Use'},
+        {name:'Jacks',internal:'Triple Ethereal Free Card',id:620,rarity:3,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nAdd 3 Ethereal Copies of a\nRandom Card in Deck to Hand\nThey Cost 0 Temporarily'},
 
         //mark mtg mark r
     ],item:[
@@ -1821,7 +1822,7 @@ types={
         {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
 
         {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [6D]\nRange 1-3\nTemporary'},
-        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B] to Self\nor [3B] to an Enemy\nRange 1-3'},
+        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B] to Self or to an Enemy\nRange 1-3'},
         {name:'Glass',internal:'6 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 6 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
         {name:'Ammonium',internal:'2 Burn',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 2 Burn\nRange 1-3\nTemporary'},
@@ -1831,6 +1832,7 @@ types={
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Energy, Draw 1',id:1028,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [12D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Mana, Draw 1',id:1029,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal [12D] to a Random Enemy,\nGain (E), Draw 1 Card'},
         /*{name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]\nRange 1-3'},
+        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B] to Self\nor [3B] to an Enemy\nRange 1-3'},
         {name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},
         {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [4D]\nTarget Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},

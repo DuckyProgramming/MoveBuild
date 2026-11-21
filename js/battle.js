@@ -188,7 +188,7 @@ class battle{
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],barrier:[],bounce:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
         
-        this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,endReady:false,active:false}
+        this.turn={main:0,swivel:floor(random(0,2)),total:0,time:0,accelerate:0,endReady:false,active:false,noDraw:false}
         this.counter={enemy:0,killed:0,turnKilled:0,tooltip:0}
         this.result={defeat:false,victory:false,noAnim:false,skipReward:[]}
         this.reinforce={back:[],front:[],assault:{back:[],front:[]}}
@@ -1023,13 +1023,14 @@ class battle{
             combatant.statusEffect('No Extra Turns',combatant.getStatus('No Extra Turns Next Turn'))
             combatant.status.main[findList('No Extra Turns Next Turn',combatant.status.name)]=0
         }
+        this.turn.noDraw=noDraw
         if(this.turn.main>=this.players){
             this.tileManager.activate()
             this.sendReinforce()
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
-        }else if(!noDraw){
+        }else{
             combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             if((combatant.life<=0||combatant.dead)&&this.turn.main<this.players){
                 this.endTurn()
@@ -1177,7 +1178,11 @@ class battle{
                 if(this.cardManagers[this.turn.main].reserve.cards.length+this.cardManagers[this.turn.main].discard.cards.length<this.cardManagers[this.turn.main].drawAmount&&this.cardManagers[this.turn.main].hand.cards.length>0&&this.cardManagers[this.turn.main].hand.numberAbstract(13,[])>0){
                     this.cardManagers[this.turn.main].bufferedTurn=30
                 }else{
-                    this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                    if(this.turn.noDraw){
+                        this.turnDraw=false
+                    }else{
+                        this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                    }
                     if(combatant.getStatus('No Draw Next Turn')>0){
                         combatant.status.main[findList('No Draw',combatant.status.name)]+=combatant.getStatus('No Draw Next Turn')
                         combatant.status.main[findList('No Draw Next Turn',combatant.status.name)]=0
