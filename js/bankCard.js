@@ -12376,6 +12376,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12095: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nIf You Have a\nHydrazine Item,\nDeals Double Damage`; break
         case 12096: string+=`Gain ${effect[0]} Item Slot${pl(effect[0])}\nThis Combat\nGain ${effect[1]} Carbon Item${pl(effect[1])}\nGain ${effect[2]} Quartz Item${pl(effect[2])}\nGain ${effect[3]} Ammonium Item${pl(effect[3])}`; break
         case 12097: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen a Process is Played`; break
+        case 12098: string+=`Add ${this.calculateEffect(effect[0],1)} Block or\nTarget Adds ${this.calculateEffect(effect[1],1)} Block\nIf Target Has Burn,\nGain ${effect[2]} Graphite Item${pl(effect[2])}`; break
 
         //mark p
         //mark q

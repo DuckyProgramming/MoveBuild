@@ -1299,11 +1299,12 @@ class combatant{
                     case 'Management Officer': case 'Lost Management Officer':
                         this.subAttackTypeSwitch([[2,26,26,[2]]])
                     break
-                    case 'Management Special Forces':
+                    case 'Management Special Forces': case 'Capitalist':
                         this.spec.splice(this.spec.indexOf(0),1)
                         this.spec.push(1)
                     break
-                    case 'Sneaky Gremlin': case 'Lead Brick': case 'Capitalist':
+                    case 'Sneaky Gremlin': case 'Lead Brick':
+                    //case 'Sneaky Gremlin': case 'Lead Brick': case 'Capitalist':
                         this.move.speed++
                     break
                     case 'Fat Gremlin':
@@ -1754,6 +1755,9 @@ class combatant{
                     break
                     case 'Precision':
                         this.statusEffect('Dodge',1)
+                    break
+                    case 'Fat Duck':
+                        this.statusEffect('Regeneration',5)
                     break
 
                     //mark 31
@@ -2894,6 +2898,9 @@ class combatant{
                                 set.splice(set.indexOf(this.intent),1)
                             }
                             this.intent=randin(set)
+                        break
+                        case 27:
+                            this.intent=this.battle.tileManager.tiles.filter(tile=>tile.type.includes(7)).length<10?this.attack.length-1:modulo(this.turnsAlive-2,this.attack.length-1)
                         break
                     }
                     this.convertIntent()

@@ -3303,7 +3303,7 @@ spotted a bunch of ducks at the nearby lake.`,
             },
         ],
     },{
-        name:'Fluffy Duck',id:96,list:0,
+        name:'Fluffy Duck',id:96,list:-1,
         pages:[
             {
                 desc:
@@ -6526,7 +6526,7 @@ Maybe you'll encounter another group like this.`,
             },
         ],
     },{
-        name:'Shopping',id:193,list:0,
+        name:'Shopping',id:193,list:-1,
         pages:[
             {
                 desc:
@@ -6765,10 +6765,38 @@ If you have enough time, that is.`,
                 link:[-1],
             },
         ],
+    },{
+        name:'Fat Duck',id:202,list:0,
+        pages:[
+            {
+                desc:
+`Suddenly, you see a fat, fluffy duck rolling down the road.
+Since he's moving at a rather fast speed for something so heavy,
+it looks like getting hit by him might hurt quite a bit,
+but at least the fluff might cushion the impact.`,
+                option:['Brace For Impact','Run'],
+                optionDesc:['Become Cursed - Duck Fluff',''],
+                link:[1,2],
+            },{
+                desc:
+`While covered in duck fluff, you're unhurt.
+Seeing him knocked out, you take what you find on him.`,
+                option:['Take His Stuff'],
+                optionDesc:['Gain a Relic'],
+                link:[-1],
+            },{
+                desc:
+`You get out of the way, and follow as he gradually slows
+down until he comes to a stop a short distance away.`,
+                option:['Attack Him','Leave'],
+                optionDesc:['Start Fight',''],
+                link:[-2,-1],
+            },
+        ],
     },
     
     /*{
-        name:'',id:201,list:0,
+        name:'',id:202,list:0,
         pages:[
             {
                 desc:

@@ -1110,6 +1110,7 @@ class item{
             switch(this.description[a]){
                 case '[':
                     activated=true
+                    replace=''
                 break
                 case ']':
                     if(activated){

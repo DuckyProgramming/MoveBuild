@@ -1444,6 +1444,36 @@ class turn{
                                     }
                                 }
                             break
+                            case 16:
+                                this.possible=[]
+                                for(let a=0,la=6;a<la;a++){
+                                    let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,360*(a+0.5)/la)[0],this.userCombatant.tilePosition.y+transformDirection(0,360*(a+0.5)/la)[1])
+                                    if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
+                                        this.possible.push(index)
+                                    }
+                                }
+                                let better=this.possible.filter(tile=>this.battle.tileManager.tiles[tile].type.includes(7))
+                                if(better.length>0){
+                                    this.targetTile=this.battle.tileManager.tiles[randin(this.possible.filter(tile=>this.battle.tileManager.tiles[tile].type.includes(7)))]
+
+                                    this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                    this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                                    this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                    this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                }else if(this.possible.length>0){
+                                    this.targetTile=this.battle.tileManager.tiles[this.possible[floor(random(0,this.possible.length))]]
+
+                                    this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                    this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                                    this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                    this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                }else{
+                                    this.type=0
+                                    this.set()
+                                }
+                            break
                             
                         }
                         if(!this.remove&&this.targetTile!=-1){

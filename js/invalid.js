@@ -5571,6 +5571,20 @@ types.invalid=[
                 {effect:[26],attack:1,cost:[3],target:[2,1,1],spec:[0,1,3,4],class:1},
             ],
         },
+    },{
+        name:'Scrawl',rarity:-1,list:-8,
+        levels:[
+            {effect:[10],attack:11757,cost:1,target:[0],spec:[2],class:11},
+            {effect:[10],attack:11757,cost:0,target:[0],spec:[2],class:11},
+            {effect:[11],attack:11757,cost:0,target:[0],spec:[2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[10],attack:11757,cost:[4],target:[0],spec:[2],class:11},
+                {effect:[10],attack:11757,cost:[-1],target:[0],spec:[2],class:11},
+                {effect:[10],attack:11757,cost:[],target:[0],spec:[2],class:11},
+            ],
+        },
     },
 
     //mark er

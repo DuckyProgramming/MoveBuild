@@ -2884,6 +2884,7 @@ function oracle(){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()
 	}
+	options.tooltip=false
 }
 function oracleCut(start,end){
 	current.overlayManager.overlays[35][0].active=true
@@ -2894,6 +2895,7 @@ function oracleCut(start,end){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()
 	}
+	options.tooltip=false
 }
 function oracleCost(min,max){
 	current.overlayManager.overlays[35][0].active=true
@@ -2904,6 +2906,7 @@ function oracleCost(min,max){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()
 	}
+	options.tooltip=false
 }
 function oracleRarity(rarity){
 	current.overlayManager.overlays[35][0].active=true
@@ -2914,6 +2917,7 @@ function oracleRarity(rarity){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()
 	}
+	options.tooltip=false
 }
 function oracleClass(cardClass){
 	current.overlayManager.overlays[35][0].active=true
@@ -2924,6 +2928,7 @@ function oracleClass(cardClass){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
 		cardData.display()
 	}
+	options.tooltip=false
 }
 function oracleOrder(list=-1){
 	current.overlayManager.overlays[35][0].active=true
@@ -2939,10 +2944,12 @@ function oracleOrder(list=-1){
 		cardData.display()
 	}
 	options.attack=true
+	options.tooltip=false
 }
 function rOracle(){
 	current.overlayManager.overlays[142][0].active=true
     current.overlayManager.overlays[142][0].activate()
+	options.tooltip=false
 }
 function generalizedSearch(test,type,subtract){
 	current.overlayManager.overlays[35][0].active=true
@@ -3169,7 +3176,8 @@ function checkExists(start=-1,end=-1){
 		1905,1906,1946,1947,1952,2535,2957,3564,4625,7141,//assorted invalid
 
 		83,84,85,86,3595,9974,10352,11671,11679,11680,
-		11681,11682,11975,12040,12041,12044,12049,12050,//items
+		11681,11682,11975,12040,12041,12044,12049,12050,
+		12098,//items
 	]
 	let total=0
 	/*let incl=[]

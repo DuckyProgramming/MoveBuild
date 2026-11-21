@@ -195,6 +195,7 @@ class eventManager{
                 !(this.listing.event[a]==199&&(userCombatant.life>userCombatant.base.life-30||this.battle.nodeManager.world!=0))&&
                 !(this.listing.event[a]==200&&(userCombatant.life<2||this.battle.itemManager.hasEmpty(this.player)))&&
                 !(this.listing.event[a]==201&&this.battle.currency.money[this.player]<250)&&
+                !(this.listing.event[a]==202&&this.battle.nodeManager.world!=0)&&
                 !(variants.mtg&&(
                     (this.listing.event[a]==23&&effectiveEnergy[3]<2)||
                     (this.listing.event[a]==32&&effectiveEnergy[5]<2)||
@@ -2552,6 +2553,16 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                             this.battle.loseCurrency(250,this.player)
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+                        }
+                    break
+                    case 202:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Duck\nFluff',types.card),0,constants.playerNumber+2)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }else if(this.page==2&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Fat Duck',types.encounter)])
                         }
                     break
 

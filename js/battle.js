@@ -3984,7 +3984,7 @@ class battle{
                                     reward.push({type:0,value:[floor(random(40,81)*mult)]})
                                 }
                                 if(!variants.business){
-                                    if((floor(random(0,game.diff>=8?4:3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
+                                    if((floor(random(0,game.diff>=8?4:3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)&&!this.relicManager.hasRelic(138,a)){
                                         reward.push({type:3,value:[]})
                                     }
                                     /*if(floor(random(0,6+this.nodeManager.world*3))==0){
@@ -4002,7 +4002,7 @@ class battle{
                                         this.relicManager.activate(15,[a,1,reward,this.turn.total])
                                         reward.push({type:2,value:[]})
                                     }
-                                    if((floor(random(0,game.diff>=8?4:3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
+                                    if((floor(random(0,game.diff>=8?4:3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)&&!this.relicManager.hasRelic(138,a)){
                                         reward.push({type:3,value:[]})
                                     }
                                     /*if(floor(random(0,6))==0){

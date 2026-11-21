@@ -3491,10 +3491,14 @@ function generateSprite(layer,type,direction){
 			layer.stroke(...data.color.wing[1])
 			layer.strokeWeight(0.5)
 			let nodes=[
-				[0,0],
+				/*[0,0],
 				[-20,-5],
 				[-35,-15],
-				[-40,-30]
+				[-40,-30]*/
+				[0,0],
+				[-15,-5],
+				[-26,-15],
+				[-30,-30]
 			]
 			let lengths=[]
 			let totalLength=0
@@ -3505,7 +3509,8 @@ function generateSprite(layer,type,direction){
 			}
 			layer.strokeWeight(0.6)
 			layer.noStroke()
-			for(let a=0,la=600;a<la;a++){
+			//for(let a=0,la=600;a<la;a++){
+			for(let a=0,la=300;a<la;a++){
 				let part=0
 				let prePosition=a*2%totalLength
 				let position=prePosition
@@ -3514,11 +3519,13 @@ function generateSprite(layer,type,direction){
 					part++
 				}
 				let dir=map(
-					position/lengths[part]*(part==lengths.length-1?1.8:1),0,1,
+					//position/lengths[part]*(part==lengths.length-1?1.8:1),0,1,
+					position/lengths[part]*(part==lengths.length-1?1.5:1),0,1,
 					part==0?-75:atan2(nodes[part][0]-nodes[part-1][0],nodes[part][1]-nodes[part-1][1]),
 					atan2(nodes[part+1][0]-nodes[part][0],nodes[part+1][1]-nodes[part][1])
 				)
-				let size=random(0.4,0.6)+sin(a*5)*0.1+(prePosition/totalLength)**2.5*2
+				//let size=random(0.4,0.6)+sin(a*5)*0.1+(prePosition/totalLength)**2.5*2
+				let size=random(0.4,0.6)*(1+sin(a*5)*0.1+(prePosition/totalLength)**5*2)+constrain((prePosition/totalLength)-0.75,0,0.2)*10
 				let offset=random(4,6)-a/la*4
 				layer.push()
 				layer.translate(
@@ -3528,7 +3535,8 @@ function generateSprite(layer,type,direction){
 				layer.rotate(-dir-90)
                 let col=mergeColor(data.color.wing[0],data.color.wing[1],random(0,0.2)+a/la*0.8)
                 for(let b=0,lb=10;b<lb;b++){
-                    let trueSize=size+b/lb*0.25
+                    //let trueSize=size+b/lb*0.25
+					let trueSize=size+b/lb*(prePosition/totalLength)*0.5
                     layer.fill(...col,(1-b/lb)*0.5)
                     layer.beginShape()
                     layer.vertex(-0.2,-0.25+offset*0.1)

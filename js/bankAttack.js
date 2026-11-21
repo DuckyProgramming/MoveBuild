@@ -17113,7 +17113,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 12041:
+        case 12041: case 12098:
             if(this.timer==1&&this.targetCombatant==this.userCombatant){
                 this.targetCombatant.addBlock(this.effect[0],this.user)
                 this.remove=true
@@ -17138,6 +17138,14 @@ attack.prototype.update=function(){
                             this.targetCombatant.addBlock(this.effect[0],this.user)
                             if(this.targetCombatant.getStatus('Burn')>0){
                                 for(let a=0,la=this.effect[1];a<la;a++){
+                                    this.battle.itemManager.addItem(findName('Graphite',types.item),this.player)
+                                }
+                            }
+                        break
+                        case 12098:
+                            this.targetCombatant.addBlock(this.effect[1],this.user)
+                            if(this.targetCombatant.getStatus('Burn')>0){
+                                for(let a=0,la=this.effect[2];a<la;a++){
                                     this.battle.itemManager.addItem(findName('Graphite',types.item),this.player)
                                 }
                             }

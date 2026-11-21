@@ -87,7 +87,7 @@ types={
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[10]},{type:86,effect:[3]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
         {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:2,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Stuck']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
-        {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:28,effect:[9]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
+        {name:'Management Caller',life:200,behavior:20,spec:[0],move:{type:2,speed:1},attack:[{type:28,effect:[9]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         {name:'Management Custodian',life:60,behavior:25,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:92,effect:[1]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[4]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
@@ -179,7 +179,7 @@ types={
         {name:'Puffball',life:14,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:396,effect:[4,8]},{type:6,effect:[6]}],description:`Strangely fluffy`},
         {name:'Pistol Biker',life:28,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Finally I can use disarm`},
         {name:'Brawler',life:44,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[10,1,'Concussion']},{type:82,effect:[7,1,'Concussion']}],description:`No surprise that he's a prisoner too`},
-        {name:'Mailman',life:60,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[8]},{type:414,effect:[4,'Mail']}],description:`Protected by labor`},
+        {name:'Mailman',life:60,behavior:20,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[8]},{type:414,effect:[4,'Mail']}],description:`Protected by labor`},
         {name:'Guard',life:45,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:398,effect:[10,6]}],description:`More interesting than the old guy`},
         {name:'Bar Security',life:60,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:3,effect:[8]}],description:`Just doing business`},
         {name:'Bartender',life:60,behavior:1,spec:[0],move:{type:12,speed:1},attack:[{type:92,effect:[1]},{type:93,effect:[1]},{type:39,effect:[1,'Gangster']}],description:`I guess he's a gang member`},
@@ -294,7 +294,7 @@ types={
         {name:'Daughter of Heaven',life:240,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:348,effect:[10,2,2]},{type:19,effect:[6]},{type:349,effect:[1,1]},{type:296,effect:[12]},{type:39,effect:[1,'Keystone']}],description:`Cut character POV`},
         {name:'Renegade Agent',life:250,behavior:18,spec:[0,2,29],move:{type:0,speed:1},attack:[{type:38,effect:[25]},{type:87,effect:[14]},{type:39,effect:[1,'Paramilitary']},{type:77,effect:[5]}],description:`Agent XI`},
         
-        {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
+        {name:'Capitalist',life:360,behavior:20,spec:[0,2],move:{type:16,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2,19],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:2},attack:[{type:178,effect:[12,1,'Shrapnel']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,2,'Burn']}],description:`Classic war criminal`},
@@ -340,6 +340,9 @@ types={
         //{name:'Lunar Servant',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[2]}],description:`From the sky~`},
         //{name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
         //{name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
+        //{name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
+        //{name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:28,effect:[9]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
+        //{name:'Mailman',life:60,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[8]},{type:414,effect:[4,'Mail']}],description:`Protected by labor`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -1122,7 +1125,7 @@ types={
         {name:'Bilingual Print',internal:'Energy/Currency',id:135,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nGain 50% Less Currency'},
         {name:'Red-Tinted Glasses',internal:'Energy/Intent',id:136,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nCannot See Enemy Intent Values'},
         {name:`Philosopher's Stone`,internal:'Energy/Strength',id:137,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nEnemies Start Combat With 2 Strength'},
-        {name:'Sozu',internal:'Energy/Items',id:138,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCannot Obtain Items'},
+        {name:'Sozu',internal:'Energy/Items',id:138,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nCannot Get Item Rewards'},
         {name:'Rainbow Flame',internal:'Energy/Draw',id:139,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nDraw 1 Less Card Every 2 Turns'},
 
         {name:'Barrous Armband',internal:'Energy/Card Limit',id:140,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nCannot Play More Than 7 Cards Every Turn'},
@@ -1818,7 +1821,7 @@ types={
         {name:'Rice',internal:'5 Heal/1 Strength',id:1019,rarity:-1,list:-1,menu:true,temp:false,mtg:0,description:'Heal 5 HP\nGain 1 Strength'},
 
         {name:'Quartz',internal:'6 Damage',id:1020,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [6D]\nRange 1-3\nTemporary'},
-        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]\nRange 1-3'},
+        {name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B] to Self\nor [3B] to an Enemy\nRange 1-3'},
         {name:'Glass',internal:'6 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 6 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 2 2',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 2 Cards'},
         {name:'Ammonium',internal:'2 Burn',id:1024,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Apply 2 Burn\nRange 1-3\nTemporary'},
@@ -1827,7 +1830,8 @@ types={
         {name:'Diamond',internal:'Draw 3, Free Card',id:1027,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 3 Cards\nNext Card Played is Free'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Energy, Draw 1',id:1028,rarity:-1,list:-1,menu:false,temp:true,mtg:1,description:'Deal [12D] to a Random Enemy,\nGain 1 Energy, Draw 1 Card'},
         {name:'Prismatic Bomb',internal:'12 Random Damage, 1 Mana, Draw 1',id:1029,rarity:-1,list:-1,menu:false,temp:true,mtg:2,description:'Deal [12D] to a Random Enemy,\nGain (E), Draw 1 Card'},
-        /*{name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
+        /*{name:'Carbon',internal:'9 Block',id:1021,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Add [9B]\nRange 1-3'},
+        {name:'Glass',internal:'2 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 2 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Graphite',internal:'Draw 1',id:1023,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Draw 1 Card'},
         {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Deal [4D]\nTarget Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
         {name:'Glass',internal:'4 Damage Per Turn',id:1022,rarity:3,list:0,menu:false,temp:true,mtg:0,description:'Target Takes 4 Damage Per Turn\nRange 1-3\nTemporary'},
@@ -2509,6 +2513,13 @@ types={
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Trapzoid 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[4]},{type:[]},{type:[]},{type:[]},{type:[4]}],
             ],
         },{
             name:'Trapezoid 5',
@@ -4236,6 +4247,16 @@ types={
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Trapzoid 5'],class:0,world:-1,
+            name:'Fat Duck',
+            player:{position:[[{x:3,y:2}],[{x:2,y:2},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Fat Duck'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[

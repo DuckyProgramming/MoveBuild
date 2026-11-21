@@ -759,7 +759,8 @@ and still wastes draw, so plan accordingly.`,
                 this.pages=[
 `Edgar, the Disgraced CEO, is a character with a focus on aggression.
 In terms of strategy, he is fairly simple, but he has a few gimmicks.
-They are: Guns and Ammo, Accurate, and Burn.`,
+They are: Guns and Ammo, Accurate, and Strength.`,
+//They are: Guns and Ammo, Accurate, and Burn.`,
 //They are: Guns and Ammo, Positioned Cards, and Burn.`,
 `Guns are a class of attack. They typically have longer range.
 Guns are powerful in terms of damage and range compared to normal cards.
@@ -772,8 +773,11 @@ but becomes reliant on an ammo source to remain functional.`,
 Using them often requires playing cards to get them in the right place.`,
 `As Edgar, each turn is almost played out separately, even more than in normal runs.
 Finding the right way to play the cards you get as Edgar is simple, but key.`,
-`Burn is a status that never decays. It increases damage taken when the
-target takes 20 or more damage. Try triggering it on this enemy.`,
+`To further boost damage gained from accurate cards and guns,
+Edgar can gain Strength. While Strength is a common status effect, Edgar has
+access to a lot of it, allowing him to stack plenty of 10% damage buffs.`,
+/*`Burn is a status that never decays. It increases damage taken when the
+target takes 20 or more damage. Try triggering it on this enemy.`,*/
 /*`Burn is a status that never decays. It deals damage when the afflicted
 doesn't get a hit by the end of each turn. Avoid the enemy's attack
 to damage him with burn.`,*/
@@ -963,10 +967,11 @@ Furthermore, some cards can cause others to evolve.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
-                this.popups=[[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Vincent, the Manufacturer, works best with things that can be held.
-His gameplay centers around the mechanic of Items`,
+His gameplay centers around the mechanic of Items and Burn.`,
+//His gameplay centers around the mechanics of Items`,
 //His gimmicks include: Items and Prismatic Bombs.`,
 //His gimmicks include: Items, Concoctions, Prismatic Bombs.`,
 `All characters can use items, but Vincent has access to a group of items
@@ -992,8 +997,20 @@ how much weight they have compared to other cards in your deck.`,
 `Prismatic Bombs are cards that you can create in your draw and discard piles.
 When drawn, they have several beneficial effects, but are ethereal.
 You can pay to keep them from exhausting themselves by discarding them.`,*/
-`One such item is the Prismatic Bomb, which grants a range of powerful effects.
-However, obtaining Prismatic Bomb items themselves can be difficult.`,
+/*`One such item is the Prismatic Bomb, which grants a range of powerful effects.
+However, obtaining Prismatic Bomb items themselves can be difficult.`,*/
+`Using the three basic temporary items, Vincent can craft a variety
+of more advanced items. These have stronger effects and can interact
+with certain cards. But producing the best items won't be easy.`,
+`Vincent can also stack up damage against enemies using burn.
+Burn is a status effect that never decays, and deals damage to the
+afflicted enemy whenever they add block for any reason.`,
+`Some enemies gain block on their own, but you can also force them to.
+One way to do so is with the carbon items, which while usable on
+yourself to add 9 block in a pinch, can also give 3 block to an enemy.`,
+`Finally, burning enemies provides another benefit to Vincent.
+Using a quartz or carbon item on an enemy will automatically give you
+back their burnt form, saving you the trouble of processing them.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -2135,18 +2152,25 @@ while staying aware of when they can feed a quick combo.`,
                     case 5:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
+                        //this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
                         /*this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=5
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
                         this.battle.updateTargetting()*/
-                        this.battle.cardManagers[0].allEffect(2,2)
+                        /*this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Bullet\nSupply',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,9)
                         this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,9)
-                        this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,9)*/
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Bullet\nSupply',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Get\nRipped',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Get\nRipped',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Get\nRipped',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,9)
                     break
                 }
             break
@@ -2294,7 +2318,7 @@ while staying aware of when they can feed a quick combo.`,
             break
             case 21:
                 switch(this.page){
-                    case 1:
+                    /*case 1:
                         this.battle.cardManagers[0].hand.add(findName('Supply',types.card),0,14)
                     break
                     case 2:
@@ -2307,6 +2331,43 @@ while staying aware of when they can feed a quick combo.`,
                     case 5:
                         this.battle.cardManagers[0].hand.add(findName('Synthesis',types.card),0,14)
                         this.battle.cardManagers[0].hand.add(findName('Heat\nTreatment',types.card),0,14)
+                    break*/
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Synthesis',types.card),0,14)
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Extract',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Haber\nProcess',types.card),0,14)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].hand.add(findName('Pockets',types.card),0,14)
+                    break
+                    case 5:
+                        this.battle.itemManager.removeAll(0)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Extract',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Heat\nTreatment',types.card),0,14)
+                    break
+                    case 6:
+                        this.battle.itemManager.removeAll(0)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Junkpile',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Heat\nTreatment',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Peroxide\nProcess',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Annealing',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Demolitions',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Vapor\nDeposition',types.card),0,14)
+                    break
+                    case 7:
+                        this.battle.itemManager.removeAll(0)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Lighter',types.card),0,14)
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].hand.add(findName('Synthesis',types.card),0,14)
+                    break
+                    case 9:
+                        this.battle.cardManagers[0].hand.add(findName('Extract',types.card),0,14)
                     break
                     /*case 1:
                         this.battle.cardManagers[0].hand.add(findName('Synthesis',types.card),0,14)
@@ -2324,10 +2385,10 @@ while staying aware of when they can feed a quick combo.`,
                         this.battle.cardManagers[0].hand.add(findName('Examination',types.card),0,14)
                         this.battle.cardManagers[0].hand.add(findName('Examination',types.card),0,14)
                     break*/
-                    case 6:
+                    /*case 6:
                         this.battle.cardManagers[0].allEffect(2,22)
                         this.battle.cardManagers[0].hand.add(findName('Craft\nBomb',types.card),0,14)
-                    break
+                    break*/
                 }
             break
             case 22:

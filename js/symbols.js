@@ -13118,13 +13118,18 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
         case 8:
             //layer.scale(1.2)
             //layer.scale(1.16)
-            layer.scale(1.2,0.8)
-            layer.rotate(-30)
+            //layer.scale(1.2,0.8)
+            //layer.rotate(-30)
+            //layer.scale(1.1)
             layer.stroke(255,fade)
             layer.noFill()
-            layer.strokeWeight(2)
-            layer.ellipse(0,0,20,20)
+            //layer.strokeWeight(2)
             layer.strokeWeight(3)
+            layer.ellipse(0,0,17.5)
+            //layer.ellipse(0,0,20,20)
+            //layer.arc(0,0,12,12,-75,-15)
+            //layer.strokeWeight(3)
+            layer.strokeWeight(4)
             layer.arc(0,0,30,30,-135,-45)
             layer.arc(0,0,30,30,45,75)
             layer.arc(0,0,30,30,-255,-225)
@@ -13137,6 +13142,12 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
                 layer.rotate(72)
                 layer.line(0,3,0,6)
                 layer.line(0,6,-2,5.5)
+            }*/
+            /*layer.ellipse(0,0,4)
+            for(let a=0,la=5;a<la;a++){
+                layer.rotate(72)
+                layer.line(0,2,0,5)
+                layer.line(0,5,-2,4.5)
             }*/
             layer.fill(255,fade)
             layer.noStroke()
@@ -13614,7 +13625,8 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
 				[-45,-42.5]
 			]
             layer.translate(12,5)
-            layer.scale(0.45)
+            //layer.scale(0.45)
+            layer.scale(0.4)
             layer.stroke(255,fade)
             layer.strokeWeight(5)
             for(let a=0,la=nodes.length-1;a<la;a++){
@@ -13622,6 +13634,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
             }
             layer.noStroke()
             layer.fill(255,fade)
+            let ticker=0
             for(let a=0,la=nodes.length-1;a<la;a++){
                 for(let b=0,lb=3;b<lb;b++){
                     layer.push()
@@ -13629,7 +13642,11 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade,center=true){
                     //layer.rotate(atan2(nodes[a][1]-nodes[a+1][1],nodes[a][0]-nodes[a+1][0])+(b-1)*5)
                     layer.rotate(atan2(nodes[a][1]-nodes[a+1][1],nodes[a][0]-nodes[a+1][0])+(b-1)*(6+a*2))
                     //layer.scale(1+(a*0.3+b*0.225+0.1)%0.4+a*0.1)
-                    layer.scale(1+(a*0.3+b*0.225+0.1)%0.4+a*0.05)
+                    //layer.scale(1+(a*0.3+b*0.225+0.1)%0.4+a*0.05)
+                    //let ls=[0.9,0.8,1,1.05,0.95,1.15,1.4,1.8,2.2][ticker]
+                    let ls=[0.9,0.8,1,0.95,0.85,1.05,1.4,1.8,2.2][ticker]
+                    layer.scale(ls*0.5+0.5,ls)
+                    ticker++
                     layer.beginShape()
                     /*layer.vertex(-0.5,0)
                     layer.bezierVertex(

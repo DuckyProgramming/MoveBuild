@@ -95,17 +95,17 @@ class itemManager{
         return false
     }
     addItem(type,player){
-        if(!this.battle.relicManager.hasRelic(138,player)){
-            for(let a=0,la=this.items[player].length;a<la;a++){
-                if(this.items[player][a].type==1){
-                    this.items[player][a].type=type
-                    this.items[player][a].refresh()
-                    this.total[player]++
-                    break
-                }
+        //if(!this.battle.relicManager.hasRelic(138,player)){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type==1){
+                this.items[player][a].type=type
+                this.items[player][a].refresh()
+                this.total[player]++
+                break
             }
-            this.battle.stats.item[player]++
         }
+        this.battle.stats.item[player]++
+        //}
     }
     addRandomItem(player){
         let possible=[0,0,0,1,1,2]
@@ -841,7 +841,8 @@ class itemManager{
             break
             case 1021:
                 //userCombatant.addBlock(9*effectiveness)
-                this.battle.cardManagers[player].hand.selfCall(6,[12041,[9*effectiveness,1],1,[26,1,3]])
+                //this.battle.cardManagers[player].hand.selfCall(6,[12041,[9*effectiveness,1],1,[26,1,3]])
+                this.battle.cardManagers[player].hand.selfCall(6,[12098,[9*effectiveness,3*effectiveness,1],1,[26,1,3]])
             break
             case 1022:
                 //this.battle.cardManagers[player].hand.selfCall(6,[11680,[2*effectiveness],1,[2,1,3]])
