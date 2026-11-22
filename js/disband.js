@@ -11298,34 +11298,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Deckbuild\nDefend',rarity:-1,list:-8,
-        levels:[
-            {effect:[5],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[10],attack:2,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[3],attack:2,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[5],attack:2,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[7],attack:2,cost:[-1],target:[0],spec:[],class:2},
-            ],
-        },
-    },{
-        name:'Deckbuild\nDefend-',rarity:-1,list:-8,
-        levels:[
-            {effect:[4],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[7],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[9],attack:2,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[2],attack:2,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[4],attack:2,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[6],attack:2,cost:[-1],target:[0],spec:[],class:2},
-            ],
-        },
-    },{
         name:'Workbuild',rarity:-1,list:-8,
         levels:[
             {effect:[7],attack:6101,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -16771,20 +16743,6 @@ types.disband=[
                 {effect:[25],attack:220,cost:[3],target:[2,1,1],spec:[0,11],class:1},
                 {effect:[40],attack:220,cost:[3],target:[2,1,1],spec:[0,11],class:1},
                 {effect:[50],attack:220,cost:[3],target:[2,1,1],spec:[0,11],class:1},
-            ],
-        },
-    },{
-        name:'Massless',rarity:-1,list:-8,
-        levels:[
-            {effect:[7],attack:1,cost:1,target:[2,1,1],spec:[0,3,62],class:1},
-            {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0,3,62],class:1},
-            {effect:[14],attack:1,cost:1,target:[2,1,1],spec:[0,3,62],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[5],
-            levels:[
-                {effect:[12],attack:1,cost:[5,-1],target:[2,1,1],spec:[0,3,62],class:1},
-                {effect:[18],attack:1,cost:[5,-1],target:[2,1,1],spec:[0,3,62],class:1},
-                {effect:[22],attack:1,cost:[5,-1],target:[2,1,1],spec:[0,3,62],class:1},
             ],
         },
     },{
@@ -70001,6 +69959,20 @@ types.disband=[
                 {effect:[8,1],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
                 {effect:[10,2],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
                 {effect:[10,3],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
+            ],
+        },
+    },{
+        name:'Ally\nMetallicize',rarity:-1,list:-8,
+        levels:[
+            {effect:[4],attack:8155,cost:1,target:[0],spec:[],class:11},
+            {effect:[6],attack:8155,cost:1,target:[0],spec:[],class:11},
+            {effect:[8],attack:8155,cost:1,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[constants.playerNumber+3],
+            levels:[
+                {effect:[3],attack:8155,cost:[-1],target:[0],spec:[],class:11},
+                {effect:[5],attack:8155,cost:[-1],target:[0],spec:[],class:11},
+                {effect:[6],attack:8155,cost:[-1],target:[0],spec:[],class:11},
             ],
         },
     },

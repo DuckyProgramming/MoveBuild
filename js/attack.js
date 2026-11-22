@@ -347,7 +347,7 @@ class attack{
             case 11909: case 11910: case 11911: case 11912: case 11913: case 11914: case 11915: case 11917: case 11918: case 11920: case 11926: case 11929: case 11930: case 11934: case 11942: case 11944: case 11945: case 11946: case 11947: case 11948:
             case 11949: case 11950: case 11953: case 11963: case 11964: case 11965: case 11969: case 11970: case 11971: case 11972: case 11973: case 11974: case 11975: case 11981: case 11982: case 11988: case 11991: case 11992: case 12001: case 12003:
             case 12004: case 12006: case 12012: case 12014: case 12015: case 12023: case 12024: case 12039: case 12040: case 12041: case 12044: case 12045: case 12046: case 12047: case 12051: case 12054: case 12055: case 12064: case 12066: case 12068:
-            case 12071: case 12072: case 12076: case 12079: case 12080: case 12083: case 12089: case 12095: case 12098: case 12100: case 12101: case 12103: case 12104: case 12113: case 12114:
+            case 12071: case 12072: case 12076: case 12079: case 12080: case 12083: case 12089: case 12095: case 12098: case 12100: case 12101: case 12103: case 12104: case 12113: case 12114: case 12117:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -551,7 +551,7 @@ class attack{
             case 4253: case 4254: case 5133: case 5134: case 5138: case 5139: case 5140: case 5142: case 6470: case 8155:
             case 8157: case 8177: case 8179: case 8180: case 8181: case 8182: case 8183: case 8184: case 8185: case 8186: 
             case 8187: case 8188: case 8189: case 8561: case 9394: case 9395: case 9396: case 9397: case 10871: case 10877:
-            case 10893: case 10894: case 10905: case 10906: case 11016: case 11488: case 11925:
+            case 10893: case 10894: case 10905: case 10906: case 11016: case 11488: case 11925: case 12116:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.battle.players-1-this.userCombatant.id]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -9254,6 +9254,11 @@ class attack{
                     break
                     case 12114:
                         this.battle.setTurn(this.battle.turn.total-this.effect[2])
+                    break
+                    case 12117:
+                        if(this.targetCombatant.getStatus('Shock')>0){
+                            this.userCombatant.statusEffect('Armor',this.effect[1])
+                        }
                     break
 
                 }
@@ -24564,6 +24569,18 @@ class attack{
                         this.userCombatant.statusEffect('Extra Turn',1)
                         this.userCombatant.statusEffect('Random Mana Next Turn',-this.effect[0])
                         this.userCombatant.statusEffect('Random Mana in 2 Turns',-this.effect[0])
+                    break
+                    case 12115:
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        this.battle.combatantManager.allEffect(48,['Extra Turn',1])
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 12116:
+                        this.targetCombatant.statusEffect('Take Half Damage',this.effect[0])
+                    break
+                    case 12118:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userManager.allEffectArgs(2,64,[this.effect[1]])
                     break
 
                 }

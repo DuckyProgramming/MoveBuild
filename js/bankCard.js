@@ -12393,6 +12393,10 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12112: string+=`Gain ${effect[0]} Control\nEvolve Your Hand For ${effect[1]}`; break
         case 12113: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Evolve (${this.evolve})\nApply ${effect[2]} Weak\nIf Target Has Weak\nApply ${effect[3]} Vulnerable\nIf Target Has Vulnerable`; break
         case 12114: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Evolve (${this.evolve})\nDecrease Turn\nNumber by ${effect[2]}`; break
+        case 12115: string+=`Take Another Turn\nAll Enemies\nTake Another Turn\nAfterward\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 12116: string+=`Ally Takes 50% Less\nDamage For ${effect[0]} Turn${pl(effect[0])}`; break
+        case 12117: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Shock,\nGain ${effect[1]} Armor`; break
+        case 12118: string+=`Gain ${effect[0]} Strength\nEvolve Your Hand For ${effect[1]}`; break
 
         //mark p
         //mark q
