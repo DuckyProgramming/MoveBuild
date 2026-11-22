@@ -17852,13 +17852,16 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.name=='Vengeful'&&this.trigger.display.hat){
-                    this.layer.stroke(this.color.hat[0][0],this.color.hat[0][1],this.color.hat[0][2],this.fade*this.fades.hat)
                     this.layer.fill(this.color.hat[0][0],this.color.hat[0][1],this.color.hat[0][2],this.fade*this.fades.hat)
+                    this.layer.stroke(this.color.hat[0][0],this.color.hat[0][1],this.color.hat[0][2],this.fade*this.fades.hat)
                     this.layer.strokeWeight(4)
                     this.layer.line(-17,-87,17,-87)
                     this.layer.quad(-13,-87,13,-87,8,-96,-8,-96)
-                    this.layer.stroke(this.color.hat[1][0],this.color.hat[1][1],this.color.hat[1][2],this.fade*this.fades.hat)
-                    this.layer.line(-12,-91,12,-91)
+                    /*this.layer.stroke(this.color.hat[1][0],this.color.hat[1][1],this.color.hat[1][2],this.fade*this.fades.hat)
+                    this.layer.line(-12,-91,12,-91)*/
+                    this.layer.fill(this.color.hat[1][0],this.color.hat[1][1],this.color.hat[1][2],this.fade*this.fades.hat)
+                    this.layer.noStroke()
+                    this.layer.quad(-14,-89,14,-89,12,-93,-12,-93)
                 }
                 if(this.name=='Divine Guard'&&this.trigger.display.hat){
                     this.layer.fill(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade*this.fades.hat)

@@ -4536,6 +4536,20 @@ types.invalid=[
             ],
         },
     },{
+        name:'Big\nStrike',rarity:-1,list:-8,
+        levels:[
+            {effect:[20],attack:1,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[30],attack:1,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[38],attack:1,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[25],attack:1,cost:[4,-1,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[36],attack:1,cost:[4,-1,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[45],attack:1,cost:[4,-1,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
         name:'Heavy\nStrike',rarity:-1,list:-8,
         levels:[
             {effect:[18],attack:33,cost:2,target:[2,1,2],spec:[0],class:1},
@@ -5667,6 +5681,76 @@ types.invalid=[
                 {effect:[1,1],attack:680,cost:[],target:[0],spec:[1],class:11},
                 {effect:[2,1],attack:680,cost:[],target:[0],spec:[1],class:11},
                 {effect:[2,2],attack:680,cost:[],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Bash_',rarity:-1,list:-8,
+        levels:[
+            {effect:[12],attack:1513,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[18],attack:1513,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[22],attack:1513,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[-2],
+            levels:[
+                {effect:[8],attack:1513,cost:[-2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:1513,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[16],attack:1513,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Shield_',rarity:-1,list:-8,
+        levels:[
+            {effect:[16],attack:1514,cost:2,target:[0],spec:[],class:2},
+            {effect:[24],attack:1514,cost:2,target:[0],spec:[],class:2},
+            {effect:[30],attack:1514,cost:2,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[-2],
+            levels:[
+                {effect:[10],attack:1514,cost:[-2,-1],target:[0],spec:[],class:2},
+                {effect:[14],attack:1514,cost:[-1,-1],target:[0],spec:[],class:2},
+                {effect:[20],attack:1514,cost:[-1,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Bash-_',rarity:-1,list:-8,
+        levels:[
+            {effect:[10],attack:1513,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[16],attack:1513,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[20],attack:1513,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[-2],
+            levels:[
+                {effect:[7],attack:1513,cost:[-2,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:1513,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:1513,cost:[-1,-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Shield-_',rarity:-1,list:-8,
+        levels:[
+            {effect:[14],attack:1514,cost:2,target:[0],spec:[],class:2},
+            {effect:[22],attack:1514,cost:2,target:[0],spec:[],class:2},
+            {effect:[28],attack:1514,cost:2,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[-2],
+            levels:[
+                {effect:[9],attack:1514,cost:[-2,-1],target:[0],spec:[],class:2},
+                {effect:[13],attack:1514,cost:[-1,-1],target:[0],spec:[],class:2},
+                {effect:[19],attack:1514,cost:[-1,-1],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Time\nCollector',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:7029,cost:0,target:[0],spec:[1,64],class:11},
+            {effect:[1],attack:7029,cost:0,target:[0],spec:[1,2,64],class:11},
+            {effect:[1],attack:7030,cost:0,target:[0],spec:[1,2,64],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[5],
+            levels:[
+                {effect:[1],attack:7031,cost:[5],target:[0],spec:[1,64],class:11},
+                {effect:[1],attack:7031,cost:[],target:[0],spec:[1,2,64],class:11},
+                {effect:[1],attack:7032,cost:[],target:[0],spec:[1,2,64],class:11},
             ],
         },
     },

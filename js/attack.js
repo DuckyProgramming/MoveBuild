@@ -10175,6 +10175,10 @@ class attack{
                             this.userManager.draw(this.effect[1])
                         }
                     break
+                    case 12111:
+                        this.userCombatant.addBlock(this.effect[0]*this.evolve,this.user)
+                        this.userManager.allEffectArgs(2,64,[this.effect[1]])
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -10188,7 +10192,7 @@ class attack{
                         this.userCombatant.statusEffect('Cannot Be Pushed',1)
                     break
                     case 43: case 2200: case 2425: case 2804: case 3072: case 5225: case 5795: case 6020: case 8533: case 11583:
-                    case 11786:
+                    case 11786: case 12105:
                         this.userManager.draw(this.effect[1])
                     break
                     case 50: case 6991: case 7725: case 9147:
@@ -21086,7 +21090,7 @@ class attack{
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[1]*this.evolve)
                     break
                     case 7206:
-                        this.userCombatant.statusEffect('Play Evolve',999)
+                        this.userCombatant.statusEffect('Play Evolve',1)
                     break
                     case 7207:
                         this.userCombatant.statusEffect('Evolve Temporary Strength',this.effect[0])
@@ -24544,6 +24548,19 @@ class attack{
                         for(let a=0,la=this.effect[2];a<la;a++){
                             this.battle.itemManager.addItem(findName('Ammonium',types.item),this.player)
                         }
+                    break
+                    case 12106:
+                        this.userCombatant.statusEffect('Strength',this.battle.encounter.class==1||this.battle.encounter.class==2?this.effect[0]+this.effect[1]:this.effect[0])
+                    break
+                    case 12107:
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        this.userCombatant.statusEffect('Energy Next Turn',-this.effect[0])
+                        this.userCombatant.statusEffect('Energy in 2 Turns',-this.effect[0])
+                    break
+                    case 12108:
+                        this.userCombatant.statusEffect('Extra Turn',1)
+                        this.userCombatant.statusEffect('Random Mana Next Turn',-this.effect[0])
+                        this.userCombatant.statusEffect('Random Mana in 2 Turns',-this.effect[0])
                     break
 
                 }
@@ -31416,6 +31433,24 @@ class attack{
                     break
                     case 12097:
                         this.userCombatant.statusEffect('Process Block',this.effect[0])
+                    break
+                    case 12109:
+                        this.battle.overlayManager.overlays[85][this.player].active=true
+                        this.battle.overlayManager.overlays[85][this.player].activate()
+                        if(this.userCombatant.getStatus('Temporary Dexterity')>0){
+                            this.battle.addEnergy(this.effect[0],this.player)
+                        }
+                    break
+                    case 12110:
+                        this.battle.overlayManager.overlays[85][this.player].active=true
+                        this.battle.overlayManager.overlays[85][this.player].activate()
+                        if(this.userCombatant.getStatus('Temporary Dexterity')>0){
+                            this.battle.addSpecificEnergy(1,this.player,6)
+                        }
+                    break
+                    case 12112:
+                        this.userCombatant.statusEffect('Control',this.effect[0])
+                        this.userManager.allEffectArgs(2,64,[this.effect[1]])
                     break
 
                 }

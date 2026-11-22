@@ -3052,7 +3052,7 @@ class card{
             case 7204:
                 this.costDown(0,[1])
             break
-            case 7441: case 12104:
+            case 7441: case 12104: case 12105:
                 this.costDown(2,[1])
             break
             case 7729:
@@ -5014,6 +5014,11 @@ class card{
             break
         }
     }
+    getDesc(){
+        return this.spec.includes(12)?
+            `${this.description(this.attack[0],this.effect[0],this.reality[0],this.target)} or ${this.description(this.attack[1],this.effect[1],this.reality[1],this.target)}`:
+            this.description(this.attack,this.effect,this.spec,this.target)
+    }
     formTooltip(){
         if(this.spec.includes(12)){
             let desc=[
@@ -5619,7 +5624,7 @@ class card{
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
                     //if(this.type<findName('-h Prison',types.card)){
-                    if(this.type>findName('-h Prison',types.card)){
+                    /*if(this.type>findName('-h Prison',types.card)){
                         this.layer.noStroke()
                         this.layer.fill(50,50,225,this.fade)
                         this.layer.quad(
@@ -5649,7 +5654,7 @@ class card{
                                 -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.15-this.height*0.4*(a+0.8)/la,
                                 -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.25-this.height*0.4*(a+0.8)/la)
                         }
-                    }
+                    }*/
                     this.layer.stroke(40,50,60,this.fade)
                     this.layer.noFill()
                 }else if(this.list==-9&&variants.ultraprism&&false){
@@ -6339,7 +6344,7 @@ class card{
                     this.layer.strokeWeight(5)
                     this.layer.rect(0,0,this.width,this.height,5)
                     //if(this.type<findName('-h Prison',types.card)){
-                    if(this.type>findName('-h Prison',types.card)){
+                    /*if(this.type>findName('-h Prison',types.card)){
                         this.layer.noStroke()
                         this.layer.fill(200,200,25,this.fade)
                         this.layer.quad(
@@ -6369,7 +6374,7 @@ class card{
                                 -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.15-this.height*0.4*(a+0.8)/la,
                                 -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.25-this.height*0.4*(a+0.8)/la)
                         }
-                    }
+                    }*/
                     this.layer.stroke(90,100,110,this.fade)
                     this.layer.noFill()
                 }else if(this.list==-9&&variants.ultraprism&&false){
@@ -6870,6 +6875,69 @@ class card{
                 this.layer.stroke(255,25,25,this.fade)
                 this.layer.strokeWeight(2)
                 this.layer.ellipse(this.width/2-7.5,-this.height/2+7.5,5)
+            }
+            if(this.type>findName('-h Prison',types.card)&&list==-8){
+                if(this.edition==5){
+                    this.layer.noStroke()
+                    this.layer.fill(200,25,200,this.fade)
+                    this.layer.quad(
+                        -this.width/2-2.5,-this.height*0.25,
+                        -this.width/2-2.5,-this.height*0.15,
+                        this.width/2+2.5,this.height*0.25,
+                        this.width/2+2.5,this.height*0.15)
+                    this.layer.fill(25,this.fade)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.quad(
+                            -this.width/2-2.5+(this.width+5)*(a+0.2)/la,-this.height*0.25+this.height*0.4*(a+0.2)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.2)/la,-this.height*0.15+this.height*0.4*(a+0.2)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.7)/la,-this.height*0.15+this.height*0.4*(a+0.7)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.7)/la,-this.height*0.25+this.height*0.4*(a+0.7)/la)
+                    }
+                    this.layer.fill(50,this.fade)
+                    this.layer.quad(
+                        -this.width/2-2.5,this.height*0.25,
+                        -this.width/2-2.5,this.height*0.15,
+                        this.width/2+2.5,-this.height*0.25,
+                        this.width/2+2.5,-this.height*0.15)
+                    this.layer.fill(225,50,225,this.fade)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.quad(
+                            -this.width/2-2.5+(this.width+5)*(a+0.3)/la,this.height*0.25-this.height*0.4*(a+0.3)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.3)/la,this.height*0.15-this.height*0.4*(a+0.3)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.15-this.height*0.4*(a+0.8)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.25-this.height*0.4*(a+0.8)/la)
+                    }
+                }else{
+                    this.layer.noStroke()
+                    this.layer.fill(200,200,25,this.fade)
+                    this.layer.quad(
+                        -this.width/2-2.5,-this.height*0.25,
+                        -this.width/2-2.5,-this.height*0.15,
+                        this.width/2+2.5,this.height*0.25,
+                        this.width/2+2.5,this.height*0.15)
+                    this.layer.fill(25,this.fade)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.quad(
+                            -this.width/2-2.5+(this.width+5)*(a+0.2)/la,-this.height*0.25+this.height*0.4*(a+0.2)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.2)/la,-this.height*0.15+this.height*0.4*(a+0.2)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.7)/la,-this.height*0.15+this.height*0.4*(a+0.7)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.7)/la,-this.height*0.25+this.height*0.4*(a+0.7)/la)
+                    }
+                    this.layer.fill(50,this.fade)
+                    this.layer.quad(
+                        -this.width/2-2.5,this.height*0.25,
+                        -this.width/2-2.5,this.height*0.15,
+                        this.width/2+2.5,-this.height*0.25,
+                        this.width/2+2.5,-this.height*0.15)
+                    this.layer.fill(225,225,50,this.fade)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.quad(
+                            -this.width/2-2.5+(this.width+5)*(a+0.3)/la,this.height*0.25-this.height*0.4*(a+0.3)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.3)/la,this.height*0.15-this.height*0.4*(a+0.3)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.15-this.height*0.4*(a+0.8)/la,
+                            -this.width/2-2.5+(this.width+5)*(a+0.8)/la,this.height*0.25-this.height*0.4*(a+0.8)/la)
+                    }
+                }
             }
             if(this.edition>=1&&this.edition<=9){
                 if(this.width==90){

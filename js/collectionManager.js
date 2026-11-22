@@ -6,13 +6,15 @@ class collectionManager{
         this.knownKey=[]
         this.won=[]
         this.saveKey=false
-        this.cards=[]
-        this.anim={query:{list:[],rarity:[],class:[]},variant:0}
-        this.level=0
+        //this.cards=[]
+        this.cards={front:[],back:[]}
+        this.anim={query:{list:[],rarity:[],class:[]},variant:0,desc:0}
         this.page=0
         this.totals={query:[0,0],list:[]}
         this.query={
             name:'',
+            desc:false,
+            level:0,
             list:[],
             rarity:[],
             class:[],
@@ -36,6 +38,9 @@ class collectionManager{
         }
         this.overlayManager=new overlayManager(this.layer,this.battle,2)
         this.getData()
+    }
+    reset(){
+        this.cards={front:[],back:[]}
     }
     overListing(cardData){
         if(cardData.rarity>=0&&cardData.list>=0&&cardData.list<=constants.playerNumber+5){
@@ -99,11 +104,17 @@ class collectionManager{
     executeQuery(){
         this.page=0
         this.totals={query:[0,0],list:[]}
-        let names=[]
+        /*let names=[]
         for(let a=0,la=constants.playerNumber+16;a<la;a++){
             names.push([[],[]])
             this.totals.list.push([0,0])
+        }*/
+        let preCards=[]
+        for(let a=0,la=constants.playerNumber+16;a<la;a++){
+            this.totals.list.push([0,0])
+            preCards.push([])
         }
+        let minim=this.query.name.toLowerCase().replace('\n',' ')
         for(let a=0,la=types.card.length;a<la;a++){
             let cardData=types.card[a]
             //if(cardData.list!=-10){
@@ -115,33 +126,41 @@ class collectionManager{
             if(this.knownKey[a]){
                 this.totals.list[resultlist][1]++
             }
-            if(
-                (this.query.name==''||cardData.name.toLowerCase().replace('\n',' ').includes(this.query.name.toLowerCase().replace('\n',' ')))&&
-                (this.query.list.includes(sublist))&&
-                (cardData.rarity>=0&&cardData.rarity<=2&&this.query.rarity[cardData.rarity]||(cardData.rarity<0||cardData.rarity>=3)&&this.query.rarity[3])&&
+            preCards[resultlist].push([a,sublist])
+            /*if(
                 (
-                    cardData.levels[this.level].class==1&&this.query.class[0]||
-                    cardData.levels[this.level].class==2&&this.query.class[1]||
-                    cardData.levels[this.level].class==3&&this.query.class[2]||
-                    cardData.levels[this.level].class==11&&this.query.class[3]||
-                    cardData.levels[this.level].class==4&&this.query.class[4]||
-                    cardData.levels[this.level].class==5&&this.query.class[5]||
-                    cardData.levels[this.level].class==6&&this.query.class[6]||
-                    ![1,2,3,4,5,6,11].includes(cardData.levels[this.level].class)&&this.query.class[7]
+                    this.query.name==''||
+                    cardData.name.toLowerCase().replaceAll('\n',' ').includes(minim)&&!this.query.desc||
+                    this.query.desc
+                )&&
+                (this.query.list.includes(sublist))&&
+                (
+                    cardData.rarity>=0&&cardData.rarity<=2&&this.query.rarity[cardData.rarity]||
+                    (cardData.rarity<0||cardData.rarity>=3)&&this.query.rarity[3]
+                )&&
+                (
+                    cardData.levels[this.query.level].class==1&&this.query.class[0]||
+                    cardData.levels[this.query.level].class==2&&this.query.class[1]||
+                    cardData.levels[this.query.level].class==3&&this.query.class[2]||
+                    cardData.levels[this.query.level].class==11&&this.query.class[3]||
+                    cardData.levels[this.query.level].class==4&&this.query.class[4]||
+                    cardData.levels[this.query.level].class==5&&this.query.class[5]||
+                    cardData.levels[this.query.level].class==6&&this.query.class[6]||
+                    ![1,2,3,4,5,6,11].includes(cardData.levels[this.query.level].class)&&this.query.class[7]
                 )
             ){
-                names[resultlist][this.query.name.toLowerCase().replace('\n',' ')!=''&&cardData.name.toLowerCase().replace('\n',' ').substr(0,this.query.name.length)!=this.query.name.toLowerCase().replace('\n',' ')?1:0].push(cardData.name)
-            }
+                names[resultlist][minim!=''&&cardData.name.toLowerCase().replaceAll('\n',' ').substr(0,this.query.name.length)!=minim?1:0].push(cardData.name)
+            }*/
             //}
         }
-        names.forEach(sub1=>sub1.forEach(sub2=>sub2=sub2.sort()))
+        /*names.forEach(sub1=>sub1.forEach(sub2=>sub2=sub2.sort()))
         this.cards=[]
         let tick=0
         for(let a=0,la=names.length;a<la;a++){
             for(let b=0,lb=names[a].length;b<lb;b++){
                 for(let c=0,lc=names[a][b].length;c<lc;c++){
                     let selector=findName(names[a][b][c],types.card)
-                    this.cards.push(new card(this.layer,this.battle,0,this.layer.width/2-350+tick%8*100,this.layer.height/2-200+floor(tick/8)%3*130,selector,this.level,this.battle.standardColorize(selector),-1))
+                    this.cards.push(new card(this.layer,this.battle,0,this.layer.width/2-350+tick%8*100,this.layer.height/2-200+floor(tick/8)%3*130,selector,this.query.level,this.battle.standardColorize(selector),-1))
                     if(!this.known.includes(names[a][b][c])&&!game.dev){
                         this.cards[this.cards.length-1].blind=true
                     }else{
@@ -151,6 +170,59 @@ class collectionManager{
                     tick++
                 }
             }
+        }*/
+        preCards.forEach(set=>set.sort((a,b)=>types.card[a[0]].name.localeCompare(types.card[b[0]].name)))
+        if(this.cards.back.length==[]){
+            for(let a=0,la=preCards.length;a<la;a++){
+                for(let b=0,lb=preCards[a].length;b<lb;b++){
+                    this.cards.back.push(new card(this.layer,this.battle,0,0,0,preCards[a][b][0],this.query.level,this.battle.standardColorize(preCards[a][b][0]),-1))
+                    this.cards.back[this.cards.back.length-1].sublist=preCards[a][b][1]
+                    if(!this.known.includes(types.card[preCards[a][b][0]].name)&&!game.dev){
+                        this.cards.back[this.cards.back.length-1].blind=true
+                    }else{
+                        this.totals.query[0]++
+                    }
+                    this.totals.query[1]++
+                }
+            }
+        }else{
+            this.cards.back.forEach(card=>card.size=0)
+        }
+        let tick=0
+        this.totals.query=[0,0]
+        this.cards.front=this.query.name==''?
+            this.cards.back.slice():
+            this.query.desc?
+            this.cards.back.filter(card=>card.getDesc().toLowerCase().replaceAll('\n',' ').includes(minim)):
+            this.cards.back.filter(card=>card.name.toLowerCase().replaceAll('\n',' ').includes(minim))
+        this.cards.front=this.cards.front.filter(card=>{
+            return this.query.list.includes(card.sublist)&&
+            (
+                card.rarity>=0&&card.rarity<=2&&this.query.rarity[card.rarity]||
+                (card.rarity<0||card.rarity>=3)&&this.query.rarity[3]
+            )&&
+            (
+                card.spec.includes(12)?card.class:[card.class].some(a=>{
+                    return a==1&&this.query.class[0]||
+                        a==2&&this.query.class[1]||
+                        a==3&&this.query.class[2]||
+                        a==11&&this.query.class[3]||
+                        a==4&&this.query.class[4]||
+                        a==5&&this.query.class[5]||
+                        a==6&&this.query.class[6]||
+                        ![1,2,3,4,5,6,11].includes(a)&&this.query.class[7]
+                })
+            )
+        })
+        //print(this.cards.front.length,this.cards.back.length,fail.map(card=>card.name.replaceAll('\n',' ')).join('\n'))
+        for(let a=0,la=this.cards.front.length;a<la;a++){
+            this.cards.front[a].position.x=this.layer.width/2-350+tick%8*100
+            this.cards.front[a].position.y=this.layer.height/2-200+floor(tick/8)%3*130
+            if(!this.cards.front[a].blind){
+                this.totals.query[0]++
+            }
+            this.totals.query[1]++
+            tick++
         }
     }
     activate(name){
@@ -191,29 +263,38 @@ class collectionManager{
             case 'collection':
                 this.layer.noStroke()
                 this.layer.fill(240*this.anim.variant)
-                this.layer.rect(this.layer.width/2+225,this.layer.height*0.7+38.75,135,22.5)
-                this.layer.fill(240*(1-this.anim.variant))
+                //this.layer.rect(this.layer.width/2+225,this.layer.height*0.7+38.75,135,22.5)
+                this.layer.rect(this.layer.width/2+262.5,this.layer.height*0.7+38.75,135,22.5)
+                this.layer.fill(240*this.anim.desc)
+                this.layer.rect(180,this.layer.height*0.7+52.5,135,22.5)
                 this.layer.textSize(10)
-			    this.layer.text('MARK INGAME',this.layer.width/2+225,this.layer.height*0.7+38.75)
+			    //this.layer.text('MARK INGAME',this.layer.width/2+225,this.layer.height*0.7+38.75)
+                this.layer.fill(255*(1-this.anim.variant))
+                this.layer.text('MARK INGAME',this.layer.width/2+262.5,this.layer.height*0.7+38.75)
+                this.layer.fill(255*(1-this.anim.desc))
+                this.layer.text('SEARCH DESCRIPTIONS',180,this.layer.height*0.7+52.5)
                 //this.layer.fill(255,this.anim.variant)
                 //this.layer.ellipse(this.layer.width/2+295,this.layer.height*0.7+38.75,10)
-                this.layer.fill(0)
+                /*this.layer.fill(0)
                 this.layer.stroke(120)
-                this.layer.strokeWeight(3)
-                this.layer.rect(180,515,240,30,5)
+                //this.layer.strokeWeight(3)
+                this.layer.strokeWeight(6.25)
+                this.layer.rect(180,515,240,30,5)*/
                 this.layer.textAlign(LEFT,CENTER)
                 this.layer.fill(255)
                 this.layer.noStroke()
                 this.layer.textSize(12)
-                this.layer.text(this.query.name,65,515)
+                //this.layer.text(this.query.name,65,515)
+                this.layer.text(this.query.name,72,515)
                 this.layer.textAlign(CENTER,CENTER)
                 this.layer.textSize(10)
                 this.layer.text(`${this.totals.query[0]}/${this.totals.query[1]}`,this.layer.width/2-75,this.layer.height*0.7+42.5)
-                this.layer.text(`${this.page+1}/${max(1,ceil(this.cards.length/24))}`,this.layer.width/2+75,this.layer.height*0.7+42.5)
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].fade=1
-                    this.cards[a].anim={select:0,afford:1}
-                    this.cards[a].display()
+                this.layer.text(`${this.page+1}/${max(1,ceil(this.cards.front.length/24))}`,this.layer.width/2+75,this.layer.height*0.7+42.5)
+                this.layer.text('CHANGE LEVEL',180,this.layer.height*0.7+137.5)
+                for(let a=0,la=this.cards.front.length;a<la;a++){
+                    this.cards.front[a].fade=1
+                    this.cards.front[a].anim={select:0,afford:1}
+                    this.cards.front[a].display()
                 }
                 this.overlayManager.display()
             break
@@ -274,13 +355,14 @@ class collectionManager{
         switch(scene){
             case 'collection':
                 this.anim.variant=smoothAnim(this.anim.variant,variants.collection,0,1,5)
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].upSize=a>=this.page*24&&a<this.page*24+24
-                    this.cards[a].deSize=!this.cards[a].upSize
-                    if(this.cards[a].upSize&&this.cards[a].size<1){
-                        this.cards[a].size=round(this.cards[a].size*5+1)/5
-                    }else if(this.cards[a].deSize&&this.cards[a].size>0){
-                        this.cards[a].size=round(this.cards[a].size*5-1)/5
+                this.anim.desc=smoothAnim(this.anim.desc,this.query.desc,0,1,5)
+                for(let a=0,la=this.cards.front.length;a<la;a++){
+                    this.cards.front[a].upSize=a>=this.page*24&&a<this.page*24+24
+                    this.cards.front[a].deSize=!this.cards.front[a].upSize
+                    if(this.cards.front[a].upSize&&this.cards.front[a].size<1){
+                        this.cards.front[a].size=round(this.cards.front[a].size*5+1)/5
+                    }else if(this.cards.front[a].deSize&&this.cards.front[a].size>0){
+                        this.cards.front[a].size=round(this.cards.front[a].size*5-1)/5
                     }
                 }
                 this.overlayManager.update()
@@ -308,23 +390,33 @@ class collectionManager{
                     this.overlayManager.onClick()
                 }else{
                     //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+295,y:this.layer.height*0.7+38.75},width:22.5,height:22.5})){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225,y:this.layer.height*0.7+38.75},width:135,height:22.5})){
+                    //if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225,y:this.layer.height*0.7+38.75},width:135,height:22.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+262.5,y:this.layer.height*0.7+38.75},width:135,height:22.5})){
                         variants.collection=!variants.collection
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:180,y:this.layer.height*0.7+52.5},width:135,height:22.5})){
+                        this.query.desc=!this.query.desc
+                        this.executeQuery()
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:180,y:this.layer.height*0.7+137.5},width:135,height:22.5})){
+                        this.query.level=(this.query.level+1)%3
+                        this.reset()
+                        this.executeQuery()
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page>0){
                         this.page--
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page<ceil(this.cards.length/24)-1){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+75,y:this.layer.height*0.7+95},width:62.5,height:62.5})&&this.page<ceil(this.cards.front.length/24)-1){
                         this.page++
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+57.5},width:62.5,height:62.5})&&this.level<2){
-                        this.level++
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+57.5},width:62.5,height:62.5})&&this.query.level<2){
+                        this.query.level++
                         let holdPage=this.page
                         this.executeQuery()
                         this.page=holdPage
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+132.5},width:62.5,height:62.5})&&this.level>0){
-                        this.level--
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+132.5},width:62.5,height:62.5})&&this.query.level>0){
+                        this.query.level--
                         let holdPage=this.page
                         this.executeQuery()
                         this.page=holdPage
@@ -410,20 +502,29 @@ class collectionManager{
                     if(key=='~'){
                         variants.collection=!variants.collection
                     }
+                    if(key=='`'){
+                        this.query.desc=!this.query.desc
+                        this.executeQuery()
+                    }
+                    if(key=='+'){
+                        this.query.level=(this.query.level+1)%3
+                        this.reset()
+                        this.executeQuery()
+                    }
                     if(code==LEFT_ARROW&&this.page>0){
                         this.page--
                     }
-                    if(code==RIGHT_ARROW&&this.page<ceil(this.cards.length/24)-1){
+                    if(code==RIGHT_ARROW&&this.page<ceil(this.cards.front.length/24)-1){
                         this.page++
                     }
-                    if(code==UP_ARROW&&this.level<2){
-                        this.level++
+                    if(code==UP_ARROW&&this.query.level<2){
+                        this.query.level++
                         let holdPage=this.page
                         this.executeQuery()
                         this.page=holdPage
                     }
-                    if(code==DOWN_ARROW&&this.level>0){
-                        this.level--
+                    if(code==DOWN_ARROW&&this.query.level>0){
+                        this.query.level--
                         let holdPage=this.page
                         this.executeQuery()
                         this.page=holdPage

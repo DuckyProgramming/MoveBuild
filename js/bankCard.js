@@ -12383,6 +12383,14 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12102: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nDeal Double Damage\nThis Turn`; break
         case 12103: string+=`Target Takes Double\nDamage From Shivs`; break
         case 12104: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nWhen Evolved,\nCosts 1 Less`; break
+        case 12105: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nWhen Evolved,\nCosts 1 Less`; break
+        case 12106: string+=`Gain ${effect[0]} Strength\nElite or Boss Combat:\nGain ${effect[1]} More Strength`; break
+        case 12107: string+=`Take Another Turn\nLose ${effect[0]} Energy\nNext 2 Turns`; break
+        case 12108: string+=`Take Another Turn\nLose ${effect[0]} Random Mana\nNext 2 Turns`; break
+        case 12109: string+=`Put a Skill\nFrom Your Draw\nPile Into Your Hand\nIf You Have\nTemporary Dexterity,\nGain ${effect[0]} Energy`; break
+        case 12110: string+=`Put a Skill\nFrom Your Draw\nPile Into Your Hand\nIf You Have\nTemporary Dexterity,\nGain (E)`; break
+        case 12111: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Evolve (${this.evolve})\nEvolve Your Hand For ${effect[1]}`; break
+        case 12112: string+=`Gain ${effect[0]} Control\nEvolve Your Hand For ${effect[1]}`; break
 
         //mark p
         //mark q

@@ -939,7 +939,9 @@ class turn{
                                     this.targetDistance=1
                                 }
                                 if(works){
-                                    this.direction=round(atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6))*60+30
+                                    let dir=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6)
+                                    let rdir=round(dir)
+                                    this.direction=rdir*60+30
                                     if(this.type==4||this.type==5){
                                         this.direction+=round(random(-2,2))*60
                                     }else if(this.type==9){
@@ -976,7 +978,8 @@ class turn{
                                         }
                                     }
                                     if(fail){
-                                        let angle=floor(random(0,2))*2-1
+                                        //let angle=floor(random(0,2))*2-1
+                                        let angle=rdir>dir?-1:1
                                         fail=false
                                         this.direction+=angle*60
                                         this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]

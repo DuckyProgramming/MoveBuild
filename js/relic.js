@@ -1183,7 +1183,8 @@ class relic{
                     this.layer.text('?',0,14)
                 break
                 case 'Basic Draw':
-                    displaySymbol(this.layer,0,-4,8,0,0.8,this.fade)
+                    //displaySymbol(this.layer,0,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,-4,8,0,1,this.fade)
                     displaySymbol(this.layer,0,10,4,0,0.6,this.fade)
                 break
                 case 'Confused Draw':

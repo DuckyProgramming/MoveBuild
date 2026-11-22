@@ -2434,6 +2434,15 @@ types={
                 [{type:-1},{type:-1},{type:[]},{type:-1},{type:[]}],
             ],
         },{
+            name:'Subcrescent 5',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
             name:'Broken Star 5',
             map:[
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -4252,6 +4261,20 @@ types={
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
             ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Subcrescent 5'],class:0,world:2,
+            name:'Lunar Shard',
+            player:{position:[[{x:2,y:1}],[{x:1,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:2,y:4},name:'Lunar Shard'},
+                {position:{x:5,y:4},name:'Lunar Shard'},
+            ],reinforce:[
+            ],assaultReinforce:[
+                {position:{x:2,y:1},name:'Lunar Shard',turn:2},
+                {position:{x:1,y:2},name:'Lunar Dust',turn:6},
+                {position:{x:4,y:2},name:'Lunar Dust',turn:6},
             ],ally:[
             ],
         },{
@@ -7041,8 +7064,8 @@ types={
             ],ally:[
             ],
         },{
-            level:['Crescent 5'],class:0,world:2,
-            name:'Lunar Shard',
+            level:['Crescent 5'],class:-1,world:0,
+            name:'Old Lunar Shard',
             player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
             enemy:[
                 {position:{x:2,y:4},name:'Lunar Shard'},

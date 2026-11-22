@@ -7839,9 +7839,15 @@ class group{
                                 }
                             }else{
                                 let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                                if(userCombatant.getStatus('Play Evolve')>0&&this.cards[a].spec.includes(79)){
+                                if(userCombatant.getStatus('Play Evolve Time')>0&&this.cards[a].spec.includes(79)){
                                     this.cards[a].evolve++
                                     this.cards[a].callEvolveEffect()
+                                }
+                                if(userCombatant.getStatus('Play Evolve')>0&&this.cards[a].spec.includes(79)){
+                                    for(let a=0,la=userCombatant.getStatus('Play Evolve');a<la;a++){
+                                        this.cards[a].evolve++
+                                        this.cards[a].callEvolveEffect()
+                                    }
                                 }
                             }
                             let triplet=false

@@ -168,6 +168,7 @@ class battle{
         transition.trigger=true
         transition.scene='pack'
         this.altPhase=false
+        this.collectionManager.reset()
         this.create()
     }
     create(){
