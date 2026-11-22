@@ -12391,6 +12391,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12110: string+=`Put a Skill\nFrom Your Draw\nPile Into Your Hand\nIf You Have\nTemporary Dexterity,\nGain (E)`; break
         case 12111: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Evolve (${this.evolve})\nEvolve Your Hand For ${effect[1]}`; break
         case 12112: string+=`Gain ${effect[0]} Control\nEvolve Your Hand For ${effect[1]}`; break
+        case 12113: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Evolve (${this.evolve})\nApply ${effect[2]} Weak\nIf Target Has Weak\nApply ${effect[3]} Vulnerable\nIf Target Has Vulnerable`; break
+        case 12114: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Evolve (${this.evolve})\nDecrease Turn\nNumber by ${effect[2]}`; break
 
         //mark p
         //mark q
@@ -12660,9 +12662,9 @@ card.prototype.description=function(attack,effect,spec,target){
     if(spec.includes(66)){
         string+='\nExtra Wide'
     }
-    if(spec.includes(79)){
+    /*if(spec.includes(79)){
         string+='\nEvolve'
-    }
+    }*/
     if(spec.includes(88)){
         string+='\nRetain Fuel Once'
         element=false

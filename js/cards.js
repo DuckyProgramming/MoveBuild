@@ -30803,20 +30803,6 @@ types.card=[
             ],
         },
     },{
-        name:'Time\nMagic',rarity:1,list:13,
-        levels:[
-            {effect:[1],attack:10285,cost:1,target:[0],spec:[],class:11},
-            {effect:[1],attack:10285,cost:1,target:[0],spec:[],class:11},
-            {effect:[1],attack:10285,cost:1,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:1,list:13,color:[3],
-            levels:[
-                {effect:[1],attack:10285,cost:[3,-1],target:[0],spec:[],class:11},
-                {effect:[1],attack:10285,cost:[3,-1],target:[0],spec:[],class:11},
-                {effect:[1],attack:10285,cost:[3,-1],target:[0],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Exhume\nDoom',rarity:1,list:13,
         levels:[
             {effect:[10,1],attack:10340,cost:3,target:[0],spec:[0,1],class:1},
@@ -30968,20 +30954,6 @@ types.card=[
                 {effect:[1],attack:10918,cost:[1],target:[0],spec:[1,15],limit:5,class:11},
                 {effect:[2],attack:10918,cost:[1],target:[0],spec:[1,15],limit:3,class:11},
                 {effect:[3],attack:10918,cost:[1],target:[0],spec:[1,15],limit:1,class:11},
-            ],
-        },
-    },{
-        name:'Double\nHelix',rarity:1,list:13,
-        levels:[
-            {effect:[7,1,1],attack:10916,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[11,1,1],attack:10916,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[14,1,1],attack:10916,cost:1,target:[2,1,3],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:13,color:[4],
-            levels:[
-                {effect:[5,1,1],attack:10916,cost:[4],target:[2,1,3],spec:[0],class:1},
-                {effect:[8,1,1],attack:10916,cost:[4],target:[2,1,3],spec:[0],class:1},
-                {effect:[10,1,1],attack:10916,cost:[4],target:[2,1,3],spec:[0],class:1},
             ],
         },
     },{
@@ -62205,20 +62177,6 @@ types.card=[
             ],
         },
     },{
-        name:'Defy',rarity:0,list:-9,
-        levels:[
-            {effect:[10,1],attack:10411,cost:1,target:[2,1,3],spec:[4],class:2},
-            {effect:[12,2],attack:10411,cost:1,target:[2,1,3],spec:[4],class:2},
-            {effect:[12,3],attack:10411,cost:1,target:[2,1,3],spec:[4],class:2},
-        ],mtg:{
-            rarity:0,list:-1,color:[3],
-            levels:[
-                {effect:[8,1],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
-                {effect:[10,2],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
-                {effect:[10,3],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
-            ],
-        },
-    },{
         name:'Morning\nLight',rarity:1,list:-9,
         levels:[
             {effect:[4,1],attack:10627,cost:0,target:[0],spec:[],class:11},
@@ -63406,6 +63364,20 @@ types.card=[
                 {effect:[7,1],attack:2304,cost:[3],target:[0],spec:[],class:2},
                 {effect:[11,1],attack:2304,cost:[3],target:[0],spec:[],class:2},
                 {effect:[14,1],attack:2304,cost:[3],target:[0],spec:[],class:2},
+            ],
+        },
+    },{
+        name:'Port\nPriority',rarity:0,list:-9,
+        levels:[
+            {effect:[8,4],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12,6],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,8],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:0,list:-9,color:[3],
+            levels:[
+                {effect:[6,4],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[8,6],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[10,8],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },
@@ -67841,6 +67813,36 @@ types.card=[
     },
 
     //mark p
+
+    {
+        name:'Double\nHelix',rarity:1,list:13,
+        levels:[
+            {effect:[6,2,1,1],attack:12113,cost:1,target:[2,1,3],spec:[0,79],class:1},
+            {effect:[10,3,1,1],attack:12113,cost:1,target:[2,1,3],spec:[0,79],class:1},
+            {effect:[12,4,1,1],attack:12113,cost:1,target:[2,1,3],spec:[0,79],class:1},
+        ],mtg:{
+            rarity:1,list:13,color:[4],
+            levels:[
+                {effect:[4,2,1,1],attack:12113,cost:[4],target:[2,1,3],spec:[0,79],class:1},
+                {effect:[6,3,1,1],attack:12113,cost:[4],target:[2,1,3],spec:[0,79],class:1},
+                {effect:[6,4,1,1],attack:12113,cost:[4],target:[2,1,3],spec:[0,79],class:1},
+            ],
+        },
+    },{
+        name:'Ammonite',rarity:1,list:13,
+        levels:[
+            {effect:[8,4,1],attack:12114,cost:1,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[12,6,1],attack:12114,cost:1,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[12,8,1],attack:12114,cost:1,target:[2,1,1],spec:[0,79],class:1},
+        ],mtg:{
+            rarity:1,list:13,color:[5],
+            levels:[
+                {effect:[10,8,1],attack:12114,cost:[5,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[16,12,1],attack:12114,cost:[5,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[16,16,1],attack:12114,cost:[5,-1],target:[2,1,1],spec:[0,79],class:1},
+            ],
+        },
+    },
 
     //mark q
 

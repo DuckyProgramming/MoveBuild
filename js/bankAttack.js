@@ -133,7 +133,7 @@ attack.prototype.update=function(){
         case 11264: case 11273: case 11304: case 11320: case 11322: case 11330: case 11345: case 11355: case 11356: case 11371: case 11395: case 11400: case 11404: case 11409: case 11418: case 11429: case 11430: case 11435: case 11440:
         case 11441: case 11449: case 11468: case 11479: case 11483: case 11506: case 11507: case 11528: case 11572: case 11598: case 11601: case 11602: case 11603: case 11604: case 11636: case 11639: case 11641: case 11642: case 11647:
         case 11648: case 11661: case 11737: case 11764: case 11769: case 11771: case 11784: case 11785: case 11791: case 11852: case 11861: case 11876: case 11897: case 11903: case 11905: case 11913: case 11914: case 11915: case 11918:
-        case 11929: case 11930: case 11934: case 11950: case 11964: case 11965: case 11991: case 11992: case 12006: case 12054: case 12071: case 12072: case 12079: case 12080: case 12083: case 12100: case 12101: case 12104:
+        case 11929: case 11930: case 11934: case 11950: case 11964: case 11965: case 11991: case 11992: case 12006: case 12054: case 12071: case 12072: case 12079: case 12080: case 12083: case 12100: case 12101: case 12104: case 12114:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -10833,7 +10833,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3770: case 10915: case 10916:
+        case 3770: case 10915: case 10916: case 12113:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -10846,20 +10846,31 @@ attack.prototype.update=function(){
                     this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
                     137,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y-10),150,[150,255,100]]))
             }else if(this.timer==20*this.targetDistance+10){
-                this.targetCombatant.takeDamage(this.effect[0],this.user)
                 switch(this.type){
                     case 3770:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.upRandomStatus(this.effect[1],[1,3])
                     break
                     case 10915:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.randomStatusInstant(this.effect[1],[1])
                     break
                     case 10916:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.getStatus('Weak')>0){
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
                         }
                         if(this.targetCombatant.getStatus('Vulnerable')>0){
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[2])
+                        }
+                    break
+                    case 12113:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.evolve,this.user)
+                        if(this.targetCombatant.getStatus('Weak')>0){
+                            this.targetCombatant.statusEffect('Weak',this.effect[2])
+                        }
+                        if(this.targetCombatant.getStatus('Vulnerable')>0){
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[3])
                         }
                     break
                 }

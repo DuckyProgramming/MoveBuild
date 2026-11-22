@@ -5753,6 +5753,34 @@ types.invalid=[
                 {effect:[1],attack:7032,cost:[],target:[0],spec:[1,2,64],class:11},
             ],
         },
+    },{
+        name:'Strike-_',rarity:-1,list:-8,
+        levels:[
+            {effect:[5],attack:1513,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8],attack:1513,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[10],attack:1513,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[3],attack:1513,cost:[-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[5],attack:1513,cost:[-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:1513,cost:[-1],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Defend-_',rarity:-1,list:-8,
+        levels:[
+            {effect:[7],attack:1514,cost:1,target:[0],spec:[],class:2},
+            {effect:[10],attack:1514,cost:1,target:[0],spec:[],class:2},
+            {effect:[14],attack:1514,cost:1,target:[0],spec:[],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[4],attack:1514,cost:[-1],target:[0],spec:[],class:2},
+                {effect:[7],attack:1514,cost:[-1],target:[0],spec:[],class:2},
+                {effect:[9],attack:1514,cost:[-1],target:[0],spec:[],class:2},
+            ],
+        },
     },
 
     //mark er

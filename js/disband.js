@@ -46736,34 +46736,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Strike-_',rarity:-1,list:-8,
-        levels:[
-            {effect:[5],attack:1513,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[8],attack:1513,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[10],attack:1513,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[3],attack:1513,cost:[-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[5],attack:1513,cost:[-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[7],attack:1513,cost:[-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
-    },{
-        name:'Defend-_',rarity:-1,list:-8,
-        levels:[
-            {effect:[7],attack:1514,cost:1,target:[0],spec:[],class:2},
-            {effect:[10],attack:1514,cost:1,target:[0],spec:[],class:2},
-            {effect:[14],attack:1514,cost:1,target:[0],spec:[],class:2},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[4],attack:1514,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[7],attack:1514,cost:[-1],target:[0],spec:[],class:2},
-                {effect:[9],attack:1514,cost:[-1],target:[0],spec:[],class:2},
-            ],
-        },
-    },{
         name:'Masterful\nStab',rarity:-1,list:-8,
         levels:[
             {effect:[16],attack:266,cost:0,target:[2,1,2],spec:[0],class:1},
@@ -69990,17 +69962,45 @@ types.disband=[
             ],
         },
     },{
-        name:'Port\nPriority',rarity:-1,list:-8,
+        name:'Time\nMagic',rarity:-1,list:-8,
         levels:[
-            {effect:[8,4],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[12,6],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[14,8],attack:11022,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[1],attack:10285,cost:1,target:[0],spec:[],class:11},
+            {effect:[1],attack:10285,cost:1,target:[0],spec:[],class:11},
+            {effect:[1],attack:10285,cost:1,target:[0],spec:[],class:11},
         ],mtg:{
             rarity:-1,list:-8,color:[3],
             levels:[
-                {effect:[6,4],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
-                {effect:[8,6],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
-                {effect:[10,8],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
+                {effect:[1],attack:10285,cost:[3,-1],target:[0],spec:[],class:11},
+                {effect:[1],attack:10285,cost:[3,-1],target:[0],spec:[],class:11},
+                {effect:[1],attack:10285,cost:[3,-1],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Double\nHelix',rarity:-1,list:-8,
+        levels:[
+            {effect:[7,1,1],attack:10916,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[11,1,1],attack:10916,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[14,1,1],attack:10916,cost:1,target:[2,1,3],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[5,1,1],attack:10916,cost:[4],target:[2,1,3],spec:[0],class:1},
+                {effect:[8,1,1],attack:10916,cost:[4],target:[2,1,3],spec:[0],class:1},
+                {effect:[10,1,1],attack:10916,cost:[4],target:[2,1,3],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Defy',rarity:-1,list:-8,
+        levels:[
+            {effect:[10,1],attack:10411,cost:1,target:[2,1,3],spec:[4],class:2},
+            {effect:[12,2],attack:10411,cost:1,target:[2,1,3],spec:[4],class:2},
+            {effect:[12,3],attack:10411,cost:1,target:[2,1,3],spec:[4],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[3],
+            levels:[
+                {effect:[8,1],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
+                {effect:[10,2],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
+                {effect:[10,3],attack:10411,cost:[3],target:[2,1,3],spec:[4],class:2},
             ],
         },
     },
