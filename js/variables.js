@@ -238,6 +238,7 @@ types={
         {name:'Vengeful Speed',life:182,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:11,effect:[3]},{type:77,effect:[4]},{type:367,effect:[6]},{type:380,effect:[8]}],description:`PVZ Fusion looking`},
         {name:'Volt King',life:162,behavior:6,spec:[0],move:{type:0,speed:2},attack:[{type:497,effect:[6]},{type:59,effect:[10]},{type:45,effect:[6]},{type:53,effect:[10,1,'Electrocuted']},{type:5,effect:[1,'Electrocuted']}],description:`One with nothing`},
         {name:'Big Bush Thing',life:36,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:28,effect:[10]},{type:110,effect:[5,5]},{type:111,effect:[4]}],description:`Preparing his child for greatness`},
+        {name:'Fat Duck',life:40,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:109,effect:[5]}],description:`Hamburger`},
 
         //mark enemy
 
@@ -422,7 +423,7 @@ types={
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
         {name:'Antizone',life:100,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indestructable`},
         {name:'L',life:6,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:136,effect:[6]}],description:`LOBSTER!`},
-        {name:'Fat Duck',life:40,behavior:2,spec:[17],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:109,effect:[5]}],description:`Hamburger`},
+        {name:'-h Fat Duck',life:40,behavior:2,spec:[17],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:109,effect:[5]}],description:`Hotdog taco hamburger`},
         {name:'Man',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Small brain?`},
         {name:'Yes Man',life:12,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:366,effect:[1]}],description:`Can't make decisions`},
         {name:'Bowler Duck',life:48,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[4]},{type:4,effect:[14]}],description:`He's broke, actually`},

@@ -3049,8 +3049,11 @@ class card{
             userCombatant.statusEffect((this.battle.turn.main==this.player?'Temporary Strength':'Temporary Strength Next Turn'),userCombatant.getStatus('Evolve Temporary Strength'))
         }
         switch(this.attack){
-            case 7204: case 7441:
+            case 7204:
                 this.costDown(0,[1])
+            break
+            case 7441: case 12104:
+                this.costDown(2,[1])
             break
             case 7729:
                 userCombatant.addBlock(this.effect[1])

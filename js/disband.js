@@ -33562,20 +33562,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Rhombic\nTile',rarity:-1,list:-8,
-        levels:[
-            {effect:[1,1],attack:680,cost:0,target:[0],spec:[1],class:11},
-            {effect:[2,1],attack:680,cost:0,target:[0],spec:[1],class:11},
-            {effect:[2,2],attack:680,cost:0,target:[0],spec:[1],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[0],
-            levels:[
-                {effect:[1,1],attack:680,cost:[],target:[0],spec:[1],class:11},
-                {effect:[2,1],attack:680,cost:[],target:[0],spec:[1],class:11},
-                {effect:[2,2],attack:680,cost:[],target:[0],spec:[1],class:11},
-            ],
-        },
-    },{
         name:'Prodigious\nSon',rarity:-1,list:-8,
         levels:[
             {effect:[15],attack:3019,cost:1,target:[2,1,1],spec:[0,1],class:1},
@@ -70001,6 +69987,20 @@ types.disband=[
                 {effect:[1],attack:7432,cost:[1,2,-1],target:[0],spec:[],class:4},
                 {effect:[1],attack:7432,cost:[7,-1],target:[0],spec:[],class:4},
                 {effect:[1],attack:7432,cost:[7,-1],target:[0],spec:[3],class:4},
+            ],
+        },
+    },{
+        name:'Creeping\nCrisis',rarity:-1,list:-8,
+        levels:[
+            {effect:[24,2],attack:7204,cost:3,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[32,3],attack:7204,cost:3,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[36,4],attack:7204,cost:3,target:[2,1,1],spec:[0,79],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[30,2],attack:7204,cost:[4,4,-1,-1,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[40,3],attack:7204,cost:[4,4,-1,-1,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[42,4],attack:7204,cost:[4,4,-1,-1],target:[2,1,1],spec:[0,79],class:1},
             ],
         },
     },

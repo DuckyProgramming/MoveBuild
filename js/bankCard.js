@@ -7497,7 +7497,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 7201: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nApply ${effect[2]}+${effect[3]!=1?effect[3]:``}X Weak\nWhere X = Evolve (${this.evolve})`; break
         case 7202: string+=`Draw and Evolve\n${effect[0]} Card${pl(effect[0])}`; break
         case 7203: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvolve Your Hand For ${effect[1]}`; break
-        case 7204: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nWhen Evolved,\nCosts 1 Less Temporarily`; break
+        case 7204: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nWhen Evolved,\nCosts 1 Less Temporarily\nand Discards to Draw Pile`; break
         case 7205: string+=`Take Another Turn\nWhen Evolved,\nCosts 1 Less`; break
         case 7206: string+=`When You Play\nan Evolve Card,\nEvolve it`; break
         case 7207: string+=`When a Card Evolves,\nGain ${effect[0]} Temporary\nStrength`; break
@@ -12382,6 +12382,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12101: string+=`If You Have Exhausted a\n${variants.mtg?`Basic Attack and Defense`:`Strike and Defend`}${this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.cardManagers[this.player].exhaust.numberAbstract(29,[1])>0&&this.battle.cardManagers[this.player].exhaust.numberAbstract(29,[2])>0?`Yes`:`No`})`:``},\nDeal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
         case 12102: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nDeal Double Damage\nThis Turn`; break
         case 12103: string+=`Target Takes Double\nDamage From Shivs`; break
+        case 12104: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nWhen Evolved,\nCosts 1 Less`; break
 
         //mark p
         //mark q

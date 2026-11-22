@@ -1151,9 +1151,11 @@ combatant.prototype.setupGraphics=function(direction){
             this.dress={main:[]}
 
             for(let a=0,la=13;a<la;a++){
-                this.dress.main.push({spin:[-180+a/la*360,-120+a/la*360,-150+a/la*360],y:[0,0,20]})
+                //this.dress.main.push({spin:[-180+a/la*360,-120+a/la*360,-150+a/la*360],y:[0,0,20]})
                 //this.dress.main.push({spin:[-153+a/la*360,-138+a/la*360,-150+a/la*360],y:[16,16,20]})
-                this.dress.main.push({spin:[-150+a/la*360,-141+a/la*360,-150+a/la*360],y:[16,16,20]})
+                this.dress.main.push({spin:[-180+a/la*360,-123+a/la*360,-150+a/la*360],y:[0,0,20]})
+                //this.dress.main.push({spin:[-150+a/la*360,-141+a/la*360,-150+a/la*360],y:[16,16,20]})
+                this.dress.main.push({spin:[-150+a/la*360,-141+a/la*360,-150+a/la*360],y:[16,15.5,20]})
             }
 
             this.braid=[]

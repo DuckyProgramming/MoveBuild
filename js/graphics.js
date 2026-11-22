@@ -3525,7 +3525,8 @@ function generateSprite(layer,type,direction){
 					atan2(nodes[part+1][0]-nodes[part][0],nodes[part+1][1]-nodes[part][1])
 				)
 				//let size=random(0.4,0.6)+sin(a*5)*0.1+(prePosition/totalLength)**2.5*2
-				let size=random(0.4,0.6)*(1+sin(a*5)*0.1+(prePosition/totalLength)**5*2)+constrain((prePosition/totalLength)-0.75,0,0.2)*10
+				//let size=random(0.4,0.6)*(1+sin(a*5)*0.1+(prePosition/totalLength)**5*2)+constrain((prePosition/totalLength)-0.75,0,0.2)*10
+				let size=random(0.6,0.8)*(1+sin(a*5)*0.08+(prePosition/totalLength)**5*3)+constrain((prePosition/totalLength)-0.75,0,0.2)*6
 				let offset=random(4,6)-a/la*4
 				layer.push()
 				layer.translate(
@@ -6042,9 +6043,11 @@ function setupCombatantGraphics(type){
 				generateSprite(data.sprites.jacket[g],75,g*data.sprites.detail)
 				//console.log('Generated SGJ-'+(g+1))
 			}
-			data.sprites.wing.push(createGraphics(400,300))
+			//data.sprites.wing.push(createGraphics(400,300))
+			data.sprites.wing.push(createGraphics(500,300))
 			setupLayer(data.sprites.wing[0])
-			data.sprites.wing[0].translate(350,250)
+			//data.sprites.wing[0].translate(350,250)
+			data.sprites.wing[0].translate(450,250)
 			data.sprites.wing[0].scale(5)
 			generateSprite(data.sprites.wing[0],76,0)
 		break

@@ -16,7 +16,8 @@ class node{
             type:this.type,
             readable:this.readable,
             reality:this.reality,
-            combat:this.combat,
+            //combat:this.combat,
+            combat:this.combat==-1?-1:types.encounter[this.combat].name,
             connections:this.connections,
             extraConnections:this.extraConnections,
             scroll:this.scroll,
@@ -149,8 +150,13 @@ class node{
         this.extraConnections=extraConnections
         this.scroll=scroll
         this.complete=complete
-        if(this.type==1&&this.combat==undefined){
+        /*if(this.type==1&&this.combat==undefined){
             this.combat=findName('Agent Duck',types.encounter)
+        }*/
+        if(this.combat==undefined&&this.type>=0&&this.type<=2){
+            this.combat=findName(['Duck','Big Duck','General Duckion'][this.type],types.encounter)
+        }else if(typeof this.combat=='string'){
+            this.combat=findName(this.combat,types.encounter)
         }
     }
     display(type=this.type){

@@ -7586,7 +7586,8 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.wing){
                     this.layer.push()
                     this.layer.scale(lcos(this.anim.direction)*(0.9+0.1*lsin(this.time*4)),1)
-                    this.layer.image(graphics.combatant[10].sprites.wing[0],-70*this.fade,-56-50*this.fade,80*this.fade,60*this.fade)
+                    //this.layer.image(graphics.combatant[10].sprites.wing[0],-70*this.fade,-56-50*this.fade,80*this.fade,60*this.fade)
+                    this.layer.image(graphics.combatant[10].sprites.wing[0],-90*this.fade,-56-50*this.fade,100*this.fade,60*this.fade)
                     this.layer.pop()
                 }
                 if(this.trigger.display.hair.back){
@@ -7684,7 +7685,8 @@ combatant.prototype.display=function(){
                 if(this.trigger.display.skin.body){
                     this.layer.noStroke()
                     this.layer.fill(...this.flashColor(this.color.skin.body),this.fade*this.fades.skin.body)
-                    this.layer.ellipse(0,-48.25,11.5,34)
+                    //this.layer.ellipse(0,-48.25,11.5,34)
+                    this.layer.ellipse(0,-48.5,11.5,33.5)
                 }
                 if(this.trigger.display.skin.button){
                     if(lcos(this.spin.button+this.anim.direction)>0){

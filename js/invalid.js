@@ -5655,6 +5655,20 @@ types.invalid=[
                 {effect:[],attack:988,cost:[],target:[0],spec:[22],class:3},
             ],
         },
+    },{
+        name:'Rhombic\nTile',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1],attack:680,cost:0,target:[0],spec:[1],class:11},
+            {effect:[2,1],attack:680,cost:0,target:[0],spec:[1],class:11},
+            {effect:[2,2],attack:680,cost:0,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[0],
+            levels:[
+                {effect:[1,1],attack:680,cost:[],target:[0],spec:[1],class:11},
+                {effect:[2,1],attack:680,cost:[],target:[0],spec:[1],class:11},
+                {effect:[2,2],attack:680,cost:[],target:[0],spec:[1],class:11},
+            ],
+        },
     },
 
     //mark er

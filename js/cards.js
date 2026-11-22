@@ -31867,20 +31867,6 @@ types.card=[
             ],
         },
     },{
-        name:'Creeper',rarity:0,list:13,
-        levels:[
-            {effect:[24,2],attack:7204,cost:3,target:[2,1,1],spec:[0,79],class:1},
-            {effect:[32,3],attack:7204,cost:3,target:[2,1,1],spec:[0,79],class:1},
-            {effect:[36,4],attack:7204,cost:3,target:[2,1,1],spec:[0,79],class:1},
-        ],mtg:{
-            rarity:0,list:13,color:[4],
-            levels:[
-                {effect:[30,2],attack:7204,cost:[4,4,-1,-1,-1],target:[2,1,1],spec:[0,79],class:1},
-                {effect:[40,3],attack:7204,cost:[4,4,-1,-1,-1],target:[2,1,1],spec:[0,79],class:1},
-                {effect:[42,4],attack:7204,cost:[4,4,-1,-1],target:[2,1,1],spec:[0,79],class:1},
-            ],
-        },
-    },{
         name:'Effluvium',rarity:2,list:13,
         levels:[
             {effect:[],attack:7205,cost:4,target:[0],spec:[1,64,79],class:11},
@@ -31990,6 +31976,20 @@ types.card=[
                 {effect:[10,10,10,10],attack:12100,cost:[4,4,-1],target:[2,1,1],spec:[0,79],class:1},
                 {effect:[15,15,15,15],attack:12100,cost:[4,4,-1],target:[2,1,1],spec:[0,79],class:1},
                 {effect:[18,18,18,18],attack:12100,cost:[4,4,-1],target:[2,1,1],spec:[0,79],class:1},
+            ],
+        },
+    },{
+        name:'Creeper',rarity:0,list:13,
+        levels:[
+            {effect:[24,2],attack:12104,cost:3,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[32,3],attack:12104,cost:3,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[36,4],attack:12104,cost:3,target:[2,1,1],spec:[0,79],class:1},
+        ],mtg:{
+            rarity:0,list:13,color:[4],
+            levels:[
+                {effect:[30,2],attack:12104,cost:[4,4,-1,-1,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[40,3],attack:12104,cost:[4,4,-1,-1,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[42,4],attack:12104,cost:[4,4,-1,-1],target:[2,1,1],spec:[0,79],class:1},
             ],
         },
     },

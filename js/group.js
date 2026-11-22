@@ -7723,8 +7723,11 @@ class group{
                                 this.cards[a].discardEffect=[]
                                 this.cards[a].evolve++
                                 this.cards[a].callEvolveEffect()
-                                //this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
-                                this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
+                                if(this.cards[a].attack==7204){
+                                    this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                }else{
+                                    this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
+                                }
                                 a--
                                 la--
                             }else{
