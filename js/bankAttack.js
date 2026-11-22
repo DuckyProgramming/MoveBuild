@@ -738,7 +738,7 @@ attack.prototype.update=function(){
         case 11584: case 11586: case 11608: case 11609: case 11616: case 11617: case 11620: case 11621: case 11622: case 11623: case 11625: case 11626: case 11627: case 11628: case 11629: case 11644: case 11705: case 11706: case 11708:
         case 11709: case 11710: case 11711: case 11712: case 11715: case 11716: case 11719: case 11728: case 11743: case 11748: case 11758: case 11759: case 11762: case 11763: case 11837: case 11838: case 11839: case 11840: case 11851:
         case 11856: case 11883: case 11885: case 11891: case 11894: case 11895: case 11907: case 11924: case 11962: case 11984: case 11985: case 11986: case 11987: case 12002: case 12019: case 12020: case 12043: case 12048: case 12056:
-        case 12057: case 12058: case 12059: case 12065: case 12084: case 12094: case 12106: case 12107: case 12108: case 12115: case 12116: case 12118:
+        case 12057: case 12058: case 12059: case 12065: case 12084: case 12094: case 12106: case 12107: case 12108: case 12115: case 12116: case 12118: case 12119: case 12120: case 12121: case 12122: case 12123:
             //mark 4
             if(
                 this.timer==1&&(
@@ -874,6 +874,7 @@ attack.prototype.update=function(){
         case 11481: case 11490: case 11501: case 11503: case 11505: case 11508: case 11509: case 11512: case 11513: case 11540: case 11541: case 11550: case 11555: case 11564: case 11585: case 11597: case 11610: case 11624: case 11631: case 11650:
         case 11663: case 11676: case 11697: case 11698: case 11699: case 11707: case 11718: case 11722: case 11723: case 11724: case 11725: case 11746: case 11757: case 11768: case 11779: case 11780: case 11787: case 11788: case 11810: case 11811:
         case 11826: case 11846: case 11866: case 11867: case 11868: case 11869: case 11899: case 11921: case 11939: case 11943: case 11952: case 11993: case 11994: case 12009: case 12010: case 12030: case 12097: case 12109: case 12110: case 12112:
+        case 12124: case 12125:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||

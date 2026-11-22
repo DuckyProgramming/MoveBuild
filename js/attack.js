@@ -17408,7 +17408,7 @@ class attack{
                     case -89:
                     case 41: case 807: case 820: case 821: case 822: case 2827: case 3253: case 4013: case 5272: case 5331:
                     case 5473: case 5559: case 5810: case 5887: case 6214: case 7293: case 7390: case 9003: case 9450: case 9466:
-                    case 9502: case 10654: case 10759: case 11471:
+                    case 9502: case 10654: case 10759: case 11471: case 12120:
                         this.battle.addEnergy(this.effect[0],this.player)
                     break
                     /*
@@ -17969,7 +17969,7 @@ class attack{
                         this.battle.attackManager.endAfter=true
                     break
                     case 1466: case 4144: case 5314: case 6633: case 6634: case 6674: case 7205: case 7481: case 8697: case 11851:
-                    case 11883:
+                    case 11883: case 12119:
                         this.userCombatant.statusEffect('Extra Turn',1)
                     break
                     case 1467:
@@ -24581,6 +24581,9 @@ class attack{
                     case 12118:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         this.userManager.allEffectArgs(2,64,[this.effect[1]])
+                    break
+                    case 12121: case 12122: case 12123:
+                        this.battle.addEnergy(this.type-12118,this.player,6)
                     break
 
                 }
@@ -31471,6 +31474,15 @@ class attack{
                     case 12112:
                         this.userCombatant.statusEffect('Control',this.effect[0])
                         this.userManager.allEffectArgs(2,64,[this.effect[1]])
+                    break
+                    case 12124:
+                        this.userManager.allEffect(2,2)
+                        this.userManager.draw(this.userCombatant.faith)
+                    break
+                    case 12125:
+                        this.userManager.allEffect(2,2)
+                        this.userManager.draw(this.userCombatant.faith)
+                        this.userCombatant.gainFaith(this.effect[0])
                     break
 
                 }

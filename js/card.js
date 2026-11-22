@@ -3062,6 +3062,12 @@ class card{
                 userCombatant.addBlock(this.effect[1])
                 userCombatant.statusEffect((this.battle.turn.main==this.player?'Temporary Strength':'Temporary Strength Next Turn'),this.effect[2])
             break
+            case 12119: case 12121: case 12122: case 12123:
+                this.battle.setTurn(this.battle.turn.total-this.effect[0])
+            break
+            case 12120:
+                this.battle.setTurn(this.battle.turn.total-this.effect[1])
+            break
         }
     }
     callLeaderEffect(){

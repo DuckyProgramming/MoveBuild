@@ -12397,6 +12397,15 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12116: string+=`Ally Takes 50% Less\nDamage For ${effect[0]} Turn${pl(effect[0])}`; break
         case 12117: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Shock,\nGain ${effect[1]} Armor`; break
         case 12118: string+=`Gain ${effect[0]} Strength\nEvolve Your Hand For ${effect[1]}`; break
+        case 12119: string+=`Take Another Turn\nWhen Evolved,\nDecrease Turn\nNumber by ${effect[0]}`; break
+        case 12120: string+=`Gain ${effect[0]} Energy\nWhen Evolved,\nDecrease Turn\nNumber by ${effect[1]}`; break
+        case 12121: string+=`Gain (E) (E) (E)\nWhen Evolved,\nDecrease Turn\nNumber by ${effect[0]}`; break
+        case 12122: string+=`Gain (E) (E) (E) (E)\nWhen Evolved,\nDecrease Turn\nNumber by ${effect[0]}`; break
+        case 12123: string+=`Gain (E) (E) (E) (E) (E)\nWhen Evolved,\nDecrease Turn\nNumber by ${effect[0]}`; break
+        
+        case 12124: string+=`Discard Your Hand\nDraw Cards Equal\nto Your Faith`; break
+        case 12125: string+=`Discard Your Hand\nDraw Cards Equal\nto Your Faith\nGain ${effect[0]} Faith`; break
+        //11868
 
         //mark p
         //mark q

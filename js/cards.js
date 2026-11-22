@@ -7984,7 +7984,7 @@ types.card=[
             ],
         },
     },{
-        name:'Orange\nBlossom',rarity:0,list:3,
+        name:'Windswept\nBlossom',rarity:0,list:3,
         levels:[
             {effect:[12,4],attack:3401,cost:2,target:[2,1,1],spec:[0,2],class:1},
             {effect:[18,6],attack:3401,cost:2,target:[2,1,1],spec:[0,2],class:1},
@@ -30537,20 +30537,6 @@ types.card=[
             ],
         },
     },{
-        name:'Negation',rarity:1,list:13,
-        levels:[
-            {effect:[5,2],attack:7634,cost:0,target:[2,1,1],spec:[],class:2},
-            {effect:[8,3],attack:7634,cost:0,target:[2,1,1],spec:[],class:2},
-            {effect:[10,4],attack:7634,cost:0,target:[2,1,1],spec:[],class:2},
-        ],mtg:{
-            rarity:1,list:13,color:[5],
-            levels:[
-                {effect:[5,2],attack:7634,cost:[],target:[2,1,1],spec:[],class:2},
-                {effect:[8,3],attack:7634,cost:[],target:[2,1,1],spec:[],class:2},
-                {effect:[10,4],attack:7634,cost:[],target:[2,1,1],spec:[],class:2},
-            ],
-        },
-    },{
         name:'Overstep\nTime',rarity:2,list:13,
         levels:[
             {effect:[1],attack:8112,cost:1,target:[0],spec:[1,64],class:11},
@@ -31293,20 +31279,6 @@ types.card=[
             ],
         },
     },{
-        name:'Primordial\nSoup',rarity:2,list:13,
-        levels:[
-            {effect:[2,2],attack:11471,cost:0,target:[0],spec:[],class:11},
-            {effect:[3,3],attack:11471,cost:0,target:[0],spec:[],class:11},
-            {effect:[4,4],attack:11471,cost:0,target:[0],spec:[],class:11},
-        ],mtg:{
-            rarity:2,list:13,color:[1,4],
-            levels:[
-                {effect:[2],attack:11472,cost:[],target:[0],spec:[],class:11},
-                {effect:[3],attack:11473,cost:[],target:[0],spec:[],class:11},
-                {effect:[4],attack:11474,cost:[],target:[0],spec:[],class:11},
-            ],
-        },
-    },{
         name:'Time\nBomb',rarity:2,list:13,
         levels:[
             {effect:[18,1],attack:11557,cost:1,target:[8,1,2],spec:[0],class:1},
@@ -31990,6 +31962,34 @@ types.card=[
                 {effect:[1,2],attack:12118,cost:[9,9],target:[0],spec:[],class:11},
                 {effect:[1,4],attack:12118,cost:[9,9],target:[0],spec:[],class:11},
                 {effect:[1,6],attack:12118,cost:[9,9],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'A New\nAge',rarity:1,list:13,
+        levels:[
+            {effect:[1],attack:12119,cost:4,target:[0],spec:[1,64,79],class:11},
+            {effect:[1],attack:12119,cost:3,target:[0],spec:[1,64,79],class:11},
+            {effect:[1],attack:12119,cost:3,target:[0],spec:[1,2,64,79],class:11},
+        ],mtg:{
+            rarity:1,list:13,color:[2,4],
+            levels:[
+                {effect:[1],attack:12119,cost:[2,4,-1,-1,-1,-1],target:[0],spec:[1,64,79],class:11},
+                {effect:[1],attack:12119,cost:[12,-1,-1,-1,-1],target:[0],spec:[1,64,79],class:11},
+                {effect:[1],attack:12119,cost:[12,-1,-1,-1],target:[0],spec:[1,64,79],class:11},
+            ],
+        },
+    },{
+        name:'Primordial\nSoup',rarity:2,list:13,
+        levels:[
+            {effect:[2,1],attack:12120,cost:0,target:[0],spec:[79],class:11},
+            {effect:[3,1],attack:12120,cost:0,target:[0],spec:[79],class:11},
+            {effect:[4,1],attack:12120,cost:0,target:[0],spec:[79],class:11},
+        ],mtg:{
+            rarity:2,list:13,color:[1,4],
+            levels:[
+                {effect:[1],attack:12121,cost:[],target:[0],spec:[79],class:11},
+                {effect:[1],attack:12122,cost:[],target:[0],spec:[79],class:11},
+                {effect:[1],attack:12123,cost:[],target:[0],spec:[79],class:11},
             ],
         },
     },
@@ -38501,20 +38501,6 @@ types.card=[
             ],
         },
     },{
-        name:'Deploy\nBarrier',rarity:1,list:16,
-        levels:[
-            {effect:[8,8,1],attack:11935,cost:1,target:[0],spec:[4],class:2},
-            {effect:[12,12,1],attack:11935,cost:1,target:[0],spec:[4],class:2},
-            {effect:[15,15,1],attack:11935,cost:1,target:[0],spec:[4],class:2},
-        ],mtg:{
-            rarity:1,list:16,color:[1,3],
-            levels:[
-                {effect:[20,20],attack:11936,cost:[8,-1,-1],target:[0],spec:[4],class:2},
-                {effect:[30,30],attack:11936,cost:[8,-1,-1],target:[0],spec:[4],class:2},
-                {effect:[38,38],attack:11936,cost:[8,-1,-1],target:[0],spec:[4],class:2},
-            ],
-        },
-    },{
         name:'Mountain\nPrecession',rarity:1,list:16,
         levels:[
             {effect:[1],attack:11938,cost:3,target:[0],spec:[],class:4},
@@ -38722,6 +38708,20 @@ types.card=[
                 {effect:[],attack:12011,cost:[1,2,-1],target:[0],spec:[],class:4},
                 {effect:[],attack:12011,cost:[1,2,-1],target:[0],spec:[],class:4},
                 {effect:[],attack:12011,cost:[1,2,-1],target:[0],spec:[],class:4},
+            ],
+        },
+    },{
+        name:'Leap of\nFaith',rarity:1,list:16,
+        levels:[
+            {effect:[],attack:12124,cost:0,target:[0],spec:[],class:11},
+            {effect:[1],attack:12125,cost:0,target:[0],spec:[],class:11},
+            {effect:[2],attack:12125,cost:0,target:[0],spec:[],class:11},
+        ],mtg:{
+            rarity:1,list:16,color:[2],
+            levels:[
+                {effect:[],attack:12124,cost:[],target:[0],spec:[],class:11},
+                {effect:[1],attack:12125,cost:[],target:[0],spec:[],class:11},
+                {effect:[2],attack:12125,cost:[],target:[0],spec:[],class:11},
             ],
         },
     },
@@ -62233,20 +62233,6 @@ types.card=[
             ],
         },
     },{
-        name:'Absolute\nField',rarity:1,list:-9,
-        levels:[
-            {effect:[13,1],attack:10899,cost:1,target:[2,1,3],spec:[],class:2},
-            {effect:[16,2],attack:10899,cost:1,target:[2,1,3],spec:[],class:2},
-            {effect:[20,2],attack:10899,cost:1,target:[2,1,3],spec:[],class:2},
-        ],mtg:{
-            rarity:1,list:-9,color:[4,5],
-            levels:[
-                {effect:[20,2],attack:10899,cost:[16,16],target:[2,1,3],spec:[],class:2},
-                {effect:[30,3],attack:10899,cost:[16,16],target:[2,1,3],spec:[],class:2},
-                {effect:[36,3],attack:10899,cost:[16,-1],target:[2,1,3],spec:[],class:2},
-            ],
-        },
-    },{
         name:'Reading\nComprehension',rarity:1,list:-9,
         levels:[
             {effect:[1],attack:10900,cost:2,target:[0],spec:[],class:11},
@@ -63406,6 +63392,20 @@ types.card=[
                 {effect:[6,4],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
                 {effect:[8,6],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
                 {effect:[10,8],attack:11022,cost:[3],target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+    },{
+        name:'Deploy\nBarrier',rarity:1,list:-9,
+        levels:[
+            {effect:[8,8,1],attack:11935,cost:1,target:[0],spec:[4],class:2},
+            {effect:[12,12,1],attack:11935,cost:1,target:[0],spec:[4],class:2},
+            {effect:[15,15,1],attack:11935,cost:1,target:[0],spec:[4],class:2},
+        ],mtg:{
+            rarity:1,list:-1,color:[1,3],
+            levels:[
+                {effect:[20,20],attack:11936,cost:[8,-1,-1],target:[0],spec:[4],class:2},
+                {effect:[30,30],attack:11936,cost:[8,-1,-1],target:[0],spec:[4],class:2},
+                {effect:[38,38],attack:11936,cost:[8,-1,-1],target:[0],spec:[4],class:2},
             ],
         },
     },
