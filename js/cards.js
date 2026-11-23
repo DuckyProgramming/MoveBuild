@@ -30355,20 +30355,6 @@ types.card=[
             ],
         },
     },{
-        name:'Camphor',rarity:1,list:13,
-        levels:[
-            {effect:[5,1],attack:6802,cost:1,target:[0],spec:[1,3,4],class:11},
-            {effect:[7,2],attack:6802,cost:1,target:[0],spec:[1,3,4],class:11},
-            {effect:[8,3],attack:6802,cost:1,target:[0],spec:[1,3,4],class:11},
-        ],mtg:{
-            rarity:1,list:-1,color:[1,2],
-            levels:[
-                {effect:[4,1],attack:6802,cost:[7],target:[0],spec:[1,3,4],class:11},
-                {effect:[5,2],attack:6802,cost:[7],target:[0],spec:[1,3,4],class:11},
-                {effect:[6,3],attack:6802,cost:[7],target:[0],spec:[1,3,4],class:11},
-            ],
-        },
-    },{
         name:'Tuff',rarity:0,list:13,
         levels:[
             {effect:[1,3],attack:6942,cost:1,target:[0],spec:[1,2],class:11},
@@ -31587,20 +31573,6 @@ types.card=[
             ],
         },
     },{
-        name:'Mended\nSheet',rarity:1,list:13,
-        levels:[
-            {effect:[12,3,1],attack:8630,cost:1,target:[0],spec:[79],class:2},
-            {effect:[15,5,2],attack:8630,cost:1,target:[0],spec:[79],class:2},
-            {effect:[18,6,3],attack:8630,cost:1,target:[0],spec:[79],class:2},
-        ],mtg:{
-            rarity:1,list:13,color:[2,4],
-            levels:[
-                {effect:[16,6,1],attack:8630,cost:[2,4],target:[0],spec:[79],class:2},
-                {effect:[20,10,2],attack:8630,cost:[2,4],target:[0],spec:[79],class:2},
-                {effect:[24,12,3],attack:8630,cost:[2,4],target:[0],spec:[79],class:2},
-            ],
-        },
-    },{
         name:'Lithe',rarity:0,list:13,
         levels:[
             {effect:[1,1],attack:2928,cost:1,target:[1,1,1],spec:[0],class:3},
@@ -31883,29 +31855,29 @@ types.card=[
     },{
         name:'Orthida',rarity:0,list:13,
         levels:[
-            {effect:[0,1,8],attack:12136,cost:1,target:[2,1,1],spec:[0,79],class:1},
-            {effect:[0,1,12],attack:12136,cost:1,target:[2,1,1],spec:[0,79],class:1},
-            {effect:[0,1,15],attack:12136,cost:1,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[10,1,10],attack:12136,cost:2,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[15,1,15],attack:12136,cost:2,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[18,1,18],attack:12136,cost:2,target:[2,1,1],spec:[0,79],class:1},
         ],mtg:{
             rarity:0,list:13,color:[4],
             levels:[
-                {effect:[0,1,14],attack:12136,cost:[4,-1],target:[2,1,1],spec:[0,79],class:1},
-                {effect:[0,1,20],attack:12136,cost:[4,-1],target:[2,1,1],spec:[0,79],class:1},
-                {effect:[0,1,24],attack:12136,cost:[4,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[13,1,13],attack:12136,cost:[4,-1,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[19,1,19],attack:12136,cost:[4,-1,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[23,1,23],attack:12136,cost:[4,-1,-1],target:[2,1,1],spec:[0,79],class:1},
             ],
         },
     },{
         name:'Tiktaalik',rarity:0,list:13,
         levels:[
-            {effect:[0,1,12],attack:12137,cost:1,target:[0],spec:[79],class:2},
-            {effect:[0,1,18],attack:12137,cost:1,target:[0],spec:[79],class:2},
-            {effect:[0,1,22],attack:12137,cost:1,target:[0],spec:[79],class:2},
+            {effect:[15,1,15],attack:12137,cost:2,target:[0],spec:[79],class:2},
+            {effect:[22,1,22],attack:12137,cost:2,target:[0],spec:[79],class:2},
+            {effect:[27,1,27],attack:12137,cost:2,target:[0],spec:[79],class:2},
         ],mtg:{
             rarity:0,list:13,color:[4],
             levels:[
-                {effect:[0,1,21],attack:12137,cost:[4,-1],target:[0],spec:[79],class:2},
-                {effect:[0,1,30],attack:12137,cost:[4,-1],target:[0],spec:[79],class:2},
-                {effect:[0,1,36],attack:12137,cost:[4,-1],target:[0],spec:[79],class:2},
+                {effect:[19,1,19],attack:12137,cost:[4,-1,-1],target:[0],spec:[79],class:2},
+                {effect:[28,1,28],attack:12137,cost:[4,-1,-1],target:[0],spec:[79],class:2},
+                {effect:[34,1,34],attack:12137,cost:[4,-1,-1],target:[0],spec:[79],class:2},
             ],
         },
     },{
@@ -31990,6 +31962,34 @@ types.card=[
                 {effect:[4,1,2],attack:12138,cost:[4],target:[2,1,3],spec:[0,79],class:1},
                 {effect:[6,1,3],attack:12138,cost:[4],target:[2,1,3],spec:[0,79],class:1},
                 {effect:[6,1,4],attack:12138,cost:[4],target:[2,1,3],spec:[0,79],class:1},
+            ],
+        },
+    },{
+        name:'Mended\nSheet',rarity:1,list:13,
+        levels:[
+            {effect:[12,2],attack:12148,cost:1,target:[0],spec:[79],class:2},
+            {effect:[18,3],attack:12148,cost:1,target:[0],spec:[79],class:2},
+            {effect:[20,4],attack:12148,cost:1,target:[0],spec:[79],class:2},
+        ],mtg:{
+            rarity:1,list:13,color:[2,4],
+            levels:[
+                {effect:[16,3],attack:12148,cost:[2,4],target:[0],spec:[79],class:2},
+                {effect:[24,4],attack:12148,cost:[2,4],target:[0],spec:[79],class:2},
+                {effect:[28,5],attack:12148,cost:[2,4],target:[0],spec:[79],class:2},
+            ],
+        },
+    },{
+        name:'Interest\nPayment',rarity:1,list:13,
+        levels:[
+            {effect:[10,1],attack:12149,cost:1,target:[0],spec:[1],class:11},
+            {effect:[15,1],attack:12149,cost:1,target:[0],spec:[1],class:11},
+            {effect:[20,1],attack:12149,cost:1,target:[0],spec:[1],class:11},
+        ],mtg:{
+            rarity:1,list:13,color:[2,3],
+            levels:[
+                {effect:[15,1],attack:12149,cost:[2,3],target:[0],spec:[1],class:11},
+                {effect:[20,1],attack:12149,cost:[2,3],target:[0],spec:[1],class:11},
+                {effect:[25,1],attack:12149,cost:[2,3],target:[0],spec:[1],class:11},
             ],
         },
     },
@@ -62723,20 +62723,6 @@ types.card=[
             ],
         },
     },{
-        name:'Rake',rarity:0,list:-9,
-        levels:[
-            {effect:[6],attack:138,cost:1,target:[2,1,1],spec:[0,74],class:1},
-            {effect:[9],attack:138,cost:1,target:[2,1,1],spec:[0,74],class:1},
-            {effect:[11],attack:138,cost:1,target:[2,1,1],spec:[0,74],class:1},
-        ],mtg:{
-            rarity:0,list:-9,color:[4],
-            levels:[
-                {effect:[10],attack:138,cost:[4,-1],target:[2,1,1],spec:[0,74],class:1},
-                {effect:[14],attack:138,cost:[-1,-1],target:[2,1,1],spec:[0,74],class:1},
-                {effect:[18],attack:138,cost:[-1,-1],target:[2,1,1],spec:[0,74],class:1},
-            ],
-        },
-    },{
         name:'Patchwork',rarity:0,list:-9,
         levels:[
             {effect:[8],attack:5558,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -63406,6 +63392,20 @@ types.card=[
                 {effect:[2,1],attack:12144,cost:[],target:[0],spec:[1],class:11},
                 {effect:[2,1],attack:12145,cost:[],target:[0],spec:[1],class:11},
                 {effect:[2,1],attack:12146,cost:[],target:[0],spec:[1],class:11},
+            ],
+        },
+    },{
+        name:'Camphor',rarity:1,list:-9,
+        levels:[
+            {effect:[5,1],attack:6802,cost:1,target:[0],spec:[1,3,4],class:11},
+            {effect:[7,2],attack:6802,cost:1,target:[0],spec:[1,3,4],class:11},
+            {effect:[8,3],attack:6802,cost:1,target:[0],spec:[1,3,4],class:11},
+        ],mtg:{
+            rarity:1,list:-1,color:[1,2],
+            levels:[
+                {effect:[4,1],attack:6802,cost:[7],target:[0],spec:[1,3,4],class:11},
+                {effect:[5,2],attack:6802,cost:[7],target:[0],spec:[1,3,4],class:11},
+                {effect:[6,3],attack:6802,cost:[7],target:[0],spec:[1,3,4],class:11},
             ],
         },
     },

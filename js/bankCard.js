@@ -12408,8 +12408,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12127: string+=`Take Another Turn\nCosts 1 Less\nWhen a Card is Played`; break
         case 12128: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nEvolve:\nCounter ${effect[1]} All`; break
         case 12129: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double Block\nIf You Have an\nEvolve Card in Hand`; break
-        case 12130: string+=`Add ${this.calculateEffect(effect[0],1)} Damage\nEvolve:\nIncreases by ${effect[1]}`; break
-        case 12131: string+=`Deal ${this.calculateEffect(effect[0],0)} Block\nEvolve:\nIncreases by ${effect[1]}`; break
+        case 12130: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvolve:\nIncreases by ${effect[1]}`; break
+        case 12131: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvolve:\nIncreases by ${effect[1]}`; break
         case 12132: string+=`Gain ${effect[0]} Strength\nEvolve:\nIncreases by ${effect[1]}`; break
         case 12133: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nEvolve:\nIncreases by ${effect[1]}`; break
         case 12134: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvolve:\nGain ${effect[1]} Armor`; break
@@ -12426,6 +12426,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12145: string+=`Gain (E) (K) (R)\nDraw ${effect[0]} Card${pl(effect[0])}\nYou Can Only Play\n${effect[1]} Card${pl(effect[1])} This Turn`; break
         case 12146: string+=`Gain (E) (E) (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nYou Can Only Play\n${effect[1]} Card${pl(effect[1])} This Turn`; break
         case 12147: string+=`Put a Card in Exhaust\nPile in Your Hand\nEvolve Your Hand For ${effect[0]}`; break
+        case 12148: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvolve:\nGain ${effect[1]} Temporary\nStrength`; break
+        case 12149: string+=`Gain ${effect[0]} Currency\nDecrease Turn\nNumber by ${effect[1]}`; break
 
         //mark p
         //mark q

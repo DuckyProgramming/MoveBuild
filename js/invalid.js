@@ -5936,20 +5936,6 @@ types.invalid=[
             ],
         },
     },{
-        name:'Heavy\nFatigue',rarity:-1,list:-8,
-        levels:[
-            {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
-            {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
-            {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
-        ],mtg:{
-            rarity:-1,list:-8,color:[constants.playerNumber+1],
-            levels:[
-                {effect:[],attack:0,cost:[-1,-1,-1],target:[0],spec:[1],class:5},
-                {effect:[],attack:0,cost:[-1,-1,-1],target:[0],spec:[1],class:5},
-                {effect:[],attack:0,cost:[-1,-1,-1],target:[0],spec:[1],class:5},
-            ],
-        },
-    },{
         name:'Canned\nTuna',rarity:-1,list:-8,
         levels:[
             {effect:[15],attack:10,cost:0,target:[0],spec:[15,62],limit:2,class:11},
@@ -6199,6 +6185,76 @@ types.invalid=[
                 {effect:[6,4,2,2],attack:7201,cost:[3,4],target:[2,1,1],spec:[0,79],class:1},
                 {effect:[9,6,2,2],attack:7201,cost:[3,4],target:[2,1,1],spec:[0,79],class:1},
                 {effect:[9,9,2,2],attack:7201,cost:[3,4],target:[2,1,1],spec:[0,79],class:1},
+            ],
+        },
+    },{
+        name:'Orthoclase',rarity:-1,list:-8,
+        levels:[
+            {effect:[0,1,8],attack:12136,cost:1,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[0,1,12],attack:12136,cost:1,target:[2,1,1],spec:[0,79],class:1},
+            {effect:[0,1,15],attack:12136,cost:1,target:[2,1,1],spec:[0,79],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[0,1,14],attack:12136,cost:[4,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[0,1,20],attack:12136,cost:[4,-1],target:[2,1,1],spec:[0,79],class:1},
+                {effect:[0,1,24],attack:12136,cost:[4,-1],target:[2,1,1],spec:[0,79],class:1},
+            ],
+        },
+    },{
+        name:'Tiktok',rarity:-1,list:-8,
+        levels:[
+            {effect:[0,1,12],attack:12137,cost:1,target:[0],spec:[79],class:2},
+            {effect:[0,1,18],attack:12137,cost:1,target:[0],spec:[79],class:2},
+            {effect:[0,1,22],attack:12137,cost:1,target:[0],spec:[79],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[0,1,21],attack:12137,cost:[4,-1],target:[0],spec:[79],class:2},
+                {effect:[0,1,30],attack:12137,cost:[4,-1],target:[0],spec:[79],class:2},
+                {effect:[0,1,36],attack:12137,cost:[4,-1],target:[0],spec:[79],class:2},
+            ],
+        },
+    },{
+        name:'Deep\nBlue',rarity:-1,list:-8,
+        levels:[
+            {effect:[13,2],attack:7962,cost:3,target:[2,1,6],spec:[0,1],class:1},
+            {effect:[21,2],attack:7962,cost:3,target:[2,1,6],spec:[0,1],class:1},
+            {effect:[27,2],attack:7962,cost:3,target:[2,1,6],spec:[0,1],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2],
+            levels:[
+                {effect:[15,2],attack:7962,cost:[2,2,2,-1],target:[2,1,6],spec:[0,1],class:1},
+                {effect:[24,2],attack:7962,cost:[2,2,2,-1],target:[2,1,6],spec:[0,1],class:1},
+                {effect:[31,2],attack:7962,cost:[2,2,2,-1],target:[2,1,6],spec:[0,1],class:1},
+            ],
+        },
+    },{
+        name:'Rake',rarity:-1,list:-8,
+        levels:[
+            {effect:[6],attack:138,cost:1,target:[2,1,1],spec:[0,74],class:1},
+            {effect:[9],attack:138,cost:1,target:[2,1,1],spec:[0,74],class:1},
+            {effect:[11],attack:138,cost:1,target:[2,1,1],spec:[0,74],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[10],attack:138,cost:[4,-1],target:[2,1,1],spec:[0,74],class:1},
+                {effect:[14],attack:138,cost:[-1,-1],target:[2,1,1],spec:[0,74],class:1},
+                {effect:[18],attack:138,cost:[-1,-1],target:[2,1,1],spec:[0,74],class:1},
+            ],
+        },
+    },{
+        name:'Circle of\nExorcism',rarity:-1,list:-8,
+        levels:[
+            {effect:[18,24,1],attack:6399,cost:3,target:[0],spec:[0],class:1},
+            {effect:[27,36,1],attack:6399,cost:3,target:[0],spec:[0],class:1},
+            {effect:[33,44,1],attack:6399,cost:3,target:[0],spec:[0],class:1},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1,4],
+            levels:[
+                {effect:[20,26,1],attack:6399,cost:[1,4,-1,-1,-1],target:[0],spec:[0],class:1},
+                {effect:[30,39,1],attack:6399,cost:[1,4,-1,-1,-1],target:[0],spec:[0],class:1},
+                {effect:[36,48,1],attack:6399,cost:[1,4,-1,-1,-1],target:[0],spec:[0],class:1},
             ],
         },
     },

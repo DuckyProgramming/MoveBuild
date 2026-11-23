@@ -3087,6 +3087,9 @@ class card{
             case 12141:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],userCombatant.id])
             break
+            case 12148:
+                userCombatant.statusEffect(this.battle.turn.main==this.player?'Temporary Strength':'Temporary Strength Next Turn',this.effect[1])
+            break
         }
     }
     callLeaderEffect(){

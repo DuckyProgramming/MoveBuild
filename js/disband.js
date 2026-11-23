@@ -5726,6 +5726,20 @@ types.disband=[
             ],
         },
     },{
+        name:'Heavy\nFatigue',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
+            {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
+            {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
+        ],mtg:{
+            rarity:-1,list:-8,color:[constants.playerNumber+1],
+            levels:[
+                {effect:[],attack:0,cost:[-1,-1,-1],target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:[-1,-1,-1],target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:[-1,-1,-1],target:[0],spec:[1],class:5},
+            ],
+        },
+    },{
         name:'Starburn',rarity:-1,list:-8,
         levels:[
             {effect:[16,12],attack:837,cost:2,target:[2,1,2],spec:[0,27],class:1},
@@ -32414,20 +32428,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Circle of\nExorcism',rarity:-1,list:-8,
-        levels:[
-            {effect:[18,24,1],attack:6399,cost:3,target:[0],spec:[0],class:1},
-            {effect:[27,36,1],attack:6399,cost:3,target:[0],spec:[0],class:1},
-            {effect:[33,44,1],attack:6399,cost:3,target:[0],spec:[0],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[1,4],
-            levels:[
-                {effect:[20,26,1],attack:6399,cost:[1,4,-1,-1,-1],target:[0],spec:[0],class:1},
-                {effect:[30,39,1],attack:6399,cost:[1,4,-1,-1,-1],target:[0],spec:[0],class:1},
-                {effect:[36,48,1],attack:6399,cost:[1,4,-1,-1,-1],target:[0],spec:[0],class:1},
-            ],
-        },
-    },{
         name:'Stardust\nDiscus',rarity:-1,list:-8,
         levels:[
             {effect:[6,1],attack:8948,cost:1,target:[2,1,2],spec:[0],class:1},
@@ -41931,20 +41931,6 @@ types.disband=[
                 {effect:[15,2],attack:3633,cost:[3,3,3,-1],target:[2,1,6],spec:[0,1],class:1},
                 {effect:[24,2],attack:3633,cost:[3,3,3,-1],target:[2,1,6],spec:[0,1],class:1},
                 {effect:[31,2],attack:3633,cost:[3,3,3,-1],target:[2,1,6],spec:[0,1],class:1},
-            ],
-        },
-    },{
-        name:'Deep\nBlue',rarity:-1,list:-8,
-        levels:[
-            {effect:[13,2],attack:7962,cost:3,target:[2,1,6],spec:[0,1],class:1},
-            {effect:[21,2],attack:7962,cost:3,target:[2,1,6],spec:[0,1],class:1},
-            {effect:[27,2],attack:7962,cost:3,target:[2,1,6],spec:[0,1],class:1},
-        ],mtg:{
-            rarity:-1,list:-8,color:[2],
-            levels:[
-                {effect:[15,2],attack:7962,cost:[2,2,2,-1],target:[2,1,6],spec:[0,1],class:1},
-                {effect:[24,2],attack:7962,cost:[2,2,2,-1],target:[2,1,6],spec:[0,1],class:1},
-                {effect:[31,2],attack:7962,cost:[2,2,2,-1],target:[2,1,6],spec:[0,1],class:1},
             ],
         },
     },{
@@ -70001,6 +69987,20 @@ types.disband=[
                 {effect:[13],attack:2793,cost:[1],target:[0],spec:[3],class:2},
                 {effect:[19],attack:2793,cost:[1],target:[0],spec:[3],class:2},
                 {effect:[24],attack:2793,cost:[1],target:[0],spec:[3],class:2},
+            ],
+        },
+    },{
+        name:'Torn\nSheet',rarity:-1,list:-8,
+        levels:[
+            {effect:[12,3,1],attack:8630,cost:1,target:[0],spec:[79],class:2},
+            {effect:[15,5,2],attack:8630,cost:1,target:[0],spec:[79],class:2},
+            {effect:[18,6,3],attack:8630,cost:1,target:[0],spec:[79],class:2},
+        ],mtg:{
+            rarity:-1,list:-8,color:[2,4],
+            levels:[
+                {effect:[16,6,1],attack:8630,cost:[2,4],target:[0],spec:[79],class:2},
+                {effect:[20,10,2],attack:8630,cost:[2,4],target:[0],spec:[79],class:2},
+                {effect:[24,12,3],attack:8630,cost:[2,4],target:[0],spec:[79],class:2},
             ],
         },
     },

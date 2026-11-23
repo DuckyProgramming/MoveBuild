@@ -156,7 +156,13 @@ class turnManager{
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             let combatant=this.battle.combatantManager.combatants[a]
             if(combatant.team==0&&combatant.activated&&!combatant.moved&&!combatant.getStun()){
-                for(let b=0,lb=1+combatant.getStatus('Extra Turn')+(this.battle.modded(6)&&floor(random(0,4))==0?1:0)+(this.battle.modded(26)&&types.attack[combatant.attack[combatant.intent].type].name.includes('Gun')?1:0)+(this.battle.modded(52)&&types.attack[combatant.attack[combatant.intent].type].name.includes('Summon')?1:0)+(this.battle.modded(116)&&combatant.life<=combatant.base.life/2?1:0);b<lb;b++){
+                let special=combatant.attack[combatant.intent].type==469||combatant.attack[combatant.intent].type==494
+                let total=1+combatant.getStatus('Extra Turn')+
+                    (this.battle.modded(6)&&floor(random(0,4))==0?1:0)+
+                    (this.battle.modded(26)&&types.attack[combatant.attack[combatant.intent].type].name.includes('Gun')?1:0)+
+                    (this.battle.modded(52)&&types.attack[combatant.attack[combatant.intent].type].name.includes('Summon')?1:0)+
+                    (this.battle.modded(116)&&combatant.life<=combatant.base.life/2?1:0)
+                for(let b=0,lb=special?1:total;b<lb;b++){
                     if(combatant.getStatus('Silence')>0){
                         let damageMax=1
                         for(let c=0,lc=combatant.attack.length;c<lc;c++){

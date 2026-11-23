@@ -1184,7 +1184,7 @@ types={
         {name:'Electronball',internal:'Fragile Strength',id:188,rarity:-1,list:0,mtg:0,world:[0,3],description:'Gain 3 Strength on Turn 1\n10% Chance to Break Each Battle'},
         {name:'Hallucinogen Pills',internal:'Purchase Item',id:189,rarity:3,list:0,mtg:0,world:[0,2],description:'After Purchasing From the Shop,\nGain an Item'},
         
-        {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:0,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nGain 1 Vigor\nPer Unplayed Card'},
+        {name:'Half-Full Glass',internal:'Unplayed Card Damage',id:190,rarity:1,list:0,mtg:0,world:[0,3],description:'At the End of Your Turn,\nGain 1 Vigor\nPer Unplayed Card'},
         {name:'Clown Bowtie',internal:'Shop Reroll',id:191,rarity:3,list:0,mtg:0,world:[0,2],description:'You May Pay 50 Currency to\nReroll the Shop Once Per Visit'},
         {name:'Magic Rope',internal:'Last Card Retain',id:192,rarity:-1,list:0,mtg:0,world:[0,3],description:'If You End You Turn With\n1 Card Left in Hand, Retain it'},
         {name:'Blue Disc',internal:'Draw Over Discard Block',id:193,rarity:0,list:0,mtg:0,world:[0,3],description:'Add 3 Block Per Turn When Draw Pile\nHas More Cards Than Discard Pile'},
@@ -1196,7 +1196,7 @@ types={
         {name:'Dirt Bucket',internal:'Remove Card Upgrade',id:199,rarity:-1,list:0,mtg:0,world:[0,2],description:'After Removing a Card,\nUpgrade a Random Card'},
 
         {name:'Abstract Duck',internal:'Relic Strength',id:200,rarity:3,list:0,mtg:0,world:[1,3],description:'Gain 1 Strength Per 10 Relics\nYou Own on Turn 1'},
-        {name:'Popcorn',internal:'Deprecating Damage',id:201,rarity:1,list:0,mtg:0,world:[0,3],description:'First Attack Deals\n16 More Damage\nDecreases by 1 Each Battle'},
+        {name:'Popcorn',internal:'Deprecating Damage',id:201,rarity:0,list:0,mtg:0,world:[0,3],description:'First Attack Deals\n16 More Damage\nDecreases by 1 Each Battle'},
         {name:'Certificate of Authenticity',internal:'Boss Edition',id:202,rarity:1,list:0,mtg:0,world:[0,1],description:'Edition a Card\nAfter Every Boss'},
         {name:'Triple Helix',internal:'Boss Duplicate',id:203,rarity:2,list:0,mtg:0,world:[0,1],description:'Duplicate a Card\nAfter Every Boss'},
         {name:'3D Glasses',internal:'No Attack Double',id:204,rarity:-1,list:0,mtg:0,world:[0,3],description:'When You Do Not Attack,\nFirst Attack Next Turn\nDeals Double Damage'},

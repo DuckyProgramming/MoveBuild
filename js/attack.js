@@ -42521,6 +42521,10 @@ class attack{
                     case 12103:
                         this.targetCombatant.statusEffect('Take Double Shiv',999)
                     break
+                    case 12149:
+                        this.battle.addCurrency(this.effect[0],this.player)
+                        this.battle.setTurn(this.battle.turn.total-this.effect[1])
+                    break
 
                 }
                 //mark 11

@@ -1,7 +1,11 @@
-turn back time -> evolve?
-test evolve
-
 CS 158 [ENDSIEG ULTIMATE]
+
+[6-set]
+outdated discuses to invalid:
+[8942]=[9240]=9356
+[8948]=9360
+[9232]=9358
+[9239]=9355
 
 diff 26 anew
 act 5 (1453) (1945)

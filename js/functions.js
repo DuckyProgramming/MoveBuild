@@ -3162,6 +3162,7 @@ function checkExists(start=-1,end=-1){
 		6100,6333,//slash of future (now primed pulse)
 		6109,//invalid anaphel
 		6199,//invalid cleaver
+		6399,//invalid circle of silence
 		7196,7197,7198,7199,7200,7201,7672,11937,12006,12100,
 		12111,12113,12114,//x = evolve
 		7268,//invalid big time
@@ -3179,9 +3180,9 @@ function checkExists(start=-1,end=-1){
 		1292,//techless
 		1905,1906,1946,1947,1952,2535,2957,3564,4625,7141,//assorted invalid
 
-		83,84,85,86,3595,9974,10352,11671,11679,11680,
-		11681,11682,11975,12040,12041,12044,12049,12050,
-		12098,//items
+		83,84,85,86,3595,7962,9974,10352,11671,11679,
+		11680,11681,11682,11975,12040,12041,12044,12049,
+		12050,12098,//items
 	]
 	let total=0
 	/*let incl=[]
@@ -3638,18 +3639,19 @@ function checkUnnecessary(start=-99999,end=99999){
 			}
 		}
 	}
+	let ignore=[0]
 	for(let a=0,la=types.card.length;a<la;a++){
 		let overlap=0
 		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
 			if(!types.card[a].mtg.levels[b].spec.includes(12)){
-				if(types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6){
+				if(!ignore.includes(types.card[a].levels[b].attack)&&types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6){
 					overlap++
 				}
 			}
 		}
 		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
 			if(!types.card[a].mtg.levels[b].spec.includes(12)){
-				if(types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6){
+				if(!ignore.includes(types.card[a].mtg.levels[b].attack)&&types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6){
 					overlap++
 				}
 			}
