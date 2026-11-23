@@ -110,7 +110,7 @@ constants.status={
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
         'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust','Damage Cap Once','Damage Cap Once Per Turn','Process Draw','Process Block',
-        'Take Double Shiv','Play Evolve',
+        'Take Double Shiv','Play Evolve','Block Break Block Next Turn','Take Half Damage Next Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -223,7 +223,7 @@ constants.status={
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
         0,0,0,0,0,0,2,0,0,0,//110
-        1,0,
+        1,0,2,2,
     ],
     /*
     0-none
@@ -345,7 +345,7 @@ constants.status={
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
         2,2,2,2,2,2,0,0,2,2,//110
-        3,2,
+        3,2,0,0,
     ]
     /*
     0-good
@@ -4417,11 +4417,16 @@ class combatant{
                         }
                         if(preBlock>0&&this.block<=0&&this.status.main[277]>0){
                             this.battle.combatantManager.areaAbstract(0,[this.status.main[277],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+                            this.status.main[277]=0
                         }
                         if(preBlock>0&&this.block<=0&&this.status.main[708]>0){
                             this.status.main[708]--
                             this.statusEffect('Stun',1)
                             this.battle.updateTargetting()
+                        }
+                        if(preBlock>0&&this.block<=0&&this.status.main[1102]>0){
+                            this.statusEffect('Block Next Turn',this.status.main[1102])
+                            this.status.main[1102]=0
                         }
                         if(preBlock>0&&this.block<=0&&0<=user&&user<this.battle.players){
                             if(this.battle.relicManager.hasRelic(124,user)){
@@ -7296,6 +7301,7 @@ class combatant{
                     case 1080: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[this.status.ticker[a]];b<lb;b++){this.battle.itemManager.addItem(findName(['Carbon','Quartz','Ammonium'][floor(random(0,3))],types.item),this.id)}} break
                     case 1083: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.basic+=this.status.main[this.status.ticker[a]]} break
                     case 1097: this.miniStatus('Damage Cap Once',this.status.main[this.status.ticker[a]]); break
+                    case 1103: this.miniStatus('Take Half Damage',this.status.main[this.status.ticker[a]]); break
                 }
                 //mark tick
                 if(this.status.behavior[this.status.ticker[a]]==6

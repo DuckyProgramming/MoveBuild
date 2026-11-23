@@ -3424,7 +3424,7 @@ class card{
             case 3586: case 3689: case 3724: case 3725: case 3726: case 3727: case 3908: case 3909: case 4626: case 4627:
             case 4628: case 4629: case 4630: case 4631: case 4632: case 5164: case 5543: case 5544: case 6243: case 6262:
             case 6263: case 6264: case 7189: case 7190: case 7345: case 7740: case 8313: case 8314: case 8315: case 8354:
-            case 8355: case 8987: case 9949: case 10938: case 11028: case 11029: case 11030: case 11489: case 11805:
+            case 8355: case 8987: case 9949: case 10938: case 11028: case 11029: case 11030: case 11489: case 11805: case 12222:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -3638,6 +3638,11 @@ class card{
             case 11903:
                 if(userCombatant.getStatus('Dexterity')>0){
                     this.exhaust=true
+                }
+            break
+            case 12151:
+                if(userCombatant.totalUniqueStatus(1)>0){
+                    this.effect[0]+=this.effect[1]
                 }
             break
         }
@@ -4767,6 +4772,9 @@ class card{
                 case 11805:
                     this.battle.overlayManager.overlays[10][this.player].active=true
                     this.battle.overlayManager.overlays[10][this.player].activate([this.level,[23],57,[],[]])
+                break
+                case 12222:
+                    userCombatant.statusEffect('Temporary Strength',this.battle.cardManagers[this.player].hand.lastTurnPlayed[2])
                 break
 
             }

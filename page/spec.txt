@@ -1,2 +1,5 @@
-most recent CS number used - 155
+most recent CS number used - 158
 most recent spec number used - 91
+
+total cards [standard] - 10000
+protocol for overruns - transfer cards from disband to invalid, using checkUnnecessary to find them

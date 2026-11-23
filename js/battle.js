@@ -1039,7 +1039,7 @@ class battle{
                 combatant.statusEffect('Distracted',-1)
                 this.endTurn()
             }else{
-                combatant.tick()
+                //combatant.tick()
                 if(extra){
                     this.cardManagers[this.turn.main].bufferedTurn=30
                 }else{
@@ -1139,7 +1139,7 @@ class battle{
     }
     subTurn(){
         let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
-        //combatant.tick()
+        combatant.tick()
         this.attackManager.deTarget()
         if(this.tutorialManager.active){
             this.cardManagers[this.turn.main].allEffect(2,103)
@@ -1225,7 +1225,7 @@ class battle{
                 this.addEnergy(max(0,(combatant.retainAllEnergy()?lastEnergy:this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1?min(this.relicManager.active[28][this.turn.main+1],lastEnergy):0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             }
             this.energy.temp[a]=0
-            combatant.tick()
+            //combatant.tick()
         }
         combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
         this.combatantManager.setupCombatants()
@@ -1244,6 +1244,10 @@ class battle{
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.lastTurnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         this.loadReinforce()
+        for(let a=0,la=this.energy.gen.length;a<la;a++){
+            combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
+            //combatant.tick()
+        }
         if((combatant.life<=0||combatant.dead)&&this.turn.main<this.players){
             this.endTurn()
         }else if(combatant.getStatus('Distracted')>0){

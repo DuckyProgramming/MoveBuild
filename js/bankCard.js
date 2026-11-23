@@ -4874,7 +4874,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 4597: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain (E) (E) (E) (E)`; break
         case 4598: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain (E) (E) (E) (E) (E)`; break
         case 4599: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind ${effect[1]} Card${pl(effect[1])}\nElemental Form:\nGain (E) (E) (E)\n(E) (E) (E)`; break
-        case 4600: string+=`Draw ${effect[0]!=1?effect[0]:``}X${effect[1]!=0?`+${effect[1]}`:``} Cards\nExhaust ${effect[2]!=1?effect[2]:``}X${effect[3]!=0?`+${effect[3]}`:``} Cards\nHeal ${this.calculateEffect(effect[2],9)} Health`; break
+        case 4600: string+=`Draw ${effect[0]!=1?effect[0]:``}X${effect[1]!=0?`+${effect[1]}`:``} Cards\nExhaust ${effect[2]!=1?effect[2]:``}X${effect[3]!=0?`+${effect[3]}`:``} Cards\nHeal ${this.calculateEffect(effect[4],9)} Health`; break
         case 4601: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain (E) (W)\nand Add a Copy of This\nCard to Your Hand`; break
         case 4602: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nStatus Card in Hand:\nExhaust It\nGain (E) (E)`; break
         case 4603: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (W) (N)\nIf You Have Block`; break
@@ -6877,7 +6877,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case 6584: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (E) (E) (E)\nIf You Have\nan Energy Orb`; break
         case 6585: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nGain (E) (E) (E) (E) (E)\nIf You Have\nan Energy Orb`; break
         case 6586: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 Temporarily\nWhen Returned From\nDiscard Pile`; break
-        case 6587: string+=`Draw ${effect[0]!=1?effect[0]:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWere X = Number of\nColorless Cards in Hand`; break
+        case 6587: string+=`Draw ${effect[0]!=1?effect[0]:``}X${effect[1]>0?`+${effect[1]}`:``} Cards\nWhere X = Number of\nColorless Cards in Hand`; break
         case 6588: string+=`20%:\nDeluxe Upgrade\na Card Permanently`; break
         case 6589: string+=`30%:\nDeluxe Upgrade\na Card Permanently`; break
         case 6590: string+=`40%:\nDeluxe Upgrade\na Card Permanently`; break
@@ -12428,6 +12428,96 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12147: string+=`Put a Card in Exhaust\nPile in Your Hand\nEvolve Your Hand For ${effect[0]}`; break
         case 12148: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEvolve:\nGain ${effect[1]} Temporary\nStrength`; break
         case 12149: string+=`Gain ${effect[0]} Currency\nDecrease Turn\nNumber by ${effect[1]}`; break
+        case 12150: string+=`Gain ${effect[0]} Combo\nDraw ${effect[1]} Card${pl(effect[1])}`; break
+        case 12151: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Are Debuffed,\nIncreases by ${effect[1]}`; break
+        case 12152: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nGain Dexterity Equal\nto ${effect[0]==1?`its`:`Their`} ${variants.mtg?`Total `:``}Cost${pl(effect[0])}`; break
+        case 12153: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nExhaust ${effect[1]!=1?effect[1]:``}X Cards\nGain ${effect[2]!=1?effect[2]:``}X Energy`; break
+        case 12154: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nExhaust ${effect[1]!=1?effect[1]:``}X Cards\nGain ${effect[2]!=1?effect[2]:``}X${effect[3]!=0?`+${effect[3]}`:``} Energy`; break
+        case 12155: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nExhaust ${effect[1]!=1?effect[1]:``}X Cards\nHeal ${this.calculateEffect(effect[2],9)} Health`; break
+        case 12156: string+=`Apply ${effect[0]!=1?effect[0]:``}X Weak\nGain ${effect[1]!=1?effect[1]:``}X Energy\nNext Turn`; break
+        case 12157: string+=`Apply ${effect[0]!=1?effect[0]:``}X Weak\nGain ${effect[1]!=1?effect[1]:``}X (N)\nNext Turn`; break
+        case 12158: string+=`Apply ${effect[0]!=1?effect[0]:``}X Vulnerable\nGain ${effect[1]!=1?effect[1]:``}X Energy\nNext Turn`; break
+        case 12159: string+=`Apply ${effect[0]!=1?effect[0]:``}X Vulnerable\nGain ${effect[1]!=1?effect[1]:``}X (N)\nNext Turn`; break
+        case 12160: string+=`Apply ${effect[0]!=1?effect[0]:``}X${effect[1]>0?`+${effect[1]}`:``} Vulnerable\nGain ${effect[2]!=1?effect[2]:``}X Energy\nNext Turn`; break
+        case 12161: string+=`Apply ${effect[0]!=1?effect[0]:``}X${effect[1]>0?`+${effect[1]}`:``} Vulnerable\nGain ${effect[2]!=1?effect[2]:``}X (N)\nNext Turn`; break
+        case 12162: string+=`Gain ${effect[0]} Mantra\nPer Smite, Safety,\nand Insight in Hand`; break
+        case 12163: string+=`Gain ${effect[0]!=1?effect[0]:``}D6 Energy`; break
+        case 12164: string+=`Gain ${effect[0]!=1?effect[0]:``}D6 (E)`; break
+        case 12165: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nWhere X = Number of\nColorless Cards in Hand`; break
+        case 12166: string+=`Hold ${effect[0]!=1?effect[0]:``}X Basic Orbs`; break
+        case 12167: string+=`Hold ${effect[0]!=1?effect[0]:``}X${effect[1]!=0?`+${effect[1]}`:``} Basic Orbs`; break
+        case 12168: string+=`Hold ${effect[0]!=1?effect[0]:``}X Shield Orbs`; break
+        case 12169: string+=`Hold ${effect[0]!=1?effect[0]:``}X${effect[1]!=0?`+${effect[1]}`:``} Shield Orbs`; break
+        case 12170: string+=`Draw ${effect[0]!=1?effect[0]:``}D6 Cards`; break
+        case 12171: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Your Block\nIs Broken This Turn,\nAdd ${this.calculateEffect(effect[1],1)} Block\nNext Turn`; break
+        case 12172: string+=`Discard Your Hand\nand Add That Many\n1-11 of Nothings`; break
+        case 12173: string+=`Add 1-11 of Nothings\nto Hand, Draw,\nand Discard Piles`; break
+        case 12174: string+=`Add 1-11 of Nothings\nto Hand, Draw,\nand Discard Piles\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 12175: string+=`Draw ${effect[0]!=1?effect[0]:``}D6 Movements`; break
+        case 12176: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nDiscard ${effect[1]!=1?effect[1]:``}X Cards`; break
+        case 12177: string+=`Construct Takes\n${effect[0]!=1?effect[0]:``}X Extra Turns`; break
+        case 12178: string+=`Construct Takes\n${effect[0]!=1?effect[0]:``}X+${effect[1]} Extra Turns`; break
+        case 12179: string+=`Gain ${effect[0]!=1?effect[0]:``}X Temporary\nStrength Where\nX = Number of Cards\nPlayed Last Turn${stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players&&!this.nonCalc?` (${this.battle.cardManagers[this.player].hand.lastTurnPlayed[0]*effect[0]})`:``}`; break
+        case 12180: string+=`Move Up to ${effect[0]!=1?effect[0]:``}X Tiles`; break
+        case 12181: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nUpgrade ${effect[1]!=1?effect[1]:``}X Cards`; break
+        case 12182: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nUpgrade ${effect[1]} Card${pl(effect[1])}`; break
+        case 12183: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nWhere X = Energy`; break
+        case 12184: string+=`Draw ${effect[0]!=1?effect[0]:``}X Cards\nWhere X = Mana Total`; break
+        case 12185: string+=`Reduce All\nCountdowns by ${effect[0]!=1?effect[0]:``}X`; break
+        case 12186: string+=`Remove ${effect[0]!=1?effect[0]:``}X Mana From\nEach Countdown's Cost`; break
+        case 12187: string+=`Reduce All\nCountdowns by ${effect[0]!=1?effect[0]:``}X+${effect[1]}`; break
+        case 12188: string+=`Remove ${effect[0]!=1?effect[0]:``}X+${effect[1]} Mana From\nEach Countdown's Cost`; break
+        case 12189: string+=`Progress All\nQuests by ${effect[0]!=1?effect[0]:``}X`; break
+        case 12190: string+=`Progress All\nQuests by ${effect[0]!=1?effect[0]:``}X+${effect[1]}`; break
+        case 12191: string+=`Deal Damage Equal to\nYour Last Damage Dealt\nAdd Block Equal to\nYour Last Block Added`; break
+        case 12192: string+=`Deal Damage Equal to\nYour Last Damage Dealt\nAdd Block Equal to\nYour Last Block Added\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 12193: string+=`Gain ${effect[0]} Energy\nPer Different Color\nCard in Hand`; break
+        case 12194: string+=`Gain ${effect[0]} Energy\nand Draw ${effect[1]} Card${pl(effect[1])}\nPer Different Color\nCard in Hand`; break
+        case 12195: string+=`Gain (E)\nPer Different Color\nCard in Hand`; break
+        case 12196: string+=`Gain (E) and\nDraw ${effect[0]} Card${pl(effect[0])}\nPer Different Color\nCard in Hand`; break
+        case 12197: string+=`Apply ${effect[0]!=1?effect[0]:``}D6 Freeze`; break
+        case 12198: string+=`Apply ${effect[0]!=1?effect[0]:``}D6+${effect[1]} Freeze`; break
+        case 12199: string+=`Apply ${effect[0]!=1?effect[0]:``}D6 Burn`; break
+        case 12200: string+=`Apply ${effect[0]!=1?effect[0]:``}D6+${effect[1]} Burn`; break
+        case 12201: string+=`Apply ${effect[0]!=1?effect[0]:``}D6 Shock`; break
+        case 12202: string+=`Apply ${effect[0]!=1?effect[0]:``}D6+${effect[1]} Shock`; break
+        case 12203: string+=`Draw Cards Equal\nto Hand Size`; break
+        case 12204: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Cards in Hand\nAmplify:\nDeal ${this.calculateEffect(effect[1],2)} Damage Instead\nWhere X = Current Energy`; break
+        case 12205: string+=`Deal ${this.calculateEffect(effect[0],2)}+${this.calculateEffect(effect[1],10)} Damage\nWhere X = Number\nof Cards in Hand\nAmplify:\nDeal ${this.calculateEffect(effect[2],2)} Damage Instead\nWhere X = Current Energy`; break
+        case 12206: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Cards in Hand\nAmplify (E):\nDeal ${this.calculateEffect(effect[1],2)} Damage Instead\nWhere X = Mana Total`; break
+        case 12207: string+=`Deal ${this.calculateEffect(effect[0],2)}+${this.calculateEffect(effect[1],10)} Damage\nWhere X = Number\nof Cards in Hand\nAmplify (E):\nDeal ${this.calculateEffect(effect[2],2)} Damage Instead\nWhere X = Mana Total`; break
+        case 12208: string+=`Gain ${effect[0]!=1?effect[0]:``}X Vision\nWhere X = Hand Size`; break
+        case 12209: string+=`Gain ${effect[0]!=1?effect[0]:``}X+${effect[1]} Vision\nWhere X = Hand Size`; break
+        case 12210: string+=`Deal ${this.calculateEffect(effect[0],2)} x D3 Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
+        case 12211: string+=`Deal ${this.calculateEffect(effect[0],2)}+${this.calculateEffect(effect[1],14)} x D3 Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
+        case 12212: string+=`Shuffle an Expunger\nWith ${effect[0]!=1?effect[0]:``}X Into Draw`; break
+        case 12213: string+=`Shuffle an Expunger\nWith ${effect[0]!=1?effect[0]:``}X+${effect[1]} Into Draw`; break
+        case 12214: string+=`Discard Draw Pile\nAdd Block Equal\nto Number of\nCards Discarded`; break
+        case 12215: string+=`Add Block Equal\nto Number of Cards\nin Discard`; break
+        case 12216: string+=`Add ${effect[0]!=1?effect[0]:``}X Quills\nto Hand`; break
+        case 12217: string+=`Add ${effect[0]!=1?effect[0]:``}X+${effect[1]} Quills\nto Hand`; break
+        case 12218: string+=`Add ${effect[0]!=1?effect[0]:``}X Hyperquills\nto Hand\nNext Turn`; break
+        case 12219: string+=`Add ${effect[0]!=1?effect[0]:``}X+${effect[1]} Hyperquills\nto Hand\nNext Turn`; break
+        case 12220: string+=`Gain Strength Equal to\nthe Number of Unique\nStatuses You Have`; break
+        case 12221: string+=`Draw a Card For\nEvery Exhausted Card`; break
+        case 12222: string+=`+1: Gain Temporary Strength\nEqual to the Number of\nDefenses Played This Turn\n-4: Put a Card in Exhaust\nPile in Your Hand\n-9: Add Any ${effect[0]} Random\nRare Card${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0, Exhaust,\nand are Ethereal`; break
+            case -1101: string+=`-9: Add Any ${effect[0]} Random\nRare Card${pl(effect[0])} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0, Exhaust,\nand are Ethereal`; break
+        case 12223: string+=`Add ${effect[0]!=1?effect[0]:``}X Random\nCommon Colorless\nCards to Hand\nThey Cost 0 Temporarily`; break
+        case 12224: string+=`Deal ${this.calculateEffect(effect[0],2)}${effect[1]!=0?`+${this.calculateEffect(effect[1],0)}`:``} Damage\nWhere X = Number of\nBasic Cards in Deck`; break
+        case 12225: string+=`Move ${effect[0]} Tile${pl(effect[0])}\nDraw ${effect[1]!=1?effect[1]:``}X Cards`; break
+        case 12226: string+=`Apply ${effect[0]!=1?effect[0]:``}X Shock\nWhere X = Hand Size\nDiscard Your Hand`; break
+        case 12227: string+=`Discard Your Hand\nand Add That\nMany Shivs`; break
+        case 12228: string+=`Gain Metal Equal\nto the Cost of the\nMost Expensive Blueprint\nin Your Hand\nMinimum 1`; break
+        case 12229: string+=`Move X Tiles\nWhere X = Turn Number`; break
+        case 12230: string+=`Gain ${effect[0]!=1?effect[0]:``}X Charge\nWhere X = Hand Size\nDiscard Your Hand`; break
+        case 12231: string+=`Deal Damage Equal to\nthe Sum of the Damage\nof the First 4 Other\nAttacks in Hand`; break
+        case 12232: string+=`Roll ${effect[0]!=1?effect[0]:``}X Dice\nof Value 1-3 and\nDeal That Much Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
+        case 12233: string+=`Roll ${effect[0]!=1?effect[0]:``}X+${effect[1]} Dice\nof Value 1-3 and\nDeal That Much Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
+        case 12234: string+=`Deal Damage Equal to\nthe Sum of the Damage\nof the First 2 Other\nAttacks in Hand\nOverdrive ${effect[0]}:\nDeal Triple Damage`; break
+
+        case 12235: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Weak,\nApply ${effect[2]} Stun and Exhaust\nOtherwise,\nApply ${effect[3]} Weak`; break
+        case 12236: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Vulnerable,\nApply ${effect[2]} Stun and Exhaust\nOtherwise,\nApply ${effect[3]} Vulnerable`; break
+        //9363-9364
 
         //mark p
         //mark q

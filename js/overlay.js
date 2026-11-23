@@ -2194,6 +2194,9 @@ class overlay{
                                 case 11805:
                                     this.cards[a].attack=[-1099,-1100][a]
                                 break
+                                case 12222:
+                                    this.cards[a].attack=[-1006,-1101][a]
+                                break
                             }
                         }
                     break
@@ -2977,6 +2980,12 @@ class overlay{
                                 userCombatant.loseMaxHP(userCombatant.base.life/2)
                                 for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length/2;a<la;a++){
                                     this.battle.cardManagers[this.player].deck.randomEffect(39)
+                                }
+                            break
+                            case -1101:
+                                this.card.costDown(0,[9])
+                                for(let a=0,la=args[0].effect[0];a<la;a++){
+                                    this.battle.cardManagers[this.player].addRandomAbstract(2,0,0,2,2,[],[2,1,[[4]]])
                                 }
                             break
                         }

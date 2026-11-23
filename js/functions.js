@@ -17,6 +17,7 @@ checkUnusedEncounter: finds enemy names that don't have an encounter associated 
 checkUnusedMod: finds enemy names that don't have a mod associated with them
 checkUnnecessary: finds cards with reused attack ids
 checkUnnecessarySpec: finds cards with reused attack ids and a spec
+checkZero: finds cards with 0 as an effect
 
 outCosts: view costs by character
 outClassCosts: view costs by character and class
@@ -2854,7 +2855,8 @@ function event(name){
     current.combatantManager.resetCombatants()
 }
 function status(name){
-	return findList(name,current.combatantManager.combatants[0].status.name)
+	//return findList(name,current.combatantManager.combatants[0].status.name)
+	return findList(name,constants.status.name)
 }
 function st(name){
 	player(0).statusEffect(name,1)
@@ -3115,9 +3117,9 @@ function checkExists(start=-1,end=-1){
 		-26,//decremented
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
-		1017,1281,2186,2187,2664,2776,2837,3214,3333,3368,
-		4063,4066,4067,4550,4554,4812,5014,7411,7412,8549,
-		8550,8960,//invalid push
+		1017,1281,2163,2186,2187,2664,2776,2837,3214,3333,
+		3368,4063,4066,4067,4550,4554,4812,5014,7411,7412,
+		8549,8550,8960,//invalid push
 		62,//invalid enlighten
 		116,665,4180,4181,//invalid false surrender
 		188,440,1239,1255,1841,2813,3201,3488,3579,//damage taken up/down
@@ -3128,26 +3130,43 @@ function checkExists(start=-1,end=-1){
 		531,532,//invalid severance
 		564,//invalid cheap shot
 		651,657,//invalid close in, keep distance
+		671,//invalid charge source
 		770,//invalid credence
+		792,//invalid conjure blade
 		853,//invalid energy recoil
+		865,4800,//invalid luminous
 		870,871,//invalid frenzy
+		916,//invalid overcharge
 		1098,//invalid ii - the priestess
 		1123,//invalid nothings
+		1250,//invalid magic switch
+		1266,//invalid dice blaster
 		1284,2583,3151,3152,//invalid lucky 7, edict, graphite, graphene
 		1307,//invalid boston bat
 		1369,//invalid high vis jacket
 		1691,1692,1693,1694,//theme
+		1701,//invalid sneeze
 		1739,2053,//invalid password
+		1809,//invalid glue measure
+		1812,//invalid tickly nose
 		1914,//invalid tin snips
+		1972,//invalid dice cannon
 		1991,2017,//invalid overthrow, underthrow
+		2022,//invalid freeze roll
+		2023,//invalid burn roll
+		2024,//invalid shock roll
 		2286,//invalid pleonasm
 		2386,2387,//invalid rng
 		2431,2753,3476,//invalid concealed step, extending strike, extending step
 		2695,//invalid learn by example
+		2703,//invalid evening
+		2826,4579,//invalid total internal reflection
 		3018,//invalid lily of the valley
 		3080,//star, showering starlight proxy
+		3146,//invalid forward front
 		3154,//invalid blueshift
 		3298,//invalid fall into poverty
+		3338,//invalid columns of creation
 		3357,//invalid black keys
 		3551,//invalid artifice
 		3589,3590,3591,3678,3755,3756,3757,3764,3765,3882,
@@ -3155,6 +3174,7 @@ function checkExists(start=-1,end=-1){
 		3943,4190,//invalid mtg mergers
 		3662,//invalid recycling
 		4298,//invalid shooting echo
+		5547,//invalid academia
 		5752,//invalid light it up
 		5781,//invalid omnipotence
 		5868,//invalid halflife
@@ -3166,12 +3186,16 @@ function checkExists(start=-1,end=-1){
 		7196,7197,7198,7199,7200,7201,7672,11937,12006,12100,
 		12111,12113,12114,//x = evolve
 		7268,//invalid big time
+		7690,//invalid landmark
+		7822,//invalid shield source
 		7929,//invalid suit up
 		8020,8034,8996,9228,9229,10322,//move 1 tile away
 		8540,//invalid luminescent pillar
 		8695,//invalid set sail
+		8942,8948,9232,9239,9240,//old discus animations
 		9661,//invalid silverswivel
 		12101,//invalid fresh off the burner
+		12150,//invalid virtuous circle
 
 		894,1302,1324,1537,1909,2147,3346,3347,//values
 		945,1208,1209,1212,1213,1214,1216,1217,1219,1220,
@@ -3644,14 +3668,30 @@ function checkUnnecessary(start=-99999,end=99999){
 		let overlap=0
 		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
 			if(!types.card[a].mtg.levels[b].spec.includes(12)){
-				if(!ignore.includes(types.card[a].levels[b].attack)&&types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6){
+				//if(!ignore.includes(types.card[a].levels[b].attack)&&types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&lookup[types.card[a].levels[b].attack-start]>6){
+				if(
+					!ignore.includes(types.card[a].levels[b].attack)&&
+					types.card[a].levels[b].attack>=start&&types.card[a].levels[b].attack<end&&
+					lookup[types.card[a].levels[b].attack-start]>(
+						types.card[a].levels.filter(level=>level.attack==types.card[a].levels[b].attack).length+
+						types.card[a].mtg.levels.filter(level=>level.attack==types.card[a].levels[b].attack).length
+					)
+				){
 					overlap++
 				}
 			}
 		}
 		for(let b=0,lb=types.card[a].mtg.levels.length;b<lb;b++){
 			if(!types.card[a].mtg.levels[b].spec.includes(12)){
-				if(!ignore.includes(types.card[a].mtg.levels[b].attack)&&types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6){
+				//if(!ignore.includes(types.card[a].mtg.levels[b].attack)&&types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&lookup[types.card[a].mtg.levels[b].attack-start]>6){
+				if(
+					!ignore.includes(types.card[a].mtg.levels[b].attack)&&
+					types.card[a].mtg.levels[b].attack>=start&&types.card[a].mtg.levels[b].attack<end&&
+					lookup[types.card[a].mtg.levels[b].attack-start]>(
+						types.card[a].levels.filter(level=>level.attack==types.card[a].mtg.levels[b].attack).length+
+						types.card[a].mtg.levels.filter(level=>level.attack==types.card[a].mtg.levels[b].attack).length
+					)
+				){
 					overlap++
 				}
 			}
@@ -3723,6 +3763,21 @@ function checkUnnecessarySpec(spec,start=-99999,end=99999){
 					}
 				}
 			}
+		}
+	}
+}
+function checkZero(){
+	let exempt=[
+		'Lenin','Brezhnev','Chernenko','Gorbachev','Hua\nGuofeng','Jiang\nZemin','Hu\nJintao','Flashback','Wish-Forged\nSword','Wish-Forged\nShield',
+		'Grandfather\nClock','Escapement','Rainbow\nStar Blast','Chapter\n11','Expunger','Snip','Silverspin','Kosygin','Ryzhkov','Pavlov',
+		'Surprising\nSunlight','Miraculous\nMoonlight','Suave\nStarlight','Silverswivel','Lending','Timestamp','Influence-Forged\nSword','Influence-Forged\nShield',
+	]
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(!exempt.includes(types.card[a].name)&&(
+			types.card[a].levels.some(level=>level.effect.includes(0))||
+			types.card[a].mtg.levels.some(level=>level.effect.includes(0))
+		)){
+			print(types.card[a].name)
 		}
 	}
 }

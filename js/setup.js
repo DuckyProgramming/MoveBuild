@@ -16,7 +16,7 @@ function setup(){
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
         current.menu.combatant=[0]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
 
             //variants.mtg=true
 
@@ -36,7 +36,7 @@ function setup(){
         current.setupBattle(types.encounter[1])
 
             /*stage.scene='histogram'
-            graphics.test=9*/
+            graphics.test=8*/
 
             /*money(1000)
             quickNode(4)*/
