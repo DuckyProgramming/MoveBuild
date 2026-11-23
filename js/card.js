@@ -3068,6 +3068,25 @@ class card{
             case 12120:
                 this.battle.setTurn(this.battle.turn.total-this.effect[1])
             break
+            case 12128:
+                userCombatant.statusEffect('Counter All',this.effect[1])
+            break
+            case 12130: case 12131: case 12132: case 12133: case 12135:
+                this.effect[0]+=this.effect[1]
+            break
+            case 12134:
+                userCombatant.statusEffect('Armor',this.effect[1])
+            break
+            case 12136: case 12137: case 12138: case 12139: case 12142:
+                this.effect[0]+=this.effect[2]
+            break
+            case 12140:
+                this.effect[0]+=this.effect[2]
+                this.effect[1]+=this.effect[2]
+            break
+            case 12141:
+                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],userCombatant.id])
+            break
         }
     }
     callLeaderEffect(){
@@ -4285,6 +4304,9 @@ class card{
                     if(cardClass==4){
                         this.setCost(2,[0])
                     }
+                break
+                case 12127:
+                    this.costDown(2,[1])
                 break
                 
             }

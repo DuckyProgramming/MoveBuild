@@ -171,9 +171,9 @@ class turnManager{
                             combatant.attack[combatant.intent].effect,a))
                     }
                 }
-                if(combatant.getStatus('Extra Turn')>0){
+                /*if(combatant.getStatus('Extra Turn')>0){
                     combatant.status.main[findList('Extra Turn',combatant.status.name)]=0
-                }
+                }*/
             }else{
                 if(this.battle.modded(66)&&!combatant.activated&&combatant.team==0){
                     combatant.statusEffect('Strength',2)
@@ -181,6 +181,9 @@ class turnManager{
                 if(this.battle.modded(129)&&!combatant.activated&&combatant.team==0){
                     combatant.heal(5)
                 }
+            }
+            if(combatant.getStatus('Extra Turn')>0){
+                combatant.status.main[findList('Extra Turn',combatant.status.name)]=0
             }
         }
     }

@@ -3159,8 +3159,11 @@ function checkExists(start=-1,end=-1){
 		5781,//invalid omnipotence
 		5868,//invalid halflife
 		6032,//invalid seven hakus
+		6100,6333,//slash of future (now primed pulse)
 		6109,//invalid anaphel
 		6199,//invalid cleaver
+		7196,7197,7198,7199,7200,7201,7672,11937,12006,12100,
+		12111,12113,12114,//x = evolve
 		7268,//invalid big time
 		7929,//invalid suit up
 		8020,8034,8996,9228,9229,10322,//move 1 tile away

@@ -1039,6 +1039,7 @@ class battle{
                 combatant.statusEffect('Distracted',-1)
                 this.endTurn()
             }else{
+                combatant.tick()
                 if(extra){
                     this.cardManagers[this.turn.main].bufferedTurn=30
                 }else{
@@ -1215,6 +1216,7 @@ class battle{
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         this.counter.turnKilled=0
+        let combatant
         for(let a=0,la=this.energy.gen.length;a<la;a++){
             combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
             let lastEnergy=this.getEnergy(this.turn.main)

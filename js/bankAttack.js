@@ -134,7 +134,7 @@ attack.prototype.update=function(){
         case 11441: case 11449: case 11468: case 11479: case 11483: case 11506: case 11507: case 11528: case 11572: case 11598: case 11601: case 11602: case 11603: case 11604: case 11636: case 11639: case 11641: case 11642: case 11647:
         case 11648: case 11661: case 11737: case 11764: case 11769: case 11771: case 11784: case 11785: case 11791: case 11852: case 11861: case 11876: case 11897: case 11903: case 11905: case 11913: case 11914: case 11915: case 11918:
         case 11929: case 11930: case 11934: case 11950: case 11964: case 11965: case 11991: case 11992: case 12006: case 12054: case 12071: case 12072: case 12079: case 12080: case 12083: case 12100: case 12101: case 12104: case 12114:
-        case 12117:
+        case 12117: case 12128: case 12131: case 12136: case 12139: case 12140: case 12142:
             //mark 1
             if(this.timer==1&&(this.type==2781||this.type==4024||this.type==5166||this.type==6171||this.type==7736)){
                 this.userCombatant.goal.anim.direction=directionCombatant(this.targetCombatant,this.userCombatant)
@@ -309,7 +309,7 @@ attack.prototype.update=function(){
         case 11434: case 11439: case 11442: case 11451: case 11460: case 11469: case 11480: case 11486: case 11488: case 11496: case 11497: case 11504: case 11510: case 11526: case 11531: case 11537: case 11546: case 11547: case 11548:
         case 11549: case 11553: case 11562: case 11573: case 11583: case 11611: case 11633: case 11635: case 11637: case 11643: case 11646: case 11649: case 11678: case 11738: case 11770: case 11772: case 11775: case 11778: case 11786:
         case 11803: case 11804: case 11816: case 11817: case 11847: case 11877: case 11893: case 11901: case 11902: case 11931: case 11932: case 11933: case 11951: case 11955: case 11956: case 11960: case 11967: case 11968: case 11996:
-        case 12000: case 12013: case 12016: case 12017: case 12018: case 12021: case 12028: case 12042: case 12073: case 12074: case 12102: case 12105: case 12111:
+        case 12000: case 12013: case 12016: case 12017: case 12018: case 12021: case 12028: case 12042: case 12073: case 12074: case 12102: case 12105: case 12111: case 12129: case 12130: case 12134: case 12137:
             //mark 2
             if(
                 this.timer==1&&(
@@ -434,7 +434,7 @@ attack.prototype.update=function(){
         case 11405: case 11406: case 11407: case 11408: case 11411: case 11416: case 11448: case 11498: case 11499: case 11500:
         case 11605: case 11662: case 11686: case 11687: case 11688: case 11739: case 11740: case 11741: case 11742: case 11744:
         case 11751: case 11776: case 11790: case 11808: case 11809: case 11900: case 11919: case 11995: case 11999: case 12005:
-        case 12037: case 12038: case 12069: case 12070: case 12075: case 12077: case 12087:
+        case 12037: case 12038: case 12069: case 12070: case 12075: case 12077: case 12087: case 12126:
             //mark 3
             if(
                 this.timer==1&&(
@@ -738,7 +738,8 @@ attack.prototype.update=function(){
         case 11584: case 11586: case 11608: case 11609: case 11616: case 11617: case 11620: case 11621: case 11622: case 11623: case 11625: case 11626: case 11627: case 11628: case 11629: case 11644: case 11705: case 11706: case 11708:
         case 11709: case 11710: case 11711: case 11712: case 11715: case 11716: case 11719: case 11728: case 11743: case 11748: case 11758: case 11759: case 11762: case 11763: case 11837: case 11838: case 11839: case 11840: case 11851:
         case 11856: case 11883: case 11885: case 11891: case 11894: case 11895: case 11907: case 11924: case 11962: case 11984: case 11985: case 11986: case 11987: case 12002: case 12019: case 12020: case 12043: case 12048: case 12056:
-        case 12057: case 12058: case 12059: case 12065: case 12084: case 12094: case 12106: case 12107: case 12108: case 12115: case 12116: case 12118: case 12119: case 12120: case 12121: case 12122: case 12123:
+        case 12057: case 12058: case 12059: case 12065: case 12084: case 12094: case 12106: case 12107: case 12108: case 12115: case 12116: case 12118: case 12119: case 12120: case 12121: case 12122: case 12123: case 12127: case 12132:
+        case 12143: case 12144: case 12145: case 12146:
             //mark 4
             if(
                 this.timer==1&&(
@@ -874,7 +875,7 @@ attack.prototype.update=function(){
         case 11481: case 11490: case 11501: case 11503: case 11505: case 11508: case 11509: case 11512: case 11513: case 11540: case 11541: case 11550: case 11555: case 11564: case 11585: case 11597: case 11610: case 11624: case 11631: case 11650:
         case 11663: case 11676: case 11697: case 11698: case 11699: case 11707: case 11718: case 11722: case 11723: case 11724: case 11725: case 11746: case 11757: case 11768: case 11779: case 11780: case 11787: case 11788: case 11810: case 11811:
         case 11826: case 11846: case 11866: case 11867: case 11868: case 11869: case 11899: case 11921: case 11939: case 11943: case 11952: case 11993: case 11994: case 12009: case 12010: case 12030: case 12097: case 12109: case 12110: case 12112:
-        case 12124: case 12125:
+        case 12124: case 12125: case 12133: case 12147:
             //mark 5
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
@@ -1468,7 +1469,7 @@ attack.prototype.update=function(){
         case 8701: case 8824: case 8858: case 8862: case 9069: case 9091: case 9150: case 9192: case 9203: case 9252:
         case 9292: case 9359: case 9413: case 9445: case 9488: case 9491: case 9612: case 9669: case 9934: case 10276:
         case 10315: case 10338: case 10340: case 10561: case 10746: case 11045: case 11073: case 11074: case 11085: case 11185:
-        case 11202: case 11275: case 11323: case 11337: case 11367: case 11484: case 11485: case 11696: case 11937:
+        case 11202: case 11275: case 11323: case 11337: case 11367: case 11484: case 11485: case 11696: case 11937: case 12135:
             //mark 7
             if(
                 this.timer==1&&(
@@ -3187,7 +3188,7 @@ attack.prototype.update=function(){
         case 11958: case 11959: case 11961: case 11966: case 11971: case 11972: case 11973: case 11974: case 11978: case 11979:
         case 11980: case 11982: case 12001: case 12007: case 12008: case 12029: case 12031: case 12032: case 12033: case 12034:
         case 12052: case 12053: case 12060: case 12078: case 12081: case 12082: case 12085: case 12086: case 12088: case 12090:
-        case 12091: case 12092: case 12093: case 12096: case 12103:
+        case 12091: case 12092: case 12093: case 12096: case 12103: case 12141:
             //mark 11
             if(
                 this.type==1935&&this.userCombatant.energyParity(this.energy)!=0||
@@ -10835,7 +10836,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 3770: case 10915: case 10916: case 12113:
+        case 3770: case 10915: case 10916: case 12113: case 12138:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
             }
@@ -10857,7 +10858,7 @@ attack.prototype.update=function(){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.randomStatusInstant(this.effect[1],[1])
                     break
-                    case 10916:
+                    case 10916: case 12138:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.getStatus('Weak')>0){
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
@@ -10873,6 +10874,12 @@ attack.prototype.update=function(){
                         }
                         if(this.targetCombatant.getStatus('Vulnerable')>0){
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[3])
+                        }
+                    break
+                    case 12138:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.getStatus('Weak')>0){
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         }
                     break
                 }
