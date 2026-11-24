@@ -701,12 +701,18 @@ class battle{
     addCombatant(position,type,team,direction,minion){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        return this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
+        let dir=types.combatant[type].name=='Admiral-Manager'||types.combatant[type].name=='Asshole'?30:
+            direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):
+            direction
+        return this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,dir,minion)
     }
     addCombatantAbstract(position,type,team,direction,minion,spec){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        return this.combatantManager.addCombatantAbstract(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion,spec)
+        let dir=types.combatant[type].name=='Admiral-Manager'||types.combatant[type].name=='Asshole'?30:
+            direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):
+            direction
+        return this.combatantManager.addCombatantAbstract(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,dir,minion,spec)
     }
     positionCombatant(combatant,position){
         if(position.x==-1){

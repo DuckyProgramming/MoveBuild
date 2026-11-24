@@ -203,6 +203,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case -170: string+=`At the End of Your Turn,\nTake ${effect[0]} Damage\nIncreases by ${effect[1]}\nPermanently`; break
         case -171: string+=`When Drawn,\nGain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
         case -172: string+=`Take ${effect[0]} Damage\nWhen You Play a Card\nIncreases by ${effect[1]}`; break
+        case -173: string+=`When Drawn,\nHalve Your Block`; break
 
         //mark n
 
@@ -12514,10 +12515,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12232: string+=`Roll ${effect[0]!=1?effect[0]:``}X Dice\nof Value 1-3 and\nDeal That Much Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
         case 12233: string+=`Roll ${effect[0]!=1?effect[0]:``}X+${effect[1]} Dice\nof Value 1-3 and\nDeal That Much Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
         case 12234: string+=`Deal Damage Equal to\nthe Sum of the Damage\nof the First 2 Other\nAttacks in Hand\nOverdrive ${effect[0]}:\nDeal Triple Damage`; break
-
         case 12235: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Weak,\nApply ${effect[2]} Stun and Exhaust\nOtherwise,\nApply ${effect[3]} Weak`; break
         case 12236: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Vulnerable,\nApply ${effect[2]} Stun and Exhaust\nOtherwise,\nApply ${effect[3]} Vulnerable`; break
-        //9363-9364
 
         //mark p
         //mark q

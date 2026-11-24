@@ -60,7 +60,7 @@ class particle{
             break
             case 6: case 11: case 14: case 16: case 18: case 19: case 20: case 21: case 39: case 42:
             case 43: case 44: case 47: case 48: case 78: case 79: case 82: case 83: case 98: case 101:
-            case 111: case 123: case 160:
+            case 111: case 123: case 160: case 301:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=15
@@ -875,6 +875,27 @@ class particle{
                 this.trigger=false
                 this.size=1
                 this.scale=1
+            break
+            case 302:
+                this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
+                this.fade=1
+                this.size=1
+                this.scale=1
+                this.ticks=ceil(dist(0,0,this.position2.x,this.position2.y)/12)
+                this.direction=atan2(this.position2.x,this.position2.y)
+                this.sets=[]
+                this.moves=[]
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets.push([random(-10,10),random(-10,10)])
+                    this.moves.push([random(-0.25,0.25),random(-0.25,0.25)])
+                }
+            break
+            case 303:
+                this.size=args[0]
+                this.fade=1
+                this.scale=0
+                this.direction=random(0,360)
+                this.pivot=random(-15,15)
             break
 
         }
@@ -4783,6 +4804,45 @@ class particle{
                 case 300:
                     displaySymbol(this.layer,0,0,188,this.time*10,0.5,this.fade)
                 break
+                case 301:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(200,this.fade)
+                    this.layer.rect(0,-0.5,5,1.5)
+                    this.layer.rect(0,1,4,1.5)
+                    this.layer.rect(0,2.5,5,1.5)
+                    this.layer.arc(0,-1.25,5,6,-180,0)
+                break
+                case 302:
+                    this.layer.noFill()
+                    this.layer.stroke(255,255,50,this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,0)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.vertex(
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1]
+                        )
+                    }
+                    this.layer.endShape()
+                    this.layer.stroke(255,200,0,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,0)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.vertex(
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1]
+                        )
+                    }
+                    this.layer.endShape()
+                break
+                case 303:
+                    this.layer.fill(255,255,50,this.fade)
+                    regStar(this.layer,0,0,5,8,8,1,1,this.direction)
+                    this.layer.fill(255,200,0,this.fade)
+                    regStar(this.layer,0,0,5,4,4,0.5,0.5,this.direction)
+                break
 
             }
             //mark p
@@ -4812,7 +4872,7 @@ class particle{
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
             case 48: case 49: case 50: case 78: case 79: case 82: case 83: case 89: case 98: case 105:
             case 111: case 113: case 131: case 160: case 201: case 267: case 293: case 294: case 295: case 296:
-            case 297: case 298: case 299: case 300:
+            case 297: case 298: case 299: case 300: case 301:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 this.fade=smoothAnim(this.fade,this.time<this.timer*2,0,1,5)
@@ -4862,7 +4922,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 15: case 22: case 24: case 25: case 26: case 38: case 67: case 270:
+            case 15: case 22: case 24: case 25: case 26: case 38: case 67: case 270: case 302:
                 this.fade-=1/30
                 if(this.fade<=0){
                     this.remove=true
@@ -6009,6 +6069,24 @@ class particle{
                         this.remove=true
                     }
                 }
+            break
+            case 302:
+                this.fade-=1/45
+                if(this.fade<=0){
+                    this.remove=true
+                }
+                for(let a=0,la=this.ticks.length;a<la;a++){
+                    this.ticks[a][0]+=this.moves[a][0]
+                    this.ticks[a][1]+=this.moves[a][1]
+                }
+            break
+            case 303:
+                this.fade-=0.1
+                this.scale+=0.1
+                if(this.fade<=0){
+                    this.remove=true
+                }
+                this.direction+=this.pivot
             break
 
         }

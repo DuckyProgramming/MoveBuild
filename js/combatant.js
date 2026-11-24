@@ -110,7 +110,7 @@ constants.status={
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
         'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust','Damage Cap Once','Damage Cap Once Per Turn','Process Draw','Process Block',
-        'Take Double Shiv','Play Evolve','Block Break Block Next Turn','Take Half Damage Next Turn',
+        'Take Double Shiv','Play Evolve','Block Break Block Next Turn','Take Half Damage Next Turn','Turn Damage Cap','Turn Damage Cap Per Turn',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -223,7 +223,7 @@ constants.status={
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
         0,0,0,0,0,0,2,0,0,0,//110
-        1,0,2,2,
+        1,0,2,2,2,0,
     ],
     /*
     0-none
@@ -345,7 +345,7 @@ constants.status={
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
         2,2,2,2,2,2,0,0,2,2,//110
-        3,2,0,0,
+        3,2,0,0,2,2,
     ]
     /*
     0-good
@@ -1110,683 +1110,717 @@ class combatant{
         }
         //mark b
         if(this.team==0){
-            if(this.type<=constants.playerNumber){
-                this.subHealthBuff(2)
-            }
-            if(game.ascend>=2&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2||game.diff>=2){
-                this.subAttackBuff([1,5],1.2)
-            }
-            if(game.ascend>=7&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=8&&this.battle.encounter.class==1||game.ascend>=9&&this.battle.encounter.class==2||game.diff>=5){
-                this.subHealthBuff(1.2)
-                this.subAttackBuff([2],1.2)
-            }
-            if(game.ascend>=17&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2||game.diff>=15){
-                this.subAttackBuff([4,11],1.5)
-            }
-            /*if(game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1){
-                let randombuffs=[
-                    ['Double Damage',1],['Dodge',2],['Strength',2],['Dexterity',2],['Vigor',6],
-                    ['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Metallicize',2],
-                    ['Buffer',1],['Take Half Damage',2],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],
-                    ['Dexterity Per Turn',1],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Single Counter Block',10],
-                    ['Invisible',4],['Speed Up',1],['Strength Next Turn',3],['Conditioning',1],['Counter All Combat',1],
-                    ['Heal on Hit',3],['Attack Bleed Combat',1],['Counter Block',3],['Single Damage Block Convert',2],['Triple Block',1],
-                    ['Dexterity Next Turn',3],['1.5x Damage',2],['1.5x Block',2],['Block Up',2],['Damage Up',2],
-                    ['Dexterity on Hit',1],['Heal Per Turn',2],['Survive Fatal',1],['Decrementing Armor',6],['Block Heal',3],
-                    ['Fragile Damage Up',4],['Strength in 2 Turns',4],['Dexterity in 2 Turns',4]
-                ]
-                for(let a=0,la=2;a<la;a++){
-                    let index=floor(random(0,randombuffs.length))
-                    this.statusEffect(randombuffs[index][0],randombuffs[index][1])
-                    randombuffs.splice(index,1)
-                }
-            }*/
-            /*if((game.ascend>=30||game.diff>=23)&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3&&this.spec.includes(2)){
-                this.subHealthBuff(1.5)
-                this.subAttackBuff([1,2,5],1.2)
-            }*/
-            if(diffUnfair||game.diff>=24){
-                if(this.type<=constants.playerNumber){
-                    this.subHealthBuff(1.2)
-                }
-                switch(this.name){
-                    case 'Human':
-                        this.subAttackTypeSwitch([[0,1,38,[]]])
-                    break
-                    case 'Duck': case 'Big Duck': case 'Blue Duck':
-                        this.subAttackTypeSwitch([[1,2,377,[1,'Dazed']]])
-                    break
-                    case 'Bouncer':
-                        this.spec.push(0)
-                        this.subAttackTypeSwitch([[0,3,7,[]]])
-                    break
-                    case 'Thug':
-                        this.subAttackTypeSwitch([[0,6,28,[]]])
-                    break
-                    case 'Biker':
-                        this.addAttack(117,[12])
-                    break
-                    case 'Drunk':
-                        this.subAttackTypeSwitch([[2,1,12,[1.5]]])
-                    break
-                    case 'Drunk Boss':
-                        this.statusEffect('Metallicize All',4)
-                    break
-                    case 'Monkey':
-                        this.addBlock(4)
-                        this.statusEffect('Armor',2)
-                    break
-                    case 'Trenchcoat':
-                        this.subAttackTypeSwitch([[0,1,6,[]]])
-                    break
-                    case 'Trenchcoat Gunner': case 'Management Drone': case 'Gangster Machinegunner': case 'Personnel Carrier': case 'Gangster Machinegunner Informant':
-                        this.spec.push(7)
-                        this.move.type=11
-                    break
-                    case 'Goon':
-                        this.spec.push(0)
-                        this.subAttackBuff([1],2)
-                        this.removeAttack(6)
-                    break
-                    case 'Slaver':
-                        this.subAttackTypeSwitch([[2,17,17,[2,2]]])
-                    break
-                    case 'Fungal Duck':
-                        this.subAttackTypeSwitch([[2,18,18,[2]]])
-                    break
-                    case 'Orb Walker':
-                        this.statusEffect('Strength Per Turn',1)
-                        this.statusEffect('Control',1)
-                    break
-                    case 'Pointy': case 'Sentry': case 'Prisoner': case 'Elf Archer': case 'Normal1': case 'Structural Energy': case 'Disorder Energy': case 'Prisoner Informant': case 'Inconsistent': case 'Latency':
-                    case 'Dark Priest': case 'Brawler': case 'Flanker': case 'Darkblot': case 'Inkblot':
-                        this.spec.push(0)
-                    break
-                    case 'Romeo':
-                        this.spec.push(0)
-                        this.subAttackTypeSwitch([[1,6,27,[2]]])
-                    break
-                    case 'Billy Beatup':
-                        this.statusEffect('Metallicize',5)
-                    break
-                    case 'Monkey Gangster':
-                        this.addBlock(6)
-                        this.statusEffect('Armor',3)
-                    break
-                    case 'Slime': case 'Spike Slime': case 'Slimoid':
-                        //this.subAttackTypeSwitch([[2,22,22,[1,2]]])
-                        this.subAttackTypeSwitch([[2,22,32,[]]])
-                    break
-                    case 'Cartel':
-                        this.subAttackTypeSwitch([[2,24,24,[1,2]]])
-                    break
-                    case 'Ninja':
-                        this.subAttackTypeSwitch([[0,9,28,[]],[0,20,99,[]]])
-                    break
-                    case 'Red':
-                        this.subAttackTypeSwitch([[2,15,15,[1,2]],[2,25,25,[2]]])
-                    break
-                    case 'Batter':
-                        this.subAttackTypeSwitch([[2,26,26,[2]]])
-                    break
-                    case 'Slippery Gangster': case 'Management Light Infantry':
-                        this.statusEffect('Retain Dodge',999)
-                    break
-                    case 'Gangster Gunner':
-                        this.statusEffect('Counter Gun Once Per Turn',6)
-                        this.statusEffect('Counter Gun Once',6)
-                    break
-                    case 'Spheron':
-                        this.statusEffect('Metallicize',2)
-                    break
-                    case 'Enforcer':
-                        this.statusEffect('Counter Push Once Per Turn',4)
-                        this.statusEffect('Counter Push Once',4)
-                    break
-                    case 'Rock Golem':
-                        this.subAttackTypeSwitch([[0,4,10,[]]])
-                    break
-                    case 'Big Slime': case 'Big Spike Slime': case 'Big Slimoid':
-                        //this.subAttackTypeSwitch([[2,32,32,[1,2]]])
-                        this.subAttackTypeSwitch([[2,32,32,[]]])
-                    break
-                    case 'Moss Creature': case 'Deployer':
-                        this.statusEffect('Armor',5)
-                    break
-                    case 'Chief Deployer':
-                        this.statusEffect('Armor',6)
-                    break
-                    case 'Shipment':
-                        this.statusEffect('Armor',4)
-                    break
-                    case 'Goblin':
-                        this.attack.splice(0,1)
-                        this.attack.splice(0,1)
-                        this.attack.splice(2,1)
-                    break
-                    case 'Agent Duck':
-                        this.statusEffect('Attack Bleed Combat',2)
-                    break
-                    case 'Nerfer': case 'Buffer':
-                        this.removeAttack(1)
-                        this.removeAttack(4)
-                        this.subAttackTypeSwitch([[2,6,6,[1.5]]])
-                    break
-                    case 'Scrapper': case 'Champion': case 'Avant Guard': case 'Carbonado Robot': case 'Pure Swordsman': case 'Wiz': case 'Gangmaster': case 'Bodyguard': case 'Chief Engineering Officer': case 'Purge X02': case 'Caporegime':
-                        this.spec.push(1)
-                        this.spec.splice(this.spec.indexOf(0),1)
-                    break
-                    case 'Fat Scrapper':
-                        this.removeAttack(21)
-                        this.behavior=0
-                    break
-                    case 'Looter': case 'Mugger':
-                        //this.subAttackTypeSwitch([[2,67,67,[1,4]]])
-                        this.subAttackTypeSwitch([[2,67,67,[1,2]]])
-                    break
-                    case 'Little Guy':
-                        this.subAttackTypeSwitch([[1,1,378,[8]]])
-                        this.removeAttack(4)
-                    break
-                    case 'Management Prototype':
-                        this.spec.push(7)
-                        this.removeAttack(4)
-                    break
-                    case 'Management Robot': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Robot Commander': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Experimental Robot': case 'Rusted Robot': case 'Defective Robot A': case 'Defective Robot B':
-                        this.spec.push(7)
-                    break
-                    case 'Management Soldier':
-                        this.removeAttack(10)
-                        this.statusEffect('Metallicize All',3)
-                    break
-                    case 'Management Officer': case 'Lost Management Officer':
-                        this.subAttackTypeSwitch([[2,26,26,[2]]])
-                    break
-                    case 'Management Special Forces': case 'Capitalist':
-                        this.spec.splice(this.spec.indexOf(0),1)
-                        this.spec.push(1)
-                    break
-                    case 'Sneaky Gremlin': case 'Lead Brick':
-                    //case 'Sneaky Gremlin': case 'Lead Brick': case 'Capitalist':
-                        this.move.speed++
-                    break
-                    case 'Fat Gremlin':
-                        this.statusEffect('Single Counter Block',12)
-                    break
-                    case 'Golden Duck':
-                        this.move.type=12
-                    break
-                    case 'Solar Shard':
-                        this.subAttackTypeSwitch([[2,39,39,[3]]])
-                    break
-                    case 'Lunar Shard':
-                        this.addAttack(39,[2,'Lunar Dust'])
-                    break
-                    case 'Lunar Dust':
-                        this.subAttackTypeSwitch([[1,85,379,[1,1]]])
-                    break
-                    case 'Management Sniper':
-                        this.behavior=0
-                        this.removeAttack(21)
-                        this.move.type=11
-                    break
-                    case 'Management Caller':
-                        this.removeAttack(21)
-                        this.behavior=9
-                    break
-                    case 'Management Custodian':
-                        this.move.type=12
-                        this.spec.push(1)
-                        this.subAttackTypeSwitch([[2,92,92,[2]]])
-                    break
-                    case 'Walker Driver': case 'Walker Driver Informant':
-                        this.removeAttack(4)
-                        this.statusEffect('Buffer',1)
-                    break
-                    case 'Prison Guard':
-                        this.move.type=2
-                        this.statusEffect('Metallicize',1)
-                    break
-                    case 'Lightspeed':
-                        //this.move.speed++
-                        this.subAttackTypeSwitch([[0,101,77,[]],[0,19,367,[]],[0,99,380,[]],[0,100,38,[]]])
-                    break
-                    case 'Swordmaster':
-                        this.removeAttack(21)
-                        //this.behavior=1
-                        this.behavior=26
-                    break
-                    case 'Gas Man':
-                        this.subAttackTypeSwitch([[0,6,38,[]],[0,104,381,[]]])
-                    break
-                    case 'Gremlin':
-                        this.spec.push(0)
-                        this.subAttackTypeSwitch([[0,9,28,[]]])
-                    break
-                    case 'Flying Rock':
-                        this.subAttackTypeSwitch([[1,4,72,[1]],[0,6,38,[]]])
-                    break
-                    case 'Repulsor':
-                        this.removeAttack(6)
-                        this.subAttackTypeSwitch([[1,87,157,[2,'Dazed']]])
-                    break
-                    case 'Management Autoduck':
-                        this.spec.push(7)
-                        this.subAttackTypeSwitch([[0,2,104,[]],[0,6,79,[]]])
-                    break
-                    case 'Modicum':
-                        this.removeAttack(109)
-                        this.statusEffect('Heal Per Turn',6)
-                    break
-                    case 'Bush Thing':
-                        this.spec.push(0)
-                        this.subAttackTypeSwitch([[1,6,27,[1]],[2,108,108,[2]]])
-                    break
-                    case 'Fireball':
-                        this.behavior=0
-                        this.removeAttack(21)
-                        this.statusEffect('Attack Burn Combat',1)
-                    break
-                    case 'Dead Shell':
-                        this.statusEffect('Armor',14)
-                    break
-                    case 'Executive':
-                        this.removeAttack(6)
-                        this.subAttackTypeSwitch([[2,12,12,[1.2]]])
-                    break
-                    case 'Mechanized':
-                        this.removeAttack(126)
-                        this.statusEffect('Metallicize All',6)
-                        this.subAttackTypeSwitch([[2,124,124,[1,2]]])
-                    break
-                    case 'Ninja Master':
-                        this.subAttackTypeSwitch([[0,121,382,[]],[0,122,383,[]]])
-                        this.move.type=13
-                    break
-                    case 'Bomber Boy':
-                        this.subAttackTypeSwitch([[1,127,181,[2,'Shrapnel']]])
-                    break
-                    case 'Intern':
-                        this.spec.push(0)
-                        this.removeAttack(1)
-                        this.removeAttack(4)
-                        this.statusEffect('Armor',4)
-                        this.subAttackTypeSwitch([[2,6,6,[1.5]]])
-                    break
-                    case 'Assistant Hiring Officer':
-                        this.move.type=11
-                        this.spec.push(0)
-                    break
-                    case 'Bolt':
-                        this.removeAttack(132)
-                        this.subAttackTypeSwitch([[1,131,384,[1,'Electrocuted']]])
-                    break
-                    case 'Jet':
-                        this.subAttackTypeSwitch([[2,134,134,[1,2]]])
-                    break
-                    case 'Armored Ninja':
-                        this.statusEffect('All Strength Cycle 4 4',1)
-                    break
-                    case 'Assistant Fitness Officer': case 'MMIS Agent':
-                        this.statusEffect('Strength Per Turn',1)
-                    break
-                    case 'Corrupt Detective':
-                        this.move.type=11
-                        this.statusEffect('Counter Once Per Turn',8)
-                        this.statusEffect('Counter Once',8)
-                    break
-                    case 'Reichswehr':
-                        this.subAttackTypeSwitch([[2,151,151,[1,3]]])
-                    break
-                    case 'Louse':
-                        this.spec.push(0)
-                        this.statusEffect('Retain Block',999)
-                    break
-                    case 'Fungling':
-                        this.spec.push(7)
-                        this.subAttackTypeSwitch([[0,4,10,[]]])
-                    break
-                    case 'Hwurmp': case 'Antihwurmp':
-                        this.spec.push(7)
-                        this.move.type=0
-                        this.addBlock(12)
-                        this.statusEffect('Retain Block',2)
-                    break
-                    case 'Bee':
-                        this.spec.push(7)
-                        this.subAttackTypeSwitch([[2,2,2,[2]]])
-                    break
-                    case 'Beekeeper':
-                        this.subAttackTypeSwitch([[2,155,155,[1.5]]])
-                    break
-                    case 'Pixie':
-                        this.subAttackTypeSwitch([[2,1,1,[1.5]],[1,1,378,[4]]])
-                    break
-                    case 'PhD':
-                        this.subAttackTypeSwitch([[2,158,158,[1,2]],[2,159,159,[3]]])
-                    break
-                    case 'Glimmerrer':
-                        this.statusEffect('Single Counter Block',floor(random(6,16)))
-                        this.statusEffect('Retain Block',999)
-                    break
-                    case 'Host Drone':
-                        this.move.type=11
-                        this.statusEffect('Regeneration',3)
-                    break
-                    case 'Host': case 'Embodimental Destabilization': case 'Embodimental Element':
-                        this.spec.push(1)
-                    break
-                    case 'Junkie':
-                        this.removeAttack(167)
-                        for(let a=0,la=5;a<la;a++){
-                            this.randomStatus(floor(random(1,6)),[1])
-                        }
-                    break
-                    case 'Divine Guard':
-                        this.statusEffect('Metallicize',10)
-                        this.subAttackTypeSwitch([[2,72,72,[1.5]]])
-                    break
-                    case 'Rusty':
-                        this.statusEffect('Counter Weak All Combat',1)
-                    break
-                    case 'Thornvine':
-                        this.statusEffect('Counter Block Combat',2)
-                        this.move.speed++
-                    break
-                    case 'Vengeful':
-                        /*this.removeAttack(210)
-                        this.removeAttack(214)*/
-                        this.spec.push(1)
-                        this.spec.splice(this.spec.indexOf(0),1)
-                        this.subAttackTypeSwitch([[2,3,212,[]]])
-                    break
-                    case 'Coffee Commander':
-                        this.spec.push(7)
-                        this.subAttackTypeSwitch([[2,164,164,[0.8]]])
-                    break
-                    case 'Tech Support':
-                        this.removeAttack(29)
-                        this.statusEffect('Armor',12)
-                        this.statusEffect('Retain Block',999)
-                    break
-                    case 'Jester':
-                        this.subAttackTypeSwitch([[0,247,385,[]],[2,248,248,[1,1.5]]])
-                    break
-                    case 'Lalex':
-                        this.removeAttack(251)
-                        this.addAttack(367,[8])
-                    break
-                    case 'Boss1':
-                        this.subAttackTypeSwitch([[1,4,254,[1]]])
-                    break
-                    case 'Danger':
-                        this.subAttackTypeSwitch([[2,255,255,[1,2]],[2,256,256,[1,2]]])
-                    break
-                    case 'Obstruction':
-                        this.subAttackTypeSwitch([[1,6,386,[1]]])
-                    break
-                    case 'Kugelblitz':
-                        this.subAttackTypeSwitch([[2,262,262,[1.2]],[2,263,264,[1.2]],[0,264,387,[]],[0,265,388,[]]])
-                    break
-                    case 'Voidglass':
-                        this.subAttackTypeSwitch([[1,12,81,[1,'Void']]])
-                    break
-                    case 'Intruder':
-                        this.subAttackTypeSwitch([[2,270,270,[1,2]]])
-                    break
-                    case 'Relic':
-                        //this.statusEffect('1.5x Damage',1)
-                        this.statusEffect('Double Damage',1)
-                    break
-                    case 'Anomaly':
-                        this.subAttackTypeSwitch([[0,2,19,[]]])
-                    break
-                    case 'Concentric':
-                        this.statusEffect('Counter Shockwave Once',6)
-                        this.statusEffect('Counter Shockwave Once Per Turn',6)
-                    break
-                    case 'Dimension Wanderer':
-                        this.subAttackTypeSwitch([[2,300,300,[1.5]],[2,297,297,[1,2]],[2,298,298,[1,2]],[2,299,299,[1,2]]])
-                    break
-                    case 'Management Shotgunner':
-                        this.spec.push(7)
-                        this.statusEffect('Armor',10)
-                    break
-                    case 'Ducky Donka':
-                        this.subAttackTypeSwitch([[2,370,370,[1,1.5]]])
-                    break
-                    case 'Ducky McDuff':
-                        this.subAttackTypeSwitch([[2,371,371,[1,1.5]]])
-                    break
-                    case 'Kugelblitz Particle':
-                        this.subAttackTypeSwitch([[0,374,389,[]],[0,375,390,[]]])
-                    break
-                    case 'Void Duck':
-                        this.subAttackTypeSwitch([[1,2,377,[1,'Void']]])
-                    break
-                    case 'General Duckion':
-                        this.subAttackTypeSwitch([[2,40,40,[2]]])
-                    break
-                    case 'Slime Boss':
-                        this.subAttackTypeSwitch([[2,53,53,[1,2]]])
-                        this.subAttackTypeSwitch([[2,5,54,[1,2]]])
-                    break
-                    case 'Slow King':
-                        this.subAttackTypeSwitch([[0,57,391,[]]])
-                    break
-                    case 'Shield Particle':
-                        this.statusEffect('Retain Block',999)
-                    break
-                    case 'Donu':
-                        this.statusEffect('Strength',1)
-                    break
-                    case 'Deca':
-                        this.subAttackTypeSwitch([[0,66,358,[]],[1,65,392,[2]]])
-                    break
-                    case 'Hexaghost Core':
-                        this.removeAttack(21)
-                        this.behavior=9
-                    break
-                    case 'Hexaghost Orb':
-                        this.subAttackTypeSwitch([[2,54,54,[1,2]]])
-                    break
-                    case 'Flame':
-                        this.subAttackTypeSwitch([[2,22,22,[1,2]]])
-                    break
-                    case 'Buried':
-                        this.subAttackTypeSwitch([[0,1,9,[]],[0,2,19,[]],[0,3,7,[]],[0,4,10,[]]])
-                    break
-                    case 'Roger Reviv':
-                        this.behavior=9
+            switch(this.name){
+                case 'Admiral-Manager':
+                    this.statusEffect('Turn Damage Cap',500)
+                    this.statusEffect('Turn Damage Cap Per Turn',500)
+                    if(this.battle.players<=1){
+                        this.subHealthBuff(2026/1453)
+                    }else{
+                        this.subAttackBuff([1,2,5],1.5)
+                    }
+                break
+                case 'Asshole':
+                    this.statusEffect('Turn Damage Cap',500)
+                    this.statusEffect('Turn Damage Cap Per Turn',500)
+                    if(this.battle.players<=1){
+                        this.subHealthBuff(2626/1945)
+                    }else{
+                        this.subAttackBuff([1,2,5],1.5)
+                    }
+                    this.monologue={text:[
+                        'You really thought it would be that easy?',
+                        'My entire life, I have served the Management!',
+                        'I rose from a humble cadet to lead our fleets!',
+                        'I led us to victory in the Sisters War!',
+                        'I besieged the heart of the Grand Coalition!',
+                        'I brought three centuries of dominance and prosperity!',
+                        'I created a legacy that will last ten thousand years!',
+                        'And I returned when the world needed me most!',
+                        'And this is how I am repaid by my subjects?',
+                        'Not with a throne to sit on, but with an end to contemplate?',
+                    ]}
+                break
+                default:
+                    if(this.type<=constants.playerNumber){
+                        this.subHealthBuff(2)
+                    }
+                    if(game.ascend>=2&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2||game.diff>=2){
+                        this.subAttackBuff([1,5],1.2)
+                    }
+                    if(game.ascend>=7&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=8&&this.battle.encounter.class==1||game.ascend>=9&&this.battle.encounter.class==2||game.diff>=5){
+                        this.subHealthBuff(1.2)
+                        this.subAttackBuff([2],1.2)
+                    }
+                    if(game.ascend>=17&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2||game.diff>=15){
+                        this.subAttackBuff([4,11],1.5)
+                    }
+                    /*if(game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1){
+                        let randombuffs=[
+                            ['Double Damage',1],['Dodge',2],['Strength',2],['Dexterity',2],['Vigor',6],
+                            ['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Metallicize',2],
+                            ['Buffer',1],['Take Half Damage',2],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],
+                            ['Dexterity Per Turn',1],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Single Counter Block',10],
+                            ['Invisible',4],['Speed Up',1],['Strength Next Turn',3],['Conditioning',1],['Counter All Combat',1],
+                            ['Heal on Hit',3],['Attack Bleed Combat',1],['Counter Block',3],['Single Damage Block Convert',2],['Triple Block',1],
+                            ['Dexterity Next Turn',3],['1.5x Damage',2],['1.5x Block',2],['Block Up',2],['Damage Up',2],
+                            ['Dexterity on Hit',1],['Heal Per Turn',2],['Survive Fatal',1],['Decrementing Armor',6],['Block Heal',3],
+                            ['Fragile Damage Up',4],['Strength in 2 Turns',4],['Dexterity in 2 Turns',4]
+                        ]
                         for(let a=0,la=2;a<la;a++){
-                            this.battle.quickReinforce('Cartel')
+                            let index=floor(random(0,randombuffs.length))
+                            this.statusEffect(randombuffs[index][0],randombuffs[index][1])
+                            randombuffs.splice(index,1)
                         }
-                    break
-                    case 'Sharpshot':
-                        this.move.type=11
-                        this.subAttackTypeSwitch([[2,50,50,[1,1.5]]])
-                        //this.move.speed++
-                    break
-                    case 'Bronze Orb A': case 'Bronze Orb B':
-                        this.statusEffect('Metallicize',6)
-                    break
-                    case 'Bronze Automaton':
-                        this.removeAttack(21)
-                    break
-                    case 'Comrade':
-                        this.statusEffect('Buffer',2)
-                        this.statusEffect('Regeneration',10) 
-                    break
-                    case 'Councilman':
-                        this.move.speed++
-                        this.subAttackTypeSwitch([[0,9,28,[]]])
-                    break
-                    case 'Lunar Servant':
-                        this.statusEffect('Block Cycle 2 1',40)
-                        this.statusEffect('Heal Per Turn',10)
-                        for(let a=0,la=2;a<la;a++){
-                            this.battle.quickReinforce('Soul')
+                    }*/
+                    /*if((game.ascend>=30||game.diff>=23)&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3&&this.spec.includes(2)){
+                        this.subHealthBuff(1.5)
+                        this.subAttackBuff([1,2,5],1.2)
+                    }*/
+                    if(diffUnfair||game.diff>=24){
+                        if(this.type<=constants.playerNumber){
+                            this.subHealthBuff(1.2)
                         }
-                    break
-                    case 'Archivist':
-                        this.move.type=12
-                        this.behavior=4
-                        this.removeAttack(352)
-                        this.addAttack(352,[])
-                    break
-                    case 'Rewriter': case '-h Rewriter':
-                        this.statusEffect('Power Play Strength',1)
-                    break
-                    case 'Eternal Judge': case '-h Eternal Judge':
-                        /*let sin=floor(random(0,7))
-                        this.sins.push(sin)
-                        this.infoAnim.sins.push(0)
-                        this.addSin(sin)*/
-                        this.subAttackTypeSwitch([[2,102,359,[]]])
-                    break
-                    case 'Spirit of Wealth': case 'Spirit of Elegance':
-                        this.addBlock(26)
-                        this.statusEffect('Retain Block',3)
-                    break
-                    case 'Pistol Biker':
-                        this.move.type=11
-                    break
-                    case 'Mailman':
-                        this.subAttackTypeSwitch([[2,5,5,[1.5]]])
-                        this.subAttackTypeSwitch([[2,414,414,[1.25]]])
-                    break
-                    case 'Guard':
-                        this.spec.push(0)
-                        this.statusEffect('Strength in 3 Turns',2)
-                    break
-                    case 'Bar Security':
-                        this.statusEffect('Counter Push Once Per Turn',6)
-                        this.statusEffect('Counter Push Once',6)
-                    break
-                    case 'Bartender':
-                        this.subAttackTypeSwitch([[2,92,92,[2]]])
-                    break
-                    case 'Thoughtless':
-                        this.subAttackTypeSwitch([[0,147,415,[]]])
-                    break
-                    case 'Cutthroat':
-                        this.statusEffect('Dodge Cycle 2 2',1)
-                        this.statusEffect('Dodge',1)
-                    break
-                    case 'Psychologist':
-                        this.subAttackTypeSwitch([[0,9,28,[]]])
-                    break
-                    case 'Adrian Kane':
-                        this.spec.push(7)
-                        //this.subAttackTypeSwitch([[2,406,406,[0.8]]])
-                    break
-                    case 'Prison Guard Gunner':
-                        this.move.type=12
-                        this.statusEffect('Metallicize',3)
-                    break
-                    case 'Shield Prison Guard':
-                        this.statusEffect('Metallicize',3)
-                        this.statusEffect('Armor',3)
-                    break
-                    case 'Half Spikeball':
-                        this.addBlock(8)
-                        this.statusEffect('Retain Block',3)
-                    break
-                    case 'Pistol Duck':
-                        this.subAttackTypeSwitch([[1,236,443,[1,'Dazed']]])
-                    break
-                    case 'Old Konaian':
-                        this.move.speed++
-                        this.statusEffect('Armor',6)
-                    break
-                    case 'HVM Contractor':
-                        this.statusEffect('Metallicize All',2)
-                    break
-                    case 'Liaison':
-                        this.battle.quickReinforce('Cartel')
-                    break
-                    case 'Big Bounce':
-                        this.spec.push(0)
-                        this.subAttackTypeSwitch([[0,447,106,[]]])
-                    break
-                    case 'Pinstripe':
-                        this.subAttackTypeSwitch([[2,446,446,[1.5]]])
-                    break
-                    case 'The Looker':
-                        this.subAttackTypeSwitch([[2,177,177,[1.25]]])
-                    break
-                    case 'Rammer Robot':
-                        this.subAttackTypeSwitch([[1,440,521,[1]]])
-                        //this.spec.push(20)
-                    break
-                    case 'Volt King':
-                        this.subAttackTypeSwitch([[1,497,498,[10]]])
-                    break
-                    case 'Vengeful Speed':
-                        this.subAttackTypeSwitch([[2,11,499,[1.5]]])
-                        //this.subAttackTypeSwitch([[2,11,499,[1.25]]])
-                        this.removeAttack(77)
-                    break
-                    case 'Glazer': case 'Glazer Clone':
-                        this.subAttackTypeSwitch([[0,270,433,[]]])
-                    break
-                    case 'Zenith':
-                        this.subAttackTypeSwitch([[0,10,126,[]]])
-                    break
-                    case 'Zenith Eye A': case 'Zenith Eye B': case 'Zenith Eye C': case 'Zenith Eye D': case 'Zenith Eye E': case 'Zenith Eye F':
-                        this.statusEffect('Double Damage',1)
-                    break
-                    case 'Warning Robot':
-                        //this.subAttackTypeSwitch([[0,31,20,[]]])
-                        this.subAttackTypeSwitch([[0,518,519,[]]])
-                    break
-                    case 'Defective Robot C':
-                        this.statusEffect('Counter Shock All Combat',1)
-                    break
-                    case 'Smoker':
-                        this.statusEffect('Splash Weak Per Turn',1)
-                    break
-                    case 'Fat Biker':
-                        this.addAttack(195,[22])
-                    break
-                    case 'Snail':
-                        this.subAttackTypeSwitch([[0,2,11,[]]])
-                    break
-                    case 'Big Bush Thing':
-                        this.spec.push(0)
-                        this.subAttackTypeSwitch([[1,28,500,[1]],[2,110,110,[2]]])
-                    break
-                    case 'Precision':
-                        this.statusEffect('Dodge',1)
-                    break
-                    case 'Fat Duck':
-                        this.statusEffect('Regeneration',5)
-                    break
+                        switch(this.name){
+                            case 'Human':
+                                this.subAttackTypeSwitch([[0,1,38,[]]])
+                            break
+                            case 'Duck': case 'Big Duck': case 'Blue Duck':
+                                this.subAttackTypeSwitch([[1,2,377,[1,'Dazed']]])
+                            break
+                            case 'Bouncer':
+                                this.spec.push(0)
+                                this.subAttackTypeSwitch([[0,3,7,[]]])
+                            break
+                            case 'Thug':
+                                this.subAttackTypeSwitch([[0,6,28,[]]])
+                            break
+                            case 'Biker':
+                                this.addAttack(117,[12])
+                            break
+                            case 'Drunk':
+                                this.subAttackTypeSwitch([[2,1,12,[1.5]]])
+                            break
+                            case 'Drunk Boss':
+                                this.statusEffect('Metallicize All',4)
+                            break
+                            case 'Monkey':
+                                this.addBlock(4)
+                                this.statusEffect('Armor',2)
+                            break
+                            case 'Trenchcoat':
+                                this.subAttackTypeSwitch([[0,1,6,[]]])
+                            break
+                            case 'Trenchcoat Gunner': case 'Management Drone': case 'Gangster Machinegunner': case 'Personnel Carrier': case 'Gangster Machinegunner Informant':
+                                this.spec.push(7)
+                                this.move.type=11
+                            break
+                            case 'Goon':
+                                this.spec.push(0)
+                                this.subAttackBuff([1],2)
+                                this.removeAttack(6)
+                            break
+                            case 'Slaver':
+                                this.subAttackTypeSwitch([[2,17,17,[2,2]]])
+                            break
+                            case 'Fungal Duck':
+                                this.subAttackTypeSwitch([[2,18,18,[2]]])
+                            break
+                            case 'Orb Walker':
+                                this.statusEffect('Strength Per Turn',1)
+                                this.statusEffect('Control',1)
+                            break
+                            case 'Pointy': case 'Sentry': case 'Prisoner': case 'Elf Archer': case 'Normal1': case 'Structural Energy': case 'Disorder Energy': case 'Prisoner Informant': case 'Inconsistent': case 'Latency':
+                            case 'Dark Priest': case 'Brawler': case 'Flanker': case 'Darkblot': case 'Inkblot':
+                                this.spec.push(0)
+                            break
+                            case 'Romeo':
+                                this.spec.push(0)
+                                this.subAttackTypeSwitch([[1,6,27,[2]]])
+                            break
+                            case 'Billy Beatup':
+                                this.statusEffect('Metallicize',5)
+                            break
+                            case 'Monkey Gangster':
+                                this.addBlock(6)
+                                this.statusEffect('Armor',3)
+                            break
+                            case 'Slime': case 'Spike Slime': case 'Slimoid':
+                                //this.subAttackTypeSwitch([[2,22,22,[1,2]]])
+                                this.subAttackTypeSwitch([[2,22,32,[]]])
+                            break
+                            case 'Cartel':
+                                this.subAttackTypeSwitch([[2,24,24,[1,2]]])
+                            break
+                            case 'Ninja':
+                                this.subAttackTypeSwitch([[0,9,28,[]],[0,20,99,[]]])
+                            break
+                            case 'Red':
+                                this.subAttackTypeSwitch([[2,15,15,[1,2]],[2,25,25,[2]]])
+                            break
+                            case 'Batter':
+                                this.subAttackTypeSwitch([[2,26,26,[2]]])
+                            break
+                            case 'Slippery Gangster': case 'Management Light Infantry':
+                                this.statusEffect('Retain Dodge',999)
+                            break
+                            case 'Gangster Gunner':
+                                this.statusEffect('Counter Gun Once Per Turn',6)
+                                this.statusEffect('Counter Gun Once',6)
+                            break
+                            case 'Spheron':
+                                this.statusEffect('Metallicize',2)
+                            break
+                            case 'Enforcer':
+                                this.statusEffect('Counter Push Once Per Turn',4)
+                                this.statusEffect('Counter Push Once',4)
+                            break
+                            case 'Rock Golem':
+                                this.subAttackTypeSwitch([[0,4,10,[]]])
+                            break
+                            case 'Big Slime': case 'Big Spike Slime': case 'Big Slimoid':
+                                //this.subAttackTypeSwitch([[2,32,32,[1,2]]])
+                                this.subAttackTypeSwitch([[2,32,32,[]]])
+                            break
+                            case 'Moss Creature': case 'Deployer':
+                                this.statusEffect('Armor',5)
+                            break
+                            case 'Chief Deployer':
+                                this.statusEffect('Armor',6)
+                            break
+                            case 'Shipment':
+                                this.statusEffect('Armor',4)
+                            break
+                            case 'Goblin':
+                                this.attack.splice(0,1)
+                                this.attack.splice(0,1)
+                                this.attack.splice(2,1)
+                            break
+                            case 'Agent Duck':
+                                this.statusEffect('Attack Bleed Combat',2)
+                            break
+                            case 'Nerfer': case 'Buffer':
+                                this.removeAttack(1)
+                                this.removeAttack(4)
+                                this.subAttackTypeSwitch([[2,6,6,[1.5]]])
+                            break
+                            case 'Scrapper': case 'Champion': case 'Avant Guard': case 'Carbonado Robot': case 'Pure Swordsman': case 'Wiz': case 'Gangmaster': case 'Bodyguard': case 'Chief Engineering Officer': case 'Purge X02': case 'Caporegime':
+                                this.spec.push(1)
+                                this.spec.splice(this.spec.indexOf(0),1)
+                            break
+                            case 'Fat Scrapper':
+                                this.removeAttack(21)
+                                this.behavior=0
+                            break
+                            case 'Looter': case 'Mugger':
+                                //this.subAttackTypeSwitch([[2,67,67,[1,4]]])
+                                this.subAttackTypeSwitch([[2,67,67,[1,2]]])
+                            break
+                            case 'Little Guy':
+                                this.subAttackTypeSwitch([[1,1,378,[8]]])
+                                this.removeAttack(4)
+                            break
+                            case 'Management Prototype':
+                                this.spec.push(7)
+                                this.removeAttack(4)
+                            break
+                            case 'Management Robot': case 'Destructor Bot': case 'Riot Police': case 'Duckforce': case 'Robot Commander': case 'Rocket Launcher Robot': case 'Shotgun Robot': case 'Experimental Robot': case 'Rusted Robot': case 'Defective Robot A': case 'Defective Robot B':
+                                this.spec.push(7)
+                            break
+                            case 'Management Soldier':
+                                this.removeAttack(10)
+                                this.statusEffect('Metallicize All',3)
+                            break
+                            case 'Management Officer': case 'Lost Management Officer':
+                                this.subAttackTypeSwitch([[2,26,26,[2]]])
+                            break
+                            case 'Management Special Forces': case 'Capitalist':
+                                this.spec.splice(this.spec.indexOf(0),1)
+                                this.spec.push(1)
+                            break
+                            case 'Sneaky Gremlin': case 'Lead Brick':
+                            //case 'Sneaky Gremlin': case 'Lead Brick': case 'Capitalist':
+                                this.move.speed++
+                            break
+                            case 'Fat Gremlin':
+                                this.statusEffect('Single Counter Block',12)
+                            break
+                            case 'Golden Duck':
+                                this.move.type=12
+                            break
+                            case 'Solar Shard':
+                                this.subAttackTypeSwitch([[2,39,39,[3]]])
+                            break
+                            case 'Lunar Shard':
+                                this.addAttack(39,[2,'Lunar Dust'])
+                            break
+                            case 'Lunar Dust':
+                                this.subAttackTypeSwitch([[1,85,379,[1,1]]])
+                            break
+                            case 'Management Sniper':
+                                this.behavior=0
+                                this.removeAttack(21)
+                                this.move.type=11
+                            break
+                            case 'Management Caller':
+                                this.removeAttack(21)
+                                this.behavior=9
+                            break
+                            case 'Management Custodian':
+                                this.move.type=12
+                                this.spec.push(1)
+                                this.subAttackTypeSwitch([[2,92,92,[2]]])
+                            break
+                            case 'Walker Driver': case 'Walker Driver Informant':
+                                this.removeAttack(4)
+                                this.statusEffect('Buffer',1)
+                            break
+                            case 'Prison Guard':
+                                this.move.type=2
+                                this.statusEffect('Metallicize',1)
+                            break
+                            case 'Lightspeed':
+                                //this.move.speed++
+                                this.subAttackTypeSwitch([[0,101,77,[]],[0,19,367,[]],[0,99,380,[]],[0,100,38,[]]])
+                            break
+                            case 'Swordmaster':
+                                this.removeAttack(21)
+                                //this.behavior=1
+                                this.behavior=26
+                            break
+                            case 'Gas Man':
+                                this.subAttackTypeSwitch([[0,6,38,[]],[0,104,381,[]]])
+                            break
+                            case 'Gremlin':
+                                this.spec.push(0)
+                                this.subAttackTypeSwitch([[0,9,28,[]]])
+                            break
+                            case 'Flying Rock':
+                                this.subAttackTypeSwitch([[1,4,72,[1]],[0,6,38,[]]])
+                            break
+                            case 'Repulsor':
+                                this.removeAttack(6)
+                                this.subAttackTypeSwitch([[1,87,157,[2,'Dazed']]])
+                            break
+                            case 'Management Autoduck':
+                                this.spec.push(7)
+                                this.subAttackTypeSwitch([[0,2,104,[]],[0,6,79,[]]])
+                            break
+                            case 'Modicum':
+                                this.removeAttack(109)
+                                this.statusEffect('Heal Per Turn',6)
+                            break
+                            case 'Bush Thing':
+                                this.spec.push(0)
+                                this.subAttackTypeSwitch([[1,6,27,[1]],[2,108,108,[2]]])
+                            break
+                            case 'Fireball':
+                                this.behavior=0
+                                this.removeAttack(21)
+                                this.statusEffect('Attack Burn Combat',1)
+                            break
+                            case 'Dead Shell':
+                                this.statusEffect('Armor',14)
+                            break
+                            case 'Executive':
+                                this.removeAttack(6)
+                                this.subAttackTypeSwitch([[2,12,12,[1.2]]])
+                            break
+                            case 'Mechanized':
+                                this.removeAttack(126)
+                                this.statusEffect('Metallicize All',6)
+                                this.subAttackTypeSwitch([[2,124,124,[1,2]]])
+                            break
+                            case 'Ninja Master':
+                                this.subAttackTypeSwitch([[0,121,382,[]],[0,122,383,[]]])
+                                this.move.type=13
+                            break
+                            case 'Bomber Boy':
+                                this.subAttackTypeSwitch([[1,127,181,[2,'Shrapnel']]])
+                            break
+                            case 'Intern':
+                                this.spec.push(0)
+                                this.removeAttack(1)
+                                this.removeAttack(4)
+                                this.statusEffect('Armor',4)
+                                this.subAttackTypeSwitch([[2,6,6,[1.5]]])
+                            break
+                            case 'Assistant Hiring Officer':
+                                this.move.type=11
+                                this.spec.push(0)
+                            break
+                            case 'Bolt':
+                                this.removeAttack(132)
+                                this.subAttackTypeSwitch([[1,131,384,[1,'Electrocuted']]])
+                            break
+                            case 'Jet':
+                                this.subAttackTypeSwitch([[2,134,134,[1,2]]])
+                            break
+                            case 'Armored Ninja':
+                                this.statusEffect('All Strength Cycle 4 4',1)
+                            break
+                            case 'Assistant Fitness Officer': case 'MMIS Agent':
+                                this.statusEffect('Strength Per Turn',1)
+                            break
+                            case 'Corrupt Detective':
+                                this.move.type=11
+                                this.statusEffect('Counter Once Per Turn',8)
+                                this.statusEffect('Counter Once',8)
+                            break
+                            case 'Reichswehr':
+                                this.subAttackTypeSwitch([[2,151,151,[1,3]]])
+                            break
+                            case 'Louse':
+                                this.spec.push(0)
+                                this.statusEffect('Retain Block',999)
+                            break
+                            case 'Fungling':
+                                this.spec.push(7)
+                                this.subAttackTypeSwitch([[0,4,10,[]]])
+                            break
+                            case 'Hwurmp': case 'Antihwurmp':
+                                this.spec.push(7)
+                                this.move.type=0
+                                this.addBlock(12)
+                                this.statusEffect('Retain Block',2)
+                            break
+                            case 'Bee':
+                                this.spec.push(7)
+                                this.subAttackTypeSwitch([[2,2,2,[2]]])
+                            break
+                            case 'Beekeeper':
+                                this.subAttackTypeSwitch([[2,155,155,[1.5]]])
+                            break
+                            case 'Pixie':
+                                this.subAttackTypeSwitch([[2,1,1,[1.5]],[1,1,378,[4]]])
+                            break
+                            case 'PhD':
+                                this.subAttackTypeSwitch([[2,158,158,[1,2]],[2,159,159,[3]]])
+                            break
+                            case 'Glimmerrer':
+                                this.statusEffect('Single Counter Block',floor(random(6,16)))
+                                this.statusEffect('Retain Block',999)
+                            break
+                            case 'Host Drone':
+                                this.move.type=11
+                                this.statusEffect('Regeneration',3)
+                            break
+                            case 'Host': case 'Embodimental Destabilization': case 'Embodimental Element':
+                                this.spec.push(1)
+                            break
+                            case 'Junkie':
+                                this.removeAttack(167)
+                                for(let a=0,la=5;a<la;a++){
+                                    this.randomStatus(floor(random(1,6)),[1])
+                                }
+                            break
+                            case 'Divine Guard':
+                                this.statusEffect('Metallicize',10)
+                                this.subAttackTypeSwitch([[2,72,72,[1.5]]])
+                            break
+                            case 'Rusty':
+                                this.statusEffect('Counter Weak All Combat',1)
+                            break
+                            case 'Thornvine':
+                                this.statusEffect('Counter Block Combat',2)
+                                this.move.speed++
+                            break
+                            case 'Vengeful':
+                                /*this.removeAttack(210)
+                                this.removeAttack(214)*/
+                                this.spec.push(1)
+                                this.spec.splice(this.spec.indexOf(0),1)
+                                this.subAttackTypeSwitch([[2,3,212,[]]])
+                            break
+                            case 'Coffee Commander':
+                                this.spec.push(7)
+                                this.subAttackTypeSwitch([[2,164,164,[0.8]]])
+                            break
+                            case 'Tech Support':
+                                this.removeAttack(29)
+                                this.statusEffect('Armor',12)
+                                this.statusEffect('Retain Block',999)
+                            break
+                            case 'Jester':
+                                this.subAttackTypeSwitch([[0,247,385,[]],[2,248,248,[1,1.5]]])
+                            break
+                            case 'Lalex':
+                                this.removeAttack(251)
+                                this.addAttack(367,[8])
+                            break
+                            case 'Boss1':
+                                this.subAttackTypeSwitch([[1,4,254,[1]]])
+                            break
+                            case 'Danger':
+                                this.subAttackTypeSwitch([[2,255,255,[1,2]],[2,256,256,[1,2]]])
+                            break
+                            case 'Obstruction':
+                                this.subAttackTypeSwitch([[1,6,386,[1]]])
+                            break
+                            case 'Kugelblitz':
+                                this.subAttackTypeSwitch([[2,262,262,[1.2]],[2,263,264,[1.2]],[0,264,387,[]],[0,265,388,[]]])
+                            break
+                            case 'Voidglass':
+                                this.subAttackTypeSwitch([[1,12,81,[1,'Void']]])
+                            break
+                            case 'Intruder':
+                                this.subAttackTypeSwitch([[2,270,270,[1,2]]])
+                            break
+                            case 'Relic':
+                                //this.statusEffect('1.5x Damage',1)
+                                this.statusEffect('Double Damage',1)
+                            break
+                            case 'Anomaly':
+                                this.subAttackTypeSwitch([[0,2,19,[]]])
+                            break
+                            case 'Concentric':
+                                this.statusEffect('Counter Shockwave Once',6)
+                                this.statusEffect('Counter Shockwave Once Per Turn',6)
+                            break
+                            case 'Dimension Wanderer':
+                                this.subAttackTypeSwitch([[2,300,300,[1.5]],[2,297,297,[1,2]],[2,298,298,[1,2]],[2,299,299,[1,2]]])
+                            break
+                            case 'Management Shotgunner':
+                                this.spec.push(7)
+                                this.statusEffect('Armor',10)
+                            break
+                            case 'Ducky Donka':
+                                this.subAttackTypeSwitch([[2,370,370,[1,1.5]]])
+                            break
+                            case 'Ducky McDuff':
+                                this.subAttackTypeSwitch([[2,371,371,[1,1.5]]])
+                            break
+                            case 'Kugelblitz Particle':
+                                this.subAttackTypeSwitch([[0,374,389,[]],[0,375,390,[]]])
+                            break
+                            case 'Void Duck':
+                                this.subAttackTypeSwitch([[1,2,377,[1,'Void']]])
+                            break
+                            case 'General Duckion':
+                                this.subAttackTypeSwitch([[2,40,40,[2]]])
+                            break
+                            case 'Slime Boss':
+                                this.subAttackTypeSwitch([[2,53,53,[1,2]]])
+                                this.subAttackTypeSwitch([[2,5,54,[1,2]]])
+                            break
+                            case 'Slow King':
+                                this.subAttackTypeSwitch([[0,57,391,[]]])
+                            break
+                            case 'Shield Particle':
+                                this.statusEffect('Retain Block',999)
+                            break
+                            case 'Donu':
+                                this.statusEffect('Strength',1)
+                            break
+                            case 'Deca':
+                                this.subAttackTypeSwitch([[0,66,358,[]],[1,65,392,[2]]])
+                            break
+                            case 'Hexaghost Core':
+                                this.removeAttack(21)
+                                this.behavior=9
+                            break
+                            case 'Hexaghost Orb':
+                                this.subAttackTypeSwitch([[2,54,54,[1,2]]])
+                            break
+                            case 'Flame':
+                                this.subAttackTypeSwitch([[2,22,22,[1,2]]])
+                            break
+                            case 'Buried':
+                                this.subAttackTypeSwitch([[0,1,9,[]],[0,2,19,[]],[0,3,7,[]],[0,4,10,[]]])
+                            break
+                            case 'Roger Reviv':
+                                this.behavior=9
+                                for(let a=0,la=2;a<la;a++){
+                                    this.battle.quickReinforce('Cartel')
+                                }
+                            break
+                            case 'Sharpshot':
+                                this.move.type=11
+                                this.subAttackTypeSwitch([[2,50,50,[1,1.5]]])
+                                //this.move.speed++
+                            break
+                            case 'Bronze Orb A': case 'Bronze Orb B':
+                                this.statusEffect('Metallicize',6)
+                            break
+                            case 'Bronze Automaton':
+                                this.removeAttack(21)
+                            break
+                            case 'Comrade':
+                                this.statusEffect('Buffer',2)
+                                this.statusEffect('Regeneration',10) 
+                            break
+                            case 'Councilman':
+                                this.move.speed++
+                                this.subAttackTypeSwitch([[0,9,28,[]]])
+                            break
+                            case 'Lunar Servant':
+                                this.statusEffect('Block Cycle 2 1',40)
+                                this.statusEffect('Heal Per Turn',10)
+                                for(let a=0,la=2;a<la;a++){
+                                    this.battle.quickReinforce('Soul')
+                                }
+                            break
+                            case 'Archivist':
+                                this.move.type=12
+                                this.behavior=4
+                                this.removeAttack(352)
+                                this.addAttack(352,[])
+                            break
+                            case 'Rewriter': case '-h Rewriter':
+                                this.statusEffect('Power Play Strength',1)
+                            break
+                            case 'Eternal Judge': case '-h Eternal Judge':
+                                /*let sin=floor(random(0,7))
+                                this.sins.push(sin)
+                                this.infoAnim.sins.push(0)
+                                this.addSin(sin)*/
+                                this.subAttackTypeSwitch([[2,102,359,[]]])
+                            break
+                            case 'Spirit of Wealth': case 'Spirit of Elegance':
+                                this.addBlock(26)
+                                this.statusEffect('Retain Block',3)
+                            break
+                            case 'Pistol Biker':
+                                this.move.type=11
+                            break
+                            case 'Mailman':
+                                this.subAttackTypeSwitch([[2,5,5,[1.5]]])
+                                this.subAttackTypeSwitch([[2,414,414,[1.25]]])
+                            break
+                            case 'Guard':
+                                this.spec.push(0)
+                                this.statusEffect('Strength in 3 Turns',2)
+                            break
+                            case 'Bar Security':
+                                this.statusEffect('Counter Push Once Per Turn',6)
+                                this.statusEffect('Counter Push Once',6)
+                            break
+                            case 'Bartender':
+                                this.subAttackTypeSwitch([[2,92,92,[2]]])
+                            break
+                            case 'Thoughtless':
+                                this.subAttackTypeSwitch([[0,147,415,[]]])
+                            break
+                            case 'Cutthroat':
+                                this.statusEffect('Dodge Cycle 2 2',1)
+                                this.statusEffect('Dodge',1)
+                            break
+                            case 'Psychologist':
+                                this.subAttackTypeSwitch([[0,9,28,[]]])
+                            break
+                            case 'Adrian Kane':
+                                this.spec.push(7)
+                                //this.subAttackTypeSwitch([[2,406,406,[0.8]]])
+                            break
+                            case 'Prison Guard Gunner':
+                                this.move.type=12
+                                this.statusEffect('Metallicize',3)
+                            break
+                            case 'Shield Prison Guard':
+                                this.statusEffect('Metallicize',3)
+                                this.statusEffect('Armor',3)
+                            break
+                            case 'Half Spikeball':
+                                this.addBlock(8)
+                                this.statusEffect('Retain Block',3)
+                            break
+                            case 'Pistol Duck':
+                                this.subAttackTypeSwitch([[1,236,443,[1,'Dazed']]])
+                            break
+                            case 'Old Konaian':
+                                this.move.speed++
+                                this.statusEffect('Armor',6)
+                            break
+                            case 'HVM Contractor':
+                                this.statusEffect('Metallicize All',2)
+                            break
+                            case 'Liaison':
+                                this.battle.quickReinforce('Cartel')
+                            break
+                            case 'Big Bounce':
+                                this.spec.push(0)
+                                this.subAttackTypeSwitch([[0,447,106,[]]])
+                            break
+                            case 'Pinstripe':
+                                this.subAttackTypeSwitch([[2,446,446,[1.5]]])
+                            break
+                            case 'The Looker':
+                                this.subAttackTypeSwitch([[2,177,177,[1.25]]])
+                            break
+                            case 'Rammer Robot':
+                                this.subAttackTypeSwitch([[1,440,521,[1]]])
+                                //this.spec.push(20)
+                            break
+                            case 'Volt King':
+                                this.subAttackTypeSwitch([[1,497,498,[10]]])
+                            break
+                            case 'Vengeful Speed':
+                                this.subAttackTypeSwitch([[2,11,499,[1.5]]])
+                                //this.subAttackTypeSwitch([[2,11,499,[1.25]]])
+                                this.removeAttack(77)
+                            break
+                            case 'Glazer': case 'Glazer Clone':
+                                this.subAttackTypeSwitch([[0,270,433,[]]])
+                            break
+                            case 'Zenith':
+                                this.subAttackTypeSwitch([[0,10,126,[]]])
+                            break
+                            case 'Zenith Eye A': case 'Zenith Eye B': case 'Zenith Eye C': case 'Zenith Eye D': case 'Zenith Eye E': case 'Zenith Eye F':
+                                this.statusEffect('Double Damage',1)
+                            break
+                            case 'Warning Robot':
+                                //this.subAttackTypeSwitch([[0,31,20,[]]])
+                                this.subAttackTypeSwitch([[0,518,519,[]]])
+                            break
+                            case 'Defective Robot C':
+                                this.statusEffect('Counter Shock All Combat',1)
+                            break
+                            case 'Smoker':
+                                this.statusEffect('Splash Weak Per Turn',1)
+                            break
+                            case 'Fat Biker':
+                                this.addAttack(195,[22])
+                            break
+                            case 'Snail':
+                                this.subAttackTypeSwitch([[0,2,11,[]]])
+                            break
+                            case 'Big Bush Thing':
+                                this.spec.push(0)
+                                this.subAttackTypeSwitch([[1,28,500,[1]],[2,110,110,[2]]])
+                            break
+                            case 'Precision':
+                                this.statusEffect('Dodge',1)
+                            break
+                            case 'Fat Duck':
+                                this.statusEffect('Regeneration',5)
+                            break
 
-                    //mark 31
-                }
-            }
-            if(game.ascend>=32||game.diff>=25){
-                //this.subHealthBuff(1.2)
-                this.subHealthBuff(1.25)
-                this.subAttackBuff([1,2,5],1.2)
-            }
-            //if(game.ascend>=33||game.diff>=26){
-            if(game.ascend>=33){
-                switch(this.name){
-                    case 'Rewriter':
-                        this.behavior=20
-                        this.addAttack(469,[])
-                    break
-                    case 'Eternal Judge':
-                        this.behavior=20
-                        this.addAttack(494,[])
-                    break
-                }
-            }
-            if(this.battle.players>1){
-                this.subHealthBuff(1.5)
-                this.subAttackBuff([1,2,5],1.5)
+                            //mark 31
+                        }
+                    }
+                    if(game.ascend>=32||game.diff>=25){
+                        //this.subHealthBuff(1.2)
+                        this.subHealthBuff(1.25)
+                        this.subAttackBuff([1,2,5],1.2)
+                    }
+                    //if(game.ascend>=33||game.diff>=26){
+                    if(game.ascend>=33){
+                        switch(this.name){
+                            case 'Rewriter':
+                                this.behavior=20
+                                this.addAttack(469,[])
+                            break
+                            case 'Eternal Judge':
+                                this.behavior=20
+                                this.addAttack(494,[])
+                            break
+                        }
+                    }
+                    if(this.battle.players>1){
+                        this.subHealthBuff(1.5)
+                        this.subAttackBuff([1,2,5],1.5)
+                    }
+                break
             }
             this.normalizeAttack()
         }/*else if(this.type<=constants.playerNumber){
@@ -2327,7 +2361,7 @@ class combatant{
                 ]
             case 71: case 73: case 79: case 99: case 143: case 172: case 175: case 312: case 319: case 322:
             case 339: case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465:
-            case 505: case 510: case 515:
+            case 505: case 510: case 515: case 531: case 532: case 535: case 536:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2360,7 +2394,7 @@ class combatant{
             case 425: case 427: case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455:
             case 459: case 463: case 471: case 475: case 477: case 479: case 480: case 481: case 482: case 483:
             case 484: case 486: case 493: case 499: case 503: case 506: case 512: case 513: case 522: case 524:
-            case 525: case 526: case 527:
+            case 525: case 526: case 527: case 529: case 530:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2381,7 +2415,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0],this.tilePosition.y+transformDirection(0,150)[1])
                 ]
             case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357: case 360:
-            case 381: case 387: case 388: case 404: case 409: case 468: case 500:
+            case 381: case 387: case 388: case 404: case 409: case 468: case 500: case 537: case 538:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0],this.tilePosition.y+transformBase[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformBase[0]*2,this.tilePosition.y+transformBase[1]*2),
@@ -2741,7 +2775,11 @@ class combatant{
             case 0: case 1:
                 if(this.team==0&&this.turnsAlive>0&&
                     (game.ascend>=27&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||game.ascend>=28&&this.battle.encounter.class==1||game.ascend>=29&&this.battle.encounter.class==2||game.diff>=21)&&
-                    (this.turnsAlive%2==0&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4)||this.turnsAlive%3==0&&this.battle.encounter.class==1||this.turnsAlive%4==0&&this.battle.encounter.class==2)
+                    (
+                        this.turnsAlive%2==0&&(this.battle.encounter.class==0||this.battle.encounter.class==3||this.battle.encounter.class==4||this.name=='Admiral-Manager'||this.name=='Asshole')||
+                        this.turnsAlive%3==0&&this.battle.encounter.class==1||
+                        this.turnsAlive%4==0&&this.battle.encounter.class==2
+                    )
                 ){
                     this.subAttackBaseBuff([1,2,5],0.1)
                     this.normalizeAttack()
@@ -3144,7 +3182,7 @@ class combatant{
                         break
                         case 71: case 73: case 79: case 99: case 143: case 172: case 312: case 319: case 322: case 339:
                         case 348: case 367: case 385: case 389: case 390: case 397: case 447: case 453: case 465: case 505:
-                        case 510: case 515:
+                        case 510: case 515: case 535: case 536:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3180,7 +3218,7 @@ class combatant{
                         case 351: case 357: case 360: case 368: case 379: case 381: case 384: case 387: case 388: case 395:
                         case 396: case 403: case 404: case 409: case 415: case 417: case 418: case 441: case 449: case 451:
                         case 452: case 468: case 470: case 471: case 476: case 487: case 490: case 500: case 502: case 517:
-                        case 520:
+                        case 520: case 531: case 532: case 537: case 538:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3202,7 +3240,8 @@ class combatant{
                         case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                         case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
                         case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
-                        case 503: case 506: case 512: case 513: case 522: case 524: case 525: case 526: case 527:
+                        case 503: case 506: case 512: case 513: case 522: case 524: case 525: case 526: case 527: case 529:
+                        case 530:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3395,7 +3434,8 @@ class combatant{
                         this.targetTile[0].indescriptTarget(this.activated?2:1)
                     break
                     case 71: case 73: case 79: case 99: case 143: case 172: case 312: case 339: case 348: case 367:
-                    case 385: case 389: case 390: case 397: case 447: case 453: case 465: case 505: case 515:
+                    case 385: case 389: case 390: case 397: case 447: case 453: case 465: case 505: case 515: case 535:
+                    case 536:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
@@ -3441,7 +3481,7 @@ class combatant{
                     case 308: case 330: case 350: case 351: case 357: case 360: case 368: case 379: case 381: case 384:
                     case 387: case 388: case 395: case 396: case 404: case 409: case 415: case 417: case 418: case 441:
                     case 449: case 451: case 452: case 468: case 470: case 476: case 487: case 490: case 500: case 502:
-                    case 517: case 520:
+                    case 517: case 520: case 537: case 538:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)),this)
@@ -3466,7 +3506,7 @@ class combatant{
                     case 362: case 364: case 398: case 400: case 402: case 407: case 419: case 420: case 425: case 427:
                     case 428: case 436: case 439: case 443: case 445: case 448: case 454: case 455: case 459: case 463:
                     case 477: case 479: case 480: case 481: case 482: case 483: case 484: case 486: case 493: case 499:
-                    case 503: case 506: case 513: case 522: case 524: case 525: case 526: case 527:
+                    case 503: case 506: case 513: case 522: case 524: case 525: case 526: case 527: case 529: case 530:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 if(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0)){
@@ -3538,7 +3578,7 @@ class combatant{
                             }
                         }
                     break
-                    case 175: case 319: case 510:
+                    case 175: case 319: case 510: case 531: case 532:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -6850,6 +6890,9 @@ class combatant{
             if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[1028]>0){
                 amount=max(0,amount-this.status.main[1028])
             }
+            if((this.status.main[1104]>0||this.status.main[1105]>0)&&amount>this.status.main[1104]){
+                amount=this.status.main[1104]
+            }
             this.turnStatus[2]+=amount
             this.life-=amount
             if(this.status.main[301]>0){
@@ -6870,6 +6913,9 @@ class combatant{
             }
             if(this.status.main[817]>0){
                 this.status.main[817]=0
+            }
+            if(this.status.main[1104]>0){
+                this.status.main[1104]-=amount
             }
             if(this.id<this.battle.players&&this.id==this.battle.turn.main&&this.status.main[438]>0){
                 this.battle.combatantManager.areaAbstract(0,[this.status.main[438],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
@@ -7303,6 +7349,7 @@ class combatant{
                     case 1083: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw.basic+=this.status.main[this.status.ticker[a]]} break
                     case 1097: this.miniStatus('Damage Cap Once',this.status.main[this.status.ticker[a]]); break
                     case 1103: this.miniStatus('Take Half Damage',this.status.main[this.status.ticker[a]]); break
+                    case 1105: this.miniStatus('Turn Damage Cap',this.status.main[this.status.ticker[a]]); break
                 }
                 //mark tick
                 if(this.status.behavior[this.status.ticker[a]]==6
@@ -9597,6 +9644,13 @@ class combatant{
                             case 'Danger':
                                 this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName(['Management Robot','Management Soldier','Management Officer','Management Custodian','Management Autoduck','Management Sniper'][floor(random(0,6))],types.combatant),this.goal.anim.direction)
                                 //this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Custodian',types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Eternal Judge': case '-h Eternal Judge':
+                                print('a')
+                                if(this.sins.includes(3)){
+                                    print('b')
+                                    this.battle.relicManager.returnRelicsSin()
+                                }
                             break
                         }
                     }

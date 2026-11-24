@@ -235,7 +235,8 @@ class tile{
                 case 23:
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(2)){
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
-                            this.battle.combatantManager.combatants[this.combatant].takeDamage(25,0)
+                            //this.battle.combatantManager.combatants[this.combatant].takeDamage(25,0)
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(1000,0)
                         }
                     }
                 break

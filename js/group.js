@@ -4163,6 +4163,9 @@ class group{
                     this.battle.cardManagers[this.player].hand.cards.push(copyCardNew(card))
                 }
             break
+            case -173:
+                userCombatant.block=userCombatant.block/2
+            break
 
             //mark n
             

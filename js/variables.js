@@ -101,8 +101,8 @@ types={
         {name:'Champion',life:180,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:107,effect:[10,2]},{type:108,effect:[15,9]}],description:`Appointed up`},
         {name:'Management Autoduck',life:60,behavior:2,spec:[19],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:2,effect:[4]},{type:5,effect:[2,'Dazed']}],description:`Supposed to be better than duck`},
         {name:'Modicum',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[4]},{type:16,effect:[3]},{type:109,effect:[5]}],description:`Spammy boy`},
-        {name:'Slimoid',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Glued']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
-        {name:'Big Slimoid',life:54,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Glued']},{type:33,effect:[2]}],description:`Recursion`},
+        {name:'Slimoid',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Hazard']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
+        {name:'Big Slimoid',life:54,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Hazard']},{type:33,effect:[2]}],description:`Recursion`},
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:108,effect:[4,4]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:40,behavior:10,spec:[0],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:44,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,2]}],description:`More alive then intended`},
@@ -309,8 +309,8 @@ types={
         {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
         {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:102,effect:[66]}],description:`Fine... I'll do it myself`},
 
-        {name:'Admiral-Manager',life:1453,behavior:0,spec:[2],move:{type:0,speed:0},attack:[{type:529,effect:[44]},{type:531,effect:[36]}],description:`One hundred years of solitude`},
-        {name:'Asshole',life:1945,behavior:0,spec:[2],move:{type:0,speed:0},attack:[{type:530,effect:[44,2,]}],description:`You didn't really think\nit would be that easy...`},
+        {name:'Admiral-Manager',life:1453,behavior:0,spec:[1,2],move:{type:17,speed:1},attack:[{type:529,effect:[50]},{type:531,effect:[36,2]},{type:533,effect:[40,40]},{type:535,effect:[10]},{type:537,effect:[24,2]},{type:539,effect:[4,'Fear']}],description:`One hundred years of solitude`},
+        {name:'Asshole',life:1945,behavior:0,spec:[1,2],move:{type:17,speed:1},attack:[{type:530,effect:[50,1]},{type:532,effect:[36,2,2]},{type:534,effect:[40,2,40]},{type:536,effect:[10]},{type:538,effect:[24,2,2]},{type:540,effect:[4,'Fear',1]}],description:`The man behind the slaughter`},
 
         //{name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:`One of the last heirs to the\npractices of the Daistilian plateaus,\nparticipant in the "Meeting of Five",\ndistrustful of the Operator but\nwith too much at stake to leave.`},
         //{name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:`Possibly the first coming of Discord,\nthe eternal enemy of the Management.\nTasked with the elimination of all\ngalactic-level systems of governance,\nbut starting where it's easy.`},
@@ -347,6 +347,8 @@ types={
         //{name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         //{name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:28,effect:[9]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         //{name:'Mailman',life:60,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[8]},{type:414,effect:[4,'Mail']}],description:`Protected by labor`},
+        //{name:'Slimoid',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Glued']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
+        //{name:'Big Slimoid',life:54,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Glued']},{type:33,effect:[2]}],description:`Recursion`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -975,16 +977,18 @@ types={
         {name:'Moonbeam / Intangible',class:1},
         {name:'Moonbeam / Self Intangible',class:1},
         {name:'Triple Strike / Die',class:1},
-
         {name:'Ultimate Gun',class:1},
-        {name:'Ultimate Statusing Gun',class:1},//530
-        //12
-        {name:'Ultimate Bombing Zone',class:5},
-        {name:'Ultimate Bombing Zone',class:5},
-        //43
-        {name:'Counter All',class:2},
-        {name:'Counter All',class:2},
-        //108
+        {name:'Ultimate Gun / Anti-Control',class:1},//530
+        {name:'3 Tile Drive / Energy Down',class:1},
+        {name:'3 Tile Drive / Energy Down / Draw Down',class:1},
+        {name:'Block / Bombing Zone',class:5},
+        {name:'Block / Buffer / Bombing Zone',class:5},
+        {name:'Octuple Lightning',class:1},
+        {name:'Dectuple Lightning',class:1},
+        {name:'2 Tile 3 Spread Triple Strike / Weak',class:1},
+        {name:'2 Tile 3 Spread Triple Strike / Weak / Vulnerable',class:1},
+        {name:'Force Status',class:4},
+        {name:'Force Status / Mortal',class:4},//540
 
         //mark attack
     ],relic:[
@@ -4267,21 +4271,21 @@ types={
             ],ally:[
             ],
         },{
-            level:['Basic 7'],class:2,world:-1,
-            name:'Admiral-Manager',
+            level:['Basic 5'],class:2,world:-1,
+            name:'Asshole',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
-                {position:{x:2,y:2},name:'Admiral-Manager'},
+                {position:{x:2,y:2},name:'Asshole'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
             ],
         },{
-            level:['Basic 7'],class:2,world:-1,
-            name:'Asshole',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            level:['Basic 5'],class:2,world:-1,
+            name:'Admiral-Manager',
+            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
             enemy:[
-                {position:{x:2,y:2},name:'Asshole'},
+                {position:{x:2,y:2},name:'Admiral-Manager'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
@@ -8885,7 +8889,7 @@ If you have an even number of cards in hand, both center cards count.`,
         {name:'Lunar Servant',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
         {name:'Rewriter',desc:'Every Combat Spawns Glitched Tiles'},
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
-        {name:'Managerial',desc:'Immediately Fight 12 Robots'},
+        {name:'Admiral-Manager',desc:'Immediately Fight 12 Robots'},
         {name:'Luck',desc:'Gain 777 Currency'},
         {name:'The Looker',desc:'Relic Images Look Wrong'},
         //{name:'Developer',desc:'Add 1-5 of Nothings to Deck'},

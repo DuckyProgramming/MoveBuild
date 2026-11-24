@@ -1,6 +1,13 @@
 CS 159 [ENDSIEG ULTIMATE]
 
-act 5 (1453) (1945)
+admiral-manager
+the eyes / moustache / beard
+suit / medals
+
+asshole
+changed appearance
+monologue mode
+
 the map shrinks by 1 tile every turn
 
 

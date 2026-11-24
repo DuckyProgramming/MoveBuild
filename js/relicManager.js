@@ -21,6 +21,7 @@ class relicManager{
         this.up=[]
         this.complete=[]
         this.lost=[]
+        this.sinners=[]
 
         this.initialListing()
         for(let a=0,la=this.battle.players;a<la;a++){
@@ -1512,10 +1513,19 @@ class relicManager{
                 for(let b=0,lb=this.active[this.relics[a].type][player+1];b<lb;b++){
                     this.active[this.relics[a].type][0]-=1
                     this.active[this.relics[a].type][player+1]-=1
+                    this.sinners.push([this.relics[a].type,player])
                     this.deactivate(this.relics[a].type,player)
                 }
             }
         }
+    }
+    returnRelicsSin(){
+        for(let a=0,la=this.sinners.length;a<la;a++){
+            this.active[this.sinners[a][0]][0]++
+            this.active[this.sinners[a][0]][this.sinners[a][1]+1]++
+            this.reactivate(this.sinners[a][0],this.sinners[a][1])
+        }
+        this.sinners=[]
     }
     hasRelic(type,player=-1){
         return type>=0?this.active[type][player+1]>0:false

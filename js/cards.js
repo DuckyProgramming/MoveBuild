@@ -63917,6 +63917,20 @@ types.card=[
             ],
         },
     },{
+        name:'Broken',rarity:3,list:constants.playerNumber+1,
+        levels:[
+            {effect:[],attack:-173,cost:0,target:[0],spec:[5],class:5},
+            {effect:[],attack:-173,cost:0,target:[0],spec:[5],class:5},
+            {effect:[],attack:-173,cost:0,target:[0],spec:[5],class:5},
+        ],mtg:{
+            rarity:3,list:constants.playerNumber+1,color:[constants.playerNumber+1],
+            levels:[
+                {effect:[],attack:-173,cost:[],target:[0],spec:[5],class:5},
+                {effect:[],attack:-173,cost:[],target:[0],spec:[5],class:5},
+                {effect:[],attack:-173,cost:[],target:[0],spec:[5],class:5},
+            ],
+        },
+    },{
         name:'Shattered',rarity:3,list:constants.playerNumber+1,
         levels:[
             {effect:[],attack:-117,cost:0,target:[0],spec:[5],class:5},
@@ -64180,20 +64194,6 @@ types.card=[
                 {effect:[1],attack:-162,cost:[-1],target:[0],spec:[1],class:5},
                 {effect:[1],attack:-162,cost:[-1],target:[0],spec:[1],class:5},
                 {effect:[1],attack:-162,cost:[-1],target:[0],spec:[1],class:5},
-            ],
-        },
-    },{
-        name:'Glued',rarity:3,list:constants.playerNumber+1,
-        levels:[
-            {effect:[1],attack:-162,cost:0,target:[0],spec:[4,5],class:5},
-            {effect:[1],attack:-162,cost:0,target:[0],spec:[4,5],class:5},
-            {effect:[1],attack:-162,cost:0,target:[0],spec:[4,5],class:5},
-        ],mtg:{
-            rarity:3,list:constants.playerNumber+1,color:[constants.playerNumber+1],
-            levels:[
-                {effect:[1],attack:-162,cost:[],target:[0],spec:[4,5],class:5},
-                {effect:[1],attack:-162,cost:[],target:[0],spec:[4,5],class:5},
-                {effect:[1],attack:-162,cost:[],target:[0],spec:[4,5],class:5},
             ],
         },
     },{

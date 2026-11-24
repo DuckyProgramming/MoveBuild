@@ -6999,6 +6999,34 @@ types.invalid=[
                 {effect:[4],attack:491,cost:[],target:[26,0,6],spec:[],class:11},
             ],
         },
+    },{
+        name:'Glued',rarity:-1,list:-8,
+        levels:[
+            {effect:[1],attack:-162,cost:0,target:[0],spec:[4,5],class:5},
+            {effect:[1],attack:-162,cost:0,target:[0],spec:[4,5],class:5},
+            {effect:[1],attack:-162,cost:0,target:[0],spec:[4,5],class:5},
+        ],mtg:{
+            rarity:-1,list:-8,color:[constants.playerNumber+1],
+            levels:[
+                {effect:[1],attack:-162,cost:[],target:[0],spec:[4,5],class:5},
+                {effect:[1],attack:-162,cost:[],target:[0],spec:[4,5],class:5},
+                {effect:[1],attack:-162,cost:[],target:[0],spec:[4,5],class:5},
+            ],
+        },
+    },{
+        name:'Drawl',rarity:-1,list:-8,
+        levels:[
+            {effect:[10],attack:11757,cost:1,target:[0],spec:[2],class:11},
+            {effect:[10],attack:11757,cost:0,target:[0],spec:[2],class:11},
+            {effect:[11],attack:11757,cost:0,target:[0],spec:[2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[4],
+            levels:[
+                {effect:[10],attack:11757,cost:[4],target:[0],spec:[2],class:11},
+                {effect:[10],attack:11757,cost:[-1],target:[0],spec:[2],class:11},
+                {effect:[10],attack:11757,cost:[],target:[0],spec:[2],class:11},
+            ],
+        },
     },
 
     //mark er
