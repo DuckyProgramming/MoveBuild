@@ -76,7 +76,8 @@ class nodeManager{
                 this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
             }
         }
-        if(game.ascend>=33||game.diff>=26){
+        if(game.ascend>=33){
+        //if(game.ascend>=33||game.diff>=26){
             [this.listing.encounter[3][2],this.listing.encounter[3][4]]=[this.listing.encounter[3][4],this.listing.encounter[3][2]]
             [this.listing.static[3][2],this.listing.static[3][4]]=[this.listing.static[3][4],this.listing.static[3][2]]
             /*this.listing.encounter[3][2]=[findName('-h Rewriter',types.encounter)]
@@ -126,9 +127,13 @@ class nodeManager{
         }
         if(this.world==3){
             //let list=[4,3,1,2]
-            let list=[4,1,2]
+            let list=game.diff>=26?[4,1,2,9,10,11]:[4,1,2]
+            //let list=game.diff>=26?[9,10,11]:[4,1,2]
+            let ticker=0
             for(let a=0,la=list.length;a<la;a++){
-                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150,0,a,game.allMap>=0?game.allMap:list[a]))
+                //this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150,0,a,game.allMap>=0?game.allMap:list[a]))
+                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2-150+ticker,0,a,game.allMap>=0?game.allMap:list[a]))
+                ticker+=list[a]==10?130:list[a]==2?120:100
                 this.nodes[a].typeConstruct()
             }
             for(let a=0,la=this.nodes.length;a<la;a++){
@@ -497,6 +502,15 @@ class nodeManager{
             case 7:
                 transition.scene='event'
                 this.battle.setupSpecificEvent(findName('Fortune Teller',types.event))
+            break
+            case 9:
+                transition.scene='event'
+                this.battle.setupSpecificEvent(findName('The Last Chance',types.event))
+            break
+            case 10: case 11:
+                transition.scene='battle'
+                this.battle.setupBattle(types.encounter[args[0]])
+                this.saveBoss=-1
             break
         }
     }

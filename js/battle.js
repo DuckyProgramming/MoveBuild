@@ -3897,7 +3897,7 @@ class battle{
                         transition.trigger=true
                         this.combatantManager.clearBlockCombatants()
                         this.combatantManager.clearStatusCombatants()
-                        if(this.encounter.class==2||this.encounter.class==4&&this.nodeManager.world>=3){
+                        if((this.encounter.class==2||this.encounter.class==4&&this.nodeManager.world>=3)&&!(this.nodeManager.world>=3&&game.diff==26&&this.nodeManager.tilePosition.y<5)){
                             if(this.nodeManager.world>=3){
                                 transition.scene='victory'
                                 this.setupStats()
@@ -5354,7 +5354,7 @@ class battle{
             break
             case 'event':
                 //let valid=!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(17)
-                if(!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(169)){
+                if(!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(24)&&!this.overlayManager.anySpecificActive(28)&&!this.overlayManager.anySpecificActive(169)){
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             if(this.overlayManager.overlays[4][a].active){

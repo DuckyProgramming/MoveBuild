@@ -390,6 +390,61 @@ for a prize: how much block does ${types.card[solution].name.replace('\n',' ')} 
                 this.selection=floor(random(0,this.battle.cardManagers[this.player].deck.cards.length))
                 this.pages[0].optionDesc[0]=`Remove ${this.battle.cardManagers[this.player].deck.cards[this.selection].name.replaceAll(`\n`,` `)}`
             break
+            case 203:
+                this.pages[0].desc=
+`You've succeeded in defeating ${types.encounter[this.battle.nodeManager.nodes[2].combat].name}.
+The Management citadel has fallen, and Governor Kirt Kodrax
+emerges with his hands in the air. Konai has been liberated.
+But you know that this is not the end. Soon, the Admiral-Manager
+and his fleets will arrive, and you will be the one to meet him.
+
+He will think you are there to talk. He will be wrong.
+You are there to kill.`
+                this.pages[6].desc=
+`As the shadows of the starfleet above you shift slowly in the
+sky, you step aboard the shuttle. You take one last look
+at the surface of Konai, scarred from years of rebellion.\n`
+                let chars=range(1,constants.playerNumber+1)
+                this.battle.player.forEach(player=>{
+                    if(chars.includes(player)){
+                        chars.splice(chars.indexOf(player),1)
+                    }
+                })
+                for(let a=0,la=3;a<la;a++){
+                    this.pages[6].desc+=`\n`+[
+`Joe behaves abnormally.`,
+`George salutes you at attention.`,
+`Lira gives you a last hug.`,
+`Sakura winks cutely in your direction.`,
+`Certes remains silent as always.`,
+`Azis looks a little absentminded.`,
+`Donakho fidgets with something.`,
+`Setsuna bows her head a little.`,
+`Airi clearly regrets nothing.`,
+`Edgar spins a pistol in his hand.`,
+`Chip is calculating the odds of success.`,
+`Shiru tries to look important.`,
+`DD-610 probably wishes it could show emotion.`,
+`Prehextorica didn't arrive on time.`,
+`Vincent offers you a pill. You decline.`,
+`Daiyousei flutters her wings in anticipation.`,
+`Sanae is praying for your success.`,
+`Shinmyoumaru promises you future riches.`,
+`Merlin sings softly for you.`,
+`Ducopo looks about ready to leave.`,
+`Randy is scheming as usual.`,
+`Sagume tries her best not to talk.`,
+`Fernando tries to cheer you up with a joke.`,
+`Decratite is lost in thought.`,
+`Dukelis raises his wing in support.`,
+`Meri dusts her clothes off.`,
+`Menessa adjusts her posture nervously.`,
+                    ][chars.splice(floor(random(0,chars.length)),1)]
+                }
+                this.pages[6].desc+=
+`\n\nThe time for hesitation is over.
+It's time to finish this.`
+            break
         }
     }
     display(){
@@ -2563,6 +2618,20 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==2&&a==0){
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Fat Duck',types.encounter)])
+                        }
+                    break
+                    case 203:
+                        if(this.page==1&&a==0){
+                            userCombatant.gainMaxHP(10)
+                        }else if(this.page==1&&a==1){
+                            this.battle.overlayManager.overlays[28][this.player].active=true
+                            this.battle.overlayManager.overlays[28][this.player].activate()
+                        }else if(this.page==1&&a==2){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }else if(this.page==1&&a==3){
+                            this.battle.overlayManager.overlays[12][this.player].active=true
+                            this.battle.overlayManager.overlays[12][this.player].activate()
                         }
                     break
 

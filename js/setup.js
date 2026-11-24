@@ -9,13 +9,13 @@ function setup(){
         game.dev=true
         game.tooltip=false
 
-            //game.diff=26
+            game.diff=26
             //game.ascend=33
 
             /*stage.scene='tier'
             current.overlayManager=new overlayManager(current.layer,current,1)*/
 
-        current.menu.combatant=[0]
+        current.menu.combatant=[1]
         current.menu.deck=[0]
 
             //variants.mtg=true
@@ -41,7 +41,7 @@ function setup(){
             /*money(1000)
             quickNode(4)*/
 
-            //event('Friendly Duck')
+            //event('The Last Chance')
 
             //fight('-h Rewriter')
 
@@ -102,6 +102,11 @@ function setup(){
             for(let a=0,la=8;a<la;a++){
                 //current.itemManager.addItem(129+a,0)
                 current.itemManager.addItem(types.item.length-la+a,0)
+            }*/
+
+            /*stage.scene='map'
+            for(let a=0,la=3;a<la;a++){
+                current.nodeManager.nextWorld()
             }*/
 
             //stage.scene='tier'

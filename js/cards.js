@@ -34236,20 +34236,6 @@ types.card=[
                 {effect:[],attack:12099,cost:[2,4],target:[0],spec:[1,15],limit:1,class:11},
             ],
         },
-    },{
-        name:'Forward\nFront',rarity:1,list:24,
-        levels:[
-            {effect:[],attack:12191,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[1],attack:12192,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[2],attack:12192,cost:2,target:[2,1,1],spec:[0],class:1},
-        ],mtg:{
-            rarity:1,list:-1,color:[1,5],
-            levels:[
-                {effect:[],attack:12191,cost:[1,5,-1],target:[2,1,1],spec:[0],class:1},
-                {effect:[],attack:12191,cost:[1,5],target:[2,1,1],spec:[0],class:1},
-                {effect:[1],attack:12192,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
-            ],
-        },
     },
 
     //mark 14
@@ -56674,6 +56660,20 @@ types.card=[
                 {effect:[2,1],attack:12106,cost:[5,5],target:[0],spec:[],class:11},
                 {effect:[3,1],attack:12106,cost:[5,5],target:[0],spec:[],class:11},
                 {effect:[3,2],attack:12106,cost:[5,5],target:[0],spec:[],class:11},
+            ],
+        },
+    },{
+        name:'Forward\nFront',rarity:1,list:24,
+        levels:[
+            {effect:[],attack:12191,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[1],attack:12192,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[2],attack:12192,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],mtg:{
+            rarity:1,list:-1,color:[1,5],
+            levels:[
+                {effect:[],attack:12191,cost:[1,5,-1],target:[2,1,1],spec:[0],class:1},
+                {effect:[],attack:12191,cost:[1,5],target:[2,1,1],spec:[0],class:1},
+                {effect:[1],attack:12192,cost:[10,-1],target:[2,1,1],spec:[0],class:1},
             ],
         },
     },

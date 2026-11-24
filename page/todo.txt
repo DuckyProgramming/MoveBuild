@@ -1,6 +1,5 @@
 CS 159 [ENDSIEG ULTIMATE]
 
-diff 26 anew
 act 5 (1453) (1945)
 the map shrinks by 1 tile every turn
 

@@ -1771,7 +1771,8 @@ class combatant{
                 this.subHealthBuff(1.25)
                 this.subAttackBuff([1,2,5],1.2)
             }
-            if(game.ascend>=33||game.diff>=26){
+            //if(game.ascend>=33||game.diff>=26){
+            if(game.ascend>=33){
                 switch(this.name){
                     case 'Rewriter':
                         this.behavior=20

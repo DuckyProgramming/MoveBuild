@@ -309,6 +309,9 @@ types={
         {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
         {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:102,effect:[66]}],description:`Fine... I'll do it myself`},
 
+        {name:'Admiral-Manager',life:1453,behavior:0,spec:[2],move:{type:0,speed:0},attack:[{type:529,effect:[44]},{type:531,effect:[36]}],description:`One hundred years of solitude`},
+        {name:'Asshole',life:1945,behavior:0,spec:[2],move:{type:0,speed:0},attack:[{type:530,effect:[44,2,]}],description:`You didn't really think\nit would be that easy...`},
+
         //{name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:`One of the last heirs to the\npractices of the Daistilian plateaus,\nparticipant in the "Meeting of Five",\ndistrustful of the Operator but\nwith too much at stake to leave.`},
         //{name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:52,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:309,effect:[4]},{type:88,effect:[2]},{type:310,effect:[12,2,2]}],description:`Possibly the first coming of Discord,\nthe eternal enemy of the Management.\nTasked with the elimination of all\ngalactic-level systems of governance,\nbut starting where it's easy.`},
         //{name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[0],move:{type:9,speed:1},attack:[{type:314,effect:[]},{type:315,effect:[]},{type:316,effect:[15,1]}],description:`Duck flown in by Management programs\nto aid in reconstruction of the\nStanis Generator Installation.\nAfter being offered a better chance\nby Randy, he switched sides fast.`},
@@ -972,6 +975,16 @@ types={
         {name:'Moonbeam / Intangible',class:1},
         {name:'Moonbeam / Self Intangible',class:1},
         {name:'Triple Strike / Die',class:1},
+
+        {name:'Ultimate Gun',class:1},
+        {name:'Ultimate Statusing Gun',class:1},//530
+        //12
+        {name:'Ultimate Bombing Zone',class:5},
+        {name:'Ultimate Bombing Zone',class:5},
+        //43
+        {name:'Counter All',class:2},
+        {name:'Counter All',class:2},
+        //108
 
         //mark attack
     ],relic:[
@@ -4249,6 +4262,26 @@ types={
             name:'',
             player:{position:[[{x:0,y:0}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 7'],class:2,world:-1,
+            name:'Admiral-Manager',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Admiral-Manager'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
+            level:['Basic 7'],class:2,world:-1,
+            name:'Asshole',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Asshole'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[
@@ -8670,7 +8703,8 @@ If you have an even number of cards in hand, both center cards count.`,
         //{name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
         {name:'Unfair',desc:'All Enemies Have Their Unique Strengths Enhanced'},//31
         {name:'Brutal',desc:'Every Enemy is Buffed Heavily'},//32
-        {name:'Ruination',desc:'???'},//33
+        {name:'Terminal',desc:'Face The True Final Boss'},//new
+        //{name:'Ruination',desc:'???'},//33
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
         {name:'More Elites',desc:'Elites are More Likely to Spawn'},

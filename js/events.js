@@ -3381,7 +3381,8 @@ to find the next victim to scam.`,
         pages:[
             {
                 desc:
-`You encounter a group of work ducks near a mineshaft.
+//`You encounter a group of work ducks near a mineshaft.
+`You encounter a group of duck laborers near a mineshaft.
 One of them drags a cart of green minerals while another
 carries several pickaxes. They look ragged and dirty,
 not exactly the richest ducks around. One approaches you.
@@ -6793,10 +6794,69 @@ down until he comes to a stop a short distance away.`,
                 link:[-2,-1],
             },
         ],
+    },{
+        name:'The Last Chance',id:203,list:-1,
+        pages:[
+            {
+                desc:``,
+                option:[`Prepare`],
+                optionDesc:[''],
+                link:[1],
+            },{
+                desc:
+`You have precious little free time left before they come.
+There's just a single day, in fact.
+But that doesn't mean you can't make the most of it.`,
+                option:['Rest','Training','Focus','Motivation'],
+                optionDesc:['Gain 10 Max Health','Deluxe Upgrade a Card','Remove a Card','Duplicate a Card'],
+                link:[2,3,4,5],
+            },{
+                desc:
+`You decide to spend the time you have left getting some
+much-needed rest. Defeating the most powerful man in the galaxy
+won't be easy, but it'll be easier on a good night's sleep.
+Before you know it, the day is over. The fleet is here.`,
+                option:[`It's Time`],
+                optionDesc:[''],
+                link:[6],
+            },{
+                desc:
+`You decide to spend the time you have left sharpening your
+skills one final time. Defeating the most powerful man in the galaxy
+won't be easy, but it'll be easier if you're in good shape.
+Before you know it, the day is over. The fleet is here.`,
+                option:[`It's Time`],
+                optionDesc:[''],
+                link:[6],
+            },{
+                desc:
+`You decide to spend the time you have left clearing your
+mind and focusing. Defeating the most powerful man in the galaxy
+won't be easy, but it'll be easier with your eyes on the prize.
+Before you know it, the day is over. The fleet is here.`,
+                option:[`It's Time`],
+                optionDesc:[''],
+                link:[6],
+            },{
+                desc:
+`You decide to spend the time you have left meeting with
+your allies. Defeating the most powerful man in the galaxy
+won't be easy, but it'll be easier with their help.
+Before you know it, the day is over. The fleet is here.`,
+                option:[`It's Time`],
+                optionDesc:[''],
+                link:[6],
+            },{
+                desc:``,
+                option:['Go Forth'],
+                optionDesc:[''],
+                link:[-1],
+            },
+        ],
     },
     
     /*{
-        name:'',id:202,list:0,
+        name:'',id:204,list:0,
         pages:[
             {
                 desc:

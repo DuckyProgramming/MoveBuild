@@ -32,7 +32,7 @@ class node{
         this.extraConnections=[]
 
         this.size=1
-        this.fade=1
+        this.fade=this.type==11?0:1
         this.scroll=0
         this.complete=false
         this.active=false
@@ -105,6 +105,14 @@ class node{
                     this.reality=this.type
                     this.combat=0
                 }
+            break
+            case 10:
+                this.reality=2
+                this.combat=findName('Admiral-Manager',types.encounter)
+            break
+            case 11:
+                this.reality=2
+                this.combat=findName('Asshole',types.encounter)
             break
             default:
                 this.reality=this.type
@@ -227,8 +235,12 @@ class node{
                     this.layer.strokeWeight(2)
                     this.layer.line(-3,-3,-8,-5)
                     this.layer.line(3,-3,8,-5)
-                    this.layer.triangle(-13,-7,-7,-13,-16,-16)
-                    this.layer.triangle(13,-7,7,-13,16,-16)
+                    /*this.layer.triangle(-13,-7,-7,-13,-16,-16)
+                    this.layer.triangle(13,-7,7,-13,16,-16)*/
+                    this.layer.bezier(-13,-7,-16,-10,-16,-15,-16,-20)
+                    this.layer.bezier(-8,-12,-13,-14,-16,-18,-16,-20)
+                    this.layer.bezier(13,-7,16,-10,16,-15,16,-20)
+                    this.layer.bezier(8,-12,13,-14,16,-18,16,-20)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
                     name=types.encounter[this.combat].name
@@ -393,27 +405,169 @@ class node{
                     this.layer.textSize(12)
                     this.layer.text('Not Visible',0,25)
                 break
+                case 9:
+                    this.layer.stroke(...color,this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.noFill()
+                    this.layer.beginShape()
+                    this.layer.vertex(-14,6)
+                    this.layer.vertex(-6,14)
+                    this.layer.vertex(8.5,-3.5)
+                    this.layer.vertex(13,2)
+                    this.layer.vertex(14,-14)
+                    this.layer.vertex(-2,-13)
+                    this.layer.vertex(3.5,-8.5)
+                    this.layer.endShape(CLOSE)
+                    this.layer.noStroke()
+                    this.layer.fill(70,75,80,this.fade*cap)
+                    this.layer.rect(0,24,48,14,3)
+                    this.layer.fill(...color,this.fade*cap)
+                    this.layer.textSize(12)
+                    this.layer.text('Last Chance',0,25)
+                break
+                case 10:
+                    this.layer.noStroke()
+                    this.layer.fill(70,75,80,this.fade)
+                    this.layer.ellipse(0,0,90,90)
+                    this.layer.stroke(...color,this.fade)
+                    this.layer.strokeWeight(3)
+                    this.layer.noFill()
+                    this.layer.arc(0,0,70,70,-255,75)
+                    this.layer.arc(0,0,50,50,-240,60)
+                    for(let a=0,la=12;a<la;a++){
+                        if(a!=0){
+                            this.layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35)
+                            this.layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a+0.5)/la)*35,lcos(360*(a+0.5)/la)*35)
+                        }
+                        this.layer.line(lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35,lsin(360*(a-0.5)/la)*40,lcos(360*(a-0.5)/la)*40)
+                    }
+                    this.layer.ellipse(0,0,30,30)
+                    this.layer.noStroke()
+                    this.layer.fill(...color,this.fade)
+                    this.layer.beginShape()
+                    this.layer.vertex(-8,13)
+                    this.layer.bezierVertex(-3,20,-1,27,0,36)
+                    this.layer.bezierVertex(1,27,3,20,8,13)
+                    this.layer.vertex(0,16)
+                    this.layer.endShape()
+                    this.layer.push()
+                    this.layer.translate(-2,-6)
+                    this.layer.rotate(-30)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(2,-6)
+                    this.layer.rotate(210)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(0,1)
+                    this.layer.rotate(-45)
+                    this.layer.scale(0.8)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(0,1)
+                    this.layer.rotate(225)
+                    this.layer.scale(0.8)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.fill(70,75,80,this.fade)
+                    this.layer.rect(0,52,36,20,3)
+                    this.layer.fill(...color,this.fade)
+                    this.layer.textSize(15)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    this.layer.text(name,0,52)
+                break
+                case 11:
+                    this.layer.noStroke()
+                    this.layer.fill(70,75,80)
+                    this.layer.ellipse(0,0,90,90)
+                    this.layer.stroke(...color,1)
+                    this.layer.strokeWeight(3)
+                    this.layer.noFill()
+                    this.layer.arc(0,0,70,70,-255,75)
+                    this.layer.arc(0,0,50,50,-240,60)
+                    for(let a=0,la=12;a<la;a++){
+                        if(a!=0){
+                            this.layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35)
+                            this.layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a+0.5)/la)*35,lcos(360*(a+0.5)/la)*35)
+                        }
+                        this.layer.line(lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35,lsin(360*(a-0.5)/la)*40,lcos(360*(a-0.5)/la)*40)
+                    }
+                    this.layer.ellipse(0,0,30,30)
+                    this.layer.noStroke()
+                    this.layer.fill(...color,1)
+                    this.layer.beginShape()
+                    this.layer.vertex(-8,13)
+                    this.layer.bezierVertex(-3,20,-1,27,0,36)
+                    this.layer.bezierVertex(1,27,3,20,8,13)
+                    this.layer.vertex(0,16)
+                    this.layer.endShape()
+                    this.layer.arc(-0.5,3,3,3,18,198)
+                    this.layer.arc(7.5,2,3,3,-36,144)
+                    this.layer.push()
+                    this.layer.translate(2.5,4)
+                    this.layer.rotate(30)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(4.5,4)
+                    this.layer.rotate(135)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(3.5,7)
+                    this.layer.rotate(-45)
+                    this.layer.scale(0.7)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.push()
+                    this.layer.translate(3.5,7)
+                    this.layer.rotate(210)
+                    this.layer.scale(0.7)
+                    hexagon(this.layer,0,0,-10,-2,-8,-0.5,-10,0,-8,0.5,-10,2)
+                    this.layer.pop()
+                    this.layer.fill(70,75,80,1-this.fade)
+                    this.layer.ellipse(0,0,90,90)
+                    this.layer.fill(70,75,80,this.fade)
+                    this.layer.rect(0,52,36,20,3)
+                    this.layer.fill(...color,this.fade)
+                    this.layer.textSize(15)
+                    name=types.encounter[this.combat].name
+                    if(name.substr(0,2)=='-h'){
+                        name=name.substr(2)
+                    }
+                    this.layer.text(name,0,52)
+                break
             }
         }
         this.layer.pop()
     }
     displayConnections(){
-        this.layer.stroke(255,this.fade*0.1)
+        //this.layer.stroke(255,this.fade*0.1)
         this.layer.strokeWeight(3)
         for(let a=0,la=this.connections.length;a<la;a++){
+            let target=this.battle.nodeManager.nodes[this.connections[a]]
+            this.layer.stroke(255,this.fade*target.fade*0.1)
             for(let b=0;b<10;b++){
                 this.layer.line(
-                    this.position.x*(0.7-b*0.01)+this.battle.nodeManager.nodes[this.connections[a]].position.x*(0.3+b*0.01),this.position.y*(0.7-b*0.01)+this.battle.nodeManager.nodes[this.connections[a]].position.y*(0.3+b*0.01),
-                    this.position.x*(0.3+b*0.01)+this.battle.nodeManager.nodes[this.connections[a]].position.x*(0.7-b*0.01),this.position.y*(0.3+b*0.01)+this.battle.nodeManager.nodes[this.connections[a]].position.y*(0.7-b*0.01))
+                    this.position.x*(0.7-b*0.01)+target.position.x*(0.3+b*0.01),this.position.y*(0.7-b*0.01)+target.position.y*(0.3+b*0.01),
+                    this.position.x*(0.3+b*0.01)+target.position.x*(0.7-b*0.01),this.position.y*(0.3+b*0.01)+target.position.y*(0.7-b*0.01))
             }
         }
         if(this.battle.relicManager.hasRelic(341,-1)){
             this.layer.stroke(125,200,225,this.fade*0.1)
             for(let a=0,la=this.extraConnections.length;a<la;a++){
+                let target=this.battle.nodeManager.nodes[this.extraConnections[a]]
+                this.layer.stroke(255,this.fade*target.fade*0.1)
                 for(let b=0;b<10;b++){
                     this.layer.line(
-                        this.position.x*(0.7-b*0.01)+this.battle.nodeManager.nodes[this.extraConnections[a]].position.x*(0.3+b*0.01),this.position.y*(0.7-b*0.01)+this.battle.nodeManager.nodes[this.extraConnections[a]].position.y*(0.3+b*0.01),
-                        this.position.x*(0.3+b*0.01)+this.battle.nodeManager.nodes[this.extraConnections[a]].position.x*(0.7-b*0.01),this.position.y*(0.3+b*0.01)+this.battle.nodeManager.nodes[this.extraConnections[a]].position.y*(0.7-b*0.01))
+                        this.position.x*(0.7-b*0.01)+target.position.x*(0.3+b*0.01),this.position.y*(0.7-b*0.01)+target.position.y*(0.3+b*0.01),
+                        this.position.x*(0.3+b*0.01)+target.position.x*(0.7-b*0.01),this.position.y*(0.3+b*0.01)+target.position.y*(0.7-b*0.01))
                 }
             }
         }
@@ -446,6 +600,13 @@ class node{
         }else if(this.scroll<=-5){
             this.scroll+=5
             this.position.y+=5
+        }
+        switch(this.type){
+            case 11:
+                if(this.battle.nodeManager.tilePosition.y==this.tilePosition.y-1&&!transition.trigger&&this.fade<1){
+                    this.fade+=1/300
+                }
+            break
         }
     }
 }
