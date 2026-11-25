@@ -4166,6 +4166,10 @@ class group{
             case -173:
                 userCombatant.block=userCombatant.block/2
             break
+            case -174:
+                userCombatant.takeDamage(card.effect[0])
+                userCombatant.addBlock(card.effect[1])
+            break
 
             //mark n
             

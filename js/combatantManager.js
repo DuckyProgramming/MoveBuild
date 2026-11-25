@@ -1416,7 +1416,9 @@ class combatantManager{
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
         //this.combatants[this.combatants.length-1].setIntent()
-        this.combatants[this.combatants.length-1].setIntent(1)
+        if(team==0){
+            this.combatants[this.combatants.length-1].setIntent(1)
+        }
         this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()

@@ -1114,18 +1114,16 @@ class combatant{
                 case 'Admiral-Manager':
                     this.statusEffect('Turn Damage Cap',500)
                     this.statusEffect('Turn Damage Cap Per Turn',500)
-                    if(this.battle.players<=1){
+                    if(this.battle.players>1){
                         this.subHealthBuff(2026/1453)
-                    }else{
                         this.subAttackBuff([1,2,5],1.5)
                     }
                 break
                 case 'Asshole':
                     this.statusEffect('Turn Damage Cap',500)
                     this.statusEffect('Turn Damage Cap Per Turn',500)
-                    if(this.battle.players<=1){
+                    if(this.battle.players>1){
                         this.subHealthBuff(2626/1945)
-                    }else{
                         this.subAttackBuff([1,2,5],1.5)
                     }
                     this.monologue={text:[

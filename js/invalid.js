@@ -7027,6 +7027,20 @@ types.invalid=[
                 {effect:[10],attack:11757,cost:[],target:[0],spec:[2],class:11},
             ],
         },
+    },{
+        name:'Bright\nCycle',rarity:-1,list:-8,
+        levels:[
+            {effect:[1,1],attack:6362,cost:0,target:[0],spec:[2],class:11},
+            {effect:[1,2],attack:6362,cost:0,target:[0],spec:[2],class:11},
+            {effect:[1,3],attack:6362,cost:0,target:[0],spec:[2],class:11},
+        ],mtg:{
+            rarity:-1,list:-8,color:[1],
+            levels:[
+                {effect:[1],attack:6363,cost:[],target:[0],spec:[2],class:11},
+                {effect:[2],attack:6363,cost:[],target:[0],spec:[2],class:11},
+                {effect:[3],attack:6363,cost:[],target:[0],spec:[2],class:11},
+            ],
+        },
     },
 
     //mark er

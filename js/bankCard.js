@@ -204,6 +204,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case -171: string+=`When Drawn,\nGain (E)\nDraw ${effect[0]} Card${pl(effect[0])}\nMake ${effect[1]} Cop${effect[1]!=1?`ies`:`y`}`; break
         case -172: string+=`Take ${effect[0]} Damage\nWhen You Play a Card\nIncreases by ${effect[1]}`; break
         case -173: string+=`When Drawn,\nHalve Your Block`; break
+        case -174: string+=`When Drawn,\nTake ${effect[0]} Damage and\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
 
         //mark n
 

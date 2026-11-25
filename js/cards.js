@@ -64887,20 +64887,6 @@ types.card=[
             ],
         },
     },{
-        name:'LSD',rarity:3,list:constants.playerNumber+2,
-        levels:[
-            {effect:[],attack:-97,cost:0,target:[0],spec:[5],class:6},
-            {effect:[],attack:-97,cost:0,target:[0],spec:[4,5],class:6},
-            {effect:[],attack:-97,cost:0,target:[0],spec:[4,5,62],class:6},
-        ],mtg:{
-            rarity:3,list:constants.playerNumber+2,color:[constants.playerNumber+2],
-            levels:[
-                {effect:[],attack:-97,cost:[],target:[0],spec:[5],class:6},
-                {effect:[],attack:-97,cost:[],target:[0],spec:[4,5],class:6},
-                {effect:[],attack:-97,cost:[],target:[0],spec:[4,5,62],class:6},
-            ],
-        },
-    },{
         name:'Curse of\nthe Duck',rarity:3,list:constants.playerNumber+2,
         levels:[
             {effect:[],attack:-102,cost:0,target:[0],spec:[5],class:6},
@@ -65206,6 +65192,20 @@ types.card=[
                 {effect:[],attack:-166,cost:[],target:[0],spec:[5],class:6},
                 {effect:[],attack:-166,cost:[],target:[0],spec:[4,5],class:6},
                 {effect:[],attack:-166,cost:[],target:[0],spec:[4,5,62],class:6},
+            ],
+        },
+    },{
+        name:'Cardiovascular\nExercise',rarity:3,list:constants.playerNumber+2,
+        levels:[
+            {effect:[5,5],attack:-174,cost:0,target:[0],spec:[5],class:6},
+            {effect:[3,5],attack:-174,cost:0,target:[0],spec:[5],class:6},
+            {effect:[2,5],attack:-174,cost:0,target:[0],spec:[5],class:6},
+        ],mtg:{
+            rarity:3,list:constants.playerNumber+2,color:[constants.playerNumber+2],
+            levels:[
+                {effect:[5,5],attack:-174,cost:[],target:[0],spec:[5],class:6},
+                {effect:[3,5],attack:-174,cost:[],target:[0],spec:[5],class:6},
+                {effect:[2,5],attack:-174,cost:[],target:[0],spec:[5],class:6},
             ],
         },
     },

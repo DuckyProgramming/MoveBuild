@@ -42508,20 +42508,6 @@ types.disband=[
             ],
         },
     },{
-        name:'Bright\nCycle',rarity:-1,list:-8,
-        levels:[
-            {effect:[1,1],attack:6362,cost:0,target:[0],spec:[2],class:11},
-            {effect:[1,2],attack:6362,cost:0,target:[0],spec:[2],class:11},
-            {effect:[1,3],attack:6362,cost:0,target:[0],spec:[2],class:11},
-        ],mtg:{
-            rarity:-1,list:-8,color:[1],
-            levels:[
-                {effect:[1],attack:6363,cost:[],target:[0],spec:[2],class:11},
-                {effect:[2],attack:6363,cost:[],target:[0],spec:[2],class:11},
-                {effect:[3],attack:6363,cost:[],target:[0],spec:[2],class:11},
-            ],
-        },
-    },{
         name:'Unload',rarity:-1,list:-8,
         levels:[
             {effect:[20],attack:301,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -70001,6 +69987,20 @@ types.disband=[
                 {effect:[16,4,1,2],attack:9364,cost:[3,-1,-1],target:[2,1,1],spec:[0,1],class:1},
                 {effect:[24,4,1,3],attack:9364,cost:[3,-1,-1],target:[2,1,1],spec:[0,1],class:1},
                 {effect:[28,4,1,4],attack:9364,cost:[3,-1,-1],target:[2,1,1],spec:[0,1],class:1},
+            ],
+        },
+    },{
+        name:'LSD',rarity:-1,list:-8,
+        levels:[
+            {effect:[],attack:-97,cost:0,target:[0],spec:[5],class:6},
+            {effect:[],attack:-97,cost:0,target:[0],spec:[4,5],class:6},
+            {effect:[],attack:-97,cost:0,target:[0],spec:[4,5,62],class:6},
+        ],mtg:{
+            rarity:-1,list:-8,color:[constants.playerNumber+2],
+            levels:[
+                {effect:[],attack:-97,cost:[],target:[0],spec:[5],class:6},
+                {effect:[],attack:-97,cost:[],target:[0],spec:[4,5],class:6},
+                {effect:[],attack:-97,cost:[],target:[0],spec:[4,5,62],class:6},
             ],
         },
     },
