@@ -1,13 +1,8 @@
 CS 159 [ENDSIEG ULTIMATE]
 
-admiral-manager
-the eyes / moustache / beard
-suit / medals
+[stroopwafel]
+cardiovascular exercise - when drawn, take 5 damage and add 5 block
 
-asshole
-changed appearance
-monologue mode
-
-the map shrinks by 1 tile every turn
+[apocaducks rocket launch physics suck]
 
 

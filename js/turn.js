@@ -1510,6 +1510,11 @@ class turn{
                                     if(subject.type.includes(26)){
                                         curr-=100
                                     }
+                                    for(let b=0,lb=subject.fire.length;b<lb;b++){
+                                        if(subject.fire[b]>10){
+                                            curr-=subject.fire[b]*10
+                                        }
+                                    }
                                     let iKey=(this.userCombatant.intent+(this.battle.turn.main<this.battle.players?2:0))%3
                                     curr-=dist(subject.relativePosition.x,subject.relativePosition.y,width/2,height/2)/20
                                     switch(iKey){

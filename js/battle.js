@@ -1240,6 +1240,7 @@ class battle{
         this.combatantManager.resetCombatantsAnim()
         this.tileManager.tick()
         this.tileManager.activate()
+        this.combatantManager.tickPostTile()
         this.combatantManager.setTargets()
         this.combatantManager.activateCombatants(0,0)
         this.updateTargetting()
@@ -3903,18 +3904,27 @@ class battle{
                         transition.trigger=true
                         this.combatantManager.clearBlockCombatants()
                         this.combatantManager.clearStatusCombatants()
-                        if((this.encounter.class==2||this.encounter.class==4&&this.nodeManager.world>=3)&&!(this.nodeManager.world>=3&&game.diff==26&&this.nodeManager.tilePosition.y<5)){
+                        //if((this.encounter.class==2||this.encounter.class==4&&this.nodeManager.world>=3)&&!(this.nodeManager.world>=3&&game.diff==26&&this.nodeManager.tilePosition.y<5)){
+                        if(this.encounter.class==2||this.encounter.class==4&&this.nodeManager.world>=3){
                             if(this.nodeManager.world>=3){
-                                transition.scene='victory'
-                                this.setupStats()
-                                for(let a=0,la=this.players;a<la;a++){
-                                    /*if(!this.collectionManager.won.includes(this.player[a])){
-                                        this.collectionManager.won.push(this.player[a])
-                                        this.collectionManager.saveWon()
-                                    }*/
-                                    if(!this.collectionManager.won[this.player[a]]<game.diff){
-                                        this.collectionManager.won[this.player[a]]=game.diff
-                                        this.collectionManager.saveWon()
+                                if(game.diff==26&&this.nodeManager.tilePosition.y<5){
+                                    transition.scene='map'
+                                    this.combatantManager.bossHeal()
+                                    if(options.replay){
+                                        this.replayManager.clear()
+                                    }
+                                }else{
+                                    transition.scene='victory'
+                                    this.setupStats()
+                                    for(let a=0,la=this.players;a<la;a++){
+                                        /*if(!this.collectionManager.won.includes(this.player[a])){
+                                            this.collectionManager.won.push(this.player[a])
+                                            this.collectionManager.saveWon()
+                                        }*/
+                                        if(!this.collectionManager.won[this.player[a]]<game.diff){
+                                            this.collectionManager.won[this.player[a]]=game.diff
+                                            this.collectionManager.saveWon()
+                                        }
                                     }
                                 }
                                 //mark win

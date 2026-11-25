@@ -1853,6 +1853,9 @@ class combatantManager{
     tickSub(){
         this.combatants.forEach(combatant=>combatant.tick(true))
     }
+    tickPostTile(){
+        this.combatants.forEach(combatant=>combatant.tickPostTile())
+    }
     tickA(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){

@@ -3178,6 +3178,95 @@ combatant.prototype.setupGraphics=function(direction){
                 break
             }
         break
+        case 'Admiral-Manager': case 'Asshole':
+            this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                legs:[{top:9,bottom:0,length:{top:20,bottom:20}},{top:9,bottom:0,length:{top:20,bottom:20}}],
+                arms:[{top:24,bottom:9,length:{top:20,bottom:20}},{top:24,bottom:9,length:{top:20,bottom:20}}]}
+            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216,sword:0}
+            this.color={skin:{head:[240,220,180],body:[30,30,40],legs:[35,35,45],arms:[15,15,15],coat:[10,10,10]},eye:{back:[120,120,120],front:[120,120,120],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            this.parts={eyeLevel:-81,mouth:-73,minor:15,
+                legs:[{top:{x:3.5,y:-36},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-36},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:3.5,y:-64},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-64},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            this.graphics={
+                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},helmet:1,visor:1,belt:1,badge:1}
+            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},extra:{damage:false}}}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction,sword:false}}
+            this.coat=[
+                {spin:[0,108,66],height:10},
+                {spin:[-108,0,-66],height:10},
+                {spin:[72,180,114],height:10},
+                {spin:[-180,-72,-114],height:10},
+            ]
+            this.color.tie=[[220,200,240],[80,120,160],[80,160,200]]
+            this.color.band=[[160,160,160],[200,200,200]]
+            this.color.belt=[[140,140,140],[120,120,120],[80,100,120]]
+            this.color.medal=[
+                [[120,80,160],[240,240,240],[240,160,0],[240,200,40]],
+                [[80,120,160],[240,240,240],[240,240,240],[200,200,200]],
+                [[200,120,0],[240,240,240],[240,160,0],[240,200,40]],
+                [[120,160,80],[240,240,240],[240,240,240],[200,200,200]],
+            ]
+            this.color.moustache=[130,130,130]
+            this.color.beard=[140,140,140]
+            this.fades.tie=1
+            this.fades.band=1
+            this.fades.belt=1
+            this.fades.coat=1
+            this.fades.medal=1
+            this.fades.moustache=1
+            this.fades.beard=1
+            this.trigger.display.tie=true
+            this.trigger.display.band=true
+            this.trigger.display.belt=true
+            this.trigger.display.coat=true
+            this.trigger.display.medal=true
+            this.trigger.display.moustache=true
+            this.trigger.display.beard=true
+            this.parts.moustache=-77
+            this.anim.moustache=[-42,-138]
+            this.spin.moustache=[-8,8]
+            switch(this.name){
+                case 'Admiral-Manager':
+                    this.spin.eye=[-19.5,19.5]
+                    this.anim.eyeStyle=[8,8]
+                    this.anim.eye=[-24,-156]
+                    this.parts.eyeLevel-=2
+                break
+                case 'Asshole':
+                    this.spin.eye=[-15,15]
+                    this.anim.eyeStyle=[9,9]
+                    this.anim.eye=[36,144]
+                    this.parts.eyeLevel--
+                    this.anim.mouth={x:4,y:2,open:1}
+                    this.spin.mouth=180
+                    this.parts.mouth--
+                    this.parts.moustache++
+                break
+            }
+        break
+        case '':
+            this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
+                arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
+            this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+            this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            this.parts={eyeLevel:-78,mouth:-70,minor:15,
+                legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+            this.graphics={
+                legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+            this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
+            this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
+            this.trigger.display.extra={damage:false}
+            this.calc={int:[0,0,0,0]}
+            this.animSet={loop:0,flip:0,hand:0,foot:0}
+            this.goal={anim:{direction:this.anim.direction}}
+        break
         //mark n
         default:
             this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
@@ -7781,6 +7870,27 @@ combatant.prototype.minorDisplay=function(type,key){
                 break
             }
         break
+        case 'Admiral-Manager':
+            switch(type){
+                case 1:
+                    dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                    this.layer.stroke(...this.color.band[0],this.fade*this.fades.band)
+                    this.layer.strokeWeight(1.5)
+                    this.layer.line(
+                        this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.8*lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.8*lcos(dir+90),
+                        this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.8*lsin(dir+90),
+                        this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.8*lcos(dir+90))
+                    this.layer.stroke(...this.color.band[1],this.fade*this.fades.band)
+                    this.layer.strokeWeight(0.5)
+                    this.layer.line(
+                        this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.8*lsin(dir+90)+0.5*lsin(dir),
+                        this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.8*lcos(dir+90)+0.5*lcos(dir),
+                        this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.8*lsin(dir+90)+0.5*lsin(dir),
+                        this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.8*lcos(dir+90)+0.5*lcos(dir))
+                break
+            }
+        break
     }
 }
 combatant.prototype.minorDisplayGeneral=function(type,key){
@@ -7912,9 +8022,9 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
             }
             this.layer.stroke(this.color.mouth.out[0],this.color.mouth.out[1],this.color.mouth.out[2],this.fade*this.fades.mouth)
             this.layer.strokeWeight(0.5-this.anim.mouth.open*0.25)
-            this.layer.arc(lsin(this.anim.direction)*(this.parts.minor-2),this.parts.mouth,this.anim.mouth.x*lcos(this.anim.direction),this.anim.mouth.y*(0.5+lcos(this.anim.direction)*0.5),this.spin.mouth,180-this.spin.mouth)
+            this.layer.arc(lsin(this.anim.direction)*(this.parts.minor-2+this.anim.mouth.open),this.parts.mouth,this.anim.mouth.x*lcos(this.anim.direction),this.anim.mouth.y*(0.5+lcos(this.anim.direction)*0.5),this.spin.mouth,180-this.spin.mouth)
             this.layer.strokeWeight(0.25*this.anim.mouth.open)
-            this.layer.line(lsin(this.anim.direction)*(this.parts.minor-2)-this.anim.mouth.x/2*lcos(this.anim.direction),this.parts.mouth,lsin(this.anim.direction)*(this.parts.minor-2)+this.anim.mouth.x/2*lcos(this.anim.direction),this.parts.mouth)
+            this.layer.line(lsin(this.anim.direction)*(this.parts.minor-2+this.anim.mouth.open)-this.anim.mouth.x/2*lcos(this.anim.direction),this.parts.mouth,lsin(this.anim.direction)*(this.parts.minor-2+this.anim.mouth.open)+this.anim.mouth.x/2*lcos(this.anim.direction),this.parts.mouth)
         break
         case 2:
             this.layer.noFill()
@@ -7978,7 +8088,27 @@ combatant.prototype.minorDisplayGeneral=function(type,key){
         break
         case 3:
             this.layer.noFill()
-            if(this.anim.eyeStyle[key]==7&&this.anim.eye[key]>0){
+            if(this.anim.eyeStyle[key]==8){
+                this.layer.fill(...this.color.eye.back,this.fade*this.fades.eye[key])
+                this.layer.noStroke()
+                this.layer.push()
+                this.layer.translate(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel)
+                this.layer.scale(constrain(2*lcos(this.spin.eye[key]+this.anim.head),0,1),1)
+                this.layer.rotate(this.anim.eye[key])
+                hexagon(this.layer,4,0,-4,-1.6,-2.4,-0.4,-4,0,-2.4,0.4,-4,1.6)
+                this.layer.pop()
+            }else if(this.anim.eyeStyle[key]==9){
+                this.layer.noStroke()
+                this.layer.push()
+                this.layer.translate(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel)
+                this.layer.scale(constrain(2*lcos(this.spin.eye[key]+this.anim.head),0,1),1)
+                this.layer.rotate(this.anim.eye[key])
+                this.layer.fill(...this.color.mouth.out,this.fade*this.fades.eye[key])
+                this.layer.ellipse(0.5,0.5-key,2.5,1.5)
+                this.layer.fill(...this.color.eye.back,this.fade*this.fades.eye[key])
+                hexagon(this.layer,4,0,-4,-1.6,-2.4,-0.4,-4,0,-2.4,0.4,-4,1.6)
+                this.layer.pop()
+            }else if(this.anim.eyeStyle[key]==7&&this.anim.eye[key]>0){
                 let x=lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor
                 let y=this.parts.eyeLevel
                 let lc=constrain(2*lcos(this.spin.eye[key]+this.anim.head),0,1)

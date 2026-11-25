@@ -309,7 +309,7 @@ types={
         {name:'-h Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:72,effect:[36,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:193,effect:[32,1]},{type:194,effect:[15,3,'Dazed']},{type:195,effect:[27]},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Reality is but an opinion`},
         {name:'-h Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[5]},{type:358,effect:[13,1,'Trial']},{type:102,effect:[66]}],description:`Fine... I'll do it myself`},
 
-        {name:'Admiral-Manager',life:1453,behavior:0,spec:[1,2],move:{type:17,speed:1},attack:[{type:529,effect:[50]},{type:531,effect:[36,2]},{type:533,effect:[40,40]},{type:535,effect:[10]},{type:537,effect:[24,2]},{type:539,effect:[4,'Fear']}],description:`One hundred years of solitude`},
+        {name:'Admiral-Manager',life:1453,behavior:0,spec:[1,2],move:{type:17,speed:1},attack:[{type:529,effect:[50]},{type:531,effect:[36,2]},{type:533,effect:[40,40]},{type:535,effect:[10]},{type:537,effect:[24,2]},{type:539,effect:[4,'Fear']}],description:`I come to bury Caesar`},
         {name:'Asshole',life:1945,behavior:0,spec:[1,2],move:{type:17,speed:1},attack:[{type:530,effect:[50,1]},{type:532,effect:[36,2,2]},{type:534,effect:[40,2,40]},{type:536,effect:[10]},{type:538,effect:[24,2,2]},{type:540,effect:[4,'Fear',1]}],description:`The man behind the slaughter`},
 
         //{name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:419,effect:[3]},{type:24,effect:[8,2]},{type:308,effect:[13]}],description:`One of the last heirs to the\npractices of the Daistilian plateaus,\nparticipant in the "Meeting of Five",\ndistrustful of the Operator but\nwith too much at stake to leave.`},
@@ -349,6 +349,7 @@ types={
         //{name:'Mailman',life:60,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[8]},{type:414,effect:[4,'Mail']}],description:`Protected by labor`},
         //{name:'Slimoid',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Glued']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
         //{name:'Big Slimoid',life:54,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Glued']},{type:33,effect:[2]}],description:`Recursion`},
+        //{name:'Admiral-Manager',life:1453,behavior:0,spec:[1,2],move:{type:17,speed:1},attack:[{type:529,effect:[50]},{type:531,effect:[36,2]},{type:533,effect:[40,40]},{type:535,effect:[10]},{type:537,effect:[24,2]},{type:539,effect:[4,'Fear']}],description:`One hundred years of solitude`},
         
         {name:'Managerial',life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -4271,6 +4272,16 @@ types={
             ],ally:[
             ],
         },{
+            level:['Basic 7'],class:0,world:-1,
+            name:'Testing',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],assaultReinforce:[
+            ],ally:[
+            ],
+        },{
             level:['Basic 5'],class:2,world:-1,
             name:'Asshole',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
@@ -4285,17 +4296,7 @@ types={
             name:'Admiral-Manager',
             player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
             enemy:[
-                {position:{x:2,y:2},name:'Admiral-Manager'},
-            ],reinforce:[
-            ],assaultReinforce:[
-            ],ally:[
-            ],
-        },{
-            level:['Basic 7'],class:0,world:-1,
-            name:'Testing',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:2,y:2},name:'Duck'},
+            {position:{x:2,y:2},name:'Admiral-Manager'},
             ],reinforce:[
             ],assaultReinforce:[
             ],ally:[

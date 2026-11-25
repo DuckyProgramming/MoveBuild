@@ -6807,9 +6807,9 @@ down until he comes to a stop a short distance away.`,
 `You have precious little free time left before they come.
 There's just a single day, in fact.
 But that doesn't mean you can't make the most of it.`,
-                option:['Rest','Training','Focus','Motivation'],
-                optionDesc:['Gain 10 Max Health','Deluxe Upgrade a Card','Remove a Card','Duplicate a Card'],
-                link:[2,3,4,5],
+                option:['Rest','Training','Focus','Motivation','Give Up'],
+                optionDesc:['Gain 10 Max Health','Deluxe Upgrade a Card','Remove a Card','Duplicate a Card','Reduce Difficulty to 25 and End This Run'],
+                link:[2,3,4,5,7],
             },{
                 desc:
 `You decide to spend the time you have left getting some
@@ -6849,6 +6849,15 @@ Before you know it, the day is over. The fleet is here.`,
             },{
                 desc:``,
                 option:['Go Forth'],
+                optionDesc:[''],
+                link:[-1],
+            },{
+                desc:
+`You have second thoughts about this whole thing.
+Defeating the Management on Konai was one thing, but
+an entire galaxy just seems out of your league.
+Maybe the Admiral-Manager's rule won't be so bad.`,
+                option:['Leave'],
                 optionDesc:[''],
                 link:[-1],
             },

@@ -421,7 +421,7 @@ at the surface of Konai, scarred from years of rebellion.\n`
 `Donakho fidgets with something.`,
 `Setsuna bows her head a little.`,
 `Airi clearly regrets nothing.`,
-`Edgar spins a pistol in his hand.`,
+`Edgar twirls a pistol in his hand.`,
 `Chip is calculating the odds of success.`,
 `Shiru tries to look important.`,
 `DD-610 probably wishes it could show emotion.`,
@@ -2632,6 +2632,17 @@ He asks if you'd like to switch to Door ${4-this.selection[1]-this.selection[2]}
                         }else if(this.page==1&&a==3){
                             this.battle.overlayManager.overlays[12][this.player].active=true
                             this.battle.overlayManager.overlays[12][this.player].activate()
+                        }else if(this.page==1&&a==4){
+                            game.diff=25
+                            transition.trigger=true
+                            transition.scene='victory'
+                            this.battle.setupStats()
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                if(!this.battle.collectionManager.won[this.battle.player[a]]<game.diff){
+                                    this.battle.collectionManager.won[this.battle.player[a]]=game.diff
+                                    this.battle.collectionManager.saveWon()
+                                }
+                            }
                         }
                     break
 

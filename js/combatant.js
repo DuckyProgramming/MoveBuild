@@ -1129,16 +1129,18 @@ class combatant{
                         this.subAttackBuff([1,2,5],1.5)
                     }
                     this.monologue={text:[
-                        'You really thought it would be that easy?',
-                        'My entire life, I have served the Management!',
-                        'I rose from a humble cadet to lead our fleets!',
-                        'I led us to victory in the Sisters War!',
-                        'I besieged the heart of the Grand Coalition!',
-                        'I brought three centuries of dominance and prosperity!',
-                        'I created a legacy that will last ten thousand years!',
-                        'And I returned when the world needed me most!',
-                        'And this is how I am repaid by my subjects?',
-                        'Not with a throne to sit on, but with an end to contemplate?',
+                        'You really thought it\nwould be that easy?',
+                        'My entire life, I have\nserved the Management!',
+                        'I rose from a humble cadet\nto lead our fleets!',
+                        'I brought us to victory\nin the Sisters War!',
+                        'I besieged the heart of\nthe Grand Coalition!',
+                        'I united the galaxy\nunder a single banner!',
+                        'I brought three centuries of\ndominance and prosperity!',
+                        'I created a legacy that will\nlast ten thousand years!',
+                        'And I returned when the\nworld needed me most!',
+                        'And this is how I am\nrepaid by my subjects?',
+                        'Not with a throne,\nbut with treachery?',
+                        'There really is no\njustice in this world.',
                     ]}
                 break
                 default:
@@ -7473,6 +7475,25 @@ class combatant{
         }
         this.interiorStatus[1]=0
     }
+    tickPostTile(){
+        switch(this.name){
+            case 'Asshole':
+                if(this.turnsAlive>=2){
+                    let outer=[[0,0],[0,1],[0,2],[1,0],[2,0],[1,3],[2,4],[3,1],[4,2],[3,4],[4,3],[4,4]]
+                    let possible=[]
+                    for(let a=0,la=outer.length;a<la;a++){
+                        let subject=this.battle.tileManager.getTileIndex(outer[a][0],outer[a][1])
+                        if(subject!=-1&&!this.battle.tileManager.tiles[subject].type.includes(23)&&!this.battle.tileManager.tiles[subject].type.includes(24)&&!this.battle.tileManager.tiles[subject].type.includes(26)){
+                            possible.push(this.battle.tileManager.tiles[subject])
+                        }
+                    }
+                    if(possible.length>0){
+                        randin(possible).addType(26)
+                    }
+                }
+            break
+        }
+    }
     tickOrbs(type){
         for(let a=0,la=this.orbs.length;a<la;a++){
             if(this.orbs[a]==type||type==-1){
@@ -9646,9 +9667,7 @@ class combatant{
                                 //this.battle.combatantManager.holdSummonCombatant(this.tilePosition,findName('Management Custodian',types.combatant),this.goal.anim.direction)
                             break
                             case 'Eternal Judge': case '-h Eternal Judge':
-                                print('a')
                                 if(this.sins.includes(3)){
-                                    print('b')
                                     this.battle.relicManager.returnRelicsSin()
                                 }
                             break
