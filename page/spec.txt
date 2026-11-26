@@ -3,3 +3,5 @@ most recent spec number used - 91
 
 total cards [standard] - 10000
 protocol for overruns - transfer cards from disband to invalid, using checkUnnecessary to find them
+    it is also allowed to remove cards and exempt them from checkUnnecessary, typically because they follow an old specification
+    example: "add a" instead of "add 1"

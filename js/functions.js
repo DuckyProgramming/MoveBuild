@@ -590,8 +590,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[2]&&user.status.main[166]>0){
 				bonus+=user.status.main[166]
 			}
-			if(variant&&args[3]&&user.status.main[340]>0){
-				bonus+=user.status.main[340]
+			//if(variant&&args[3]&&user.status.main[340]>0){
+			if(variant&&args[3]&&user.status.main[890]>0){
+				bonus+=user.status.main[890]
 			}
 			if(variant&&args[4]&&user.status.main[402]!=0){
 				bonus+=user.status.main[402]
@@ -614,8 +615,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[10]&&user.status.main[797]>0){
 				bonus+=user.status.main[797]
 			}
-			if(variant&&args[11]&&user.status.main[890]>0){
-				bonus+=user.status.main[890]
+			//if(variant&&args[11]&&user.status.main[890]>0){
+			if(variant&&args[11]&&user.status.main[340]>0){
+				bonus+=user.status.main[340]
 			}
 			if(variant&&args[12]=='Old\nRiptide'&&user.status.main[1041]>0){
 				bonus+=user.status.main[1041]
@@ -3143,6 +3145,9 @@ function checkExists(start=-1,end=-1){
 		651,657,//invalid close in, keep distance
 		671,//invalid charge source
 		770,//invalid credence
+		771,1095,2338,3443,3450,3545,3546,4054,4055,4056,
+		4057,4139,6649,8556,8678,//add "a" (rather than a number)
+		772,773,4883,4898,//invalid amass
 		792,//invalid conjure blade
 		853,//invalid energy recoil
 		865,4800,//invalid luminous
@@ -3155,6 +3160,7 @@ function checkExists(start=-1,end=-1){
 		1284,2583,3151,3152,//invalid lucky 7, edict, graphite, graphene
 		1307,//invalid boston bat
 		1369,//invalid high vis jacket
+		1461,//invalid overconfidence
 		1691,1692,1693,1694,//theme
 		1701,//invalid sneeze
 		1739,2053,//invalid password
@@ -3194,6 +3200,7 @@ function checkExists(start=-1,end=-1){
 		6109,//invalid anaphel
 		6199,//invalid cleaver
 		6399,//invalid circle of silence
+		6899,12238,//invalid lunar veil
 		7196,7197,7198,7199,7200,7201,7672,11937,12006,12100,
 		12111,12113,12114,//x = evolve
 		7268,//invalid big time
@@ -3202,6 +3209,7 @@ function checkExists(start=-1,end=-1){
 		7929,//invalid suit up
 		8020,8034,8996,9228,9229,10322,//move 1 tile away
 		8540,//invalid luminescent pillar
+		8558,//invalid checkpoint charlie
 		8695,//invalid set sail
 		8942,8948,9232,9239,9240,//old discus animations
 		9661,//invalid silverswivel
@@ -3332,6 +3340,15 @@ function checkExists(start=-1,end=-1){
 	print(`Total: ${total}`)
 }
 function checkMislabel(type,check){
+	/*
+	1 - Attacks deal no damage
+	2 - Defenses add no block
+	3 - Movements don't move
+	4 - Powers fatigue or exhaust
+	5 - Skills fatigue
+	6 - Skills both retain and are ethereal
+	7 - Skills deal damage or add block
+	*/
 	if(check==undefined){
 		print('Usage: checkMislabel(type[0 for regular,1 for mtg],check)')
 	}else{
@@ -3346,8 +3363,11 @@ function checkMislabel(type,check){
 				cardData.class==1&&check==1&&!cardData.desc.includes('Damage')||
 				cardData.class==2&&check==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
 				cardData.class==3&&check==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')&&!cardData.desc.includes('Pass')||
-				cardData.class==4&&check==4&&(cardData.desc.includes('Fatigue')||cardData.desc.includes('Exhaust'))||
-				cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
+				//cardData.class==4&&check==4&&(cardData.desc.includes('Fatigue')||cardData.desc.includes('Exhaust'))||
+				cardData.class==4&&check==4&&(cardData.spec.includes(0)||cardData.spec.includes(1))||
+				//cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
+				cardData.class==11&&check==5&&cardData.spec.includes(0)||
+				cardData.class==11&&check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
 				cardData.class==11&&check==11&&skillRegex.some(reg=>reg.test(cardData.desc))
 			){
 				set.push(cardData.name)
@@ -3363,8 +3383,11 @@ function checkMislabel(type,check){
 					cardData.class==1&&check==1&&!cardData.desc.includes('Damage')||
 					cardData.class==2&&check==2&&!cardData.desc.includes('Block')&&!cardData.desc.includes('Barrier')&&!cardData.desc.includes('Bounce')||
 					cardData.class==3&&check==3&&!cardData.desc.includes('Move')&&!cardData.desc.includes('Swap')&&!cardData.desc.includes('Advance')&&!cardData.desc.includes('Pass')||
-					cardData.class==4&&check==4&&(cardData.desc.includes('Fatigue')||cardData.desc.includes('Exhaust'))||
-					cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
+					//cardData.class==4&&check==4&&(cardData.desc.includes('Fatigue')||cardData.desc.includes('Exhaust'))||
+					cardData.class==4&&check==4&&(cardData.spec.includes(0)||cardData.spec.includes(1))||
+					//cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
+					cardData.class==11&&check==5&&cardData.spec.includes(0)||
+					cardData.class==11&&check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
 					cardData.class==11&&check==11&&skillRegex.some(reg=>reg.test(cardData.desc))
 				){
 					set.push(cardData.name)

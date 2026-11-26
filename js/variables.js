@@ -150,7 +150,7 @@ types={
         {name:'Normal1',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:31,effect:[3]}],description:`Precursor to Normal2`},
         {name:'Boss1',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:4,effect:[10]},{type:253,effect:[10,3]}],description:`These numbers are a little arbitrary`},
         {name:'Danger',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:255,effect:[9,1]},{type:256,effect:[9,1]}],description:`Contains... something?`},
-        {name:'Carbonado Robot',life:145,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
+        {name:'Carbonado Robot',life:145,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:30,effect:[10,10]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
         {name:'Obstruction',life:87,behavior:5,spec:[0],move:{type:8,speed:1},attack:[{type:6,effect:[8]},{type:259,effect:[9]}],description:`Solving problems by not having problems`},
         {name:'Structural Energy',life:55,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
         {name:'Disorder Energy',life:104,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[10,1]},{type:269,effect:[16,1,1]}],description:`Coloration error moment`},
@@ -348,6 +348,7 @@ types={
         //{name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:28,effect:[9]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         //{name:'Mailman',life:60,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[8]},{type:414,effect:[4,'Mail']}],description:`Protected by labor`},
         //{name:'Slimoid',life:36,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Glued']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
+        //{name:'Carbonado Robot',life:145,behavior:1,spec:[0,19],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
         //{name:'Big Slimoid',life:54,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Glued']},{type:33,effect:[2]}],description:`Recursion`},
         //{name:'Admiral-Manager',life:1453,behavior:0,spec:[1,2],move:{type:17,speed:1},attack:[{type:529,effect:[50]},{type:531,effect:[36,2]},{type:533,effect:[40,40]},{type:535,effect:[10]},{type:537,effect:[24,2]},{type:539,effect:[4,'Fear']}],description:`One hundred years of solitude`},
         
@@ -1248,7 +1249,7 @@ types={
 
         {name:'Painted Deck',internal:'Compact/Lose First Relic',id:230,rarity:-1,list:0,mtg:0,world:[0,3],description:'Compact Cards in Your Hand\nWhen Taken, Lose Your First Relic'},
         {name:'Bad Legal Defense',internal:'Medic Death Remove',id:231,rarity:-1,list:0,mtg:0,world:[0,3],description:'Remove a Card When a Medic Dies'},
-        {name:'Mining Light',internal:'More Boss Rewards',id:232,rarity:1,list:0,mtg:0,world:[0,2],description:'Boss Rewards Give 50% More Currency\nand 1 More Rare Card'},
+        {name:'Mining Light',internal:'More Boss Rewards',id:232,rarity:2,list:0,mtg:0,world:[0,2],description:'Boss Rewards Give 50% More Currency\nand 1 More Rare Card'},
         {name:'Card Buffer Advanced',internal:'Edition Deluxe Upgrades',id:233,rarity:2,list:0,mtg:0,world:[0,2],description:'Cards You Choose to Deluxe\nUpgrade Gain Editions'},
         {name:'CSS',internal:'Energy/Visible Energy',id:234,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nYou Cannot See Your Energy'},
         {name:'Clownfish',internal:'Edition Block',id:235,rarity:0,list:0,mtg:0,world:[0,3],description:'Add 2 Block When You Play\na Card With an Edition'},
@@ -1610,7 +1611,7 @@ types={
         {name:'Clamp',internal:'Retain 10 Block',id:559,rarity:1,list:0,mtg:0,world:[0,2],description:'Retain Up to 10 Block Each Turn'},
 
         {name:'Cubic Egg',internal:'Double First Debuff',id:560,rarity:2,list:0,mtg:0,world:[0,3],description:'Double the First Debuff\nYou Apply to Each Enemy'},
-        {name:'Dissection Tools',internal:'Elite Rare Card',id:561,rarity:2,list:0,mtg:0,world:[0,2],description:'You Get a Rare Card Reward Per Elite'},
+        {name:'Dissection Pick',internal:'Elite Rare Card',id:561,rarity:-1,list:0,mtg:0,world:[0,2],description:'You Get a Rare Card Reward Per Elite'},
         {name:'Lunar Pastry',internal:'Vanish Heal',id:562,rarity:1,list:0,mtg:0,world:[0,2],description:'When You Play a\nVanishing Card, Heal 4 HP'},
         {name:'Ghost Seed',internal:'Ethereal Card',id:563,rarity:3,list:0,mtg:0,world:[1,3],description:'When Taken, Make a Card Ethereal'},
         {name:'Ringing Triangle',internal:'Starting Retain Hand',id:564,rarity:3,list:0,mtg:0,world:[0,3],description:'On Turn 1, Retain Your Hand'},
@@ -1672,10 +1673,12 @@ types={
         {name:'Very Hot Cocoa',internal:'Level Energy',id:615,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 3 Energy at the Start of Turn 1\nGain 2 Energy at the Start of Turn 2\nGain 1 Energy at the Start of Turn 3'},
         {name:'Writ of Mandamus',internal:'Energy/Control',id:616,rarity:4,list:0,mtg:1,world:[0,3],description:'Gain 1 Base Energy,\nEnemies Start Combat With 1 Control'},
         {name:'Chainlink Cage',internal:'Energy/Event Choice',id:617,rarity:4,list:0,mtg:1,world:[0,2],description:'Gain 1 Base Energy,\nLose 20 Health if You Pick an Option\nOther than the First in an Event'},
-
         {name:'Shop Phone',internal:'Shop Anytime',id:618,rarity:3,list:0,mtg:0,world:[0,2],description:'Click While on the Map to\nEnter the Shop Anytime\nSingle Use'},
         {name:'Bus Ticket',internal:'Free Move Anytime',id:619,rarity:3,list:0,mtg:1,world:[0,3],description:'Click While on the Map to Make\nYour Next Map Move Free\nSingle Use'},
+
         {name:'Jacks',internal:'Triple Ethereal Free Card',id:620,rarity:3,list:0,mtg:0,world:[0,3],description:'At the Start of Combat,\nAdd 3 Ethereal Copies of a\nRandom Card in Deck to Hand\nThey Cost 0 Temporarily'},
+        {name:'Dissection Tools',internal:'Elite Money',id:621,rarity:1,list:0,mtg:0,world:[0,2],description:'Elites Give 50% More Currency'},
+        //561
 
         //mark mtg mark r
     ],item:[

@@ -1789,6 +1789,9 @@ class card{
             case -166:
                 this.battle.cardManagers[this.player].allEffect(2,2)
             break
+            case -175:
+                this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+            break
             case 202:
                 userCombatant.combo+=this.effect[1]
             break
@@ -1810,7 +1813,7 @@ class card{
             case 1710:
                 userCombatant.combo+=this.effect[2]
             break
-            case 2580: case 10169:
+            case 2580: case 10169: case 12248:
                 userCombatant.addBlock(this.effect[1])
             break
             case 2770:
@@ -1903,7 +1906,7 @@ class card{
             case 6705:
                 userCombatant.addBlock(this.effect[0])
             break
-            case 6886:
+            case 6886: case 12246:
                 this.battle.cardManagers[this.player].draw(this.effect[0])
             break
             case 6947:
@@ -1998,6 +2001,31 @@ class card{
             break
             case 12102:
                 userCombatant.statusEffect('Double Damage Turn',1)
+            break
+            case 12241:
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Dual\nDiscus',types.card),this.level,0)
+                }
+            break
+            case 12242: case 12243:
+                userCombatant.statusEffect('Pure',this.effect[2])
+            break
+            case 12244:
+                userCombatant.addBlock(this.effect[0])
+                this.battle.cardManagers[this.player].draw(this.effect[1])
+            break
+            case 12245:
+                userCombatant.gainFaith(this.effect[1])
+            break
+            case 12247:
+                userCombatant.statusEffect('Temporary Strength Next Turn',this.effect[1])
+                userCombatant.statusEffect('Temporary Draw',this.effect[2])
+            break
+            case 12249:
+                userCombatant.statusEffect('Block Next Turn',this.effect[2])
+            break
+            case 12250:
+                userCombatant.statusEffect('Armor',this.effect[2])
             break
 
         }
@@ -2150,7 +2178,7 @@ class card{
                     this.battle.cardManagers[this.player].draw(this.effect[0])
                 }
             break
-            case 5502: case 5657: case 6267:
+            case 5502: case 5657: case 6267: case 12248:
                 this.battle.cardManagers[this.player].hand.add(this.type,this.level,this.color,this.edition)
             break
             case 5537:
@@ -2599,6 +2627,9 @@ class card{
                 userCombatant.statusEffect('Frail',types.card[findName('Sun\nYat-sen',types.card)].levels[0].effect[0])
                 this.battle.loseCurrency(types.card[findName('Chiang\nKai-shek',types.card)].levels[0].effect[0],this.player)
             break
+            case 12258:
+                userCombatant.statusEffect('Frail',this.effect[1])
+            break
         }
         return false
     }
@@ -2785,6 +2816,11 @@ class card{
                     this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
                 }
             break
+            case 12251:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].deck.addAbstract(findName('Worker',types.card),0,0,0,[4],[[62]])
+                }
+            break
             
         }
     }
@@ -2850,7 +2886,7 @@ class card{
             case 6892:
                 this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,4,0,[],[3])
             break
-            case 6899:
+            case 6899: case 12238:
                 this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
             break
             case 6994: case 7328: case 8473:
@@ -2902,6 +2938,21 @@ class card{
             break
             case 12025:
                 this.battle.addCurrency(this.effect[2],this.player)
+            break
+            case 12252:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
+                }
+            break
+            case 12253:
+                for(let a=0,la=this.effect[2];a<la;a++){
+                    this.battle.cardManagers[this.player].addRandomAbstract(0,0,0,1,0,[],[constants.playerNumber+2,3])
+                }
+            break
+            case 12254:
+                for(let a=0,la=this.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].deck.add(findName('Pride',types.card),0,constants.playerNumber+2)
+                }
             break
         }
     }
@@ -3337,6 +3388,7 @@ class card{
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
             case 107: case 255: case 2617: case 2665: case 4765: case 5272: case 5273: case 8272: case 9415: case 9908:
+            case 12259:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
             case 108: case 1635: case 2419: case 4455: case 5166: case 5606: case 5654: case 6078: case 9644: case 9645:
@@ -3351,7 +3403,7 @@ class card{
                 this.effect[0]+=this.effect[1]
             break
             case 866: case 908: case 1893: case 2356: case 2482: case 5428: case 5429: case 5430: case 5431: case 8056:
-            case 8728:
+            case 8728: case 12239:
                 this.effect[1]+=this.effect[2]
             break
             case 937: case 7750: case 8217: case 8516: case 8766:

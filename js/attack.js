@@ -349,7 +349,8 @@ class attack{
             case 12004: case 12006: case 12012: case 12014: case 12015: case 12023: case 12024: case 12039: case 12040: case 12041: case 12044: case 12045: case 12046: case 12047: case 12051: case 12054: case 12055: case 12064: case 12066: case 12068:
             case 12071: case 12072: case 12076: case 12079: case 12080: case 12083: case 12089: case 12095: case 12098: case 12100: case 12101: case 12103: case 12104: case 12113: case 12114: case 12117: case 12128: case 12131: case 12136: case 12138:
             case 12139: case 12140: case 12142: case 12151: case 12156: case 12157: case 12158: case 12159: case 12160: case 12161: case 12162: case 12177: case 12178: case 12191: case 12192: case 12197: case 12198: case 12199: case 12200: case 12201:
-            case 12202: case 12204: case 12205: case 12206: case 12207: case 12210: case 12211: case 12224: case 12226: case 12231: case 12232: case 12233: case 12234: case 12235: case 12236:
+            case 12202: case 12204: case 12205: case 12206: case 12207: case 12210: case 12211: case 12224: case 12226: case 12231: case 12232: case 12233: case 12234: case 12235: case 12236: case 12237: case 12239: case 12240: case 12242: case 12250:
+            case 12251: case 12254: case 12255: case 12261: case 12262: case 12264: case 12265: case 12266: case 12267:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2363,7 +2364,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*(this.battle.counter.enemy-this.battle.counter.killed),this.user)
                     break
                     case 3249:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.addBlock(this.effect[0])
                         }else{
                             this.targetCombatant.takeDamage(this.effect[1],this.user)
@@ -2517,7 +2518,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*(this.battle.tileManager.getAreaAll(this.targetCombatant.tilePosition,1,1).length<6?3:1),this.user)
                     break
                     case 5038:
-                        this.targetCombatant.takeDamage(this.effect[0]*(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1?2:1),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getIntentClass()==1?2:1),this.user)
                     break
                     case 5046:
                         if(!this.targetCombatant.spec.includes(7)){
@@ -2558,7 +2559,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userManager.exhaust.randomEffect(68,[this.userManager.hand.cards,69])?2:1),this.user)
                     break
                     case 5641:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.userCombatant.addBlock(this.effect[1])
                         }else{
@@ -2581,7 +2582,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*this.userManager.hand.costNumber(),this.user)
                     break
                     case 6124:
-                        this.targetCombatant.takeDamage(this.effect[0]*(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1?0.5:1),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getIntentClass()==1?0.5:1),this.user)
                     break
                     case 6132: case 6133:
                         this.targetCombatant.takeDamage(this.amplify?this.effect[0]-this.effect[1]:this.effect[0],this.user)
@@ -2663,12 +2664,11 @@ class attack{
                     case 7454:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.totalUniqueStatus(1)>0?2:1),this.user)
                     break
-                    case 7465:
+                    case 7465: case 12264: case 12265:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.targetCombatant.getStatus('Communized'),this.user)
                     break
                     case 7472:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
                     break
@@ -2682,8 +2682,7 @@ class attack{
                         }
                     break
                     case 7499:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.battle.overlayManager.overlays[10][this.player].active=true
                             this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[0],[[1,1]]])
@@ -2866,7 +2865,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.handSize,this.user)
                     break
                     case 8874:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
                     break
@@ -2909,7 +2908,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*((abs(this.direction-this.targetCombatant.goal.anim.direction)<30||abs(this.direction-this.targetCombatant.goal.anim.direction-360)<30||abs(this.direction-this.targetCombatant.goal.anim.direction+360)<30)?2:1),this.user)
                     break
                     case 9418:
-                        this.targetCombatant.takeDamage(this.effect[0]*(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==2?0.5:1),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getIntentClass()==2?0.5:1),this.user)
                     break
                     case 9443:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user,this.energy>this.battle.getEnergyBase(this.player)?2:9)
@@ -2931,8 +2930,7 @@ class attack{
                         }
                     break
                     case 9628:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.userManager.drawAbstract(this.effect[1],0,2,[1])
                         }
@@ -3348,7 +3346,7 @@ class attack{
                             this.userCombatant.heal(this.targetCombatant.getStatus('Bleed'))
                         }
                     break
-                    case 409: case 7080: case 7996: case 10694:
+                    case 409: case 7080: case 7996: case 10694: case 12250:
                         this.userCombatant.statusEffect('Weak',this.effect[1])
                     break
                     case 427:
@@ -3499,22 +3497,22 @@ class attack{
                         this.userCombatant.enterStance(0)
                     break
                     case 730:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.enterStance(1)
                         }
                     break
                     case 731:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.enterStance(2)
                         }
                     break
                     case 732:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.enterStance(3)
                         }
                     break
                     case 733:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.enterStance(4)
                         }
                     break
@@ -3966,7 +3964,7 @@ class attack{
                         this.userManager.draw(this.effect[2])
                     break
                     case 1569:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.statusEffect('Stun',this.effect[1])
                             this.battle.updateTargetting()
                         }
@@ -4614,7 +4612,7 @@ class attack{
                         }
                     break
                     case 2584:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=1&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=5){
+                        if(this.userCombatant.getIntentClass()!=1&&this.userCombatant.getIntentClass()!=5){
                             this.userCombatant.statusEffect('Control',this.effect[1])
                         }
                     break
@@ -6442,7 +6440,7 @@ class attack{
                         this.battle.overlayManager.overlays[19][this.player].activate()
                     break
                     case 6041:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                        if(this.userCombatant.getIntentClass()==1){
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         }
                     break
@@ -6535,7 +6533,7 @@ class attack{
                         this.targetCombatant.setIntentClassMultiple([1,5])
                     break
                     case 6195:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                        if(this.userCombatant.getIntentClass()==1){
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
                         }
                     break
@@ -6731,7 +6729,7 @@ class attack{
                             this.userCombatant.addBlock(this.effect[2])
                         }
                     break
-                    case 6553: case 6555:
+                    case 6553: case 6555: case 12242:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.reserve.drawEffect(this.userManager.hand.addReturn(findName('Sharp\nWord',types.card),0,constants.playerNumber+1))
                         }
@@ -6898,7 +6896,7 @@ class attack{
                         this.targetCombatant.statusEffect('Burn',this.effect[2])
                     break
                     case 6829:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.takeDamage(this.targetCombatant.getStatus('Bleed')*this.effect[1],-1)
                         }
                     break
@@ -7170,7 +7168,7 @@ class attack{
                         }
                     break
                     case 7368:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=1&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=5){
+                        if(this.userCombatant.getIntentClass()!=1&&this.userCombatant.getIntentClass()!=5){
                             this.targetCombatant.statusEffect('Poison',this.effect[1])
                         }
                     break
@@ -8997,7 +8995,7 @@ class attack{
                         this.userCombatant.statusEffect('Cycle Movement',1)
                     break
                     case 11201:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==2){
+                        if(this.userCombatant.getIntentClass()==2){
                             this.targetCombatant.statusEffect('Lock On',this.effect[1])
                         }
                     break
@@ -9313,6 +9311,24 @@ class attack{
                     break
                     case 12139:
                         this.battle.setTurn(this.battle.turn.total-this.effect[1])
+                    break
+                    case 12264:
+                        this.battle.addEnergy(this.effect[1]*this.userManager.hand.numberAbstract(3,[85]),this.player)
+                    break
+                    case 12265:
+                        this.battle.addSpecificEnergy(this.userManager.hand.numberAbstract(3,[85]),this.player,6)
+                    break
+                    case 12266:
+                        if(this.targetCombatant.life<=0&&this.targetCombatant.getStatus('Communized')>0){
+                            this.userManager.draw(this.effect[1],5)
+                        }
+                    break
+                    case 12267:
+                        if(this.targetCombatant.getStatus('Communized')>=this.effect[1]){
+                            this.targetCombatant.statusEffect('Stun',this.effect[2])
+                        }else{
+                            this.targetCombatant.statusEffect('Communized',this.effect[3])
+                        }
                     break
 
                 }
@@ -9879,8 +9895,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]*(this.userManager.deck.cards.length>=40?2:1))
                     break
                     case 7473:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.userCombatant.addBlock(this.effect[0])
                         }
                     break
@@ -9888,7 +9903,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]*(this.userManager.deck.cards.length>=50?2:1))
                     break
                     case 7634:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.addBlock(this.effect[0])
                         }else{
                             this.userManager.draw(this.effect[1])
@@ -10260,7 +10275,7 @@ class attack{
                         this.userCombatant.statusEffect('Cannot Be Pushed',1)
                     break
                     case 43: case 2200: case 2425: case 2804: case 3072: case 5225: case 5795: case 6020: case 8533: case 11583:
-                    case 11786: case 12105:
+                    case 11786: case 12105: case 12244:
                         this.userManager.draw(this.effect[1])
                     break
                     case 50: case 6991: case 7725: case 9147:
@@ -10605,7 +10620,7 @@ class attack{
                     case 1742:
                         this.userManager.hand.randomEffect(26,[this.effect[1]])
                     break
-                    case 1814: case 3862: case 4836: case 9191:
+                    case 1814: case 3862: case 4836: case 9191: case 12249:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.randomEffect(0)
                         }
@@ -12184,7 +12199,7 @@ class attack{
                             this.userCombatant.statusEffect('Counter Once',this.effect[1])
                         }
                     break
-                    case 6417: case 6488:
+                    case 6417: case 6488: case 12243:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.reserve.drawEffect(this.userManager.hand.addReturn(findName('Reversal',types.card),0,constants.playerNumber+1))
                         }
@@ -13784,7 +13799,7 @@ class attack{
                         this.userCombatant.statusEffect('(N) Next Turn',1)
                     break
                     case 10899:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.statusEffect('Retain Block',this.effect[1])
                         }
                     break
@@ -21469,7 +21484,7 @@ class attack{
                         this.battle.overlayManager.overlays[7][this.player].active=true
                         this.battle.overlayManager.overlays[7][this.player].activate()
                     break
-                    case 7755: case 9282: case 9473: case 10779:
+                    case 7755: case 9282: case 9473: case 10779: case 12258:
                         this.userCombatant.statusEffect('Dexterity',this.effect[0])
                     break
                     case 7759:
@@ -21682,7 +21697,7 @@ class attack{
                     break
                     case 8091:
                         this.userCombatant.statusEffect('Vigor',this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -22603,7 +22618,7 @@ class attack{
                     break
                     case 9322:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -24328,7 +24343,7 @@ class attack{
                     break
                     case 11586:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.statusEffect('Bleed',this.effect[1])
                         }
                     break
@@ -24722,6 +24737,13 @@ class attack{
                         this.userCombatant.charge+=this.effect[0]*this.handSize
                         this.userManager.allEffect(2,2)
                     break
+                    case 12260:
+                        this.userCombatant.statusEffect('Dodge',this.effect[0])
+                        this.battle.combatantManager.areaAbstract(2,['Bleed',this.effect[1]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
+                    break
+                    case 12263:
+                        this.userCombatant.statusEffect('War Block',this.effect[0])
+                    break
 
                 }
                 //mark 4
@@ -24732,7 +24754,7 @@ class attack{
                     case 6046: case 6114: case 6268: case 6324: case 6798: case 6875: case 6886: case 6925: case 6959: case 6960:
                     case 6961: case 6962: case 7006: case 7007: case 7008: case 7009: case 7010: case 7011: case 7055: case 7505:
                     case 7631: case 7646: case 7728: case 8473: case 8522: case 8582: case 9251: case 9471: case 9562: case 10153:
-                    case 11117: case 12133:
+                    case 11117: case 12133: case 12246:
                         this.userManager.draw(this.effect[0])
                     break
                     case 28: case 5319: case 5765: case 9479: case 9483: case 11466:
@@ -24779,7 +24801,7 @@ class attack{
                     case 70:
                         this.userManager.hand.reserveFree(1)
                     break
-                    case 76: case 3113: case 6899: case 8388: case 8583:
+                    case 76: case 3113: case 6899: case 8388: case 8583: case 12252:
                         this.userCombatant.statusEffect('Intangible',this.effect[0])
                     break
                     case 78:
@@ -24913,7 +24935,7 @@ class attack{
                         this.userCombatant.statusEffect('Dexterity Per Turn',-this.effect[1])
                     break
                     case 305:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.statusEffect('Strength',this.effect[0])
                         }
                     break
@@ -25867,7 +25889,7 @@ class attack{
                         this.userManager.drawAbstract(this.effect[0],10,0,[5])
                     break
                     case 2410:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.statusEffect('Buffer',this.effect[0])
                         }
                     break
@@ -26027,7 +26049,7 @@ class attack{
                     break
                     case 2719:
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
                         }
                     break
@@ -27721,7 +27743,7 @@ class attack{
                     break
                     case 6153:
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.statusEffect('Weak',this.effect[1])
                         }
                     break
@@ -28833,8 +28855,7 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,1]]])
                     break
                     case 7471:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.userManager.draw(this.effect[0])
                         }
                     break
@@ -29390,7 +29411,7 @@ class attack{
                         this.userManager.hand.compactRetain(this.effect[0])
                     break
                     case 8382:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userCombatant.statusEffect('Dexterity',this.effect[0])
                         }
                     break
@@ -29856,13 +29877,13 @@ class attack{
                     break
                     case 9105:
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                         }
                     break
                     case 9106:
                         this.userCombatant.heal(this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[2])
                         }
@@ -31387,7 +31408,7 @@ class attack{
                         this.userCombatant.statusEffect('Cycle Skill',1)
                     break
                     case 11550:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                         }
                     break
@@ -31397,7 +31418,7 @@ class attack{
                     case 11564:
                         this.userCombatant.statusEffect('Movement Draw',this.effect[0])
                     break
-                    case 11585:
+                    case 11585: case 12238: case 12253:
                         this.userCombatant.statusEffect('Intangible',this.effect[0])
                         this.userManager.draw(this.effect[1])
                     break
@@ -31733,6 +31754,10 @@ class attack{
                         for(let a=0,la=this.handSize;a<la;a++){
                             this.userManager.hand.add(findName('Shiv',types.card),0,0)
                         }
+                    break
+                    case 12259:
+                        this.userManager.draw(this.effect[0])
+                        this.battle.combatantManager.areaAbstract(2,['Communiezd',this.effect[2]],this.userCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
 
                 }
@@ -34035,7 +34060,7 @@ class attack{
                     break
                     case 6317:
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                        if(this.userCombatant.getIntentClass()==1){
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -34217,7 +34242,7 @@ class attack{
                 switch(this.type){
                     case 38: case 1255: case 1348: case 10202:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
                         }
                     break
@@ -34239,7 +34264,7 @@ class attack{
                     break
                     case 104:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==4&&isInt(this.targetCombatant.attack[this.targetCombatant.intent].effect[0])){
+                        if(this.userCombatant.getIntentClass()==4&&isInt(this.targetCombatant.attack[this.targetCombatant.intent].effect[0])){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
                         }
                     break
@@ -34302,7 +34327,7 @@ class attack{
                     break
                     case 326:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userManager.hand.add(findName('Shiv',types.card),0,0)
                             }
@@ -34332,7 +34357,7 @@ class attack{
                     break
                     case 433:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==2){
+                        if(this.userCombatant.getIntentClass()==2){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
                         }
                     break
@@ -34773,7 +34798,7 @@ class attack{
                         }
                     break
                     case 1244:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[0])
                         }
                     break
@@ -34793,7 +34818,7 @@ class attack{
                         }
                     break
                     case 1256:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[0])
                         }
                         for(let a=0,la=this.effect[2];a<la;a++){
@@ -35162,7 +35187,7 @@ class attack{
                         this.battle.updateTargetting()
                     break
                     case 1545:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=1&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=2){
+                        if(this.userCombatant.getIntentClass()!=1&&this.userCombatant.getIntentClass()!=2){
                             this.targetCombatant.statusEffect('Stun',this.effect[0])
                             this.battle.updateTargetting()
                         }
@@ -35402,7 +35427,7 @@ class attack{
                     case 1879:
                         this.targetCombatant.statusEffect('Silence',this.effect[0])
                         this.userManager.draw(this.effect[1])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.takeDamage(this.effect[2],this.user)
                         }
                     break
@@ -35762,7 +35787,7 @@ class attack{
                     break
                     case 2794:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -36566,7 +36591,7 @@ class attack{
                     break
                     case 5197:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=1&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=5){
+                        if(this.userCombatant.getIntentClass()!=1&&this.userCombatant.getIntentClass()!=5){
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -36724,7 +36749,7 @@ class attack{
                     case 6278:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Freeze',this.effect[1])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[2])
                         }
                     break
@@ -36859,7 +36884,7 @@ class attack{
                     case 6819:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Bleed',this.effect[1])
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[2])
                         }
                     break
@@ -36959,8 +36984,7 @@ class attack{
                         this.targetCombatant.statusEffect('Communized',this.effect[1])
                     break
                     case 7234:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.targetCombatant.statusEffect('Communized',this.effect[0])
                         }
                     break
@@ -37000,7 +37024,7 @@ class attack{
                     break
                     case 7550:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=1&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=5){
+                        if(this.userCombatant.getIntentClass()!=1&&this.userCombatant.getIntentClass()!=5){
                             this.userManager.randomEffect(2,0,[])
                         }
                     break
@@ -37295,8 +37319,7 @@ class attack{
                         this.userManager.draw(this.effect[2]*this.selfCall(26))
                     break
                     case 8767:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Management Soldier',types.combatant),this.battle.players+1,this.direction,this.user)
                         }
                     break
@@ -37311,7 +37334,7 @@ class attack{
                     break
                     case 8794:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5?2:1]]])
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5?2:1]]])
                     break
                     case 8801:
                         if(this.energy>this.battle.getEnergyBase(this.player)){
@@ -37413,7 +37436,7 @@ class attack{
                     break
                     case 9040:
                         this.battle.overlayManager.overlays[10][this.player].active=true
-                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5?1:2]]])
+                        this.battle.overlayManager.overlays[10][this.player].activate([this.level,[0,3],57,[],[[1,this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5?1:2]]])
                     break
                     case 9089:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -38198,8 +38221,7 @@ class attack{
                         this.battle.combatantManager.areaAbstract(2,['Vulnerable',this.effect[1]],this.targetCombatant.tilePosition,[3,this.userCombatant.id],[0,1],false,0)
                     break
                     case 11061:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.targetCombatant.statusEffect('Weak',this.effect[0])
                             this.userCombatant.statusEffect('Armor',this.effect[1])
                         }
@@ -38240,7 +38262,7 @@ class attack{
                     break
                     case 11233:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=1&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=2&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class!=5){
+                        if(this.userCombatant.getIntentClass()!=1&&this.userCombatant.getIntentClass()!=2&&this.userCombatant.getIntentClass()!=5){
                             this.targetCombatant.statusEffect('Stun',this.effect[1])
                         }
                     break
@@ -38415,7 +38437,8 @@ class attack{
                         this.userCombatant.statusEffect('Lose Health',this.effect[2])
                     break
                     case 12039:
-                        for(let a=0,la=this.userManager.hand.deAbstract(3,-1,[]);a<la;a++){
+                        //for(let a=0,la=this.userManager.hand.deAbstract(3,-1,[]);a<la;a++){
+                        for(let a=0,la=this.userManager.hand.deAbstract(4,-1,[[5,6]]);a<la;a++){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.userManager.draw(this.effect[1])
                         }
@@ -38526,6 +38549,19 @@ class attack{
                     case 12211:
                         this.targetCombatant.takeDamage((this.effect[0]*this.userManager.hand.cards.length+this.effect[1])*this.userCombatant.diceRoll(1,3),this.user)
                         this.userManager.hand.allEffect(2)
+                    break
+                    case 12261:
+                        if(this.userCombatant.war()){
+                            this.targetCombatant.takeDamage(this.userCombatant.lastDeal,this.user)
+                            this.userCombatant.addBlock(this.userCombatant.lastBlock)
+                        }
+                    break
+                    case 12262:
+                        if(this.userCombatant.war()){
+                            this.targetCombatant.takeDamage(this.userCombatant.lastDeal,this.user)
+                            this.userCombatant.addBlock(this.userCombatant.lastBlock)
+                            this.userManager.draw(this.effect[0])
+                        }
                     break
 
                 }
@@ -41159,15 +41195,13 @@ class attack{
                         this.userCombatant.statusEffect('Recover Draw',this.effect[0])
                     break
                     case 7474:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.userCombatant.statusEffect('Energy Next Turn',-this.effect[0])
                             this.userCombatant.statusEffect('Single Splash Damage',this.effect[1])
                         }
                     break
                     case 7475:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.userCombatant.statusEffect('Random Mana Next Turn',-this.effect[0])
                             this.userCombatant.statusEffect('Single Splash Damage',this.effect[1])
                         }
@@ -41866,14 +41900,14 @@ class attack{
                         this.userCombatant.prime(this.effect[1])
                     break
                     case 10179:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userManager.draw(this.effect[0])
                         }else{
                             this.userCombatant.addBlock(this.effect[1])
                         }
                     break
                     case 10180:
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.userManager.draw(this.effect[0])
                         }else{
                             this.battle.overlayManager.overlays[58][this.player].active=true
@@ -42103,7 +42137,7 @@ class attack{
                     break
                     case 11100:
                         this.userManager.drawAbstract(this.effect[0],10,13,[25])
-                        this.userCombatant.ammo+=this.effect[1]
+                        //this.userCombatant.ammo+=this.effect[1]
                     break
                     case 11146:
                         this.userCombatant.statusEffect('Attack Shock Turn',this.effect[0])
@@ -45196,7 +45230,7 @@ class attack{
                     break
                     case 6196:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5){
+                        if(this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5){
                             this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
                         }
                     break
@@ -46394,8 +46428,7 @@ class attack{
                         }
                     break
                     case 8750:
-                        if(this.userManager.hand.numberAbstract(4,[[1]])||this.userCombatant.getStatus('Free War')>0){
-                            this.userManager.randomEffect(2,75,[1])
+                        if(this.userCombatant.war()){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userManager.hand.add(findName('Supporter',types.card),0,0)
@@ -47457,6 +47490,20 @@ class attack{
                             this.targetCombatant.takeDamage(total12234*3,this.user)
                         }else{
                             this.targetCombatant.takeDamage(total12234,this.user)
+                        }
+                    break
+                    case 12240:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getIntentClass()==1?2:1),this.user)
+                        this.targetCombatant.setIntentClassMultiple([1,5])
+                    break
+                    case 12256:
+                        for(let a=0,la=this.effect[0]*this.energy;a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                    break
+                    case 12257:
+                        for(let a=0,la=this.effect[0]*this.energy+this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
                         }
                     break
 
@@ -48933,7 +48980,7 @@ class attack{
                                 this.userCombatant.statusEffect('Strength',this.effect[1])
                             break
                             case 1257:
-                                if((types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5)){
+                                if((this.userCombatant.getIntentClass()==1||this.userCombatant.getIntentClass()==5)){
                                     this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
                                 }
                             break

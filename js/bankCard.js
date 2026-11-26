@@ -205,6 +205,7 @@ card.prototype.description=function(attack,effect,spec,target){
         case -172: string+=`Take ${effect[0]} Damage\nWhen You Play a Card\nIncreases by ${effect[1]}`; break
         case -173: string+=`When Drawn,\nHalve Your Block`; break
         case -174: string+=`When Drawn,\nTake ${effect[0]} Damage and\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+        case -175: string+=`When Exhausted,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nto a Random Enemy`; break
 
         //mark n
 
@@ -3111,7 +3112,8 @@ card.prototype.description=function(attack,effect,spec,target){
         case 2883: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nChoose a Standard Discus\nof Equivalent Level\nto Add to Hand`; break
         case 2884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd a Moriya Discus\nof Equivalent Level\nto Hand`; break
         case 2885: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${this.calculateEffect(effect[1],17)} Barrier`; break
-        case 2886: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
+        case 2886: case 9241: case 12237:
+            string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
         case 2887: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nCounter ${effect[1]}`; break
         case 2888: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nGain ${effect[1]} Temporary\nStrength`; break
         case 2889: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You Have Barrier`; break
@@ -9550,7 +9552,6 @@ card.prototype.description=function(attack,effect,spec,target){
         case 9238: string+=`Add the Three Elemental\nDiscuses to Hand\nAll Discuses in Hand\nCost ${effect[0]} Less`; break
         case 9239: case 9355:
             string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nDiscover an\nElemental Discus`; break
-        case 9241: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nExhaust ${effect[1]} Card${pl(effect[1])}`; break
         case 9242: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nCounts as a Shiv`; break
         case 9243: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Cannot Gain\nBlock For ${effect[1]} Turn${pl(effect[1])}\nPush 1 Tile`; break
         case 9244: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nPush 1 Tile`; break
@@ -12518,6 +12519,36 @@ card.prototype.description=function(attack,effect,spec,target){
         case 12234: string+=`Deal Damage Equal to\nthe Sum of the Damage\nof the First 2 Other\nAttacks in Hand\nOverdrive ${effect[0]}:\nDeal Triple Damage`; break
         case 12235: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Weak,\nApply ${effect[2]} Stun and Exhaust\nOtherwise,\nApply ${effect[3]} Weak`; break
         case 12236: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Vulnerable,\nApply ${effect[2]} Stun and Exhaust\nOtherwise,\nApply ${effect[3]} Vulnerable`; break
+        case 12238: string+=`Gain ${effect[0]} Intangible\nDraw ${effect[1]} Card${pl(effect[1])}\nWhen Added,\nAdd a Random\nCurse to Deck`; break
+        case 12239: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Time${pl(effect[1])}\nIncreases by ${effect[2]} Time${pl(effect[2])}`; break
+        case 12240: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nDeals Double Damage\nIf Target Will Attack\nChange Target Intent to\nan Attack if Possible`; break
+        case 12241: string+=`When Exhausted,\nAdd ${effect[0]} Dual Discus${effect[0]!=1?`es`:``}\nof Equivalent Level\nto Hand`; break
+        case 12242: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Sharp\nWord${pl(effect[1])} to Hand\nWhen Exhausted,\nGain ${effect[2]} Pure`; break
+        case 12243: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Reversal${pl(effect[1])} to Hand\nWhen Exhausted,\nGain ${effect[2]} Pure`; break
+        case 12244: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${pl(effect[1])}\nWhen Exhausted,\nTrigger Effect`; break
+        case 12245: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nGain ${effect[1]} Faith`; break
+        case 12246: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nWhen Exhausted,\nTrigger Effect`; break
+        case 12247: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nGain ${effect[1]} Temporary\nStrength and Draw ${effect[2]} More\nCard${pl(effect[2])} Next Turn`; break
+        case 12248: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Exhausted,\nAdd ${this.calculateEffect(effect[1],1)} Block\nPulled:\nAdd a Copy of This\nCard to Hand`; break
+        case 12249: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard ${effect[1]} Random Card${pl(effect[1])}\nWhen Exhausted,\nAdd ${this.calculateEffect(effect[2],1)} Block\nNext Turn`; break
+        case 12250: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Weak\nWhen Exhausted,\nGain ${effect[2]} Armor`; break
+        case 12251: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed,\nAdd ${effect[1]} Worker${pl(effect[1])} to Deck\nIt Gains Replenish`; break
+        case 12252: string+=`Gain ${effect[0]} Intangible\nWhen Added,\nWhen Added, Add ${effect[1]}\nRandom Curse${pl(effect[1])} to Deck`; break
+        case 12253: string+=`Gain ${effect[0]} Intangible\nDraw ${effect[1]} Card${pl(effect[1])}\nWhen Added, Add ${effect[2]}\nPride${pl(effect[2])} to Deck`; break
+        case 12254: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdvance\nWhen Added, Add ${effect[1]}\nPride${pl(effect[1])} to Deck`; break
+        case 12255: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\non an Enemy or Self\nWhen Used\nOn an Enemy,\nGain ${effect[1]} Currency`; break
+        case 12256: string+=`Add ${effect[0]!=1?effect[0]:``}X Miracles\nto Hand`; break
+        case 12257: string+=`Add ${effect[0]!=1?effect[0]:``}X+${effect[1]} Miracles\nto Hand`; break
+        case 12258: string+=`Gain ${effect[0]} Dexterity\nStart of Combat:\nGain ${effect[1]} Frail`; break
+        case 12259: string+=`Draw ${effect[0]} Card${pl(effect[0])}\nDecreases by ${effect[1]}\nApply ${effect[2]} Communized\nin All Directions`; break
+        case 12260: string+=`Gain ${effect[0]} Dodge\nApply ${effect[1]} Bleed\nin All Directions`; break
+        case 12261: string+=`Make a Random\nAttack in Hand\nCost 0 Temporarily:\nDeal Damage Equal to\nYour Last Damage Dealt\nAdd Block Equal to\nYour Last Block Added`; break
+        case 12262: string+=`Make a Random\nAttack in Hand\nCost 0 Temporarily:\nDeal Damage Equal to\nYour Last Damage Dealt\nAdd Block Equal to\nYour Last Block Added\nDraw ${effect[0]} Card${pl(effect[0])}`; break
+        case 12263: string+=`Successful War Cards\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
+        case 12264: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}X Damage\nWhere X = Communized\non Target\nGain ${effect[1]} Energy Per\nWar Card in Hand`; break
+        case 12265: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}X Damage\nWhere X = Communized\non Target\nGain (E) Per\nWar Card in Hand`; break
+        case 12266: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal on a\nCommunized Enemy,\nDraw ${effect[1]} Card${pl(effect[1])}\n${effect[1]!=1?`They Cost`:`It Costs`} 0 Temporarily`; break
+        case 12267: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has\n${effect[1]} or More Communized,\nApply ${effect[2]} Stun and Exhaust\nOtherwise,\nApply ${effect[3]} Communized`; break
 
         //mark p
         //mark q

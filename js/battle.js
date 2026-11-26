@@ -1019,12 +1019,12 @@ class battle{
             this.energy.temp[this.turn.main]=0
             extra=true
         }else{
+            combatant.interiorStatus[0]=0
             if(this.players==2){
                 this.turn.main=this.turn.main==this.turn.swivel?1-this.turn.main:this.turn.main>=2?this.turn.main+1:2
             }else{
                 this.turn.main++
             }
-            combatant.interiorStatus[0]=0
         }
         if(combatant.getStatus('No Extra Turns Next Turn')>0){
             combatant.statusEffect('No Extra Turns',combatant.getStatus('No Extra Turns Next Turn'))
@@ -1251,10 +1251,12 @@ class battle{
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.cardManagers[this.turn.main].hand.lastTurnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         this.loadReinforce()
-        for(let a=0,la=this.energy.gen.length;a<la;a++){
+        /*for(let a=0,la=this.energy.gen.length;a<la;a++){
             combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
+            combatant2=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
             //combatant.tick()
-        }
+            //combatant2.tick()
+        }*/
         if((combatant.life<=0||combatant.dead)&&this.turn.main<this.players){
             this.endTurn()
         }else if(combatant.getStatus('Distracted')>0){
@@ -4023,7 +4025,7 @@ class battle{
                             case 1:
                                 if((!this.modded(177)||this.turn.total<=5)&&mult>0){
                                     //reward.push({type:0,value:[floor(random(120,201)*mult)]})
-                                    reward.push({type:0,value:[floor(random(120,201)*mult)]})
+                                    reward.push({type:0,value:[floor(random(120,201)*mult*(1+this.relicManager.active[621][a+1]*0.5))]})
                                 }
                                 if(!variants.business){
                                     if(!this.modded(48)&&!this.relicManager.hasRelic(289,a)){

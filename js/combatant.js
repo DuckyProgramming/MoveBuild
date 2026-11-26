@@ -110,7 +110,7 @@ constants.status={
         'Self Health Loss Energy','Self Health Loss (N)','Self Health Loss (W)','Self Health Loss (B)','Self Health Loss (K)','Self Health Loss (G)','Self Health Loss (R)','Self Health Loss (E)','Divine Wind Boost','Card Play Radiation',
         'Base Item Per Turn','Fatigue Discard Exhaust','Assign Draw Worker','Basic Draw Per Turn','Fatigue Cost Down','Fatigue Cost Up','Temporary Strike Boost','Temporary Defend Boost','Shiv Target All','Scry Faith',
         'Faith Draw','Moriya Talisman Temporary Strength','Rapid Invisible Per Turn','3+ Cost Vitality','Accurate Temporary Strength','Fatigue Scry Exhaust','Damage Cap Once','Damage Cap Once Per Turn','Process Draw','Process Block',
-        'Take Double Shiv','Play Evolve','Block Break Block Next Turn','Take Half Damage Next Turn','Turn Damage Cap','Turn Damage Cap Per Turn',
+        'Take Double Shiv','Play Evolve','Block Break Block Next Turn','Take Half Damage Next Turn','Turn Damage Cap','Turn Damage Cap Per Turn','War Block',
     ],
     behavior:[
         0,2,1,1,2,0,0,0,1,1,//1
@@ -223,7 +223,7 @@ constants.status={
         0,0,0,0,0,0,0,0,0,0,//108
         0,0,0,0,0,0,2,2,1,0,//109
         0,0,0,0,0,0,2,0,0,0,//110
-        1,0,2,2,2,0,
+        1,0,2,2,2,0,0,
     ],
     /*
     0-none
@@ -345,7 +345,7 @@ constants.status={
         2,2,2,2,2,2,2,2,2,2,//108
         2,1,2,2,2,2,2,2,2,2,//109
         2,2,2,2,2,2,0,0,2,2,//110
-        3,2,0,0,2,2,
+        3,2,0,0,2,2,2,
     ]
     /*
     0-good
@@ -2986,6 +2986,13 @@ class combatant{
             this.battle.updateTargetting()
         }
     }
+    getIntentClass(){
+        if(this.id<this.battle.players){
+            return 0
+        }else{
+            return types.attack[this.attack[this.intent].type].class
+        }
+    }
     randomIntent(){
         if(!this.usedIntent.includes(this.intent)){
             this.usedIntent.push(this.intent)
@@ -4109,6 +4116,38 @@ class combatant{
                 }
                 if(userCombatant.status.main[742]>0){
                     damage=userCombatant.status.main[742]
+                }
+            }else{
+                if(this.status.main[3]>0&&!this.getStun()){
+                    this.status.main[3]--
+                    hit=false
+                    dodged=true
+                    this.blocked=0
+                    this.dodges.push({timer:0,direction:random(0,360)})
+                    this.turnStatus[0]++
+                    if(this.status.main[458]>0){
+                        this.statusEffect('Strength',this.status.main[458])
+                    }
+                    if(this.status.main[728]>0&&this.id<this.battle.players){
+                        this.battle.cardManagers[this.id].draw(this.status.main[728])
+                    }
+                    if(this.status.main[459]>0){
+                        if(this.battle.turn.main<=this.id){
+                            this.battle.addSpecificEnergy(this.status.main[459],this.id,6)
+                        }else{
+                            this.statusEffect('Energy Next Turn',this.status.main[459])
+                        }
+                    }
+                    if(this.status.main[584]>0){
+                        if(this.battle.turn.main<=this.id){
+                            this.battle.addSpecificEnergy(this.status.main[584],this.id,4)
+                        }else{
+                            this.statusEffect('(G) Next Turn',this.status.main[584])
+                        }
+                    }
+                    if(this.status.main[601]>0){
+                        this.battle.combatantManager.areaAbstract(0,[this.status.main[601],this.id,0],this.tilePosition,[3,this.id],[0,1],false,0)
+                    }
                 }
             }
             if(this.status.main[210]>0&&this.battle.turn.main==this.id&&hit){
@@ -6304,6 +6343,17 @@ class combatant{
         if(value>0){
             this.mantra+=value
             this.interiorStatus[3]+=value
+        }
+    }
+    war(){
+        if(this.battle.cardManagers[this.id].hand.numberAbstract(4,[[1]])||this.status.main[794]>0){
+            this.battle.cardManagers[this.id].randomEffect(2,75,[1])
+            if(this.status.main[1106]>0){
+                this.addBlock(this.status.main[1106])
+            }
+            return true
+        }else{
+            return false
         }
     }
     bell(mult){
@@ -9410,7 +9460,7 @@ class combatant{
                     let player=this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players?this.battle.turn.main:floor(random(0,this.battle.players))
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(this.status.main[707])
                 }
-                if(this.status.main[770]>0){
+                if(this.status.main[770]>0&&this.name!='Admiral-Manager'&&this.name!='Asshole'){
                     for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
                         if(this.communizers.includes(a)){
                             this.battle.cardManagers[a].deck.add(findName('Worker',types.card),0,0,0)

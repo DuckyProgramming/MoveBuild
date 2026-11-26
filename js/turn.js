@@ -1515,16 +1515,31 @@ class turn{
                                             curr-=subject.fire[b]*10
                                         }
                                     }
-                                    let iKey=(this.userCombatant.intent+(this.battle.turn.main<this.battle.players?2:0))%3
+                                    let iKey=(this.userCombatant.intent+(this.battle.turn.main<this.battle.players?5:0))%6
                                     curr-=dist(subject.relativePosition.x,subject.relativePosition.y,width/2,height/2)/20
                                     switch(iKey){
-                                        case 0:
+                                        case 0: case 3:
                                             curr-=dist(subject.relativePosition.x,subject.relativePosition.y,this.targetCombatant.relativePosition.x,this.targetCombatant.relativePosition.y)
+                                            if(distTarget(0,subject.tilePosition.x-this.targetCombatant.tilePosition.x,subject.tilePosition.y-this.targetCombatant.tilePosition.y)>0){
+                                                curr+=100
+                                            }
                                         break
-                                        case 1:
+                                        case 1: case 4:
                                             curr+=dist(subject.relativePosition.x,subject.relativePosition.y,this.targetCombatant.relativePosition.x,this.targetCombatant.relativePosition.y)
+                                            if(distTarget(0,subject.tilePosition.x-this.targetCombatant.tilePosition.x,subject.tilePosition.y-this.targetCombatant.tilePosition.y)>0){
+                                                curr-=100
+                                            }
                                         break
                                         case 2:
+                                            if(
+                                                distTarget(0,subject.tilePosition.x-this.targetCombatant.tilePosition.x,subject.tilePosition.y-this.targetCombatant.tilePosition.y)>0&&
+                                                distTarget(0,subject.tilePosition.x-this.targetCombatant.tilePosition.x,subject.tilePosition.y-this.targetCombatant.tilePosition.y)<=3
+                                            ){
+                                                curr+=500
+                                            }
+                                            curr+=dist(subject.relativePosition.x,subject.relativePosition.y,this.targetCombatant.relativePosition.x,this.targetCombatant.relativePosition.y)/10
+                                        break
+                                        case 5:
                                             if(distTarget(0,subject.tilePosition.x-this.targetCombatant.tilePosition.x,subject.tilePosition.y-this.targetCombatant.tilePosition.y)>0){
                                                 curr+=500
                                             }

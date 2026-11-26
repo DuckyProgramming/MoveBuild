@@ -9,7 +9,7 @@ function setup(){
         game.dev=true
         game.tooltip=false
 
-            game.diff=26
+            //game.diff=26
             //game.ascend=33
 
             /*stage.scene='tier'

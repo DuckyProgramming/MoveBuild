@@ -4606,6 +4606,13 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('1',8,-3)
                 break
+                case 'Elite Money':
+                    displaySymbol(this.layer,-9,0,34,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(5)
+                    this.layer.text('+50%',9,0)
+                break
 
                 //mark p
             }

@@ -420,8 +420,10 @@ class node{
                     this.layer.endShape(CLOSE)
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade*cap)
+                    //this.layer.fill(70,75,80,this.fade)
                     this.layer.rect(0,24,48,14,3)
                     this.layer.fill(...color,this.fade*cap)
+                    //this.layer.fill(...color,this.fade)
                     this.layer.textSize(12)
                     this.layer.text('Last Chance',0,25)
                 break
@@ -560,10 +562,11 @@ class node{
             }
         }
         if(this.battle.relicManager.hasRelic(341,-1)){
-            this.layer.stroke(125,200,225,this.fade*0.1)
+            //this.layer.stroke(125,200,225,this.fade*0.1)
             for(let a=0,la=this.extraConnections.length;a<la;a++){
                 let target=this.battle.nodeManager.nodes[this.extraConnections[a]]
-                this.layer.stroke(255,this.fade*target.fade*0.1)
+                //this.layer.stroke(255,this.fade*target.fade*0.1)
+                this.layer.stroke(125,200,225,this.fade*target.fade*0.1)
                 for(let b=0;b<10;b++){
                     this.layer.line(
                         this.position.x*(0.7-b*0.01)+target.position.x*(0.3+b*0.01),this.position.y*(0.7-b*0.01)+target.position.y*(0.3+b*0.01),
