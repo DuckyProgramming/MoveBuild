@@ -2817,6 +2817,9 @@ function wish(value){
 function histogram(histogram){
 	stage.scene='histogram'
 	graphics.test=histogram
+	if(!isLooping()){
+		draw()
+	}
 }
 function followup(){
 	quickAddFull('Overflowing',1,0,0)

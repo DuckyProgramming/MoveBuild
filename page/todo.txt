@@ -1,3 +1,17 @@
 CS 160 [ENDSIEG ULTIMATE]
 
+[clear the despecified]
+[sagume update / purge / rework]
+is "return from discard pile" a worthwhile gimmick to have in the first place?
+
+blossom seal - apply mortal to all enemies when played and when recovered
+swallowtail - damage to a random enemy, put a random non-fatigue card from discard pile to hand
+gifts of death - heal, apply mortal to all enemies
+[invalid] vivid chaos - damage in all directions, mtg cost [0,1,2,3,4,5,6]
+self-loss - 18 damage twice, lose 4 health next turn
+demon world - mortal in all directions, recover 1
+sense of elegance - gain 1 dodge, when exhausted gain 1 energy (ethereal?)
+butterfly storm (isn't this already a card) - draw, when returned from discard pile upgrade a card
+ticket to the past - take another turn, reduce turn number by a lot
+
 
