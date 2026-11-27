@@ -43,7 +43,7 @@ function setup(){
 
             //event('The Last Chance')
 
-            //fight('-h Rewriter')
+            //fight('Admiral-Manager')
 
             //game.animRate=4
 

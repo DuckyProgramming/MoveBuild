@@ -3926,30 +3926,33 @@ function outEncounter(){
 	console.log(`
 Total: ${manager.listing.static.reduce((a,n)=>a+n.reduce((a,n)=>a+n.length,0),0)}/${goal.reduce((a,n)=>a+n.reduce((a,n)=>a+n,0),0)}
 \nWorld 1:
-Starters:${manager.listing.static[0][4].length}/${goal[0][4]}
-Easies:${manager.listing.static[0][3].length}/${goal[0][3]}
-Enemies:${manager.listing.static[0][0].length}/${goal[0][0]}
-Elites:${manager.listing.static[0][1].length}/${goal[0][1]}
-Bosses:${manager.listing.static[0][2].length}/${goal[0][2]}
-Total:${manager.listing.static[0].reduce((a,n)=>a+n.length,0)}/${goal[0].reduce((a,n)=>a+n,0)}
+Starters: ${manager.listing.static[0][4].length}/${goal[0][4]}
+Easies: ${manager.listing.static[0][3].length}/${goal[0][3]}
+Enemies: ${manager.listing.static[0][0].length}/${goal[0][0]}
+Elites: ${manager.listing.static[0][1].length}/${goal[0][1]}
+Bosses: ${manager.listing.static[0][2].length}/${goal[0][2]}
+Total: ${manager.listing.static[0].reduce((a,n)=>a+n.length,0)}/${goal[0].reduce((a,n)=>a+n,0)}
 \nWorld 2:
-Starters:${manager.listing.static[1][4].length}/${goal[1][4]}
-Enemies:${manager.listing.static[1][0].length}/${goal[1][0]}
-Elites:${manager.listing.static[1][1].length}/${goal[1][1]}
-Bosses:${manager.listing.static[1][2].length}/${goal[1][2]}
-Total:${manager.listing.static[1].reduce((a,n)=>a+n.length,0)}/${goal[1].reduce((a,n)=>a+n,0)}
+Starters: ${manager.listing.static[1][4].length}/${goal[1][4]}
+Enemies: ${manager.listing.static[1][0].length}/${goal[1][0]}
+Elites: ${manager.listing.static[1][1].length}/${goal[1][1]}
+Bosses: ${manager.listing.static[1][2].length}/${goal[1][2]}
+Total: ${manager.listing.static[1].reduce((a,n)=>a+n.length,0)}/${goal[1].reduce((a,n)=>a+n,0)}
 \nWorld 3:
-Starters:${manager.listing.static[2][4].length}/${goal[2][4]}
-Enemies:${manager.listing.static[2][0].length}/${goal[2][0]}
-Elites:${manager.listing.static[2][1].length}/${goal[2][1]}
-Bosses:${manager.listing.static[2][2].length}/${goal[2][2]}
-Total:${manager.listing.static[2].reduce((a,n)=>a+n.length,0)}/${goal[2].reduce((a,n)=>a+n,0)}
+Starters: ${manager.listing.static[2][4].length}/${goal[2][4]}
+Enemies: ${manager.listing.static[2][0].length}/${goal[2][0]}
+Elites: ${manager.listing.static[2][1].length}/${goal[2][1]}
+Bosses: ${manager.listing.static[2][2].length}/${goal[2][2]}
+Total: ${manager.listing.static[2].reduce((a,n)=>a+n.length,0)}/${goal[2].reduce((a,n)=>a+n,0)}
 \nWorld 4:
-Elites:${manager.listing.static[3][1].length}/${goal[3][1]}
-Bosses:${manager.listing.static[3][2].length}/${goal[3][2]}
-Specials:${manager.listing.static[3][4].length}/${goal[3][4]}
-Total:${manager.listing.static[3].reduce((a,n)=>a+n.length,0)}/${goal[3].reduce((a,n)=>a+n,0)}
+Elites: ${manager.listing.static[3][1].length}/${goal[3][1]}
+Bosses: ${manager.listing.static[3][2].length}/${goal[3][2]}
+Specials: 2/2
+Total: ${manager.listing.static[3].reduce((a,n)=>a+n.length,0)}/${goal[3].reduce((a,n)=>a+n,0)}
 	`)
+	//this is scuffed, as -h rewriter and -h eternal judge are counted in total but not normally
+	//meanwhile, admiral-manager and asshole are 2 fights that i counted under specials above as an exception but aren't part of total
+	//Specials:${manager.listing.static[3][4].length}/${goal[3][4]}
 }
 function outEncounterOld(){
 	//this uses the old numbers and shouldn't be relied upon

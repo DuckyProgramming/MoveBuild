@@ -15870,6 +15870,18 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
+                if(this.name=='Admiral-Manager'&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
+                    this.layer.fill(this.color.glasses[1][0],this.color.glasses[1][1],this.color.glasses[1][2],this.fade*this.fades.glasses/5)
+                    this.layer.stroke(this.color.glasses[0][0],this.color.glasses[0][1],this.color.glasses[0][2],this.fade*this.fades.glasses)
+                    this.layer.strokeWeight(0.5)
+                    this.layer.rect(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-3.5,-80,4*lcos(this.anim.direction),2,1)
+                    this.layer.rect(lsin(this.anim.direction)*15+lcos(this.anim.direction)*3.5,-80,4*lcos(this.anim.direction),2,1)
+                    this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*1.5,-80,lsin(this.anim.direction)*15-lcos(this.anim.direction)*1.5,-80)
+                    this.layer.line(lsin(this.anim.direction)*15-lcos(this.anim.direction)*5.5,-80,lsin(this.anim.direction)*15-lcos(this.anim.direction)*6.5,-80)
+                    this.layer.line(lsin(this.anim.direction)*15-lcos(this.anim.direction)*6.5,-80,lsin(this.anim.direction)*15-lcos(this.anim.direction)*8,-80.5)
+                    this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5.5,-80,lsin(this.anim.direction)*15+lcos(this.anim.direction)*6.5,-80)
+                    this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*6.5,-80,lsin(this.anim.direction)*15+lcos(this.anim.direction)*8,-80.5)
+                }
                 if(this.name=='Asshole'&&this.time<(this.monologue.text.length*2)*120){
                     for(let a=0,la=this.monologue.text.length;a<la;a++){
                         if(this.time>(a+1)*120&&this.time<(a+1.8)*120){

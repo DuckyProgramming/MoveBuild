@@ -3235,6 +3235,10 @@ combatant.prototype.setupGraphics=function(direction){
                     this.anim.eyeStyle=[8,8]
                     this.anim.eye=[-24,-156]
                     this.parts.eyeLevel-=2
+                    this.color.glasses=[[25,25,25],[225,225,225]]
+                    this.fades.glasses=1
+                    this.trigger.display.glasses=false
+                    //this.trigger.display.glasses=true
                 break
                 case 'Asshole':
                     this.spin.eye=[-15,15]
