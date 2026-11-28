@@ -35,7 +35,9 @@ class overlay{
             break
             case 5:
                 this.page=0
-                this.battle.relicManager.relics.forEach(relic=>relic.fade=0)
+                if(this.battle.relicManager!=undefined){
+                    this.battle.relicManager.relics.forEach(relic=>relic.fade=0)
+                }
             break
             case 6:
                 this.text=''
@@ -83,7 +85,9 @@ class overlay{
             break
             case 22:
                 this.page=0
-                this.battle.relicManager.allRelics.forEach(relic=>relic.fade=0)
+                if(this.battle.relicManager!=undefined){
+                    this.battle.relicManager.allRelics.forEach(relic=>relic.fade=0)
+                }
                 this.got=0
             break
             case 25:

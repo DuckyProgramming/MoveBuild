@@ -1793,6 +1793,9 @@ class battle{
             if(userCombatant.getStatus('Discus Pure')>0){
                 userCombatant.statusEffect('Pure',userCombatant.getStatus('Discus Pure'))
             }
+            if(userCombatant.getStatus('Discus Draw')>0){
+                this.cardManagers[player].draw(userCombatant.getStatus('Discus Draw'))
+            }
         }
         if(card.spec.includes(86)){
             if(userCombatant.getStatus('Wheel Temporary Strength')>0){
@@ -3645,7 +3648,16 @@ class battle{
                             let overProp=(graphics.test==11?1/la:total[a]/overTotal)*(this.layer.width-margin*2)
                             let pos=margin
                             let x=overPos+overProp*0.5
-                            if(graphics.test==11){
+                            if(graphics.test==4){
+                                this.layer.push()
+                                this.layer.translate(x,this.layer.height-45)
+                                this.layer.rotate(-90)
+                                this.layer.textAlign(RIGHT,CENTER)
+                                this.layer.fill(0)
+                                this.layer.textSize(10)
+                                this.layer.text(`${a*1000}s`,0,0)
+                                this.layer.pop()
+                            }else if(graphics.test==11){
                                 this.layer.fill(0)
                                 this.layer.textSize(10)
                                 this.layer.text([`None`,`Attack`,`Defense`,`Movement`,`Power`,`Status`,`Curse`,`Blueprint`,`Condition`,`Ally`,`Classless`,`Skill`,`Wish`,`Quest`,`Grand Quest`][a],x,this.layer.height-30)

@@ -8,6 +8,7 @@ checkExists: finds unused attack ids
 checkMislabel: finds cards with weird properties for their class
 checkMtg: finds various bugs with the mtg versions of cards
 checkMtgOld: deprecated version of the above
+checkNonStandard: finds cards with abnormal specifications (e.g. "add a" instead of "add 1")
 checkPast: checks past cards that have no modern analogue (unusable until a past cardset is loaded)
 checkRepeats: finds card names that are substrings of other card names (deprecated)
 checkReuse: finds cards that have the same attack id
@@ -2974,7 +2975,8 @@ function generalizedSearch(test,type,subtract){
     current.overlayManager.overlays[35][0].activate([0])
 	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		//cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target).replaceAll('\n',' ')
 		if(cardData.desc.includes(test)&&(subtract==undefined||!cardData.desc.includes(subtract))){
 			console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
 		}
@@ -2984,7 +2986,8 @@ function generalizedSearch(test,type,subtract){
 		current.overlayManager.overlays[115][0].activate([0])
 		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
 			let cardData=current.overlayManager.overlays[115][0].cards[a]
-			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			//cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target).replaceAll('\n',' ')
 			if(cardData.desc.includes(test)&&(subtract==undefined||!cardData.desc.includes(subtract))){
 				console.log(cardData.name.replace('\n',' '),'\n',cardData.desc)
 			}
@@ -2998,7 +3001,8 @@ function generalizedSearch2(test,type,subtract){
 	current.overlayManager.overlays[35][0].activate([0,-99])
 	for(let a=0,la=current.overlayManager.overlays[35][0].cards.length;a<la;a++){
 		let cardData=current.overlayManager.overlays[35][0].cards[a]
-		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		//cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target).replaceAll('\n',' ')
 		if(
 			(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
 			(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
@@ -3012,7 +3016,8 @@ function generalizedSearch2(test,type,subtract){
 		current.overlayManager.overlays[115][0].activate([0,-99])
 		for(let a=0,la=current.overlayManager.overlays[115][0].cards.length;a<la;a++){
 			let cardData=current.overlayManager.overlays[115][0].cards[a]
-			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			//cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target)
+			cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target).replaceAll('\n',' ')
 			if(
 				(cardData.desc.includes(test)||typeof test=='object'&&test.some(t=>cardData.desc.includes(t)))&&
 				(subtract==undefined||!(cardData.desc.includes(subtract)||typeof subtract=='object'&&subtract.some(t=>cardData.desc.includes(t))))
@@ -3130,7 +3135,22 @@ function checkExists(start=-1,end=-1){
 	}
 	let invalid=[
 		-120,//indecipherable
-		-26,//decremented
+
+		-16,-24,-63,-79,-81,-82,-107,-121,-135,-141,
+		735,745,756,771,
+		1074,1095,1576,
+		2338,2435,2777,2783,2843,2879,2918,2967,2969,
+		3017,3030,3086,3091,3117,3122,3133,3243,3310,3377,3443,3448,3450,3499,3537,3545,3546,3777,3808,3994,3982,
+		4043,4044,4051,4054,4055,4056,4057,4139,4184,4185,4274,4504,4505,4506,4552,4553,4581,4582,4583,4587,4588,4589,4619,
+		5247,5327,5328,5329,5330,5368,5369,5370,5393,5433,5584,5647,5648,5724,5725,5860,5861,
+		6063,6192,6360,6388,6521,6560,6618,6649,6806,6858,6975,
+		7178,7236,7742,7743,8108,
+		8013,8097,8098,8099,8100,8106,8313,8408,8430,8438,8556,8590,8667,8678,8747,8748,8749,8759,8760,8761,
+		10241,
+		//add "a" (rather than a number)
+
+		-26,1120,1311,1470,1508,1521,1557,1735,1749,2398,
+		2497,4756,4757,4758,12231,12234,//values
 		5,16,134,135,201,236,237,244,245,250,
 		447,465,466,467,468,487,974,986,987,1001,
 		1017,1281,2163,2186,2187,2664,2776,2837,3214,3333,
@@ -3148,8 +3168,6 @@ function checkExists(start=-1,end=-1){
 		651,657,//invalid close in, keep distance
 		671,//invalid charge source
 		770,//invalid credence
-		771,1095,2338,3443,3450,3545,3546,4054,4055,4056,
-		4057,4139,6649,8556,8678,//add "a" (rather than a number)
 		772,773,4883,4898,//invalid amass
 		792,//invalid conjure blade
 		853,//invalid energy recoil
@@ -3162,6 +3180,7 @@ function checkExists(start=-1,end=-1){
 		1266,//invalid dice blaster
 		1284,2583,3151,3152,//invalid lucky 7, edict, graphite, graphene
 		1307,//invalid boston bat
+		1331,1332,//blood hearts
 		1369,//invalid high vis jacket
 		1461,//invalid overconfidence
 		1691,1692,1693,1694,//theme
@@ -3204,9 +3223,11 @@ function checkExists(start=-1,end=-1){
 		6199,//invalid cleaver
 		6399,//invalid circle of silence
 		6899,12238,//invalid lunar veil
+		7048,//invalid disparition
 		7196,7197,7198,7199,7200,7201,7672,11937,12006,12100,
 		12111,12113,12114,//x = evolve
 		7268,//invalid big time
+		7627,//invalid unrefined
 		7690,//invalid landmark
 		7822,//invalid shield source
 		7929,//invalid suit up
@@ -3230,6 +3251,8 @@ function checkExists(start=-1,end=-1){
 		11680,11681,11682,11975,12040,12041,12044,12049,
 		12050,12098,//items
 	]
+	//771,1095,2338,3443,3450,3545,3546,4054,4055,4056,
+	//4057,4139,6649,8556,8678,//add "a" (rather than a number)
 	let total=0
 	/*let incl=[]
 	for(let a=0,la=types.card.length;a<la;a++){
@@ -3341,6 +3364,7 @@ function checkExists(start=-1,end=-1){
 		}
 	}
 	print(`Total: ${total}`)
+	print(`Exception: ${invalid.length}`)
 }
 function checkMislabel(type,check){
 	/*
@@ -3370,7 +3394,9 @@ function checkMislabel(type,check){
 				cardData.class==4&&check==4&&(cardData.spec.includes(0)||cardData.spec.includes(1))||
 				//cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
 				cardData.class==11&&check==5&&cardData.spec.includes(0)||
-				cardData.class==11&&check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
+				//cardData.class==11&&check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
+				check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
+				cardData.class==1&&check==7&&cardData.spec.includes(0)&&cardData.cost==0||
 				cardData.class==11&&check==11&&skillRegex.some(reg=>reg.test(cardData.desc))
 			){
 				set.push(cardData.name)
@@ -3390,7 +3416,9 @@ function checkMislabel(type,check){
 					cardData.class==4&&check==4&&(cardData.spec.includes(0)||cardData.spec.includes(1))||
 					//cardData.class==11&&check==5&&cardData.desc.includes('Fatigue')&&!cardData.desc.includes('Remove')||
 					cardData.class==11&&check==5&&cardData.spec.includes(0)||
-					cardData.class==11&&check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
+					//cardData.class==11&&check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
+					check==6&&cardData.spec.includes(2)&&cardData.spec.includes(4)||
+					cardData.class==1&&check==7&&cardData.spec.includes(0)&&cardData.cost.length==0||
 					cardData.class==11&&check==11&&skillRegex.some(reg=>reg.test(cardData.desc))
 				){
 					set.push(cardData.name)
@@ -3507,6 +3535,50 @@ function checkMtgOld(){
 				console.log(types.card[a].name)
 			}
 		}
+	}
+}
+function checkNonStandard(){
+	//this runs poorly and misses a lot of exceptions
+	//make sure to manually go over using generalizedSearch2('Add a',0,'Add a Copy') afterward
+	//ideally, this should be empty anyway
+	if(current.cardManagers==undefined){
+		current.player=[1]
+		current.players=1
+		current.initialManagers()
+	}
+	let manager=current.overlayManager==undefined?new overlayManager(current.layer,current,0):current.overlayManager
+	manager.overlays[35][0].activate([0,-99])
+	for(let a=0,la=manager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=manager.overlays[35][0].cards[a]
+		cardData.desc=cardData.description(cardData.attack,cardData.effect,cardData.spec,cardData.target).replaceAll('\n',' ')
+		cardData.desc2=cardData.desc.replace(/[0-9]/g,'').replaceAll('\nto Hand','').replaceAll(' Exhaust','').replaceAll(' Retain','')
+	}
+	for(let a=0,la=manager.overlays[35][0].cards.length;a<la;a++){
+		let cardData=manager.overlays[35][0].cards[a]
+		let curr=cardData.desc.replaceAll('Add an','Add 1').replaceAll('Add a','Add 1').replace(/[0-9]/g,'').replaceAll('\nto Hand','').replaceAll(' Exhaust','').replaceAll(' Retain','')
+		let curr2=cardData.desc.replaceAll('Shuffle an','Shuffle 1').replaceAll('Shuffle a','Shuffle 1').replace(/[0-9]/g,'').replaceAll('\nto Hand','').replaceAll(' Exhaust','').replaceAll(' Retain','')
+		/*if(cardData.desc.includes('Add a')&&manager.overlays[35][0].cards.some(
+			card2=>{*./
+				/*return card2.desc.replace(/[0-9]/g,'').replaceAll('\nto Hand','')==
+					cardData.desc.replaceAll('Add a','Add 1').replace(/[0-9]/g,'').replaceAll('\nto Hand','')*/
+				/*return card2.desc.replaceAll(' Exhaust','')==
+					cardData.desc.replaceAll('Add a','Add 1').replaceAll(' Exhaust','')*/
+				//return card2.desc==cardData.desc.replaceAll('Add an','Add 1').replaceAll('Add a','Add 1')
+				//return card2.desc2==curr
+			//}
+		//)){
+		if(cardData.desc.includes('Add a')&&manager.overlays[35][0].cards.some(card2=>cardData.name!=card2.name&&card2.desc2==curr)){
+			print(`A: ${cardData.name} = ${manager.overlays[35][0].cards.filter(card2=>cardData.name!=card2.name&&card2.desc2==curr).map(card2=>card2.name).join(', ')}`)
+		}else if(cardData.desc.includes('Shuffle a')&&manager.overlays[35][0].cards.some(card2=>cardData.name!=card2.name&&card2.desc2==curr2)){
+			print(`B: ${cardData.name} = ${manager.overlays[35][0].cards.filter(card2=>cardData.name!=card2.name&&card2.desc2==curr2).map(card2=>card2.name).join(', ')}`)
+		}
+		/*else if(cardData.desc.includes('Add an')&&manager.overlays[35][0].cards.some(
+			card2=>{
+				return card2.desc==cardData.desc.replaceAll('Add an','Add 1')
+			}
+		)){
+			print(cardData.name)
+		}*/
 	}
 }
 function checkPast(){

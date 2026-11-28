@@ -350,7 +350,8 @@ class attack{
             case 12071: case 12072: case 12076: case 12079: case 12080: case 12083: case 12089: case 12095: case 12098: case 12100: case 12101: case 12103: case 12104: case 12113: case 12114: case 12117: case 12128: case 12131: case 12136: case 12138:
             case 12139: case 12140: case 12142: case 12151: case 12156: case 12157: case 12158: case 12159: case 12160: case 12161: case 12162: case 12177: case 12178: case 12191: case 12192: case 12197: case 12198: case 12199: case 12200: case 12201:
             case 12202: case 12204: case 12205: case 12206: case 12207: case 12210: case 12211: case 12224: case 12226: case 12231: case 12232: case 12233: case 12234: case 12235: case 12236: case 12237: case 12239: case 12240: case 12242: case 12250:
-            case 12251: case 12254: case 12255: case 12261: case 12262: case 12264: case 12265: case 12266: case 12267:
+            case 12251: case 12254: case 12255: case 12261: case 12262: case 12264: case 12265: case 12266: case 12267: case 12272: case 12274: case 12276: case 12277: case 12281: case 12286: case 12287: case 12288: case 12289: case 12291: case 12297:
+            case 12298: case 12299: case 12300:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -8901,7 +8902,7 @@ class attack{
                             this.targetCombatant.statusEffect('Weak',this.effect[1])
                         }
                     break
-                    case 10780:
+                    case 10780: case 12287:
                         if(this.battle.turn.total%2==0){
                             this.targetCombatant.statusEffect('Cannot Move',this.effect[1])
                         }
@@ -9328,6 +9329,16 @@ class attack{
                             this.targetCombatant.statusEffect('Stun',this.effect[2])
                         }else{
                             this.targetCombatant.statusEffect('Communized',this.effect[3])
+                        }
+                    break
+                    case 12272:
+                        if(this.userManager.hand.turnPlayed[0]>=this.effect[2]){
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 12286:
+                        if(this.limit%2==1){
+                            this.battle.combatantManager.randomEnemyEffect(18,[this.effect[1],this.user,this.targetCombatant.id])
                         }
                     break
 
@@ -14231,6 +14242,12 @@ class attack{
                     break
                     case 12171:
                         this.userCombatant.statusEffect('Block Break Block Next Turn',this.effect[1])
+                    break
+                    case 12282:
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Dazed',types.card),this.level,constants.playerNumber+1)
+                        }
                     break
 
                 }
@@ -24744,6 +24761,42 @@ class attack{
                     case 12263:
                         this.userCombatant.statusEffect('War Block',this.effect[0])
                     break
+                    case 12268:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 12269:
+                        this.battle.addSpecificEnergy(1,this.player,0)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 12270:
+                        this.battle.addSpecificEnergy(2,this.player,0)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 12271:
+                        this.battle.addSpecificEnergy(3,this.player,0)
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Moonscape',types.card),0,constants.playerNumber+1)
+                        }
+                    break
+                    case 12290:
+                        this.userManager.addRandomAbstract(2,this.level,0,2,1,[1],[3,this.energy*this.effect[0]+this.effect[1],0])
+                    break
+                    case 12292:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                        this.userCombatant.removeAllStatuses([1,3])
+                    break
 
                 }
                 //mark 4
@@ -33770,6 +33823,22 @@ class attack{
                         this.targetCombatant.statusEffect('Burn',this.effect[0])
                         this.targetCombatant.statusEffect('Take Damage',this.effect[1])
                     break
+                    case 12273:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                        this.userManager.hand.exhaust(this.effect[2])
+                    break
+                    case 12275:
+                        this.userCombatant.statusEffect('Discus Draw',this.effect[0])
+                    break
+                    case 12280:
+                        this.userCombatant.heal(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Shining\nMoon',types.card),0,constants.playerNumber+1)
+                        }
+                    break
 
                 }
                 //mark 6
@@ -38563,6 +38632,28 @@ class attack{
                             this.userManager.draw(this.effect[0])
                         }
                     break
+                    case 12274:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userManager.hand.numberAbstract(4,[[6]])>0?3:1),this.user)
+                        this.userManager.hand.exhaust(this.effect[1])
+                    break
+                    case 12289:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        this.targetCombatant.statusEffect('Frail',this.effect[2])
+                        for(let a=0,la=this.effect[3];a<la;a++){
+                            this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                        }
+                    break
+                    case 12299:
+                        this.targetCombatant.statusEffect('Poison',this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                    break
+                    case 12300:
+                        this.targetCombatant.statusEffect('Poison',this.effect[0])
+                        this.targetCombatant.statusEffect('Cannot Move',this.effect[1])
+                    break
 
                 }
                 //mark 8
@@ -42855,6 +42946,11 @@ class attack{
                     break
                     case 12219:
                         this.userCombatant.statusEffect('Hyperquill Next Turn',this.energy*this.effect[0]+this.effect[1])
+                    break
+                    case 12281:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        this.userCombatant.statusEffect('Pure',this.effect[2])
                     break
 
                 }
@@ -47506,6 +47602,22 @@ class attack{
                             this.userManager.hand.add(findName('Miracle',types.card),0,0)
                         }
                     break
+                    case 12278:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.reserve.drawEffect(this.userManager.hand.addReturn(findName('Sharp\nWord',types.card),0,constants.playerNumber+1))
+                        }
+                    break
+                    case 12279:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Occult',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.reserve.drawEffect(this.userManager.hand.addReturn(findName('Sharp\nWord',types.card),0,constants.playerNumber+1))
+                        }
+                    break
 
                 }
                 //mark 12
@@ -48963,6 +49075,12 @@ class attack{
                     case 12051:
                         this.targetCombatant.addBlock(this.effect[0])
                         this.userManager.draw(this.effect[1])
+                    break
+                    case 12277:
+                        this.userCombatant.statusEffect('Pure',this.effect[0])
+                    break
+                    case 12288:
+                        this.userManager.allEffectArgs(2,64,[this.effect[1]])
                     break
                     default:
                         if(this.type==7510){

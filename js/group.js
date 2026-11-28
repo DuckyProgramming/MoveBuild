@@ -3270,6 +3270,11 @@ class group{
                         this.cards[a].costDown(0,[args[0]])
                     }
                 break
+                case 90:
+                    if(this.cards[a].spec.includes(54)){
+                        this.cards[a].effect[0]+=args[0]
+                    }
+                break
                 //mark allargs
             }
         }
@@ -4169,6 +4174,12 @@ class group{
             case -174:
                 userCombatant.takeDamage(card.effect[0])
                 userCombatant.addBlock(card.effect[1])
+            break
+            case -176:
+                this.battle.loseEnergy(card.effect[0],this.player)
+                for(let a=0,la=card.effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Pristine',types.card),0,0)
+                }
             break
 
             //mark n

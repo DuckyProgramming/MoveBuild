@@ -1,17 +1,40 @@
-CS 160 [ENDSIEG ULTIMATE]
+CS 161 [ENDSIEG ULTIMATE]
 
-[clear the despecified]
 [sagume update / purge / rework]
-is "return from discard pile" a worthwhile gimmick to have in the first place?
+[prehex nuked]
+
+turn numbers are terrible
+sakuyaB instead
+and goodbye radiation
+
+split neolithic
+split microcosm
+split archaic meteor
+split chronoburst
+split time bomb
+split interest payment
+split ammonite
+split seismic activity
+split time to grow
+split primordial soup
+new scrap card (prev was scrap clock)
+replace pulsating time, etc
+
+split devil's rain
 
 blossom seal - apply mortal to all enemies when played and when recovered
 swallowtail - damage to a random enemy, put a random non-fatigue card from discard pile to hand
 gifts of death - heal, apply mortal to all enemies
 [invalid] vivid chaos - damage in all directions, mtg cost [0,1,2,3,4,5,6]
-self-loss - 18 damage twice, lose 4 health next turn
 demon world - mortal in all directions, recover 1
 sense of elegance - gain 1 dodge, when exhausted gain 1 energy (ethereal?)
 butterfly storm (isn't this already a card) - draw, when returned from discard pile upgrade a card
-ticket to the past - take another turn, reduce turn number by a lot
+ticket to the past - take another turn, time pulse things
+allocations - retain, gain 1 energy per status card in hand
+sky return - block version of butterfly barrage
+mutator - gain 1 strength, exhaust a random card in hand, add a copy of this card to hand
+hostile - 8 damage, increases by 1 per combat entered with a curse in your deck
+sterile body - gain 1 pure per turn
+memento - apply 2 vulnerable ot all enemies for 0, but when added get cursed
 
 

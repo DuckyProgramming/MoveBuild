@@ -1577,6 +1577,10 @@ class card{
                 this.battle.combatantManager.allEffect(43,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
                 this.battle.cardManagers[this.player].draw(this.effect[1],5)
             break
+            case 12291:
+                userCombatant.statusEffect('Counter All',this.effect[1])
+                this.battle.cardManagers[this.player].draw(this.effect[2])
+            break
         }
     }
     callAnotherDrawEffect(number){
@@ -1791,6 +1795,9 @@ class card{
             break
             case -175:
                 this.battle.combatantManager.randomEnemyEffect(3,[this.effect[0],this.battle.combatantManager.getPlayerCombatantIndex(this.player)])
+            break
+            case -177:
+                userCombatant.takeDamage(this.effect[0],-1)
             break
             case 202:
                 userCombatant.combo+=this.effect[1]
@@ -2026,6 +2033,12 @@ class card{
             break
             case 12250:
                 userCombatant.statusEffect('Armor',this.effect[2])
+            break
+            case 12293:
+                this.battle.addEnergy(this.effect[0],this.player)
+            break
+            case 12294: case 12295: case 12296:
+                this.battle.addEnergy(this.type-12292,this.player,6)
             break
 
         }
@@ -3695,6 +3708,11 @@ class card{
             case 12151:
                 if(userCombatant.totalUniqueStatus(1)>0){
                     this.effect[0]+=this.effect[1]
+                }
+            break
+            case 12287:
+                if(this.battle.turn.total%2==0){
+                    this.exhaust=true
                 }
             break
         }
